@@ -1,0 +1,45 @@
+{
+  "TheSimpletonMod:BleedKeyword": {
+    "PROPER_NAME": "Bleed",
+    "NAMES": [
+      "bleed",
+      "bleeding"
+    ],
+    "DESCRIPTION": "Bleeding creature loses HP whenever it Attacks. Each turn, Bleed is reduced by #b1."
+  },
+  "TheSimpletonMod:CircleKeyword": {
+    "PROPER_NAME": "Circle",
+    "NAMES": [
+      "circle"
+    ],
+    "DESCRIPTION": "An #yUnplayable card that can be activated by using other cards while in hand."
+  },
+  "TheSimpletonMod:CursedKeyword": {
+    "PROPER_NAME": "Cursed",
+    "NAMES": [
+      "cursed"
+    ],
+    "DESCRIPTION": "Any card with the word \"Cursed\" in its name. Using it will make Dregs or random Curse cards."
+  },
+  "TheSimpletonMod:DregsKeyword": {
+    "PROPER_NAME": "Dregs",
+    "NAMES": [
+      "dregs"
+    ],
+    "DESCRIPTION": "Dregs are unplayable Curse cards."
+  },
+  "TheSimpletonMod:RitualKeyword": {
+    "PROPER_NAME": "Ritual",
+    "NAMES": [
+      "ritual"
+    ],
+    "DESCRIPTION": "When using, choose 1 card to #yExhaust. Selecting a Curse card will activate the Ritual's effect."
+  },
+  "TheSimpletonMod:StunKeyword": {
+    "PROPER_NAME": "Stun",
+    "NAMES": [
+      "stun"
+    ],
+    "DESCRIPTION": "Cannot do anything."
+  }
+}

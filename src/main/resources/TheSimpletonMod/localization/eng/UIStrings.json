@@ -1,0 +1,69 @@
+{
+  "TheSimpletonMod:ExhaustCurseThenActivateAction": {
+    "TEXT": [
+      "Exhaust. Choosing a Curse Activates the Ritual's Effect. (",
+      ")"
+    ]
+  },
+  "TheSimpletonMod:PrepareRitualAction": {
+    "TEXT": [
+      "Exhaust. (Will Be Replaced With Dregs.)"
+    ]
+  },
+  "TheSimpletonMod:ThemeDescription": {
+    "TEXT": [
+      "[Constructed Theme Deck] Enjoy this mod more by playing various archetypes!",
+      "(Note - only the topmost checked theme will be applied.)"
+    ]
+  },
+  "TheSimpletonMod:EndlessStrikeTheme": {
+    "TEXT": [
+      "[Endless Strike] Use \"Strike\" cards infinitely. (starting relic: Four-Leaf Clover Charm)"
+    ]
+  },
+  "TheSimpletonMod:HeavyMachineGunTheme": {
+    "TEXT": [
+      "[Heavy Machine Gun] Shoot Mana Bullets infinitely. (starting relic: Magic Candle)"
+    ]
+  },
+  "TheSimpletonMod:HellfireTheme": {
+    "TEXT": [
+      "[Hellfire!] Breath Hellfire by cycling your deck. (starting relic: Black Magic Advanced)"
+    ]
+  },
+  "TheSimpletonMod:LetsStretchingTheme": {
+    "TEXT": [
+      "[Let's Stretching] Keep gaining permanent Dexterity. (starting relic: Pink Pellets)"
+    ]
+  },
+  "TheSimpletonMod:ManglingTheme": {
+    "TEXT": [
+      "[Mangling!] Use Mangle infinitely. (starting relic: Tack)"
+    ]
+  },
+  "TheSimpletonMod:MoonCrystalPowerTheme": {
+    "TEXT": [
+      "[Moon Crystal Power] Feel the power of Crystal Ball. (starting relic: Crystal Ball)"
+    ]
+  },
+  "TheSimpletonMod:PainfulBoomerangTheme": {
+    "TEXT": [
+      "[Painful Boomerang] Give enemies Ultimate Pain. (starting relic: Bloody Harpoon)"
+    ]
+  },
+  "TheSimpletonMod:SoulReaperTheme": {
+    "TEXT": [
+      "[Soul Reaper] Keep maintaining your HP as its maximum. (starting relic: Soul Vessel)"
+    ]
+  },
+  "TheSimpletonMod:StrengthMachineTheme": {
+    "TEXT": [
+      "[Strength Machine] Keep gaining Strength by 1. (starting relic: Demonic Mark)"
+    ]
+  },
+  "TheSimpletonMod:VoidLordTheme": {
+    "TEXT": [
+      "[Void Lord] Feel the power of Void Form. (starting relic: Ominous Mark)"
+    ]
+  }
+}

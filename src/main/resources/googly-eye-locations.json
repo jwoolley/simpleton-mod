@@ -1,6 +1,6 @@
 {
   "cards": {
-    "TheCursedMod:AntiAging": [
+    "TheSimpletonMod:AntiAging": [
       {
         "x": 253.59998,
         "y": 340.80002,
@@ -12,7 +12,7 @@
         "size": 12.000012
       }
     ],
-    "TheCursedMod:CleanUpWorkshop": [
+    "TheSimpletonMod:CleanUpWorkshop": [
       {
         "x": 91.599976,
         "y": 217.20001,
@@ -29,7 +29,7 @@
         "size": 16.32177
       }
     ],
-    "TheCursedMod:CollectTribute": [
+    "TheSimpletonMod:CollectTribute": [
       {
         "x": 183.99998,
         "y": 301.2,
@@ -51,14 +51,14 @@
         "size": 43.283253
       }
     ],
-    "TheCursedMod:CursedAmulet": [
+    "TheSimpletonMod:CursedAmulet": [
       {
         "x": 224.79999,
         "y": 80.4,
         "size": 32.31098
       }
     ],
-    "TheCursedMod:CursedArmor": [
+    "TheSimpletonMod:CursedArmor": [
       {
         "x": 204.39998,
         "y": 320.4,
@@ -70,7 +70,7 @@
         "size": 19.349411
       }
     ],
-    "TheCursedMod:CursedRelics": [
+    "TheSimpletonMod:CursedRelics": [
       {
         "x": 357.99997,
         "y": 225.6,
@@ -82,8 +82,8 @@
         "size": 13.416391
       }
     ],
-    "TheCursedMod:CursedStaff": [],
-    "TheCursedMod:CursedWand": [
+    "TheSimpletonMod:CursedStaff": [],
+    "TheSimpletonMod:CursedWand": [
       {
         "x": 265.59998,
         "y": 267.6,
@@ -95,21 +95,21 @@
         "size": 21.633308
       }
     ],
-    "TheCursedMod:DarkBarrier": [
+    "TheSimpletonMod:DarkBarrier": [
       {
         "x": 179.19998,
         "y": 195.6,
         "size": 25.0
       }
     ],
-    "TheCursedMod:Evocation": [
+    "TheSimpletonMod:Evocation": [
       {
         "x": 282.4,
         "y": 277.2,
         "size": 13.994275
       }
     ],
-    "TheCursedMod:FleshFromBone": [
+    "TheSimpletonMod:FleshFromBone": [
       {
         "x": 257.19998,
         "y": 184.8,
@@ -121,14 +121,14 @@
         "size": 23.299782
       }
     ],
-    "TheCursedMod:FuryStrike": [
+    "TheSimpletonMod:FuryStrike": [
       {
         "x": 415.59998,
         "y": 343.2,
         "size": 13.416419
       }
     ],
-    "TheCursedMod:Grudge": [
+    "TheSimpletonMod:Grudge": [
       {
         "x": 272.8,
         "y": 315.6,
@@ -140,8 +140,8 @@
         "size": 55.93854
       }
     ],
-    "TheCursedMod:HellsGateOpen": [],
-    "TheCursedMod:LuckyCharm": [
+    "TheSimpletonMod:HellsGateOpen": [],
+    "TheSimpletonMod:LuckyCharm": [
       {
         "x": 231.99998,
         "y": 322.80002,
@@ -153,7 +153,7 @@
         "size": 13.682081
       }
     ],
-    "TheCursedMod:Mangle": [
+    "TheSimpletonMod:Mangle": [
       {
         "x": 237.99998,
         "y": 303.6,
@@ -165,7 +165,7 @@
         "size": 25.0
       }
     ],
-    "TheCursedMod:NeowsMight": [
+    "TheSimpletonMod:NeowsMight": [
       {
         "x": 119.19998,
         "y": 87.6,
@@ -182,14 +182,14 @@
         "size": 39.179592
       }
     ],
-    "TheCursedMod:Obscuration": [
+    "TheSimpletonMod:Obscuration": [
       {
         "x": 266.8,
         "y": 308.4,
         "size": 21.897947
       }
     ],
-    "TheCursedMod:PrepareRitual": [
+    "TheSimpletonMod:PrepareRitual": [
       {
         "x": 140.79997,
         "y": 316.80002,
@@ -206,14 +206,14 @@
         "size": 53.46401
       }
     ],
-    "TheCursedMod:RapidMovement": [
+    "TheSimpletonMod:RapidMovement": [
       {
         "x": 290.8,
         "y": 274.80002,
         "size": 15.646092
       }
     ],
-    "TheCursedMod:ReleasedKnowledge": [
+    "TheSimpletonMod:ReleasedKnowledge": [
       {
         "x": 149.19998,
         "y": 214.8,
@@ -225,7 +225,7 @@
         "size": 69.66205
       }
     ],
-    "TheCursedMod:ReleasedStrength": [
+    "TheSimpletonMod:ReleasedStrength": [
       {
         "x": 240.39998,
         "y": 288.0,
@@ -237,14 +237,14 @@
         "size": 11.999993
       }
     ],
-    "TheCursedMod:SpitefulPray": [
+    "TheSimpletonMod:SpitefulPray": [
       {
         "x": 223.59998,
         "y": 260.4,
         "size": 20.957094
       }
     ],
-    "TheCursedMod:SpitefulStrike": [
+    "TheSimpletonMod:SpitefulStrike": [
       {
         "x": 163.59998,
         "y": 295.2,
@@ -256,7 +256,7 @@
         "size": 15.367502
       }
     ],
-    "TheCursedMod:StingEye": [
+    "TheSimpletonMod:StingEye": [
       {
         "x": 185.19998,
         "y": 144.0,
@@ -268,7 +268,7 @@
         "size": 47.789536
       }
     ],
-    "TheCursedMod:Stretching": [
+    "TheSimpletonMod:Stretching": [
       {
         "x": 251.19998,
         "y": 327.6,
@@ -280,14 +280,14 @@
         "size": 12.52836
       }
     ],
-    "TheCursedMod:SurpriseAttack": [
+    "TheSimpletonMod:SurpriseAttack": [
       {
         "x": 230.79999,
         "y": 180.0,
         "size": 26.318052
       }
     ],
-    "TheCursedMod:TacticalStrike": [
+    "TheSimpletonMod:TacticalStrike": [
       {
         "x": 325.59998,
         "y": 252.0,
@@ -299,7 +299,7 @@
         "size": 30.594103
       }
     ],
-    "TheCursedMod:Torture": [
+    "TheSimpletonMod:Torture": [
       {
         "x": 315.99997,
         "y": 242.40001,
@@ -316,7 +316,7 @@
         "size": 25.0
       }
     ],
-    "TheCursedMod:TroublousMinions": [
+    "TheSimpletonMod:TroublousMinions": [
       {
         "x": 239.19998,
         "y": 171.6,
@@ -328,14 +328,14 @@
         "size": 20.435257
       }
     ],
-    "TheCursedMod:UltimatePain": [
+    "TheSimpletonMod:UltimatePain": [
       {
         "x": 444.4,
         "y": 109.200005,
         "size": 36.5754
       }
     ],
-    "TheCursedMod:VoidForm": [
+    "TheSimpletonMod:VoidForm": [
       {
         "x": 219.99998,
         "y": 256.80002,
@@ -347,7 +347,7 @@
         "size": 16.09969
       }
     ],
-    "TheCursedMod:WearCloak": [
+    "TheSimpletonMod:WearCloak": [
       {
         "x": 276.4,
         "y": 262.80002,

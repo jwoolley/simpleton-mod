@@ -1,0 +1,361 @@
+{
+  "TheSimpletonMod:AbyssShockwave": {
+    "NAME": "Abyss Shockwave",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL If you have any Curse in your hand, deal same damage again."
+  },
+  "TheSimpletonMod:AntiAging": {
+    "NAME": "Anti-Aging",
+    "DESCRIPTION": "Gain !B! Block. NL Ritual : Raise your max HP by !M!. NL Exhaust."
+  },
+  "TheSimpletonMod:AshesToAshes": {
+    "NAME": "Ashes to Ashes",
+    "DESCRIPTION": "Ritual : Draw !M! cards."
+  },
+  "TheSimpletonMod:BlessingInDisguise": {
+    "NAME": "Blessing in Disguise",
+    "DESCRIPTION": "Exhaust all Curse cards in your hand. NL Gain !B! Block for each card Exhausted."
+  },
+  "TheSimpletonMod:BloodBarrier": {
+    "NAME": "Blood Barrier",
+    "DESCRIPTION": "Ritual : Gain Block equal to your max HP minus your current HP. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (Gains !B! Block.)"
+    ]
+  },
+  "TheSimpletonMod:CircleOfAbyss": {
+    "NAME": "Circle of Abyss",
+    "DESCRIPTION": "Circle. NL Whenever you play a card, gain !M! Block. NL If this card is Exhausted, gain [E].",
+    "UPGRADE_DESCRIPTION": "Circle. NL Whenever you play a card, gain !M! Block. NL If this card is Exhausted, NL gain [E] [E].",
+    "EXTENDED_DESCRIPTION": [
+      "I can't play this card."
+    ]
+  },
+  "TheSimpletonMod:CircleOfAmplification": {
+    "NAME": "Circle of Amplification",
+    "DESCRIPTION": "Circle. NL Whenever you play a Power card, draw 1 card. NL Ethereal.",
+    "UPGRADE_DESCRIPTION": "Circle. NL Whenever you play a Power card, gain [E] and draw 1 card. NL Ethereal.",
+    "EXTENDED_DESCRIPTION": [
+      "I can't play this card."
+    ]
+  },
+  "TheSimpletonMod:CircleOfBlood": {
+    "NAME": "Circle of Blood",
+    "DESCRIPTION": "Circle. NL Whenever you play an Attack card, heal !M! HP. NL Ethereal.",
+    "EXTENDED_DESCRIPTION": [
+      "I can't play this card."
+    ]
+  },
+  "TheSimpletonMod:CircleOfCorruption": {
+    "NAME": "Circle of Corruption",
+    "DESCRIPTION": "Circle. NL Whenever you play a Skill card, deal !M! damage to a random enemy.",
+    "EXTENDED_DESCRIPTION": [
+      "I can't play this card."
+    ]
+  },
+  "TheSimpletonMod:CircleOfFlame": {
+    "NAME": "Circle of Flame",
+    "DESCRIPTION": "Circle. NL Whenever you play an Attack card, deal !M! damage to ALL enemies.",
+    "EXTENDED_DESCRIPTION": [
+      "I can't play this card."
+    ]
+  },
+  "TheSimpletonMod:CircleOfFocus": {
+    "NAME": "Circle of Focus",
+    "DESCRIPTION": "Circle. NL Whenever you play a card that costs !M! or more, gain [E].",
+    "EXTENDED_DESCRIPTION": [
+      "I can't play this card."
+    ]
+  },
+  "TheSimpletonMod:CircleOfWindfury": {
+    "NAME": "Circle of Windfury",
+    "DESCRIPTION": "Circle. NL Whenever you play a cost 0 card, draw 1 card. NL Ethereal.",
+    "UPGRADE_DESCRIPTION": "Circle. NL Whenever you play a cost 0 card, draw 1 card.",
+    "EXTENDED_DESCRIPTION": [
+      "I can't play this card."
+    ]
+  },
+  "TheSimpletonMod:CleanUpWorkshop": {
+    "NAME": "Clean up Workshop",
+    "DESCRIPTION": "Ritual : Gain !B! Block and draw !M! card.",
+    "UPGRADE_DESCRIPTION": "Ritual : Gain !B! Block and draw !M! cards."
+  },
+  "TheSimpletonMod:CollectTribute": {
+    "NAME": "Collect Tribute",
+    "DESCRIPTION": "At the start of your turn, gain [E] and add a random Curse card into your hand.",
+    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, gain [E] and add a random Curse card into your hand."
+  },
+  "TheSimpletonMod:CursedAmulet": {
+    "NAME": "Cursed Amulet",
+    "DESCRIPTION": "Gain !B! Block. NL Draw 1 card. NL Shuffle a random Curse card into your draw pile."
+  },
+  "TheSimpletonMod:CursedArmor": {
+    "NAME": "Cursed Armor",
+    "DESCRIPTION": "Gain !B! Block. NL Shuffle 2 random Curse cards into your draw pile."
+  },
+  "TheSimpletonMod:CursedBlade": {
+    "NAME": "Cursed Blade",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Add a Dregs card into your hand."
+  },
+  "TheSimpletonMod:CursedBoomerang": {
+    "NAME": "Cursed Boomerang",
+    "DESCRIPTION": "Deal !D! damage to a random enemy !M! times. NL Add a Dregs card into your hand."
+  },
+  "TheSimpletonMod:CursedMace": {
+    "NAME": "Cursed Mace",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Add a Dregs card into your hand."
+  },
+  "TheSimpletonMod:CursedRelics": {
+    "NAME": "Cursed Relics",
+    "DESCRIPTION": "Deal damage equal to !M! times the number of Relics you have. NL Add a Dregs card into your hand.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (Deals !D! damage.)"
+    ]
+  },
+  "TheSimpletonMod:CursedShiv": {
+    "NAME": "Cursed Shiv",
+    "DESCRIPTION": "Deal !D! damage. NL Add a Dregs card into your hand."
+  },
+  "TheSimpletonMod:CursedSpellbook": {
+    "NAME": "Cursed Spellbook",
+    "DESCRIPTION": "Draw !M! cards. NL Shuffle a random Curse card into your draw pile."
+  },
+  "TheSimpletonMod:CursedStaff": {
+    "NAME": "Cursed Staff",
+    "DESCRIPTION": "Deal !D! damage. NL Add 2 Dregs cards into your hand."
+  },
+  "TheSimpletonMod:CursedWand": {
+    "NAME": "Cursed Wand",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Add a Dregs card into your hand."
+  },
+  "TheSimpletonMod:DarkBarrier": {
+    "NAME": "Dark Barrier",
+    "DESCRIPTION": "Ritual : Gain !M! Intangible. NL Exhaust."
+  },
+  "TheSimpletonMod:Defend_TheSimpleton": {
+    "NAME": "Defend",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "TheSimpletonMod:DemonSword": {
+    "NAME": "Demon Sword",
+    "DESCRIPTION": "Deal !D! damage. NL Exhaust all Curse cards in your hand and gain !M! Strength for each Exhausted card."
+  },
+  "TheSimpletonMod:DemonicPact": {
+    "NAME": "Demonic Pact",
+    "DESCRIPTION": "Whenever you play a Ritual card, draw 1 card."
+  },
+  "TheSimpletonMod:DoubleShield": {
+    "NAME": "Double Shield",
+    "DESCRIPTION": "Gain !B! Block. NL Ritual : Next turn, gain !B! Block."
+  },
+  "TheSimpletonMod:Dregs": {
+    "NAME": "Dregs",
+    "DESCRIPTION": "Unplayable."
+  },
+  "TheSimpletonMod:EmpowerCircles": {
+    "NAME": "Empower Circles",
+    "DESCRIPTION": "Whenever you draw a Circle card, gain [E] and draw 1 card."
+  },
+  "TheSimpletonMod:Evocation": {
+    "NAME": "Evocation",
+    "DESCRIPTION": "Ritual : Remove all of your debuffs. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Ritual : Remove all of your debuffs. If there is no debuff, gain 1 Artifact. NL Exhaust."
+  },
+  "TheSimpletonMod:FleshFromBone": {
+    "NAME": "Flesh from Bone",
+    "DESCRIPTION": "Ritual : Gain !M! Plated Armor."
+  },
+  "TheSimpletonMod:ForbiddenAlchemy": {
+    "NAME": "Forbidden Alchemy",
+    "DESCRIPTION": "Ritual : Obtain an Entropic Brew potion. NL Exhaust."
+  },
+  "TheSimpletonMod:FuryStrike": {
+    "NAME": "Fury Strike",
+    "DESCRIPTION": "Deal !D! damage. NL Reduce the cost of all Strike cards in your hand to 0 this turn."
+  },
+  "TheSimpletonMod:Grudge": {
+    "NAME": "Grudge",
+    "DESCRIPTION": "Add a random Ritual card into your hand. NL It costs 0 this turn. NL Exhaust."
+  },
+  "TheSimpletonMod:HellfireBreathing": {
+    "NAME": "Hellfire Breathing",
+    "DESCRIPTION": "Whenever you draw a Curse card, deal !M! damage to ALL enemies."
+  },
+  "TheSimpletonMod:HellsGateOpen": {
+    "NAME": "Hell's Gate Open",
+    "DESCRIPTION": "At the start of your turn, add a random Cursed card into your hand.",
+    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, add a random Cursed card into your hand."
+  },
+  "TheSimpletonMod:Hemoplague": {
+    "NAME": "Hemoplague",
+    "DESCRIPTION": "At the start of your turn, apply !M! Bleed to ALL enemies."
+  },
+  "TheSimpletonMod:LuckyCharm": {
+    "NAME": "Lucky Charm",
+    "DESCRIPTION": "Whenever a Curse card is drawn or Exhausted, gain !M! Block."
+  },
+  "TheSimpletonMod:ManaBullet": {
+    "NAME": "Mana Bullet",
+    "DESCRIPTION": "Deal !D! damage for each Curse card in your hand.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage for each Unplayable card in your hand.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (You have ",
+      " Curse card.)",
+      " Curse cards.)",
+      " NL (You have ",
+      " Unplayable card.)",
+      " Unplayable cards.)"
+    ]
+  },
+  "TheSimpletonMod:ManaCirculation": {
+    "NAME": "Mana Circulation",
+    "DESCRIPTION": "Whenever a Curse card is Exhausted, gain [E]. NL Ethereal.",
+    "UPGRADE_DESCRIPTION": "Whenever a Curse card is Exhausted, gain [E]."
+  },
+  "TheSimpletonMod:Mangle": {
+    "NAME": "Mangle",
+    "DESCRIPTION": "Deal !D! damage. NL If the enemy has Bleed, NL gain [R] and NL draw 1 card."
+  },
+  "TheSimpletonMod:Neurasthenia": {
+    "NAME": "Neurasthenia",
+    "DESCRIPTION": "Exhaust all Curse cards in your hand. NL Enemy loses Strength by 1 plus the number of Exhausted cards. NL Exhaust."
+  },
+  "TheSimpletonMod:NeowsMight": {
+    "NAME": "Neow's Might",
+    "DESCRIPTION": "Draw 2 cards. NL Reduce the cost of all cards in your hand by 1 this turn. NL Exhaust."
+  },
+  "TheSimpletonMod:Obscuration": {
+    "NAME": "Obscuration",
+    "DESCRIPTION": "Gain !B! Block. NL Ritual : Gain !B! Block again."
+  },
+  "TheSimpletonMod:OutForBlood": {
+    "NAME": "Out for Blood",
+    "DESCRIPTION": "Whenever an Attack deals unblocked damage, apply 1 Bleed."
+  },
+  "TheSimpletonMod:ParallelWorld": {
+    "NAME": "Parallel World",
+    "DESCRIPTION": "Copy all cards in your hand and Shuffle them into your draw pile. NL Exhaust."
+  },
+  "TheSimpletonMod:PrepareRitual": {
+    "NAME": "Prepare Ritual",
+    "DESCRIPTION": "Exhaust any number of non-Curse cards, then add that many Dregs cards into your hand. NL Exhaust.",
+    "UPGRADE_DESCRIPTION":"Exhaust any number of non-Curse cards, then add that many Dregs cards into your hand."
+  },
+  "TheSimpletonMod:RapidMovement": {
+    "NAME": "Rapid Movement",
+    "DESCRIPTION": "Gain !B! Block. NL Ritual : Draw !M! cards."
+  },
+  "TheSimpletonMod:RavingStaff": {
+    "NAME": "Raving Staff",
+    "DESCRIPTION": "Deal !D! damage to a random enemy X times."
+  },
+  "TheSimpletonMod:ReleasedKnowledge": {
+    "NAME": "Released Knowledge",
+    "DESCRIPTION": "Ritual : Add a random Circle card into your hand. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Ritual : Add a random Circle card into your hand."
+  },
+  "TheSimpletonMod:ReleasedStrength": {
+    "NAME": "Released Strength",
+    "DESCRIPTION": "Ritual : Gain !M! Strength. NL Ethereal."
+  },
+  "TheSimpletonMod:SaltUponWound": {
+    "NAME": "Salt upon Wound",
+    "DESCRIPTION": "Enemy immediately loses HP by its Bleed 2 times. NL Apply !M! Bleed."
+  },
+  "TheSimpletonMod:ShockAndAwe": {
+    "NAME": "Shock and Awe",
+    "DESCRIPTION": "Deal !D! damage 3 times. NL Shuffle 2 random Curse cards into your draw pile."
+  },
+  "TheSimpletonMod:SmokeScreen": {
+    "NAME": "Smoke Screen",
+    "DESCRIPTION": "Gain !B! Block. NL Ritual : Apply !M! Weak to ALL enemies."
+  },
+  "TheSimpletonMod:SoulCrush": {
+    "NAME": "Soul Crush",
+    "DESCRIPTION": "Exhaust all Curse cards in your hand. NL Deal !D! damage."
+  },
+  "TheSimpletonMod:SoulReap": {
+    "NAME": "Soul Reap",
+    "DESCRIPTION": "Deal !D! damage. If this kills a non-minion enemy, heal !M! HP. NL Exhaust."
+  },
+  "TheSimpletonMod:SpitefulPlan": {
+    "NAME": "Spiteful Plan",
+    "DESCRIPTION": "Whenever you draw a Curse card, draw !M! card.",
+    "UPGRADE_DESCRIPTION": "Whenever you draw a Curse card, draw !M! cards."
+  },
+  "TheSimpletonMod:SpitefulPray": {
+    "NAME": "Spiteful Pray",
+    "DESCRIPTION": "Gain [E]. NL If you have any Curse card in your hand, gain additional [E]. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Gain [E] [E]. NL If you have any Curse card in your hand, gain additional [E]. NL Exhaust."
+  },
+  "TheSimpletonMod:SpitefulStrike": {
+    "NAME": "Spiteful Strike",
+    "DESCRIPTION": "Deal !D! damage. NL If you have any Curse card in your hand, gain [E] [E]."
+  },
+  "TheSimpletonMod:SpreadPlague": {
+    "NAME": "Spread Plague",
+    "DESCRIPTION": "Apply !M! Bleed and 3 Vulnerable to ALL enemies. NL Exhaust."
+  },
+  "TheSimpletonMod:Stigma": {
+    "NAME": "Stigma",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Bleed."
+  },
+  "TheSimpletonMod:StingEye": {
+    "NAME": "Sting Eye",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL Apply !M! Bleed."
+  },
+  "TheSimpletonMod:Stretching": {
+    "NAME": "Stretching",
+    "DESCRIPTION": "Gain !M! Dexterity. NL At the end of this turn, lose !M! Dexterity."
+  },
+  "TheSimpletonMod:Strike_TheSimpleton": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "TheSimpletonMod:StunningStrike": {
+    "NAME": "Stunning Strike",
+    "DESCRIPTION": "Deal !D! damage. NL If the enemy intends to attack, apply !M! Stun. NL Exhaust."
+  },
+  "TheSimpletonMod:SurpriseAttack": {
+    "NAME": "Surprise Attack",
+    "DESCRIPTION": "Innate. NL Deal !D! damage. NL Draw 1 card. NL Exhaust."
+  },
+  "TheSimpletonMod:TacticalStrike": {
+    "NAME": "Tactical Strike",
+    "DESCRIPTION": "Deal !D! damage. NL Next turn, draw !M! additional card.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Next turn, draw !M! additional cards."
+  },
+  "TheSimpletonMod:Torture": {
+    "NAME": "Torture",
+    "DESCRIPTION": "Apply !M! Bleed."
+  },
+  "TheSimpletonMod:TroublousMinions": {
+    "NAME": "Troublous Minions",
+    "DESCRIPTION": "Whenever you draw this card, add a copy of it into your hand. NL Gain !B! Block and add a Dregs card into your hand. NL Exhaust."
+  },
+  "TheSimpletonMod:UltimatePain": {
+    "NAME": "Ultimate Pain",
+    "DESCRIPTION": "Enemy immediately loses HP by its Bleed X times.",
+    "UPGRADE_DESCRIPTION": "Enemy immediately loses HP by its Bleed X+1 times."
+  },
+  "TheSimpletonMod:VitalStrike": {
+    "NAME": "Vital Strike",
+    "DESCRIPTION": "Deal !D! damage. NL If the enemy has Bleed, double the damage."
+  },
+  "TheSimpletonMod:VoidForm": {
+    "NAME": "Void Form",
+    "DESCRIPTION": "Shuffle 2 random Curse cards into your draw pile. NL Whenever you draw a Curse, gain !M! Strength."
+  },
+  "TheSimpletonMod:WearCloak": {
+    "NAME": "Wear Cloak",
+    "DESCRIPTION": "Gain !B! Block. NL If you have any Curse card in your hand, gain [E]."
+  },
+  "TheSimpletonMod:Wield": {
+    "NAME": "Wield",
+    "DESCRIPTION": "Deal !D! damage. NL Draw cards equal to the number of Unplayable cards in your hand.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (You have ",
+      " Unplayable card.)",
+      " Unplayable cards.)"
+    ]
+  }
+}

@@ -1,22 +1,19 @@
-# Slay the Spire Mod - The Cursed
+# Slay the Spire Mod - The Simpleton
 
-Adds a new character "The Cursed" to Slay the Spire game.
+Adds a new character "The Simpleton" to Slay the Spire game.
 
-![The Cursed gameplay screenshot](the_cursed_gameplay.png)
+![The Simpleton gameplay screenshot](the_simpleton_gameplay.png)
 
 ## Introduction
-A wanderer corrupted by darkness. Uses curse, magic circle, and sometimes melee weapons.
-The Cursed adds 75 cards (plus 1 extra card), 11 new character-specific relics, and 1 new potion.
+He got lost in a corn maze. Now he's lost in the spire and trying to way to hitch a ride home.
+This is a simple mod for me to learn modding Slay the Spire.
+The Simpleton offers N new cards, M new character-specific relics, and P new potions.
 
-## Character Mechanism
-### "Cursed" cards
-Any card with the word "Cursed" in its name. They have better stats than normal cards, but using it will add one or more Curse cards into your hand or draw pile.
-### Ritual
-When using a Ritual card, choose 1 card to Exhaust. Selecting a Curse card will activate the Ritual's effect.
-### Circle
-An unplayable card that can be activated by using other cards while in hand.
-### Bleed
-Bleeding creature loses HP whenever it attacks. Each turn, Bleed is reduced by 1. Some cards can "activate" Bleed which makes the enemy loses HP by Bleed immediately. 
+## Character Mechanics
+### Hick with a Stick
+Uses his pitchfork to poke enemies ... and scoop hay.
+### Bib Overalls
+His overalls and straw hat protect for the bugs, slime, and cosmic rays.
 
 ## Known Issues
-- Googly Eyes mod is not fully supported. The character in combat is just a single png file, and it’s unable to add an eye on it.
+- The Simpleton is under development.

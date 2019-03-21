@@ -212,7 +212,7 @@ public class TheCursedCharacter extends CustomPlayer {
     }
 
     static {
-        charStrings = CardCrawlGame.languagePack.getCharacterString("TheCursed");
+        charStrings = CardCrawlGame.languagePack.getCharacterString("TheSimpleton");
         NAME = charStrings.NAMES[0];
         DESCRIPTION = charStrings.TEXT[0];
 

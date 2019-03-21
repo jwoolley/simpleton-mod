@@ -1,13 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>thecursedmod</groupId>
-    <artifactId>thecursedmod</artifactId>
+    <groupId>thesimpleton</groupId>
+    <artifactId>thesimpleton</artifactId>
     <version>v1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>TheCursedMod</name>
-    <description>Attempting to make a mod!</description>
+    <name>TheSimpleton</name>
+    <description>Now *I'm* attempting to make a mod!</description>
+    <properties>
+        <steam-mods-directory>D:/Program Files (x86)/Steam/steamapps/common/SlayTheSpire/mods</steam-mods-directory>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -20,7 +23,7 @@
         <dependency>
             <groupId>basemod</groupId>
             <artifactId>basemod</artifactId>
-            <version>2.10.0</version>
+            <version>5.12.1</version>
             <scope>system</scope>
             <systemPath>${basedir}/../lib/BaseMod.jar</systemPath>
         </dependency>
@@ -32,24 +35,24 @@
             <systemPath>${basedir}/../lib/ModTheSpire.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>com.evacipated.cardcrawl.mod.stslib</groupId>
+            <groupId>com.evacipated.cardcrawl.mod</groupId>
             <artifactId>StSLib</artifactId>
-            <version>1.13.2</version>
+            <version>1.10.0</version>
             <scope>system</scope>
             <systemPath>${basedir}/../lib/StSLib.jar</systemPath>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>TheCursedMod</finalName>
+        <finalName>TheSimpleton</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.7.0</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -61,7 +64,8 @@
                         <phase>package</phase>
                         <configuration>
                             <target>
-                                <copy file="target/TheCursedMod.jar" tofile="../lib/TheCursedMod.jar"/>
+                                <copy file="target/TheSimpleton.jar" tofile="../lib/TheSimpleton.jar"/>
+                                <copy file="target/TheSimpleton.jar" tofile="${steam-mods-directory}/TheSimpleton.jar"/>
                             </target>
                         </configuration>
                         <goals>

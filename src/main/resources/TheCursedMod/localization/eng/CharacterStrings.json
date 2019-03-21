@@ -1,11 +1,12 @@
 {
-  "TheCursed": {
+  "TheSimpleton": {
     "NAMES": [
-      "The Cursed"
+      "The Simpleton"
     ],
     "TEXT": [
-      "A wanderer corrupted by darkness. NL Uses curse, magic circle, and sometimes melee weapons.",
-      "You prepare your staff..."
+      "A simple wanderer.",
+      "He might as well be trying to find his way out of a paper bag.",
+      "Don't expect big things."
     ]
   }
 }

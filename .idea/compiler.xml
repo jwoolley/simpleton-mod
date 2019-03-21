@@ -8,6 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="DarklingMod" />
         <module name="thecursedmod" />
+        <module name="thecursedmod2" />
+        <module name="thesimpleton" />
       </profile>
     </annotationProcessing>
   </component>

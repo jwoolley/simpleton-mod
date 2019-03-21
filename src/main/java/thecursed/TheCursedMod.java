@@ -52,7 +52,7 @@ public class TheCursedMod implements EditCardsSubscriber, EditCharactersSubscrib
     private static final String POWER_CARD_PORTRAIT = "1024/power_thecursed.png";
     private static final String ENERGY_ORB_PORTRAIT = "1024/card_small_orb.png";
 
-    private static final String MOD_NAME = "TheCursedMod";
+    private static final String MOD_NAME = "TheSimpleton";
     private static final String CONFIG_NAME = "TheCursedConfig";
 
     private static TheCursedCharacter theCursedCharacter;
@@ -134,8 +134,8 @@ public class TheCursedMod implements EditCardsSubscriber, EditCharactersSubscrib
                                 })));
 
         BaseMod.registerModBadge(
-                badgeTexture, "The Cursed", "jhp109",
-                "Adds a new character to the game - The Cursed", modPanel);
+                badgeTexture, "The Simpleton", "jwoolley",
+                "Adds a new character to the game - The Simpleton", modPanel);
 
         BaseMod.addPotion(
                 DregsPotion.class, Color.BLACK, Color.DARK_GRAY, Color.GRAY, DregsPotion.POTION_ID,
@@ -144,7 +144,7 @@ public class TheCursedMod implements EditCardsSubscriber, EditCharactersSubscrib
 
     @Override
     public void receiveEditCharacters() {
-        theCursedCharacter = new TheCursedCharacter("The Cursed");
+        theCursedCharacter = new TheCursedCharacter("The Simpleton");
         BaseMod.addCharacter(
                 theCursedCharacter, getResourcePath("charSelect/button.png"), getResourcePath("charSelect/portrait.png"),
                 TheCursedCharEnum.THE_CURSED);

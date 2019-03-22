@@ -29,10 +29,10 @@ public class Haymaker extends CustomCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     private static final int COST = 2;
-    private static final int DAMAGE = 12;
-    private static final int UPGRADE_DAMAGE_AMOUNT = 6;
-    private static final int VULNERABLE_AMOUNT = 2;
-    private static final int UPGRADE_VULNERABLE_AMOUNT = 3;
+    private static final int DAMAGE = 10;
+    private static final int UPGRADE_DAMAGE_AMOUNT = 4;
+    private static final int VULNERABLE_AMOUNT = 1;
+    private static final int UPGRADE_VULNERABLE_AMOUNT = 1;
 
     public Haymaker() {
         super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);

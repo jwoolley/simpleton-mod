@@ -78,8 +78,8 @@ public class TheSimpletonCharacter extends CustomPlayer {
         retVal.add(Defend_TheSimpleton.ID);
         retVal.add(Defend_TheSimpleton.ID);
         retVal.add(Haymaker.ID);
-        retVal.add(CleanUpWorkshop.ID);
-        retVal.add(Dregs.ID);
+//        retVal.add(CleanUpWorkshop.ID);
+//        retVal.add(Dregs.ID);
 
         return retVal;
     }

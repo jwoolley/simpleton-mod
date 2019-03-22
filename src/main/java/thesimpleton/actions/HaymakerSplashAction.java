@@ -31,9 +31,9 @@ public class HaymakerSplashAction extends AbstractGameAction {
   @Override
   public void update() {
 
-    this.target.damage(this.info);
-
     if (this.duration == 0.1F && this.target != null) {
+      this.target.damage(this.info);
+
       AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect));
       AbstractDungeon.effectList.add(new DamageImpactCurvyEffect(this.target.hb.cX, this.target.hb.cY, Color.GOLDENROD, false));
 

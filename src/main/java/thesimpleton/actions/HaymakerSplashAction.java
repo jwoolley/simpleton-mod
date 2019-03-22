@@ -37,12 +37,9 @@ public class HaymakerSplashAction extends AbstractGameAction {
       AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect));
       AbstractDungeon.effectList.add(new DamageImpactCurvyEffect(this.target.hb.cX, this.target.hb.cY, Color.GOLDENROD, false));
 
-      System.out.println("Action.HaymakerSplashAction.update: checking if target was killed");
-
       if ((((AbstractMonster) this.target).isDying || this.target.currentHealth <= 0)
-          && !this.target.halfDead && !this.target.hasPower("Minion")) {
+          && !this.target.halfDead) {
 
-        System.out.println("Action.HaymakerSplashAction.update: monster killed. Applying debuffs");
         AbstractDungeon.getMonsters().monsters.stream()
           .filter(mo -> !mo.isDeadOrEscaped())
           .forEach(mo -> {
@@ -51,17 +48,12 @@ public class HaymakerSplashAction extends AbstractGameAction {
                   mo, this.p, new VulnerablePower(mo, this.VULNERABLE_AMOUNT, false),
                   this.VULNERABLE_AMOUNT, true, AbstractGameAction.AttackEffect.NONE));
           });
-        } else {
-            System.out.println("Action.HaymakerSplashAction.update: monster not killed. Debuffs not applied.");
-        }
+      }
 
       if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
         AbstractDungeon.actionManager.clearPostCombatActions();
       }
-    } else {
-      System.out.println("Action.HaymakerSplashAction.update: no target or no duration.");
     }
-
 
     this.tickDuration();
   }

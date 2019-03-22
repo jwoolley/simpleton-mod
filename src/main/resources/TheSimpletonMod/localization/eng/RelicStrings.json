@@ -1,7 +1,7 @@
 {
-  "TheSimpletonMod:BlackMagic101": {
-    "NAME": "Black Magic 101",
-    "FLAVOR": "Learn about black magic now!!!  {4th Edition}",
+  "TheSimpletonMod:SpudOfTheMartyr": {
+    "NAME": "Spud of the Martyr",
+    "FLAVOR": "Salvation for the thick-skinned.",
     "DESCRIPTIONS": [
       "At the start of your turn, draw #b1 additional card if your draw pile has any #rCurse card."
     ]

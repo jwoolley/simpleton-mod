@@ -123,9 +123,9 @@
     "NAME": "Cursed Staff",
     "DESCRIPTION": "Deal !D! damage. NL Add 2 Dregs cards into your hand."
   },
-  "TheSimpletonMod:CursedWand": {
-    "NAME": "Cursed Wand",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Add a Dregs card into your hand."
+  "TheSimpletonMod:Haymaker": {
+    "NAME": "Haymaker",
+    "DESCRIPTION": "Deal !D! damage. If this kills an enemy, apply !M! Vulnerable to ALL enemies."
   },
   "TheSimpletonMod:DarkBarrier": {
     "NAME": "Dark Barrier",

@@ -1,12 +1,10 @@
 package thesimpleton.cards.attack;
 
+import java.util.Optional;
+
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -14,17 +12,15 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.FireballEffect;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.CurseUtil;
-import thesimpleton.cards.curse.Dregs;
 import thesimpleton.enums.AbstractCardEnum;
-
-public class CursedWand extends CustomCard {
-    public static final String ID = "TheSimpletonMod:CursedWand";
+import thesimpleton.actions.HaymakerSplashAction;
+    ;
+public class Haymaker extends CustomCard {
+    public static final String ID = "TheSimpletonMod:Haymaker";
     public static final String NAME;
     public static final String DESCRIPTION;
-    public static final String IMG_PATH = "cards/cursedwand.png";
+    public static final String IMG_PATH = "cards/haymaker.png";
 
     private static final CardStrings cardStrings;
 
@@ -32,36 +28,32 @@ public class CursedWand extends CustomCard {
     private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
-    private static final int COST = 1;
-    private static final int DAMAGE = 8;
-    private static final int UPGRADE_DAMAGE_AMOUNT = 2;
-    private static final int BLOCK = 6;
-    private static final int UPGRADE_BLOCK_AMOUNT = 2;
+    private static final int COST = 2;
+    private static final int DAMAGE = 12;
+    private static final int UPGRADE_DAMAGE_AMOUNT = 6;
+    private static final int VULNERABLE_AMOUNT = 2;
+    private static final int UPGRADE_VULNERABLE_AMOUNT = 3;
 
-    public CursedWand() {
+    public Haymaker() {
         super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
-        this.baseBlock = this.block = BLOCK;
+        this.baseMagicNumber = this.magicNumber = VULNERABLE_AMOUNT;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
-        AbstractDungeon.actionManager.addToBottom(new WaitAction(0.1F));
-        if (p != null && m != null) {
-            AbstractDungeon.actionManager.addToBottom(
-                    new VFXAction(new FireballEffect(p.hb.cX, p.hb.cY, m.hb.cX, m.hb.cY), 0.5F));
-        }
+//        AbstractDungeon.actionManager.addToBottom(
+//            new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
+//                AbstractGameAction.AttackEffect.BLUNT_HEAVY));
 
         AbstractDungeon.actionManager.addToBottom(
-                new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                        AbstractGameAction.AttackEffect.FIRE));
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(CurseUtil.DREGS));
+            new HaymakerSplashAction(p, m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
+                this.magicNumber));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new CursedWand();
+        return new Haymaker();
     }
 
     @Override
@@ -69,7 +61,7 @@ public class CursedWand extends CustomCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_DAMAGE_AMOUNT);
-            this.upgradeBlock(UPGRADE_BLOCK_AMOUNT);
+            this.upgradeMagicNumber(UPGRADE_VULNERABLE_AMOUNT);
         }
     }
 

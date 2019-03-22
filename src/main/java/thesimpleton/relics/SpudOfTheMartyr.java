@@ -9,11 +9,11 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.CurseUtil;
 
-public class BlackMagic101 extends CustomRelic {
-    public static final String ID = "TheSimpletonMod:BlackMagic101";
-    public static final String IMG_PATH = "relics/blackmagic101.png";
-    public static final String IMG_PATH_LARGE = "relics/blackmagic101_large.png";
-    public static final String OUTLINE_IMG_PATH = "relics/blackmagic101_outline.png";
+public class SpudOfTheMartyr extends CustomRelic {
+    public static final String ID = "TheSimpletonMod:SpudOfTheMartyr";
+    public static final String IMG_PATH = "relics/spudofthemartyr.png";
+    public static final String IMG_PATH_LARGE = "relics/spudofthemartyr_large.png";
+    public static final String OUTLINE_IMG_PATH = "relics/spudofthemartyr_outline.png";
 
     private static final RelicTier TIER = RelicTier.STARTER;
     private static final LandingSound SOUND = LandingSound.MAGICAL;
@@ -22,7 +22,7 @@ public class BlackMagic101 extends CustomRelic {
 
     private boolean drawThisTurn = false;
 
-    public BlackMagic101() {
+    public SpudOfTheMartyr() {
         super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
                 new Texture(TheSimpletonMod.getResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
         this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_LARGE));
@@ -51,6 +51,6 @@ public class BlackMagic101 extends CustomRelic {
 
     @Override
     public AbstractRelic makeCopy() {
-        return new BlackMagic101();
+        return new SpudOfTheMartyr();
     }
 }

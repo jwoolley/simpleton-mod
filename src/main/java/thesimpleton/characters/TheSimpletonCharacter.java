@@ -16,14 +16,14 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import thesimpleton.cards.attack.CursedWand;
+import thesimpleton.cards.attack.Haymaker;
 import thesimpleton.cards.attack.Strike_TheSimpleton;
 import thesimpleton.cards.curse.Dregs;
 import thesimpleton.cards.skill.CleanUpWorkshop;
 import thesimpleton.cards.skill.Defend_TheSimpleton;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
-import thesimpleton.relics.BlackMagic101;
+import thesimpleton.relics.SpudOfTheMartyr;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ import java.util.List;
 import static thesimpleton.TheSimpletonMod.getResourcePath;
 
 public class TheSimpletonCharacter extends CustomPlayer {
-    public static final Color CARD_RENDER_COLOR = new Color(0.2F, 0.0F, 0.8F, 1.0F);
+    public static final Color CARD_RENDER_COLOR = new Color(0.1F, 0.4F, 0.9F, 1.0F);
 
     public static final int ENERGY_PER_TURN = 3;
     public static final String SHOULDER_2 = getResourcePath("char/shoulder2.png"); // campfire pose
@@ -77,7 +77,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
         retVal.add(Defend_TheSimpleton.ID);
         retVal.add(Defend_TheSimpleton.ID);
         retVal.add(Defend_TheSimpleton.ID);
-        retVal.add(CursedWand.ID);
+        retVal.add(Haymaker.ID);
         retVal.add(CleanUpWorkshop.ID);
         retVal.add(Dregs.ID);
 
@@ -87,7 +87,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
     @Override
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<String>();
-        retVal.add(BlackMagic101.ID);
+        retVal.add(SpudOfTheMartyr.ID);
 
         /* for testing
         retVal.add(BlackMagicAdvanced.ID);
@@ -137,7 +137,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
     @Override
     public AbstractCard getStartCardForEvent() {
         if (AbstractDungeon.cardRng.randomBoolean()) {
-            return new CursedWand();
+            return new Haymaker();
         } else {
             return new CleanUpWorkshop();
         }

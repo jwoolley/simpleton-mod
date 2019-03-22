@@ -51,14 +51,14 @@ public class BlackMagicAdvanced extends CustomRelic {
 
     @Override
     public boolean canSpawn() {
-        return AbstractDungeon.player.hasRelic(BlackMagic101.ID);
+        return AbstractDungeon.player.hasRelic(SpudOfTheMartyr.ID);
     }
 
     @Override
     public void obtain() {
-        if (AbstractDungeon.player.hasRelic(BlackMagic101.ID)) {
+        if (AbstractDungeon.player.hasRelic(SpudOfTheMartyr.ID)) {
             for (int i = 0; i < AbstractDungeon.player.relics.size(); ++i) {
-                if (AbstractDungeon.player.relics.get(i).relicId.equals(BlackMagic101.ID)) {
+                if (AbstractDungeon.player.relics.get(i).relicId.equals(SpudOfTheMartyr.ID)) {
                     this.instantObtain(AbstractDungeon.player, i, true);
                     break;
                 }

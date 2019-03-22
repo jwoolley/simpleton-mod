@@ -40,7 +40,6 @@ public class HellsGateOpenPower extends AbstractTheSimpletonPower {
         this.simpletonCardPool.add(new CursedRelics());
         this.simpletonCardPool.add(new CursedShiv());
         this.simpletonCardPool.add(new CursedStaff());
-        this.simpletonCardPool.add(new CursedWand());
         this.simpletonCardPool.add(new CursedAmulet());
         this.simpletonCardPool.add(new CursedArmor());
         this.simpletonCardPool.add(new CursedSpellbook());

@@ -25,7 +25,7 @@ public class Defend_TheSimpleton extends CustomCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     private static final int COST = 1;
-    private static final int BLOCK_AMT = 5;
+    private static final int BLOCK_AMT = 6;
 
     public Defend_TheSimpleton() {
         super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
@@ -47,7 +47,7 @@ public class Defend_TheSimpleton extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(3);
+            this.upgradeBlock(2 );
         }
     }
 

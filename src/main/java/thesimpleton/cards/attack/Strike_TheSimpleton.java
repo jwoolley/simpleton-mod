@@ -27,7 +27,7 @@ public class Strike_TheSimpleton extends CustomCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     private static final int COST = 1;
-    private static final int DAMAGE = 6;
+    private static final int DAMAGE = 5;
     private static final int UPGRADE_BONUS = 3;
 
     public Strike_TheSimpleton() {

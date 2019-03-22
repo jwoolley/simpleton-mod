@@ -156,7 +156,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new Strike_TheSimpleton());
         BaseMod.addCard(new Defend_TheSimpleton());
         BaseMod.addCard(new CleanUpWorkshop());
-        BaseMod.addCard(new CursedWand());
+        BaseMod.addCard(new Haymaker());
 
         // Attack (22)
         BaseMod.addCard(new AbyssShockwave());
@@ -241,7 +241,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receiveEditRelics() {
-        BaseMod.addRelicToCustomPool(new BlackMagic101(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new SpudOfTheMartyr(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new BlackMagicAdvanced(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new BloodyHarpoon(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new CrystalBall(), AbstractCardEnum.THE_SIMPLETON_BLUE);

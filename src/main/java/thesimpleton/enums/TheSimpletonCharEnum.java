@@ -53,7 +53,7 @@ public class TheSimpletonCharEnum {
                     cards.add(new StunningStrike());
                     break;
                 case HEAVY_MACHINE_GUN:
-                    cards.add(new CursedWand());
+                    cards.add(new Haymaker());
                     cards.add(new CleanUpWorkshop());
                     cards.add(new CursedShiv());
                     cards.add(new Wield());
@@ -77,7 +77,7 @@ public class TheSimpletonCharEnum {
                     cards.add(new CircleOfAmplification());
                     break;
                 case LETS_STRETCHING:
-                    cards.add(new CursedWand());
+                    cards.add(new Haymaker());
                     cards.add(new CleanUpWorkshop());
                     cards.add(new Wield());
                     cards.add(new Finesse());
@@ -89,7 +89,7 @@ public class TheSimpletonCharEnum {
                     cards.add(new CircleOfAbyss());
                     break;
                 case MANGLING:
-                    cards.add(new CursedWand());
+                    cards.add(new Haymaker());
                     cards.add(new Stigma());
                     cards.add(new CircleOfFlame());
                     cards.add(new Mangle());
@@ -101,7 +101,7 @@ public class TheSimpletonCharEnum {
                     cards.add(new FlashOfSteel());
                     break;
                 case MOON_CRYSTAL_POWER:
-                    cards.add(new CursedWand());
+                    cards.add(new Haymaker());
                     cards.add(new CleanUpWorkshop());
                     cards.add(new CursedAmulet());
                     cards.add(new RapidMovement());

@@ -2,7 +2,7 @@
 
 Adds a new character "The Simpleton" to Slay the Spire game.
 
-![The Simpleton gameplay screenshot](the_simpleton_gameplay.png)
+![The Simpleton gameplay screenshot](the_simpleton_gameplay.jpg)
 
 ## Introduction
 He got lost in a corn maze. Now he's lost in the spire and trying to way to hitch a ride home.

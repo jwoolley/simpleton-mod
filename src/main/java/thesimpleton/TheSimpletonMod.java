@@ -39,7 +39,7 @@ import java.util.*;
 public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber,
         EditStringsSubscriber, EditKeywordsSubscriber, PostInitializeSubscriber, PostCreateStartingDeckSubscriber,
         PostCreateStartingRelicsSubscriber {
-    private static final Color CUSTOM_COLOR = CardHelper.getColor(94.0F, 55.0F, 220.0F);
+    private static final Color CUSTOM_COLOR = CardHelper.getColor(57.0F, 131.0F, 245.0F);
 
     private static final String ATTACK_CARD = "512/attack_thesimpleton.png";
     private static final String SKILL_CARD = "512/skill_thesimpleton.png";

@@ -76,6 +76,14 @@
       " #yBleed."
     ]
   },
+  "TheSimpletonMod:PlantPotatoPower": {
+    "NAME": "Grow Potatoes",
+    "DESCRIPTIONS": [
+      "#gHarvest bto add ",
+      "#ySpud #yMissile",
+      " to your hand."
+    ]
+  },
   "TheSimpletonMod:SpitefulPlanPower": {
     "NAME": "Spiteful Plan",
     "DESCRIPTIONS": [

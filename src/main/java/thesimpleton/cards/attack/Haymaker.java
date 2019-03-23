@@ -29,8 +29,8 @@ public class Haymaker extends CustomCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     private static final int COST = 2;
-    private static final int DAMAGE = 10;
-    private static final int UPGRADE_DAMAGE_AMOUNT = 4;
+    private static final int DAMAGE = 9;
+    private static final int UPGRADE_DAMAGE_AMOUNT = 5;
     private static final int VULNERABLE_AMOUNT = 1;
     private static final int UPGRADE_VULNERABLE_AMOUNT = 1;
 
@@ -42,10 +42,6 @@ public class Haymaker extends CustomCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-//        AbstractDungeon.actionManager.addToBottom(
-//            new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
-//                AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-
         AbstractDungeon.actionManager.addToBottom(
             new HaymakerSplashAction(p, m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
                 this.magicNumber));

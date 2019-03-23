@@ -183,6 +183,9 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new VitalStrike());
         BaseMod.addCard(new Wield());
 
+        // should non-purchasable cards go here?
+        BaseMod.addCard(new SpudMissile());
+
         // Power (11)
         BaseMod.addCard(new CollectTribute());
         BaseMod.addCard(new DemonicPact());

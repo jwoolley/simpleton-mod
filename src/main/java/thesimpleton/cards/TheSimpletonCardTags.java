@@ -9,4 +9,7 @@ public class TheSimpletonCardTags {
 
     @SpireEnum
     public static AbstractCard.CardTags RITUAL;
+
+    @SpireEnum
+    public static AbstractCard.CardTags HARVEST;
 }

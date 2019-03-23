@@ -28,6 +28,13 @@
     ],
     "DESCRIPTION": "Dregs are unplayable Curse cards."
   },
+  "TheSimpletonMod:PlantPotatoesKeyword": {
+    "PROPER_NAME": "Grow Potatoes",
+    "NAMES": [
+      "grow potatoes"
+    ],
+    "DESCRIPTION": "Dregs are unplayable Curse cards."
+  },
   "TheSimpletonMod:RitualKeyword": {
     "PROPER_NAME": "Ritual",
     "NAMES": [

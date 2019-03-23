@@ -250,7 +250,7 @@
   },
   "TheSimpletonMod:ReapAndSow": {
     "NAME": "Reap and Sow",
-    "DESCRIPTION": "Gain !B! Block. Add !M! Shiv to your hand.",
+    "DESCRIPTION": "Gain !B! Block. Gain !M! Grow Potatoes.",
     "UPGRADE_DESCRIPTION": "Gain !B! Block. Add!M! Shivs to your hand."
   },
   "TheSimpletonMod:ReleasedKnowledge": {
@@ -299,6 +299,10 @@
   "TheSimpletonMod:SpreadPlague": {
     "NAME": "Spread Plague",
     "DESCRIPTION": "Apply !M! Bleed and 3 Vulnerable to ALL enemies. NL Exhaust."
+  },
+  "TheSimpletonMod:SpudMissile": {
+    "NAME": "Spud Missile",
+    "DESCRIPTION": "Deal !D! damage. NL Exhaust."
   },
   "TheSimpletonMod:Stigma": {
     "NAME": "Stigma",

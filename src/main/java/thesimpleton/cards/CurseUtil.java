@@ -3,6 +3,7 @@ package thesimpleton.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import thesimpleton.cards.attack.SpudMissile;
 import thesimpleton.cards.curse.Dregs;
 import com.megacrit.cardcrawl.cards.colorless.Shiv;
 import thesimpleton.relics.FourLeafCloverCharm;
@@ -13,6 +14,7 @@ public class CurseUtil {
     // As MakeTempCard... actions copy the card object, just define a static Dregs here for common use.
     public static final AbstractCard DREGS = new Dregs();
     public static final AbstractCard SHIV = new Shiv();
+    public static final AbstractCard SPUD_MISSILE = new SpudMissile();
 
     public static int getNumCurse(ArrayList<AbstractCard> cards) {
         return (int) cards.stream()

@@ -157,6 +157,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new Defend_TheSimpleton());
         BaseMod.addCard(new CleanUpWorkshop());
         BaseMod.addCard(new Haymaker());
+        BaseMod.addCard(new ReapAndSow());
 
         // Attack (22)
         BaseMod.addCard(new AbyssShockwave());

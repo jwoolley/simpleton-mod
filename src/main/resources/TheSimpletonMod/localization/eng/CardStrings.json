@@ -123,10 +123,6 @@
     "NAME": "Cursed Staff",
     "DESCRIPTION": "Deal !D! damage. NL Add 2 Dregs cards into your hand."
   },
-  "TheSimpletonMod:Haymaker": {
-    "NAME": "Haymaker",
-    "DESCRIPTION": "Deal !D! damage. If this kills an enemy, apply !M! Vulnerable to ALL enemies."
-  },
   "TheSimpletonMod:DarkBarrier": {
     "NAME": "Dark Barrier",
     "DESCRIPTION": "Ritual : Gain !M! Intangible. NL Exhaust."
@@ -175,6 +171,10 @@
   "TheSimpletonMod:Grudge": {
     "NAME": "Grudge",
     "DESCRIPTION": "Add a random Ritual card into your hand. NL It costs 0 this turn. NL Exhaust."
+  },
+  "TheSimpletonMod:Haymaker": {
+    "NAME": "Haymaker",
+    "DESCRIPTION": "Deal !D! damage. If this kills an enemy, apply !M! Vulnerable to ALL enemies."
   },
   "TheSimpletonMod:HellfireBreathing": {
     "NAME": "Hellfire Breathing",
@@ -247,6 +247,11 @@
   "TheSimpletonMod:RavingStaff": {
     "NAME": "Raving Staff",
     "DESCRIPTION": "Deal !D! damage to a random enemy X times."
+  },
+  "TheSimpletonMod:ReapAndSow": {
+    "NAME": "Reap and Sow",
+    "DESCRIPTION": "Gain !B! Block. Add !M! Shiv to your hand.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. Add!M! Shivs to your hand."
   },
   "TheSimpletonMod:ReleasedKnowledge": {
     "NAME": "Released Knowledge",

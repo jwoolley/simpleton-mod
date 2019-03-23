@@ -18,9 +18,9 @@ import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import thesimpleton.cards.attack.Haymaker;
 import thesimpleton.cards.attack.Strike_TheSimpleton;
-import thesimpleton.cards.curse.Dregs;
 import thesimpleton.cards.skill.CleanUpWorkshop;
 import thesimpleton.cards.skill.Defend_TheSimpleton;
+import thesimpleton.cards.skill.ReapAndSow;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.relics.SpudOfTheMartyr;
@@ -78,8 +78,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
         retVal.add(Defend_TheSimpleton.ID);
         retVal.add(Defend_TheSimpleton.ID);
         retVal.add(Haymaker.ID);
-//        retVal.add(CleanUpWorkshop.ID);
-//        retVal.add(Dregs.ID);
+        retVal.add(ReapAndSow.ID);
 
         return retVal;
     }
@@ -186,7 +185,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
 
     @Override
     public Color getSlashAttackColor() {
-        return Color.PURPLE;
+        return Color.TEAL;
     }
 
     @Override

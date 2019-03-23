@@ -34,26 +34,21 @@ public class CropRotation extends CustomCard {
   private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
 
   private static final int COST = 0;
-//  private static final int BLOCK = 3;
-//  private static final int BLOCK_UPGRADE_BONUS = 3;
 
   private static final int NUM_CROPS = 1;
   private static final int NUM_CROPS_UPGRADE_BONUS = 1;
 
   public CropRotation() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
-//    this.baseBlock = this.block = BLOCK;
     this.baseMagicNumber = this.magicNumber = NUM_CROPS;
     this.tags.add(TheSimpletonCardTags.HARVEST);
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    //   AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
-
     //TODO: allow splits between two powers for upgrades (requires calculation for harvest action)
 
-    // add new stacks
+    // harvest existing stacks
     final ArrayList<AbstractPower> activePowers =  new ArrayList<>(p.powers);
     Collections.shuffle(activePowers);
     Optional<AbstractPower> oldPower = activePowers.stream()
@@ -80,7 +75,6 @@ public class CropRotation extends CustomCard {
   public void upgrade() {
     if (!this.upgraded) {
       upgradeName();
-//      upgradeBlock(BLOCK_UPGRADE_BONUS);
       upgradeMagicNumber(NUM_CROPS_UPGRADE_BONUS);
       this.rawDescription = UPGRADE_DESCRIPTION;
       this.initializeDescription();

@@ -34,7 +34,7 @@ public class CurseUtil {
     }
 
     public static AbstractCropPower getRandomCropPower(AbstractPlayer p, int numStacks) {
-        final PlantPotatoPower potatoPower = new PlantPotatoPower(p, 1);
+        final PlantPotatoPower potatoPower = new PlantPotatoPower(p, numStacks);
 
         ArrayList<AbstractCropPower> cropPowers = new ArrayList<>();
         cropPowers.add(potatoPower);

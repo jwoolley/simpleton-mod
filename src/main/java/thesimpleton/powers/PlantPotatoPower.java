@@ -35,8 +35,6 @@ public class PlantPotatoPower extends AbstractCropPower {
 
   @Override
   public void updateDescription() {
-//    final boolean singular = this.amount == 1;
-
     this.description = DESCRIPTIONS[0];
   }
 

@@ -84,6 +84,13 @@
     "DESCRIPTION": "At the start of your turn, gain [E] and add a random Curse card into your hand.",
     "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, gain [E] and add a random Curse card into your hand."
   },
+
+  "TheSimpletonMod:CropRotation": {
+    "NAME": "Crop Rotation",
+    "DESCRIPTION": "NL Harvest !M! random crop stack. NL Gain !M! random crop stack.",
+    "UPGRADE_DESCRIPTION": "NL Harvest !M! random crop stacks. NL Gain !M! random crop stacks."
+  },
+
   "TheSimpletonMod:CursedAmulet": {
     "NAME": "Cursed Amulet",
     "DESCRIPTION": "Gain !B! Block. NL Draw 1 card. NL Shuffle a random Curse card into your draw pile."
@@ -172,6 +179,10 @@
     "NAME": "Grudge",
     "DESCRIPTION": "Add a random Ritual card into your hand. NL It costs 0 this turn. NL Exhaust."
   },
+  "TheSimpletonMod:Harvest": {
+    "NAME": "Harvest",
+    "DESCRIPTION": "Gain !B! Block. Harvest all crops. NL Exhaust."
+  },
   "TheSimpletonMod:Haymaker": {
     "NAME": "Haymaker",
     "DESCRIPTION": "Deal !D! damage. If this kills an enemy, apply !M! Vulnerable to ALL enemies."
@@ -250,8 +261,7 @@
   },
   "TheSimpletonMod:ReapAndSow": {
     "NAME": "Reap and Sow",
-    "DESCRIPTION": "Gain !B! Block. Gain !M! Grow Potatoes.",
-    "UPGRADE_DESCRIPTION": "Gain !B! Block. Add!M! Shivs to your hand."
+    "DESCRIPTION": "Gain !M! Potatoes. NL Add a Harvest to your discard pile."
   },
   "TheSimpletonMod:ReleasedKnowledge": {
     "NAME": "Released Knowledge",
@@ -301,7 +311,7 @@
     "DESCRIPTION": "Apply !M! Bleed and 3 Vulnerable to ALL enemies. NL Exhaust."
   },
   "TheSimpletonMod:SpudMissile": {
-    "NAME": "Spud Missile",
+    "NAME": "Spud",
     "DESCRIPTION": "Deal !D! damage. NL Exhaust."
   },
   "TheSimpletonMod:Stigma": {

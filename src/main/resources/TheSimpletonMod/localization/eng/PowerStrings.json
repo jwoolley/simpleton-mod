@@ -77,11 +77,9 @@
     ]
   },
   "TheSimpletonMod:PlantPotatoPower": {
-    "NAME": "Grow Potatoes",
+    "NAME": "Potatoes",
     "DESCRIPTIONS": [
-      "#gHarvest bto add ",
-      "#ySpud #yMissile",
-      " to your hand."
+      "#bCrop. #gHarvest #bto add a #ySpud to your hand per stack harvested."
     ]
   },
   "TheSimpletonMod:SpitefulPlanPower": {

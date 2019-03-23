@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.TheSimpletonCardTags;
 ;
 public class SpudMissile extends CustomCard {
   public static final String ID = "TheSimpletonMod:SpudMissile";
@@ -26,12 +27,13 @@ public class SpudMissile extends CustomCard {
 
   private static final int COST = 0;
   private static final int DAMAGE = 4;
-  private static final int UPGRADE_DAMAGE_AMOUNT = 2;
+  private static final int UPGRADE_DAMAGE_AMOUNT = 3;
 
   public SpudMissile() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
     this.exhaust = true;
+    this.tags.add(TheSimpletonCardTags.CROP);
   }
 
   @Override

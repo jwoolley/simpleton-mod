@@ -11,8 +11,9 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import thesimpleton.cards.CurseUtil;
 import thesimpleton.cards.TheSimpletonCardTags;
+import thesimpleton.cards.skill.AbstractHarvestCard;
 
-public class PlantPotatoPower extends AbstractTheSimpletonPower {
+public class PlantPotatoPower extends AbstractCropPower {
 
   public static final String POWER_ID = "TheSimpletonMod:PlantPotatoPower";
   private static final PowerStrings powerStrings;
@@ -23,9 +24,7 @@ public class PlantPotatoPower extends AbstractTheSimpletonPower {
   public static final String IMG = "plantpotato.png";
 
   public PlantPotatoPower(AbstractCreature owner, int amount) {
-    super(IMG);
-    this.owner = owner;
-    this.amount = amount;
+    super(IMG, owner, amount);
 
     this.name = NAME;
     this.ID = POWER_ID;
@@ -36,25 +35,15 @@ public class PlantPotatoPower extends AbstractTheSimpletonPower {
 
   @Override
   public void updateDescription() {
-    final boolean singular = this.amount == 1;
-    this.description = DESCRIPTIONS[0]
-        + (singular ? "a " : "") + DESCRIPTIONS[1] + (singular ? "" : "#ys")
-        + DESCRIPTIONS[2];
+//    final boolean singular = this.amount == 1;
+
+    this.description = DESCRIPTIONS[0];
   }
 
   //TODO: AbstractCard should be an AbstractHarvestCard, with harvestAmount, harvestEffect, etc.
   public void onUseCard(AbstractCard card, UseCardAction action) {
-    final boolean harvestAll = true;
-    final int harvestAmount = harvestAll == true ? this.amount : 1; // card.harvestAmount;
-    if (this.amount > 0) {
-      if (card.hasTag(TheSimpletonCardTags.HARVEST) || card.cardID == CurseUtil.SHIV.cardID) {
-        this.flash();
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(CurseUtil.SPUD_MISSILE, harvestAmount));
-        this.amount -= harvestAmount;
-        if (this.amount == 0) {
-          AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
-        }
-      }
+    if (card.hasTag(TheSimpletonCardTags.HARVEST) && card instanceof AbstractHarvestCard && ((AbstractHarvestCard)card).autoHarvest) {
+       harvest(((AbstractHarvestCard) card).isHarvestAll(), ((AbstractHarvestCard) card).getHavestAmount());
     }
   }
 
@@ -62,5 +51,20 @@ public class PlantPotatoPower extends AbstractTheSimpletonPower {
     powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     NAME = powerStrings.NAME;
     DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+  }
+
+  @Override
+  public void harvest(boolean harvestAll, int maxHarvestAmount) {
+    if  (amount > 0) {
+      final int harvestAmount = Math.min(this.amount, harvestAll ? this.amount : maxHarvestAmount);
+
+      this.flash();
+      AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(CurseUtil.SPUD_MISSILE, harvestAmount));
+      amount -= harvestAmount;
+
+      if (amount == 0) {
+        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+      }
+    }
   }
 }

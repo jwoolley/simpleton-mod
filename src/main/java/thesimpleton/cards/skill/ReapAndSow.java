@@ -27,24 +27,24 @@ public class ReapAndSow extends CustomCard {
   private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
 
   private static final int COST = 0;
-  private static final int BLOCK = 3;
-  private static final int UPGRADE_BONUS = 3;
-  private static final int PLANT_AMOUNT = 2;
+//  private static final int BLOCK = 2;
+  private static final int BLOCK_UPGRADE_BONUS = 2;
+  private static final int PLANT_AMOUNT = 1;
   private static final int PLANT_AMOUNT_UPGRADE = 1;
 
   public ReapAndSow() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
-    this.baseBlock = this.block = BLOCK;
+//    this.baseBlock = this.block = BLOCK;
     this.baseMagicNumber = this.magicNumber = PLANT_AMOUNT;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
     final AbstractCard HARVEST_CARD = CurseUtil.SHIV;
-    AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
+//    AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
 
     //TODO: need to add card-discard-discard pile vfx/sfx?
-    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(HARVEST_CARD, 1));
+    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(CurseUtil.HARVEST, 1));
     AbstractDungeon.actionManager.addToBottom(
         new ApplyPowerAction(p, p, new PlantPotatoPower(p, this.magicNumber), this.magicNumber));
   }
@@ -58,7 +58,7 @@ public class ReapAndSow extends CustomCard {
   public void upgrade() {
     if (!this.upgraded) {
       upgradeName();
-      upgradeBlock(UPGRADE_BONUS);
+//      upgradeBlock(BLOCK_UPGRADE_BONUS);
       upgradeMagicNumber(PLANT_AMOUNT_UPGRADE);
     }
   }

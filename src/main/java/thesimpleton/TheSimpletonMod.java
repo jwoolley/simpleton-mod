@@ -239,6 +239,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new UltimatePain());
         BaseMod.addCard(new WearCloak());
 
+        BaseMod.addCard(new CropRotation());
+        // should non-purchasable cards go here?
+        BaseMod.addCard(new Harvest());
+
         // Curse
         BaseMod.addCard(new Dregs());
     }
@@ -321,8 +325,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     private static String getLanguageString() {
         // Note to translators - add your language here (by alphabetical order).
         switch (Settings.language) {
-            case KOR:
-                return "kor";
             default:
                 return "eng";
         }

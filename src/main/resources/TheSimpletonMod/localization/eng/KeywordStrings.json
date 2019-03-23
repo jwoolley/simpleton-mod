@@ -14,6 +14,15 @@
     ],
     "DESCRIPTION": "An #yUnplayable card that can be activated by using other cards while in hand."
   },
+
+  "TheSimpletonMod:CropKeyword": {
+    "PROPER_NAME": "Crop",
+    "NAMES": [
+      "crop"
+    ],
+    "DESCRIPTION": "Crop powers provide beneficial effects when harvested."
+  },
+
   "TheSimpletonMod:CursedKeyword": {
     "PROPER_NAME": "Cursed",
     "NAMES": [
@@ -28,13 +37,24 @@
     ],
     "DESCRIPTION": "Dregs are unplayable Curse cards."
   },
-  "TheSimpletonMod:PlantPotatoesKeyword": {
-    "PROPER_NAME": "Grow Potatoes",
+
+  "TheSimpletonMod:HarvestKeyword": {
+    "PROPER_NAME": "Harvest",
     "NAMES": [
-      "grow potatoes"
+      "harvest", "harvested"
     ],
-    "DESCRIPTION": "Dregs are unplayable Curse cards."
+    "DESCRIPTION": "Harvest crop stacks for different effects, depending on the crop."
   },
+
+  "TheSimpletonMod:PotatoKeyword": {
+    "PROPER_NAME": "Potatoes",
+    "NAMES": [
+      "potato", "potatoes"
+    ],
+    "DESCRIPTION": "Yields attack cards when harvested."
+  },
+
+
   "TheSimpletonMod:RitualKeyword": {
     "PROPER_NAME": "Ritual",
     "NAMES": [

@@ -76,6 +76,13 @@
       " #yBleed."
     ]
   },
+  "TheSimpletonMod:PlantOnionPower": {
+    "NAME": "Onions",
+    "DESCRIPTIONS": [
+      "#bCrop. Apply #b",
+      " #yWeak to ALL enemies for each stack #gharvested."
+    ]
+  },
   "TheSimpletonMod:PlantPotatoPower": {
     "NAME": "Potatoes",
     "DESCRIPTIONS": [
@@ -85,7 +92,7 @@
   "TheSimpletonMod:PlantSpinachPower": {
     "NAME": "Spinach",
     "DESCRIPTIONS": [
-      "#bCrop. #Gain #b",
+      "#bCrop. Gain #b",
       " #yStrength for each stack #gharvested."
     ]
   },

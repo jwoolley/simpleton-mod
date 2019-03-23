@@ -8,10 +8,7 @@ import thesimpleton.cards.attack.SpudMissile;
 import thesimpleton.cards.skill.Harvest;
 import thesimpleton.cards.curse.Dregs;
 import com.megacrit.cardcrawl.cards.colorless.Shiv;
-import thesimpleton.powers.AbstractCropPower;
-import thesimpleton.powers.AbstractTheSimpletonPower;
-import thesimpleton.powers.PlantPotatoPower;
-import thesimpleton.powers.PlantSpinachPower;
+import thesimpleton.powers.*;
 import thesimpleton.relics.FourLeafCloverCharm;
 
 import java.util.ArrayList;
@@ -35,14 +32,15 @@ public class CurseUtil {
     }
 
     public static AbstractCropPower getRandomCropPower(AbstractPlayer p, int numStacks) {
-
         // TODO: move this logic to a plant power manager class
         final PlantPotatoPower potatoPower = new PlantPotatoPower(p, numStacks);
         final PlantSpinachPower spinachPower = new PlantSpinachPower(p, numStacks);
+        final PlantOnionPower onionPower = new PlantOnionPower(p, numStacks);
 
         ArrayList<AbstractCropPower> cropPowers = new ArrayList<>();
         cropPowers.add(potatoPower);
         cropPowers.add(spinachPower);
+        cropPowers.add(onionPower);
 
         Collections.shuffle(cropPowers);
         return cropPowers.get(0);

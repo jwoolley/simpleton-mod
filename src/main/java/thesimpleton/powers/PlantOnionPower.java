@@ -8,37 +8,38 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.skill.AbstractHarvestCard;
 
-public class PlantSpinachPower extends AbstractCropPower {
+public class PlantOnionPower extends AbstractCropPower {
 
-  public static final String POWER_ID = "TheSimpletonMod:PlantSpinachPower";
+  public static final String POWER_ID = "TheSimpletonMod:PlantOnionPower";
   private static final PowerStrings powerStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
 
   public static AbstractPower.PowerType POWER_TYPE = AbstractPower.PowerType.BUFF;
-  public static final String IMG = "plantspinach.png";
+  public static final String IMG = "plantonion.png";
 
-  private static int BASE_STRENGTH_PER_STACK = 1;
-  private static int strengthPerStack = 1;
+  private static int BASE_WEAK_PER_STACK = 1;
+  private static int weakPerStack = 1;
 
-  public PlantSpinachPower(AbstractCreature owner, int amount) {
+  public PlantOnionPower(AbstractCreature owner, int amount) {
     super(IMG, owner, amount);
 
     this.name = NAME;
     this.ID = POWER_ID;
     this.type = POWER_TYPE;
-    this.strengthPerStack = BASE_STRENGTH_PER_STACK;
+    this.weakPerStack = BASE_WEAK_PER_STACK;
     updateDescription();
   }
 
   @Override
   public void updateDescription() {
-    this.description = DESCRIPTIONS[0] + this.strengthPerStack + DESCRIPTIONS[1];
+    this.description = DESCRIPTIONS[0] + this.weakPerStack + DESCRIPTIONS[1];
   }
 
   //TODO: AbstractCard should be an AbstractHarvestCard, with harvestAmount, harvestEffect, etc.
@@ -56,13 +57,25 @@ public class PlantSpinachPower extends AbstractCropPower {
 
   @Override
   public void harvest(boolean harvestAll, int maxHarvestAmount) {
+
+    System.out.println("PlantOnionPower.harvest :: maxHarvestAmount: " + maxHarvestAmount);
+
     if  (amount > 0) {
       final int harvestAmount = Math.min(this.amount, harvestAll ? this.amount : maxHarvestAmount);
 
-      AbstractDungeon.actionManager.addToTop(
-          new ApplyPowerAction(
-              this.owner, this.owner,
-              new StrengthPower(this.owner, strengthPerStack), harvestAmount * strengthPerStack));
+      if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+        this.flash();
+
+        final long numTargetMonsters = AbstractDungeon.getMonsters().monsters.stream()
+            .filter(m -> !m.isDead && !m.isDying)
+            .count();
+
+        System.out.println("PlantOnionPower.harvest :: numTargetMonsters: " + numTargetMonsters);
+
+        AbstractDungeon.getMonsters().monsters.stream()
+            .filter(m -> !m.isDead && !m.isDying)
+            .forEach(m -> applyWeakPower(m, harvestAmount));
+      }
 
       amount -= harvestAmount;
 
@@ -71,4 +84,12 @@ public class PlantSpinachPower extends AbstractCropPower {
       }
     }
   }
+
+  private void applyWeakPower(AbstractMonster m, int numApplications) {
+    final int weakAmount =  this.weakPerStack * numApplications;
+
+    AbstractDungeon.actionManager.addToBottom(
+        new ApplyPowerAction(m, this.owner, new WeakPower(m, weakAmount, false),weakAmount));
+  }
+
 }

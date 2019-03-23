@@ -59,11 +59,6 @@ public class PlantSpinachPower extends AbstractCropPower {
     if  (amount > 0) {
       final int harvestAmount = Math.min(this.amount, harvestAll ? this.amount : maxHarvestAmount);
 
-      System.out.println("Spinach.harvest this.amount: " + this.amount);
-      System.out.println("Spinach.harvest harvestAll: " + harvestAll);
-      System.out.println("Spinach.harvest maxHarvestAmount: " + maxHarvestAmount);
-      System.out.println("Spinach.harvest harvestAmount: " + harvestAmount);
-
       AbstractDungeon.actionManager.addToBottom(
           new ApplyPowerAction(
               this.owner, this.owner,

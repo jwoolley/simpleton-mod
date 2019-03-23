@@ -79,7 +79,14 @@
   "TheSimpletonMod:PlantPotatoPower": {
     "NAME": "Potatoes",
     "DESCRIPTIONS": [
-      "#bCrop. #gHarvest #bto add a #ySpud to your hand per stack harvested."
+      "#bCrop. #gHarvest to add a #ySpud to your hand per stack harvested."
+    ]
+  },
+  "TheSimpletonMod:PlantSpinachPower": {
+    "NAME": "Spinach",
+    "DESCRIPTIONS": [
+      "#bCrop. #Gain #b",
+      " #yStrength for each stack #gharvested."
     ]
   },
   "TheSimpletonMod:SpitefulPlanPower": {

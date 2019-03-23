@@ -7,7 +7,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
-public class ManaCirculationPower extends AbstractTheSimpletonPower {
+public class
+ManaCirculationPower extends AbstractTheSimpletonPower {
     public static final String POWER_ID = "TheSimpletonMod:ManaCirculationPower";
     private static final PowerStrings powerStrings;
     public static final String NAME;

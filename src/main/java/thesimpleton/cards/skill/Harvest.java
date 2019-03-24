@@ -31,7 +31,8 @@ public class Harvest extends AbstractHarvestCard {
   private static final boolean HARVEST_ALL = true;
 
   public Harvest() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, TYPE, DESCRIPTION, RARITY, TARGET, HARVEST_AMOUNT, HARVEST_ALL, true);
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, RARITY, TARGET,
+        HARVEST_AMOUNT, HARVEST_ALL, true);
     this.baseBlock = this.block = BLOCK;
     exhaust = true;
     this.baseMagicNumber = this.magicNumber = HARVEST_AMOUNT;

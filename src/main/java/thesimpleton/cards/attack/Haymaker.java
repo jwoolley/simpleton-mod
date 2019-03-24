@@ -31,13 +31,13 @@ public class Haymaker extends CustomCard {
     private static final int COST = 2;
     private static final int DAMAGE = 9;
     private static final int UPGRADE_DAMAGE_AMOUNT = 5;
-    private static final int VULNERABLE_AMOUNT = 1;
-    private static final int UPGRADE_VULNERABLE_AMOUNT = 1;
+    private static final int DEBUFF_AMOUNT = 1;
+    private static final int UPGRADE_DEBUFF_AMOUNT = 1;
 
     public Haymaker() {
         super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
-        this.baseMagicNumber = this.magicNumber = VULNERABLE_AMOUNT;
+        this.baseMagicNumber = this.magicNumber = DEBUFF_AMOUNT;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class Haymaker extends CustomCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_DAMAGE_AMOUNT);
-            this.upgradeMagicNumber(UPGRADE_VULNERABLE_AMOUNT);
+            this.upgradeMagicNumber(DEBUFF_AMOUNT);
         }
     }
 

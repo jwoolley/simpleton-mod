@@ -10,7 +10,7 @@ public abstract class AbstractHarvestCard extends CustomCard {
   public final boolean autoHarvest;
 
   public AbstractHarvestCard(
-      String id, String name, String imagePath, int cost, CardType type, String description,
+      String id, String name, String imagePath, int cost, String description, CardType type,
       CardRarity rarity, CardTarget target, int harvestAmount, boolean harvestAll, boolean autoHarvest) {
     super(id, name, imagePath, cost, description, type, AbstractCardEnum.THE_SIMPLETON_BLUE, rarity, target);
     this.baseMagicNumber = this.magicNumber = harvestAmount;

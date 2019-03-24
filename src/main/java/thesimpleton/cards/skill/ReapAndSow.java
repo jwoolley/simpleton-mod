@@ -44,9 +44,10 @@ public class ReapAndSow extends CustomCard {
 //    AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
 
     //TODO: need to add card-discard-discard pile vfx/sfx?
-    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(CurseUtil.HARVEST, 1));
     AbstractDungeon.actionManager.addToBottom(
         new ApplyPowerAction(p, p, new PlantPotatoPower(p, this.magicNumber), this.magicNumber));
+
+    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(CurseUtil.HARVEST, 1));
   }
 
   @Override

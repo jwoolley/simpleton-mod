@@ -96,6 +96,12 @@
       " #yStrength for each stack #gharvested."
     ]
   },
+  "TheSimpletonMod:PlantTurnipPower": {
+    "NAME": "Turnip",
+    "DESCRIPTIONS": [
+      "#bCrop. #gHarvest to convert all stacks into an attack card that deals more damage for each stack harvested. Gains double stacks from random crop effects."
+    ]
+  },
   "TheSimpletonMod:SpitefulPlanPower": {
     "NAME": "Spiteful Plan",
     "DESCRIPTIONS": [

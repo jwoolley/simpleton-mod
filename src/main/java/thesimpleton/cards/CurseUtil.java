@@ -1,13 +1,14 @@
 package thesimpleton.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.colorless.Shiv;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import thesimpleton.cards.attack.SpudMissile;
-import thesimpleton.cards.skill.Harvest;
 import thesimpleton.cards.curse.Dregs;
-import com.megacrit.cardcrawl.cards.colorless.Shiv;
+import thesimpleton.cards.skill.Harvest;
+import thesimpleton.cards.skill.RootOut;
 import thesimpleton.powers.*;
 import thesimpleton.relics.FourLeafCloverCharm;
 
@@ -20,6 +21,7 @@ public class CurseUtil {
     public static final AbstractCard SHIV = new Shiv();
     public static final AbstractCard HARVEST = new Harvest();
     public static final AbstractCard SPUD_MISSILE = new SpudMissile();
+    public static final AbstractCard ROOT_OUT = new RootOut();
 
     public static int getNumCurse(ArrayList<AbstractCard> cards) {
         return (int) cards.stream()
@@ -36,11 +38,13 @@ public class CurseUtil {
         final PlantPotatoPower potatoPower = new PlantPotatoPower(p, numStacks);
         final PlantSpinachPower spinachPower = new PlantSpinachPower(p, numStacks);
         final PlantOnionPower onionPower = new PlantOnionPower(p, numStacks);
+        final PlantTurnipPower turnipPower = new PlantTurnipPower(p, numStacks * 2);
 
         ArrayList<AbstractCropPower> cropPowers = new ArrayList<>();
         cropPowers.add(potatoPower);
         cropPowers.add(spinachPower);
         cropPowers.add(onionPower);
+        cropPowers.add(turnipPower);
 
         Collections.shuffle(cropPowers);
         return cropPowers.get(0);

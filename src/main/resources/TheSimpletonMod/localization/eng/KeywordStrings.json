@@ -54,7 +54,6 @@
     "DESCRIPTION": "Yields attack cards when harvested."
   },
 
-
   "TheSimpletonMod:RitualKeyword": {
     "PROPER_NAME": "Ritual",
     "NAMES": [
@@ -62,11 +61,28 @@
     ],
     "DESCRIPTION": "When using, choose 1 card to #yExhaust. Selecting a Curse card will activate the Ritual's effect."
   },
+
+  "TheSimpletonMod:RootOutKeyword": {
+    "PROPER_NAME": "RootOut",
+    "NAMES": [
+      "root out"
+    ],
+    "DESCRIPTION": "Grants temporary strength and harvests all turnips."
+  },
+
   "TheSimpletonMod:StunKeyword": {
     "PROPER_NAME": "Stun",
     "NAMES": [
       "stun"
     ],
     "DESCRIPTION": "Cannot do anything."
+  },
+
+  "TheSimpletonMod:TurnipKeyword": {
+    "PROPER_NAME": "Turnips",
+    "NAMES": [
+      "turnip", "turnips"
+    ],
+    "DESCRIPTION": "Yields a multi-hit attack card when harvested that scales with stacks ."
   }
 }

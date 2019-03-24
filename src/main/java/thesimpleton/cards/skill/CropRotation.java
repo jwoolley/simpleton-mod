@@ -13,14 +13,13 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.CurseUtil;
 import thesimpleton.cards.TheSimpletonCardTags;
-import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.AbstractCropPower;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Optional;
 
-public class CropRotation extends CustomCard {
+public class CropRotation extends AbstractHarvestCard {
   public static final String ID = "TheSimpletonMod:CropRotation";
   public static final String NAME;
   public static final String DESCRIPTION;
@@ -39,15 +38,18 @@ public class CropRotation extends CustomCard {
   private static final int NUM_CROPS_UPGRADE_BONUS = 1;
 
   public CropRotation() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH),
+        COST, DESCRIPTION, TYPE, RARITY, TARGET, NUM_CROPS, false, false);
     this.baseMagicNumber = this.magicNumber = NUM_CROPS;
     this.tags.add(TheSimpletonCardTags.HARVEST);
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
+    //TODO: exhaust?
     //TODO: allow splits between two powers for upgrades (requires calculation for harvest action)
-
+    //TODO: add "fizzle" effect if there are no stacks to harvest
+    
     // harvest existing stacks
     final ArrayList<AbstractPower> activePowers =  new ArrayList<>(p.powers);
     Collections.shuffle(activePowers);

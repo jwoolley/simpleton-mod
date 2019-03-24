@@ -12,12 +12,12 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.TheSimpletonCardTags;
-;
-public class SpudMissile extends CustomCard {
-  public static final String ID = "TheSimpletonMod:SpudMissile";
+
+public class GiantTurnip extends CustomCard {
+  public static final String ID = "TheSimpletonMod:GiantTurnip";
   public static final String NAME;
   public static final String DESCRIPTION;
-  public static final String IMG_PATH = "cards/spudmissile.png";
+  public static final String IMG_PATH = "cards/giantturnip.png";
 
   private static final CardStrings cardStrings;
 
@@ -25,27 +25,34 @@ public class SpudMissile extends CustomCard {
   private static final CardRarity RARITY = CardRarity.COMMON;
   private static final CardTarget TARGET = CardTarget.ENEMY;
 
-  private static final int COST = 0;
-  private static final int DAMAGE = 4;
+  private static final int COST = 1;
+  private static final int DAMAGE = 3;
   private static final int UPGRADE_DAMAGE_AMOUNT = 3;
 
-  public SpudMissile() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY, TARGET);
-    this.baseDamage = this.damage = DAMAGE;
+  public GiantTurnip() {
+    this(DAMAGE);
+  }
+  
+  public GiantTurnip(int damage) {
+    super(ID, damage + "-Lb. " + NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY, TARGET);
+    this.baseDamage = this.damage = damage;
+    this.baseMagicNumber = this.magicNumber = damage;
     this.exhaust = true;
     this.tags.add(TheSimpletonCardTags.CROP);
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(
-        new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
-        AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+    for(int i = 0; i <  this.magicNumber; i++) {
+      AbstractDungeon.actionManager.addToBottom(
+          new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
+              AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+    }
   }
 
   @Override
   public AbstractCard makeCopy() {
-    return new SpudMissile();
+    return new GiantTurnip(this.damage);
   }
 
   @Override

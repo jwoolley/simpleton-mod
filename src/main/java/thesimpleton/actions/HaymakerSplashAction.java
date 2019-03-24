@@ -10,22 +10,23 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 
+import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
 public class HaymakerSplashAction extends AbstractGameAction {
 
-  private final int VULNERABLE_AMOUNT;
+  private final int DEBUFF_AMOUNT;
   private final AbstractPlayer p;
   private DamageInfo info;
 
-  public HaymakerSplashAction(AbstractPlayer p, AbstractCreature target, DamageInfo info, int vulnerableAmount) {
+  public HaymakerSplashAction(AbstractPlayer p, AbstractCreature target, DamageInfo info, int debuffAmount) {
     this.setValues(target, info);
     this.actionType = ActionType.DEBUFF;
     this.attackEffect = AttackEffect.BLUNT_HEAVY;
     this.duration = 0.1F;
     this.info = info;
     this.p = p;
-    this.VULNERABLE_AMOUNT = vulnerableAmount;
+    this.DEBUFF_AMOUNT = debuffAmount;
   }
 
   @Override
@@ -45,8 +46,13 @@ public class HaymakerSplashAction extends AbstractGameAction {
           .forEach(mo -> {
               AbstractDungeon.actionManager.addToBottom(
                 new ApplyPowerAction(
-                  mo, this.p, new VulnerablePower(mo, this.VULNERABLE_AMOUNT, false),
-                  this.VULNERABLE_AMOUNT, true, AbstractGameAction.AttackEffect.NONE));
+                  mo, this.p, new VulnerablePower(mo, this.DEBUFF_AMOUNT, false),
+                  this.DEBUFF_AMOUNT, true, AbstractGameAction.AttackEffect.NONE));
+
+            AbstractDungeon.actionManager.addToBottom(
+                new ApplyPowerAction(
+                    mo, this.p, new WeakPower(mo, this.DEBUFF_AMOUNT, false),
+                    this.DEBUFF_AMOUNT, true, AbstractGameAction.AttackEffect.NONE));
           });
       }
 

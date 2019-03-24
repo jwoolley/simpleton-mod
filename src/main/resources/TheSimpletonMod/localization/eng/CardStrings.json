@@ -87,8 +87,8 @@
 
   "TheSimpletonMod:CropRotation": {
     "NAME": "Crop Rotation",
-    "DESCRIPTION": "NL Harvest !M! random crop stack. NL Gain !M! random crop stack.",
-    "UPGRADE_DESCRIPTION": "NL Harvest !M! random crop stacks. NL Gain !M! random crop stacks."
+    "DESCRIPTION": "Harvest !M! random crop stack. NL Gain !M! random crop stack.",
+    "UPGRADE_DESCRIPTION": "Harvest !M! random crop stacks. NL Gain !M! random crop stacks."
   },
 
   "TheSimpletonMod:CursedAmulet": {
@@ -175,6 +175,10 @@
     "NAME": "Fury Strike",
     "DESCRIPTION": "Deal !D! damage. NL Reduce the cost of all Strike cards in your hand to 0 this turn."
   },
+  "TheSimpletonMod:GiantTurnip": {
+    "NAME": "Turnip",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Exhaust."
+  },
   "TheSimpletonMod:Grudge": {
     "NAME": "Grudge",
     "DESCRIPTION": "Add a random Ritual card into your hand. NL It costs 0 this turn. NL Exhaust."
@@ -185,7 +189,7 @@
   },
   "TheSimpletonMod:Haymaker": {
     "NAME": "Haymaker",
-    "DESCRIPTION": "Deal !D! damage. If this kills an enemy, apply !M! Vulnerable to ALL enemies."
+    "DESCRIPTION": "Deal !D! damage. If this kills an enemy, apply !M! Vulnerable and !M! Weak to ALL enemies."
   },
   "TheSimpletonMod:HellfireBreathing": {
     "NAME": "Hellfire Breathing",
@@ -272,6 +276,17 @@
     "NAME": "Released Strength",
     "DESCRIPTION": "Ritual : Gain !M! Strength. NL Ethereal."
   },
+
+  "TheSimpletonMod:RootDown": {
+    "NAME": "Root Down",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Turnips. NL Put a Root Out on the bottom of your draw pile. NL Exhaust."
+},
+
+  "TheSimpletonMod:RootOut": {
+    "NAME": "Root Out",
+    "DESCRIPTION": "Gain !M! Strength. NL At the end of your turn, lose !M! Strength. NL Harvest all Turnips. NL Exhaust."
+  },
+
   "TheSimpletonMod:SaltUponWound": {
     "NAME": "Salt upon Wound",
     "DESCRIPTION": "Enemy immediately loses HP by its Bleed 2 times. NL Apply !M! Bleed."

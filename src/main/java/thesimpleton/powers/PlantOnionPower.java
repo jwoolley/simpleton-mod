@@ -66,6 +66,8 @@ public class PlantOnionPower extends AbstractCropPower {
       if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
         this.flash();
 
+
+
         final long numTargetMonsters = AbstractDungeon.getMonsters().monsters.stream()
             .filter(m -> !m.isDead && !m.isDying)
             .count();

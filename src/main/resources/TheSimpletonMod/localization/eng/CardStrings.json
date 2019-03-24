@@ -265,7 +265,8 @@
   },
   "TheSimpletonMod:ReapAndSow": {
     "NAME": "Reap and Sow",
-    "DESCRIPTION": "Gain !M! Potatoes. NL Add a Harvest to your discard pile."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! Potatoes. NL Add a Harvest to your discard pile.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! Potatoes. NL Add an upgraded Harvest to your discard pile."
   },
   "TheSimpletonMod:ReleasedKnowledge": {
     "NAME": "Released Knowledge",

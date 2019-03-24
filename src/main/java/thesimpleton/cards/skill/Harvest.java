@@ -23,9 +23,9 @@ public class Harvest extends AbstractHarvestCard {
   private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
 
   private static final int COST = 1;
-  private static final int UPGRADED_COST = 0;
+  private static final int UPGRADED_COST = 1;
   private static final int BLOCK = 4;
-
+  private static final int BLOCK_UPGRADE_BONUS = 4;
   private static final int HARVEST_AMOUNT = -1;
   private static final int HARVEST_BONUS = 0;
   private static final boolean HARVEST_ALL = true;
@@ -53,6 +53,7 @@ public class Harvest extends AbstractHarvestCard {
   public void upgrade() {
     if (!this.upgraded) {
       upgradeName();
+      upgradeBlock(BLOCK_UPGRADE_BONUS);
       upgradeBaseCost(UPGRADED_COST);
       upgradeMagicNumber(HARVEST_BONUS);
     }

@@ -26,13 +26,13 @@ public class RootDown extends CustomCard {
   private static final CardStrings cardStrings;
 
   private static final AbstractCard.CardType TYPE = CardType.ATTACK;
-  private static final AbstractCard.CardRarity RARITY = CardRarity.BASIC;
+  private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
   private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
 
   private static final int COST = 0;
   private static final int DAMAGE = 3;
   private static final int DAMAGE_UPGRADE_BONUS = 3;
-  private static final int PLANT_AMOUNT = 3;
+  private static final int PLANT_AMOUNT = 2;
   private static final int PLANT_AMOUNT_UPGRADE = 1;
 
   public RootDown() {

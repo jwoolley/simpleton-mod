@@ -18,7 +18,8 @@ import thesimpleton.cards.CurseUtil;
 import thesimpleton.cards.curse.Dregs;
 import thesimpleton.enums.AbstractCardEnum;
 
-public class CursedBlade extends CustomCard {
+public class
+CursedBlade extends CustomCard {
     public static final String ID = "TheSimpletonMod:CursedBlade";
     public static final String NAME;
     public static final String DESCRIPTION;

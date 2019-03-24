@@ -40,6 +40,7 @@ public class RootOut extends AbstractHarvestCard {
         1, true, false);
     this.baseMagicNumber = this.magicNumber = STRENGTH_BONUS;
     this.exhaust = true;
+    this.isEthereal = true;
     this.tags.add(TheSimpletonCardTags.HARVEST);
   }
 

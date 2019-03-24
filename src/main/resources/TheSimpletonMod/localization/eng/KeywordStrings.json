@@ -51,7 +51,7 @@
     "NAMES": [
       "potato", "potatoes"
     ],
-    "DESCRIPTION": "Yields attack cards when harvested."
+    "DESCRIPTION": "Crop. Yields attack cards when harvested."
   },
 
   "TheSimpletonMod:RitualKeyword": {
@@ -60,14 +60,6 @@
       "ritual"
     ],
     "DESCRIPTION": "When using, choose 1 card to #yExhaust. Selecting a Curse card will activate the Ritual's effect."
-  },
-
-  "TheSimpletonMod:RootOutKeyword": {
-    "PROPER_NAME": "RootOut",
-    "NAMES": [
-      "root out"
-    ],
-    "DESCRIPTION": "Grants temporary strength and harvests all turnips."
   },
 
   "TheSimpletonMod:StunKeyword": {
@@ -83,6 +75,6 @@
     "NAMES": [
       "turnip", "turnips"
     ],
-    "DESCRIPTION": "Yields a multi-hit attack card when harvested that scales with stacks ."
+    "DESCRIPTION": "Crop. Yields a multi-hit attack card when harvested that scales with stacks ."
   }
 }

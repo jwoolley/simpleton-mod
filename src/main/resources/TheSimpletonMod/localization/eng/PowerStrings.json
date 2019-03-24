@@ -99,7 +99,7 @@
   "TheSimpletonMod:PlantTurnipPower": {
     "NAME": "Turnip",
     "DESCRIPTIONS": [
-      "#bCrop. #gHarvest to convert all stacks into an attack card that deals more damage for each stack harvested. Gains double stacks from random crop effects."
+      "#bCrop. #gHarvest to convert all stacks into an attack card that deals more damage for each stack harvested. Gains double stacks from random effects."
     ]
   },
   "TheSimpletonMod:SpitefulPlanPower": {

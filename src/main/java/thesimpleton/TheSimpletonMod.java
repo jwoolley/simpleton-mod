@@ -160,6 +160,20 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new ReapAndSow());
 
         // Attack (22)
+        BaseMod.addCard(new RootDown());
+
+        // Skill (38)
+        BaseMod.addCard(new CropRotation());
+
+        // Power (11)
+
+        // should non-purchasable cards go here?
+//        BaseMod.addCard(new SpudMissile());
+//        BaseMod.addCard(new GiantTurnip());
+//        BaseMod.addCard(new Harvest());
+//        BaseMod.addCard(new RootOut());
+
+        // Attack (22)
 //        BaseMod.addCard(new AbyssShockwave());
 //        BaseMod.addCard(new CursedBlade());
 //        BaseMod.addCard(new CursedBoomerang());
@@ -168,66 +182,50 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        BaseMod.addCard(new CursedShiv());
 //        BaseMod.addCard(new CursedStaff());
 //        BaseMod.addCard(new DemonSword());
-        BaseMod.addCard(new FuryStrike());
 //        BaseMod.addCard(new ManaBullet());
+//        BaseMod.addCard(new ShockAndAwe());
+//        BaseMod.addCard(new SpitefulStrike());
+//        BaseMod.addCard(new Wield());
+
+        BaseMod.addCard(new FuryStrike());
         BaseMod.addCard(new Mangle());
         BaseMod.addCard(new RavingStaff());
-//        BaseMod.addCard(new ShockAndAwe());
         BaseMod.addCard(new SoulCrush());
         BaseMod.addCard(new SoulReap());
-//        BaseMod.addCard(new SpitefulStrike());
         BaseMod.addCard(new Stigma());
         BaseMod.addCard(new StunningStrike());
         BaseMod.addCard(new SurpriseAttack());
         BaseMod.addCard(new TacticalStrike());
         BaseMod.addCard(new VitalStrike());
-//        BaseMod.addCard(new Wield());
 
-        BaseMod.addCard(new RootDown());
-
-
-        // should non-purchasable cards go here?
-        BaseMod.addCard(new SpudMissile());
-        BaseMod.addCard(new GiantTurnip());
-
-        // Power (11)
-        BaseMod.addCard(new CollectTribute());
+//        // Power (11)
 //        BaseMod.addCard(new DemonicPact());
 //        BaseMod.addCard(new EmpowerCircles());
 //        BaseMod.addCard(new HellfireBreathing());
 //        BaseMod.addCard(new HellsGateOpen());
-        BaseMod.addCard(new Hemoplague());
 //        BaseMod.addCard(new LuckyCharm());
 //        BaseMod.addCard(new ManaCirculation());
-        BaseMod.addCard(new OutForBlood());
 //        BaseMod.addCard(new SpitefulPlan());
 //        BaseMod.addCard(new VoidForm());
 
-        // Skill (38)
+        BaseMod.addCard(new CollectTribute());
+        BaseMod.addCard(new Hemoplague());
+        BaseMod.addCard(new OutForBlood());
+
+//        // Skill (38)
 //        BaseMod.addCard(new AntiAging());
 //        BaseMod.addCard(new AshesToAshes());
 //        BaseMod.addCard(new BlessingInDisguise());
-        BaseMod.addCard(new BloodBarrier());
-        BaseMod.addCard(new CircleOfAbyss());
 //        BaseMod.addCard(new CircleOfAmplification());
-        BaseMod.addCard(new CircleOfBlood());
-        BaseMod.addCard(new CircleOfCorruption());
-        BaseMod.addCard(new CircleOfFlame());
-        BaseMod.addCard(new CircleOfFocus());
-        BaseMod.addCard(new CircleOfWindfury());
 //        BaseMod.addCard(new CursedAmulet());
 //        BaseMod.addCard(new CursedArmor());
 //        BaseMod.addCard(new CursedSpellbook());
 //        BaseMod.addCard(new DarkBarrier());
-        BaseMod.addCard(new DoubleShield());
 //        BaseMod.addCard(new Evocation());
 //        BaseMod.addCard(new FleshFromBone());
 //        BaseMod.addCard(new ForbiddenAlchemy());
 //        BaseMod.addCard(new Grudge());
-        BaseMod.addCard(new NeowsMight());
 //        BaseMod.addCard(new Neurasthenia());
-        BaseMod.addCard(new Obscuration());
-        BaseMod.addCard(new ParallelWorld());
 //        BaseMod.addCard(new PrepareRitual());
 //        BaseMod.addCard(new RapidMovement());
 //        BaseMod.addCard(new ReleasedKnowledge());
@@ -235,22 +233,30 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        BaseMod.addCard(new SaltUponWound());
 //        BaseMod.addCard(new SmokeScreen());
 //        BaseMod.addCard(new SpitefulPray());
-        BaseMod.addCard(new SpreadPlague());
-        BaseMod.addCard(new Stretching());
-        BaseMod.addCard(new StingEye());
 //        BaseMod.addCard(new Torture());
 //        BaseMod.addCard(new TroublousMinions());
 //        BaseMod.addCard(new UltimatePain());
 //        BaseMod.addCard(new WearCloak());
 
-        BaseMod.addCard(new CropRotation());
-        // should non-purchasable cards go here?
-//        BaseMod.addCard(new Harvest());
-//        BaseMod.addCard(new RootOut());
+        BaseMod.addCard(new BloodBarrier());
+        BaseMod.addCard(new CircleOfAbyss());
+        BaseMod.addCard(new CircleOfBlood());
+        BaseMod.addCard(new CircleOfCorruption());
+        BaseMod.addCard(new CircleOfFlame());
+        BaseMod.addCard(new CircleOfFocus());
+        BaseMod.addCard(new CircleOfWindfury());
+        BaseMod.addCard(new DoubleShield());
+        BaseMod.addCard(new NeowsMight());
+        BaseMod.addCard(new Obscuration());
+        BaseMod.addCard(new ParallelWorld());
+        BaseMod.addCard(new SpreadPlague());
+        BaseMod.addCard(new Stretching());
+        BaseMod.addCard(new StingEye());
 
 
-        // Curse
-        BaseMod.addCard(new Dregs());
+
+//        // Curse
+//        BaseMod.addCard(new Dregs());
     }
 
     @Override

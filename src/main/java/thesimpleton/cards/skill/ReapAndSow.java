@@ -1,16 +1,17 @@
 package thesimpleton.cards.skill;
 
 import basemod.abstracts.CustomCard;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.CurseUtil;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.PlantPotatoPower;
 
@@ -18,36 +19,45 @@ public class ReapAndSow extends CustomCard {
   public static final String ID = "TheSimpletonMod:ReapAndSow";
   public static final String NAME;
   public static final String DESCRIPTION;
+  public static final String UPGRADE_DESCRIPTION;
   public static final String IMG_PATH = "cards/reapandsow.png";
 
   private static final CardStrings cardStrings;
 
-  private static final AbstractCard.CardType TYPE = CardType.SKILL;
+  private static final AbstractCard.CardType TYPE = CardType.ATTACK;
   private static final AbstractCard.CardRarity RARITY = CardRarity.BASIC;
-  private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
+  private static final AbstractCard.CardTarget TARGET = CardTarget.ALL_ENEMY;
 
-  private static final int COST = 0;
-//  private static final int BLOCK = 2;
-  private static final int BLOCK_UPGRADE_BONUS = 2;
+  private static final int COST = 1;
+  private static final int DAMAGE = 4;
+  private static final int ATTACK_UPGRADE_BONUS = 4;
   private static final int PLANT_AMOUNT = 1;
   private static final int PLANT_AMOUNT_UPGRADE = 1;
 
   public ReapAndSow() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
-//    this.baseBlock = this.block = BLOCK;
+    this.baseDamage = this.damage = DAMAGE;
     this.baseMagicNumber = this.magicNumber = PLANT_AMOUNT;
+    this.isMultiDamage = true;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    final AbstractCard HARVEST_CARD = CurseUtil.SHIV;
-//    AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
+
+    AbstractDungeon.actionManager.addToBottom(
+        new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn,
+            AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
 
     //TODO: need to add card-discard-discard pile vfx/sfx?
     AbstractDungeon.actionManager.addToBottom(
         new ApplyPowerAction(p, p, new PlantPotatoPower(p, this.magicNumber), this.magicNumber));
 
-    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(CurseUtil.HARVEST, 1));
+    AbstractCard card = new Harvest();
+
+    if (this.upgraded) {
+      card.upgrade();
+    }
+    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(card, 1));
   }
 
   @Override
@@ -59,8 +69,10 @@ public class ReapAndSow extends CustomCard {
   public void upgrade() {
     if (!this.upgraded) {
       upgradeName();
-//      upgradeBlock(BLOCK_UPGRADE_BONUS);
+      upgradeDamage(ATTACK_UPGRADE_BONUS);
       upgradeMagicNumber(PLANT_AMOUNT_UPGRADE);
+      this.rawDescription = UPGRADE_DESCRIPTION;
+      initializeDescription();
     }
   }
 
@@ -68,5 +80,6 @@ public class ReapAndSow extends CustomCard {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
+    UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
   }
 }

@@ -20,7 +20,7 @@
     "NAMES": [
       "crop"
     ],
-    "DESCRIPTION": "Crop powers provide beneficial effects when harvested."
+    "DESCRIPTION": "Crop powers provide beneficial effects when harvested. NL Crops with 5 or more stacks at the start of your turn will automatically be harvested for 1 stack."
   },
 
   "TheSimpletonMod:CursedKeyword": {

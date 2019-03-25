@@ -58,15 +58,11 @@ public class PlantOnionPower extends AbstractCropPower {
   @Override
   public void harvest(boolean harvestAll, int maxHarvestAmount) {
 
-    System.out.println("PlantOnionPower.harvest :: maxHarvestAmount: " + maxHarvestAmount);
-
     if  (amount > 0) {
       final int harvestAmount = Math.min(this.amount, harvestAll ? this.amount : maxHarvestAmount);
 
       if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
         this.flash();
-
-
 
         final long numTargetMonsters = AbstractDungeon.getMonsters().monsters.stream()
             .filter(m -> !m.isDead && !m.isDying)

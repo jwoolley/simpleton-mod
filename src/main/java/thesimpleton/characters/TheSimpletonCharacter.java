@@ -210,6 +210,8 @@ public class TheSimpletonCharacter extends CustomPlayer {
         return panels;
     }
 
+//    @Override shuffle
+
     static {
         charStrings = CardCrawlGame.languagePack.getCharacterString("TheSimpleton");
         NAME = charStrings.NAMES[0];

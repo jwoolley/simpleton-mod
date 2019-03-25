@@ -22,9 +22,10 @@ public class PlantTurnipPower extends AbstractCropPower {
 
   public static AbstractPower.PowerType POWER_TYPE = AbstractPower.PowerType.BUFF;
   public static final String IMG = "plantturnip.png";
+  private static final boolean IS_HARVEST_ALL = true;
 
   public PlantTurnipPower(AbstractCreature owner, int amount) {
-    super(IMG, owner, amount);
+    super(IMG, owner, amount, IS_HARVEST_ALL);
 
     this.name = NAME;
     this.ID = POWER_ID;

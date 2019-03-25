@@ -20,7 +20,7 @@
     "NAMES": [
       "crop"
     ],
-    "DESCRIPTION": "Crop powers provide beneficial effects when harvested. NL Crops with 5 or more stacks at the start of your turn will automatically be harvested for 1 stack."
+    "DESCRIPTION": "#yCrop powers provide beneficial effects when harvested."
   },
 
   "TheSimpletonMod:CursedKeyword": {
@@ -43,7 +43,7 @@
     "NAMES": [
       "harvest", "harvested"
     ],
-    "DESCRIPTION": "Harvest crop stacks for different effects, depending on the crop."
+    "DESCRIPTION": "Harvest different #yCrop stacks for different effects."
   },
 
   "TheSimpletonMod:PotatoKeyword": {
@@ -51,7 +51,7 @@
     "NAMES": [
       "potato", "potatoes"
     ],
-    "DESCRIPTION": "Crop. Yields attack cards when harvested."
+    "DESCRIPTION": "#yCrop. Yields attack cards when harvested."
   },
 
   "TheSimpletonMod:RitualKeyword": {
@@ -75,6 +75,6 @@
     "NAMES": [
       "turnip", "turnips"
     ],
-    "DESCRIPTION": "Crop. Yields a multi-hit attack card when harvested that scales with stacks ."
+    "DESCRIPTION": "#yCrop. Yields a multi-hit attack card when harvested that scales with stacks ."
   }
 }

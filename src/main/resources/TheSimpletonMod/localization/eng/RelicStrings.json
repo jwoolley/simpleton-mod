@@ -86,5 +86,12 @@
       "At the start of each combat, apply #b",
       " #yBleed to ALL enemies."
     ]
+  },
+  "TheSimpletonMod:TheHarvester": {
+    "NAME": "The Harvester",
+    "FLAVOR": "It grows on you.",
+    "DESCRIPTIONS": [
+      "Whenever you shuffle your deck, each of your #yCrops gains 1 additional stack."
+    ]
   }
 }

@@ -24,6 +24,7 @@ import thesimpleton.cards.skill.ReapAndSow;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.relics.SpudOfTheMartyr;
+import thesimpleton.relics.TheHarvester;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +87,9 @@ public class TheSimpletonCharacter extends CustomPlayer {
     @Override
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<String>();
+
         retVal.add(SpudOfTheMartyr.ID);
+        retVal.add(TheHarvester.ID);
 
         /* for testing
         retVal.add(BlackMagicAdvanced.ID);

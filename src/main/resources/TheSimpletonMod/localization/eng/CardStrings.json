@@ -13,7 +13,7 @@
   },
   "TheSimpletonMod:Biorefinement": {
     "NAME": "Biorefinement",
-    "DESCRIPTION": "Whenever you play a Harvest card, gain [E]."
+    "DESCRIPTION": "Whenever you play a Harvest card for the first time each turn, gain [E]."
   },
   "TheSimpletonMod:BlessingInDisguise": {
     "NAME": "Blessing in Disguise",
@@ -91,8 +91,8 @@
 
   "TheSimpletonMod:CropRotation": {
     "NAME": "Crop Rotation",
-    "DESCRIPTION": "Harvest !M! random crop stack. NL Gain !M! random crop stack.",
-    "UPGRADE_DESCRIPTION": "Harvest !M! random crop stacks. NL Gain !M! random crop stacks."
+    "DESCRIPTION": "Harvest !M! random Crop stack. NL Gain !M! random Crop stack.",
+    "UPGRADE_DESCRIPTION": "Harvest !M! random Crop stacks. NL Gain !M! random Crop stacks."
   },
 
   "TheSimpletonMod:CursedAmulet": {
@@ -189,7 +189,7 @@
   },
   "TheSimpletonMod:Harvest": {
     "NAME": "Harvest",
-    "DESCRIPTION": "Gain !B! Block. Harvest all crops. NL Exhaust."
+    "DESCRIPTION": "Gain !B! Block. Harvest all Crops. NL Exhaust."
   },
   "TheSimpletonMod:Haymaker": {
     "NAME": "Haymaker",

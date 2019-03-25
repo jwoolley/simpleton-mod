@@ -2,7 +2,7 @@
   "TheSimpletonMod:BiorefinementPower": {
     "NAME": "Biorefinement",
     "DESCRIPTIONS": [
-      "The first time you play a Harvest card each turn, gain E.",
+      "The first time you play a Harvest card each turn, gain [E].",
       "The first time you play a Harvest card each turn, gain #b",
       " Energy."
     ]
@@ -88,27 +88,27 @@
   "TheSimpletonMod:PlantOnionPower": {
     "NAME": "Onions",
     "DESCRIPTIONS": [
-      "#bCrop. Apply #b",
+      "#yCrop. Apply #b",
       " #yWeak to ALL enemies for each stack #gharvested."
     ]
   },
   "TheSimpletonMod:PlantPotatoPower": {
     "NAME": "Potatoes",
     "DESCRIPTIONS": [
-      "#bCrop. #gHarvest to add a #ySpud to your hand per stack harvested."
+      "#yCrop. #gHarvest to add a #ySpud to your hand per stack harvested."
     ]
   },
   "TheSimpletonMod:PlantSpinachPower": {
     "NAME": "Spinach",
     "DESCRIPTIONS": [
-      "#bCrop. Gain #b",
+      "#yCrop. Gain #b",
       " #yStrength for each stack #gharvested."
     ]
   },
   "TheSimpletonMod:PlantTurnipPower": {
-    "NAME": "Turnip",
+    "NAME": "Turnips",
     "DESCRIPTIONS": [
-      "#bCrop. #gHarvest to convert all stacks into an attack card that deals more damage for each stack harvested. Gains double stacks from random effects."
+      "#yCrop. #gHarvest to convert all stacks into an attack card that deals more damage for each stack harvested. Gains double stacks from random effects."
     ]
   },
   "TheSimpletonMod:SpitefulPlanPower": {

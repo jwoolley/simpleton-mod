@@ -1,6 +1,11 @@
 package thesimpleton.powers;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
 
@@ -34,6 +39,14 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
       this.flash();
       harvest(isHarvestAll, 1);
     }
+  }
+
+  public static List<AbstractCropPower> getActiveCropPowers() {
+    List<AbstractCropPower> cropPowers = new ArrayList<>();
+    AbstractDungeon.player.powers.stream()
+        .filter(power -> power instanceof AbstractCropPower)
+        .forEach(power -> cropPowers.add((AbstractCropPower)power));
+    return cropPowers;
   }
 
   // TODO: move shared functionality(e.g. harvest logic) to here

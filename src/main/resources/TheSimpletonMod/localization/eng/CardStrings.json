@@ -11,6 +11,10 @@
     "NAME": "Ashes to Ashes",
     "DESCRIPTION": "Ritual : Draw !M! cards."
   },
+  "TheSimpletonMod:Biorefinement": {
+    "NAME": "Biorefinement",
+    "DESCRIPTION": "Whenever you play a Harvest card, gain [E]."
+  },
   "TheSimpletonMod:BlessingInDisguise": {
     "NAME": "Blessing in Disguise",
     "DESCRIPTION": "Exhaust all Curse cards in your hand. NL Gain !B! Block for each card Exhausted."

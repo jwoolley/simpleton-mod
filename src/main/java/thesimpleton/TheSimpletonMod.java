@@ -8,6 +8,7 @@ import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.compression.lzma.Base;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
@@ -21,8 +22,10 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import thesimpleton.cards.attack.*;
-import thesimpleton.cards.curse.Dregs;
-import thesimpleton.cards.power.*;
+import thesimpleton.cards.power.Biorefinement;
+import thesimpleton.cards.power.CollectTribute;
+import thesimpleton.cards.power.Hemoplague;
+import thesimpleton.cards.power.OutForBlood;
 import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.enums.AbstractCardEnum;
@@ -166,6 +169,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new CropRotation());
 
         // Power (11)
+        BaseMod.addCard(new Biorefinement());
 
         // should non-purchasable cards go here?
 //        BaseMod.addCard(new SpudMissile());

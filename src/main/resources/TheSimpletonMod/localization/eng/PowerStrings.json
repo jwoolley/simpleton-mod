@@ -1,4 +1,13 @@
 {
+  "TheSimpletonMod:BiorefinementPower": {
+    "NAME": "Biorefinement",
+    "DESCRIPTIONS": [
+      "The first time you play a Harvest card each turn, gain E.",
+      "The first time you play a Harvest card each turn, gain #b",
+      " Energy."
+    ]
+  },
+
   "TheSimpletonMod:BleedPower": {
     "NAME": "Bleed",
     "DESCRIPTIONS": [

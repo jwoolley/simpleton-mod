@@ -32,8 +32,8 @@ public class RootDown extends CustomCard {
   private static final int COST = 0;
   private static final int DAMAGE = 3;
   private static final int DAMAGE_UPGRADE_BONUS = 3;
-  private static final int PLANT_AMOUNT = 2;
-  private static final int PLANT_AMOUNT_UPGRADE = 1;
+  private static final int PLANT_AMOUNT = 1;
+  private static final int PLANT_UPGRADE_AMOUNT = 1;
 
   public RootDown() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE,
@@ -68,7 +68,7 @@ public class RootDown extends CustomCard {
     if (!this.upgraded) {
       upgradeName();
       upgradeDamage(DAMAGE_UPGRADE_BONUS);
-      upgradeMagicNumber(PLANT_AMOUNT_UPGRADE);
+      upgradeMagicNumber(PLANT_UPGRADE_AMOUNT);
     }
   }
 

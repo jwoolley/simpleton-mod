@@ -20,6 +20,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import thesimpleton.cards.attack.*;
 import thesimpleton.cards.power.Biorefinement;
 import thesimpleton.cards.power.CollectTribute;
@@ -87,6 +89,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             return this.getCurrentTheme().map(cur -> cur.equals(theme)).orElse(false);
         }
     }
+
+    public static final Logger logger = LogManager.getLogger(TheSimpletonMod.class.getName());
 
 
     public TheSimpletonMod() {

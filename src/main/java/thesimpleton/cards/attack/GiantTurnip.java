@@ -27,7 +27,7 @@ public class GiantTurnip extends CustomCard {
 
   private static final int COST = 1;
   private static final int DAMAGE = 3;
-  private static final int UPGRADE_DAMAGE_AMOUNT = 3;
+  private static final int UPGRADE_DAMAGE_AMOUNT = 1;
 
   public GiantTurnip() {
     this(DAMAGE);
@@ -43,11 +43,9 @@ public class GiantTurnip extends CustomCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    for(int i = 0; i <  this.magicNumber; i++) {
-      AbstractDungeon.actionManager.addToBottom(
-          new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
-              AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-    }
+    final int totalDamage = this.magicNumber * this.damage;
+    AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, totalDamage, this.damageTypeForTurn),
+          AbstractGameAction.AttackEffect.BLUNT_HEAVY));
   }
 
   @Override

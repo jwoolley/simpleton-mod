@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.powers.AbstractCropPower;
@@ -29,36 +30,37 @@ public class RootOut extends AbstractHarvestCard {
 
   private static final AbstractCard.CardType TYPE = CardType.SKILL;
   private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
-  private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
+  private static final AbstractCard.CardTarget TARGET = CardTarget.ALL_ENEMY;
 
   private static final int COST = 1;
-  private static final int STRENGTH_BONUS = 1;
-  private static final int UPGRADED_STRENGTH_BONUS = 4;
+  private static final int VULNERABLE_DURATION = 1;
+  private static final int VULNERABLE_DURATION_UPGRADE_BONUS = 1;
 
   public RootOut() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, RARITY, TARGET,
         1, true, false);
-    this.baseMagicNumber = this.magicNumber = STRENGTH_BONUS;
+    this.baseMagicNumber = this.magicNumber = VULNERABLE_DURATION;
     this.exhaust = true;
     this.isEthereal = true;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
-    AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, new LoseStrengthPower(p, this.magicNumber), this.magicNumber));
+
+
+    for (final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+      AbstractDungeon.actionManager.addToBottom(
+          new ApplyPowerAction(mo, p,
+              new VulnerablePower(mo, this.magicNumber, false), this.magicNumber));
+    }
 
     // harvest turnip stacks
-    final ArrayList<AbstractPower> activePowers = new ArrayList<>(p.powers);
-    Collections.shuffle(activePowers);
-    Optional<AbstractPower> turnipPower = activePowers.stream()
-        .filter(pow -> pow instanceof PlantTurnipPower && !((AbstractCropPower) pow).finished)
+    Optional<AbstractCropPower> turnipPower = AbstractCropPower.getActiveCropPowers().stream()
+        .filter(pow -> pow instanceof PlantTurnipPower && !pow.finished)
         .findFirst();
 
     if (turnipPower.isPresent()) {
-      ((AbstractCropPower) turnipPower.get()).harvest(true, 1);
+      (turnipPower.get()).harvest(true, 1);
     }
   }
 
@@ -71,7 +73,7 @@ public class RootOut extends AbstractHarvestCard {
   public void upgrade() {
     if (!this.upgraded) {
       upgradeName();
-      upgradeMagicNumber(UPGRADED_STRENGTH_BONUS);
+      upgradeMagicNumber(VULNERABLE_DURATION_UPGRADE_BONUS);
     }
   }
 

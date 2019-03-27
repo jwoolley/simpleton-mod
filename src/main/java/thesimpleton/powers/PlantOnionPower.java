@@ -70,6 +70,7 @@ public class PlantOnionPower extends AbstractCropPower {
 
         System.out.println("PlantOnionPower.harvest :: numTargetMonsters: " + numTargetMonsters);
 
+        //TODO: reconcile with getCurrRoom.monsters.monsters version
         AbstractDungeon.getMonsters().monsters.stream()
             .filter(m -> !m.isDead && !m.isDying)
             .forEach(m -> applyWeakPower(m, harvestAmount));

@@ -28,20 +28,20 @@ public class OnionBloom extends CustomCard {
 
   private static final int COST = 0;
   private static final int DRAW_AMOUNT = 1;
-  private static final int UPGRADE_DRAW_AMOUNT = 1;
-  private static final int ONION_STACKS = 2;
+  private static final int ONION_STACKS = 1;
+  private static final int UPGRADE_ONION_STACKS = 1;
 
   public OnionBloom() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
-    this.baseMagicNumber = this.magicNumber = DRAW_AMOUNT;
+    this.baseMagicNumber = this.magicNumber = ONION_STACKS;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, this.magicNumber));
+    AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, DRAW_AMOUNT));
 
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, new PlantOnionPower(p, ONION_STACKS), ONION_STACKS));
+        new ApplyPowerAction(p, p, new PlantOnionPower(p, this.magicNumber), this.magicNumber));
   }
 
   @Override
@@ -53,7 +53,7 @@ public class OnionBloom extends CustomCard {
   public void upgrade() {
     if (!this.upgraded) {
       this.upgradeName();
-      this.upgradeMagicNumber(UPGRADE_DRAW_AMOUNT);
+      this.upgradeMagicNumber(UPGRADE_ONION_STACKS);
       this.rawDescription = UPGRADE_DESCRIPTION;
       initializeDescription();
     }

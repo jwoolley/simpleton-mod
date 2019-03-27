@@ -185,7 +185,7 @@
   },
   "TheSimpletonMod:GiantTurnip": {
     "NAME": "Turnip",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Exhaust."
+    "DESCRIPTION": "Deal !M! times !D! damage. NL Exhaust."
   },
   "TheSimpletonMod:Grudge": {
     "NAME": "Grudge",
@@ -193,7 +193,7 @@
   },
   "TheSimpletonMod:Harvest": {
     "NAME": "Harvest",
-    "DESCRIPTION": "Gain !B! Block. Harvest all Crops. NL Exhaust."
+    "DESCRIPTION": "Gain !B! Block. Harvest !M! of each Crop. NL Exhaust."
   },
   "TheSimpletonMod:Haymaker": {
     "NAME": "Haymaker",
@@ -253,8 +253,8 @@
 
   "TheSimpletonMod:OnionBloom": {
     "NAME": "Onion Bloom",
-    "DESCRIPTION": "Gain 2 Onions. Draw a card.",
-    "UPGRADE_DESCRIPTION": "Gain 2 Onions. Draw !M! cards."
+    "DESCRIPTION": "Gain !M! Onion. Draw a card.",
+    "UPGRADE_DESCRIPTION": "Gain !M! Onions. Draw a card."
   },
 
   "TheSimpletonMod:OutForBlood": {
@@ -300,7 +300,7 @@
 
   "TheSimpletonMod:RootOut": {
     "NAME": "Root Out",
-    "DESCRIPTION": "Gain !M! Strength. NL At the end of your turn, lose !M! Strength. NL Harvest all Turnips. NL Exhaust."
+    "DESCRIPTION": "All enemies gain !M! Vulnerable. NL Harvest all Turnips. NL Exhaust. NL Ethereal."
   },
 
   "TheSimpletonMod:SaltUponWound": {

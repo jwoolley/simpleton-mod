@@ -38,7 +38,7 @@ public class CurseUtil {
         final PlantPotatoPower potatoPower = new PlantPotatoPower(p, numStacks);
         final PlantSpinachPower spinachPower = new PlantSpinachPower(p, numStacks);
         final PlantOnionPower onionPower = new PlantOnionPower(p, numStacks);
-        final PlantTurnipPower turnipPower = new PlantTurnipPower(p, numStacks * 2);
+        final PlantTurnipPower turnipPower = new PlantTurnipPower(p, numStacks);
 
         ArrayList<AbstractCropPower> cropPowers = new ArrayList<>();
         cropPowers.add(potatoPower);

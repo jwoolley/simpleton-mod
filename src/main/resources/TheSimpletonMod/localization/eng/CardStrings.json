@@ -13,7 +13,7 @@
   },
   "TheSimpletonMod:Biorefinement": {
     "NAME": "Biorefinement",
-    "DESCRIPTION": "Whenever you play a Harvest card for the first time each turn, gain [E]."
+    "DESCRIPTION": "Whenever you play a Harvest card for the first time each turn, gain !M! Energy."
   },
   "TheSimpletonMod:BlessingInDisguise": {
     "NAME": "Blessing in Disguise",
@@ -167,6 +167,10 @@
     "DESCRIPTION": "Ritual : Remove all of your debuffs. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Ritual : Remove all of your debuffs. If there is no debuff, gain 1 Artifact. NL Exhaust."
   },
+  "TheSimpletonMod:Fertilaser": {
+    "NAME": "Fertilaser",
+    "DESCRIPTION": "Deal !D! damage. NL Add !M! stack to each Crop."
+  },
   "TheSimpletonMod:FleshFromBone": {
     "NAME": "Flesh from Bone",
     "DESCRIPTION": "Ritual : Gain !M! Plated Armor."
@@ -246,6 +250,13 @@
     "NAME": "Obscuration",
     "DESCRIPTION": "Gain !B! Block. NL Ritual : Gain !B! Block again."
   },
+
+  "TheSimpletonMod:OnionBloom": {
+    "NAME": "Onion Bloom",
+    "DESCRIPTION": "Gain 2 Onions. Draw a card.",
+    "UPGRADE_DESCRIPTION": "Gain 2 Onions. Draw !M! cards."
+  },
+
   "TheSimpletonMod:OutForBlood": {
     "NAME": "Out for Blood",
     "DESCRIPTION": "Whenever an Attack deals unblocked damage, apply 1 Bleed."
@@ -269,8 +280,8 @@
   },
   "TheSimpletonMod:ReapAndSow": {
     "NAME": "Reap and Sow",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! Potatoes. NL Add a Harvest to your discard pile.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! Potatoes. NL Add an upgraded Harvest to your discard pile."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! Potatoes. NL Add a Harvest to your discard pile if a Crop has 5 or more stacks.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! Potatoes. NL Add an upgraded Harvest to your discard pile if a Crop has 5 or more stacks."
   },
   "TheSimpletonMod:ReleasedKnowledge": {
     "NAME": "Released Knowledge",
@@ -304,6 +315,12 @@
     "NAME": "Smoke Screen",
     "DESCRIPTION": "Gain !B! Block. NL Ritual : Apply !M! Weak to ALL enemies."
   },
+
+  "TheSimpletonMod:SoilCommunion": {
+    "NAME": "Soil Communion",
+    "DESCRIPTION": "Gain !B! Block. NL Add !M! stack to your newest Crop."
+  },
+
   "TheSimpletonMod:SoulCrush": {
     "NAME": "Soul Crush",
     "DESCRIPTION": "Exhaust all Curse cards in your hand. NL Deal !D! damage."

@@ -25,7 +25,7 @@ public class Harvest extends AbstractHarvestCard {
   private static final int COST = 1;
   private static final int UPGRADED_COST = 1;
   private static final int BLOCK = 4;
-  private static final int BLOCK_UPGRADE_BONUS = 4;
+  private static final int BLOCK_UPGRADE_BONUS = 2;
   private static final int HARVEST_AMOUNT = -1;
   private static final int HARVEST_BONUS = 0;
   private static final boolean HARVEST_ALL = true;

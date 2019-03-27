@@ -91,7 +91,7 @@
     "NAME": "The Harvester",
     "FLAVOR": "It grows on you.",
     "DESCRIPTIONS": [
-      "Whenever you shuffle your deck, each of your #yCrops gains 1 additional stack."
+      "Whenever you shuffle your deck, each of your #yCrops with 4 or less stacks gains 1 additional stack."
     ]
   }
 }

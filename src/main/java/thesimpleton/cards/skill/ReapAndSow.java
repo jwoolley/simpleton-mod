@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.enums.AbstractCardEnum;
+import thesimpleton.powers.AbstractCropPower;
 import thesimpleton.powers.PlantPotatoPower;
 
 public class ReapAndSow extends CustomCard {
@@ -30,9 +31,10 @@ public class ReapAndSow extends CustomCard {
 
   private static final int COST = 1;
   private static final int DAMAGE = 4;
-  private static final int ATTACK_UPGRADE_BONUS = 4;
+  private static final int ATTACK_UPGRADE_BONUS = 2;
   private static final int PLANT_AMOUNT = 1;
-  private static final int PLANT_AMOUNT_UPGRADE = 1;
+  private static final int PLANT_AMOUNT_UPGRADE = 0;
+  private static final int HARVEST_THRESHOLD = 5;
 
   public ReapAndSow() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
@@ -57,7 +59,10 @@ public class ReapAndSow extends CustomCard {
     if (this.upgraded) {
       card.upgrade();
     }
-    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(card, 1));
+
+    if (AbstractCropPower.getActiveCropPowers().stream().anyMatch(pow -> pow.amount >= HARVEST_THRESHOLD)) {
+      AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(card, 1));
+    }
   }
 
   @Override

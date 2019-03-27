@@ -162,10 +162,13 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new ReapAndSow());
 
         // Attack (22)
+        BaseMod.addCard(new Fertilaser());
         BaseMod.addCard(new RootDown());
 
         // Skill (38)
         BaseMod.addCard(new CropRotation());
+        BaseMod.addCard(new OnionBloom());
+        BaseMod.addCard(new SoilCommunion());
 
         // Power (11)
         BaseMod.addCard(new Biorefinement());

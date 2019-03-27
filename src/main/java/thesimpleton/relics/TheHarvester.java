@@ -13,6 +13,9 @@ import thesimpleton.cards.CurseUtil;
 import thesimpleton.powers.AbstractCropPower;
 import thesimpleton.powers.PlantPotatoPower;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 // TODO: reflavor as fertilizer; reuse "the harvester" + icon for a different relic
 
 public class TheHarvester extends CustomRelic {
@@ -39,9 +42,15 @@ public class TheHarvester extends CustomRelic {
 
   @Override
   public void onShuffle() {
-    flash();
-    AbstractCropPower.getActiveCropPowers()
-        .forEach(power -> power.stackPower(1));
+    List<AbstractCropPower> eligiblePowers = AbstractCropPower.getActiveCropPowers().stream()
+        .filter(power -> power.amount < 5)
+        .collect(Collectors.toList());
+
+    eligiblePowers.forEach(power -> power.stackPower(CROP_AMOUNT));
+
+    if (eligiblePowers.size() > 0) {
+      flash();
+    }
   }
 
   @Override

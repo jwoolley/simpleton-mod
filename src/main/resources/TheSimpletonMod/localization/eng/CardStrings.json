@@ -13,7 +13,7 @@
   },
   "TheSimpletonMod:Biorefinement": {
     "NAME": "Biorefinement",
-    "DESCRIPTION": "Whenever you play a Harvest card for the first time each turn, gain !M! Energy."
+    "DESCRIPTION": "Whenever you play a Harvest card for the first time each turn, gain [E]."
   },
   "TheSimpletonMod:BlessingInDisguise": {
     "NAME": "Blessing in Disguise",

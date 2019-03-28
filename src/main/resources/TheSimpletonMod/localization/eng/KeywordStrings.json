@@ -62,6 +62,14 @@
     "DESCRIPTION": "When using, choose 1 card to #yExhaust. Selecting a Curse card will activate the Ritual's effect."
   },
 
+  "TheSimpletonMod:SpudKeyword": {
+    "PROPER_NAME": "Spud",
+    "NAMES": [
+      "spud", "spuds"
+    ],
+    "DESCRIPTION": "A 0-cost attack card that deals modest damage."
+  },
+
   "TheSimpletonMod:StunKeyword": {
     "PROPER_NAME": "Stun",
     "NAMES": [
@@ -75,6 +83,6 @@
     "NAMES": [
       "turnip", "turnips"
     ],
-    "DESCRIPTION": "#yCrop. Yields a multi-hit attack card when harvested that scales with stacks ."
+    "DESCRIPTION": "#yCrop. Yields an attack card when harvested that scales with stacks."
   }
 }

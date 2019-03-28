@@ -23,10 +23,7 @@ import com.megacrit.cardcrawl.localization.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.cards.attack.*;
-import thesimpleton.cards.power.Biorefinement;
-import thesimpleton.cards.power.CollectTribute;
-import thesimpleton.cards.power.Hemoplague;
-import thesimpleton.cards.power.OutForBlood;
+import thesimpleton.cards.power.*;
 import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.enums.AbstractCardEnum;
@@ -214,7 +211,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        BaseMod.addCard(new HellfireBreathing());
 //        BaseMod.addCard(new HellsGateOpen());
 //        BaseMod.addCard(new LuckyCharm());
-//        BaseMod.addCard(new ManaCirculation());
+        BaseMod.addCard(new ManaCirculation());
 //        BaseMod.addCard(new SpitefulPlan());
 //        BaseMod.addCard(new VoidForm());
 

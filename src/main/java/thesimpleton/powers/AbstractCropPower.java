@@ -51,7 +51,12 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     this.powerCard = powerCard;
   }
 
-  abstract public void harvest(boolean all, int amount);
+  public void harvest(boolean all, int amount) {
+    final AbstractPlayer player = AbstractDungeon.player;
+    if (player.hasPower(ToughSkinPower.POWER_ID)) {
+      ((ToughSkinPower)player.getPower(ToughSkinPower.POWER_ID)).applyPower(player);
+    }
+  }
 
   public void atStartOfTurn() {
     if (this.amount >= autoHarvestThreshold) {

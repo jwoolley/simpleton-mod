@@ -117,6 +117,13 @@
       " cards."
     ]
   },
+  "TheSimpletonMod:ToughSkinPower": {
+    "NAME": "Tough Skin",
+    "DESCRIPTIONS": [
+      "Whenever you #gharvest a #yCrop, gain",
+      " #yBlock."
+    ]
+  },
   "TheSimpletonMod:VoidFormPower": {
     "NAME": "Void Form",
     "DESCRIPTIONS": [

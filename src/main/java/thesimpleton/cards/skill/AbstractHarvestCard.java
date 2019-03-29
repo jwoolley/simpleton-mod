@@ -19,7 +19,7 @@ public abstract class AbstractHarvestCard extends CustomCard {
     this.tags.add(TheSimpletonCardTags.HARVEST);
   }
 
-  public int getHavestAmount() {
+  public int getHarvestAmount() {
     return this.magicNumber;
   }
 

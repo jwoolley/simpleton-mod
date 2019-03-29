@@ -49,7 +49,7 @@ public class PlantOnionPower extends AbstractCropPower {
   //TODO: AbstractCard should be an AbstractHarvestCard, with harvestAmount, harvestEffect, etc.
   public void onUseCard(AbstractCard card, UseCardAction action) {
     if (card.hasTag(TheSimpletonCardTags.HARVEST) && card instanceof AbstractHarvestCard && ((AbstractHarvestCard)card).autoHarvest) {
-      harvest(((AbstractHarvestCard) card).isHarvestAll(), ((AbstractHarvestCard) card).getHavestAmount());
+      harvest(((AbstractHarvestCard) card).isHarvestAll(), ((AbstractHarvestCard) card).getHarvestAmount());
     }
   }
 
@@ -61,6 +61,7 @@ public class PlantOnionPower extends AbstractCropPower {
 
   @Override
   public void harvest(boolean harvestAll, int maxHarvestAmount) {
+    super.harvest(harvestAll, maxHarvestAmount);
 
     if  (amount > 0) {
       final int harvestAmount = Math.min(this.amount, harvestAll ? this.amount : maxHarvestAmount);

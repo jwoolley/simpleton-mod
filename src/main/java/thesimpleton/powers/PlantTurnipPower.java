@@ -57,6 +57,7 @@ public class PlantTurnipPower extends AbstractCropPower {
 
   @Override
   public void harvest(boolean harvestAll, int maxHarvestAmount) {
+    super.harvest(harvestAll, maxHarvestAmount);
     if  (amount > 0) {
       final int harvestAmount = this.amount;
 

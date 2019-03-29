@@ -383,7 +383,7 @@
   },
   "TheSimpletonMod:Tilling": {
     "NAME": "Tilling",
-    "DESCRIPTION": "Add 1 of 3 random Crop power cards to your hand. It costs 0 this turn."
+    "DESCRIPTION": "Add 1 of !M! random Crop power cards to your hand. It costs 0 this turn. NL Exhaust."
   },
   "TheSimpletonMod:Torture": {
     "NAME": "Torture",

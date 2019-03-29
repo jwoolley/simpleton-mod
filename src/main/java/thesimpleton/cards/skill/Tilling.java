@@ -23,19 +23,25 @@ public class Tilling extends CustomCard {
   private static final CardRarity RARITY = CardRarity.RARE;
   private static final CardTarget TARGET = CardTarget.SELF;
 
-  private static final int COST = 2;
-  private static final int UPGRADED_COST = 1;
-  private static final int NUM_POWERS_TO_CHOOSE_FROM = 3;
+  private static final int COST = 1;
+  private static final int NUM_POWERS = 2;
+  private static final int NUM_POWERS_UPGRADE = 1;
 
   public Tilling() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.exhaust = true;
-    this.magicNumber = NUM_POWERS_TO_CHOOSE_FROM;
+    this.baseMagicNumber = NUM_POWERS;
+
+    TheSimpletonMod.logger.debug("Tilling::constructor NUM_POWERS:" + NUM_POWERS);
+    TheSimpletonMod.logger.debug("Tilling::constructor this.baseMagicNumber:" + this.baseMagicNumber);
+
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new TillingAction(magicNumber));
+    TheSimpletonMod.logger.debug("Tilling.use: creating TillingAction with " + this.magicNumber + " random powers");
+
+    AbstractDungeon.actionManager.addToBottom(new TillingAction(this.magicNumber));
   }
 
   @Override
@@ -47,7 +53,7 @@ public class Tilling extends CustomCard {
   public void upgrade() {
     if (!this.upgraded) {
       this.upgradeName();
-      this.upgradeBaseCost(UPGRADED_COST);
+      this.upgradeMagicNumber(NUM_POWERS_UPGRADE);
     }
   }
 

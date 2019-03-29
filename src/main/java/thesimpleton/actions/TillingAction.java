@@ -8,9 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.CurseUtil;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
-import thesimpleton.powers.AbstractCropPower;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,27 +19,33 @@ public class TillingAction extends AbstractGameAction {
   private AbstractGameAction.ActionType ACTION_TYPE = ActionType.CARD_MANIPULATION;
 
   public TillingAction(int numPowers) {
+    TheSimpletonMod.logger.debug("TillingAction: constructing with numPowers: " + numPowers);
+
+
     this.p = AbstractDungeon.player;
-    setValues(this.p, AbstractDungeon.player, numPowers);
+    setValues(this.p,  this.p, numPowers);
+
+    TheSimpletonMod.logger.debug("TillingAction: constructor setValues. this.amount: " + this.amount);
+
     this.actionType = ACTION_TYPE;
+    this.amount = numPowers;
     this.duration = Settings.ACTION_DUR_MED;
+
+    TheSimpletonMod.logger.debug("TillingAction: constructed. this.amount: " + this.amount);
+
   }
 
   public void update() {
     if (this.duration != Settings.ACTION_DUR_MED) {
-      TheSimpletonMod.logger.debug(this.getClass().getSimpleName() + ".update " +
-          "this.duration != Settings.ACTION_DUR_MED");
-
       if (AbstractDungeon.gridSelectScreen.selectedCards.size() != 0) {
-        TheSimpletonMod.logger.debug(this.getClass().getSimpleName() + ".update found one or more selected cards");
         //TODO: clean up: find the one (first) selected card and add it
-        for (final AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
+        for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
           c.unhover();
-          TheSimpletonMod.logger.debug("Selected card: " + c.name + ". Returning");
-
+          c.setCostForTurn(0);
           AbstractDungeon.actionManager.addToTop(new MakeTempCardInHandAction(c, 1));
         }
         this.p.hand.refreshHandLayout();
+
         this.tickDuration();
         this.isDone = true;
         return;
@@ -49,30 +53,26 @@ public class TillingAction extends AbstractGameAction {
     }
 
     final CardGroup cardGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-    List<AbstractCropPowerCard> cards = AbstractCropPowerCard.getRandomCropPowerCards(this.amount);
 
-    TheSimpletonMod.logger.debug("Randomly selected " + cards.size() + " crop power cards: ", cards.stream().map(c -> c.name)
-        .collect(Collectors.joining(", ")));
+    List<AbstractCropPowerCard> cards = AbstractCropPowerCard.getRandomCropPowerCards(this.amount);
 
     for (final AbstractCropPowerCard c2 : cards) {
       cardGroup.addToRandomSpot(c2);
     }
 
     if (cardGroup.size() == 0) {
-      TheSimpletonMod.logger.debug("No card to select. Returning.");
       this.isDone = true;
       return;
     }
     if (cardGroup.size() == 1) {
       final AbstractCard c3 = cardGroup.getTopCard();
-      TheSimpletonMod.logger.debug("Only one card to select: " + c3.name + ". Returning");
       c3.unhover();
       AbstractDungeon.actionManager.addToTop(new MakeTempCardInHandAction(c3, 1));
       this.isDone = true;
       return;
     }
     // TODO: move to localized strings
-    AbstractDungeon.gridSelectScreen.open(cardGroup, 1, "Select a power card.", false);
+    AbstractDungeon.gridSelectScreen.open(cardGroup, 1, "Select a card.", false);
     this.tickDuration();
   }
 }

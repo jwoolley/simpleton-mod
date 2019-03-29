@@ -190,32 +190,32 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        BaseMod.addCard(new Harvest());
 //        BaseMod.addCard(new RootOut());
 
-        BaseMod.addCard(new FuryStrike());
-        BaseMod.addCard(new Mangle());
-        BaseMod.addCard(new RavingStaff());
-        BaseMod.addCard(new SoulCrush());
-        BaseMod.addCard(new SoulReap());
-        BaseMod.addCard(new Stigma());
-        BaseMod.addCard(new StunningStrike());
-        BaseMod.addCard(new SurpriseAttack());
-        BaseMod.addCard(new TacticalStrike());
-        BaseMod.addCard(new VitalStrike());
-
-
-        BaseMod.addCard(new BloodBarrier());
-        BaseMod.addCard(new CircleOfAbyss());
-        BaseMod.addCard(new CircleOfBlood());
-        BaseMod.addCard(new CircleOfCorruption());
-        BaseMod.addCard(new CircleOfFlame());
-        BaseMod.addCard(new CircleOfFocus());
-        BaseMod.addCard(new CircleOfWindfury());
-        BaseMod.addCard(new DoubleShield());
-        BaseMod.addCard(new NeowsMight());
-        BaseMod.addCard(new Obscuration());
-        BaseMod.addCard(new ParallelWorld());
-        BaseMod.addCard(new SpreadPlague());
-        BaseMod.addCard(new Stretching());
-        BaseMod.addCard(new StingEye());
+//        BaseMod.addCard(new FuryStrike());
+//        BaseMod.addCard(new Mangle());
+//        BaseMod.addCard(new RavingStaff());
+//        BaseMod.addCard(new SoulCrush());
+//        BaseMod.addCard(new SoulReap());
+//        BaseMod.addCard(new Stigma());
+//        BaseMod.addCard(new StunningStrike());
+//        BaseMod.addCard(new SurpriseAttack());
+//        BaseMod.addCard(new TacticalStrike());
+//        BaseMod.addCard(new VitalStrike());
+//
+//
+//        BaseMod.addCard(new BloodBarrier());
+//        BaseMod.addCard(new CircleOfAbyss());
+//        BaseMod.addCard(new CircleOfBlood());
+//        BaseMod.addCard(new CircleOfCorruption());
+//        BaseMod.addCard(new CircleOfFlame());
+//        BaseMod.addCard(new CircleOfFocus());
+//        BaseMod.addCard(new CircleOfWindfury());
+//        BaseMod.addCard(new DoubleShield());
+//        BaseMod.addCard(new NeowsMight());
+//        BaseMod.addCard(new Obscuration());
+//        BaseMod.addCard(new ParallelWorld());
+//        BaseMod.addCard(new SpreadPlague());
+//        BaseMod.addCard(new Stretching());
+//        BaseMod.addCard(new StingEye());
 
 
 

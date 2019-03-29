@@ -33,7 +33,6 @@ public class ReapAndSow extends CustomCard {
   private static final int DAMAGE = 4;
   private static final int ATTACK_UPGRADE_BONUS = 2;
   private static final int PLANT_AMOUNT = 1;
-  private static final int PLANT_AMOUNT_UPGRADE = 0;
   private static final int HARVEST_THRESHOLD = 5;
 
   public ReapAndSow() {
@@ -75,7 +74,6 @@ public class ReapAndSow extends CustomCard {
     if (!this.upgraded) {
       upgradeName();
       upgradeDamage(ATTACK_UPGRADE_BONUS);
-      upgradeMagicNumber(PLANT_AMOUNT_UPGRADE);
       this.rawDescription = UPGRADE_DESCRIPTION;
       initializeDescription();
     }

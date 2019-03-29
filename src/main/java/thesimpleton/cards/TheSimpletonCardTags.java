@@ -10,9 +10,11 @@ public class TheSimpletonCardTags {
     @SpireEnum
     public static AbstractCard.CardTags RITUAL;
 
-
     @SpireEnum
     public static AbstractCard.CardTags CROP;
+
+    @SpireEnum
+    public static AbstractCard.CardTags CROP_POWER;
 
     @SpireEnum
     public static AbstractCard.CardTags HARVEST;

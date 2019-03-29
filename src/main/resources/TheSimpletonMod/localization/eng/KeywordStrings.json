@@ -46,6 +46,14 @@
     "DESCRIPTION": "Harvest different #yCrop stacks for different effects."
   },
 
+  "TheSimpletonMod:OnionKeyword": {
+    "PROPER_NAME": "Onions",
+    "NAMES": [
+      "onion", "onions"
+    ],
+    "DESCRIPTION": "#yCrop. Applies Weak to a random enemy when harvested."
+  },
+
   "TheSimpletonMod:PotatoKeyword": {
     "PROPER_NAME": "Potatoes",
     "NAMES": [
@@ -60,6 +68,14 @@
       "ritual"
     ],
     "DESCRIPTION": "When using, choose 1 card to #yExhaust. Selecting a Curse card will activate the Ritual's effect."
+  },
+
+  "TheSimpletonMod:SpinachKeyword": {
+    "PROPER_NAME": "Spinach",
+    "NAMES": [
+      "spinach", "spinach"
+    ],
+    "DESCRIPTION": "#yCrop. Grants temporary strength when harvested."
   },
 
   "TheSimpletonMod:SpudKeyword": {
@@ -77,6 +93,8 @@
     ],
     "DESCRIPTION": "Cannot do anything."
   },
+
+
 
   "TheSimpletonMod:TurnipKeyword": {
     "PROPER_NAME": "Turnips",

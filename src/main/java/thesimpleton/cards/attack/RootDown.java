@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.sun.crypto.provider.DESCipher;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.CurseUtil;
 import thesimpleton.enums.AbstractCardEnum;
@@ -21,25 +22,26 @@ public class RootDown extends CustomCard {
   public static final String ID = "TheSimpletonMod:RootDown";
   public static final String NAME;
   public static final String DESCRIPTION;
+  public static final String UPGRADE_DESCRIPTION;
   public static final String IMG_PATH = "cards/rootdown.png";
 
   private static final CardStrings cardStrings;
 
   private static final AbstractCard.CardType TYPE = CardType.ATTACK;
-  private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
+  private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
   private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
 
   private static final int COST = 0;
-  private static final int DAMAGE = 3;
-  private static final int DAMAGE_UPGRADE_BONUS = 3;
+  private static final int DAMAGE = 5;
+  private static final int DAMAGE_UPGRADE = 3;
   private static final int PLANT_AMOUNT = 1;
-  private static final int PLANT_UPGRADE_AMOUNT = 1;
 
   public RootDown() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE,
         AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.block = DAMAGE;
     this.baseMagicNumber = this.magicNumber = PLANT_AMOUNT;
+    this.isInnate = true;
     this.exhaust = true;
   }
 
@@ -67,8 +69,9 @@ public class RootDown extends CustomCard {
   public void upgrade() {
     if (!this.upgraded) {
       upgradeName();
-      upgradeDamage(DAMAGE_UPGRADE_BONUS);
-      upgradeMagicNumber(PLANT_UPGRADE_AMOUNT);
+      this.upgradeDamage(DAMAGE_UPGRADE);
+      this.rawDescription = UPGRADE_DESCRIPTION;
+      this.initializeDescription();
     }
   }
 
@@ -76,5 +79,6 @@ public class RootDown extends CustomCard {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
+    UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
   }
 }

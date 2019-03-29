@@ -253,8 +253,8 @@
 
   "TheSimpletonMod:OnionBloom": {
     "NAME": "Onion Bloom",
-    "DESCRIPTION": "Gain !M! Onion. Draw a card.",
-    "UPGRADE_DESCRIPTION": "Gain !M! Onions. Draw a card."
+    "DESCRIPTION": "Gain !M! Onion. Draw a card. NL Discard a card. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Gain !M! Onion. Draw a card. NL Discard a card. NL Exhaust."
   },
 
   "TheSimpletonMod:OutForBlood": {
@@ -295,12 +295,13 @@
 
   "TheSimpletonMod:RootDown": {
     "NAME": "Root Down",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Turnips. NL Put a Root Out on the bottom of your draw pile. NL Exhaust."
-},
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Turnips. NL Put a Root Out on the bottom of your draw pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Innate. Deal !D! damage. NL Gain !M! Turnips. NL Put a Root Out on the bottom of your draw pile. NL Exhaust."
+  },
 
   "TheSimpletonMod:RootOut": {
     "NAME": "Root Out",
-    "DESCRIPTION": "All enemies gain !M! Vulnerable. NL Harvest all Turnips. NL Exhaust. NL Ethereal."
+    "DESCRIPTION": "All enemies gain !M! Vulnerable. NL Harvest all Turnips. NL Exhaust."
   },
 
   "TheSimpletonMod:SaltUponWound": {
@@ -380,6 +381,10 @@
     "DESCRIPTION": "Deal !D! damage. NL Next turn, draw !M! additional card.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Next turn, draw !M! additional cards."
   },
+  "TheSimpletonMod:Tilling": {
+    "NAME": "Tilling",
+    "DESCRIPTION": "Add 1 of 3 random Crop power cards to your hand. It costs 0 this turn."
+  },
   "TheSimpletonMod:Torture": {
     "NAME": "Torture",
     "DESCRIPTION": "Apply !M! Bleed."
@@ -413,5 +418,21 @@
       " Unplayable card.)",
       " Unplayable cards.)"
     ]
+  },
+  "TheSimpletonMod:Onions": {
+    "NAME": "Onions",
+    "DESCRIPTION": "Gain !M! Onions."
+  },
+  "TheSimpletonMod:Potatoes": {
+    "NAME": "Potatoes",
+    "DESCRIPTION": "Gain !M! Potatoes."
+  },
+  "TheSimpletonMod:Spinach": {
+    "NAME": "Spinach",
+    "DESCRIPTION": "Gain !M! Spinach."
+  },
+  "TheSimpletonMod:Turnips": {
+    "NAME": "Turnips",
+    "DESCRIPTION": "Gain !M! Turnips."
   }
 }

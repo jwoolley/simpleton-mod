@@ -4,13 +4,15 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import thesimpleton.cards.CurseUtil;
 import thesimpleton.cards.TheSimpletonCardTags;
+import thesimpleton.cards.power.crop.AbstractCropPowerCard;
+import thesimpleton.cards.power.crop.Potatoes;
 import thesimpleton.cards.skill.AbstractHarvestCard;
 
 public class PlantPotatoPower extends AbstractCropPower {
@@ -20,11 +22,13 @@ public class PlantPotatoPower extends AbstractCropPower {
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
 
-  public static AbstractPower.PowerType POWER_TYPE = AbstractPower.PowerType.BUFF;
+  public static PowerType POWER_TYPE = PowerType.BUFF;
   public static final String IMG = "plantpotato.png";
+  public static final CardRarity cropRarity = CardRarity.COMMON;
+  private static final AbstractCropPowerCard powerCard = new Potatoes();
 
   public PlantPotatoPower(AbstractCreature owner, int amount) {
-    super(IMG, owner, amount);
+    super(IMG, owner, cropRarity, powerCard, amount);
 
     this.name = NAME;
     this.ID = POWER_ID;

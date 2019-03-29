@@ -4,13 +4,15 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import thesimpleton.cards.TheSimpletonCardTags;
+import thesimpleton.cards.power.crop.AbstractCropPowerCard;
+import thesimpleton.cards.power.crop.Spinach;
 import thesimpleton.cards.skill.AbstractHarvestCard;
 
 public class PlantSpinachPower extends AbstractCropPower {
@@ -20,14 +22,18 @@ public class PlantSpinachPower extends AbstractCropPower {
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
 
-  public static AbstractPower.PowerType POWER_TYPE = AbstractPower.PowerType.BUFF;
+  public static PowerType POWER_TYPE = PowerType.BUFF;
   public static final String IMG = "plantspinach.png";
+  public static final CardRarity cropRarity = CardRarity.RARE;
+  private static final AbstractCropPowerCard powerCard = new Spinach();
+
 
   private static int BASE_STRENGTH_PER_STACK = 1;
   private static int strengthPerStack = 1;
 
+
   public PlantSpinachPower(AbstractCreature owner, int amount) {
-    super(IMG, owner, amount);
+    super(IMG, owner, cropRarity, powerCard, amount);
 
     this.name = NAME;
     this.ID = POWER_ID;

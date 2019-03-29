@@ -30,8 +30,7 @@ public class CropRotation extends AbstractHarvestCard {
   private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
   private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
 
-  private static final int COST = 0;
-
+  private static final int COST = 1;
   private static final int NUM_CROPS = 1;
   private static final int NUM_CROPS_UPGRADE_BONUS = 1;
 
@@ -60,7 +59,7 @@ public class CropRotation extends AbstractHarvestCard {
     }
 
     // add new stacks
-    final AbstractCropPower newCrop = CurseUtil.getRandomCropPower(p, this.magicNumber);
+    final AbstractCropPower newCrop = AbstractCropPower.getRandomCropPower(p, this.magicNumber);
 
     AbstractDungeon.actionManager.addToBottom(
         new ApplyPowerAction(p, p, newCrop, this.magicNumber));

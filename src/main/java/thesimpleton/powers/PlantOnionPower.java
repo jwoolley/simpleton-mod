@@ -4,14 +4,17 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import thesimpleton.cards.CurseUtil;
 import thesimpleton.cards.TheSimpletonCardTags;
+import thesimpleton.cards.power.crop.AbstractCropPowerCard;
+import thesimpleton.cards.power.crop.Onions;
 import thesimpleton.cards.skill.AbstractHarvestCard;
 
 public class PlantOnionPower extends AbstractCropPower {
@@ -21,14 +24,15 @@ public class PlantOnionPower extends AbstractCropPower {
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
 
-  public static AbstractPower.PowerType POWER_TYPE = AbstractPower.PowerType.BUFF;
+  public static PowerType POWER_TYPE = PowerType.BUFF;
   public static final String IMG = "plantonion.png";
-
+  private static final CardRarity cropRarity = CardRarity.COMMON;
+  private static final AbstractCropPowerCard powerCard = new Onions();
   private static int BASE_WEAK_PER_STACK = 1;
   private static int weakPerStack = 1;
 
   public PlantOnionPower(AbstractCreature owner, int amount) {
-    super(IMG, owner, amount);
+    super(IMG, owner, cropRarity, powerCard, amount);
 
     this.name = NAME;
     this.ID = POWER_ID;
@@ -70,10 +74,21 @@ public class PlantOnionPower extends AbstractCropPower {
 
         System.out.println("PlantOnionPower.harvest :: numTargetMonsters: " + numTargetMonsters);
 
+        // All monsters version
+        // if (hasGoodOnionRelic)
         //TODO: reconcile with getCurrRoom.monsters.monsters version
-        AbstractDungeon.getMonsters().monsters.stream()
-            .filter(m -> !m.isDead && !m.isDying)
-            .forEach(m -> applyWeakPower(m, harvestAmount));
+        //        AbstractDungeon.getMonsters().monsters.stream()
+        //            .filter(m -> !m.isDead && !m.isDying)
+        //            .forEach(m -> applyWeakPower(m, harvestAmount));
+
+        // random monsters version
+
+        for (int i = 0; i < harvestAmount; i++) {
+          AbstractMonster randomMonster = CurseUtil.getRandomMonster();
+          if (randomMonster != null) {
+            applyWeakPower(randomMonster, 1);
+          }
+        }
       }
 
       amount -= harvestAmount;

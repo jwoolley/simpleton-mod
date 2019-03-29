@@ -1,25 +1,24 @@
 package thesimpleton.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.colorless.Shiv;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.cards.attack.SpudMissile;
 import thesimpleton.cards.curse.Dregs;
-import thesimpleton.cards.skill.Harvest;
 import thesimpleton.cards.skill.RootOut;
 import thesimpleton.powers.*;
 import thesimpleton.relics.FourLeafCloverCharm;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CurseUtil {
     // As MakeTempCard... actions copy the card object, just define a static Dregs here for common use.
     public static final AbstractCard DREGS = new Dregs();
-    public static final AbstractCard SHIV = new Shiv();
-    public static final AbstractCard HARVEST = new Harvest();
     public static final AbstractCard SPUD_MISSILE = new SpudMissile();
     public static final AbstractCard ROOT_OUT = new RootOut();
 
@@ -33,22 +32,6 @@ public class CurseUtil {
         return getNumCurse(cards) > 0;
     }
 
-    public static AbstractCropPower getRandomCropPower(AbstractPlayer p, int numStacks) {
-        // TODO: move this logic to a plant power manager class
-        final PlantPotatoPower potatoPower = new PlantPotatoPower(p, numStacks);
-        final PlantSpinachPower spinachPower = new PlantSpinachPower(p, numStacks);
-        final PlantOnionPower onionPower = new PlantOnionPower(p, numStacks);
-        final PlantTurnipPower turnipPower = new PlantTurnipPower(p, numStacks);
-
-        ArrayList<AbstractCropPower> cropPowers = new ArrayList<>();
-        cropPowers.add(potatoPower);
-        cropPowers.add(spinachPower);
-        cropPowers.add(onionPower);
-        cropPowers.add(turnipPower);
-
-        Collections.shuffle(cropPowers);
-        return cropPowers.get(0);
-    }
 
     public static AbstractCard getRandomCurseCard() {
         if (AbstractDungeon.player.hasRelic(FourLeafCloverCharm.ID)) {
@@ -57,5 +40,18 @@ public class CurseUtil {
         } else {
             return CardLibrary.getCurse();
         }
+    }
+
+    public static AbstractMonster getRandomMonster() {
+        List<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters.stream()
+                .filter(m -> !m.isDead && !m.isDying)
+                .collect(Collectors.toList());
+
+        Collections.shuffle(monsters);
+        if (monsters.size() == 0) {
+            return null;
+        }
+
+        return monsters.get(0);
     }
 }

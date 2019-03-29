@@ -32,7 +32,7 @@ public class RootOut extends AbstractHarvestCard {
   private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
   private static final AbstractCard.CardTarget TARGET = CardTarget.ALL_ENEMY;
 
-  private static final int COST = 1;
+  private static final int COST = 0;
   private static final int VULNERABLE_DURATION = 1;
   private static final int VULNERABLE_DURATION_UPGRADE_BONUS = 1;
 
@@ -41,13 +41,10 @@ public class RootOut extends AbstractHarvestCard {
         1, true, false);
     this.baseMagicNumber = this.magicNumber = VULNERABLE_DURATION;
     this.exhaust = true;
-    this.isEthereal = true;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-
-
     for (final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
       AbstractDungeon.actionManager.addToBottom(
           new ApplyPowerAction(mo, p,

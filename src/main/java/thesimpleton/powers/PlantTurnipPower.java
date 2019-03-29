@@ -4,13 +4,15 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.attack.GiantTurnip;
+import thesimpleton.cards.power.crop.AbstractCropPowerCard;
+import thesimpleton.cards.power.crop.Turnips;
 import thesimpleton.cards.skill.AbstractHarvestCard;
 
 public class PlantTurnipPower extends AbstractCropPower {
@@ -20,12 +22,15 @@ public class PlantTurnipPower extends AbstractCropPower {
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
 
-  public static AbstractPower.PowerType POWER_TYPE = AbstractPower.PowerType.BUFF;
+  public static PowerType POWER_TYPE = PowerType.BUFF;
   public static final String IMG = "plantturnip.png";
+  private static final CardRarity cropRarity = CardRarity.UNCOMMON;
+  private static final AbstractCropPowerCard powerCard = new Turnips();
+
   private static final boolean IS_HARVEST_ALL = true;
 
   public PlantTurnipPower(AbstractCreature owner, int amount) {
-    super(IMG, owner, amount, IS_HARVEST_ALL);
+    super(IMG, owner, cropRarity, powerCard, amount, IS_HARVEST_ALL);
 
     this.name = NAME;
     this.ID = POWER_ID;

@@ -24,6 +24,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.cards.attack.*;
 import thesimpleton.cards.power.*;
+import thesimpleton.cards.power.crop.Onions;
+import thesimpleton.cards.power.crop.Potatoes;
+import thesimpleton.cards.power.crop.Spinach;
+import thesimpleton.cards.power.crop.Turnips;
 import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.enums.AbstractCardEnum;
@@ -173,6 +177,11 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         // Power (11)
         BaseMod.addCard(new Biorefinement());
+        BaseMod.addCard(new Tilling());
+        BaseMod.addCard(new Onions());
+        BaseMod.addCard(new Potatoes());
+        BaseMod.addCard(new Spinach());
+        BaseMod.addCard(new Turnips());
 
         // should non-purchasable cards go here?
 //        BaseMod.addCard(new SpudMissile());
@@ -211,13 +220,13 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        BaseMod.addCard(new HellfireBreathing());
 //        BaseMod.addCard(new HellsGateOpen());
 //        BaseMod.addCard(new LuckyCharm());
-        BaseMod.addCard(new ManaCirculation());
+//        BaseMod.addCard(new ManaCirculation());
 //        BaseMod.addCard(new SpitefulPlan());
 //        BaseMod.addCard(new VoidForm());
 
-        BaseMod.addCard(new CollectTribute());
-        BaseMod.addCard(new Hemoplague());
-        BaseMod.addCard(new OutForBlood());
+//        BaseMod.addCard(new CollectTribute());
+//        BaseMod.addCard(new Hemoplague());
+//        BaseMod.addCard(new OutForBlood());
 
 //        // Skill (38)
 //        BaseMod.addCard(new AntiAging());

@@ -2,7 +2,7 @@
   "TheSimpletonMod:BiorefinementPower": {
     "NAME": "Biorefinement",
     "DESCRIPTIONS": [
-      "The first time you play a Harvest card each turn, gain 1 Energy."
+      "The first time you play card with Harvest each turn, gain 1 Energy."
     ]
   },
 

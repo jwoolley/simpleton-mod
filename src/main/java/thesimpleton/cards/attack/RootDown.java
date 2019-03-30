@@ -12,9 +12,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.sun.crypto.provider.DESCipher;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.CurseUtil;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.PlantTurnipPower;
 
@@ -56,7 +55,7 @@ public class RootDown extends CustomCard {
 
     AbstractDungeon.actionManager.addToBottom(
         new MakeTempCardInDrawPileAction(
-            CurseUtil.ROOT_OUT, 1, false, false, true));
+            SimpletonUtil.ROOT_OUT, 1, false, false, true));
 
   }
 

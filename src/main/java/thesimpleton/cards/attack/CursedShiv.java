@@ -12,8 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.CurseUtil;
-import thesimpleton.cards.curse.Dregs;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.enums.AbstractCardEnum;
 
 public class CursedShiv extends CustomCard {
@@ -43,7 +42,7 @@ public class CursedShiv extends CustomCard {
         AbstractDungeon.actionManager.addToBottom(
                 new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
                         AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(CurseUtil.DREGS));
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(SimpletonUtil.DREGS));
     }
 
     @Override

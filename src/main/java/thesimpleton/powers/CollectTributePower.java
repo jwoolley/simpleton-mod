@@ -6,8 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import thesimpleton.cards.CurseUtil;
-import thesimpleton.cards.curse.Dregs;
+import thesimpleton.cards.SimpletonUtil;
 
 public class CollectTributePower extends AbstractTheSimpletonPower {
     public static final String POWER_ID = "TheSimpletonMod:CollectTributePower";
@@ -43,7 +42,7 @@ public class CollectTributePower extends AbstractTheSimpletonPower {
         this.flash();
         AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(this.amount));
         for (int i = 0; i < this.amount; ++i) {
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(CurseUtil.getRandomCurseCard()));
+            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(SimpletonUtil.getRandomCurseCard()));
         }
     }
 

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.CurseUtil;
+import thesimpleton.cards.SimpletonUtil;
 
 public class BlackMagicAdvanced extends CustomRelic {
     public static final String ID = "TheSimpletonMod:BlackMagicAdvanced";
@@ -35,7 +35,7 @@ public class BlackMagicAdvanced extends CustomRelic {
 
     @Override
     public void atTurnStart() {
-        if (CurseUtil.hasCurse(AbstractDungeon.player.drawPile.group)) {
+        if (SimpletonUtil.hasCurse(AbstractDungeon.player.drawPile.group)) {
             this.flash();
             this.drawThisTurn = true;
         }

@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.CurseUtil;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.enums.AbstractCardEnum;
 
 public class CursedRelics extends CustomCard {
@@ -54,7 +54,7 @@ public class CursedRelics extends CustomCard {
                 new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
                         AbstractGameAction.AttackEffect.BLUNT_HEAVY));
 
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(CurseUtil.DREGS));
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(SimpletonUtil.DREGS));
     }
 
     @Override

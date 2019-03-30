@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.CurseUtil;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.enums.AbstractCardEnum;
 
 public class SpitefulStrike extends CustomCard {
@@ -45,7 +45,7 @@ public class SpitefulStrike extends CustomCard {
                 new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
                         AbstractGameAction.AttackEffect.BLUNT_LIGHT));
 
-        if (CurseUtil.hasCurse(p.hand.group)) {
+        if (SimpletonUtil.hasCurse(p.hand.group)) {
             AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(2));
         }
     }

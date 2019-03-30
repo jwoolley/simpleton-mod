@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import thesimpleton.cards.CurseUtil;
+import thesimpleton.cards.SimpletonUtil;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,7 @@ public class PrepareRitualAction extends AbstractGameAction {
     public void update() {
         AbstractPlayer p = AbstractDungeon.player;
         if (this.duration == Settings.ACTION_DUR_FAST) {
-            if (p.hand.isEmpty() || p.hand.group.size() == CurseUtil.getNumCurse(p.hand.group)) {
+            if (p.hand.isEmpty() || p.hand.group.size() == SimpletonUtil.getNumCurse(p.hand.group)) {
                 this.isDone = true;
             } else {
                 p.hand.group.stream().filter(c -> c.type == AbstractCard.CardType.CURSE).forEach(cannotTransform::add);
@@ -45,7 +45,7 @@ public class PrepareRitualAction extends AbstractGameAction {
                 AbstractDungeon.handCardSelectScreen.selectedCards.group.forEach(c -> p.hand.moveToExhaustPile(c));
                 AbstractDungeon.actionManager.addToBottom(
                         new MakeTempCardInHandAction(
-                                CurseUtil.DREGS, AbstractDungeon.handCardSelectScreen.selectedCards.group.size()));
+                                SimpletonUtil.DREGS, AbstractDungeon.handCardSelectScreen.selectedCards.group.size()));
 
                 cannotTransform.forEach(p.hand::addToTop);
                 p.hand.refreshHandLayout();

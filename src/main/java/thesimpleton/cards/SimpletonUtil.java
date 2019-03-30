@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CurseUtil {
+public class SimpletonUtil {
     // As MakeTempCard... actions copy the card object, just define a static Dregs here for common use.
     public static final AbstractCard DREGS = new Dregs();
     public static final AbstractCard SPUD_MISSILE = new SpudMissile();

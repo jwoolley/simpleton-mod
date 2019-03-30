@@ -2,16 +2,10 @@ package thesimpleton.relics;
 
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.CurseUtil;
 import thesimpleton.powers.AbstractCropPower;
-import thesimpleton.powers.PlantPotatoPower;
 
 import java.util.List;
 import java.util.stream.Collectors;

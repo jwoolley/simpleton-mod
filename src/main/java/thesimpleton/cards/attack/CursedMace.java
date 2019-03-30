@@ -14,8 +14,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.CurseUtil;
-import thesimpleton.cards.curse.Dregs;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.enums.AbstractCardEnum;
 
 public class CursedMace extends CustomCard {
@@ -51,7 +50,7 @@ public class CursedMace extends CustomCard {
         AbstractDungeon.actionManager.addToBottom(
                 new ApplyPowerAction(
                         m, p, new VulnerablePower(m, this.magicNumber, false), this.magicNumber));
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(CurseUtil.DREGS));
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(SimpletonUtil.DREGS));
     }
 
     @Override

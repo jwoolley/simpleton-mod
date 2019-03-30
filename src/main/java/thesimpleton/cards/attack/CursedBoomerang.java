@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.CurseUtil;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.enums.AbstractCardEnum;
 
 public class CursedBoomerang extends CustomCard {
@@ -46,7 +46,7 @@ public class CursedBoomerang extends CustomCard {
         AbstractDungeon.actionManager.addToBottom(
                 new SwordBoomerangAction(
                         randomMonster, new DamageInfo(p, this.baseDamage), this.magicNumber));
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(CurseUtil.DREGS));
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(SimpletonUtil.DREGS));
     }
 
     @Override

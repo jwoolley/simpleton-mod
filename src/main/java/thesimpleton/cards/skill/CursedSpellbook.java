@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.CurseUtil;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.enums.AbstractCardEnum;
 
 public class CursedSpellbook extends CustomCard {
@@ -39,7 +39,7 @@ public class CursedSpellbook extends CustomCard {
         AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, this.magicNumber));
         AbstractDungeon.actionManager.addToBottom(
                 new MakeTempCardInDrawPileAction(
-                        CurseUtil.getRandomCurseCard(), 1, true, true));
+                        SimpletonUtil.getRandomCurseCard(), 1, true, true));
     }
 
     @Override

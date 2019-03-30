@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.CurseUtil;
+import thesimpleton.cards.SimpletonUtil;
 
 public class OminousMark extends CustomRelic {
     public static final String ID = "TheSimpletonMod:OminousMark";
@@ -35,7 +35,7 @@ public class OminousMark extends CustomRelic {
         for (int i = 0; i < CURSES_ADD_AMOUNT; i++) {
             AbstractDungeon.actionManager.addToBottom(
                     new MakeTempCardInDrawPileAction(
-                            CurseUtil.getRandomCurseCard(), 1, true, true));
+                            SimpletonUtil.getRandomCurseCard(), 1, true, true));
         }
     }
 

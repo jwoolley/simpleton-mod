@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.CurseUtil;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.enums.AbstractCardEnum;
 
 public class CullingStrike extends CustomCard {
@@ -43,7 +43,7 @@ public class CullingStrike extends CustomCard {
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
     int numTrigger = 1;
-    numTrigger += CurseUtil.hasCurse(p.hand.group) ? 1 : 0;
+    numTrigger += SimpletonUtil.hasCurse(p.hand.group) ? 1 : 0;
 
     AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_MAGIC_SLOW_2"));
     AbstractGameEffect effect = new ShockWaveEffect(

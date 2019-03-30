@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import thesimpleton.cards.CurseUtil;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Onions;
@@ -85,7 +85,7 @@ public class PlantOnionPower extends AbstractCropPower {
         // random monsters version
 
         for (int i = 0; i < harvestAmount; i++) {
-          AbstractMonster randomMonster = CurseUtil.getRandomMonster();
+          AbstractMonster randomMonster = SimpletonUtil.getRandomMonster();
           if (randomMonster != null) {
             applyWeakPower(randomMonster, 1);
           }

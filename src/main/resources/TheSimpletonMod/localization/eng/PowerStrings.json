@@ -22,6 +22,12 @@
       " random #rCurse cards into your hand."
     ]
   },
+  "TheSimpletonMod:PlantCornPower": {
+    "NAME": "Corn",
+    "DESCRIPTIONS": [
+      "#yCrop. #gHarvest to draw a card for each stack harvested."
+    ]
+  },
   "TheSimpletonMod:DemonicPactPower": {
     "NAME": "Demonic Pact",
     "DESCRIPTIONS": [

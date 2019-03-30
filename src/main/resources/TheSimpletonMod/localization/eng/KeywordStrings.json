@@ -15,6 +15,14 @@
     "DESCRIPTION": "An #yUnplayable card that can be activated by using other cards while in hand."
   },
 
+  "TheSimpletonMod:CornKeyword": {
+    "PROPER_NAME": "Corn",
+    "NAMES": [
+      "corn"
+    ],
+    "DESCRIPTION": "#yCrop. Draw cards when harvested."
+  },
+
   "TheSimpletonMod:CropKeyword": {
     "PROPER_NAME": "Crop",
     "NAMES": [

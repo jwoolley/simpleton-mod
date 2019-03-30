@@ -423,6 +423,10 @@
       " Unplayable cards.)"
     ]
   },
+  "TheSimpletonMod:Corn": {
+    "NAME": "Corn",
+    "DESCRIPTION": "Gain !M! Corn ."
+  },
   "TheSimpletonMod:Onions": {
     "NAME": "Onions",
     "DESCRIPTION": "Gain !M! Onions."

@@ -25,6 +25,8 @@ import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.relics.SpudOfTheMartyr;
 import thesimpleton.relics.TheHarvester;
+import thesimpleton.utilities.Trigger;
+import thesimpleton.utilities.TriggerManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,8 @@ public class TheSimpletonCharacter extends CustomPlayer {
     private static final CharacterStrings charStrings;
     public static final String NAME;
     public static final String DESCRIPTION;
+
+    private final TriggerManager endOfTurnTriggers = new TriggerManager();
 
     public static final String[] orbTextures = {
             getResourcePath("char/orb/layer1.png"),
@@ -188,7 +192,17 @@ public class TheSimpletonCharacter extends CustomPlayer {
 
     @Override
     public Color getSlashAttackColor() {
-        return Color.TEAL;
+         return Color.TEAL;
+    }
+
+    @Override
+    public void applyEndOfTurnTriggers() {
+        super.applyEndOfTurnTriggers();
+        this.endOfTurnTriggers.triggerAll();
+    }
+
+    public void addEndOfTurnTrigger(Trigger trigger) {
+        this.endOfTurnTriggers.addTrigger(trigger);
     }
 
     @Override

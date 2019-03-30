@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
+import thesimpleton.characters.TheSimpletonCharacter;
+import thesimpleton.utilities.Trigger;
 
 import java.lang.UnsupportedOperationException;
 import java.util.*;
@@ -21,11 +23,13 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   private static int AUTO_HARVEST_THRESHOLD = 5;
   private static int CROP_POWER_ID_COUNTER = 0;
   public static Map<CardRarity, Integer> CROP_RARITY_DISTRIBUTION;
+  private static boolean hasHarvestedThisTurn = false;
 
   private final int cropPowerId;
   private final boolean isHarvestAll;
   private final AbstractCropPowerCard powerCard;
   private int autoHarvestThreshold;
+
   public AbstractCard.CardRarity cropRarity;
 
   AbstractCropPower(String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
@@ -52,6 +56,9 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   }
 
   void onHarvest(int amount) {
+    hasHarvestedThisTurn = true;
+    logger.debug("Set hasHarvestedThisTurn");
+
     final AbstractPlayer player = AbstractDungeon.player;
     if (player.hasPower(ToughSkinPower.POWER_ID)) {
       ((ToughSkinPower)player.getPower(ToughSkinPower.POWER_ID)).applyPower(player);
@@ -218,6 +225,14 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     rarityDistribution.put(CardRarity.UNCOMMON, 12);
     rarityDistribution.put(CardRarity.RARE, 8);
     CROP_RARITY_DISTRIBUTION = Collections.unmodifiableMap(rarityDistribution);
+
+    // reset hasHarvestedThisTurn at end of turn
+    ((TheSimpletonCharacter)AbstractDungeon.player).addEndOfTurnTrigger(new Trigger() {
+      public void trigger() {
+        logger.debug("Resetting hasHarvestedThisTurn");
+        hasHarvestedThisTurn = false;
+      }
+    });
   }
 
   // TODO: move shared functionality(e.g. harvest logic) to here

@@ -95,6 +95,11 @@
     "UPGRADE_DESCRIPTION": "Harvest !M! random Crop stacks. NL Gain !M! random Crop stacks."
   },
 
+  "TheSimpletonMod:CullingStrike": {
+    "NAME": "Culling Strike",
+    "DESCRIPTION": "Deal !D! damage. NL If you Harvested this turn, deal !D! damage again."
+  },
+
   "TheSimpletonMod:CursedAmulet": {
     "NAME": "Cursed Amulet",
     "DESCRIPTION": "Gain !B! Block. NL Draw 1 card. NL Shuffle a random Curse card into your draw pile."
@@ -391,7 +396,7 @@
   },
   "TheSimpletonMod:ToughSkin": {
     "NAME": "Tough Skin",
-    "DESCRIPTION": "Whenever you harvest a Crop, gain !M! Block."
+    "DESCRIPTION": "Whenever you Harvest a Crop, gain !M! Block."
   },
   "TheSimpletonMod:TroublousMinions": {
     "NAME": "Troublous Minions",
@@ -425,7 +430,7 @@
   },
   "TheSimpletonMod:Corn": {
     "NAME": "Corn",
-    "DESCRIPTION": "Gain !M! Corn ."
+    "DESCRIPTION": "Gain !M! Corn."
   },
   "TheSimpletonMod:Onions": {
     "NAME": "Onions",

@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
 
   private static boolean IS_HARVEST_ALL = false;
-  private static int AUTO_HARVEST_THRESHOLD = 5;
+  private static int AUTO_HARVEST_THRESHOLD = 3;
   private static int CROP_POWER_ID_COUNTER = 0;
   public static Map<CardRarity, Integer> CROP_RARITY_DISTRIBUTION;
 
@@ -77,46 +77,8 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   }
 
   public boolean hasPowerCard() {
-    // TheSimpletonMod.logger.debug(this.getClass().getSimpleName() + ".powerCard: " + this.powerCard);
     return this.powerCard != null;
   }
-
-  @Override
-  public void onInitialApplication() {
-    TheSimpletonMod.logger.debug("Power applied initially: " + this.ID);
-  }
-
-  @Override
-  public void onApplyPower(com.megacrit.cardcrawl.powers.AbstractPower power,
-                           com.megacrit.cardcrawl.core.AbstractCreature target,
-                           com.megacrit.cardcrawl.core.AbstractCreature source) {
-    super.onApplyPower(power, target, source);
-
-    TheSimpletonMod.logger.debug("Applied power: " + power.getClass().getSimpleName() + " power.ID: " + power.ID + " stacks:" + power.amount);
-
-    AbstractDungeon.onModifyPower();
-
-    //TODO: check if it's being applied to the player
-    //TODO: calculate trigger on first application as well
-    if (power.ID == this.ID) {
-      TheSimpletonMod.logger.debug("Power applied subsequently: " + this.ID);
-
-      AbstractPower existingPower = AbstractDungeon.player.getPower(this.ID);
-      final int totalStacks =  power.amount + existingPower.amount;
-
-      TheSimpletonMod.logger.debug("Existing stacks: " + existingPower.amount);
-      TheSimpletonMod.logger.debug("New stacks: " + power.amount);
-      TheSimpletonMod.logger.debug("Total stacks: " + totalStacks);
-
-      if (totalStacks > AUTO_HARVEST_THRESHOLD && power.amount > 0) {
-        final int harvestAmount = totalStacks - AUTO_HARVEST_THRESHOLD;
-        TheSimpletonMod.logger.debug("Harvesting stacks: " + harvestAmount);
-
-        ((AbstractCropPower)existingPower).harvest(false, harvestAmount);
-      }
-    }
-  }
-
 
   public static boolean playerHasAnyActiveCropPowers() {
     return AbstractCropPower.getActiveCropPowers().size() > 0;
@@ -157,6 +119,16 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   public static List<AbstractCropPower> getRandomCropPowers(
       AbstractPlayer p, int numPowers, int numStacks, boolean withRarityDistribution) {
     return getRandomCropPowers(p, numPowers, numStacks, withRarityDistribution, power -> true);
+  }
+
+  @Override
+  public void stackPower(int amount) {
+    super.stackPower(amount);
+    logger.debug("Called stackPower for " + this.ID + " amount: " + amount + ". Updated amount: " + this.amount);
+    if (this.amount > AUTO_HARVEST_THRESHOLD) {
+      flash();
+      this.harvest(false, this.amount - AUTO_HARVEST_THRESHOLD);
+    }
   }
 
   public static List<AbstractCropPower> getRandomCropPowers(

@@ -9,8 +9,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import org.apache.logging.log4j.Logger;
-import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.CurseUtil;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
@@ -62,13 +60,11 @@ public class PlantPotatoPower extends AbstractCropPower {
     super.harvest(harvestAll, maxHarvestAmount);
 
     if  (amount > 0) {
-      final Logger logger = TheSimpletonMod.logger;
       final int harvestAmount = Math.min(this.amount, harvestAll ? this.amount : maxHarvestAmount);
-      logger.debug("harvesting " + harvestAmount + " stacks from " + this.amount + " total stacks");
+
       this.flash();
       AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(CurseUtil.SPUD_MISSILE, harvestAmount));
-      this.amount -= harvestAmount;
-      logger.debug("new stack count: " + this.amount);
+      amount -= harvestAmount;
 
       if (amount == 0) {
         AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));

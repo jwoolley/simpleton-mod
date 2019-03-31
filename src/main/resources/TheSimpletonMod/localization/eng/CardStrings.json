@@ -97,7 +97,7 @@
 
   "TheSimpletonMod:CullingStrike": {
     "NAME": "Culling Strike",
-    "DESCRIPTION": "Deal !D! damage. NL If you Harvested this turn, deal !D! damage again."
+    "DESCRIPTION": "Deal !D! damage. NL If you've Harvested this turn, deal !D! damage again."
   },
 
   "TheSimpletonMod:CursedAmulet": {

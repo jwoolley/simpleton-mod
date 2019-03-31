@@ -138,8 +138,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                                 })));
 
         BaseMod.registerModBadge(
-                badgeTexture, "The Simpleton", "jwoolley",
-                "Adds a new character to the game - The Simpleton", modPanel);
+                badgeTexture, "The Hayseed", "jwoolley",
+                "Adds a new character to the game - The Hayseed", modPanel);
 
         BaseMod.addPotion(
                 DregsPotion.class, Color.BLACK, Color.DARK_GRAY, Color.GRAY, DregsPotion.POTION_ID,
@@ -148,7 +148,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receiveEditCharacters() {
-        theSimpletonCharacter = new TheSimpletonCharacter("The Simpleton");
+        theSimpletonCharacter = new TheSimpletonCharacter("The Hayseed");
         BaseMod.addCharacter(
             theSimpletonCharacter, getResourcePath("charSelect/button.png"), getResourcePath("charSelect/portrait.png"),
                 TheSimpletonCharEnum.THE_SIMPLETON);
@@ -166,6 +166,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         // Attack (22)
         BaseMod.addCard(new Fertilaser());
         BaseMod.addCard(new RootDown());
+        BaseMod.addCard(new CullingStrike());
 
         // Skill (38)
         BaseMod.addCard(new CropRotation());

@@ -54,4 +54,8 @@ public class SimpletonUtil {
 
         return monsters.get(0);
     }
+
+    public static boolean hasHarvestedThisTurn() {
+        return AbstractCropPower.hasHarvestedThisTurn();
+    }
 }

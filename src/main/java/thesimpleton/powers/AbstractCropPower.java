@@ -19,10 +19,12 @@ import java.util.stream.Collectors;
 // TODO: create separate enum for CropRarity
 public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
 
+  public static Map<CardRarity, Integer> CROP_RARITY_DISTRIBUTION;
+
+  private static TheSimpletonCharacter player = (TheSimpletonCharacter) AbstractDungeon.player;
   private static boolean IS_HARVEST_ALL = false;
   private static int AUTO_HARVEST_THRESHOLD = 5;
   private static int CROP_POWER_ID_COUNTER = 0;
-  public static Map<CardRarity, Integer> CROP_RARITY_DISTRIBUTION;
   private static boolean hasHarvestedThisTurn = false;
 
   private final int cropPowerId;
@@ -128,6 +130,10 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     return getRandomCropPowers(p, numPowers, numStacks, withRarityDistribution, power -> true);
   }
 
+  public static boolean hasHarvestedThisTurn() {
+    return hasHarvestedThisTurn;
+  }
+
   @Override
   public void stackPower(int amount) {
     super.stackPower(amount);
@@ -226,13 +232,15 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     rarityDistribution.put(CardRarity.RARE, 8);
     CROP_RARITY_DISTRIBUTION = Collections.unmodifiableMap(rarityDistribution);
 
-    // reset hasHarvestedThisTurn at end of turn
-    ((TheSimpletonCharacter)AbstractDungeon.player).addEndOfTurnTrigger(new Trigger() {
+    // reset hasHarvestedThisTurn at start of combat and at end of turn
+    Trigger trigger = new Trigger() {
       public void trigger() {
         logger.debug("Resetting hasHarvestedThisTurn");
         hasHarvestedThisTurn = false;
       }
-    });
+    };
+    player.addPrecombatTrigger(trigger);
+    player.addEndOfTurnTrigger(trigger);
   }
 
   // TODO: move shared functionality(e.g. harvest logic) to here

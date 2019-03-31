@@ -6,7 +6,7 @@
     <version>v1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>TheSimpleton</name>
+    <name>TheHayseed</name>
     <description>Now *I'm* attempting to make a mod!</description>
     <properties>
         <steam-mods-directory>D:/Program Files (x86)/Steam/steamapps/common/SlayTheSpire/mods</steam-mods-directory>
@@ -44,7 +44,7 @@
     </dependencies>
 
     <build>
-        <finalName>TheSimpleton</finalName>
+        <finalName>TheHayseed</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -64,8 +64,8 @@
                         <phase>package</phase>
                         <configuration>
                             <target>
-                                <copy file="target/TheSimpleton.jar" tofile="../lib/TheSimpleton.jar"/>
-                                <copy file="target/TheSimpleton.jar" tofile="${steam-mods-directory}/TheSimpleton.jar"/>
+                                <copy file="target/TheHayseed.jar" tofile="../lib/TheHayseed.jar"/>
+                                <copy file="target/TheHayseed.jar" tofile="${steam-mods-directory}/TheHayseed.jar"/>
                             </target>
                         </configuration>
                         <goals>

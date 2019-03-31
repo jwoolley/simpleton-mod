@@ -46,6 +46,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
     public static final String NAME;
     public static final String DESCRIPTION;
 
+    private final TriggerManager precombatTriggers = new TriggerManager();
     private final TriggerManager endOfTurnTriggers = new TriggerManager();
 
     public static final String[] orbTextures = {
@@ -196,9 +197,19 @@ public class TheSimpletonCharacter extends CustomPlayer {
     }
 
     @Override
+    public void applyPreCombatLogic() {
+        super.applyPreCombatLogic();
+        this.precombatTriggers.triggerAll();
+    }
+
+    @Override
     public void applyEndOfTurnTriggers() {
         super.applyEndOfTurnTriggers();
         this.endOfTurnTriggers.triggerAll();
+    }
+
+    public void addPrecombatTrigger(Trigger trigger) {
+        this.precombatTriggers.addTrigger(trigger);
     }
 
     public void addEndOfTurnTrigger(Trigger trigger) {

@@ -10,18 +10,18 @@ import thesimpleton.powers.AbstractCropPower;
 import java.util.List;
 import java.util.stream.Collectors;
 
-// TODO: reflavor as fertilizer; reuse "the harvester" + icon for a different relic
-
-public class TheHarvester extends CustomRelic {
-  public static final String ID = "TheSimpletonMod:TheHarvester";
-  public static final String IMG_PATH = "relics/theharvester.png";
-  public static final String IMG_PATH_LARGE = "relics/theharvester_large.png";
-  public static final String OUTLINE_IMG_PATH = "relics/theharvester_outline.png";
+public class RedolentSoil extends CustomRelic {
+  public static final String ID = "TheSimpletonMod:RedolentSoil";
+  public static final String IMG_PATH = "relics/redolentsoil.png";
+  public static final String IMG_PATH_LARGE = "relics/redolentsoil_large.png";
+  public static final String OUTLINE_IMG_PATH = "relics/redolentsoil_outline.png";
 
   private static final RelicTier TIER = RelicTier.STARTER;
   private static final LandingSound SOUND = LandingSound.HEAVY;
 
-  public TheHarvester() {
+  private static final int CROP_AMOUNT = 1;
+
+  public RedolentSoil() {
     super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
         new Texture(TheSimpletonMod.getResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
     this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_LARGE));
@@ -33,7 +33,20 @@ public class TheHarvester extends CustomRelic {
   }
 
   @Override
+  public void onShuffle() {
+    List<AbstractCropPower> eligiblePowers = AbstractCropPower.getActiveCropPowers().stream()
+        .filter(power -> power.amount < 5)
+        .collect(Collectors.toList());
+
+    eligiblePowers.forEach(power -> power.stackPower(CROP_AMOUNT));
+
+    if (eligiblePowers.size() > 0) {
+      flash();
+    }
+  }
+
+  @Override
   public AbstractRelic makeCopy() {
-    return new TheHarvester();
+    return new RedolentSoil();
   }
 }

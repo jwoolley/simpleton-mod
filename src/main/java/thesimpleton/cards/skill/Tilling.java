@@ -30,7 +30,7 @@ public class Tilling extends CustomCard {
   public Tilling() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.exhaust = true;
-    this.baseMagicNumber = NUM_POWERS;
+    this.baseMagicNumber = this.magicNumber = NUM_POWERS;
 
     TheSimpletonMod.logger.debug("Tilling::constructor NUM_POWERS:" + NUM_POWERS);
     TheSimpletonMod.logger.debug("Tilling::constructor this.baseMagicNumber:" + this.baseMagicNumber);

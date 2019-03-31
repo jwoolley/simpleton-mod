@@ -202,7 +202,7 @@
   },
   "TheSimpletonMod:Haymaker": {
     "NAME": "Haymaker",
-    "DESCRIPTION": "Deal !D! damage. If this kills an enemy, apply !M! Vulnerable and !M! Weak to ALL enemies."
+    "DESCRIPTION": "Deal !D! damage. NL If this kills an enemy, deal !M! damage to ALL remaining enemies."
   },
   "TheSimpletonMod:HellfireBreathing": {
     "NAME": "Hellfire Breathing",
@@ -322,8 +322,8 @@
     "DESCRIPTION": "Gain !B! Block. NL Ritual : Apply !M! Weak to ALL enemies."
   },
 
-  "TheSimpletonMod:SoilCommunion": {
-    "NAME": "Soil Communion",
+  "TheSimpletonMod:Aerate": {
+    "NAME": "Aerate",
     "DESCRIPTION": "Gain !B! Block. NL Add !M! stack to your newest Crop."
   },
 

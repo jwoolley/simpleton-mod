@@ -41,7 +41,7 @@ public class PlantTurnipPower extends AbstractCropPower {
 
   @Override
   public void updateDescription() {
-    this.description = DESCRIPTIONS[0];
+    this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0];
   }
   static {
     powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);

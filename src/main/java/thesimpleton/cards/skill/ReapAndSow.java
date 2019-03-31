@@ -2,18 +2,17 @@ package thesimpleton.cards.skill;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.*;
-
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.ReapAndSowThresholdAction;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.AbstractCropPower;
 import thesimpleton.powers.PlantPotatoPower;
 
 public class ReapAndSow extends CustomCard {
@@ -44,7 +43,6 @@ public class ReapAndSow extends CustomCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-
     AbstractDungeon.actionManager.addToBottom(
         new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn,
             AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
@@ -53,15 +51,8 @@ public class ReapAndSow extends CustomCard {
     AbstractDungeon.actionManager.addToBottom(
         new ApplyPowerAction(p, p, new PlantPotatoPower(p, this.magicNumber), this.magicNumber));
 
-    AbstractCard card = new Harvest();
-
-    if (this.upgraded) {
-      card.upgrade();
-    }
-
-    if (AbstractCropPower.getActiveCropPowers().stream().anyMatch(pow -> pow.amount >= HARVEST_THRESHOLD)) {
-      AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(card, 1));
-    }
+    AbstractDungeon.actionManager.addToBottom(
+        new ReapAndSowThresholdAction(HARVEST_THRESHOLD, this.upgraded));
   }
 
   @Override

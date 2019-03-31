@@ -23,6 +23,7 @@ import thesimpleton.cards.skill.Defend_TheSimpleton;
 import thesimpleton.cards.skill.ReapAndSow;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
+import thesimpleton.relics.RedolentSoil;
 import thesimpleton.relics.SpudOfTheMartyr;
 import thesimpleton.relics.TheHarvester;
 import thesimpleton.utilities.Trigger;
@@ -94,6 +95,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
         ArrayList<String> retVal = new ArrayList<String>();
 
         retVal.add(SpudOfTheMartyr.ID);
+        retVal.add(RedolentSoil.ID);
         retVal.add(TheHarvester.ID);
 
         /* for testing

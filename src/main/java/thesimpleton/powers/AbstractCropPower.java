@@ -4,14 +4,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.characters.TheSimpletonCharacter;
+import thesimpleton.relics.TheHarvester;
 import thesimpleton.utilities.Trigger;
 
-import java.lang.UnsupportedOperationException;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -26,6 +27,10 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   private static int AUTO_HARVEST_THRESHOLD = 5;
   private static int CROP_POWER_ID_COUNTER = 0;
   private static boolean hasHarvestedThisTurn = false;
+
+  private static final String POWER_DESCRIPTION_ID = "TheSimpletonMod:AbstractCropPower";
+  private static final PowerStrings powerStrings;
+  public static final String[] PASSIVE_DESCRIPTIONS;
 
   private final int cropPowerId;
   private final boolean isHarvestAll;
@@ -57,11 +62,15 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     this.powerCard = powerCard;
   }
 
+
+  protected String getPassiveDescription() {
+    return PASSIVE_DESCRIPTIONS[0] + this.autoHarvestThreshold + PASSIVE_DESCRIPTIONS[1];
+  }
+
   void onHarvest(int amount) {
     hasHarvestedThisTurn = true;
     logger.debug("Set hasHarvestedThisTurn");
 
-    final AbstractPlayer player = AbstractDungeon.player;
     if (player.hasPower(ToughSkinPower.POWER_ID)) {
       ((ToughSkinPower)player.getPower(ToughSkinPower.POWER_ID)).applyPower(player);
     }
@@ -72,7 +81,8 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   }
 
   public void atStartOfTurn() {
-    if (this.amount >= autoHarvestThreshold) {
+    if (this.amount >= autoHarvestThreshold && player.hasRelic(TheHarvester.ID)) {
+      player.getRelic(TheHarvester.ID).flash();
       this.flash();
       harvest(isHarvestAll, 1);
     }
@@ -138,9 +148,9 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   public void stackPower(int amount) {
     super.stackPower(amount);
     logger.debug("Called stackPower for " + this.ID + " amount: " + amount + ". Updated amount: " + this.amount);
-    if (this.amount > AUTO_HARVEST_THRESHOLD) {
+    if (this.amount > autoHarvestThreshold) {
       flash();
-      this.harvest(false, this.amount - AUTO_HARVEST_THRESHOLD);
+      this.harvest(false, this.amount - autoHarvestThreshold);
     }
   }
 
@@ -163,11 +173,11 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
         .filter(predicate)
         .collect(Collectors.toList());
 
-    TheSimpletonMod.logger.debug(AbstractCropPowerCard.class.getSimpleName()
+    logger.debug(AbstractCropPowerCard.class.getSimpleName()
         + ".getRandomCropPowers :: referencePowers: "
         + referencePowers.stream().map(rp -> rp.name).collect(Collectors.joining(", ")));
 
-    TheSimpletonMod.logger.debug(AbstractCropPowerCard.class.getSimpleName()
+    logger.debug(AbstractCropPowerCard.class.getSimpleName()
         + ".getRandomCropPowers :: filteredPowers: "
         + filteredPowers.stream().map(fp -> fp.name).collect(Collectors.joining(", ")));
 
@@ -178,10 +188,10 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
       throw new IndexOutOfBoundsException("Requested " + numPowers + " powers but only " + numTotalPowers
           + " powers are available");
     } else if (numPowers == numTotalPowers) {
-      TheSimpletonMod.logger.debug("Requested powers size equals total powers. Returning all powers.");
+      logger.debug("Requested powers size equals total powers. Returning all powers.");
       resultPowers = new ArrayList(filteredPowers);
     } else {
-      TheSimpletonMod.logger.debug("Choosing powers by probability distribution");
+      logger.debug("Choosing powers by probability distribution");
 
       ArrayList<AbstractCropPower> distributedPowers = new ArrayList<>();
       filteredPowers.forEach(power -> {
@@ -192,31 +202,31 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
         distributedPowers.addAll(copies);
       });
 
-      TheSimpletonMod.logger.debug(AbstractCropPowerCard.class.getSimpleName()
+      logger.debug(AbstractCropPowerCard.class.getSimpleName()
           + ".getRandomCropPowers :: distributedPowers: "
           + distributedPowers.stream().map(dp -> dp.name).collect(Collectors.joining(", ")));
 
       Collections.shuffle(distributedPowers);
 
-      TheSimpletonMod.logger.debug("Choosing " + numPowers + " powers from distributedPowers");
+      logger.debug("Choosing " + numPowers + " powers from distributedPowers");
 
       resultPowers = new ArrayList<>();
       for (int i = 0; i < numPowers; i++) {
         final AbstractCropPower power = distributedPowers.get(0);
         resultPowers.add(power);
-        TheSimpletonMod.logger.debug("Selected " + power.name);
+        logger.debug("Selected " + power.name);
 
         distributedPowers.removeIf(pow -> pow == power);
       }
     }
 
-    TheSimpletonMod.logger.debug(AbstractCropPowerCard.class.getSimpleName()
+    logger.debug(AbstractCropPowerCard.class.getSimpleName()
         + ".getRandomCropPowers :: resultPowers: "
         + resultPowers.stream().map(rp -> rp.name).collect(Collectors.joining(", ")));
 
     Collections.shuffle(resultPowers);
 
-    TheSimpletonMod.logger.debug(AbstractCropPowerCard.class.getSimpleName()
+    logger.debug(AbstractCropPowerCard.class.getSimpleName()
         + ".getRandomCropPowers :: resultPowers(shuffled): "
         + resultPowers.stream().map(rp -> rp.name).collect(Collectors.joining(", ")));
 
@@ -224,6 +234,9 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   }
 
   static {
+    powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_DESCRIPTION_ID);
+    PASSIVE_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+
     // define rarity distribution
     Map<CardRarity, Integer> rarityDistribution = new HashMap<>();
     rarityDistribution.put(CardRarity.BASIC, 27);

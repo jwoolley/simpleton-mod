@@ -21,7 +21,6 @@ public class TillingAction extends AbstractGameAction {
   public TillingAction(int numPowers) {
     TheSimpletonMod.logger.debug("TillingAction: constructing with numPowers: " + numPowers);
 
-
     this.p = AbstractDungeon.player;
     setValues(this.p,  this.p, numPowers);
 

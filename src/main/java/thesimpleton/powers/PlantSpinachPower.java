@@ -44,7 +44,7 @@ public class PlantSpinachPower extends AbstractCropPower {
 
   @Override
   public void updateDescription() {
-    this.description = DESCRIPTIONS[0] + this.strengthPerStack + DESCRIPTIONS[1];
+    this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0] + this.strengthPerStack + DESCRIPTIONS[1];
   }
 
   //TODO: AbstractCard should be an AbstractHarvestCard, with harvestAmount, harvestEffect, etc.

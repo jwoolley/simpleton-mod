@@ -2,6 +2,7 @@ package thesimpleton.actions;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -14,19 +15,19 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
 public class HaymakerSplashAction extends AbstractGameAction {
-
-  private final int DEBUFF_AMOUNT;
+  private final int splashDamageAmount;
   private final AbstractPlayer p;
   private DamageInfo info;
 
-  public HaymakerSplashAction(AbstractPlayer p, AbstractCreature target, DamageInfo info, int debuffAmount) {
+  public HaymakerSplashAction(AbstractPlayer p, AbstractCreature target, DamageInfo info, int splashDamageAmount) {
     this.setValues(target, info);
     this.actionType = ActionType.DEBUFF;
     this.attackEffect = AttackEffect.BLUNT_HEAVY;
+    this.damageType = DamageInfo.DamageType.NORMAL;
     this.duration = 0.1F;
     this.info = info;
     this.p = p;
-    this.DEBUFF_AMOUNT = debuffAmount;
+    this.splashDamageAmount = splashDamageAmount;
   }
 
   @Override
@@ -40,20 +41,8 @@ public class HaymakerSplashAction extends AbstractGameAction {
 
       if ((((AbstractMonster) this.target).isDying || this.target.currentHealth <= 0)
           && !this.target.halfDead) {
-
-        AbstractDungeon.getMonsters().monsters.stream()
-          .filter(mo -> !mo.isDeadOrEscaped())
-          .forEach(mo -> {
-              AbstractDungeon.actionManager.addToBottom(
-                new ApplyPowerAction(
-                  mo, this.p, new VulnerablePower(mo, this.DEBUFF_AMOUNT, false),
-                  this.DEBUFF_AMOUNT, true, AbstractGameAction.AttackEffect.NONE));
-
-            AbstractDungeon.actionManager.addToBottom(
-                new ApplyPowerAction(
-                    mo, this.p, new WeakPower(mo, this.DEBUFF_AMOUNT, false),
-                    this.DEBUFF_AMOUNT, true, AbstractGameAction.AttackEffect.NONE));
-          });
+        AbstractDungeon.actionManager.addToBottom(
+            new DamageAllEnemiesAction(this.p, DamageInfo.createDamageMatrix(this.splashDamageAmount, true), this.damageType, this.attackEffect));
       }
 
       if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {

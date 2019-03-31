@@ -38,7 +38,7 @@ public class PlantCornPower extends AbstractCropPower {
 
   @Override
   public void updateDescription() {
-    this.description = DESCRIPTIONS[0];
+    this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0];
   }
 
   //TODO: AbstractCard should be an AbstractHarvestCard, with harvestAmount, harvestEffect, etc.

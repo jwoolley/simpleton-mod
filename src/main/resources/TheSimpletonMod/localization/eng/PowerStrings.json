@@ -89,30 +89,39 @@
       " #yBleed."
     ]
   },
+
+  "TheSimpletonMod:AbstractCropPower": {
+    "NAME": "AbstractCrop",
+    "DESCRIPTIONS": [
+      "#yCrop. NL #yPassive: At the start of turn, if this has more than #b",
+      " stacks, harvest 1 stack."
+    ]
+  },
+
   "TheSimpletonMod:PlantOnionPower": {
     "NAME": "Onions",
     "DESCRIPTIONS": [
-      "#yCrop. Apply #b",
-      " #yWeak to ALL enemies for each stack #gharvested."
+      "#yHarvest: Apply #b",
+      " #yWeak to ALL enemies for each stack harvested."
     ]
   },
   "TheSimpletonMod:PlantPotatoPower": {
     "NAME": "Potatoes",
     "DESCRIPTIONS": [
-      "#yCrop. #gHarvest to add a #ySpud to your hand per stack harvested."
+      "#yHarvest: Add a #ySpud to your hand per stack harvested."
     ]
   },
   "TheSimpletonMod:PlantSpinachPower": {
     "NAME": "Spinach",
     "DESCRIPTIONS": [
-      "#yCrop. Gain #b",
-      " #yStrength for each stack #gharvested."
+      "#yHarvest: Gain #b",
+      " #yStrength for each stack harvested."
     ]
   },
   "TheSimpletonMod:PlantTurnipPower": {
     "NAME": "Turnips",
     "DESCRIPTIONS": [
-      "#yCrop. #gHarvest to convert all stacks into an attack card that deals increased damage for each stack harvested."
+      "#yHarvest: Convert all stacks into an attack card that deals increased damage for each stack harvested."
     ]
   },
   "TheSimpletonMod:SpitefulPlanPower": {

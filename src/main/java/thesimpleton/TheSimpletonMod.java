@@ -171,7 +171,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         // Skill (38)
         BaseMod.addCard(new CropRotation());
         BaseMod.addCard(new OnionBloom());
-        BaseMod.addCard(new SoilCommunion());
+        BaseMod.addCard(new Aerate());
 
         // Power (11)
         BaseMod.addCard(new Biorefinement());
@@ -224,6 +224,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receiveEditRelics() {
+        BaseMod.addRelicToCustomPool(new RedolentSoil(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new TheHarvester(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new SpudOfTheMartyr(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new BlackMagicAdvanced(), AbstractCardEnum.THE_SIMPLETON_BLUE);

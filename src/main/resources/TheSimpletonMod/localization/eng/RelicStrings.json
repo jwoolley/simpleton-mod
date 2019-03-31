@@ -87,8 +87,17 @@
       " #yBleed to ALL enemies."
     ]
   },
+
   "TheSimpletonMod:TheHarvester": {
     "NAME": "The Harvester",
+    "FLAVOR": "It grows on you.",
+    "DESCRIPTIONS": [
+      "Whenever you gain a #yCrop, if you have more than 5 stacks, #yHarvest all stacks in excess of 5."
+    ]
+  },
+
+  "TheSimpletonMod:RedolentSoil": {
+    "NAME": "Redolent Soil",
     "FLAVOR": "It grows on you.",
     "DESCRIPTIONS": [
       "Whenever you shuffle your deck, each of your #yCrops with 4 or less stacks gains 1 additional stack."

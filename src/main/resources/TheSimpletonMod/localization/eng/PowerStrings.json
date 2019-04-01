@@ -22,12 +22,7 @@
       " random #rCurse cards into your hand."
     ]
   },
-  "TheSimpletonMod:PlantCornPower": {
-    "NAME": "Corn",
-    "DESCRIPTIONS": [
-      "#yCrop. #gHarvest to draw a card for each stack harvested."
-    ]
-  },
+
   "TheSimpletonMod:DemonicPactPower": {
     "NAME": "Demonic Pact",
     "DESCRIPTIONS": [
@@ -98,11 +93,25 @@
     ]
   },
 
+  "TheSimpletonMod:PlantChiliPower": {
+    "NAME": "Chilis",
+    "DESCRIPTIONS": [
+      "#yCrop. #gHarvest to deal #b",
+      " damage to ALL enemies for each stack harvested."
+    ]
+  },
+
+  "TheSimpletonMod:PlantCornPower": {
+    "NAME": "Corn",
+    "DESCRIPTIONS": [
+      "#yCrop. #gHarvest to draw a card for each stack harvested."
+    ]
+  },
+
   "TheSimpletonMod:PlantOnionPower": {
     "NAME": "Onions",
     "DESCRIPTIONS": [
-      "#yHarvest: Apply #b",
-      " #yWeak to ALL enemies for each stack harvested."
+      "#yHarvest: Apply 1 Weak to a random enemy for each stack harvested."
     ]
   },
   "TheSimpletonMod:PlantPotatoPower": {

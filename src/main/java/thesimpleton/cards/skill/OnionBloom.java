@@ -38,6 +38,7 @@ public class OnionBloom extends CustomCard {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = ONION_STACKS;
     this.mustDiscard = true;
+    this.isInnate = true;
     this.exhaust = true;
   }
 
@@ -63,7 +64,7 @@ public class OnionBloom extends CustomCard {
     if (!this.upgraded) {
       this.upgradeName();
       // this.mustDiscard = false;
-      this.isInnate = true;
+      this.exhaust = false;
       this.rawDescription = UPGRADE_DESCRIPTION;
       initializeDescription();
     }

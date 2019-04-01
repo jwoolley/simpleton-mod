@@ -36,7 +36,6 @@ SpudOfTheMartyr extends CustomRelic {
     @Override
     public void atBattleStart() {
         final AbstractPlayer p = AbstractDungeon.player;
-
         this.flash();
         AbstractDungeon.actionManager.addToBottom(
             new ApplyPowerAction(p, p, new PlantPotatoPower(p, CROP_AMOUNT), CROP_AMOUNT));

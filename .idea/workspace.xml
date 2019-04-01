@@ -2,27 +2,303 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9bd6eee4-ee25-4e8c-af56-bec4bcc208a5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/ReapAndSowThresholdAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/RedolentSoil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/ShuffleTriggeredCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/crop/Chilis.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/StockTheCellar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/patches/EmptyDrawPileShufflePatchAfter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/patches/EmptyDrawPileShufflePatchBefore.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/patches/OtherShufflePatchAfter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/patches/OtherShufflePatchBefore.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantChiliPower.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/TheSimpletonMod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/TheSimpletonMod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/HaymakerSplashAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/HaymakerSplashAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/TillingAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/TillingAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/CullingStrike.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/CullingStrike.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/ApplyBleedAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/ApplyBleedAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/BlessingInDisguiseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/BlessingInDisguiseAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/DemonSwordAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/DemonSwordAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/GrudgeAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/GrudgeAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/HarvestSoulAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/HarvestSoulAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/MangleAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/MangleAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/ManuallyActivateBleedAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/ManuallyActivateBleedAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/NeurastheniaAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/NeurastheniaAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/PrepareRitualAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/PrepareRitualAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/RavingStaffAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/RavingStaffAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/RavingStaffHitAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/RavingStaffHitAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/ReduceCostInHandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/ReduceCostInHandAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/ReleasedKnowledgeAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/ReleasedKnowledgeAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/SoulCrushAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/SoulCrushAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/TillingAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/CropDiversityAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/UltimatePainAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/UltimatePainAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/SimpletonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/SimpletonUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/AbyssShockwave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/AbyssShockwave.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/CullingStrike.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/CullingStrike.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/CursedBlade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/CursedBlade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/CursedBoomerang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/CursedBoomerang.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/CursedMace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/CursedMace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/CursedRelics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/CursedRelics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/CursedShiv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/CursedShiv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/CursedStaff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/CursedStaff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/DemonSword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/DemonSword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/FuryStrike.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/FuryStrike.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/Haymaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/Haymaker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/ReapAndSow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/ReapAndSow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/SoilCommunion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Aerate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Tilling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Tilling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/ManaBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/ManaBullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/Mangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/Mangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/RavingStaff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/RavingStaff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/ShockAndAwe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/ShockAndAwe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/SoulCrush.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/SoulCrush.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/SoulReap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/SoulReap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/SpitefulStrike.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/SpitefulStrike.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/SpudMissile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/SpudMissile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/Stigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/Stigma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/StingEye.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/StingEye.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/Strike_TheSimpleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/Strike_TheSimpleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/StunningStrike.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/StunningStrike.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/SurpriseAttack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/SurpriseAttack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/TacticalStrike.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/TacticalStrike.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/VitalStrike.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/VitalStrike.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/Wield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/Wield.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/Biorefinement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/Biorefinement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/CollectTribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/unused/CollectTribute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/DemonicPact.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/unused/DemonicPact.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/EmpowerCircles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/unused/EmpowerCircles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/HellfireBreathing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/unused/HellfireBreathing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/HellsGateOpen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/unused/HellsGateOpen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/Hemoplague.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/unused/Hemoplague.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/LuckyCharm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/unused/LuckyCharm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/ManaCirculation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/unused/ManaCirculation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/OutForBlood.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/unused/OutForBlood.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/SpitefulPlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/unused/SpitefulPlan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/ToughSkin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/ToughSkin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/VoidForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/unused/VoidForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/AbstractCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/AbstractCircle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/AntiAging.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/AntiAging.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/AshesToAshes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/AshesToAshes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/BlessingInDisguise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/BlessingInDisguise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/BloodBarrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/BloodBarrier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CircleOfAbyss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/CircleOfAbyss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CircleOfAmplification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/CircleOfAmplification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CircleOfBlood.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/CircleOfBlood.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CircleOfCorruption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/CircleOfCorruption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CircleOfFlame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/CircleOfFlame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CircleOfFocus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/CircleOfFocus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CircleOfWindfury.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/CircleOfWindfury.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CleanUpWorkshop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/CleanUpWorkshop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CursedAmulet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/CursedAmulet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CursedArmor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/CursedArmor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CursedSpellbook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/CursedSpellbook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/DarkBarrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/DarkBarrier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/DoubleShield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/DoubleShield.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Evocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/Evocation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/FleshFromBone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/FleshFromBone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/ForbiddenAlchemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/ForbiddenAlchemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Grudge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/Grudge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Harvest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Harvest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/NeowsMight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/NeowsMight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Neurasthenia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/Neurasthenia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Obscuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/Obscuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/OnionBloom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/OnionBloom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/ParallelWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/ParallelWorld.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/PrepareRitual.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/PrepareRitual.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/RapidMovement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/RapidMovement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/ReleasedKnowledge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/ReleasedKnowledge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/ReleasedStrength.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/ReleasedStrength.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/RootOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/RootOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/SaltUponWound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/SaltUponWound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/SmokeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/SmokeScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/SpitefulPray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/SpitefulPray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/SpreadPlague.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/SpreadPlague.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Stretching.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/Stretching.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Tilling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CropDiversity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Torture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/Torture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/TroublousMinions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/TroublousMinions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/UltimatePain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/UltimatePain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/WearCloak.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/WearCloak.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/characters/TheSimpletonCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/characters/TheSimpletonCharacter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/enums/TheSimpletonCharEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/enums/TheSimpletonCharEnum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractTheSimpletonPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractTheSimpletonPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantCornPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantCornPower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/BleedPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/BleedPower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/CollectTributePower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/CollectTributePower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/DemonicPactPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/DemonicPactPower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/EmpowerCirclesPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/EmpowerCirclesPower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/HellfireBreathingPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/HellfireBreathingPower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/HellsGateOpenPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/HellsGateOpenPower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/HemoplaguePower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/HemoplaguePower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/LuckyCharmPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/LuckyCharmPower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/ManaCirculationPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/ManaCirculationPower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/OutForBloodPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/OutForBloodPower.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantOnionPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantOnionPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantPotatoPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantPotatoPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantSpinachPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantSpinachPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantTurnipPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantTurnipPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/TheHarvester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/TheHarvester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/soilcommunion.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/aerate.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/SpitefulPlanPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/SpitefulPlanPower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/VoidFormPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/VoidFormPower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/BlackMagicAdvanced.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/BlackMagicAdvanced.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/BloodyHarpoon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/BloodyHarpoon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/CrystalBall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/CrystalBall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/DemonicMark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/DemonicMark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/FourLeafCloverCharm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/FourLeafCloverCharm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/MagicCandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/MagicCandle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/OminousMark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/OminousMark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/PinkPellets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/PinkPellets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/RedolentSoil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/PungentSoil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/SoulVessel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/SoulVessel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/SpudOfTheMartyr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/SpudOfTheMartyr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/Tack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/Tack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/badge.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/badge.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/abyssshockwave.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/abyssshockwave_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/antiaging.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/antiaging_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/ashestoashes.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/ashestoashes_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/blessingindisguise.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/blessingindisguise_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/bloodbarrier.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/bloodbarrier_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/circleofabyss.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/circleofabyss_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/circleofamplification.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/circleofamplification_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/circleofblood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/circleofblood_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/circleofcorruption.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/circleofcorruption_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/circleofflame.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/circleofflame_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/circleoffocus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/circleoffocus_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/circleofwindfury.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/circleofwindfury_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cleanupworkshop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cleanupworkshop_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/collecttribute.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/collecttribute_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedamulet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedamulet_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedarmor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedarmor_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedblade.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedblade_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedboomerang.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedboomerang_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedmace.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedmace_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedrelics.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedrelics_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedshiv.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedshiv_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedspellbook.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedspellbook_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedstaff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cursedstaff_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/darkbarrier.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/darkbarrier_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/defend.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/defend.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/defend_p.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/defend_p.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/demonicpact.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/demonicpact_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/demonsword.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/demonsword_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/doubleshield.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/doubleshield_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/dregs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/dregs_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/empowercircles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/empowercircles_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/evocation.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/evocation_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/fleshfrombone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/fleshfrombone_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/grudge.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/grudge_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/hellfirebreathing.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/hellfirebreathing_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/hellsgateopen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/hellsgateopen_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/hemoplague.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/hemoplague_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/luckycharm.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/luckycharm_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/manabullet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/manabullet_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/manacirculation.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/manacirculation_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/mangle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/mangle_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/neowsmight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/neowsmight_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/neurasthenia.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/neurasthenia_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/obscuration.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/obscuration_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/outforblood.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/outforblood_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/parallelworld.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/parallelworld_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/prepareritual.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/prepareritual_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/rapidmovement.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/rapidmovement_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/ravingstaff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/ravingstaff_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/releasedknowledge.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/releasedknowledge_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/releasedstrength.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/releasedstrength_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/saltuponwound.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/saltuponwound_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/shockandawe.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/shockandawe_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/smokescreen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/smokescreen_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/soulcrush.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/soulcrush_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/soulreap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/soulreap_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/spitefulplan.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/spitefulplan_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/spitefulpray.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/spitefulpray_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/spitefulstrike.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/spitefulstrike_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/spreadplague.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/spreadplague_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/stigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/stigma_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/stingeye.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/stingeye_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/stretching.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/stretching_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/stunningstrike.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/stunningstrike_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/surpriseattack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/surpriseattack_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/tacticalstrike.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/tacticalstrike_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/tilling.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cropdiversity.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/tilling_p.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/cropdiversity_p.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/torture.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/torture_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/troublousminions.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/troublousminions_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/ultimatepain.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/ultimatepain_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/vitalstrike.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/vitalstrike_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/voidform.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/voidform_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/wearcloak.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/wearcloak_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/wield.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/wield_p.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/char/shoulder.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/char/shoulder.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/char/shoulder2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/char/shoulder2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/char/thesimpleton.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/char/thesimpleton.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/charSelect/portrait.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/charSelect/portrait.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/farmers-field-mill-on-agricultural-260nw-405562774.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/relics/redolentsoil.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/relics/pungentsoil.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/relics/redolentsoil_large.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/relics/pungentsoil_large.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/relics/redolentsoil_outline.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/relics/pungentsoil_outline.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/relics/spudofthemartyr.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/relics/spudofthemartyr.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/relics/spudofthemartyr_large.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/relics/spudofthemartyr_large.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/relics/spudofthemartyr_outline.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/relics/spudofthemartyr_outline.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CardStrings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CardStrings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/KeywordStrings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/KeywordStrings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/PowerStrings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/PowerStrings.json" afterDir="false" />
@@ -37,15 +313,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DockManager">
-    <window id="1">
+    <window id="3">
       <content type="file-editors">
         <state>
           <leaf>
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CardStrings.json">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="373">
-                    <caret line="204" column="40" selection-start-line="204" selection-start-column="40" selection-end-line="204" selection-end-column="40" />
+                  <state relative-caret-position="392">
+                    <caret line="432" column="32" selection-start-line="432" selection-start-column="32" selection-end-line="432" selection-end-column="32" />
                   </state>
                 </provider>
               </entry>
@@ -62,91 +338,71 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/TheSimpletonMod.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="909">
+              <caret line="301" column="61" selection-start-line="301" selection-start-column="61" selection-end-line="301" selection-end-column="61" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#10376#10377#0" expanded="true" />
+                <element signature="e#10451#10452#0" expanded="true" />
+                <element signature="e#11030#11031#0" expanded="true" />
+                <element signature="e#11105#11106#0" expanded="true" />
+                <element signature="e#11157#11158#0" expanded="true" />
+                <element signature="e#11212#11213#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/patches/OtherShufflePatchBefore.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#608#609#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/patches/OtherShufflePatchAfter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#402#403#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/patches/EmptyDrawPileShufflePatchBefore.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#456#457#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Tilling.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/patches/EmptyDrawPileShufflePatchAfter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/Haymaker.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="50" column="29" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/actions/HaymakerSplashAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/CullingStrike.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CircleOfFlame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="47" selection-start-line="47" selection-end-line="50" selection-end-column="103" />
+            <state relative-caret-position="240">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/CursedBlade.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/cards/AbstractCard.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="42" column="15" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/actions/common/DamageAllEnemiesAction.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/HellfireBreathingPower.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="45" column="88" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="88" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#441#442#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -164,36 +420,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>descri</find>
-      <find>description</find>
-      <find>powerStrings</find>
-      <find>tickDuration</find>
-      <find>MakeTempCardInDiscardAction</find>
-      <find>MakeTempCard</find>
-      <find>maketemp</find>
-      <find>duration</find>
+      <find>theSimpletonCharacter</find>
+      <find>patch</find>
+      <find>join</find>
+      <find>Color</find>
+      <find>grows on</find>
+      <find>shuffle</find>
+      <find>thesimpletonmod.logger</find>
       <find>logger</find>
-      <find>reapandsow</find>
-      <find>flash</find>
-      <find>TheHarvester</find>
-      <find>harvest</find>
-      <find>SoilCommunion</find>
-      <find>soilcomm</find>
-      <find>soil</find>
-      <find>soilc</find>
-      <find>reapands</find>
-      <find>UPGRADE_DEBUFF_AMOUNT</find>
-      <find>tillingaction</find>
-      <find>this.basem</find>
-      <find>damageallene</find>
-      <find>isPureDamage</find>
-      <find>createD</find>
-      <find>damageallEne</find>
-      <find>DamageAllEnemiesAction</find>
-      <find>Haymaker</find>
-      <find>theHarvester</find>
-      <find>pl</find>
-      <find>harv</find>
+      <find>handleE</find>
+      <find>logger =</find>
+      <find>handle</find>
+      <find>handleOtherShuffleBefore</find>
+      <find>public static void handleOtherShuffleBefore</find>
+      <find>Empty</find>
+      <find>pref</find>
+      <find>handleEmptyDeckShuffle</find>
+      <find>masterDeck</find>
+      <find>masterDec</find>
+      <find>master</find>
+      <find>handleOtherShuffle</find>
+      <find>harvestedthis</find>
+      <find>log</find>
+      <find>harvestedThisTurn</find>
+      <find>hasHarvestedThisTurn</find>
+      <find>precombatTriggers</find>
+      <find>applyEnd</find>
+      <find>dagger_</find>
+      <find>triggerShuffledCardsPostShuffle</find>
+      <find>emptydeckshuffleaction</find>
+      <find>drawPile</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -246,57 +502,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/BiorefinementPower.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/TheSimpletonCardTags.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/Fertilaser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/OnionBloom.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CropRotation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/crop/Spinach.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/crop/Turnips.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/crop/Potatoes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/crop/Onions.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/crop/AbstractCropPowerCard.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/AbstractHarvestCard.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/ToughSkinPower.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/ToughSkin.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/utilities/Trigger.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/utilities/TriggerManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/CurseUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/SimpletonUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/crop/Corn.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/ModTheSpire.json" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CharacterStrings.json" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/GiantTurnip.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Harvest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/RootDown.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/RootOut.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/relics/RedolentSoil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/TheSimpletonMod.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/characters/TheSimpletonCharacter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractTheSimpletonPower.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/relics/TheHarvester.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantPotatoPower.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantOnionPower.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantTurnipPower.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantSpinachPower.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantCornPower.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/actions/ReapAndSowAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/ReapAndSow.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/PowerStrings.json" />
-        <option value="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/KeywordStrings.json" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/SoilCommunion.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Aerate.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/RelicStrings.json" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/actions/ReapAndSowThresholdAction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/actions/TillingAction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Tilling.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/actions/HaymakerSplashAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/CullingStrike.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantChiliPower.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/crop/Chilis.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/PowerStrings.json" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantOnionPower.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Harvest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/OnionBloom.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Defend_TheSimpleton.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/Strike_TheSimpleton.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/Haymaker.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/SpudMissile.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/KeywordStrings.json" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Tilling.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CropDiversity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/actions/TillingAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/relics/PungentSoil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/relics/SpudOfTheMartyr.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/RelicStrings.json" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/SpitefulPlanPower.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/enums/TheSimpletonCharEnum.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/actions/CropDiversityAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/Biorefinement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/AbstractShuffleTriggeredCard.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/ShuffleTriggeredCard.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/patches/ShufflePatch.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/patches/ShufflePatch_Update.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/patches/ShufflePatch_Trigger.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/patches/ShuffleBeforePatch.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/patches/ShuffleAfterPatch.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/patches/EmptyDeckShufflePatch.java" />
         <option value="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CardStrings.json" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/StockTheCellar.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/characters/TheSimpletonCharacter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/CullingStrike.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/patches/OtherShuffleBeforePatch.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/patches/EmptyDrawShuffleBeforePatch.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/patches/OtherShuffleAfterPatch.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/patches/EmptyDrawShufflePatchBefore.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/patches/EmptyDrawShufflePatchAfter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/patches/OtherShufflePatchAfter_CardGroup.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/patches/OtherShufflePatchBefore.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/patches/OtherShufflePatchAfter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/patches/EmptyDrawPileShufflePatchAfter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/patches/EmptyDrawPileShufflePatchBefore.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/TheSimpletonMod.java" />
       </list>
     </option>
   </component>
@@ -329,8 +585,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="66" />
-    <option name="y" value="-8" />
+    <option name="x" value="-8" />
+    <option name="y" value="-2" />
     <option name="width" value="1815" />
     <option name="height" value="1166" />
   </component>
@@ -401,34 +657,9 @@
               <item name="thesimpleton" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TheSimpleton" type="b2602c69:ProjectViewProjectNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="thesimpleton" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="TheSimpletonMod" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TheSimpleton" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesimpleton" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="TheSimpletonMod" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TheSimpleton" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesimpleton" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="TheSimpletonMod" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
-              <item name="cards" type="462c0819:PsiDirectoryNode" />
+              <item name="patches" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TheSimpleton" type="b2602c69:ProjectViewProjectNode" />
@@ -438,6 +669,51 @@
               <item name="TheSimpleton" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
               <item name="Maven: basemod:basemod:5.12.1" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="TheSimpleton" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.megacrit.cardcrawl:slaythespire:016" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="TheSimpleton" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.megacrit.cardcrawl:slaythespire:016" type="70bed36:NamedLibraryElementNode" />
+              <item name="desktop-1.0.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TheSimpleton" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.megacrit.cardcrawl:slaythespire:016" type="70bed36:NamedLibraryElementNode" />
+              <item name="desktop-1.0.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TheSimpleton" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.megacrit.cardcrawl:slaythespire:016" type="70bed36:NamedLibraryElementNode" />
+              <item name="desktop-1.0.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cardcrawl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TheSimpleton" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.megacrit.cardcrawl:slaythespire:016" type="70bed36:NamedLibraryElementNode" />
+              <item name="desktop-1.0.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cardcrawl" type="462c0819:PsiDirectoryNode" />
+              <item name="actions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TheSimpleton" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.megacrit.cardcrawl:slaythespire:016" type="70bed36:NamedLibraryElementNode" />
+              <item name="desktop-1.0.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cardcrawl" type="462c0819:PsiDirectoryNode" />
+              <item name="actions" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -577,15 +853,15 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.1748401" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.21321961" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info id="Learn" order="7" weight="0.3336887" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.13114753" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5010661" side_tool="true" weight="0.16007714" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.19402985" side_tool="true" weight="0.2979749" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.22950819" />
       <window_info anchor="bottom" id="Message" order="3" />
-      <window_info anchor="bottom" id="Find" order="4" weight="0.24011572" />
-      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.4989339" visible="true" weight="0.18611379" />
+      <window_info anchor="bottom" id="Find" order="4" sideWeight="0.49840087" weight="0.17550626" />
+      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.80597013" visible="true" weight="0.1243973" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -594,7 +870,7 @@
       <window_info anchor="right" id="Theme Preview" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Palette&#9;" order="2" />
-      <window_info active="true" anchor="right" id="Maven" order="3" visible="true" weight="0.12846482" />
+      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.12846482" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
@@ -606,15 +882,15 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.13326226" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.20628998" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info id="Learn" order="7" weight="0.3336887" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.13114753" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5010661" side_tool="true" weight="0.16007714" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.19402985" side_tool="true" weight="0.2979749" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.22950819" />
       <window_info anchor="bottom" id="Message" order="3" />
-      <window_info anchor="bottom" id="Find" order="4" weight="0.24011572" />
-      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.4989339" visible="true" weight="0.18611379" />
+      <window_info anchor="bottom" id="Find" order="4" sideWeight="0.49840087" visible="true" weight="0.17550626" />
+      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.80597013" weight="0.1243973" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -623,7 +899,7 @@
       <window_info anchor="right" id="Theme Preview" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Palette&#9;" order="2" />
-      <window_info active="true" anchor="right" id="Maven" order="3" visible="true" weight="0.12846482" />
+      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.12846482" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
@@ -631,410 +907,412 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/utilities/Trigger.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/DemonicPactPower.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
+        <state relative-caret-position="-7">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/utilities/TriggerManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/BleedPower.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <element signature="e#160#161#0" expanded="true" />
-            <element signature="e#202#203#0" expanded="true" />
-            <element signature="e#243#244#0" expanded="true" />
-            <element signature="e#266#267#0" expanded="true" />
-            <element signature="e#325#326#0" expanded="true" />
-            <element signature="e#359#360#0" expanded="true" />
-            <element signature="e#386#387#0" expanded="true" />
-            <element signature="e#414#415#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-7">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/characters/AbstractPlayer.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/ManaCirculationPower.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="163" column="17" selection-start-line="163" selection-start-column="17" selection-end-line="163" selection-end-column="17" />
+        <state relative-caret-position="-7">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/SimpletonUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/LuckyCharmPower.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="820">
-          <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
-          <folding>
-            <element signature="e#2020#2021#0" expanded="true" />
-            <element signature="e#2059#2060#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-7">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/CursedMace.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="46" selection-start-line="46" selection-end-line="48" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/crop/Corn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="33" column="35" lean-forward="true" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/vfx/combat/ShockWaveEffect.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/vfx/combat/FlyingDaggerEffect.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="6" column="31" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/vfx/combat/AdditiveSlashImpactEffect.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="12" column="34" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/vfx/combat/WhirlwindEffect.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="6" column="28" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/ModTheSpire.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="42" lean-forward="true" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1340">
-          <caret line="67" column="79" selection-start-line="67" selection-start-column="79" selection-end-line="67" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CharacterStrings.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/rootout.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Harvest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/RootDown.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/RootOut.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/curse/Dregs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="14" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/characters/TheSimpletonCharacter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="108" column="25" lean-forward="true" selection-start-line="108" selection-start-column="25" selection-end-line="108" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/TheSimpletonMod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="226" column="94" selection-start-line="226" selection-start-column="94" selection-end-line="226" selection-end-column="94" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantOnionPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="772">
-          <caret line="45" column="58" selection-start-line="45" selection-start-column="58" selection-end-line="45" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantTurnipPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="43" column="58" selection-start-line="43" selection-start-column="58" selection-end-line="43" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantSpinachPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="46" column="58" selection-start-line="46" selection-start-column="58" selection-end-line="46" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantCornPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="48" column="3" lean-forward="true" selection-start-line="48" selection-start-column="3" selection-end-line="48" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/GiantTurnip.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="48" column="3" lean-forward="true" selection-start-line="48" selection-start-column="3" selection-end-line="48" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractTheSimpletonPower.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/unused/SpitefulPlanPower.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
+          <caret line="11" column="64" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/SoulVessel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/PinkPellets.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/BlackMagicAdvanced.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/CrystalBall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/Tack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantPotatoPower.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/MagicCandle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="800">
-          <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-7">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/VoidForm.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/BloodyHarpoon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+        <state relative-caret-position="-7">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/actions/GrudgeAction.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/FourLeafCloverCharm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="39" selection-start-line="39" selection-end-line="39" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-7">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/ReapAndSow.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/DemonicMark.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2542#2543#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="20">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/TheHarvester.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/ShockAndAwe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="33" column="11" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/UIStrings.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1060">
+          <caret line="53" column="19" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/unused/OminousMark.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="34" column="53" lean-forward="true" selection-start-line="34" selection-start-column="53" selection-end-line="34" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/enums/TheSimpletonCharEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/OnionBloom.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
-          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+          <caret line="16" column="13" selection-end-line="78" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/SpitefulPlanPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/PowerStrings.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="108" column="23" lean-forward="true" selection-start-line="108" selection-start-column="23" selection-end-line="108" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/KeywordStrings.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="28" column="12" lean-forward="true" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Aerate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/actions/ReapAndSowThresholdAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/RedolentSoil.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/PungentSoil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
-          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+          <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java">
+    <entry file="jar://$PROJECT_DIR$/../lib/BaseMod.jar!/basemod/abstracts/CustomRelic.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="148" column="29" lean-forward="true" selection-start-line="148" selection-start-column="29" selection-end-line="148" selection-end-column="29" />
+        <state relative-caret-position="120">
+          <caret line="6" column="77" selection-start-line="6" selection-start-column="77" selection-end-line="6" selection-end-column="77" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#1264#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/actions/TillingAction.java">
+    <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/relics/AbstractRelic.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
+        <state relative-caret-position="207">
+          <caret line="158" column="23" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/CursedBlade.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/actions/CropDiversityAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="76">
+          <caret line="15" column="44" lean-forward="true" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/actions/AbstractGameAction.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="35" column="150" selection-start-line="35" selection-start-column="143" selection-end-line="35" selection-end-column="150" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/Biorefinement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="36" column="56" lean-forward="true" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../lib/BaseMod.jar!/basemod/abstracts/CustomCard.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="6" column="74" lean-forward="true" selection-start-line="6" selection-start-column="74" selection-end-line="6" selection-end-column="74" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/cards/AbstractCard.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="42" column="15" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="15" />
+        <state relative-caret-position="409">
+          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/actions/common/DamageAllEnemiesAction.class">
+    <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/characters/AbstractPlayer.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+        <state relative-caret-position="234">
+          <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/HellfireBreathingPower.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Aerate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="45" column="88" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="88" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="80">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CircleOfFlame.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/ShuffleTriggeredCard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="47" selection-start-line="47" selection-end-line="50" selection-end-column="103" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/CullingStrike.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/actions/HaymakerSplashAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="60">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/RelicStrings.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="661">
-          <caret line="94" column="69" selection-start-line="94" selection-start-column="69" selection-end-line="94" selection-end-column="69" />
+        <state relative-caret-position="1840">
+          <caret line="92" column="39" selection-start-line="92" selection-start-column="39" selection-end-line="92" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/Haymaker.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/patches/ShufflePatch_Update.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="50" column="29" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
+        <state relative-caret-position="200">
+          <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Tilling.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/patches/ShufflePatch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
+        <state relative-caret-position="340">
+          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/patches/EmptyDeckShufflePatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/RootOut.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="65" column="1" selection-start-line="65" selection-start-column="1" selection-end-line="65" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CardStrings.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="204" column="40" selection-start-line="204" selection-start-column="40" selection-end-line="204" selection-end-column="40" />
+        <state relative-caret-position="392">
+          <caret line="432" column="32" selection-start-line="432" selection-start-column="32" selection-end-line="432" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/StockTheCellar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="41" column="11" lean-forward="true" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/SimpletonUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="669">
+          <caret line="56" column="46" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="258" column="27" selection-start-line="258" selection-start-column="27" selection-end-line="258" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/characters/TheSimpletonCharacter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="218" lean-forward="true" selection-start-line="218" selection-end-line="218" />
+          <folding>
+            <element signature="e#8023#8024#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/CullingStrike.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="47" column="81" selection-start-line="47" selection-start-column="81" selection-end-line="47" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/actions/common/ShuffleAction.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/cards/CardGroup.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="8" column="72" selection-start-line="8" selection-start-column="72" selection-end-line="8" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/patches/OtherShufflePatchAfter_CardGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="66" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/actions/common/EmptyDeckShuffleAction.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#633#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/TheSimpletonMod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="909">
+          <caret line="301" column="61" selection-start-line="301" selection-start-column="61" selection-end-line="301" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#10376#10377#0" expanded="true" />
+            <element signature="e#10451#10452#0" expanded="true" />
+            <element signature="e#11030#11031#0" expanded="true" />
+            <element signature="e#11105#11106#0" expanded="true" />
+            <element signature="e#11157#11158#0" expanded="true" />
+            <element signature="e#11212#11213#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/patches/OtherShufflePatchBefore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#608#609#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/patches/OtherShufflePatchAfter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#402#403#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/patches/EmptyDrawPileShufflePatchBefore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#456#457#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/patches/EmptyDrawPileShufflePatchAfter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#441#442#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

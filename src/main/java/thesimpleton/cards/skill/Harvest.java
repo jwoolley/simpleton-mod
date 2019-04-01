@@ -22,8 +22,8 @@ public class Harvest extends AbstractHarvestCard {
   private static final AbstractCard.CardRarity RARITY = CardRarity.BASIC;
   private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
 
-  private static final int COST = 2;
-  private static final int UPGRADED_COST = 2;
+  private static final int COST = 1;
+  private static final int UPGRADED_COST = 1;
   private static final int BLOCK = 6;
   private static final int BLOCK_UPGRADE_BONUS = 2;
   private static final int HARVEST_AMOUNT = 3;

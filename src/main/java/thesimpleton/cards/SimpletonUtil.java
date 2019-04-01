@@ -1,7 +1,6 @@
 package thesimpleton.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -9,7 +8,7 @@ import thesimpleton.cards.attack.SpudMissile;
 import thesimpleton.cards.curse.Dregs;
 import thesimpleton.cards.skill.RootOut;
 import thesimpleton.powers.*;
-import thesimpleton.relics.FourLeafCloverCharm;
+import thesimpleton.relics.unused.FourLeafCloverCharm;
 
 import java.util.ArrayList;
 import java.util.Collections;

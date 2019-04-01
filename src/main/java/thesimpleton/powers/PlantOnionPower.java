@@ -43,7 +43,7 @@ public class PlantOnionPower extends AbstractCropPower {
 
   @Override
   public void updateDescription() {
-    this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0] + this.weakPerStack + DESCRIPTIONS[1];
+    this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0];
   }
 
   //TODO: AbstractCard should be an AbstractHarvestCard, with harvestAmount, harvestEffect, etc.

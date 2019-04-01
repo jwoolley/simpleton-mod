@@ -258,8 +258,8 @@
 
   "TheSimpletonMod:OnionBloom": {
     "NAME": "Onion Bloom",
-    "DESCRIPTION": "Gain !M! Onion. Draw a card. NL Discard a card. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Gain !M! Onion. Draw a card. NL Discard a card. NL Exhaust."
+    "DESCRIPTION": "Innate. Gain !M! Onion. Draw a card. NL Discard a card. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Gain !M! Onion. Draw a card. NL Discard a card."
   },
 
   "TheSimpletonMod:OutForBlood": {
@@ -355,7 +355,7 @@
   },
   "TheSimpletonMod:SpudMissile": {
     "NAME": "Spud",
-    "DESCRIPTION": "Deal !D! damage. NL Exhaust."
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Exhaust."
   },
   "TheSimpletonMod:Stigma": {
     "NAME": "Stigma",
@@ -386,8 +386,8 @@
     "DESCRIPTION": "Deal !D! damage. NL Next turn, draw !M! additional card.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Next turn, draw !M! additional cards."
   },
-  "TheSimpletonMod:Tilling": {
-    "NAME": "Tilling",
+  "TheSimpletonMod:CropDiversity": {
+    "NAME": "Crop Diversity",
     "DESCRIPTION": "Add 1 of !M! random Crop power cards to your hand. It costs 0 this turn. NL Exhaust."
   },
   "TheSimpletonMod:Torture": {
@@ -427,6 +427,14 @@
       " Unplayable card.)",
       " Unplayable cards.)"
     ]
+  },
+  "TheSimpletonMod:StockTheCellar": {
+    "NAME": "StockTheCellar",
+    "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Each time this is card shuffled into your draw pile, increase its Block by !M! for this combat."
+  },
+  "TheSimpletonMod:Chilis": {
+    "NAME": "Chilis",
+    "DESCRIPTION": "Gain !M! Chilis."
   },
   "TheSimpletonMod:Corn": {
     "NAME": "Corn",

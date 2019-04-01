@@ -33,6 +33,7 @@ public class SpudMissile extends CustomCard {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
     this.exhaust = true;
+    this.isEthereal = true;
     this.tags.add(TheSimpletonCardTags.CROP);
   }
 

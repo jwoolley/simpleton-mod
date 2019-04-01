@@ -67,7 +67,7 @@
     "NAMES": [
       "potato", "potatoes"
     ],
-    "DESCRIPTION": "#yCrop. Yields attack cards when harvested."
+    "DESCRIPTION": "#yCrop. Yields a 0-cost Spud attack card when harvested."
   },
 
   "TheSimpletonMod:RitualKeyword": {

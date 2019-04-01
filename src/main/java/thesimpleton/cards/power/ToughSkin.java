@@ -10,8 +10,6 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.BiorefinementPower;
-import thesimpleton.powers.OutForBloodPower;
 import thesimpleton.powers.ToughSkinPower;
 
 public class ToughSkin extends CustomCard {

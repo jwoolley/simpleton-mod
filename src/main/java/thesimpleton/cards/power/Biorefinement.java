@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.BiorefinementPower;
-import thesimpleton.powers.OutForBloodPower;
 
 public class Biorefinement extends CustomCard {
   public static final String ID = "TheSimpletonMod:Biorefinement";

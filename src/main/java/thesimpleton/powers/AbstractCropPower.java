@@ -162,12 +162,16 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     final PlantSpinachPower spinachPower = new PlantSpinachPower(p, numStacks);
     final PlantOnionPower onionPower = new PlantOnionPower(p, numStacks);
     final PlantTurnipPower turnipPower = new PlantTurnipPower(p, numStacks);
+    final PlantCornPower cornPower = new PlantCornPower(p, numStacks);
+    final PlantChiliPower chiliPower = new PlantChiliPower(p, numStacks);
 
     ArrayList<AbstractCropPower> referencePowers = new ArrayList<>();
     referencePowers.add(potatoPower);
     referencePowers.add(spinachPower);
     referencePowers.add(onionPower);
     referencePowers.add(turnipPower);
+    referencePowers.add(cornPower);
+    referencePowers.add(chiliPower);
 
     List<AbstractCropPower> filteredPowers = referencePowers.stream()
         .filter(predicate)

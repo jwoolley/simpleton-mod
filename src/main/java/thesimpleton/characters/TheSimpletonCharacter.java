@@ -16,14 +16,15 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.attack.Haymaker;
 import thesimpleton.cards.attack.Strike_TheSimpleton;
-import thesimpleton.cards.skill.CleanUpWorkshop;
+import thesimpleton.cards.skill.unused.CleanUpWorkshop;
 import thesimpleton.cards.skill.Defend_TheSimpleton;
 import thesimpleton.cards.skill.ReapAndSow;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
-import thesimpleton.relics.RedolentSoil;
+import thesimpleton.relics.PungentSoil;
 import thesimpleton.relics.SpudOfTheMartyr;
 import thesimpleton.relics.TheHarvester;
 import thesimpleton.utilities.Trigger;
@@ -95,7 +96,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
         ArrayList<String> retVal = new ArrayList<String>();
 
         retVal.add(SpudOfTheMartyr.ID);
-        retVal.add(RedolentSoil.ID);
+        retVal.add(PungentSoil.ID);
         retVal.add(TheHarvester.ID);
 
         /* for testing
@@ -199,24 +200,22 @@ public class TheSimpletonCharacter extends CustomPlayer {
     }
 
     @Override
-    public void applyPreCombatLogic() {
-        super.applyPreCombatLogic();
+    public void applyStartOfTurnCards() {
+        super.applyStartOfTurnCards();
+        TheSimpletonMod.logger.debug("Applying start of turn triggers");
         this.precombatTriggers.triggerAll();
     }
 
     @Override
     public void applyEndOfTurnTriggers() {
         super.applyEndOfTurnTriggers();
+        TheSimpletonMod.logger.debug("Applying end of turn triggers");
         this.endOfTurnTriggers.triggerAll();
     }
 
-    public void addPrecombatTrigger(Trigger trigger) {
-        this.precombatTriggers.addTrigger(trigger);
-    }
+    public void addPrecombatTrigger(Trigger trigger) { this.precombatTriggers.addTrigger(trigger);  }
 
-    public void addEndOfTurnTrigger(Trigger trigger) {
-        this.endOfTurnTriggers.addTrigger(trigger);
-    }
+    public void addEndOfTurnTrigger(Trigger trigger) { this.endOfTurnTriggers.addTrigger(trigger);  }
 
     @Override
     public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {

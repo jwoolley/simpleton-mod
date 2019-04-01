@@ -13,19 +13,24 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
+import thesimpleton.cards.attack.unused.CullingStrike;
 import thesimpleton.cards.power.*;
 import thesimpleton.cards.power.crop.*;
 import thesimpleton.cards.skill.*;
+import thesimpleton.cards.skill.unused.CleanUpWorkshop;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
@@ -35,6 +40,8 @@ import thesimpleton.relics.*;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 
 @SpireInitializer
@@ -90,7 +97,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     public static final Logger logger = LogManager.getLogger(TheSimpletonMod.class.getName());
 
-
     public TheSimpletonMod() {
         BaseMod.subscribe(this);
 
@@ -126,16 +132,20 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                 new ModLabel(descriptionString.TEXT[1], 350.0f, 700.0f, Color.LIME, modPanel, label -> {}));
 
         Arrays.stream(TheSimpletonCharEnum.Theme.values())
-                .forEach(theme ->
-                        modPanel.addUIElement(new ModLabeledToggleButton(
-                                CardCrawlGame.languagePack.getUIString(theme.toString()).TEXT[0],
-                                350.0f, 650.0f - 50.f * theme.ordinal(), Settings.CREAM_COLOR,
-                                FontHelper.charDescFont, currentTheme.isCurrentTheme(theme), modPanel,
-                                label -> {},
-                                button -> {
-                                    currentTheme.update(theme, button.enabled);
-                                    saveConfigData();
-                                })));
+                .filter(theme -> theme != TheSimpletonCharEnum.Theme.EXAMPLE_THEME)
+                .forEach(theme -> {
+                    logger.debug("Adding theme: " + theme);
+                    modPanel.addUIElement(new ModLabeledToggleButton(
+                        CardCrawlGame.languagePack.getUIString(theme.toString()).TEXT[0],
+                        350.0f, 650.0f - 50.f * theme.ordinal(), Settings.CREAM_COLOR,
+                        FontHelper.charDescFont, currentTheme.isCurrentTheme(theme), modPanel,
+                        label -> {},
+                        button -> {
+                            currentTheme.update(theme, button.enabled);
+                            saveConfigData();
+                        })
+                    );}
+                );
 
         BaseMod.registerModBadge(
                 badgeTexture, "The Hayseed", "jwoolley",
@@ -156,27 +166,30 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receiveEditCards() {
-        // Basic (4)
+        // Basic (5)
         BaseMod.addCard(new Strike_TheSimpleton());
         BaseMod.addCard(new Defend_TheSimpleton());
         BaseMod.addCard(new CleanUpWorkshop());
         BaseMod.addCard(new Haymaker());
         BaseMod.addCard(new ReapAndSow());
 
-        // Attack (22)
+        // Attack (3)
         BaseMod.addCard(new Fertilaser());
         BaseMod.addCard(new RootDown());
         BaseMod.addCard(new CullingStrike());
 
-        // Skill (38)
+        // Skill (3)
+        BaseMod.addCard(new Aerate());
         BaseMod.addCard(new CropRotation());
         BaseMod.addCard(new OnionBloom());
-        BaseMod.addCard(new Aerate());
+        BaseMod.addCard(new StockTheCellar());
 
-        // Power (11)
+
+        // Power (10)
         BaseMod.addCard(new Biorefinement());
-        BaseMod.addCard(new Tilling());
+        BaseMod.addCard(new CropDiversity());
         BaseMod.addCard(new ToughSkin());
+        BaseMod.addCard(new Chilis());
         BaseMod.addCard(new Corn());
         BaseMod.addCard(new Onions());
         BaseMod.addCard(new Potatoes());
@@ -189,54 +202,14 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        BaseMod.addCard(new Harvest());
 //        BaseMod.addCard(new RootOut());
 
-//        BaseMod.addCard(new FuryStrike());
-//        BaseMod.addCard(new Mangle());
-//        BaseMod.addCard(new RavingStaff());
-//        BaseMod.addCard(new SoulCrush());
-//        BaseMod.addCard(new SoulReap());
-//        BaseMod.addCard(new Stigma());
-//        BaseMod.addCard(new StunningStrike());
-//        BaseMod.addCard(new SurpriseAttack());
-//        BaseMod.addCard(new TacticalStrike());
-//        BaseMod.addCard(new VitalStrike());
-//
-//
-//        BaseMod.addCard(new BloodBarrier());
-//        BaseMod.addCard(new CircleOfAbyss());
-//        BaseMod.addCard(new CircleOfBlood());
-//        BaseMod.addCard(new CircleOfCorruption());
-//        BaseMod.addCard(new CircleOfFlame());
-//        BaseMod.addCard(new CircleOfFocus());
-//        BaseMod.addCard(new CircleOfWindfury());
-//        BaseMod.addCard(new DoubleShield());
-//        BaseMod.addCard(new NeowsMight());
-//        BaseMod.addCard(new Obscuration());
-//        BaseMod.addCard(new ParallelWorld());
-//        BaseMod.addCard(new SpreadPlague());
-//        BaseMod.addCard(new Stretching());
-//        BaseMod.addCard(new StingEye());
-
-
-
 //        // Curse
-//        BaseMod.addCard(new Dregs());
     }
 
     @Override
     public void receiveEditRelics() {
-        BaseMod.addRelicToCustomPool(new RedolentSoil(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new PungentSoil(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new TheHarvester(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new SpudOfTheMartyr(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new BlackMagicAdvanced(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new BloodyHarpoon(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new CrystalBall(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new DemonicMark(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new FourLeafCloverCharm(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new MagicCandle(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new PinkPellets(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new OminousMark(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new SoulVessel(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new Tack(), AbstractCardEnum.THE_SIMPLETON_BLUE);
     }
 
     @Override
@@ -273,6 +246,61 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    //TODO: introduce class to handle this
+
+    static List<AbstractCard> deckBeforeShuffle = new ArrayList<>();
+    private static List<AbstractCard> getDeckBeforeShuffle() {
+        List<AbstractCard> deckBefore = AbstractDungeon.player.drawPile.group;
+        return deckBefore;
+    }
+
+    public static void handleEmptyDrawShuffleBefore() {
+        deckBeforeShuffle = new ArrayList<>(getDeckBeforeShuffle());
+    }
+
+    public static void handleEmptyDrawShuffleAfter() {
+        handleEmptyDrawShuffleTriggeredCardsAfter();
+
+        // in this case, cards are shuffled back one-at-a-time into the deck, so we need to update the list each time
+        deckBeforeShuffle = new ArrayList<>(getDeckBeforeShuffle());
+    }
+
+    public static void handleOtherShuffleBefore() {
+        deckBeforeShuffle = new ArrayList<>(getDeckBeforeShuffle());
+    }
+
+    public static void handleOtherShuffleAfter() {
+        handleOtherShuffleTriggeredCardsAfter();
+    }
+
+    private static void handleEmptyDrawShuffleTriggeredCardsAfter() {
+        final List<AbstractCard> deckAfterShuffle = AbstractDungeon.player.drawPile.group;
+
+        List<AbstractCard> newlyShuffledCards = deckAfterShuffle.stream()
+            .filter(c -> !deckBeforeShuffle.contains(c))
+            .collect(Collectors.toList());
+
+        newlyShuffledCards.stream()
+            .filter(c -> c instanceof ShuffleTriggeredCard)
+            .forEach(c -> ((ShuffleTriggeredCard) c).willBeShuffledTrigger());
+    }
+
+    private static void handleOtherShuffleTriggeredCardsAfter() {
+        final List<AbstractCard> deckAfterShuffle = AbstractDungeon.player.drawPile.group;
+
+        List<AbstractCard> newlyShuffledCards = deckAfterShuffle.stream()
+            .filter(c -> !deckBeforeShuffle.contains(c))
+            .collect(Collectors.toList());
+
+        newlyShuffledCards.stream()
+            .filter(c -> c instanceof ShuffleTriggeredCard)
+            .forEach(c -> ((ShuffleTriggeredCard) c).willBeShuffledTrigger());
+    }
+
+    public static String listToString(List<AbstractCard> list) {
+        return list.stream().map(c -> c.name).collect(Collectors.joining(", "));
     }
 
     private void loadConfigData() {

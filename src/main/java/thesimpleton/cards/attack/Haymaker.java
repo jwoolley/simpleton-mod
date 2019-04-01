@@ -29,8 +29,8 @@ public class Haymaker extends CustomCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     private static final int COST = 2;
-    private static final int DAMAGE = 9;
-    private static final int UPGRADE_DAMAGE_AMOUNT = 5;
+    private static final int DAMAGE = 10;
+    private static final int UPGRADE_DAMAGE_AMOUNT = 4;
     private static final int SPLASH_DAMAGE_AMOUNT = 4;
     private static final int UPGRADE_SPLASH_DAMAGE_AMOUNT = 2;
 

@@ -7,17 +7,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.LoseStrengthPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.powers.AbstractCropPower;
 import thesimpleton.powers.PlantTurnipPower;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Optional;
 
 public class RootOut extends AbstractHarvestCard {

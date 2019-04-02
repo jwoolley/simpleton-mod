@@ -22,7 +22,6 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
 
   public static Map<CardRarity, Integer> CROP_RARITY_DISTRIBUTION;
 
-  private static TheSimpletonCharacter player = (TheSimpletonCharacter) AbstractDungeon.player;
   private static boolean IS_HARVEST_ALL = false;
   private static int AUTO_HARVEST_THRESHOLD = 5;
   private static int CROP_POWER_ID_COUNTER = 0;
@@ -71,9 +70,14 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     hasHarvestedThisTurn = true;
     logger.debug(this.name + ": harvested. Set hasHarvestedThisTurn");
 
-    if (player.hasPower(ToughSkinPower.POWER_ID)) {
-      ((ToughSkinPower)player.getPower(ToughSkinPower.POWER_ID)).applyPower(player);
+
+    if (getPlayer().hasPower(ToughSkinPower.POWER_ID)) {
+      ((ToughSkinPower) getPlayer().getPower(ToughSkinPower.POWER_ID)).applyPower(getPlayer());
     }
+  }
+
+  static TheSimpletonCharacter getPlayer() {
+    return (TheSimpletonCharacter) AbstractDungeon.player;
   }
 
   public void harvest(boolean all, int amount) {
@@ -81,11 +85,11 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   }
 
   public void atStartOfTurn() {
-    logger.debug("Checking for auto-harvest triggers (amount: " + this.amount + "; hasHarvester:  " + player.hasRelic(TheHarvester.ID)+ ")");
-    if (this.amount >= autoHarvestThreshold && player.hasRelic(TheHarvester.ID)) {
+    logger.debug("Checking for auto-harvest triggers (amount: " + this.amount + "; hasHarvester:  " +  getPlayer().hasRelic(TheHarvester.ID)+ ")");
+    if (this.amount >= autoHarvestThreshold &&  getPlayer().hasRelic(TheHarvester.ID)) {
       logger.debug("Triggering Harvester");
 
-      player.getRelic(TheHarvester.ID).flash();
+      getPlayer().getRelic(TheHarvester.ID).flash();
       this.flash();
       harvest(isHarvestAll, 1);
     } else { logger.debug("Not triggered"); }
@@ -259,7 +263,8 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
         hasHarvestedThisTurn = false;
       }
     };
-    player.addStartOfTurnTrigger(trigger);
+    getPlayer().addStartOfTurnTrigger(trigger);
+    getPlayer().addEndOfTurnTrigger(trigger);
   }
 
   // TODO: move shared functionality(e.g. harvest logic) to here

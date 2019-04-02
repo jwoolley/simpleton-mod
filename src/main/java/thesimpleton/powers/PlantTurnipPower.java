@@ -26,11 +26,11 @@ public class PlantTurnipPower extends AbstractCropPower {
   public static final String IMG = "plantturnip.png";
   private static final CardRarity cropRarity = CardRarity.UNCOMMON;
   private static final AbstractCropPowerCard powerCard = new Turnips();
-
   private static final boolean IS_HARVEST_ALL = true;
+  private static final int MINIMUM_STARTING_STACKS = 2;
 
   public PlantTurnipPower(AbstractCreature owner, int amount) {
-    super(IMG, owner, cropRarity, powerCard, amount, IS_HARVEST_ALL);
+    super(IMG, owner, cropRarity, powerCard, Math.min(amount, MINIMUM_STARTING_STACKS), IS_HARVEST_ALL);
 
     this.name = NAME;
     this.ID = POWER_ID;
@@ -41,7 +41,7 @@ public class PlantTurnipPower extends AbstractCropPower {
 
   @Override
   public void updateDescription() {
-    this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0];
+    this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0] + MINIMUM_STARTING_STACKS + DESCRIPTIONS[1];
   }
   static {
     powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);

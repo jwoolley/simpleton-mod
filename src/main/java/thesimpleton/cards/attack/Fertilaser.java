@@ -31,7 +31,7 @@ public class Fertilaser extends CustomCard {
   private static final CardTarget TARGET = CardTarget.ENEMY;
 
   private static final int COST = 2;
-  private static final int DAMAGE = 9;
+  private static final int DAMAGE = 11;
   private static final int UPGRADE_DAMAGE_AMOUNT = 3;
   private static final int CROP_INCREASE_AMOUNT = 1;
 

@@ -130,7 +130,8 @@
   "TheSimpletonMod:PlantTurnipPower": {
     "NAME": "Turnips",
     "DESCRIPTIONS": [
-      "#yHarvest: Convert all stacks into an attack card that deals increased damage for each stack harvested."
+      "#yHarvest: Convert all stacks into an attack card that deals increased damage for each stack harvested. NL Starts with a minimum of ",
+      "  stacks."
     ]
   },
   "TheSimpletonMod:SpitefulPlanPower": {

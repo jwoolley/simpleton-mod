@@ -28,7 +28,7 @@ public class StockTheCellar extends CustomCard implements ShuffleTriggeredCard  
 
   private static final int COST = 1;
   private static final int BLOCK_AMOUNT = 6;
-  private static final int BLOCK_UPGRADE_AMOUNT = 0;
+  private static final int BLOCK_UPGRADE_AMOUNT = 2;
   private static final int BLOCK_PER_SHUFFLE_AMOUNT = 2;
   private static final int BLOCK_PER_SHUFFLE_UPGRADE_AMOUNT = 1;
 

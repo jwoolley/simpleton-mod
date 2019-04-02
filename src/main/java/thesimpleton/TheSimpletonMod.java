@@ -152,9 +152,9 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                 badgeTexture, "The Hayseed", "jwoolley",
                 "Adds a new character to the game - The Hayseed", modPanel);
 
-        BaseMod.addPotion(
-                DregsPotion.class, Color.BLACK, Color.DARK_GRAY, Color.GRAY, DregsPotion.POTION_ID,
-                TheSimpletonCharEnum.THE_SIMPLETON);
+//        BaseMod.addPotion(
+//                DregsPotion.class, Color.BLACK, Color.DARK_GRAY, Color.GRAY, DregsPotion.POTION_ID,
+//                TheSimpletonCharEnum.THE_SIMPLETON);
     }
 
     @Override
@@ -183,8 +183,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new Aerate());
         BaseMod.addCard(new CropRotation());
         BaseMod.addCard(new OnionBloom());
+        BaseMod.addCard(new Rototilling());
         BaseMod.addCard(new StockTheCellar());
-
 
         // Power (10)
         BaseMod.addCard(new Biorefinement());

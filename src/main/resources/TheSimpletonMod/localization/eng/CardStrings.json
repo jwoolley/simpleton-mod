@@ -428,8 +428,13 @@
       " Unplayable cards.)"
     ]
   },
+
+  "TheSimpletonMod:PestManagement": {
+    "NAME": "Pest Management",
+    "DESCRIPTION": "Deal !D! damage. NL  Next turn, gain !B! Block."
+  },
   "TheSimpletonMod:StockTheCellar": {
-    "NAME": "StockTheCellar",
+    "NAME": "Stock the Cellar",
     "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Each time this is card shuffled into your draw pile, increase its Block by !M! for this combat."
   },
   "TheSimpletonMod:Chilis": {

@@ -69,7 +69,7 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
 
   void onHarvest(int amount) {
     hasHarvestedThisTurn = true;
-    logger.debug("Set hasHarvestedThisTurn");
+    logger.debug(this.name + ": harvested. Set hasHarvestedThisTurn");
 
     if (player.hasPower(ToughSkinPower.POWER_ID)) {
       ((ToughSkinPower)player.getPower(ToughSkinPower.POWER_ID)).applyPower(player);
@@ -81,11 +81,14 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   }
 
   public void atStartOfTurn() {
+    logger.debug("Checking for auto-harvest triggers (amount: " + this.amount + "; hasHarvester:  " + player.hasRelic(TheHarvester.ID)+ ")");
     if (this.amount >= autoHarvestThreshold && player.hasRelic(TheHarvester.ID)) {
+      logger.debug("Triggering Harvester");
+
       player.getRelic(TheHarvester.ID).flash();
       this.flash();
       harvest(isHarvestAll, 1);
-    }
+    } else { logger.debug("Not triggered"); }
   }
 
   public AbstractCropPowerCard getPowerCard() throws UnsupportedOperationException {
@@ -256,8 +259,7 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
         hasHarvestedThisTurn = false;
       }
     };
-    player.addPrecombatTrigger(trigger);
-    player.addEndOfTurnTrigger(trigger);
+    player.addStartOfTurnTrigger(trigger);
   }
 
   // TODO: move shared functionality(e.g. harvest logic) to here

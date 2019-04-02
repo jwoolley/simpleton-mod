@@ -1,5 +1,8 @@
 package thesimpleton.utilities;
 
+import org.apache.logging.log4j.Logger;
+import thesimpleton.TheSimpletonMod;
+
 import java.util.ArrayList;
 
 public class TriggerManager {

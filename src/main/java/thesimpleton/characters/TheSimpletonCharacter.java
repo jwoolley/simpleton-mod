@@ -49,6 +49,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
     public static final String DESCRIPTION;
 
     private final TriggerManager precombatTriggers = new TriggerManager();
+    private final TriggerManager startOfTurnTriggers = new TriggerManager();
     private final TriggerManager endOfTurnTriggers = new TriggerManager();
 
     public static final String[] orbTextures = {
@@ -200,10 +201,17 @@ public class TheSimpletonCharacter extends CustomPlayer {
     }
 
     @Override
+    public void applyStartOfCombatLogic() {
+        super.applyStartOfCombatLogic();
+        TheSimpletonMod.logger.debug("Applying start of combat triggers");
+        this.precombatTriggers.triggerAll();
+    }
+
+    @Override
     public void applyStartOfTurnCards() {
         super.applyStartOfTurnCards();
         TheSimpletonMod.logger.debug("Applying start of turn triggers");
-        this.precombatTriggers.triggerAll();
+        this.startOfTurnTriggers.triggerAll();
     }
 
     @Override
@@ -212,6 +220,8 @@ public class TheSimpletonCharacter extends CustomPlayer {
         TheSimpletonMod.logger.debug("Applying end of turn triggers");
         this.endOfTurnTriggers.triggerAll();
     }
+
+    public void addStartOfTurnTrigger(Trigger trigger) { this.startOfTurnTriggers.addTrigger(trigger);  }
 
     public void addPrecombatTrigger(Trigger trigger) { this.precombatTriggers.addTrigger(trigger);  }
 

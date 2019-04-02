@@ -27,20 +27,21 @@ import org.apache.logging.log4j.Logger;
 import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
 import thesimpleton.cards.attack.unused.CullingStrike;
-import thesimpleton.cards.power.*;
+import thesimpleton.cards.power.Biorefinement;
+import thesimpleton.cards.power.ToughSkin;
 import thesimpleton.cards.power.crop.*;
 import thesimpleton.cards.skill.*;
-import thesimpleton.cards.skill.unused.CleanUpWorkshop;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.potions.DregsPotion;
-import thesimpleton.relics.*;
+import thesimpleton.relics.PungentSoil;
+import thesimpleton.relics.SpudOfTheMartyr;
+import thesimpleton.relics.TheHarvester;
 
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 
@@ -169,12 +170,12 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         // Basic (5)
         BaseMod.addCard(new Strike_TheSimpleton());
         BaseMod.addCard(new Defend_TheSimpleton());
-        BaseMod.addCard(new CleanUpWorkshop());
         BaseMod.addCard(new Haymaker());
         BaseMod.addCard(new ReapAndSow());
 
         // Attack (3)
         BaseMod.addCard(new Fertilaser());
+        BaseMod.addCard(new PestManagement());
         BaseMod.addCard(new RootDown());
         BaseMod.addCard(new CullingStrike());
 

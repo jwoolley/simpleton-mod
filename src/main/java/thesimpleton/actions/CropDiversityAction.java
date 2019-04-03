@@ -14,8 +14,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CropDiversityAction extends AbstractGameAction {
-  private AbstractPlayer p;
+  private static int COST_FOR_TURN = 0;
 
+  private AbstractPlayer p;
   private AbstractGameAction.ActionType ACTION_TYPE = ActionType.CARD_MANIPULATION;
 
   public CropDiversityAction(int numPowers) {
@@ -36,11 +37,11 @@ public class CropDiversityAction extends AbstractGameAction {
 
   public void update() {
     if (this.duration != Settings.ACTION_DUR_MED) {
-      if (AbstractDungeon.gridSelectScreen.selectedCards.size() != 0) {
+      if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
         //TODO: clean up: find the one (first) selected card and add it
         for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
           c.unhover();
-          c.setCostForTurn(0);
+          c.setCostForTurn(COST_FOR_TURN);
           AbstractDungeon.actionManager.addToTop(new MakeTempCardInHandAction(c, 1));
         }
         AbstractDungeon.gridSelectScreen.selectedCards.clear();

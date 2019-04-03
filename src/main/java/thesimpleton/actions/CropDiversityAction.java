@@ -43,6 +43,7 @@ public class CropDiversityAction extends AbstractGameAction {
           c.setCostForTurn(0);
           AbstractDungeon.actionManager.addToTop(new MakeTempCardInHandAction(c, 1));
         }
+        AbstractDungeon.gridSelectScreen.selectedCards.clear();
         this.p.hand.refreshHandLayout();
 
         this.tickDuration();

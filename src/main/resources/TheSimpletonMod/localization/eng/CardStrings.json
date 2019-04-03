@@ -89,6 +89,13 @@
     "DESCRIPTION": "Draw !M! cards. Exhaust a card from your hand."
   },
 
+  "TheSimpletonMod:SoilSample": {
+    "NAME": "Soil Sample",
+    "DESCRIPTION": "Shuffle up to !M! cards from your discard pile into your draw pile, then draw a card. It costs 0 this turn. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Shuffle up to !M! cards from your discard pile into your draw pile, then Draw a card. It costs 0 this turn."
+
+  },
+
   "TheSimpletonMod:SpudMissile": {
     "NAME": "Spud",
     "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Exhaust."

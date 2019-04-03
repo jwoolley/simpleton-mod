@@ -8,46 +8,49 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.actions.CropDiversityAction;
+import thesimpleton.actions.SoilSampleAction;
 import thesimpleton.enums.AbstractCardEnum;
 
-public class CropDiversity extends CustomCard {
-  public static final String ID = "TheSimpletonMod:CropDiversity";
+public class SoilSample extends CustomCard {
+  public static final String ID = "TheSimpletonMod:SoilSample";
   public static final String NAME;
   public static final String DESCRIPTION;
-  public static final String IMG_PATH = "cards/cropdiversity.png";
+  public static final String  UPGRADE_DESCRIPTION;
+  public static final String IMG_PATH = "cards/soilsample.png";
 
   private static final CardStrings cardStrings;
 
   private static final CardType TYPE = CardType.SKILL;
-  private static final CardRarity RARITY = CardRarity.RARE;
+  private static final CardRarity RARITY = CardRarity.UNCOMMON;
   private static final CardTarget TARGET = CardTarget.SELF;
 
   private static final int COST = 1;
-  private static final int NUM_POWERS = 2;
-  private static final int NUM_POWERS_UPGRADE = 1;
+  private static final int NUM_CARDS_CHOSEN = 3;
+  private static final int NUM_CARDS_DRAWN = 1;
 
-  public CropDiversity() {
+  public SoilSample() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.exhaust = true;
-    this.baseMagicNumber = this.magicNumber = NUM_POWERS;
+    this.baseMagicNumber = this.magicNumber = NUM_CARDS_CHOSEN;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new CropDiversityAction(this.magicNumber));
+    AbstractDungeon.actionManager.addToBottom(new SoilSampleAction(this.magicNumber, NUM_CARDS_DRAWN));
   }
 
   @Override
   public AbstractCard makeCopy() {
-    return new CropDiversity();
+    return new SoilSample();
   }
 
   @Override
   public void upgrade() {
     if (!this.upgraded) {
       this.upgradeName();
-      this.upgradeMagicNumber(NUM_POWERS_UPGRADE);
+      this.exhaust = false;
+      this.rawDescription = UPGRADE_DESCRIPTION;
+      this.initializeDescription();
     }
   }
 
@@ -55,5 +58,6 @@ public class CropDiversity extends CustomCard {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
+    UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
   }
 }

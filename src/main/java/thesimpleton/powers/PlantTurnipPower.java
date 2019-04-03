@@ -30,7 +30,7 @@ public class PlantTurnipPower extends AbstractCropPower {
   private static final int MINIMUM_STARTING_STACKS = 2;
 
   public PlantTurnipPower(AbstractCreature owner, int amount) {
-    super(IMG, owner, cropRarity, powerCard, Math.min(amount, MINIMUM_STARTING_STACKS), IS_HARVEST_ALL);
+    super(IMG, owner, cropRarity, powerCard, Math.max(amount, MINIMUM_STARTING_STACKS), IS_HARVEST_ALL);
 
     this.name = NAME;
     this.ID = POWER_ID;

@@ -88,7 +88,6 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     logger.debug("Checking for auto-harvest triggers (amount: " + this.amount + "; hasHarvester:  " +  getPlayer().hasRelic(TheHarvester.ID)+ ")");
     if (this.amount >= autoHarvestThreshold &&  getPlayer().hasRelic(TheHarvester.ID)) {
       logger.debug("Triggering Harvester");
-
       getPlayer().getRelic(TheHarvester.ID).flash();
       this.flash();
       harvest(isHarvestAll, 1);

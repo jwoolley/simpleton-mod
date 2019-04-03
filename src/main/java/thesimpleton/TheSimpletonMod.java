@@ -300,7 +300,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             .forEach(c -> ((ShuffleTriggeredCard) c).willBeShuffledTrigger());
     }
 
-    public static String listToString(List<AbstractCard> list) {
+    public static String cardListToString(List<AbstractCard> list) {
         return list.stream().map(c -> c.name).collect(Collectors.joining(", "));
     }
 

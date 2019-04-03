@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
+import thesimpleton.cards.power.crop.Corn;
 import thesimpleton.cards.power.crop.Potatoes;
 import thesimpleton.cards.skill.AbstractHarvestCard;
 
@@ -24,7 +25,7 @@ public class PlantCornPower extends AbstractCropPower {
   public static PowerType POWER_TYPE = PowerType.BUFF;
   public static final String IMG = "plantcorn.png";
   public static final CardRarity cropRarity = CardRarity.UNCOMMON;
-  private static final AbstractCropPowerCard powerCard = new Potatoes();
+  private static final AbstractCropPowerCard powerCard = new Corn();
 
   public PlantCornPower(AbstractCreature owner, int amount) {
     super(IMG, owner, cropRarity, powerCard, amount);

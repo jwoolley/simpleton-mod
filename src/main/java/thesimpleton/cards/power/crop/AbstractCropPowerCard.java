@@ -30,5 +30,4 @@ public abstract class AbstractCropPowerCard extends CustomCard {
       return null;
     }
   }
-
 }

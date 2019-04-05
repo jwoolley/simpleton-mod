@@ -65,5 +65,10 @@
     "TEXT": [
       "[Void Lord] Feel the power of Void Form. (starting relic: Ominous Mark)"
     ]
+  },
+  "TheSimpletonMod:ChooseAndAddHandCardsToDeckAction": {
+    "TEXT": [
+      "be shuffled into your draw pile."
+    ]
   }
 }

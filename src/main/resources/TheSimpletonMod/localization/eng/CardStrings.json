@@ -40,6 +40,12 @@
     "DESCRIPTION": "Deal !D! damage. NL If you've Harvested this turn, deal !D! damage again."
   },
 
+  "TheSimpletonMod:Ferment": {
+    "NAME": "Ferment",
+    "DESCRIPTION": "Shuffle 2 cards from your hand into your draw pile. NL Gain !M! Energy.",
+    "UPGRADE_DESCRIPTION": "Shuffle 2 cards from your hand into your draw pile, then draw a card. NL Gain !M! Energy."
+  },
+
   "TheSimpletonMod:Fertilaser": {
     "NAME": "Fertilaser",
     "DESCRIPTION": "Deal !D! damage. NL Add !M! stack to each Crop."

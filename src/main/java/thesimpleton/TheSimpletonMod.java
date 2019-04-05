@@ -185,6 +185,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new Aerate());
         BaseMod.addCard(new ControlledBurn());
         BaseMod.addCard(new CropRotation());
+        BaseMod.addCard(new Ferment());
         BaseMod.addCard(new OnionBloom());
         BaseMod.addCard(new Rototilling());
         BaseMod.addCard(new SoilSample());

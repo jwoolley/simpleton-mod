@@ -34,7 +34,7 @@ import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
-import thesimpleton.potions.DregsPotion;
+import thesimpleton.relics.HotPotato;
 import thesimpleton.relics.PungentSoil;
 import thesimpleton.relics.SpudOfTheMartyr;
 import thesimpleton.relics.TheHarvester;
@@ -181,6 +181,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         // Skill (3)
         BaseMod.addCard(new Aerate());
+        BaseMod.addCard(new ControlledBurn());
         BaseMod.addCard(new CropRotation());
         BaseMod.addCard(new OnionBloom());
         BaseMod.addCard(new Rototilling());
@@ -212,6 +213,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addRelicToCustomPool(new PungentSoil(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new TheHarvester(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new SpudOfTheMartyr(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new HotPotato(), AbstractCardEnum.THE_SIMPLETON_BLUE);
     }
 
     @Override

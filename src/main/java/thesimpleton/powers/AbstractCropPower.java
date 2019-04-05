@@ -25,6 +25,7 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   private static boolean IS_HARVEST_ALL = false;
   private static int AUTO_HARVEST_THRESHOLD = 5;
   private static int CROP_POWER_ID_COUNTER = 0;
+  private static int STACKS_PER_TRIGGER = 1;
   private static boolean hasHarvestedThisTurn = false;
 
   private static final String POWER_DESCRIPTION_ID = "TheSimpletonMod:AbstractCropPower";
@@ -90,7 +91,7 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
       logger.debug("Triggering Harvester");
       getPlayer().getRelic(TheHarvester.ID).flash();
       this.flash();
-      harvest(isHarvestAll, 1);
+      harvest(isHarvestAll, STACKS_PER_TRIGGER);
     } else { logger.debug("Not triggered"); }
   }
 

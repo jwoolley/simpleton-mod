@@ -2,6 +2,7 @@ package thesimpleton.cards.attack;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -11,7 +12,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.ApplyBurningAction;
 import thesimpleton.cards.TheSimpletonCardTags;
+import thesimpleton.powers.BurningPower;
+import thesimpleton.powers.PlantChiliPower;
+import thesimpleton.relics.HotPotato;
 ;
 public class SpudMissile extends CustomCard {
   public static final String ID = "TheSimpletonMod:SpudMissile";
@@ -42,6 +47,10 @@ public class SpudMissile extends CustomCard {
     AbstractDungeon.actionManager.addToBottom(
         new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
         AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+
+        if (p.hasRelic(HotPotato.ID)) {
+          ((HotPotato)p.getRelic(HotPotato.ID)).activate(p, m, this.damage);
+        }
   }
 
   @Override

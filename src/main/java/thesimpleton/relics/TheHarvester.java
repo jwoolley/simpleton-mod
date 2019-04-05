@@ -5,10 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.powers.AbstractCropPower;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 // TODO: reflavor as fertilizer; reuse "the harvester" + icon for a different relic
 

@@ -29,7 +29,7 @@ public class PungentSoil extends CustomRelic {
 
   @Override
   public String getUpdatedDescription() {
-    return this.DESCRIPTIONS[0];
+    return this.DESCRIPTIONS[0] + CROP_AMOUNT + (CROP_AMOUNT == 1 ? this.DESCRIPTIONS[1] : this.DESCRIPTIONS[2]);
   }
 
   @Override

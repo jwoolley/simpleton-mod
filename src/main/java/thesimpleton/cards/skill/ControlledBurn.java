@@ -1,56 +1,56 @@
-package thesimpleton.cards.power.crop;
+package thesimpleton.cards.skill;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import basemod.abstracts.CustomCard;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.TheSimpletonCardTags;
+import thesimpleton.actions.ApplyBurningAction;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.PlantTurnipPower;
 
-public class Turnips extends AbstractCropPowerCard {
-  public static final String ID = "TheSimpletonMod:Turnips";
+public class ControlledBurn extends CustomCard {
+  public static final String ID = "TheSimpletonMod:ControlledBurn";
   public static final String NAME;
   public static final String DESCRIPTION;
-  public static final String IMG_PATH = "cards/turnips.png";
+  public static final String IMG_PATH = "cards/controlledburn.png";
 
   private static final CardStrings cardStrings;
 
-  private static final CardType TYPE = CardType.POWER;
-  private static final CardRarity RARITY = CardRarity.UNCOMMON;
-  private static final CardTarget TARGET = CardTarget.SELF;
+  private static final CardType TYPE = CardType.SKILL;
+  private static final CardRarity RARITY = CardRarity.COMMON;
+  private static final CardTarget TARGET = CardTarget.ENEMY;
 
   private static final int COST = 1;
-  private static final int CROP_STACKS = 2;
-  private static final int UPGRADED_CROP_STACKS_BONUS = 1;
+  private static final int NUM_STACKS = 12;
+  private static final int UPGRADE_NUM_STACKS = 6;
 
 
-  public Turnips() {
+  public ControlledBurn() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
-    this.baseMagicNumber = this.magicNumber = CROP_STACKS;
-    this.tags.add(TheSimpletonCardTags.CROP_POWER);
+    this.baseMagicNumber = this.magicNumber = NUM_STACKS;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, new PlantTurnipPower(p, this.magicNumber), this.magicNumber));
+    AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(m, p, this.magicNumber));
   }
 
   @Override
   public AbstractCard makeCopy() {
-    return new Turnips();
+    return new ControlledBurn();
   }
 
   @Override
   public void upgrade() {
     if (!this.upgraded) {
-      this.upgradeName();
-      this.upgradeMagicNumber(UPGRADED_CROP_STACKS_BONUS);
+      upgradeName();
+      upgradeMagicNumber(UPGRADE_NUM_STACKS);
     }
   }
 

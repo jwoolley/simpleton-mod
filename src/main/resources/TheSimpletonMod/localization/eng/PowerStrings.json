@@ -1,11 +1,4 @@
 {
-  "TheSimpletonMod:BiorefinementPower": {
-    "NAME": "Biorefinement",
-    "DESCRIPTIONS": [
-      "The first time you play card with Harvest each turn, gain 1 Energy."
-    ]
-  },
-
   "TheSimpletonMod:BleedPower": {
     "NAME": "Bleed",
     "DESCRIPTIONS": [
@@ -85,6 +78,26 @@
     ]
   },
 
+  "TheSimpletonMod:SpitefulPlanPower": {
+    "NAME": "Spiteful Plan",
+    "DESCRIPTIONS": [
+      "Whenever you draw a #rCurse card, draw #b1 card.",
+      "Whenever you draw a #rCurse card, draw #b",
+      " cards."
+    ]
+  },
+
+  "TheSimpletonMod:VoidFormPower": {
+    "NAME": "Void Form",
+    "DESCRIPTIONS": [
+      "Whenever you draw a #rCurse card, gain #b",
+      " #yStrength."
+    ]
+  },
+
+
+
+
   "TheSimpletonMod:AbstractCropPower": {
     "NAME": "AbstractCrop",
     "DESCRIPTIONS": [
@@ -97,7 +110,8 @@
     "NAME": "Chilis",
     "DESCRIPTIONS": [
       "#yCrop. #gHarvest to deal #b",
-      " damage to ALL enemies for each stack harvested."
+      " damage and apply #b",
+      " #yBurning to ALL enemies for each stack harvested."
     ]
   },
 
@@ -114,12 +128,14 @@
       "#yHarvest: Apply 1 Weak to a random enemy for each stack harvested."
     ]
   },
+
   "TheSimpletonMod:PlantPotatoPower": {
     "NAME": "Potatoes",
     "DESCRIPTIONS": [
       "#yHarvest: Add a #ySpud to your hand per stack harvested."
     ]
   },
+
   "TheSimpletonMod:PlantSpinachPower": {
     "NAME": "Spinach",
     "DESCRIPTIONS": [
@@ -127,6 +143,7 @@
       " #yStrength for each stack harvested."
     ]
   },
+
   "TheSimpletonMod:PlantTurnipPower": {
     "NAME": "Turnips",
     "DESCRIPTIONS": [
@@ -134,26 +151,27 @@
       "  stacks."
     ]
   },
-  "TheSimpletonMod:SpitefulPlanPower": {
-    "NAME": "Spiteful Plan",
+
+  "TheSimpletonMod:BiorefinementPower": {
+    "NAME": "Biorefinement",
     "DESCRIPTIONS": [
-      "Whenever you draw a #rCurse card, draw #b1 card.",
-      "Whenever you draw a #rCurse card, draw #b",
-      " cards."
+      "The first time you play card with Harvest each turn, gain 1 Energy."
     ]
   },
+
+  "TheSimpletonMod:BurningPower": {
+    "NAME": "Burning",
+    "DESCRIPTIONS": [
+      "At the end of its turn, it takes #b",
+      " damage, then loses #yBurning."
+    ]
+  },
+
   "TheSimpletonMod:ToughSkinPower": {
     "NAME": "Tough Skin",
     "DESCRIPTIONS": [
       "Whenever you #gharvest a #yCrop, gain",
       " #yBlock."
-    ]
-  },
-  "TheSimpletonMod:VoidFormPower": {
-    "NAME": "Void Form",
-    "DESCRIPTIONS": [
-      "Whenever you draw a #rCurse card, gain #b",
-      " #yStrength."
     ]
   }
 }

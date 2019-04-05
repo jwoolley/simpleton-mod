@@ -19,6 +19,11 @@
     "DESCRIPTION": "Whenever you play a Harvest card for the first time each turn, gain [E]."
   },
 
+  "TheSimpletonMod:ControlledBurn": {
+    "NAME": "Controlled Burn",
+    "DESCRIPTION": "Apply !M! Burning."
+  },
+
   "TheSimpletonMod:CropDiversity": {
     "NAME": "Crop Diversity",
     "DESCRIPTION": "Add 1 of !M! random Crop power cards to your hand. It costs 0 this turn. NL Exhaust."

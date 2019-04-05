@@ -25,6 +25,7 @@ public class SoilSample extends CustomCard {
   private static final CardTarget TARGET = CardTarget.SELF;
 
   private static final int COST = 1;
+  private static final int UPGRADED_COST = 0;
   private static final int NUM_CARDS_CHOSEN = 3;
   private static final int NUM_CARDS_DRAWN = 1;
 
@@ -48,9 +49,7 @@ public class SoilSample extends CustomCard {
   public void upgrade() {
     if (!this.upgraded) {
       this.upgradeName();
-      this.exhaust = false;
-      this.rawDescription = UPGRADE_DESCRIPTION;
-      this.initializeDescription();
+      this.updateCost(UPGRADED_COST);
     }
   }
 

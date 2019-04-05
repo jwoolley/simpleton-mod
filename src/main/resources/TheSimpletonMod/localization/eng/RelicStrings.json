@@ -1,11 +1,4 @@
 {
-  "TheSimpletonMod:SpudOfTheMartyr": {
-    "NAME": "Spud of the Innocent",
-    "FLAVOR": "Salvation for the thin-skinned.",
-    "DESCRIPTIONS": [
-      "At the start of each combat, gain #b1 #yPotatoes."
-    ]
-  },
   "TheSimpletonMod:BlackMagicAdvanced": {
     "NAME": "Black Magic Advanced",
     "FLAVOR": "[The effects of curses and magic circles on human's body and side effects]",
@@ -88,6 +81,14 @@
     ]
   },
 
+  "TheSimpletonMod:SpudOfTheMartyr": {
+    "NAME": "Spud of the Innocent",
+    "FLAVOR": "Salvation for the thin-skinned.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, gain #b1 #yPotatoes."
+    ]
+  },
+
   "TheSimpletonMod:TheHarvester": {
     "NAME": "The Harvester",
     "FLAVOR": "Its purpose is clear-cut.",
@@ -96,11 +97,21 @@
     ]
   },
 
+  "TheSimpletonMod:HotPotato": {
+    "NAME": "Hot Potato",
+    "FLAVOR": "There's no topping this one.",
+    "DESCRIPTIONS": [
+      "Whenever you play a #YSpud card, the enemy also gains #yBurning equal to that card's attack."
+    ]
+  },
+
   "TheSimpletonMod:PungentSoil": {
     "NAME": "Pungent Soil",
     "FLAVOR": "It grows on you.",
     "DESCRIPTIONS": [
-      "Whenever you shuffle your deck, each of your #yCrops with 4 or less stacks gains 1 additional stack."
+      "Whenever you shuffle your deck, each of your #yCrops with 4 or less stacks gains #b",
+      " additional stack.",
+      " additional stacks."
     ]
   }
 }

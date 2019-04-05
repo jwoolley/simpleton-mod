@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import thesimpleton.actions.ApplyBurningAction;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Chilis;
@@ -41,7 +42,7 @@ public class PlantChiliPower extends AbstractCropPower {
 
   @Override
   public void updateDescription() {
-    this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0] + this.damagePerStack + DESCRIPTIONS[1];
+    this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0] + this.damagePerStack + DESCRIPTIONS[1] + this.damagePerStack + DESCRIPTIONS[2];;
   }
 
   //TODO: AbstractCard should be an AbstractHarvestCard, with harvestAmount, harvestEffect, etc.
@@ -67,21 +68,18 @@ public class PlantChiliPower extends AbstractCropPower {
       if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
         this.flash();
 
-        final long numTargetMonsters = AbstractDungeon.getMonsters().monsters.stream()
-            .filter(m -> !m.isDead && !m.isDying)
-            .count();
+        final int damageAmount = harvestAmount * this.damagePerStack;
 
-        System.out.println("PlantChiliPower.harvest :: numTargetMonsters: " + numTargetMonsters);
-        System.out.println("PlantChiliPower.harvest :: numTargetMonsters: " + numTargetMonsters);
-
-        // random monsters version
-
+        // all monsters version
         for (int i = 0; i < harvestAmount; i++) {
           AbstractDungeon.actionManager.addToTop(
-              new DamageAllEnemiesAction(this.owner, DamageInfo.createDamageMatrix(this.amount, true),
+              new DamageAllEnemiesAction(this.owner, DamageInfo.createDamageMatrix(damageAmount, true),
                   DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.FIRE, true));
         }
 
+        AbstractDungeon.getMonsters().monsters.stream()
+            .filter(mo -> !mo.isDeadOrEscaped())
+            .forEach(mo -> AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(mo, this.owner, damageAmount)));
       }
 
       amount -= harvestAmount;

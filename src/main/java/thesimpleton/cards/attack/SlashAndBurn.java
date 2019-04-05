@@ -1,7 +1,8 @@
-package thesimpleton.cards.skill;
+package thesimpleton.cards.attack;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -10,47 +11,59 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.ApplyBurningAction;
+import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
-
-public class ControlledBurn extends CustomCard {
-  public static final String ID = "TheSimpletonMod:ControlledBurn";
+;
+public class SlashAndBurn extends CustomCard {
+  public static final String ID = "TheSimpletonMod:SlashAndBurn";
   public static final String NAME;
   public static final String DESCRIPTION;
-  public static final String IMG_PATH = "cards/controlledburn.png";
+  public static final String IMG_PATH = "cards/slashandburn.png";
 
   private static final CardStrings cardStrings;
 
-  private static final CardType TYPE = CardType.SKILL;
-  private static final CardRarity RARITY = CardRarity.UNCOMMON;
+  private static final CardType TYPE = CardType.ATTACK;
+  private static final CardRarity RARITY = CardRarity.COMMON;
   private static final CardTarget TARGET = CardTarget.ENEMY;
 
   private static final int COST = 1;
-  private static final int NUM_STACKS = 12;
-  private static final int UPGRADE_NUM_STACKS = 6;
+  private static final int DAMAGE = 5;
+  private static final int BURN_AMOUNT = 5;
+
+  private static final int UPGRADE_DAMAGE_AMOUNT = 2;
+  private static final int UPGRADE_BURN_AMOUNT = 2;
 
 
-  public ControlledBurn() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
-    this.baseMagicNumber = this.magicNumber = NUM_STACKS;
+  public SlashAndBurn() {
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE,  AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    this.baseDamage = this.damage = DAMAGE;
+    this.baseMagicNumber = this.magicNumber = BURN_AMOUNT;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
+    AbstractDungeon.actionManager.addToBottom(
+        new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
+            AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+
     AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(m, p, this.magicNumber));
+
   }
 
   @Override
   public AbstractCard makeCopy() {
-    return new ControlledBurn();
+    return new SlashAndBurn();
   }
 
   @Override
   public void upgrade() {
     if (!this.upgraded) {
-      upgradeName();
-      upgradeMagicNumber(UPGRADE_NUM_STACKS);
+      this.upgradeName();
+      this.upgradeDamage(UPGRADE_DAMAGE_AMOUNT);
+      this.upgradeMagicNumber(UPGRADE_BURN_AMOUNT);
     }
   }
 

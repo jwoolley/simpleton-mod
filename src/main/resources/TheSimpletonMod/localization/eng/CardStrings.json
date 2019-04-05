@@ -101,6 +101,11 @@
 
   },
 
+  "TheSimpletonMod:SlashAndBurn": {
+    "NAME": "Slash And Burn",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Burning."
+  },
+
   "TheSimpletonMod:SpudMissile": {
     "NAME": "Spud",
     "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Exhaust."

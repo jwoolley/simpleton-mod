@@ -95,21 +95,18 @@
     ]
   },
 
-
-
-
   "TheSimpletonMod:AbstractCropPower": {
     "NAME": "AbstractCrop",
     "DESCRIPTIONS": [
-      "#yCrop. NL #yPassive: At the start of turn, if this has more than #b",
-      " stacks, harvest 1 stack."
+      "#yCrop. #yMatures at #b",
+      " stacks."
     ]
   },
 
   "TheSimpletonMod:PlantChiliPower": {
     "NAME": "Chilis",
     "DESCRIPTIONS": [
-      "#yCrop. #gHarvest to deal #b",
+      "#gHarvest: Deal #b",
       " damage and apply #b",
       " #yBurning to ALL enemies for each stack harvested."
     ]
@@ -118,28 +115,28 @@
   "TheSimpletonMod:PlantCornPower": {
     "NAME": "Corn",
     "DESCRIPTIONS": [
-      "#yCrop. #gHarvest to draw a card for each stack harvested."
+      "#gHarvest: Draw a card for each stack harvested."
     ]
   },
 
   "TheSimpletonMod:PlantOnionPower": {
     "NAME": "Onions",
     "DESCRIPTIONS": [
-      "#yHarvest: Apply 1 Weak to a random enemy for each stack harvested."
+      "#gHarvest: Apply 1 Weak to a random enemy for each stack harvested."
     ]
   },
 
   "TheSimpletonMod:PlantPotatoPower": {
     "NAME": "Potatoes",
     "DESCRIPTIONS": [
-      "#yHarvest: Add a #ySpud to your hand per stack harvested."
+      "#gHarvest: Add a #ySpud to your hand per stack harvested."
     ]
   },
 
   "TheSimpletonMod:PlantSpinachPower": {
     "NAME": "Spinach",
     "DESCRIPTIONS": [
-      "#yHarvest: Gain #b",
+      "#gHarvest: Gain #b",
       " #yStrength for each stack harvested."
     ]
   },
@@ -147,7 +144,7 @@
   "TheSimpletonMod:PlantTurnipPower": {
     "NAME": "Turnips",
     "DESCRIPTIONS": [
-      "#yHarvest: Convert all stacks into an attack card that deals increased damage for each stack harvested. NL Starts with a minimum of ",
+      "#gHarvest: Convert ALL stacks into an attack card that deals increased damage for each stack harvested. NL Starts with a minimum of ",
       "  stacks."
     ]
   },

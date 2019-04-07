@@ -14,6 +14,12 @@
     "DESCRIPTION": "Gain !B! Block. NL Add !M! stack to your newest Crop."
   },
 
+  "TheSimpletonMod:Barnstorm": {
+    "NAME": "Barnstorm",
+    "DESCRIPTION": "Deal !D! damage to a random enemy for each Crop stack you have. NL Crops at Maturity deal double damage.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies for each Crop stack you have. NL Crops at Maturity deal double damage."
+  },
+
   "TheSimpletonMod:Biorefinement": {
     "NAME": "Biorefinement",
     "DESCRIPTION": "Whenever you play a Harvest card for the first time each turn, gain [E]."
@@ -38,6 +44,11 @@
   "TheSimpletonMod:CullingStrike": {
     "NAME": "Culling Strike",
     "DESCRIPTION": "Deal !D! damage. NL If you've Harvested this turn, deal !D! damage again."
+  },
+
+  "TheSimpletonMod:DesperatePlunge": {
+    "NAME": "Desperate Plunge",
+    "DESCRIPTION": "Costs 1 less Energy for each Power card played this turn. NL Gain !B! Block."
   },
 
   "TheSimpletonMod:Ferment": {
@@ -104,7 +115,6 @@
     "NAME": "Soil Sample",
     "DESCRIPTION": "Shuffle up to !M! cards from your discard pile into your draw pile, then draw a card. It costs 0 this turn. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Shuffle up to !M! cards from your discard pile into your draw pile, then Draw a card. It costs 0 this turn."
-
   },
 
   "TheSimpletonMod:SlashAndBurn": {

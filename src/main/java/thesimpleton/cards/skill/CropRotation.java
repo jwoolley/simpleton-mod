@@ -46,6 +46,7 @@ public class CropRotation extends AbstractHarvestCard {
     //TODO: allow splits between two powers for upgrades (requires calculation for harvest action)
     //TODO: add "fizzle" effect if there are no stacks to harvest
 
+    //TODO: make "getActiveCropPowers" a helper method on e.g. Util class
     // harvest existing stacks
     final ArrayList<AbstractPower> activePowers =  new ArrayList<>(p.powers);
     Collections.shuffle(activePowers);

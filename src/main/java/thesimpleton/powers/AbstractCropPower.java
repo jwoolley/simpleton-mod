@@ -77,6 +77,10 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     }
   }
 
+  public int getMaturityThreshold() {
+    return this.autoHarvestThreshold;
+  }
+
   static TheSimpletonCharacter getPlayer() {
     return (TheSimpletonCharacter) AbstractDungeon.player;
   }
@@ -151,12 +155,16 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     return hasHarvestedThisTurn;
   }
 
+  public int getInstanceId() {
+    return this.cropPowerId;
+  }
+
   @Override
   public void stackPower(int amount) {
     super.stackPower(amount);
     logger.debug("Called stackPower for " + this.ID + " amount: " + amount + ". Updated amount: " + this.amount);
     if (this.amount > autoHarvestThreshold) {
-      flash();
+      this.flash();
       this.harvest(false, this.amount - autoHarvestThreshold);
     }
   }

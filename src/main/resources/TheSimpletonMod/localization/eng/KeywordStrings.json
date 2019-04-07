@@ -61,6 +61,15 @@
     "DESCRIPTION": "Harvest different #yCrop stacks for various effects."
   },
 
+  "TheSimpletonMod:MaturityKeyword": {
+    "PROPER_NAME": "Maturity",
+    "NAMES": [
+      "mature", "matures", "maturity"
+    ],
+    "DESCRIPTION": "A crop is mature if you have stacks equal to or greater than its maturity level (usually 5). One stack of each mature crop is harvested at the start of your turn."
+  },
+
+
   "TheSimpletonMod:OnionKeyword": {
     "PROPER_NAME": "Onions",
     "NAMES": [

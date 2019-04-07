@@ -98,7 +98,7 @@
   "TheSimpletonMod:AbstractCropPower": {
     "NAME": "AbstractCrop",
     "DESCRIPTIONS": [
-      "#yCrop. #yMatures at #b",
+      "#yCrop. Matures at #r",
       " stacks."
     ]
   },

@@ -93,7 +93,7 @@
     "NAME": "The Harvester",
     "FLAVOR": "Its purpose is clear-cut.",
     "DESCRIPTIONS": [
-      "Whenever you gain a #yCrop, if you have more than stacks than its #rMaturity level, #yHarvest all excess stacks."
+      "Whenever you gain a #yCrop, if you have more than stacks than its #rMaturity level, #gHarvest all excess stacks."
     ]
   },
 

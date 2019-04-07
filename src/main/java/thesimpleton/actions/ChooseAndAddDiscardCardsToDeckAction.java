@@ -38,12 +38,7 @@ public class ChooseAndAddDiscardCardsToDeckAction extends AbstractGameAction {
           //TODO: clean up: find the one (first) selected card and add it
           for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
             this.p.discardPile.moveToDeck(c, true);
-            this.p.discardPile.removeCard(c);
-
-            //TODO: remove this spaghetti fom the wall
-//            this.p.discardPile.refreshHandLayout();
-//            this.p.drawPile.refreshHandLayout();
-
+//            this.p.discardPile.removeCard(c);
           }
           AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }

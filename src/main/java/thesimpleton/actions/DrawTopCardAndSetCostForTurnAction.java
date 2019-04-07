@@ -36,66 +36,48 @@ public class DrawTopCardAndSetCostForTurnAction extends AbstractGameAction {
 //  // draw card and highlight it
   @Override
   public void update() {
-    Logger logger = TheSimpletonMod.logger;
-
-    logger.debug("DrawTopCardAndSetCostForTurnAction:update 0");
-
     if (!cardDrawn && this.duration != ACTION_DURATION) {
-      logger.debug("DrawTopCardAndSetCostForTurnAction:update triggering draw");
-
       cardDrawn = true;
-      if (cardDrawn || !(p.drawPile.isEmpty() && p.discardPile.isEmpty())) {
-        List<AbstractCard> handBefore = ((ArrayList<AbstractCard>) p.hand.group.clone());
+      List<AbstractCard> handBefore = ((ArrayList<AbstractCard>) p.hand.group.clone());
 
-        logger.debug("DrawTopCardAndSetCostForTurnAction:update adding to hand, handBefore: " + TheSimpletonMod.cardListToString(handBefore) + " 1");
+      AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, 1));
 
-        AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, 1));
-
-        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
-          @Override
-          public void update() {
-            if (this.duration != ACTION_DURATION) {
-              p.hand.refreshHandLayout();
-              this.tickDuration();
-              this.isDone = true;
-              return;
-            }
+      AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+        @Override
+        public void update() {
+          if (this.duration != ACTION_DURATION) {
+            p.hand.refreshHandLayout();
             this.tickDuration();
+            this.isDone = true;
+            return;
           }
-        });
+          this.tickDuration();
+        }
+      });
 
-        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
-          @Override
-          public void update() {
+      AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+        @Override
+        public void update() {
+          if (this.duration != ACTION_DURATION) {
+            final List<AbstractCard> newCards = p.hand.group.stream()
+                .filter(c -> !handBefore.stream().anyMatch(hbc -> hbc == c))
+                .collect(Collectors.toList());
 
-            if (this.duration != ACTION_DURATION) {
-              final List<AbstractCard> newCards = p.hand.group.stream()
-                  .filter(c -> !handBefore.stream().anyMatch(hbc -> hbc == c))
-                  .collect(Collectors.toList());
-
-              if (newCards.size() > 0) {
-                AbstractCard newCard = newCards.get(0);
-                logger.debug("DrawTopCardAndSetCostForTurnAction:update reducing cost for: " + newCard.name + "(cost: " + newCard.costForTurn + ") 2");
-                newCard.setCostForTurn(this.amount);
-              }
-
-              logger.debug("DrawTopCardAndSetCostForTurnAction:update added to hand, handAfter: " + TheSimpletonMod.cardListToString(p.hand.group) + " 2");
-              logger.debug("DrawTopCardAndSetCostForTurnAction:update added to hand, newCards: " + TheSimpletonMod.cardListToString(newCards) + " 2");
-
-
-              this.tickDuration();
-              this.isDone = true;
-              return;
+            if (newCards.size() > 0) {
+              AbstractCard newCard = newCards.get(0);
+              newCard.setCostForTurn(this.amount);
             }
-            this.tickDuration();
-          }
-        });
 
-        this.tickDuration();
-        this.isDone = true;
-      }
+            this.tickDuration();
+            this.isDone = true;
+            return;
+          }
+          this.tickDuration();
+        }
+      });
 
       this.tickDuration();
+      this.isDone = true;
     }
     this.tickDuration();
   }

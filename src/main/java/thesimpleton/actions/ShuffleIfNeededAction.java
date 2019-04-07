@@ -24,16 +24,10 @@ public class ShuffleIfNeededAction extends AbstractGameAction {
 
   @Override
   public void update() {
-    Logger logger = TheSimpletonMod.logger;
-
     if (this.duration != ACTION_DURATION) {
       if (this.p.drawPile.isEmpty()) {
-        logger.debug("ShuffleIfNeededAction:update empty draw pile, queuing EmptyDeckShuffleAction");
-
         AbstractDungeon.actionManager.addToBottom(new EmptyDeckShuffleAction());
       } else {
-        logger.debug("ShuffleIfNeededAction:update non-empty draw pile, queuing ShuffleAction");
-
         AbstractDungeon.actionManager.addToBottom(new ShuffleAction(this.p.drawPile, true));
       }
 
@@ -41,8 +35,6 @@ public class ShuffleIfNeededAction extends AbstractGameAction {
       this.isDone = true;
       return;
     }
-
-    logger.debug("ShuffleIfNeededAction:update no-op tickDuration");
     this.tickDuration();
   }
 }

@@ -109,7 +109,7 @@
     "NAME": "Pungent Soil",
     "FLAVOR": "It grows on you.",
     "DESCRIPTIONS": [
-      "Whenever you shuffle your deck, each of your #yCrops with 4 or less stacks gains #b",
+      "Whenever you shuffle your deck, each of your #yCrops that isn't #rMature gains #b",
       " additional stack.",
       " additional stacks."
     ]

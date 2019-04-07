@@ -27,7 +27,6 @@ public class DesperatePlunge extends CustomCard {
   private static final int COST = 3;
   private static final int BLOCK = 30;
   private static final int UPGRADE_BLOCK_AMOUNT = 10;
-  private static final int UPGRADED_COST = 2;
   private static final int COST_DISCOUNT_PER_POWER_PLAYED = 1;
 
   public DesperatePlunge() {
@@ -57,7 +56,6 @@ public class DesperatePlunge extends CustomCard {
     if (!this.upgraded) {
       this.upgradeName();
       this.upgradeBlock(UPGRADE_BLOCK_AMOUNT);
-      this.upgradeBaseCost(UPGRADED_COST);
     }
   }
 

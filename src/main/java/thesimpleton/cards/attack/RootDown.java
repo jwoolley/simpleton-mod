@@ -32,8 +32,8 @@ public class RootDown extends CustomCard {
 
   private static final int COST = 0;
   private static final int DAMAGE = 5;
-  private static final int DAMAGE_UPGRADE = 3;
-  private static final int PLANT_AMOUNT = 1;
+  private static final int DAMAGE_UPGRADE = 4;
+  private static final int PLANT_AMOUNT = 2;
 
   public RootDown() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE,

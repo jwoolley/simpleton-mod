@@ -22,7 +22,7 @@
 
   "TheSimpletonMod:Biorefinement": {
     "NAME": "Biorefinement",
-    "DESCRIPTION": "Whenever you play a #yHarvest card for the first time each turn, gain [E]."
+    "DESCRIPTION": "Whenever you play a Harvest card for the first time each turn, gain [E]."
   },
 
   "TheSimpletonMod:ControlledBurn": {

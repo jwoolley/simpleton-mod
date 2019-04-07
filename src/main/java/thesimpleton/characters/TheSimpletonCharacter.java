@@ -18,7 +18,9 @@ import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.attack.Haymaker;
+import thesimpleton.cards.attack.PestManagement;
 import thesimpleton.cards.attack.Strike_TheSimpleton;
+import thesimpleton.cards.skill.Rototilling;
 import thesimpleton.cards.skill.unused.CleanUpWorkshop;
 import thesimpleton.cards.skill.Defend_TheSimpleton;
 import thesimpleton.cards.skill.ReapAndSow;
@@ -148,9 +150,9 @@ public class TheSimpletonCharacter extends CustomPlayer {
     @Override
     public AbstractCard getStartCardForEvent() {
         if (AbstractDungeon.cardRng.randomBoolean()) {
-            return new Haymaker();
+            return new PestManagement();
         } else {
-            return new CleanUpWorkshop();
+            return new Rototilling();
         }
     }
 

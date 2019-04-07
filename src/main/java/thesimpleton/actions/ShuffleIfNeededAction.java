@@ -36,8 +36,8 @@ public class ShuffleIfNeededAction extends AbstractGameAction {
 
         AbstractDungeon.actionManager.addToBottom(new ShuffleAction(this.p.drawPile, true));
       }
+
       this.tickDuration();
-      this.p.drawPile.update();
       this.isDone = true;
       return;
     }

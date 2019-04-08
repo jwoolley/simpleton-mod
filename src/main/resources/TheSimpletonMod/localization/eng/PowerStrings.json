@@ -11,7 +11,7 @@
     "DESCRIPTIONS": [
       "At the start of your turn, gain [E] and add #b1 random #rCurse card into your hand.",
       "At the start of your turn, gain #b",
-      " Energy and add #b",
+      " #yEnergy and add #b",
       " random #rCurse cards into your hand."
     ]
   },
@@ -152,7 +152,7 @@
   "TheSimpletonMod:BiorefinementPower": {
     "NAME": "Biorefinement",
     "DESCRIPTIONS": [
-      "The first time you play card with Harvest each turn, gain 1 Energy."
+      "The first time you play card with Harvest each turn, gain 1 #yEnergy."
     ]
   },
 
@@ -161,6 +161,13 @@
     "DESCRIPTIONS": [
       "At the end of its turn, it takes #b",
       " damage, then loses #yBurning."
+    ]
+  },
+
+  "TheSimpletonMod:PhotosynthesisPower": {
+    "NAME": "Photosynthesis",
+    "DESCRIPTIONS": [
+      "At the end of your turn, convert any unused #yEnergy into an equal number of random #yCrop stacks."
     ]
   },
 

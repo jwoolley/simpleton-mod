@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.powers.AbstractCropPower;
 
 import java.util.ArrayList;
@@ -74,7 +75,8 @@ public class BarnstormAction extends AbstractGameAction {
           }
         } else {
           for (int i = 0; i < pow.amount; i++) {
-            AbstractMonster monster = AbstractDungeon.getRandomMonster();
+
+            AbstractMonster monster = SimpletonUtil.getRandomMonster();
             AbstractDungeon.actionManager.addToBottom(
                 new VFXAction(player, new LightningEffect(monster.hb.cX, monster.hb.y), 0.1F));
             AbstractDungeon.actionManager.addToBottom(new SFXAction("THUNDERCLAP", 0.025f));

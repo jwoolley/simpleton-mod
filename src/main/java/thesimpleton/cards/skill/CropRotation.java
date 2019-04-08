@@ -59,7 +59,7 @@ public class CropRotation extends AbstractHarvestCard {
     }
 
     // add new stacks
-    final AbstractCropPower newCrop = AbstractCropPower.getRandomCropPower(p, this.magicNumber);
+    final AbstractCropPower newCrop = AbstractCropPower.getRandomCropPower(p, this.magicNumber, true);
 
     AbstractDungeon.actionManager.addToBottom(
         new ApplyPowerAction(p, p, newCrop, this.magicNumber));

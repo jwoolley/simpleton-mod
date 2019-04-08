@@ -28,6 +28,7 @@ import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
 import thesimpleton.cards.attack.unused.CullingStrike;
 import thesimpleton.cards.power.Biorefinement;
+import thesimpleton.cards.power.Photosynthesis;
 import thesimpleton.cards.power.ToughSkin;
 import thesimpleton.cards.power.crop.*;
 import thesimpleton.cards.skill.*;
@@ -196,6 +197,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         // Power (9)
         BaseMod.addCard(new Biorefinement());
         BaseMod.addCard(new CropDiversity());
+        BaseMod.addCard(new Photosynthesis());
         BaseMod.addCard(new ToughSkin());
         BaseMod.addCard(new Chilis());
         BaseMod.addCard(new Corn());

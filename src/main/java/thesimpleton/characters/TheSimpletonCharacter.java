@@ -20,14 +20,13 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.attack.Haymaker;
 import thesimpleton.cards.attack.PestManagement;
 import thesimpleton.cards.attack.Strike_TheSimpleton;
-import thesimpleton.cards.skill.Rototilling;
-import thesimpleton.cards.skill.unused.CleanUpWorkshop;
 import thesimpleton.cards.skill.Defend_TheSimpleton;
 import thesimpleton.cards.skill.ReapAndSow;
+import thesimpleton.cards.skill.Rototilling;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.relics.PungentSoil;
-import thesimpleton.relics.SpudOfTheMartyr;
+import thesimpleton.relics.SpudOfTheInnocent;
 import thesimpleton.relics.TheHarvester;
 import thesimpleton.utilities.Trigger;
 import thesimpleton.utilities.TriggerManager;
@@ -98,7 +97,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<String>();
 
-        retVal.add(SpudOfTheMartyr.ID);
+        retVal.add(SpudOfTheInnocent.ID);
         retVal.add(PungentSoil.ID);
         retVal.add(TheHarvester.ID);
 

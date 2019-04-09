@@ -33,8 +33,10 @@ public class PlantPotatoPower extends AbstractCropPower {
     this.name = NAME;
     this.ID = POWER_ID;
     this.type = POWER_TYPE;
-
     updateDescription();
+
+
+    logger.debug("MAKIN' POTOATOES (instantiating plantpotatopower)");
   }
 
   @Override

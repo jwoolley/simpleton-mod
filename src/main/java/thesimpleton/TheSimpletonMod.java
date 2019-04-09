@@ -35,10 +35,7 @@ import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
-import thesimpleton.relics.HotPotato;
-import thesimpleton.relics.PungentSoil;
-import thesimpleton.relics.SpudOfTheMartyr;
-import thesimpleton.relics.TheHarvester;
+import thesimpleton.relics.*;
 
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
@@ -219,6 +216,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     public void receiveEditRelics() {
         BaseMod.addRelicToCustomPool(new PungentSoil(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new TheHarvester(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new SpudOfTheInnocent(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new SpudOfTheMartyr(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new HotPotato(), AbstractCardEnum.THE_SIMPLETON_BLUE);
     }

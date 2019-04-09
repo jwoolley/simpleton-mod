@@ -171,6 +171,16 @@
     ]
   },
 
+
+  "TheSimpletonMod:SpudOfTheMartyrPower": {
+    "NAME": "Spud Martyr",
+    "DESCRIPTIONS": [
+      " Whenever you take attack damage, gain #b1",
+      "  #yPotatoes.\n"
+    ]
+  },
+
+
   "TheSimpletonMod:ToughSkinPower": {
     "NAME": "Tough Skin",
     "DESCRIPTIONS": [

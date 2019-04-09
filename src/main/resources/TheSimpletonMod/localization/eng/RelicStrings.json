@@ -81,11 +81,19 @@
     ]
   },
 
-  "TheSimpletonMod:SpudOfTheMartyr": {
+  "TheSimpletonMod:SpudOfTheInnocent": {
     "NAME": "Spud of the Innocent",
     "FLAVOR": "Salvation for the thin-skinned.",
     "DESCRIPTIONS": [
       "At the start of each combat, gain #b1 #yPotatoes."
+    ]
+  },
+
+  "TheSimpletonMod:SpudOfTheMartyr": {
+    "NAME": "Spud of the Martyr",
+    "FLAVOR": "Roasted for a good cause.",
+    "DESCRIPTIONS": [
+      "Replaces #gSpud #gof #gthe #gInnocent. Whenever you take attack damage, and at the start of each combat, gain #b1 #yPotatoes."
     ]
   },
 

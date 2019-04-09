@@ -173,10 +173,10 @@
 
 
   "TheSimpletonMod:SpudOfTheMartyrPower": {
-    "NAME": "Spud Martyr",
+    "NAME": "Martyr's Spud",
     "DESCRIPTIONS": [
-      " Whenever you take attack damage, gain #b1",
-      "  #yPotatoes.\n"
+      " Whenever you take attack damage, gain #b",
+      " #yPotatoes.\n"
     ]
   },
 

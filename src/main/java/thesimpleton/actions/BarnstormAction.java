@@ -11,25 +11,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
-import org.apache.logging.log4j.Logger;
-import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.powers.AbstractCropPower;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class BarnstormAction extends AbstractGameAction {
   private static float ACTION_DURATION = Settings.ACTION_DUR_XFAST;
   private final AbstractPlayer player;
   private final boolean damageAllEnemies;
   private final int baseDamage;
-  private boolean hasTriggered = false;
 
   public BarnstormAction(AbstractPlayer player, int baseDamage, boolean damageAllEnemies) {
     this.actionType = ActionType.DEBUFF;
@@ -40,22 +30,12 @@ public class BarnstormAction extends AbstractGameAction {
     this.player = player;
     this.baseDamage = baseDamage;
     this.damageAllEnemies = damageAllEnemies;
-    this.hasTriggered = false;
   }
 
   @Override
   public void update() {
     if (this.duration != ACTION_DURATION) {
-      final ArrayList<AbstractPower> activePowers = new ArrayList<>(player.powers);
-      Collections.shuffle(activePowers);
-
-      List<AbstractCropPower> activeCropPowers = activePowers.stream()
-          .filter(pow -> pow instanceof AbstractCropPower && pow.amount > 0 && !((AbstractCropPower) pow).finished)
-          .map(pow -> (AbstractCropPower) pow)
-          .sorted(Comparator.comparing(AbstractCropPower::getInstanceId))
-          .collect(Collectors.toList());
-
-      for (AbstractCropPower pow : activeCropPowers) {
+      for (AbstractCropPower pow :AbstractCropPower.getActiveCropPowers(this.player, true)) {
         final boolean isCropMature =  pow.amount >= pow.getMaturityThreshold();
         final int damagePerStack = isCropMature ? 2 * this.baseDamage : this.baseDamage;
 
@@ -87,7 +67,6 @@ public class BarnstormAction extends AbstractGameAction {
         AbstractDungeon.actionManager.addToBottom(new WaitAction(0.3F));
       }
       this.tickDuration();
-      this.hasTriggered = true;
       this.isDone = true;
     }
     this.tickDuration();

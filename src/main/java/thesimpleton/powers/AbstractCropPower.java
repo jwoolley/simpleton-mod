@@ -81,6 +81,12 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     return this.autoHarvestThreshold;
   }
 
+  public void updateMaturityThreshold(int amount) {
+    this.autoHarvestThreshold += amount;
+    this.updateDescription();
+  }
+
+
   static TheSimpletonCharacter getPlayer() {
     return (TheSimpletonCharacter) AbstractDungeon.player;
   }
@@ -149,6 +155,22 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   public static List<AbstractCropPower> getRandomCropPowers(
       AbstractPlayer p, int numPowers, int numStacks, boolean withRarityDistribution) {
     return getRandomCropPowers(p, numPowers, numStacks, withRarityDistribution, power -> true);
+  }
+
+  public static List<AbstractCropPower> getActiveCropPowers(AbstractPlayer player, boolean shuffle) {
+    final ArrayList<AbstractPower> activePowers = new ArrayList<>(player.powers);
+
+    if (shuffle) {
+      Collections.shuffle(activePowers);
+    }
+
+    List<AbstractCropPower> activeCropPowers = activePowers.stream()
+        .filter(pow -> pow instanceof AbstractCropPower && pow.amount > 0 && !((AbstractCropPower) pow).finished)
+        .map(pow -> (AbstractCropPower) pow)
+        .sorted(Comparator.comparing(AbstractCropPower::getInstanceId))
+        .collect(Collectors.toList());
+
+    return activeCropPowers;
   }
 
   public static boolean hasHarvestedThisTurn() {

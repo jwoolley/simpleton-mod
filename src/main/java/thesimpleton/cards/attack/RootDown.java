@@ -40,7 +40,6 @@ public class RootDown extends CustomCard {
         AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.block = DAMAGE;
     this.baseMagicNumber = this.magicNumber = PLANT_AMOUNT;
-    this.isInnate = true;
     this.exhaust = true;
   }
 
@@ -68,6 +67,7 @@ public class RootDown extends CustomCard {
   public void upgrade() {
     if (!this.upgraded) {
       upgradeName();
+      this.isInnate = true;
       this.upgradeDamage(DAMAGE_UPGRADE);
       this.rawDescription = UPGRADE_DESCRIPTION;
       this.initializeDescription();

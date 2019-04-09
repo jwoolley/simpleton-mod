@@ -36,7 +36,7 @@ public class Rototilling extends CustomCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, DRAW_AMOUNT));
+    AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, this.magicNumber));
 
     AbstractDungeon.actionManager.addToBottom(
         new ExhaustAction(p, p, EXHAUST_AMOUNT,false));

@@ -91,7 +91,7 @@
 
   "TheSimpletonMod:Photosynthesis": {
     "NAME": "Photosynthesis",
-    "DESCRIPTION": "At the end of your turn, convert any unused Energy into an equal number of random Crop stacks."
+    "DESCRIPTION": "At the end of your turn, convert any unused Energy into an equal number of random   Crop stacks."
   },
 
 

@@ -9,9 +9,14 @@
     "DESCRIPTION": "Gain !B! Block."
   },
 
+  "TheSimpletonMod:Abundance": {
+    "NAME": "Abundance",
+    "DESCRIPTION": "Draw a card for each different type of Crop you have."
+  },
+
   "TheSimpletonMod:Aerate": {
     "NAME": "Aerate",
-    "DESCRIPTION": "Gain !B! Block. NL Add !M! stack to your newest Crop."
+    "DESCRIPTION": "Gain !B! Block. NL Add !M! stacks to your newest Crop."
   },
 
   "TheSimpletonMod:Barnstorm": {
@@ -91,7 +96,7 @@
 
   "TheSimpletonMod:Photosynthesis": {
     "NAME": "Photosynthesis",
-    "DESCRIPTION": "At the end of your turn, convert any unused Energy into an equal number of random   Crop stacks."
+    "DESCRIPTION": "At the end of your turn, convert any unused Energy into an equal number of random  Crop stacks."
   },
 
 

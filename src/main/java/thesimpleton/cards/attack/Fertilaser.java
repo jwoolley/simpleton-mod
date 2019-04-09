@@ -42,8 +42,8 @@ public class Fertilaser extends CustomCard {
   }
 
   public void use(AbstractPlayer p, AbstractMonster m) {
-
-    AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_MAGIC_SLOW_2"));
+  //STS_SFX_DefectBeam_v1.ogg
+    AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_DEFECT_BEAM"));
 
     AbstractGameEffect effect = new MindblastEffect(
         m.hb.cX, m.hb.cY, false);

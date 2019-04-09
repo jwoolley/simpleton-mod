@@ -181,6 +181,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
 
         // Skill (8)
+        BaseMod.addCard(new Abundance());
         BaseMod.addCard(new Aerate());
         BaseMod.addCard(new ControlledBurn());
         BaseMod.addCard(new CropRotation());

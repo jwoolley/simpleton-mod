@@ -274,6 +274,10 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     return resultPowers;
   }
 
+  public static int getNumberActiveCropTypes() {
+    return getActiveCropPowers().size();
+  }
+
   static {
     powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_DESCRIPTION_ID);
     PASSIVE_DESCRIPTIONS = powerStrings.DESCRIPTIONS;

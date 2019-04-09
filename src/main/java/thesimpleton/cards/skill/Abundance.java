@@ -1,7 +1,9 @@
 package thesimpleton.cards.skill;
 
 import basemod.abstracts.CustomCard;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,50 +14,48 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.AbstractCropPower;
 
-public class Aerate extends CustomCard {
-  public static final String ID = "TheSimpletonMod:Aerate";
+public class Abundance extends CustomCard {
+  public static final String ID = "TheSimpletonMod:Abundance";
   public static final String NAME;
   public static final String DESCRIPTION;
-  public static final String IMG_PATH = "cards/aerate.png";
+  public static final String IMG_PATH = "cards/abundance.png";
 
   private static final CardStrings cardStrings;
 
   private static final CardType TYPE = CardType.SKILL;
-  private static final CardRarity RARITY = CardRarity.COMMON;
+  private static final CardRarity RARITY = CardRarity.UNCOMMON;
   private static final CardTarget TARGET = CardTarget.SELF;
 
-  private static final int COST = 2;
-  private static final int BLOCK = 9;
-  private static final int UPGRADE_BLOCK_AMOUNT = 4;
-  private static final int CROP_INCREASE_AMOUNT = 2;
-  private static final int UPGRADE_CROP_INCREASE_AMOUNT = 1;
+  private static final int COST = 1;
+  private static final int UPGRADED_COST = 0;
+  private static final int CARDS_PER_CROP_TYPE = 1;
 
-  public Aerate() {
+  public Abundance() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
-    this.baseBlock = this.block = BLOCK;
-    this.baseMagicNumber = this.magicNumber = CROP_INCREASE_AMOUNT;
+    this.baseMagicNumber = this.magicNumber = CARDS_PER_CROP_TYPE;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
+    final int numCropTypes = AbstractCropPower.getNumberActiveCropTypes();
 
-    if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
-      AbstractCropPower.getNewestPower().stackPower(this.magicNumber);
+    if (numCropTypes > 0) {
+      AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, AbstractCropPower.getNumberActiveCropTypes()));
+    } else {
+      AbstractDungeon.actionManager.addToBottom(new SFXAction("CARD_DRAW_8"));
     }
   }
 
   @Override
   public AbstractCard makeCopy() {
-    return new Aerate();
+    return new Abundance();
   }
 
   @Override
   public void upgrade() {
     if (!this.upgraded) {
       this.upgradeName();
-      this.upgradeBlock(UPGRADE_BLOCK_AMOUNT);
-      this.upgradeMagicNumber(UPGRADE_CROP_INCREASE_AMOUNT);
+      this.upgradeBaseCost(UPGRADED_COST);
     }
   }
 

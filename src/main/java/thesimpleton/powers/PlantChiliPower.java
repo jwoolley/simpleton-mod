@@ -31,11 +31,7 @@ public class PlantChiliPower extends AbstractCropPower {
   private static int damagePerStack = 1;
 
   public PlantChiliPower(AbstractCreature owner, int amount) {
-    super(IMG, owner, cropRarity, powerCard, amount);
-
-    this.name = NAME;
-    this.ID = POWER_ID;
-    this.type = POWER_TYPE;
+    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
     this.damagePerStack = BASE_DAMAGE_STACK;
     updateDescription();
   }

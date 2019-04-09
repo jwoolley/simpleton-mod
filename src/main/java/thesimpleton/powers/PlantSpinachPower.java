@@ -31,13 +31,8 @@ public class PlantSpinachPower extends AbstractCropPower {
   private static int BASE_STRENGTH_PER_STACK = 1;
   private static int strengthPerStack = 1;
 
-
   public PlantSpinachPower(AbstractCreature owner, int amount) {
-    super(IMG, owner, cropRarity, powerCard, amount);
-
-    this.name = NAME;
-    this.ID = POWER_ID;
-    this.type = POWER_TYPE;
+    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
     this.strengthPerStack = BASE_STRENGTH_PER_STACK;
     updateDescription();
   }

@@ -30,6 +30,7 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
 
   private static final String POWER_DESCRIPTION_ID = "TheSimpletonMod:AbstractCropPower";
   private static final PowerStrings powerStrings;
+  public final String[] descriptions;
   public static final String[] PASSIVE_DESCRIPTIONS;
 
   private final int cropPowerId;
@@ -37,22 +38,27 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   private final AbstractCropPowerCard powerCard;
   private int autoHarvestThreshold;
 
+
   public AbstractCard.CardRarity cropRarity;
 
-  AbstractCropPower(String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
+  AbstractCropPower(String name, String id, PowerType powerType, String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
                     AbstractCropPowerCard powerCard, int amount) {
-    this(imgName, owner, rarity, powerCard, amount, IS_HARVEST_ALL, AUTO_HARVEST_THRESHOLD);
+    this(name, id, powerType, descriptions, imgName, owner, rarity, powerCard, amount, IS_HARVEST_ALL, AUTO_HARVEST_THRESHOLD);
   }
 
-  AbstractCropPower(String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
+  AbstractCropPower(String name, String id, PowerType powerType,  String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
                     AbstractCropPowerCard powerCard, int amount, boolean isHarvestAll) {
-    this(imgName, owner, rarity, powerCard, amount, isHarvestAll, AUTO_HARVEST_THRESHOLD);
+    this(name, id, powerType, descriptions, imgName, owner, rarity, powerCard, amount, isHarvestAll, AUTO_HARVEST_THRESHOLD);
   }
 
-  private AbstractCropPower(String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
+  private AbstractCropPower(String name, String id, PowerType powerType, String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
                             AbstractCropPowerCard powerCard, int amount, boolean isHarvestAll,
                             int autoHarvestThreshold) {
     super(imgName);
+    this.ID = id;
+    this.type = powerType;
+    this.name = name;
+    this.descriptions = descriptions;
     this.owner = owner;
     this.amount = amount;
     this.cropRarity = rarity;
@@ -60,6 +66,8 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     this.autoHarvestThreshold = autoHarvestThreshold;
     this.cropPowerId = CROP_POWER_ID_COUNTER++;
     this.powerCard = powerCard;
+
+    logger.debug(this.name + ": gained " + amount + " stacks");
   }
 
 
@@ -71,11 +79,26 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     hasHarvestedThisTurn = true;
     logger.debug(this.name + ": harvested. Set hasHarvestedThisTurn");
 
-
     if (getPlayer().hasPower(ToughSkinPower.POWER_ID)) {
       ((ToughSkinPower) getPlayer().getPower(ToughSkinPower.POWER_ID)).applyPower(getPlayer());
     }
   }
+
+//  @Override
+//  public void onGainCharge(int chargeAmount) {
+//    super.onGainCharge(chargeAmount);
+//    logger.debug(this.name + ": gained " + chargeAmount + " stacks");
+//  }
+//
+//
+//  @Override
+//  public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
+//    super.onApplyPower(power, target, source);
+//
+//    if (power instanceof AbstractCropPower && ((AbstractCropPower)power).getInstanceId() == this.getInstanceId()) {
+//      logger.debug(this.name + ": power applied");
+//    }
+//  }
 
   public int getMaturityThreshold() {
     return this.autoHarvestThreshold;
@@ -85,7 +108,6 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     this.autoHarvestThreshold += amount;
     this.updateDescription();
   }
-
 
   static TheSimpletonCharacter getPlayer() {
     return (TheSimpletonCharacter) AbstractDungeon.player;

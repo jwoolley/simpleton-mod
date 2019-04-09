@@ -30,23 +30,13 @@ public class PlantTurnipPower extends AbstractCropPower {
   private static final int MINIMUM_STARTING_STACKS = 2;
 
   public PlantTurnipPower(AbstractCreature owner, int amount) {
-    super(IMG, owner, cropRarity, powerCard, Math.max(amount, MINIMUM_STARTING_STACKS), IS_HARVEST_ALL);
-
-    this.name = NAME;
-    this.ID = POWER_ID;
-    this.type = POWER_TYPE;
-
+    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, Math.max(amount, MINIMUM_STARTING_STACKS), IS_HARVEST_ALL);
     updateDescription();
   }
 
   @Override
   public void updateDescription() {
     this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0] + MINIMUM_STARTING_STACKS + DESCRIPTIONS[1];
-  }
-  static {
-    powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    NAME = powerStrings.NAME;
-    DESCRIPTIONS = powerStrings.DESCRIPTIONS;
   }
 
   public void onUseCard(AbstractCard card, UseCardAction action) {
@@ -69,5 +59,11 @@ public class PlantTurnipPower extends AbstractCropPower {
         AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
       }
     }
+  }
+
+  static {
+    powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
+    NAME = powerStrings.NAME;
+    DESCRIPTIONS = powerStrings.DESCRIPTIONS;
   }
 }

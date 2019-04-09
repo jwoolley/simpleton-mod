@@ -32,12 +32,7 @@ public class PlantOnionPower extends AbstractCropPower {
   private static int weakPerStack = 1;
 
   public PlantOnionPower(AbstractCreature owner, int amount) {
-    super(IMG, owner, cropRarity, powerCard, amount);
-
-    this.name = NAME;
-    this.ID = POWER_ID;
-    this.type = POWER_TYPE;
-    this.weakPerStack = BASE_WEAK_PER_STACK;
+    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
     updateDescription();
   }
 

@@ -28,15 +28,10 @@ public class PlantPotatoPower extends AbstractCropPower {
   private static final AbstractCropPowerCard powerCard = new Potatoes();
 
   public PlantPotatoPower(AbstractCreature owner, int amount) {
-    super(IMG, owner, cropRarity, powerCard, amount);
-
+    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
     this.name = NAME;
-    this.ID = POWER_ID;
-    this.type = POWER_TYPE;
     updateDescription();
-
-
-    logger.debug("MAKIN' POTOATOES (instantiating plantpotatopower)");
+    logger.debug("MAKIN' POTATOES (instantiating plantpotatopower). name: " + NAME);
   }
 
   @Override
@@ -49,12 +44,6 @@ public class PlantPotatoPower extends AbstractCropPower {
     if (card.hasTag(TheSimpletonCardTags.HARVEST) && card instanceof AbstractHarvestCard && ((AbstractHarvestCard)card).autoHarvest) {
        harvest(((AbstractHarvestCard) card).isHarvestAll(), ((AbstractHarvestCard) card).getHarvestAmount());
     }
-  }
-
-  static {
-    powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    NAME = powerStrings.NAME;
-    DESCRIPTIONS = powerStrings.DESCRIPTIONS;
   }
 
   @Override
@@ -72,5 +61,11 @@ public class PlantPotatoPower extends AbstractCropPower {
         AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
       }
     }
+  }
+
+  static {
+    powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
+    NAME = powerStrings.NAME;
+    DESCRIPTIONS = powerStrings.DESCRIPTIONS;
   }
 }

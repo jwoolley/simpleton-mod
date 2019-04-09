@@ -47,9 +47,9 @@ public class PhotosynthesisPower extends AbstractTheSimpletonPower {
   void applyPower() {
     final AbstractPlayer player = AbstractDungeon.player;
     final int energy = EnergyPanel.getCurrentEnergy();
+    this.flash();
 
     for (int i = 0; i < energy; i++) {
-      this.flash();
       player.loseEnergy(1);
       final AbstractCropPower newCrop = AbstractCropPower.getRandomCropPower(player, 1);
       AbstractDungeon.actionManager.addToBottom(

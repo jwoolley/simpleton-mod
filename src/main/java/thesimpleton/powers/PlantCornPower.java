@@ -19,21 +19,16 @@ public class PlantCornPower extends AbstractCropPower {
 
   public static final String POWER_ID = "TheSimpletonMod:PlantCornPower";
   private static final PowerStrings powerStrings;
+
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
-
   public static PowerType POWER_TYPE = PowerType.BUFF;
   public static final String IMG = "plantcorn.png";
   public static final CardRarity cropRarity = CardRarity.UNCOMMON;
   private static final AbstractCropPowerCard powerCard = new Corn();
 
   public PlantCornPower(AbstractCreature owner, int amount) {
-    super(IMG, owner, cropRarity, powerCard, amount);
-
-    this.name = NAME;
-    this.ID = POWER_ID;
-    this.type = POWER_TYPE;
-
+    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
     updateDescription();
   }
 

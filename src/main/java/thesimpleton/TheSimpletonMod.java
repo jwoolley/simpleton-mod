@@ -36,6 +36,7 @@ import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.relics.*;
+import thesimpleton.utilities.CropUtil;
 
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
@@ -68,6 +69,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     private Map<String, Keyword> keywords;
     private ThemeState currentTheme;
+
+    private CropUtil cropUtil;
 
     private class ThemeState {
         private HashMap<TheSimpletonCharEnum.Theme, Boolean> currentThemeMap;

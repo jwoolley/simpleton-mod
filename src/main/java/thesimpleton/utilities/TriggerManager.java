@@ -23,4 +23,6 @@ public class TriggerManager {
   public void triggerAll() {
     triggers.forEach(trigger -> trigger.trigger());
   }
+
+  public void clear()  { triggers.clear(); }
 }

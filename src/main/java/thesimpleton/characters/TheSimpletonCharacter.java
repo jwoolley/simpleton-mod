@@ -28,6 +28,7 @@ import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.relics.PungentSoil;
 import thesimpleton.relics.SpudOfTheInnocent;
 import thesimpleton.relics.TheHarvester;
+import thesimpleton.utilities.CropUtil;
 import thesimpleton.utilities.Trigger;
 import thesimpleton.utilities.TriggerManager;
 
@@ -50,8 +51,10 @@ public class TheSimpletonCharacter extends CustomPlayer {
     public static final String DESCRIPTION;
 
     private final TriggerManager precombatTriggers = new TriggerManager();
+    private final TriggerManager precombatPredrawTriggers = new TriggerManager();
     private final TriggerManager startOfTurnTriggers = new TriggerManager();
     private final TriggerManager endOfTurnTriggers = new TriggerManager();
+    private CropUtil cropUtil;
 
     public static final String[] orbTextures = {
             getResourcePath("char/orb/layer1.png"),
@@ -209,6 +212,14 @@ public class TheSimpletonCharacter extends CustomPlayer {
     }
 
     @Override
+    public void applyStartOfCombatPreDrawLogic() {
+        super.applyStartOfCombatPreDrawLogic();
+        super.applyStartOfTurnCards();
+        TheSimpletonMod.logger.debug("Applying start of turn triggers");
+        this.precombatPredrawTriggers.triggerAll();
+    }
+
+    @Override
     public void applyStartOfTurnCards() {
         super.applyStartOfTurnCards();
         TheSimpletonMod.logger.debug("Applying start of turn triggers");
@@ -222,9 +233,18 @@ public class TheSimpletonCharacter extends CustomPlayer {
         this.endOfTurnTriggers.triggerAll();
     }
 
+    public CropUtil getCropUtil() {
+        if (cropUtil == null) {
+            cropUtil = new CropUtil();
+        }
+        return cropUtil;
+    }
+
     public void addStartOfTurnTrigger(Trigger trigger) { this.startOfTurnTriggers.addTrigger(trigger);  }
 
     public void addPrecombatTrigger(Trigger trigger) { this.precombatTriggers.addTrigger(trigger);  }
+
+    public void addPrecombatPredrawTrigger(Trigger trigger) { this.precombatPredrawTriggers.addTrigger(trigger);  }
 
     public void addEndOfTurnTrigger(Trigger trigger) { this.endOfTurnTriggers.addTrigger(trigger);  }
 

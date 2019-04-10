@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 
 // TODO: create separate enum for CropRarity
 public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
-
   public static Map<CardRarity, Integer> CROP_RARITY_DISTRIBUTION;
 
   private static boolean IS_HARVEST_ALL = false;
@@ -66,6 +65,8 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     this.autoHarvestThreshold = autoHarvestThreshold;
     this.cropPowerId = CROP_POWER_ID_COUNTER++;
     this.powerCard = powerCard;
+
+    getPlayer().getCropUtil().onCropGained(this);
 
     logger.debug(this.name + ": gained " + amount + " stacks");
   }
@@ -155,7 +156,11 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
         .filter(power -> power instanceof AbstractCropPower)
         .reduce((p1, p2) -> ((AbstractCropPower) p2).cropPowerId >= ((AbstractCropPower) p1).cropPowerId ? p2 : p1);
 
-    return newestPower.isPresent() ? (AbstractCropPower)newestPower.get() : null;
+    logger.debug("Newest crop per CropUtil: " + (getPlayer().getCropUtil().playerHasAnyCrops() ? getPlayer().getCropUtil().getNewestCrop() : "None"));
+    logger.debug("Newest crop per AbstractCropPower: " + (newestPower.isPresent() ? (AbstractCropPower)newestPower.get() : "None"));
+
+//    return newestPower.isPresent() ? (AbstractCropPower)newestPower.get() : null;
+    return getPlayer().getCropUtil().getNewestCrop();
   }
 
   public static List<AbstractCropPower> getActiveCropPowers() {
@@ -207,10 +212,17 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   public void stackPower(int amount) {
     super.stackPower(amount);
     logger.debug("Called stackPower for " + this.ID + " amount: " + amount + ". Updated amount: " + this.amount);
+    getPlayer().getCropUtil().onCropGained(this);
     if (this.amount > autoHarvestThreshold) {
       this.flash();
       this.harvest(false, this.amount - autoHarvestThreshold);
     }
+  }
+
+  @Override
+  public void onRemove() {
+    super.onRemove();
+    getPlayer().getCropUtil().onCropLost(this);
   }
 
   public static List<AbstractCropPower> getRandomCropPowers(

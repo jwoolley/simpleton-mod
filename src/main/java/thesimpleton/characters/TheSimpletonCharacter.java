@@ -50,10 +50,15 @@ public class TheSimpletonCharacter extends CustomPlayer {
     public static final String NAME;
     public static final String DESCRIPTION;
 
-    private final TriggerManager precombatTriggers = new TriggerManager();
-    private final TriggerManager precombatPredrawTriggers = new TriggerManager();
-    private final TriggerManager startOfTurnTriggers = new TriggerManager();
-    private final TriggerManager endOfTurnTriggers = new TriggerManager();
+    private static final List<Trigger> staticPrecombatTriggers = new ArrayList<>();
+    private static final List<Trigger> staticPrecombatPredrawTriggers = new ArrayList<>();
+    private static final List<Trigger> staticStartOfTurnTriggers = new ArrayList<>();
+    private static final List<Trigger> staticEndOfTurnTriggers = new ArrayList<>();
+
+    private final TriggerManager precombatTriggers;
+    private final TriggerManager precombatPredrawTriggers;
+    private final TriggerManager startOfTurnTriggers;
+    private final TriggerManager endOfTurnTriggers;
     private CropUtil cropUtil;
 
     public static final String[] orbTextures = {
@@ -76,6 +81,19 @@ public class TheSimpletonCharacter extends CustomPlayer {
         this.initializeClass(CHAR_IMAGE, SHOULDER_2, SHOULDER_1, CORPSE, getLoadout(),
                 20.0F, -10.0F, 220.0F, 290.0F,
                 new EnergyManager(ENERGY_PER_TURN));
+
+        precombatTriggers = new TriggerManager(staticPrecombatTriggers);
+        TheSimpletonMod.logger.debug(("instantiating precombatPredrawTriggers manager with " + staticPrecombatPredrawTriggers.size() + " preregistered triggers"));
+        precombatPredrawTriggers = new TriggerManager(staticPrecombatPredrawTriggers);
+        startOfTurnTriggers = new TriggerManager(staticStartOfTurnTriggers);
+        endOfTurnTriggers = new TriggerManager(staticEndOfTurnTriggers);
+;
+
+
+//        precombatTriggers = new TriggerManager();
+//        precombatPredrawTriggers = new TriggerManager();
+//        endOfTurnTriggers = new TriggerManager();
+//        startOfTurnTriggers = new TriggerManager();
     }
 
     @Override
@@ -215,7 +233,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
     public void applyStartOfCombatPreDrawLogic() {
         super.applyStartOfCombatPreDrawLogic();
         super.applyStartOfTurnCards();
-        TheSimpletonMod.logger.debug("Applying start of turn triggers");
+        TheSimpletonMod.logger.debug("Applying start of combat pre-draw triggers");
         this.precombatPredrawTriggers.triggerAll();
     }
 
@@ -240,13 +258,51 @@ public class TheSimpletonCharacter extends CustomPlayer {
         return cropUtil;
     }
 
-    public void addStartOfTurnTrigger(Trigger trigger) { this.startOfTurnTriggers.addTrigger(trigger);  }
+    private void addToStartOfTurnTrigger(Trigger trigger) { this.startOfTurnTriggers.addTrigger(trigger);  }
 
-    public void addPrecombatTrigger(Trigger trigger) { this.precombatTriggers.addTrigger(trigger);  }
+    private void addToPrecombatTrigger(Trigger trigger) { this.precombatTriggers.addTrigger(trigger);  }
 
-    public void addPrecombatPredrawTrigger(Trigger trigger) { this.precombatPredrawTriggers.addTrigger(trigger);  }
+    private void addToPrecombatPredrawTrigger(Trigger trigger) { this.precombatPredrawTriggers.addTrigger(trigger);  }
 
-    public void addEndOfTurnTrigger(Trigger trigger) { this.endOfTurnTriggers.addTrigger(trigger);  }
+    private void addToEndOfTurnTrigger(Trigger trigger) { this.endOfTurnTriggers.addTrigger(trigger);  }
+
+    public static void addStartOfTurnTrigger(Trigger trigger) {
+        AbstractPlayer player = AbstractDungeon.player;
+        if (player == null) {
+            staticStartOfTurnTriggers.add(trigger);
+        } else {
+            ((TheSimpletonCharacter)player).addToStartOfTurnTrigger(trigger);
+        }
+    }
+
+    public static void addPrecombatTrigger(Trigger trigger) {
+        AbstractPlayer player = AbstractDungeon.player;
+        if (player == null) {
+            staticPrecombatTriggers.add(trigger);
+        } else {
+            ((TheSimpletonCharacter)player).addToPrecombatTrigger(trigger);
+        }
+    }
+
+    public static void addPrecombatPredrawTrigger(Trigger trigger) {
+        AbstractPlayer player = AbstractDungeon.player;
+        if (player == null) {
+            TheSimpletonMod.logger.debug("Preregistering trigger");
+            staticPrecombatPredrawTriggers.add(trigger);
+        } else {
+            ((TheSimpletonCharacter)player).addToPrecombatPredrawTrigger(trigger);
+        }
+    }
+
+    public static void addEndOfTurnTrigger(Trigger trigger) {
+
+        AbstractPlayer player = AbstractDungeon.player;
+        if (player == null) {
+            staticStartOfTurnTriggers.add(trigger);
+        } else {
+            ((TheSimpletonCharacter)player).addToEndOfTurnTrigger(trigger);
+        }
+    }
 
     @Override
     public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {

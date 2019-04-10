@@ -37,7 +37,6 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   private final AbstractCropPowerCard powerCard;
   private int autoHarvestThreshold;
 
-
   public AbstractCard.CardRarity cropRarity;
 
   AbstractCropPower(String name, String id, PowerType powerType, String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
@@ -66,11 +65,16 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     this.cropPowerId = CROP_POWER_ID_COUNTER++;
     this.powerCard = powerCard;
 
-    getPlayer().getCropUtil().onCropGained(this);
+    if (amount > 0) {
+      triggerCropGained();
+    }
 
     logger.debug(this.name + ": gained " + amount + " stacks");
   }
 
+  private void triggerCropGained() {
+    getPlayer().getCropUtil().onCropGained(this);
+  }
 
   protected String getPassiveDescription() {
     return PASSIVE_DESCRIPTIONS[0] + this.autoHarvestThreshold + PASSIVE_DESCRIPTIONS[1];
@@ -156,10 +160,7 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
         .filter(power -> power instanceof AbstractCropPower)
         .reduce((p1, p2) -> ((AbstractCropPower) p2).cropPowerId >= ((AbstractCropPower) p1).cropPowerId ? p2 : p1);
 
-    logger.debug("Newest crop per CropUtil: " + (getPlayer().getCropUtil().playerHasAnyCrops() ? getPlayer().getCropUtil().getNewestCrop() : "None"));
-    logger.debug("Newest crop per AbstractCropPower: " + (newestPower.isPresent() ? (AbstractCropPower)newestPower.get() : "None"));
-
-//    return newestPower.isPresent() ? (AbstractCropPower)newestPower.get() : null;
+    logger.debug("Newest crop per CropUtil: " + (getPlayer().getCropUtil().playerHasAnyCrops() ? getPlayer().getCropUtil().getNewestCrop().name : "None"));
     return getPlayer().getCropUtil().getNewestCrop();
   }
 
@@ -229,12 +230,12 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
       AbstractPlayer p, int numPowers, int numStacks, boolean withRarityDistribution,
       Predicate<AbstractCropPower> predicate){
     // TODO: move this logic to a plant power manager class
-    final PlantPotatoPower potatoPower = new PlantPotatoPower(p, numStacks);
-    final PlantSpinachPower spinachPower = new PlantSpinachPower(p, numStacks);
-    final PlantOnionPower onionPower = new PlantOnionPower(p, numStacks);
-    final PlantTurnipPower turnipPower = new PlantTurnipPower(p, numStacks);
-    final PlantCornPower cornPower = new PlantCornPower(p, numStacks);
-    final PlantChiliPower chiliPower = new PlantChiliPower(p, numStacks);
+    final PlantPotatoPower potatoPower = new PlantPotatoPower(p, 0);
+    final PlantSpinachPower spinachPower = new PlantSpinachPower(p, 0);
+    final PlantOnionPower onionPower = new PlantOnionPower(p, 0);
+    final PlantTurnipPower turnipPower = new PlantTurnipPower(p, 0);
+    final PlantCornPower cornPower = new PlantCornPower(p, 0);
+    final PlantChiliPower chiliPower = new PlantChiliPower(p, 0);
 
     ArrayList<AbstractCropPower> referencePowers = new ArrayList<>();
     referencePowers.add(potatoPower);
@@ -305,6 +306,13 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
         + ".getRandomCropPowers :: resultPowers(shuffled): "
         + resultPowers.stream().map(rp -> rp.name).collect(Collectors.joining(", ")));
 
+    //TODO: change to create clones (with a factory model) and instantiate by key/name
+    //then set original owner to null and update to be player?
+    //then don't trigger on constructor if owner is null
+    resultPowers.forEach(pow -> {
+      pow.stackPower(numStacks);
+    });
+
     return resultPowers;
   }
 
@@ -331,6 +339,7 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
         hasHarvestedThisTurn = false;
       }
     };
+    getPlayer().addPrecombatPredrawTrigger(trigger);
     getPlayer().addStartOfTurnTrigger(trigger);
     getPlayer().addEndOfTurnTrigger(trigger);
   }

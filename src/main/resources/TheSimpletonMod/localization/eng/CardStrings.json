@@ -16,7 +16,12 @@
 
   "TheSimpletonMod:Aerate": {
     "NAME": "Aerate",
-    "DESCRIPTION": "Gain !B! Block. NL Add !M! stacks to your newest Crop."
+    "DESCRIPTION": "Gain !B! Block. NL Add !M! stacks to your newest Crop NL ",
+    "EXTENDED_DESCRIPTION" : [
+      "(No eligible Crops currently).",
+      "(Currently ",
+      ")."
+    ]
   },
 
   "TheSimpletonMod:Barnstorm": {

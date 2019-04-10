@@ -6,20 +6,17 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.powers.AbstractCropPower;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class CropUtil {
   private static Logger logger = TheSimpletonMod.logger;
 
-  private final TriggerManager cropTickTriggerManager;
+  private final TriggerManager cropTickedTriggerManager;
   private final CropSeniorityList cropSeniorityList;
 
   public CropUtil() {
-    this.cropTickTriggerManager = new TriggerManager();
+    this.cropTickedTriggerManager = new TriggerManager();
     this.cropSeniorityList = new CropSeniorityList();
 
     Trigger trigger = () -> {
@@ -33,8 +30,16 @@ public class CropUtil {
     logger.debug("CropUtil: precombatPredrawTrigger");
     this.cropSeniorityList.clear();
 
-    logger.debug("CropUtil: Resetting cropTickTriggerManager");
-    cropTickTriggerManager.clear();
+    logger.debug("CropUtil: Resetting cropTickedTriggerManager");
+    cropTickedTriggerManager.clear();
+  }
+
+  public void addCropTickedTrigger(Trigger trigger) {
+    this.cropTickedTriggerManager.addTrigger(trigger);
+  }
+
+  public void removeCropTickedTrigger(Trigger trigger) {
+    this.cropTickedTriggerManager.removeTrigger(trigger);
   }
 
   public boolean playerHasAnyCrops() {
@@ -47,15 +52,17 @@ public class CropUtil {
 
   public void onCropGained(AbstractCropPower crop) {
     cropSeniorityList.moveToEnd(crop);
+    cropTickedTriggerManager.triggerAll();
   }
 
   public void onCropLost(AbstractCropPower crop) {
     cropSeniorityList.remove(crop);
+    cropTickedTriggerManager.triggerAll();
   }
 
   static class CropSeniorityList extends ArrayList<AbstractCropPower> {
     public AbstractCropPower getNewestCrop() {
-      AbstractCropPower newestCrop = this.size() > 0 ? this.get(this.size() - 1): null;
+      AbstractCropPower newestCrop = (this.size() > 0 ? this.get(this.size() - 1): null);
       logger.debug("CropSeniorityList::getNewestCrop returning newest crop: " + (newestCrop != null ? newestCrop.name : "none"));
       return newestCrop;
     }

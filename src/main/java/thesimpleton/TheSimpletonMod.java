@@ -26,7 +26,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
-import thesimpleton.cards.attack.unused.CullingStrike;
+import thesimpleton.cards.attack.CullingStrike;
 import thesimpleton.cards.power.Biorefinement;
 import thesimpleton.cards.power.Photosynthesis;
 import thesimpleton.cards.power.ToughSkin;
@@ -174,9 +174,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new Haymaker());
         BaseMod.addCard(new ReapAndSow());
 
-        // Attack (6)
+        // Attack (8)
         BaseMod.addCard(new Barnstorm());
         BaseMod.addCard(new CullingStrike());
+        BaseMod.addCard(new DoubleBarrel());
         BaseMod.addCard(new Fertilaser());
         BaseMod.addCard(new PestManagement());
         BaseMod.addCard(new RootDown());

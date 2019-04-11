@@ -61,6 +61,11 @@
     "DESCRIPTION": "Costs 1 less Energy for each Power card played this turn. NL Gain !B! Block."
   },
 
+  "TheSimpletonMod:DoubleBarrel": {
+    "NAME": "Double Barrel",
+    "DESCRIPTION": "Deal !D! damage. NL If the enemy is Weak, gain [E] and deal !D! damage again."
+  },
+
   "TheSimpletonMod:Ferment": {
     "NAME": "Ferment",
     "DESCRIPTION": "Shuffle 2 cards from your hand into your draw pile. NL Gain !M! Energy.",
@@ -150,7 +155,7 @@
 
   "TheSimpletonMod:Swelter": {
     "NAME": "Swelter",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Each enemy that's Weak gains !M! Burning."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Each Weak enemy that takes damage also gains !M! Burning."
   },
 
   "TheSimpletonMod:ToughSkin": {

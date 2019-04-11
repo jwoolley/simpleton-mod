@@ -40,12 +40,12 @@ public class Swelter extends CustomCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(
-        new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn,
-            AbstractGameAction.AttackEffect.FIRE));
+//    AbstractDungeon.actionManager.addToBottom(
+//        new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn,
+//            AbstractGameAction.AttackEffect.FIRE));
 
     AbstractDungeon.actionManager.addToBottom(
-        new SwelterAction(p, this.multiDamage, this.magicNumber));
+        new SwelterAction(p, this.damageType, this.multiDamage, this.magicNumber));
   }
 
   @Override

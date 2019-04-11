@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.RootDownAction;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.PlantTurnipPower;
@@ -31,16 +32,14 @@ public class RootDown extends CustomCard {
   private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
 
   private static final int COST = 0;
-  private static final int DAMAGE = 5;
-  private static final int DAMAGE_UPGRADE = 4;
-  private static final int PLANT_AMOUNT = 2;
+  private static final int DAMAGE = 6;
+  private static final int PLANT_AMOUNT = 1;
 
   public RootDown() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE,
         AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.block = DAMAGE;
     this.baseMagicNumber = this.magicNumber = PLANT_AMOUNT;
-    this.exhaust = true;
   }
 
   @Override
@@ -48,14 +47,7 @@ public class RootDown extends CustomCard {
     AbstractDungeon.actionManager.addToBottom(
         new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
             AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-
-     AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, new PlantTurnipPower(p, this.magicNumber), this.magicNumber));
-
-    AbstractDungeon.actionManager.addToBottom(
-        new MakeTempCardInDrawPileAction(
-            SimpletonUtil.ROOT_OUT, 1, false, false, true));
-
+     AbstractDungeon.actionManager.addToBottom(new RootDownAction(p, this.magicNumber));
   }
 
   @Override
@@ -68,7 +60,6 @@ public class RootDown extends CustomCard {
     if (!this.upgraded) {
       upgradeName();
       this.isInnate = true;
-      this.upgradeDamage(DAMAGE_UPGRADE);
       this.rawDescription = UPGRADE_DESCRIPTION;
       this.initializeDescription();
     }

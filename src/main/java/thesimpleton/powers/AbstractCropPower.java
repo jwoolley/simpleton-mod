@@ -114,6 +114,10 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     this.updateDescription();
   }
 
+  public boolean isMature() {
+    return this.amount >= this.getMaturityThreshold();
+  }
+
   static TheSimpletonCharacter getPlayer() {
     return (TheSimpletonCharacter) AbstractDungeon.player;
   }

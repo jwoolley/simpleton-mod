@@ -84,5 +84,5 @@ public class SwelterAction extends AbstractGameAction {
     }
 
     return damagedMonsters;
-
+  }
 }

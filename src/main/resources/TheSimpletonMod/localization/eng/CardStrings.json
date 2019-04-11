@@ -118,8 +118,8 @@
 
   "TheSimpletonMod:RootDown": {
     "NAME": "Root Down",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Turnips. NL Put a Root Out on the bottom of your draw pile. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Innate. Deal !D! damage. NL Gain !M! Turnips. NL Put a Root Out on the bottom of your draw pile. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage. NL If Turnips are Mature, Harvest all Turnips. Otherwise, gain !M! Turnips.",
+    "UPGRADE_DESCRIPTION": "Innate. Deal !D! damage. NL If Turnips are Mature, Harvest all Turnips. Otherwise, gain !M! Turnips."
   },
 
   "TheSimpletonMod:RootOut": {

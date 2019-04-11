@@ -58,7 +58,7 @@
 
   "TheSimpletonMod:DesperatePlunge": {
     "NAME": "Desperate Plunge",
-    "DESCRIPTION": "Costs 1 less Energy for each Power card played this turn. NL Gain !B! Block."
+    "DESCRIPTION": "Costs [E]  less for each Power card played this turn. NL Gain !B! Block."
   },
 
   "TheSimpletonMod:DoubleBarrel": {

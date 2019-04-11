@@ -31,7 +31,6 @@ public class Aerate extends CustomCard {
   private static final int BLOCK = 9;
   private static final int UPGRADE_BLOCK_AMOUNT = 4;
   private static final int CROP_INCREASE_AMOUNT = 2;
-  private static final int UPGRADE_CROP_INCREASE_AMOUNT = 1;
 
   public Aerate() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
@@ -109,7 +108,6 @@ public class Aerate extends CustomCard {
     if (!this.upgraded) {
       this.upgradeName();
       this.upgradeBlock(UPGRADE_BLOCK_AMOUNT);
-      this.upgradeMagicNumber(UPGRADE_CROP_INCREASE_AMOUNT);
     }
   }
 

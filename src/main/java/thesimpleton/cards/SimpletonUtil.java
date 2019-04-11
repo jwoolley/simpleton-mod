@@ -43,7 +43,7 @@ public class SimpletonUtil {
 
     public static AbstractMonster getRandomMonster() {
         List<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters.stream()
-                .filter(m -> !m.isDead && !m.isDying)
+                .filter(m -> !m.isDeadOrEscaped())
                 .collect(Collectors.toList());
 
         Collections.shuffle(monsters);
@@ -52,6 +52,12 @@ public class SimpletonUtil {
         }
 
         return monsters.get(0);
+    }
+
+    public static List<AbstractMonster> getMonsters() {
+        return AbstractDungeon.getCurrRoom().monsters.monsters.stream()
+            .filter(m -> !m.isDead && !m.isDying && m.currentHealth > 0)
+            .collect(Collectors.toList());
     }
 
     public static boolean hasHarvestedThisTurn() {

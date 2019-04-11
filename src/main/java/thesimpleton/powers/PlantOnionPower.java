@@ -64,21 +64,6 @@ public class PlantOnionPower extends AbstractCropPower {
       if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
         this.flash();
 
-        final long numTargetMonsters = AbstractDungeon.getMonsters().monsters.stream()
-            .filter(m -> !m.isDead && !m.isDying)
-            .count();
-
-        System.out.println("PlantOnionPower.harvest :: numTargetMonsters: " + numTargetMonsters);
-
-        // All monsters version
-        // if (hasGoodOnionRelic)
-        //TODO: reconcile with getCurrRoom.monsters.monsters version
-        //        AbstractDungeon.getMonsters().monsters.stream()
-        //            .filter(m -> !m.isDead && !m.isDying)
-        //            .forEach(m -> applyWeakPower(m, harvestAmount));
-
-        // random monsters version
-
         for (int i = 0; i < harvestAmount; i++) {
           AbstractMonster randomMonster = SimpletonUtil.getRandomMonster();
           if (randomMonster != null) {

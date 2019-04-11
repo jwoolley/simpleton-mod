@@ -148,6 +148,11 @@
     "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Each time this is card shuffled into your draw pile, increase its Block by !M! for this combat."
   },
 
+  "TheSimpletonMod:Swelter": {
+    "NAME": "Swelter",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Each enemy that's Weak gains !M! Burning."
+  },
+
   "TheSimpletonMod:ToughSkin": {
     "NAME": "Tough Skin",
     "DESCRIPTION": "Whenever you Harvest a Crop, gain !M! Block."

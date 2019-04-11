@@ -21,7 +21,7 @@ import thesimpleton.cards.attack.Haymaker;
 import thesimpleton.cards.attack.PestManagement;
 import thesimpleton.cards.attack.Strike_TheSimpleton;
 import thesimpleton.cards.skill.Defend_TheSimpleton;
-import thesimpleton.cards.skill.ReapAndSow;
+import thesimpleton.cards.attack.ReapAndSow;
 import thesimpleton.cards.skill.Rototilling;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;

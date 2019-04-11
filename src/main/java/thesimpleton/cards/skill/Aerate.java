@@ -38,7 +38,7 @@ public class Aerate extends CustomCard {
     this.baseMagicNumber = this.magicNumber = CROP_INCREASE_AMOUNT;
 
     Logger logger = TheSimpletonMod.logger;
-    if (AbstractDungeon.player != null) {
+    if (AbstractDungeon.isPlayerInDungeon()) {
       ((TheSimpletonCharacter) AbstractDungeon.player).getCropUtil().addCropTickedTrigger(() -> {
         logger.debug(("Real-time crop tick trigger triggered"));
         updateDescription();
@@ -51,6 +51,10 @@ public class Aerate extends CustomCard {
           updateDescription();
         });
       });
+    }
+
+    if (AbstractDungeon.isPlayerInDungeon()) {
+      updateDescription();
     }
   }
 

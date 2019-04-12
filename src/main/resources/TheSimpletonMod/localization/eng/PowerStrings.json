@@ -103,6 +103,15 @@
     ]
   },
 
+  "TheSimpletonMod:PlantArtichokePower": {
+    "NAME": "Artichokes",
+    "DESCRIPTIONS": [
+      "#gHarvest: Gain #b",
+      " #yPlated #yArmor for each stack harvested."
+    ]
+  },
+
+
   "TheSimpletonMod:PlantChiliPower": {
     "NAME": "Chilis",
     "DESCRIPTIONS": [
@@ -144,8 +153,7 @@
   "TheSimpletonMod:PlantTurnipPower": {
     "NAME": "Turnips",
     "DESCRIPTIONS": [
-      "#gHarvest: Convert ALL stacks into an attack card that deals increased damage for each stack harvested. NL Starts with a minimum of ",
-      "  stacks."
+      "#gHarvest: Convert ALL stacks into an attack card that deals increased damage for each stack harvested."
     ]
   },
 

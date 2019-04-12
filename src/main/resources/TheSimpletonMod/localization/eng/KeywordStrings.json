@@ -1,4 +1,12 @@
 {
+  "TheSimpletonMod:ArtichokeKeyword": {
+    "PROPER_NAME": "Artichokes",
+    "NAMES": [
+      "artichoke", "artichokes"
+    ],
+    "DESCRIPTION": "#yCrop. Grants Plated Armor strength when harvested."
+  },
+
   "TheSimpletonMod:BurningKeyword": {
     "PROPER_NAME": "Burning",
     "NAMES": [
@@ -97,9 +105,9 @@
   "TheSimpletonMod:SpinachKeyword": {
     "PROPER_NAME": "Spinach",
     "NAMES": [
-      "spinach", "spinach"
+      "spinach"
     ],
-    "DESCRIPTION": "#yCrop. Grants temporary strength when harvested."
+    "DESCRIPTION": "#yCrop. Grants temporary Strength when harvested."
   },
 
   "TheSimpletonMod:SpudKeyword": {
@@ -118,13 +126,11 @@
     "DESCRIPTION": "Cannot do anything."
   },
 
-
-
   "TheSimpletonMod:TurnipKeyword": {
     "PROPER_NAME": "Turnips",
     "NAMES": [
       "turnip", "turnips"
     ],
-    "DESCRIPTION": "#yCrop. Yields an attack card when harvested that scales with stacks."
+    "DESCRIPTION": "#yCrop. Yields an attack card when harvested that scales with number of stacks."
   }
 }

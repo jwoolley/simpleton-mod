@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import thesimpleton.cards.TheSimpletonCardTags;
+import thesimpleton.cards.attack.BabyTurnip;
 import thesimpleton.cards.attack.GiantTurnip;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Turnips;
@@ -30,13 +31,13 @@ public class PlantTurnipPower extends AbstractCropPower {
   private static final int MINIMUM_STARTING_STACKS = 2;
 
   public PlantTurnipPower(AbstractCreature owner, int amount) {
-    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, Math.max(amount, MINIMUM_STARTING_STACKS), IS_HARVEST_ALL);
+    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, IS_HARVEST_ALL);
     updateDescription();
   }
 
   @Override
   public void updateDescription() {
-    this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0] + MINIMUM_STARTING_STACKS + DESCRIPTIONS[1];
+    this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0];
   }
 
   public void onUseCard(AbstractCard card, UseCardAction action) {
@@ -50,9 +51,13 @@ public class PlantTurnipPower extends AbstractCropPower {
     super.harvest(harvestAll, maxHarvestAmount);
     if  (amount > 0) {
       final int harvestAmount = this.amount;
-
       this.flash();
-      AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new GiantTurnip(harvestAmount), 1));
+
+      if (harvestAmount == 1) {
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new BabyTurnip(), 1));
+      } else {
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new GiantTurnip(harvestAmount), 1));
+      }
       amount -= harvestAmount;
 
       if (amount == 0) {

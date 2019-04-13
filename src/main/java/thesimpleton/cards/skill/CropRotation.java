@@ -1,6 +1,7 @@
 package thesimpleton.cards.skill;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.TheSimpletonCardTags;
+import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.powers.AbstractCropPower;
 
 import java.util.ArrayList;
@@ -26,12 +28,11 @@ public class CropRotation extends AbstractHarvestCard {
   private static final CardStrings cardStrings;
 
   private static final AbstractCard.CardType TYPE = CardType.SKILL;
-  private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
+  private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
   private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
 
   private static final int COST = 1;
   private static final int NUM_CROPS = 1;
-  private static final int NUM_CROPS_UPGRADE_BONUS = 1;
 
   public CropRotation() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH),
@@ -42,12 +43,11 @@ public class CropRotation extends AbstractHarvestCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    //TODO: exhaust?
-    //TODO: allow splits between two powers for upgrades (requires calculation for harvest action)
     //TODO: add "fizzle" effect if there are no stacks to harvest
 
     //TODO: make "getActiveCropPowers" a helper method on e.g. Util class
     // harvest existing stacks
+
     final ArrayList<AbstractPower> activePowers =  new ArrayList<>(p.powers);
     Collections.shuffle(activePowers);
     Optional<AbstractPower> oldPower = activePowers.stream()
@@ -58,11 +58,18 @@ public class CropRotation extends AbstractHarvestCard {
       ((AbstractCropPower) oldPower.get()).harvest(false, this.magicNumber);
     }
 
-    // add new stacks
-    final AbstractCropPower newCrop = AbstractCropPower.getRandomCropPower(p, this.magicNumber, true);
+    final AbstractCropPowerCard randomCropPowerCard = AbstractCropPowerCard.getRandomCropPowerCard(true);
 
-    AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, newCrop, this.magicNumber));
+    if (this.upgraded) {
+      randomCropPowerCard.modifyCostForTurn(-1);
+    }
+
+    AbstractDungeon.actionManager.addToTop(new MakeTempCardInHandAction(randomCropPowerCard, 1));
+//    // add new stacks
+//    final AbstractCropPower newCrop = AbstractCropPower.getRandomCropPower(p, this.magicNumber, true);
+//
+//    AbstractDungeon.actionManager.addToBottom(
+//        new ApplyPowerAction(p, p, newCrop, this.magicNumber));
   }
 
   @Override
@@ -74,7 +81,6 @@ public class CropRotation extends AbstractHarvestCard {
   public void upgrade() {
     if (!this.upgraded) {
       upgradeName();
-      upgradeMagicNumber(NUM_CROPS_UPGRADE_BONUS);
       this.rawDescription = UPGRADE_DESCRIPTION;
       this.initializeDescription();
     }

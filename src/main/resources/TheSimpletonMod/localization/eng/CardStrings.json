@@ -40,6 +40,12 @@
     "DESCRIPTION": "Whenever you play a Harvest card for the first time each turn, gain [E]."
   },
 
+
+  "TheSimpletonMod:BirdFeeder": {
+    "NAME": "Birdfeeder",
+    "DESCRIPTION": "Whenever you play a Power card, heal !M! HP."
+  },
+
   "TheSimpletonMod:ControlledBurn": {
     "NAME": "Controlled Burn",
     "DESCRIPTION": "Apply !M! Burning."
@@ -47,13 +53,13 @@
 
   "TheSimpletonMod:CropDiversity": {
     "NAME": "Crop Diversity",
-    "DESCRIPTION": "Add 1 of !M! random Crop power cards to your hand. It costs 0 this turn. NL Exhaust."
+    "DESCRIPTION": "Add 1 of !M! random Crop Power cards to your hand. It costs 0 this turn. NL Exhaust."
   },
 
   "TheSimpletonMod:CropRotation": {
     "NAME": "Crop Rotation",
-    "DESCRIPTION": "Harvest !M! random Crop stack. NL Gain !M! random Crop stack.",
-    "UPGRADE_DESCRIPTION": "Harvest !M! random Crop stacks. NL Gain !M! random Crop stacks."
+    "DESCRIPTION": "Harvest !M! random Crop stack. NL Gain a random Crop Power card.",
+    "UPGRADE_DESCRIPTION": "Harvest !M! random Crop stack. NL Gain a random Crop Power card. It costs 1 less this turn."
   },
 
   "TheSimpletonMod:CullingStrike": {

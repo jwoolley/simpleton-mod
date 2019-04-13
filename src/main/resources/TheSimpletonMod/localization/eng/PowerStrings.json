@@ -111,7 +111,6 @@
     ]
   },
 
-
   "TheSimpletonMod:PlantChiliPower": {
     "NAME": "Chilis",
     "DESCRIPTIONS": [
@@ -157,6 +156,14 @@
     ]
   },
 
+  "TheSimpletonMod:BirdFeederPower": {
+    "NAME": "Birdfeeder",
+    "DESCRIPTIONS": [
+      "Whenever you play a #yPower card, heal #b",
+      " HP."
+    ]
+  },
+
   "TheSimpletonMod:BiorefinementPower": {
     "NAME": "Biorefinement",
     "DESCRIPTIONS": [
@@ -194,7 +201,6 @@
       " #yPotatoes.\n"
     ]
   },
-
 
   "TheSimpletonMod:ToughSkinPower": {
     "NAME": "Tough Skin",

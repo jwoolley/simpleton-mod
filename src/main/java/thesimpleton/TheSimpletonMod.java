@@ -28,6 +28,7 @@ import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
 import thesimpleton.cards.attack.CullingStrike;
 import thesimpleton.cards.power.Biorefinement;
+import thesimpleton.cards.power.BirdFeeder;
 import thesimpleton.cards.power.Photosynthesis;
 import thesimpleton.cards.power.ToughSkin;
 import thesimpleton.cards.power.crop.*;
@@ -197,6 +198,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new StockTheCellar());
 
         // Power (11)
+        BaseMod.addCard(new BirdFeeder());
         BaseMod.addCard(new Biorefinement());
         BaseMod.addCard(new CropDiversity());
         BaseMod.addCard(new Photosynthesis());
@@ -220,11 +222,13 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receiveEditRelics() {
-        BaseMod.addRelicToCustomPool(new PungentSoil(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new TheHarvester(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new SpudOfTheInnocent(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new SpudOfTheMartyr(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+
+        BaseMod.addRelicToCustomPool(new GrassPellets(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new TheHarvester(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new HotPotato(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new PungentSoil(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new SpudOfTheMartyr(), AbstractCardEnum.THE_SIMPLETON_BLUE);
     }
 
     @Override

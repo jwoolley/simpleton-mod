@@ -27,12 +27,13 @@ public class PlantSpinachPower extends AbstractCropPower {
   public static final CardRarity cropRarity = CardRarity.RARE;
   private static final AbstractCropPowerCard powerCard = new Spinach();
 
+  private static final int MATURITY_THRESHOLD = 2;
 
   private static int BASE_STRENGTH_PER_STACK = 1;
   private static int strengthPerStack = 1;
 
   public PlantSpinachPower(AbstractCreature owner, int amount) {
-    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
+    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, false, MATURITY_THRESHOLD);
     this.strengthPerStack = BASE_STRENGTH_PER_STACK;
     updateDescription();
   }

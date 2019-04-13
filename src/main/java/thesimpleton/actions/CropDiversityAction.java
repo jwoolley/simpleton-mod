@@ -55,7 +55,7 @@ public class CropDiversityAction extends AbstractGameAction {
 
     final CardGroup cardGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
-    List<AbstractCropPowerCard> cards = AbstractCropPowerCard.getRandomCropPowerCards(this.amount);
+    List<AbstractCropPowerCard> cards = AbstractCropPowerCard.getRandomCropPowerCards(this.amount, true);
 
     for (final AbstractCropPowerCard c2 : cards) {
       cardGroup.addToRandomSpot(c2);

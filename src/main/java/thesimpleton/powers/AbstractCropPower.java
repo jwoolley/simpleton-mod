@@ -10,7 +10,9 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.characters.TheSimpletonCharacter;
+import thesimpleton.relics.GrassPellets;
 import thesimpleton.relics.TheHarvester;
+import thesimpleton.relics.unused.DemonicMark;
 import thesimpleton.utilities.Trigger;
 
 import java.util.*;
@@ -49,7 +51,7 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     this(name, id, powerType, descriptions, imgName, owner, rarity, powerCard, amount, isHarvestAll, AUTO_HARVEST_THRESHOLD);
   }
 
-  private AbstractCropPower(String name, String id, PowerType powerType, String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
+  AbstractCropPower(String name, String id, PowerType powerType, String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
                             AbstractCropPowerCard powerCard, int amount, boolean isHarvestAll,
                             int autoHarvestThreshold) {
     super(imgName);
@@ -84,8 +86,14 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     hasHarvestedThisTurn = true;
     logger.debug(this.name + ": harvested. Set hasHarvestedThisTurn");
 
+
+
     if (getPlayer().hasPower(ToughSkinPower.POWER_ID)) {
       ((ToughSkinPower) getPlayer().getPower(ToughSkinPower.POWER_ID)).applyPower(getPlayer());
+    }
+
+    if (getPlayer().hasRelic(GrassPellets.ID)) {
+      ((GrassPellets) getPlayer().getRelic(GrassPellets.ID)).increaseCountAndMaybeActivate();
     }
   }
 
@@ -235,14 +243,16 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
       Predicate<AbstractCropPower> predicate){
     // TODO: move this logic to a plant power manager class
     final PlantPotatoPower potatoPower = new PlantPotatoPower(p, 0);
-    final PlantSpinachPower spinachPower = new PlantSpinachPower(p, 0);
-    final PlantOnionPower onionPower = new PlantOnionPower(p, 0);
-    final PlantTurnipPower turnipPower = new PlantTurnipPower(p, 0);
+    final PlantArtichokePower artichokePower = new PlantArtichokePower(p, 0);
     final PlantCornPower cornPower = new PlantCornPower(p, 0);
     final PlantChiliPower chiliPower = new PlantChiliPower(p, 0);
+    final PlantOnionPower onionPower = new PlantOnionPower(p, 0);
+    final PlantSpinachPower spinachPower = new PlantSpinachPower(p, 0);
+    final PlantTurnipPower turnipPower = new PlantTurnipPower(p, 0);
 
     ArrayList<AbstractCropPower> referencePowers = new ArrayList<>();
     referencePowers.add(potatoPower);
+    referencePowers.add(artichokePower);
     referencePowers.add(spinachPower);
     referencePowers.add(onionPower);
     referencePowers.add(turnipPower);

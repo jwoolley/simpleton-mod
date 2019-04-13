@@ -18,10 +18,10 @@ public abstract class AbstractCropPowerCard extends CustomCard {
     super(id, name, img, cost, rawDescription, type, color, rarity, target);
   }
 
-  public static List<AbstractCropPowerCard> getRandomCropPowerCards(int number) {
+  public static List<AbstractCropPowerCard> getRandomCropPowerCards(int number, boolean withRarityDistribution) {
     try {
       return AbstractCropPower
-          .getRandomCropPowers(AbstractDungeon.player, number, 0, true, p -> p.hasPowerCard())
+          .getRandomCropPowers(AbstractDungeon.player, number, 0, withRarityDistribution, p -> p.hasPowerCard())
           .stream()
           .map(power -> power.getPowerCard())
           .collect(Collectors.toList());
@@ -29,5 +29,9 @@ public abstract class AbstractCropPowerCard extends CustomCard {
       TheSimpletonMod.logger.warn("Unexpectedly received crop power with no powerCard");
       return null;
     }
+  }
+
+  public static AbstractCropPowerCard getRandomCropPowerCard(boolean withRarityDistribution) {
+    return getRandomCropPowerCards(1, withRarityDistribution).get(0);
   }
 }

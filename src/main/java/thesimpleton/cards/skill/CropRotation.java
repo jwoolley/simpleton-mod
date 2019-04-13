@@ -1,22 +1,14 @@
 package thesimpleton.cards.skill;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.CropRotationAction;
 import thesimpleton.cards.TheSimpletonCardTags;
-import thesimpleton.cards.power.crop.AbstractCropPowerCard;
-import thesimpleton.powers.AbstractCropPower;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Optional;
 
 public class CropRotation extends AbstractHarvestCard {
   public static final String ID = "TheSimpletonMod:CropRotation";
@@ -43,33 +35,7 @@ public class CropRotation extends AbstractHarvestCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    //TODO: add "fizzle" effect if there are no stacks to harvest
-
-    //TODO: make "getActiveCropPowers" a helper method on e.g. Util class
-    // harvest existing stacks
-
-    final ArrayList<AbstractPower> activePowers =  new ArrayList<>(p.powers);
-    Collections.shuffle(activePowers);
-    Optional<AbstractPower> oldPower = activePowers.stream()
-        .filter(pow -> pow instanceof AbstractCropPower && !((AbstractCropPower) pow).finished)
-        .findFirst();
-
-    if (oldPower.isPresent()) {
-      ((AbstractCropPower) oldPower.get()).harvest(false, this.magicNumber);
-    }
-
-    final AbstractCropPowerCard randomCropPowerCard = AbstractCropPowerCard.getRandomCropPowerCard(true);
-
-    if (this.upgraded) {
-      randomCropPowerCard.modifyCostForTurn(-1);
-    }
-
-    AbstractDungeon.actionManager.addToTop(new MakeTempCardInHandAction(randomCropPowerCard, 1));
-//    // add new stacks
-//    final AbstractCropPower newCrop = AbstractCropPower.getRandomCropPower(p, this.magicNumber, true);
-//
-//    AbstractDungeon.actionManager.addToBottom(
-//        new ApplyPowerAction(p, p, newCrop, this.magicNumber));
+    AbstractDungeon.actionManager.addToTop(new CropRotationAction(p, this.magicNumber, 1, this.upgraded));
   }
 
   @Override

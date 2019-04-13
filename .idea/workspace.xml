@@ -2,29 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9bd6eee4-ee25-4e8c-af56-bec4bcc208a5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/CropRotationAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/BirdFeeder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/BirdFeederPower.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/GrassPellets.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/birdfeeder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/birdfeeder_p.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/powers/128/birdfeeder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/powers/48/birdfeeder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/relics/grasspellets.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/relics/grasspellets_large.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/relics/grasspellets_outline.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/TheSimpletonMod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/TheSimpletonMod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/CropDiversityAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/CropDiversityAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/crop/AbstractCropPowerCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/crop/AbstractCropPowerCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/CropRotationAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/actions/CropRotationAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CropRotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CropRotation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantSpinachPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantSpinachPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/artichokes.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/artichokes.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/artichokes_p.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/artichokes_p.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CardStrings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CardStrings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/PowerStrings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/PowerStrings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/RelicStrings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/RelicStrings.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -53,8 +33,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="331" selection-start-line="331" selection-end-line="331" />
+            <state relative-caret-position="324">
+              <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -71,23 +51,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CropRotation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+            <state relative-caret-position="80">
+              <caret line="12" column="46" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="46" />
               <folding>
-                <element signature="e#3036#3037#0" expanded="true" />
+                <element signature="e#1694#1695#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/actions/CropRotationAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+            <state relative-caret-position="620">
+              <caret line="60" column="5" lean-forward="true" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -149,7 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>DeenergizedPower</find>
       <find>getDamagedMonsters</find>
       <find>getDescription</find>
       <find>matur</find>
@@ -168,7 +147,6 @@
       <find>Birdfee</find>
       <find>skin</find>
       <find>applyPower</find>
-      <find>onHarvest</find>
       <find>demonicma</find>
       <find>pellets</find>
       <find>DemonicMark</find>
@@ -179,6 +157,8 @@
       <find>modifyCostForTurn</find>
       <find>power card</find>
       <find>NUM_CROPS</find>
+      <find>harvest</find>
+      <find>onHarvest</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -285,8 +265,8 @@
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/crop/AbstractCropPowerCard.java" />
         <option value="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CardStrings.json" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CropRotation.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/actions/CropRotationAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CropRotation.java" />
       </list>
     </option>
   </component>
@@ -635,7 +615,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.16257995" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.16257995" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info id="Learn" order="7" weight="0.3336887" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.19093539" />
@@ -643,7 +623,7 @@
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.34522662" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" sideWeight="0.49840087" weight="0.17550626" />
-      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.8054371" visible="true" weight="0.536162" />
+      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.8054371" visible="true" weight="0.27579558" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -1040,16 +1020,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="331" selection-start-line="331" selection-end-line="331" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/actions/CropDiversityAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
@@ -1092,20 +1062,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CropRotation.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="324">
+          <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
           <folding>
-            <element signature="e#3036#3037#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/actions/CropRotationAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+        <state relative-caret-position="620">
+          <caret line="60" column="5" lean-forward="true" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CropRotation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="12" column="46" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="46" />
+          <folding>
+            <element signature="e#1694#1695#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

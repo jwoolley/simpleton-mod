@@ -1,17 +1,21 @@
 package thesimpleton.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.actions.common.ShuffleAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import thesimpleton.cards.power.crop.AbstractCropPowerCard;
+import thesimpleton.powers.AbstractCropPower;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Optional;
 
 public class CropRotationAction extends AbstractGameAction {
   private static final ActionType ACTION_TYPE = ActionType.ENERGY;
-  private static final float ACTION_DURATION = Settings.ACTION_DUR_XFAST;
-  private static final int CARD_DRAW_AMOUNT = 1;
+  private static final float ACTION_DURATION = Settings.ACTION_DUR_LONG;
 
   private AbstractPlayer p;
   private final int numCropsToHarvest;
@@ -32,18 +36,30 @@ public class CropRotationAction extends AbstractGameAction {
 
   public void update() {
     if (this.duration != ACTION_DURATION) {
-      AbstractDungeon.actionManager.addToTop(new ChooseAndAddHandCardsToDeckAction(this.numCropsToHarvest));
-      AbstractDungeon.actionManager.addToBottom(new ShuffleAction(this.p.drawPile, true));
-
+      final AbstractCropPowerCard randomCropPowerCard = AbstractCropPowerCard.getRandomCropPowerCard(true);
       if (this.reduceCost) {
-        AbstractDungeon.actionManager.addToBottom(new DrawCardAction(this.p, CARD_DRAW_AMOUNT));
+        randomCropPowerCard.modifyCostForTurn(-1);
       }
-
-      AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(this.amount));
+      AbstractDungeon.actionManager.addToTop(new MakeTempCardInHandAction(randomCropPowerCard, numCardsToGain));
 
       this.tickDuration();
       this.isDone = true;
     }
+
+    //TODO: make "getActiveCropPowers" a helper method on e.g. Util class
+    // harvest existing stacks
+    final ArrayList<AbstractPower> activePowers =  new ArrayList<>(p.powers);
+    Collections.shuffle(activePowers);
+    Optional<AbstractPower> oldPower = activePowers.stream()
+        .filter(pow -> pow instanceof AbstractCropPower && !((AbstractCropPower) pow).finished)
+        .findFirst();
+
+    if (oldPower.isPresent()) {
+      ((AbstractCropPower) oldPower.get()).harvest(false, this.numCropsToHarvest );
+    } else {
+      //TODO: add "fizzle" effect if there are no stacks to harvest
+    }
+
     this.tickDuration();
   }
 }

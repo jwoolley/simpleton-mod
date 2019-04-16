@@ -20,11 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SwelterAction extends AbstractGameAction {
+public class SunchokeAction extends AbstractGameAction {
 
   private final int[] attackDamage;
 
-  public SwelterAction(AbstractCreature source, DamageType damageType, int[] attackDamage, int burningAmount) {
+  public SunchokeAction(AbstractCreature source, DamageType damageType, int[] attackDamage, int burningAmount) {
     this.actionType = ActionType.DEBUFF;
     this.damageType = damageType;
     this.source = source;
@@ -36,16 +36,16 @@ public class SwelterAction extends AbstractGameAction {
   public void update() {
     Logger logger = TheSimpletonMod.logger;
     List<AbstractMonster> monsters = SimpletonUtil.getMonsters();
-    logger.debug("SwelterAction.update :: total monsters: " + monsters.size());
+    logger.debug("SunchokeAction.update :: total monsters: " + monsters.size());
 
     final List<AbstractMonster> weakMonsters = SimpletonUtil.getMonsters().stream()
         .filter(m -> m.hasPower(WeakPower.POWER_ID))
         .collect(Collectors.toList());
 
-    logger.debug("SwelterAction.update :: weak monsters: " + weakMonsters.size());
+    logger.debug("SunchokeAction.update :: weak monsters: " + weakMonsters.size());
 
     final List<AbstractMonster> damagedMonsters = getDamagedMonsters(weakMonsters);
-    logger.debug("SwelterAction.update :: damaged monsters: " + damagedMonsters.size());
+    logger.debug("SunchokeAction.update :: damaged monsters: " + damagedMonsters.size());
 
     AbstractDungeon.actionManager.addToBottom(
         new DamageAllEnemiesAction(this.source, this.attackDamage, this.damageType,
@@ -74,10 +74,10 @@ public class SwelterAction extends AbstractGameAction {
     for (int i = 0; i < monsters.size(); i++) {
       AbstractMonster m = monsters.get(i);
 
-      logger.debug("SwelterAction.getDamagedMonsters :: currentBlock: " + m.currentBlock + " attackDamage: " + attackDamage[i]);
+      logger.debug("SunchokeAction.getDamagedMonsters :: currentBlock: " + m.currentBlock + " attackDamage: " + attackDamage[i]);
 
       if (m.currentBlock < attackDamage[i]) {
-        logger.debug("SwelterAction.getDamagedMonsters :: added to damagedMonsters");
+        logger.debug("SunchokeAction.getDamagedMonsters :: added to damagedMonsters");
 
         damagedMonsters.add(m);
       }

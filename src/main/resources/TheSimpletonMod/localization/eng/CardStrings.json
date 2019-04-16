@@ -178,6 +178,11 @@
 
   "TheSimpletonMod:Swelter": {
     "NAME": "Swelter",
+    "DESCRIPTION": "Apply 1 Weak and !M! Burning. NL Gain !B! Block."
+  },
+
+  "TheSimpletonMod:Sunchoke": {
+    "NAME": "Sunchoke",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Each Weak enemy that takes damage also gains !M! Burning."
   },
 

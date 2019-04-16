@@ -14,8 +14,10 @@ import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Corn;
 import thesimpleton.cards.power.crop.Potatoes;
 import thesimpleton.cards.skill.AbstractHarvestCard;
+import thesimpleton.powers.utils.Crop;
 
 public class PlantCornPower extends AbstractCropPower {
+  public static final Crop enumValue = Crop.CORN;
 
   public static final String POWER_ID = "TheSimpletonMod:PlantCornPower";
   private static final PowerStrings powerStrings;
@@ -28,7 +30,7 @@ public class PlantCornPower extends AbstractCropPower {
   private static final AbstractCropPowerCard powerCard = new Corn();
 
   public PlantCornPower(AbstractCreature owner, int amount) {
-    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
+    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
     updateDescription();
   }
 

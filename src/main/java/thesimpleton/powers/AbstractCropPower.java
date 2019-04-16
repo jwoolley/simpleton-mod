@@ -8,11 +8,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.characters.TheSimpletonCharacter;
+import thesimpleton.powers.utils.Crop;
 import thesimpleton.relics.GrassPellets;
 import thesimpleton.relics.TheHarvester;
-import thesimpleton.relics.unused.DemonicMark;
 import thesimpleton.utilities.Trigger;
 
 import java.util.*;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 
 // TODO: create separate enum for CropRarity
 public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
+
   public static Map<CardRarity, Integer> CROP_RARITY_DISTRIBUTION;
 
   private static boolean IS_HARVEST_ALL = false;
@@ -31,30 +33,35 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
 
   private static final String POWER_DESCRIPTION_ID = "TheSimpletonMod:AbstractCropPower";
   private static final PowerStrings powerStrings;
-  public final String[] descriptions;
   public static final String[] PASSIVE_DESCRIPTIONS;
+  private static final List<AbstractCropPower> referencePowers = new ArrayList<>();;
 
+  public final Crop enumValue;
+  public final String[] descriptions;
   private final int cropPowerId;
   private final boolean isHarvestAll;
   private final AbstractCropPowerCard powerCard;
   private int autoHarvestThreshold;
 
+
   public AbstractCard.CardRarity cropRarity;
 
-  AbstractCropPower(String name, String id, PowerType powerType, String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
+  AbstractCropPower(Crop enumValue, String name, String id, PowerType powerType, String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
                     AbstractCropPowerCard powerCard, int amount) {
-    this(name, id, powerType, descriptions, imgName, owner, rarity, powerCard, amount, IS_HARVEST_ALL, AUTO_HARVEST_THRESHOLD);
+    this(enumValue, name, id, powerType, descriptions, imgName, owner, rarity, powerCard, amount, IS_HARVEST_ALL, AUTO_HARVEST_THRESHOLD);
+    logger.debug("Instantiating CropPower:  enumValue:" + enumValue + ",  name:" + name+ ",  id:" + id+ ",  powerType:" + powerType.name());
   }
 
-  AbstractCropPower(String name, String id, PowerType powerType,  String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
+  AbstractCropPower(Crop enumValue, String name, String id, PowerType powerType,  String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
                     AbstractCropPowerCard powerCard, int amount, boolean isHarvestAll) {
-    this(name, id, powerType, descriptions, imgName, owner, rarity, powerCard, amount, isHarvestAll, AUTO_HARVEST_THRESHOLD);
+    this(enumValue, name, id, powerType, descriptions, imgName, owner, rarity, powerCard, amount, isHarvestAll, AUTO_HARVEST_THRESHOLD);
   }
 
-  AbstractCropPower(String name, String id, PowerType powerType, String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
+  AbstractCropPower(Crop enumValue, String name, String id, PowerType powerType, String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
                             AbstractCropPowerCard powerCard, int amount, boolean isHarvestAll,
                             int autoHarvestThreshold) {
     super(imgName);
+    this.enumValue = enumValue;
     this.ID = id;
     this.type = powerType;
     this.name = name;
@@ -77,6 +84,11 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   private void triggerCropGained() {
     getPlayer().getCropUtil().onCropGained(this);
   }
+
+  private void triggerCropLost() {
+    getPlayer().getCropUtil().onCropLost(this);
+  }
+
 
   protected String getPassiveDescription() {
     return PASSIVE_DESCRIPTIONS[0] + this.autoHarvestThreshold + PASSIVE_DESCRIPTIONS[1];
@@ -160,18 +172,11 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   }
 
   public static AbstractCropPower getOldestPower() {
-    final Optional<AbstractPower> oldestPower = AbstractDungeon.player.powers.stream()
-        .filter(power -> power instanceof AbstractCropPower)
-        .reduce((p1, p2) -> ((AbstractCropPower) p2).cropPowerId < ((AbstractCropPower) p1).cropPowerId ? p2 : p1);
-
-    return oldestPower.isPresent() ? (AbstractCropPower)oldestPower.get() : null;
+    logger.debug("Newest crop per CropUtil: " + (getPlayer().getCropUtil().playerHasAnyCrops() ? getPlayer().getCropUtil().getOldestCrop().name : "None"));
+    return getPlayer().getCropUtil().getOldestCrop();
   }
 
   public static AbstractCropPower getNewestPower() {
-    final  Optional<AbstractPower> newestPower = AbstractDungeon.player.powers.stream()
-        .filter(power -> power instanceof AbstractCropPower)
-        .reduce((p1, p2) -> ((AbstractCropPower) p2).cropPowerId >= ((AbstractCropPower) p1).cropPowerId ? p2 : p1);
-
     logger.debug("Newest crop per CropUtil: " + (getPlayer().getCropUtil().playerHasAnyCrops() ? getPlayer().getCropUtil().getNewestCrop().name : "None"));
     return getPlayer().getCropUtil().getNewestCrop();
   }
@@ -225,8 +230,8 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   public void stackPower(int amount) {
     super.stackPower(amount);
     logger.debug("Called stackPower for " + this.ID + " amount: " + amount + ". Updated amount: " + this.amount);
-    getPlayer().getCropUtil().onCropGained(this);
     if (this.amount > autoHarvestThreshold) {
+      getPlayer().getCropUtil().onCropGained(this);
       this.flash();
       this.harvest(false, this.amount - autoHarvestThreshold);
     }
@@ -238,26 +243,36 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     getPlayer().getCropUtil().onCropLost(this);
   }
 
+  public static List<AbstractCropPower> getReferencePowers() {
+    if (referencePowers.isEmpty()) {
+      AbstractCreature dummy = SimpletonUtil.getDummyCreature();
+
+      final PlantPotatoPower potatoPower = new PlantPotatoPower(dummy, 0);
+      final PlantArtichokePower artichokePower = new PlantArtichokePower(dummy, 0);
+      final PlantCornPower cornPower = new PlantCornPower(dummy, 0);
+      final PlantChiliPower chiliPower = new PlantChiliPower(dummy, 0);
+      final PlantOnionPower onionPower = new PlantOnionPower(dummy, 0);
+      final PlantSpinachPower spinachPower = new PlantSpinachPower(dummy, 0);
+      final PlantTurnipPower turnipPower = new PlantTurnipPower(dummy, 0);
+
+      referencePowers.add(potatoPower);
+      referencePowers.add(artichokePower);
+      referencePowers.add(spinachPower);
+      referencePowers.add(onionPower);
+      referencePowers.add(turnipPower);
+      referencePowers.add(cornPower);
+      referencePowers.add(chiliPower);
+
+    }
+    return referencePowers;
+  }
+
   public static List<AbstractCropPower> getRandomCropPowers(
       AbstractPlayer p, int numPowers, int numStacks, boolean withRarityDistribution,
       Predicate<AbstractCropPower> predicate){
     // TODO: move this logic to a plant power manager class
-    final PlantPotatoPower potatoPower = new PlantPotatoPower(p, 0);
-    final PlantArtichokePower artichokePower = new PlantArtichokePower(p, 0);
-    final PlantCornPower cornPower = new PlantCornPower(p, 0);
-    final PlantChiliPower chiliPower = new PlantChiliPower(p, 0);
-    final PlantOnionPower onionPower = new PlantOnionPower(p, 0);
-    final PlantSpinachPower spinachPower = new PlantSpinachPower(p, 0);
-    final PlantTurnipPower turnipPower = new PlantTurnipPower(p, 0);
 
-    ArrayList<AbstractCropPower> referencePowers = new ArrayList<>();
-    referencePowers.add(potatoPower);
-    referencePowers.add(artichokePower);
-    referencePowers.add(spinachPower);
-    referencePowers.add(onionPower);
-    referencePowers.add(turnipPower);
-    referencePowers.add(cornPower);
-    referencePowers.add(chiliPower);
+    final List<AbstractCropPower> referencePowers = getReferencePowers();
 
     List<AbstractCropPower> filteredPowers = referencePowers.stream()
         .filter(predicate)
@@ -357,6 +372,5 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     getPlayer().addStartOfTurnTrigger(trigger);
     getPlayer().addEndOfTurnTrigger(trigger);
   }
-
   // TODO: move shared functionality(e.g. harvest logic) to here
 }

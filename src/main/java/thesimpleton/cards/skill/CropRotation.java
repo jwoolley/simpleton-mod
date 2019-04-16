@@ -23,7 +23,9 @@ public class CropRotation extends AbstractHarvestCard {
   private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
   private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
 
-  private static final int COST = 1;
+  private static final int COST = 2;
+  private static final int UPGRADED_COST = 1;
+
   private static final int NUM_CROPS = 1;
 
   public CropRotation() {
@@ -35,7 +37,7 @@ public class CropRotation extends AbstractHarvestCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToTop(new CropRotationAction(p, this.magicNumber, 1, this.upgraded));
+    AbstractDungeon.actionManager.addToTop(new CropRotationAction(p, this.magicNumber, 1, false));
   }
 
   @Override
@@ -47,8 +49,7 @@ public class CropRotation extends AbstractHarvestCard {
   public void upgrade() {
     if (!this.upgraded) {
       upgradeName();
-      this.rawDescription = UPGRADE_DESCRIPTION;
-      this.initializeDescription();
+      upgradeBaseCost(UPGRADED_COST);
     }
   }
 

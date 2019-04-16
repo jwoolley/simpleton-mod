@@ -16,8 +16,10 @@ import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Chilis;
 import thesimpleton.cards.skill.AbstractHarvestCard;
+import thesimpleton.powers.utils.Crop;
 
 public class PlantChiliPower extends AbstractCropPower {
+  public static final Crop enumValue = Crop.CHILIS;
   public static final String POWER_ID = "TheSimpletonMod:PlantChiliPower";
   private static final PowerStrings powerStrings;
   public static final String NAME;
@@ -31,7 +33,7 @@ public class PlantChiliPower extends AbstractCropPower {
   private static int damagePerStack = 1;
 
   public PlantChiliPower(AbstractCreature owner, int amount) {
-    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
+    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
     this.damagePerStack = BASE_DAMAGE_STACK;
     updateDescription();
   }

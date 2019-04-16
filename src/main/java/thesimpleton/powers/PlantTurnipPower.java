@@ -15,9 +15,10 @@ import thesimpleton.cards.attack.GiantTurnip;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Turnips;
 import thesimpleton.cards.skill.AbstractHarvestCard;
+import thesimpleton.powers.utils.Crop;
 
 public class PlantTurnipPower extends AbstractCropPower {
-
+  public static final Crop enumValue = Crop.TURNIPS;
   public static final String POWER_ID = "TheSimpletonMod:PlantTurnipPower";
   private static final PowerStrings powerStrings;
   public static final String NAME;
@@ -28,10 +29,9 @@ public class PlantTurnipPower extends AbstractCropPower {
   private static final CardRarity cropRarity = CardRarity.UNCOMMON;
   private static final AbstractCropPowerCard powerCard = new Turnips();
   private static final boolean IS_HARVEST_ALL = true;
-  private static final int MINIMUM_STARTING_STACKS = 2;
 
   public PlantTurnipPower(AbstractCreature owner, int amount) {
-    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, IS_HARVEST_ALL);
+    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, IS_HARVEST_ALL);
     updateDescription();
   }
 

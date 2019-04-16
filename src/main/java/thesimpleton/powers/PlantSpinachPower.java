@@ -14,9 +14,10 @@ import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Spinach;
 import thesimpleton.cards.skill.AbstractHarvestCard;
+import thesimpleton.powers.utils.Crop;
 
 public class PlantSpinachPower extends AbstractCropPower {
-
+  public static final Crop enumValue = Crop.SPINACH;
   public static final String POWER_ID = "TheSimpletonMod:PlantSpinachPower";
   private static final PowerStrings powerStrings;
   public static final String NAME;
@@ -33,7 +34,7 @@ public class PlantSpinachPower extends AbstractCropPower {
   private static int strengthPerStack = 1;
 
   public PlantSpinachPower(AbstractCreature owner, int amount) {
-    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, false, MATURITY_THRESHOLD);
+    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, false, MATURITY_THRESHOLD);
     this.strengthPerStack = BASE_STRENGTH_PER_STACK;
     updateDescription();
   }

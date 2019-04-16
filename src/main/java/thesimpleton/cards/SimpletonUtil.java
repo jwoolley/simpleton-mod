@@ -1,6 +1,8 @@
 package thesimpleton.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -58,6 +60,13 @@ public class SimpletonUtil {
         return AbstractDungeon.getCurrRoom().monsters.monsters.stream()
             .filter(m -> !m.isDead && !m.isDying && m.currentHealth > 0)
             .collect(Collectors.toList());
+    }
+
+    public static AbstractCreature getDummyCreature() {
+        return (new AbstractCreature() {
+            public void damage(DamageInfo di) {}
+            public void render(com.badlogic.gdx.graphics.g2d.SpriteBatch spriteBatch) {}
+        });
     }
 
     public static boolean hasHarvestedThisTurn() {

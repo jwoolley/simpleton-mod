@@ -121,10 +121,22 @@
   },
 
 
+  "TheSimpletonMod:Pruning": {
+    "NAME": "Pruning",
+    "DESCRIPTION": "Harvest ",
+    "EXTENDED_DESCRIPTION" : [
+      " stack of your oldest crop, then gain !M! stacks. NL ",
+      "(No eligible Crops currently).",
+      "(Currently ",
+      ")."
+    ]
+  },
+
+
   "TheSimpletonMod:ReapAndSow": {
     "NAME": "Reap and Sow",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! Potatoes, then add a Cultivate to your discard pile if you have any Mature Crops.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! Potatoes, then add an upgraded Cultivate to your discard pile if you have any Mature Crops."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! Potatoes, then add a Cultivate to your discard pile if you have any Mature  Crop.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! Potatoes, then add an upgraded Cultivate to your discard pile if you have any Mature  Crop."
   },
 
   "TheSimpletonMod:RootDown": {

@@ -46,6 +46,10 @@ public class CropUtil {
     return cropSeniorityList.hasAnyCrops();
   }
 
+  public AbstractCropPower getOldestCrop() {
+    return cropSeniorityList.getOldestCrop();
+  }
+
   public AbstractCropPower getNewestCrop() {
     return cropSeniorityList.getNewestCrop();
   }
@@ -61,6 +65,12 @@ public class CropUtil {
   }
 
   static class CropSeniorityList extends ArrayList<AbstractCropPower> {
+    public AbstractCropPower getOldestCrop() {
+      AbstractCropPower oldestCrop = (this.size() > 0 ? this.get(0): null);
+      logger.debug("CropSeniorityList::getNewestCrop returning oldest crop: " + (oldestCrop != null ? oldestCrop.name : "none"));
+      return oldestCrop;
+    }
+
     public AbstractCropPower getNewestCrop() {
       AbstractCropPower newestCrop = (this.size() > 0 ? this.get(this.size() - 1): null);
       logger.debug("CropSeniorityList::getNewestCrop returning newest crop: " + (newestCrop != null ? newestCrop.name : "none"));

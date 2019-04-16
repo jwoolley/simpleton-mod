@@ -14,8 +14,10 @@ import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Potatoes;
 import thesimpleton.cards.skill.AbstractHarvestCard;
+import thesimpleton.powers.utils.Crop;
 
 public class PlantPotatoPower extends AbstractCropPower {
+  public static final Crop enumValue = Crop.POTATOES;
 
   public static final String POWER_ID = "TheSimpletonMod:PlantPotatoPower";
   private static final PowerStrings powerStrings;
@@ -28,7 +30,7 @@ public class PlantPotatoPower extends AbstractCropPower {
   private static final AbstractCropPowerCard powerCard = new Potatoes();
 
   public PlantPotatoPower(AbstractCreature owner, int amount) {
-    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
+    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
     this.name = NAME;
     updateDescription();
     logger.debug("MAKIN' POTATOES (instantiating plantpotatopower). name: " + NAME);
@@ -58,6 +60,7 @@ public class PlantPotatoPower extends AbstractCropPower {
       amount -= harvestAmount;
 
       if (amount == 0) {
+        logger.debug("PlantPotatoPower.harvest : now at zero stacks, removing power");
         AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
       }
     }

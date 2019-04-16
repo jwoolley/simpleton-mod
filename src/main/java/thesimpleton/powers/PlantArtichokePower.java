@@ -15,9 +15,10 @@ import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Artichokes;
 import thesimpleton.cards.skill.AbstractHarvestCard;
+import thesimpleton.powers.utils.Crop;
 
 public class PlantArtichokePower extends AbstractCropPower {
-
+  public static final Crop enumValue = Crop.ARTICHOKES;
   public static final String POWER_ID = "TheSimpletonMod:PlantArtichokePower";
   private static final PowerStrings powerStrings;
   public static final String NAME;
@@ -33,7 +34,7 @@ public class PlantArtichokePower extends AbstractCropPower {
   private static int platedArmorPerStack = 2;
 
   public PlantArtichokePower(AbstractCreature owner, int amount) {
-    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
+    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
     this.platedArmorPerStack = BASE_PLATED_ARMOR_PER_STACK;
     updateDescription();
   }

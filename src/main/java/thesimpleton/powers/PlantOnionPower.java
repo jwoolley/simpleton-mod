@@ -16,9 +16,10 @@ import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Onions;
 import thesimpleton.cards.skill.AbstractHarvestCard;
+import thesimpleton.powers.utils.Crop;
 
 public class PlantOnionPower extends AbstractCropPower {
-
+  public static final Crop enumValue = Crop.ONIONS;
   public static final String POWER_ID = "TheSimpletonMod:PlantOnionPower";
   private static final PowerStrings powerStrings;
   public static final String NAME;
@@ -32,7 +33,7 @@ public class PlantOnionPower extends AbstractCropPower {
   private static int weakPerStack = 1;
 
   public PlantOnionPower(AbstractCreature owner, int amount) {
-    super(NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
+    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
     updateDescription();
   }
 

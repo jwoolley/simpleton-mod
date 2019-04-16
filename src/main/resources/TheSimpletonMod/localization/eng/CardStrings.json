@@ -178,7 +178,8 @@
 
   "TheSimpletonMod:Swelter": {
     "NAME": "Swelter",
-    "DESCRIPTION": "Apply 1 Weak and !M! Burning. NL Gain !B! Block."
+    "DESCRIPTION": "Apply 1 Weak and !M! Burning. NL Gain !B! Block.",
+    "UPGRADE_DESCRIPTION": "Apply 2 Weak and !M! Burning. NL Gain !B! Block."
   },
 
   "TheSimpletonMod:Sunchoke": {

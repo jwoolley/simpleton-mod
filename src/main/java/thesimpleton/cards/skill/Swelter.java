@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.ApplyBurningAction;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.BurningPower;
 
@@ -24,11 +25,11 @@ public class Swelter extends CustomCard {
   private static final CardStrings cardStrings;
 
   private static final CardType TYPE = CardType.SKILL;
-  private static final CardRarity RARITY = CardRarity.UNCOMMON;
-  private static final CardTarget TARGET = CardTarget.SELF;
+  private static final CardRarity RARITY = CardRarity.COMMON;
+  private static final CardTarget TARGET = CardTarget.ENEMY;
 
   private static final int COST = 0;
-  private static final int BLOCK = 2;
+  private static final int BLOCK = 4;
   private static final int BLOCK_UPGRADE = 2;
   private static final int BURNING = 4;
   private static final int BURNING_UPGRADE = 2;
@@ -41,17 +42,17 @@ public class Swelter extends CustomCard {
   public Swelter() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = BURNING;
-    this.block = BLOCK;
+    this.baseBlock = this.block = BLOCK;
     this.weak = WEAK;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
+
     AbstractDungeon.actionManager.addToBottom(
       new ApplyPowerAction(m, p, new WeakPower(m, this.weak, false), this.weak));
 
-    AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(m, p, new BurningPower(m, p, this.magicNumber), this.magicNumber));
+    AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(m, p, this.magicNumber));
 
     AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
   }
@@ -68,6 +69,8 @@ public class Swelter extends CustomCard {
       this.weak += WEAK_UPGRADE;
       upgradeMagicNumber(BURNING_UPGRADE);
       upgradeBlock(BLOCK_UPGRADE);
+      this.rawDescription = UPGRADE_DESCRIPTION;
+      initializeDescription();
     }
   }
 

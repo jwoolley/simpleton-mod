@@ -205,7 +205,7 @@
   "TheSimpletonMod:ToughSkinPower": {
     "NAME": "Tough Skin",
     "DESCRIPTIONS": [
-      "Whenever you #gharvest a #yCrop, gain",
+      "Whenever you #gHarvest a #yCrop, gain #b",
       " #yBlock."
     ]
   }

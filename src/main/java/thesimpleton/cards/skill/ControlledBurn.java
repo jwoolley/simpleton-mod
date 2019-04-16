@@ -27,7 +27,7 @@ public class ControlledBurn extends CustomCard {
   private static final CardTarget TARGET = CardTarget.ENEMY;
 
   private static final int COST = 1;
-  private static final int NUM_STACKS = 12;
+  private static final int NUM_STACKS = 14;
   private static final int UPGRADE_NUM_STACKS = 6;
 
 

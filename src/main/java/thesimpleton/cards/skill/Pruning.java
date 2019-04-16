@@ -16,7 +16,7 @@ import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.AbstractCropPower;
 
-public class Pruning extends CustomCard {
+public class Pruning extends AbstractHarvestCard {
   public static final String ID = "TheSimpletonMod:Pruning";
   public static final String NAME;
   public static final String DESCRIPTION;
@@ -36,7 +36,7 @@ public class Pruning extends CustomCard {
   private static final int NUM_STACKS_TO_GAIN_UPGRADE = 1;
 
   public Pruning() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE, RARITY, TARGET, NUM_STACKS_TO_HARVEST, false, false);
     this.baseMagicNumber = this.magicNumber = NUM_STACKS_TO_GAIN;
 
     if (AbstractDungeon.isPlayerInDungeon()) {

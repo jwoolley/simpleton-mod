@@ -135,8 +135,8 @@
 
   "TheSimpletonMod:ReapAndSow": {
     "NAME": "Reap and Sow",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! Potatoes, then add a Cultivate to your discard pile if you have any Mature  Crop.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! Potatoes, then add an upgraded Cultivate to your discard pile if you have any Mature  Crop."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! Potatoes, then add a Cultivate to your discard pile if you have any Mature Crops.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! Potatoes, then add an upgraded Cultivate to your discard pile if you have any Mature Crops."
   },
 
   "TheSimpletonMod:RootDown": {

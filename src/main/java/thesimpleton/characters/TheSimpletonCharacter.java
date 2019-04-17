@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.skill.AbstractCropTriggerCard;
 import thesimpleton.cards.attack.Haymaker;
 import thesimpleton.cards.attack.PestManagement;
 import thesimpleton.cards.attack.Strike_TheSimpleton;
@@ -28,9 +29,7 @@ import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.relics.PungentSoil;
 import thesimpleton.relics.SpudOfTheInnocent;
 import thesimpleton.relics.TheHarvester;
-import thesimpleton.utilities.CropUtil;
-import thesimpleton.utilities.Trigger;
-import thesimpleton.utilities.TriggerManager;
+import thesimpleton.utilities.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,15 +49,17 @@ public class TheSimpletonCharacter extends CustomPlayer {
     public static final String NAME;
     public static final String DESCRIPTION;
 
-    private static final List<Trigger> staticPrecombatTriggers = new ArrayList<>();
-    private static final List<Trigger> staticPrecombatPredrawTriggers = new ArrayList<>();
-    private static final List<Trigger> staticStartOfTurnTriggers = new ArrayList<>();
-    private static final List<Trigger> staticEndOfTurnTriggers = new ArrayList<>();
+    private static final List<TriggerListener> staticPrecombatTriggerListeners = new ArrayList<>();
+    private static final List<TriggerListener> staticPrecombatPredrawTriggerListeners = new ArrayList<>();
+    private static final List<TriggerListener> staticStartOfTurnTriggerListeners = new ArrayList<>();
+    private static final List<TriggerListener> staticEndOfTurnTriggerListeners= new ArrayList<>();
+    private static final List<TriggerListener> staticEndOfCombatTriggerListeners = new ArrayList<>();
 
     private final TriggerManager precombatTriggers;
     private final TriggerManager precombatPredrawTriggers;
     private final TriggerManager startOfTurnTriggers;
     private final TriggerManager endOfTurnTriggers;
+    private final TriggerManager endOfCombatTriggers;
     private CropUtil cropUtil;
 
     public static final String[] orbTextures = {
@@ -82,18 +83,13 @@ public class TheSimpletonCharacter extends CustomPlayer {
                 20.0F, -10.0F, 220.0F, 290.0F,
                 new EnergyManager(ENERGY_PER_TURN));
 
-        precombatTriggers = new TriggerManager(staticPrecombatTriggers);
-        TheSimpletonMod.logger.debug(("instantiating precombatPredrawTriggers manager with " + staticPrecombatPredrawTriggers.size() + " preregistered triggers"));
-        precombatPredrawTriggers = new TriggerManager(staticPrecombatPredrawTriggers);
-        startOfTurnTriggers = new TriggerManager(staticStartOfTurnTriggers);
-        endOfTurnTriggers = new TriggerManager(staticEndOfTurnTriggers);
-;
+        precombatTriggers = new TriggerManager(staticPrecombatTriggerListeners);
+        precombatPredrawTriggers = new TriggerManager(staticPrecombatPredrawTriggerListeners);
+        startOfTurnTriggers = new TriggerManager(staticStartOfTurnTriggerListeners);
+        endOfTurnTriggers = new TriggerManager(staticEndOfTurnTriggerListeners);
+        endOfCombatTriggers = new TriggerManager(staticEndOfCombatTriggerListeners);
 
-
-//        precombatTriggers = new TriggerManager();
-//        precombatPredrawTriggers = new TriggerManager();
-//        endOfTurnTriggers = new TriggerManager();
-//        startOfTurnTriggers = new TriggerManager();
+//        TheSimpletonMod.logger.debug(("instantiating precombatPredrawTriggers manager with " + staticPrecombatPredrawTriggerListeners.size() + " preregistered triggers"));
     }
 
     @Override
@@ -193,13 +189,13 @@ public class TheSimpletonCharacter extends CustomPlayer {
 
     @Override
     public void doCharSelectScreenSelectEffect() {
-        CardCrawlGame.sound.playA("ATTACK_FIRE", MathUtils.random(-0.2F, 0.2F));
+        CardCrawlGame.sound.playA("RELIC_DROP_FLAT", MathUtils.random(-0.2F, 0.2F));
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, true);
     }
 
     @Override
     public String getCustomModeCharacterButtonSoundKey() {
-        return "ATTACK_FIRE";
+        return "RELIC_DROP_FLAT";
     }
 
     @Override
@@ -225,7 +221,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
     @Override
     public void applyStartOfCombatLogic() {
         super.applyStartOfCombatLogic();
-        TheSimpletonMod.logger.debug("Applying start of combat triggers");
+        TheSimpletonMod.logger.debug("CropUtil: Applying start of combat triggers");
         this.precombatTriggers.triggerAll();
     }
 
@@ -233,23 +229,62 @@ public class TheSimpletonCharacter extends CustomPlayer {
     public void applyStartOfCombatPreDrawLogic() {
         super.applyStartOfCombatPreDrawLogic();
         super.applyStartOfTurnCards();
-        TheSimpletonMod.logger.debug("Applying start of combat pre-draw triggers");
+
+        AbstractPlayer player = AbstractDungeon.player;
+
+        TheSimpletonMod.logger.debug("TheSimpletonCharacter::applyStartOfCombatPreDrawLogic adding card triggers");
+        TheSimpletonMod.logger.debug("TheSimpletonCharacter::applyStartOfCombatPreDrawLogic precombatPredrawTriggers size before: " + precombatPredrawTriggers.numTriggerListeners());
+        player.masterDeck.group.forEach(card -> {
+            if (card instanceof AbstractCropTriggerCard) {
+                precombatPredrawTriggers.addTriggerListener(((AbstractCropTriggerCard) card).getTriggerListener());
+            }
+        });
+        TheSimpletonMod.logger.debug("TheSimpletonCharacter::applyStartOfCombatPreDrawLogic precombatPredrawTriggers size after: " + precombatPredrawTriggers.numTriggerListeners());
+
+        TheSimpletonMod.logger.debug("TheSimpletonCharacter::applyStartOfCombatPreDrawLogic applying precombat-predraw triggers");
         this.precombatPredrawTriggers.triggerAll();
+
+        CropUtil.triggerCardUpdates();
     }
 
     @Override
     public void applyStartOfTurnCards() {
         super.applyStartOfTurnCards();
-        TheSimpletonMod.logger.debug("Applying start of turn triggers");
+        TheSimpletonMod.logger.debug("TheSimpletonCharacter::applyStartOfTurnCards: Applying start of turn triggers");
         this.startOfTurnTriggers.triggerAll();
     }
 
     @Override
     public void applyEndOfTurnTriggers() {
         super.applyEndOfTurnTriggers();
-        TheSimpletonMod.logger.debug("Applying end of turn triggers");
+        TheSimpletonMod.logger.debug("TheSimpletonCharacter::applyEndOfTurnTriggers: Applying end of turn triggers");
         this.endOfTurnTriggers.triggerAll();
     }
+
+    @Override
+    public void onVictory() {
+        super.onVictory();
+        TheSimpletonMod.logger.debug("TheSimpletonCharacter::onVictory: Applying end of combat triggers");
+        this.endOfCombatTriggers.triggerAll();
+
+        precombatPredrawTriggers.clear(t -> t instanceof CombatLifecycleTriggerListener);
+        precombatTriggers.clear(t -> t instanceof CombatLifecycleTriggerListener);
+        startOfTurnTriggers.clear(t -> t instanceof CombatLifecycleTriggerListener);
+        endOfTurnTriggers.clear(t -> t instanceof CombatLifecycleTriggerListener);
+        endOfCombatTriggers.clear(t -> t instanceof CombatLifecycleTriggerListener);
+    }
+
+//    @Override
+//    public void combatUpdate() {
+//        super.combatUpdate();
+//        AbstractPlayer player = AbstractDungeon.player;
+//        player.masterDeck.group.forEach(card -> {
+//            if (card instanceof AbstractCropTriggerCard) {
+//                ((AbstractCropTriggerCard) card).getTriggerListener().getTrigger().trigger();
+//            }
+//        });
+//    }
+
 
     public CropUtil getCropUtil() {
         if (cropUtil == null) {
@@ -258,49 +293,82 @@ public class TheSimpletonCharacter extends CustomPlayer {
         return cropUtil;
     }
 
-    private void addToStartOfTurnTrigger(Trigger trigger) { this.startOfTurnTriggers.addTrigger(trigger);  }
+    // TODO: make this reusable
 
-    private void addToPrecombatTrigger(Trigger trigger) { this.precombatTriggers.addTrigger(trigger);  }
+    private void addToStartOfTurnTriggerListener(TriggerListener listener) { this.startOfTurnTriggers.addTriggerListener(listener);  }
 
-    private void addToPrecombatPredrawTrigger(Trigger trigger) { this.precombatPredrawTriggers.addTrigger(trigger);  }
+    private void addToPrecombatTriggerListener(TriggerListener listener) { this.precombatTriggers.addTriggerListener(listener);  }
 
-    private void addToEndOfTurnTrigger(Trigger trigger) { this.endOfTurnTriggers.addTrigger(trigger);  }
+    private void addToPrecombatPredrawTriggerListener(TriggerListener listener) { this.precombatPredrawTriggers.addTriggerListener(listener);  }
+
+    private void addToEndOfTurnTriggerListener(TriggerListener listener) { this.endOfTurnTriggers.addTriggerListener(listener);  }
+
+    private void addToEndOfCombatTriggerListener(TriggerListener listener) { this.endOfCombatTriggers.addTriggerListener(listener);  }
 
     public static void addStartOfTurnTrigger(Trigger trigger) {
+        addStartOfTurnTriggerListener(() -> trigger);
+    }
+
+    public static void addStartOfTurnTriggerListener(TriggerListener listener) {
         AbstractPlayer player = AbstractDungeon.player;
         if (player == null) {
-            staticStartOfTurnTriggers.add(trigger);
+            staticStartOfTurnTriggerListeners.add(listener);
         } else {
-            ((TheSimpletonCharacter)player).addToStartOfTurnTrigger(trigger);
+            ((TheSimpletonCharacter)player).addToStartOfTurnTriggerListener(listener);
         }
     }
 
     public static void addPrecombatTrigger(Trigger trigger) {
+        addStartOfTurnTriggerListener(() -> trigger);
+    }
+
+    public static void addPrecombatTriggerListener(TriggerListener listener) {
         AbstractPlayer player = AbstractDungeon.player;
         if (player == null) {
-            staticPrecombatTriggers.add(trigger);
+            staticPrecombatTriggerListeners.add(listener);
         } else {
-            ((TheSimpletonCharacter)player).addToPrecombatTrigger(trigger);
+            ((TheSimpletonCharacter)player).addToPrecombatTriggerListener(listener);
         }
     }
 
     public static void addPrecombatPredrawTrigger(Trigger trigger) {
+        addStartOfTurnTriggerListener(() -> trigger);
+    }
+
+    public static void addPrecombatPredrawTriggerListener(TriggerListener listener) {
         AbstractPlayer player = AbstractDungeon.player;
         if (player == null) {
-            TheSimpletonMod.logger.debug("Preregistering trigger");
-            staticPrecombatPredrawTriggers.add(trigger);
+            TheSimpletonMod.logger.debug("CropUtil: Preregistering trigger");
+            staticPrecombatPredrawTriggerListeners.add(listener);
         } else {
-            ((TheSimpletonCharacter)player).addToPrecombatPredrawTrigger(trigger);
+            ((TheSimpletonCharacter)player).addToPrecombatPredrawTriggerListener(listener);
         }
     }
 
     public static void addEndOfTurnTrigger(Trigger trigger) {
+        addStartOfTurnTriggerListener(() -> trigger);
+    }
+
+    public static void addEndOfTurnTriggerListener(TriggerListener listener) {
 
         AbstractPlayer player = AbstractDungeon.player;
         if (player == null) {
-            staticStartOfTurnTriggers.add(trigger);
+            staticStartOfTurnTriggerListeners.add(listener);
         } else {
-            ((TheSimpletonCharacter)player).addToEndOfTurnTrigger(trigger);
+            ((TheSimpletonCharacter)player).addToEndOfTurnTriggerListener(listener);
+        }
+    }
+
+    public static void addEndOfCombatTrigger(Trigger trigger) {
+        addStartOfTurnTriggerListener(() -> trigger);
+    }
+    public static void addEndOfCombatTriggerListener(TriggerListener listener) {
+
+        AbstractPlayer player = AbstractDungeon.player;
+        if (player == null) {
+            staticStartOfTurnTriggerListeners.add(listener);
+        } else {
+            ((TheSimpletonCharacter)player).addToEndOfCombatTriggerListener(listener);
         }
     }
 

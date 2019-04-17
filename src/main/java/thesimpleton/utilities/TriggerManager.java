@@ -1,43 +1,60 @@
 package thesimpleton.utilities;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class TriggerManager {
-  private ArrayList<Trigger> triggers;
+  private ArrayList<TriggerListener> triggerListeners;
 
 
   public TriggerManager() {
     this(new ArrayList<>());
   }
 
-  public TriggerManager(List<Trigger> triggers) {
-    this.triggers = new ArrayList<>(triggers);
-    TheSimpletonMod.logger.debug("TriggerManager: Instantiated with " + this.triggers.size() + " triggers");
+  public TriggerManager(List<TriggerListener> triggerListeners) {
+    this.triggerListeners = new ArrayList<>(triggerListeners);
+    TheSimpletonMod.logger.debug("TriggerManager: Instantiated with " + this.triggerListeners.size() + " triggers");
   }
 
-  public int numTriggers() {
-    return triggers.size();
+  public int numTriggerListeners() {
+    return triggerListeners.size();
+  }
+
+  public void addTriggerListener(TriggerListener triggerListener) {
+    triggerListeners.add(triggerListener);
   }
 
   public void addTrigger(Trigger trigger) {
-    triggers.add(trigger);
+    triggerListeners.add(() -> trigger);
   }
 
-  public void addTriggers(List<Trigger> triggers) { triggers.addAll(triggers);  }
+  public void addTriggerListeners(List<TriggerListener> triggerListeners) { triggerListeners.addAll(triggerListeners);  }
 
-  public void removeTrigger(Trigger trigger) {
-    triggers.remove(trigger);
+  public void removeTriggerListener(TriggerListener triggerListener) {
+    triggerListeners.remove(triggerListener);
   }
 
   public void triggerAll() {
-    TheSimpletonMod.logger.debug("TriggerManager.triggerAll triggering " + this.triggers.size() + " triggers");
-    (new HashSet<>(triggers)).forEach(trigger -> trigger.trigger());
+    TheSimpletonMod.logger.debug("TriggerManager.triggerAll triggering " + this.triggerListeners.size() + " triggers");
+    triggerListeners.forEach(triggerListener -> triggerListener.getTrigger().trigger());
+
+//    (new HashSet<>(triggerListeners)).forEach(triggerListener -> triggerListener.getTrigger().trigger());
   }
 
-  public void clear()  { triggers.clear(); }
+  public void clear() { this.clear(t -> true); }
+
+  public void clear(Predicate predicate)  {
+    List<TriggerListener> listenersToClear = triggerListeners.stream()
+        .filter(t -> predicate.test(t))
+        .collect(Collectors.toList());
+    triggerListeners.removeAll(listenersToClear);
+  }
 }

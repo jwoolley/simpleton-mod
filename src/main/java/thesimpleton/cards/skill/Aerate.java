@@ -1,6 +1,5 @@
 package thesimpleton.cards.skill;
 
-import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,13 +7,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.AbstractCropPower;
 
-public class Aerate extends CustomCard {
+public class Aerate extends AbstractCropTriggerCard {
   public static final String ID = "TheSimpletonMod:Aerate";
   public static final String NAME;
   public static final String DESCRIPTION;
@@ -33,29 +30,9 @@ public class Aerate extends CustomCard {
   private static final int CROP_INCREASE_AMOUNT = 2;
 
   public Aerate() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET, null);
     this.baseBlock = this.block = BLOCK;
     this.baseMagicNumber = this.magicNumber = CROP_INCREASE_AMOUNT;
-
-    Logger logger = TheSimpletonMod.logger;
-    if (AbstractDungeon.isPlayerInDungeon()) {
-      ((TheSimpletonCharacter) AbstractDungeon.player).getCropUtil().addCropTickedTrigger(() -> {
-        logger.debug(("Real-time crop tick trigger triggered"));
-        updateDescription();
-      });
-    } else {
-      logger.debug(("AbstractDungeon.player is not currently defined. Registering precombatpredrawtrigger."));
-      TheSimpletonCharacter.addPrecombatPredrawTrigger(() -> {
-        ((TheSimpletonCharacter) AbstractDungeon.player).getCropUtil().addCropTickedTrigger(() -> {
-          logger.debug(("Preloaded crop tick trigger triggered"));
-          updateDescription();
-        });
-      });
-    }
-
-    if (AbstractDungeon.isPlayerInDungeon()) {
-      updateDescription();
-    }
   }
 
   @Override
@@ -72,37 +49,22 @@ public class Aerate extends CustomCard {
     return new Aerate();
   }
 
-  private void updateDescription() {
+  @Override
+  protected void updateDescription() {
     this.rawDescription = getDescription(true);
     this.initializeDescription();
   }
 
-  private boolean didRegisterDrawnTrigger = false;
-  @Override
-  public void triggerWhenDrawn() {
-    TheSimpletonMod.logger.debug(("Aerate::triggerWhenDrawn"));
-
-    if (!didRegisterDrawnTrigger) {
-      TheSimpletonMod.logger.debug(("Aerate::triggerWhenDrawn registering trigger"));
-      ((TheSimpletonCharacter) AbstractDungeon.player).getCropUtil().addCropTickedTrigger(() -> {
-        TheSimpletonMod.logger.debug(("Aerate::triggerWhenDrawn Trigger-when-drawn crop tick trigger triggered"));
-        updateDescription();
-      });
-      didRegisterDrawnTrigger = true;
-    }
-
-    TheSimpletonMod.logger.debug(("Aerate::triggerWhenDrawn  Updating description"));
-    this.updateDescription();
-  }
-
   private static String getDescription(boolean checkCropValue) {
     String description = DESCRIPTION;
-    AbstractCropPower crop;
-
-    if (!checkCropValue || ((crop = AbstractCropPower.getNewestPower())) == null) {
-      description += EXTENDED_DESCRIPTION[0];
-    } else {
+    if (checkCropValue && AbstractCropPower.playerHasAnyActiveCropPowers()) {
+      AbstractCropPower crop = AbstractCropPower.getNewestPower();
+      TheSimpletonMod.logger.debug("Aerate::getDescription: using dynamic description. Crop: " + crop.name);
       description += EXTENDED_DESCRIPTION[1] + crop.name + EXTENDED_DESCRIPTION[2];
+    } else {
+      TheSimpletonMod.logger.debug("Aerate::getDescription: using placeholder description");
+
+      description += EXTENDED_DESCRIPTION[0];
     }
     return description;
   }

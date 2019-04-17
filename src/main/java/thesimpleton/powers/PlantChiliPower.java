@@ -12,10 +12,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import thesimpleton.actions.ApplyBurningAction;
+import thesimpleton.cards.HarvestCard;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Chilis;
-import thesimpleton.cards.skill.AbstractHarvestCard;
 import thesimpleton.powers.utils.Crop;
 
 public class PlantChiliPower extends AbstractCropPower {
@@ -43,10 +43,10 @@ public class PlantChiliPower extends AbstractCropPower {
     this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0] + this.damagePerStack + DESCRIPTIONS[1] + this.damagePerStack + DESCRIPTIONS[2];;
   }
 
-  //TODO: AbstractCard should be an AbstractHarvestCard, with harvestAmount, harvestEffect, etc.
+  //TODO: AbstractCard should be an HarvestCard, with harvestAmount, harvestEffect, etc.
   public void onUseCard(AbstractCard card, UseCardAction action) {
-    if (card.hasTag(TheSimpletonCardTags.HARVEST) && card instanceof AbstractHarvestCard && ((AbstractHarvestCard)card).autoHarvest) {
-      harvest(((AbstractHarvestCard) card).isHarvestAll(), ((AbstractHarvestCard) card).getHarvestAmount());
+    if (card.hasTag(TheSimpletonCardTags.HARVEST) && card instanceof HarvestCard && ((HarvestCard)card).isAutoHarvest()) {
+      harvest(((HarvestCard) card).isHarvestAll(), ((HarvestCard) card).getHarvestAmount());
     }
   }
 

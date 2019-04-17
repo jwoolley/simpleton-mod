@@ -8,12 +8,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import thesimpleton.actions.UpdateCardsAction;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.powers.utils.Crop;
 import thesimpleton.relics.GrassPellets;
 import thesimpleton.relics.TheHarvester;
+import thesimpleton.utilities.CropUtil;
 import thesimpleton.utilities.Trigger;
 
 import java.util.*;
@@ -49,7 +51,7 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   AbstractCropPower(Crop enumValue, String name, String id, PowerType powerType, String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
                     AbstractCropPowerCard powerCard, int amount) {
     this(enumValue, name, id, powerType, descriptions, imgName, owner, rarity, powerCard, amount, IS_HARVEST_ALL, AUTO_HARVEST_THRESHOLD);
-    logger.debug("Instantiating CropPower:  enumValue:" + enumValue + ",  name:" + name+ ",  id:" + id+ ",  powerType:" + powerType.name());
+    logger.debug("Instantiating CropPower:  enumValue:" + enumValue + ",  name:" + name+ ",  id:" + id + ",  powerType:" + powerType.name()+ ",  owner:" + owner);
   }
 
   AbstractCropPower(Crop enumValue, String name, String id, PowerType powerType,  String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
@@ -77,12 +79,12 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     if (amount > 0) {
       triggerCropGained();
     }
-
     logger.debug(this.name + ": gained " + amount + " stacks");
   }
 
   private void triggerCropGained() {
     getPlayer().getCropUtil().onCropGained(this);
+//    CropUtil.triggerCardUpdates();
   }
 
   private void triggerCropLost() {
@@ -97,8 +99,6 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   void onHarvest(int amount) {
     hasHarvestedThisTurn = true;
     logger.debug(this.name + ": harvested. Set hasHarvestedThisTurn");
-
-
 
     if (getPlayer().hasPower(ToughSkinPower.POWER_ID)) {
       ((ToughSkinPower) getPlayer().getPower(ToughSkinPower.POWER_ID)).applyPower(getPlayer());
@@ -168,7 +168,8 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   }
 
   public static boolean playerHasAnyActiveCropPowers() {
-    return AbstractCropPower.getActiveCropPowers().size() > 0;
+//    return AbstractCropPower.getActiveCropPowers().size() > 0;
+    return getPlayer().getCropUtil().playerHasAnyCrops();
   }
 
   public static AbstractCropPower getOldestPower() {
@@ -185,7 +186,12 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     List<AbstractCropPower> cropPowers = new ArrayList<>();
     AbstractDungeon.player.powers.stream()
         .filter(power -> power instanceof AbstractCropPower)
+        .sorted((p1, p2) -> ((AbstractCropPower)p2).cropPowerId)
         .forEach(power -> cropPowers.add((AbstractCropPower)power));
+
+    logger.debug("AbstractCropPower.getActiveCropPowers: player has " + cropPowers.size() + " active crop powers");
+    logger.debug("AbstractCropPower.getActiveCropPowers: player has " + AbstractDungeon.player.powers.size() + " active total powers");
+
     return cropPowers;
   }
 
@@ -230,10 +236,23 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   public void stackPower(int amount) {
     super.stackPower(amount);
     logger.debug("Called stackPower for " + this.ID + " amount: " + amount + ". Updated amount: " + this.amount);
+
+    logger.debug("Triggering stackPower for " + this.name);
+    CropUtil.triggerCardUpdates();
+
     if (this.amount > autoHarvestThreshold) {
       getPlayer().getCropUtil().onCropGained(this);
       this.flash();
       this.harvest(false, this.amount - autoHarvestThreshold);
+    }
+  }
+
+  @Override
+  public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
+    super.onApplyPower(power, target, source);
+    if (power == this && target == getPlayer()) {
+      logger.debug("Triggering onApplyPower for " + this.name);
+      CropUtil.triggerCardUpdates();
     }
   }
 

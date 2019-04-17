@@ -1,13 +1,13 @@
 package thesimpleton.cards.skill;
 
 import basemod.abstracts.CustomCard;
+import thesimpleton.cards.HarvestCard;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
 
-public abstract class AbstractHarvestCard extends CustomCard {
-//  public final int harvestAmount;
-  public final boolean harvestAll;
-  public final boolean autoHarvest;
+public abstract class AbstractHarvestCard extends CustomCard implements HarvestCard {
+  final boolean harvestAll;
+  final boolean autoHarvest;
 
   public AbstractHarvestCard(
       String id, String name, String imagePath, int cost, String description, CardType type,
@@ -24,6 +24,9 @@ public abstract class AbstractHarvestCard extends CustomCard {
   }
 
   public boolean isHarvestAll() {
-    return harvestAll;
+    return this.harvestAll;
+  }
+  public boolean isAutoHarvest() {
+    return this.autoHarvest;
   }
 }

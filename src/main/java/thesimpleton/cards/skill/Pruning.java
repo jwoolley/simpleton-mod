@@ -1,8 +1,5 @@
 package thesimpleton.cards.skill;
 
-import basemod.abstracts.CustomCard;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,11 +9,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.PruningAction;
-import thesimpleton.characters.TheSimpletonCharacter;
+import thesimpleton.cards.HarvestCard;
+import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.AbstractCropPower;
 
-public class Pruning extends AbstractHarvestCard {
+public class Pruning extends AbstractCropTriggerCard implements HarvestCard {
   public static final String ID = "TheSimpletonMod:Pruning";
   public static final String NAME;
   public static final String DESCRIPTION;
@@ -35,25 +33,33 @@ public class Pruning extends AbstractHarvestCard {
   private static final int NUM_STACKS_TO_GAIN = 2;
   private static final int NUM_STACKS_TO_GAIN_UPGRADE = 1;
 
+  public final boolean harvestAll = false;
+  public final boolean autoHarvest = false;
+
+  public int numStacksToHarvest;
+
   public Pruning() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE, RARITY, TARGET, NUM_STACKS_TO_HARVEST, false, false);
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE,  AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET, null);
+    this.numStacksToHarvest =  NUM_STACKS_TO_HARVEST;
     this.baseMagicNumber = this.magicNumber = NUM_STACKS_TO_GAIN;
+    this.tags.add(TheSimpletonCardTags.HARVEST);
 
-    if (AbstractDungeon.isPlayerInDungeon()) {
-      ((TheSimpletonCharacter) AbstractDungeon.player).getCropUtil().addCropTickedTrigger(() -> {
-        updateDescription();
-      });
-    } else {
-      TheSimpletonCharacter.addPrecombatPredrawTrigger(() -> {
-        ((TheSimpletonCharacter) AbstractDungeon.player).getCropUtil().addCropTickedTrigger(() -> {
-          updateDescription();
-        });
-      });
-    }
+    Logger logger = TheSimpletonMod.logger;
+  }
 
-    if (AbstractDungeon.isPlayerInDungeon()) {
-      updateDescription();
-    }
+  @Override
+  public int getHarvestAmount() {
+    return numStacksToHarvest;
+  }
+
+  @Override
+  public boolean isHarvestAll() {
+    return this.harvestAll;
+  }
+
+  @Override
+  public boolean isAutoHarvest() {
+    return this.autoHarvest;
   }
 
   @Override
@@ -66,37 +72,21 @@ public class Pruning extends AbstractHarvestCard {
     return new Pruning();
   }
 
-  private void updateDescription() {
+  public void updateDescription() {
     this.rawDescription = getDescription(true);
     this.initializeDescription();
   }
 
-  private boolean didRegisterDrawnTrigger = false;
-  @Override
-  public void triggerWhenDrawn() {
-    TheSimpletonMod.logger.debug(("Pruning::triggerWhenDrawn"));
-
-    if (!didRegisterDrawnTrigger) {
-      TheSimpletonMod.logger.debug(("Pruning::triggerWhenDrawn registering trigger"));
-      ((TheSimpletonCharacter) AbstractDungeon.player).getCropUtil().addCropTickedTrigger(() -> {
-        TheSimpletonMod.logger.debug(("Pruning::triggerWhenDrawn Trigger-when-drawn crop tick trigger triggered"));
-        updateDescription();
-      });
-      didRegisterDrawnTrigger = true;
-    }
-
-    TheSimpletonMod.logger.debug(("Pruning::triggerWhenDrawn  Updating description"));
-    this.updateDescription();
-  }
-
   private static String getDescription(boolean checkCropValue) {
     String description = DESCRIPTION + NUM_STACKS_TO_HARVEST + EXTENDED_DESCRIPTION[0];
-    AbstractCropPower crop;
 
-    if (!checkCropValue || ((crop = AbstractCropPower.getOldestPower())) == null) {
-      description += EXTENDED_DESCRIPTION[1];
+    if (checkCropValue && AbstractCropPower.playerHasAnyActiveCropPowers()) {
+      AbstractCropPower crop = AbstractCropPower.getOldestPower();
+      TheSimpletonMod.logger.debug("Pruning::getDescription: using dynamic description. Crop: " + crop.name);
+      description += EXTENDED_DESCRIPTION[2] +  crop.name + EXTENDED_DESCRIPTION[3];
     } else {
-      description += EXTENDED_DESCRIPTION[2] + crop.name + EXTENDED_DESCRIPTION[3];
+      TheSimpletonMod.logger.debug("Pruning::getDescription: using placeholder description");
+      description += EXTENDED_DESCRIPTION[1];
     }
     return description;
   }

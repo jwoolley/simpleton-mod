@@ -9,12 +9,12 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import thesimpleton.cards.HarvestCard;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.attack.BabyTurnip;
 import thesimpleton.cards.attack.GiantTurnip;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Turnips;
-import thesimpleton.cards.skill.AbstractHarvestCard;
 import thesimpleton.powers.utils.Crop;
 
 public class PlantTurnipPower extends AbstractCropPower {
@@ -41,7 +41,7 @@ public class PlantTurnipPower extends AbstractCropPower {
   }
 
   public void onUseCard(AbstractCard card, UseCardAction action) {
-    if (card.hasTag(TheSimpletonCardTags.HARVEST) && card instanceof AbstractHarvestCard && ((AbstractHarvestCard)card).autoHarvest) {
+    if (card.hasTag(TheSimpletonCardTags.HARVEST) && card instanceof HarvestCard && ((HarvestCard)card).isAutoHarvest()) {
       harvest(true, this.amount);
     }
   }

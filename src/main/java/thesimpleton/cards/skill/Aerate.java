@@ -37,10 +37,11 @@ public class Aerate extends AbstractCropTriggerCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
+    super.use(p, m);
     AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
 
     if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
-      AbstractCropPower.getNewestPower().stackPower(this.magicNumber);
+      AbstractCropPower.getNewestCropPower().stackPower(this.magicNumber);
     }
   }
 
@@ -51,6 +52,7 @@ public class Aerate extends AbstractCropTriggerCard {
 
   @Override
   protected void updateDescription() {
+    TheSimpletonMod.logger.debug("Aerate::updateDescription(" + this.instanceId + ") called");
     this.rawDescription = getDescription(true);
     this.initializeDescription();
   }
@@ -58,10 +60,12 @@ public class Aerate extends AbstractCropTriggerCard {
   private static String getDescription(boolean checkCropValue) {
     String description = DESCRIPTION;
     if (checkCropValue && AbstractCropPower.playerHasAnyActiveCropPowers()) {
-      AbstractCropPower crop = AbstractCropPower.getNewestPower();
-      TheSimpletonMod.logger.debug("Aerate::getDescription: using dynamic description. Crop: " + crop.name);
+      AbstractCropPower crop = AbstractCropPower.getNewestCropPower();
+      TheSimpletonMod.logger.debug("Aerate::getDescription checkCropValue: " + checkCropValue + "; playerHasAnyActiveCropPowers: " + AbstractCropPower.playerHasAnyActiveCropPowers());
       description += EXTENDED_DESCRIPTION[1] + crop.name + EXTENDED_DESCRIPTION[2];
     } else {
+      TheSimpletonMod.logger.debug("Aerate::getDescription: using placeholder description");
+
       TheSimpletonMod.logger.debug("Aerate::getDescription: using placeholder description");
 
       description += EXTENDED_DESCRIPTION[0];

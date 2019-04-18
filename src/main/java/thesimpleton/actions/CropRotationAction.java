@@ -55,7 +55,7 @@ public class CropRotationAction extends AbstractGameAction {
     }
 
     //TODO: make "getActiveCropPowers" a helper method on e.g. Util class
-    // the logic exists - see Aerate / playerHasAnyActiveCropPowers / getOldestPower
+    // the logic exists - see Aerate / playerHasAnyActiveCropPowers / getOldestCropPower
     // harvest existing stacks
     final ArrayList<AbstractPower> activePowers =  new ArrayList<>(p.powers);
     Collections.shuffle(activePowers);

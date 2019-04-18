@@ -81,7 +81,7 @@ public class Pruning extends AbstractCropTriggerCard implements HarvestCard {
     String description = DESCRIPTION + NUM_STACKS_TO_HARVEST + EXTENDED_DESCRIPTION[0];
 
     if (checkCropValue && AbstractCropPower.playerHasAnyActiveCropPowers()) {
-      AbstractCropPower crop = AbstractCropPower.getOldestPower();
+      AbstractCropPower crop = AbstractCropPower.getOldestCropPower();
       TheSimpletonMod.logger.debug("Pruning::getDescription: using dynamic description. Crop: " + crop.name);
       description += EXTENDED_DESCRIPTION[2] +  crop.name + EXTENDED_DESCRIPTION[3];
     } else {

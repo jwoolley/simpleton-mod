@@ -47,6 +47,7 @@ public class ToughSkin extends CustomCard {
   @Override
   public void upgrade() {
     if (!this.upgraded) {
+      this.upgradeName();
       this.upgradeMagicNumber(BLOCK_UPGRADE_AMOUNT);
     }
   }

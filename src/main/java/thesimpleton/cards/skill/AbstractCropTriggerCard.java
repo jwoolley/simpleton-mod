@@ -1,7 +1,9 @@
 package thesimpleton.cards.skill;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.characters.TheSimpletonCharacter;
@@ -13,7 +15,7 @@ abstract public class AbstractCropTriggerCard extends AbstractCard implements Tr
   private boolean didRegisterDrawnTrigger = false;
 
   private static int ID_COUNTER = 1;
-  private int instanceId;
+  protected int instanceId;
 
   public AbstractCropTriggerCard(String id, String name, String imgUrl, int cost,
                                  String rawDescription, CardType type, CardColor color,
@@ -36,8 +38,6 @@ abstract public class AbstractCropTriggerCard extends AbstractCard implements Tr
     if (AbstractDungeon.isPlayerInDungeon()) {
       updateDescription();
     }
-
-
   }
 
   abstract protected void updateDescription();
@@ -59,6 +59,11 @@ abstract public class AbstractCropTriggerCard extends AbstractCard implements Tr
         ((TheSimpletonCharacter) AbstractDungeon.player).getCropUtil().addCropTickedTriggerListener(this.cropTickTriggerListener);
       });
     }
+  }
+
+  @Override
+  public void use(AbstractPlayer p, AbstractMonster m) {
+    TheSimpletonMod.logger.debug((this.name + " (" + this.instanceId + ") use() called"));
   }
 
   @Override

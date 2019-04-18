@@ -172,12 +172,12 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     return getPlayer().getCropUtil().playerHasAnyCrops();
   }
 
-  public static AbstractCropPower getOldestPower() {
+  public static AbstractCropPower getOldestCropPower() {
     logger.debug("Newest crop per CropUtil: " + (getPlayer().getCropUtil().playerHasAnyCrops() ? getPlayer().getCropUtil().getOldestCrop().name : "None"));
     return getPlayer().getCropUtil().getOldestCrop();
   }
 
-  public static AbstractCropPower getNewestPower() {
+  public static AbstractCropPower getNewestCropPower() {
     logger.debug("Newest crop per CropUtil: " + (getPlayer().getCropUtil().playerHasAnyCrops() ? getPlayer().getCropUtil().getNewestCrop().name : "None"));
     return getPlayer().getCropUtil().getNewestCrop();
   }

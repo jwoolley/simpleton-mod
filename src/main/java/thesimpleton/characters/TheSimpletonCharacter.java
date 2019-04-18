@@ -360,7 +360,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
     }
 
     public static void addEndOfCombatTrigger(Trigger trigger) {
-        addStartOfTurnTriggerListener(() -> trigger);
+        addEndOfCombatTriggerListener(() -> trigger);
     }
     public static void addEndOfCombatTriggerListener(TriggerListener listener) {
 

@@ -64,22 +64,25 @@ public class CropUtil implements PostUpdateSubscriber, PostDrawSubscriber, PostP
 
   private List<AbstractCropPower> getActiveCrops() {
 //    return AbstractCropPower.getActiveCropPowers();
+    logger.debug("*** CropUtil getActiveCrops (size:" + activeCrops.size() + ")");
+
     return activeCrops;
   }
 
   public void addActiveCrop(AbstractCropPower crop) {
-    logger.debug("Adding crop: " + crop.name);
+    logger.debug("*** CropUtil Adding crop: " + crop.name);
     if (activeCrops.stream().noneMatch(c -> c.name == crop.name)) {
       activeCrops.add(crop);
     }
   }
 
   public void removeActiveCrop(AbstractCropPower crop) {
-    logger.debug("Removing crop: " + crop.name);
+    logger.debug("*** CropUtil Removing crop: " + crop.name);
     activeCrops.remove(crop);
   }
 
   public boolean playerHasAnyCrops() {
+    logger.debug("*** CropUtil playerHasAnyCrops (size:" + activeCrops.size());
     return getActiveCrops().size() > 0;
   }
 
@@ -130,7 +133,6 @@ public class CropUtil implements PostUpdateSubscriber, PostDrawSubscriber, PostP
 
   public void onCropGained(AbstractCropPower crop) {
     logger.debug("CropUtil::onCropGained: " + crop.name);
-
     addActiveCrop(crop);
     triggerCardUpdates();
     cropTickedTriggerManager.triggerAll();

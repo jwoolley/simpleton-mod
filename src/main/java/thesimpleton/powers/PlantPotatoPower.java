@@ -1,6 +1,7 @@
 package thesimpleton.powers;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -57,9 +58,11 @@ public class PlantPotatoPower extends AbstractCropPower {
 
       this.flash();
       AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(SimpletonUtil.SPUD_MISSILE, harvestAmount));
-      amount -= harvestAmount;
 
-      if (amount == 0) {
+      if (harvestAmount < amount) {
+        AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this.owner, this.owner, POWER_ID, harvestAmount));
+//      amount -= harvestAmount;
+      } else {
         logger.debug("PlantPotatoPower.harvest : now at zero stacks, removing power");
         AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
       }

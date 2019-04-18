@@ -1,5 +1,6 @@
 package thesimpleton.cards.skill;
 
+import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -9,7 +10,7 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.utilities.*;
 
-abstract public class AbstractCropTriggerCard extends AbstractCard implements TriggerClient {
+abstract public class AbstractCropTriggerCard extends CustomCard implements TriggerClient {
   private final CombatLifecycleTriggerListener cropTickTriggerListener;
   private final Trigger cropTickTrigger;
   private boolean didRegisterDrawnTrigger = false;
@@ -38,6 +39,12 @@ abstract public class AbstractCropTriggerCard extends AbstractCard implements Tr
     if (AbstractDungeon.isPlayerInDungeon()) {
       updateDescription();
     }
+  }
+
+  @Override
+  public void atTurnStart() {
+    super.atTurnStart();
+    updateDescription();
   }
 
   abstract protected void updateDescription();

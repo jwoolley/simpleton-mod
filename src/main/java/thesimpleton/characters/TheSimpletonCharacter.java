@@ -261,6 +261,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
         this.endOfTurnTriggers.triggerAll();
     }
 
+
     @Override
     public void onVictory() {
         super.onVictory();
@@ -319,7 +320,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
     }
 
     public static void addPrecombatTrigger(Trigger trigger) {
-        addStartOfTurnTriggerListener(() -> trigger);
+        addPrecombatTriggerListener(() -> trigger);
     }
 
     public static void addPrecombatTriggerListener(TriggerListener listener) {
@@ -332,7 +333,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
     }
 
     public static void addPrecombatPredrawTrigger(Trigger trigger) {
-        addStartOfTurnTriggerListener(() -> trigger);
+        addPrecombatPredrawTriggerListener(() -> trigger);
     }
 
     public static void addPrecombatPredrawTriggerListener(TriggerListener listener) {
@@ -346,7 +347,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
     }
 
     public static void addEndOfTurnTrigger(Trigger trigger) {
-        addStartOfTurnTriggerListener(() -> trigger);
+        addEndOfTurnTriggerListener(() -> trigger);
     }
 
     public static void addEndOfTurnTriggerListener(TriggerListener listener) {

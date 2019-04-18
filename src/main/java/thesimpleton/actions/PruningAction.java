@@ -53,9 +53,10 @@ public class PruningAction extends AbstractGameAction {
       this.tickDuration();
       this.isDone = true;
     }
-    logger.debug("PruningAction.update :: first tick");
 
     if (!this.firstTickFinished) {
+      logger.debug("PruningAction.update :: first tick");
+
       if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
         this.oldestPower = AbstractCropPower.getOldestCropPower();
         logger.debug("PruningAction.update :: harvesting " + this.oldestPower.name + " for " + this.numStacksToHarvest);

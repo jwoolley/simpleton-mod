@@ -44,9 +44,11 @@ public class TriggerManager {
 
   public void triggerAll() {
     TheSimpletonMod.logger.debug("TriggerManager.triggerAll triggering " + this.triggerListeners.size() + " triggers");
-    triggerListeners.forEach(triggerListener -> triggerListener.getTrigger().trigger());
+    // copy to prevent concurrent modification
+    List<TriggerListener> listeners = new ArrayList(triggerListeners);
+    listeners.forEach(triggerListener ->  triggerListener.getTrigger().trigger());
 
-//    (new HashSet<>(triggerListeners)).forEach(triggerListener -> triggerListener.getTrigger().trigger());
+//      (new HashSet<>(triggerListeners)).forEach(triggerListener -> triggerListener.getTrigger().trigger());
   }
 
   public void clear() { this.clear(t -> true); }

@@ -28,12 +28,13 @@ public class PlantArtichokePower extends AbstractCropPower {
   public static final CardRarity cropRarity = CardRarity.RARE;
   private static final AbstractCropPowerCard powerCard = new Artichokes();
 
+  private static final int MATURITY_THRESHOLD = 2;
 
   private static int BASE_PLATED_ARMOR_PER_STACK = 2;
   private static int platedArmorPerStack = 2;
 
   public PlantArtichokePower(AbstractCreature owner, int amount) {
-    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
+    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, false,  MATURITY_THRESHOLD);
     this.platedArmorPerStack = BASE_PLATED_ARMOR_PER_STACK;
     updateDescription();
   }

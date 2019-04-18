@@ -23,18 +23,62 @@ public class CropUtil implements PostUpdateSubscriber, PostDrawSubscriber, PostP
 
   private final TriggerManager cropTickedTriggerManager;
   private static List<AbstractCropPower> activeCrops = new ArrayList<>();
+  private static List<AbstractCropPower> combatStartCrops = new ArrayList<>();
+  private boolean wasResetForCombat;
 
   public CropUtil() {
     this.cropTickedTriggerManager = new TriggerManager();
-    TheSimpletonCharacter.addEndOfCombatTrigger(() -> { resetForCombat(); });
+    wasResetForCombat = true;
+    TheSimpletonCharacter.addEndOfCombatTrigger(this::resetForCombatEnd);
+//    TheSimpletonCharacter.addPrecombatPredrawTrigger(() -> {  triggerCardUpdates(); /* resetForCombat(); */});
 //    TheSimpletonCharacter.addPrecombatPredrawTrigger(() -> { triggerCardUpdates(); });
-//    TheSimpletonCharacter.addPrecombatTrigger(() -> { triggerCardUpdates(); });
+
+    TheSimpletonCharacter.addPrecombatTrigger(this::resetForCombatStart);
+    TheSimpletonCharacter.addStartOfTurnTrigger(() -> {
+      //TODO: consider moving to precombat trigger (and precombat trigger to precombatpredraw trigger_
+      wasResetForCombat = false;
+    });
+//    TheSimpletonCharacter.addStartOfTurnTrigger(() -> {
+//      logger.debug("CropUtil::startOfTurnTrigger refreshing activeCrops");
+//      if (activeCrops.size() == 0) {
+//        logger.debug("CropUtil::startOfTurnTrigger activeCrops refreshed");
+//        activeCrops.addAll(AbstractCropPower.getActiveCropPowers());
+//        triggerCardUpdates();
+//        wasResetForCombat = false;
+//
+//        // enable if works
+//        // combatStartCrops.clear();
+//      }
+//    });
   }
 
-  public void resetForCombat() {
-    logger.debug("CropUtil: Resetting cropTickedTriggerManager");
+
+  public void resetForCombatStart() {
+    logger.debug("CropUtil::resetForCombatStart Resetting cropTickedTriggerManager");
 //    cropTickedTriggerManager.clear();
+    logger.debug("CropUtil:resetForCombatStart number combatStartCrops: " + combatStartCrops.size());
+
     activeCrops.clear();
+    activeCrops.addAll(combatStartCrops);
+    combatStartCrops.clear();
+
+    logger.debug("CropUtil:resetForCombatStart activeCrops after combatStartCrops added: " + activeCrops.size());
+
+    combatStartCrops.clear();
+    wasResetForCombat = true;
+  }
+
+  public void resetForCombatEnd() {
+    logger.debug("CropUtil::resetForCombat Resetting cropTickedTriggerManager");
+//    cropTickedTriggerManager.clear();
+    logger.debug("CropUtil:resetForCombat number combatStartCrops: " + combatStartCrops.size());
+
+    activeCrops.clear();
+
+    logger.debug("CropUtil:resetForCombat activeCrops after combatStartCrops added: " + activeCrops.size());
+
+    combatStartCrops.clear();
+    wasResetForCombat = true;
   }
 
   @Override
@@ -72,7 +116,13 @@ public class CropUtil implements PostUpdateSubscriber, PostDrawSubscriber, PostP
   public void addActiveCrop(AbstractCropPower crop) {
     logger.debug("*** CropUtil Adding crop: " + crop.name);
     if (activeCrops.stream().noneMatch(c -> c.name == crop.name)) {
+      logger.debug("*** CropUtil crop added: " + crop.name);
       activeCrops.add(crop);
+    }
+
+    if (wasResetForCombat) {
+      logger.debug("*** CropUtil Adding crop to combatStartCrops: " + crop.name);
+      combatStartCrops.add(crop);
     }
   }
 
@@ -82,7 +132,7 @@ public class CropUtil implements PostUpdateSubscriber, PostDrawSubscriber, PostP
   }
 
   public boolean playerHasAnyCrops() {
-    logger.debug("*** CropUtil playerHasAnyCrops (size:" + activeCrops.size());
+    logger.debug("*** CropUtil playerHasAnyCrops (size:" + activeCrops.size() + ")");
     return getActiveCrops().size() > 0;
   }
 
@@ -100,11 +150,11 @@ public class CropUtil implements PostUpdateSubscriber, PostDrawSubscriber, PostP
 
     logger.debug("CropUtil::triggerCardUpdates: updating master deck: " + player.masterDeck.group.stream().filter(c -> c instanceof AbstractCropTriggerCard).count() + " eligible cards, total cards: " + player.masterDeck.size());
 
-    player.masterDeck.group.forEach(card -> {
-        if (card instanceof AbstractCropTriggerCard) {
-            ((AbstractCropTriggerCard) card).getTriggerListener().getTrigger().trigger();
-        }
-    });
+//    player.masterDeck.group.forEach(card -> {
+//        if (card instanceof AbstractCropTriggerCard) {
+//            ((AbstractCropTriggerCard) card).getTriggerListener().getTrigger().trigger();
+//        }
+//    });
 
     logger.debug("CropUtil::triggerCardUpdates: updating draw pile: " + player.drawPile.group.stream().filter(c -> c instanceof AbstractCropTriggerCard).count() + " eligible cards, total cards: " + player.drawPile.size());
 

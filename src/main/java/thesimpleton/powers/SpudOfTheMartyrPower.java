@@ -36,7 +36,7 @@ public class SpudOfTheMartyrPower extends AbstractTheSimpletonPower {
 
   @Override
   public void updateDescription() {
-    this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+    this.description = DESCRIPTIONS[0] + CROP_AMOUNT + DESCRIPTIONS[1];
   }
 
   @Override

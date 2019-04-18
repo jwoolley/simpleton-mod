@@ -70,6 +70,7 @@ SpudOfTheMartyr extends CustomRelic {
 
     @Override
     public void obtain() {
+        this.flash();
         if (AbstractDungeon.player.hasRelic(SpudOfTheInnocent.ID)) {
             for (int i = 0; i < AbstractDungeon.player.relics.size(); ++i) {
                 if (AbstractDungeon.player.relics.get(i).relicId.equals(SpudOfTheInnocent.ID)) {

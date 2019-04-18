@@ -63,9 +63,11 @@ public class SimpletonUtil {
     }
 
     public static AbstractCreature getDummyCreature() {
-        return (new AbstractCreature() {
+        return (new AbstractMonster("Dummy", "Dummy", 1, 0.0F, 0.0F, 1.0F, 1.0F, null) {
             public void damage(DamageInfo di) {}
             public void render(com.badlogic.gdx.graphics.g2d.SpriteBatch spriteBatch) {}
+            protected void getMove(int i) {}
+            public void takeTurn() {}
         });
     }
 

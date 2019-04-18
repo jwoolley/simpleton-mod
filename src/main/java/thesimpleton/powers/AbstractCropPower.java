@@ -76,20 +76,21 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     this.cropPowerId = CROP_POWER_ID_COUNTER++;
     this.powerCard = powerCard;
 
-    if (amount > 0) {
-      triggerCropGained();
-    }
-    logger.debug(this.name + ": gained " + amount + " stacks");
+//    triggerCropGained();
+
+    logger.debug(this.name + ": gained " + amount + " stacks. Owner: " + owner.name);
   }
 
   private void triggerCropGained() {
+    logger.debug(this.name + "C: gained " + amount + " stacks. Owner: " + owner.name);
+
     getPlayer().getCropUtil().onCropGained(this);
 //    CropUtil.triggerCardUpdates();
   }
 
-  private void triggerCropLost() {
-    getPlayer().getCropUtil().onCropLost(this);
-  }
+//  private void triggerCropLost() {
+//    getPlayer().getCropUtil().onCropLost(this);
+//  }
 
 
   protected String getPassiveDescription() {
@@ -240,8 +241,11 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     logger.debug("Triggering stackPower for " + this.name);
     CropUtil.triggerCardUpdates();
 
+    // TODO: change to triggerCropIncreased / triggerCropChanged
+//    triggerCropGained();
+    CropUtil.triggerCardUpdates();
+
     if (this.amount > autoHarvestThreshold) {
-      getPlayer().getCropUtil().onCropGained(this);
       this.flash();
       this.harvest(false, this.amount - autoHarvestThreshold);
     }
@@ -254,6 +258,23 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
       logger.debug("Triggering onApplyPower for " + this.name);
       CropUtil.triggerCardUpdates();
     }
+  }
+
+
+  @Override
+  public void onInitialApplication() {
+    super.onInitialApplication();
+    logger.debug("******************************* onInitialApplication: " + this.name);
+    triggerCropGained();
+//    getPlayer().getCropUtil().onCropGained(this);
+  }
+
+
+  @Override
+  public void onGainCharge(int a) {
+    super.onGainCharge(a);
+    logger.debug("**************@@@@@@@@@@@@@@@@@ onGainCharge: " + this.name + ", amount:" + a);
+
   }
 
   @Override

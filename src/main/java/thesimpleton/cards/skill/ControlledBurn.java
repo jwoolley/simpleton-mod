@@ -3,6 +3,7 @@ package thesimpleton.cards.skill;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,7 +13,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.ApplyBurningAction;
+import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.enums.AbstractCardEnum;
+import thesimpleton.powers.BurningPower;
+import thesimpleton.powers.unused.BleedPower;
 
 public class ControlledBurn extends CustomCard {
   public static final String ID = "TheSimpletonMod:ControlledBurn";
@@ -30,7 +34,6 @@ public class ControlledBurn extends CustomCard {
   private static final int NUM_STACKS = 14;
   private static final int UPGRADE_NUM_STACKS = 6;
 
-
   public ControlledBurn() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = NUM_STACKS;
@@ -38,7 +41,11 @@ public class ControlledBurn extends CustomCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
+    final boolean hadBurning = m.hasPower(BurningPower.POWER_ID);
     AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(m, p, this.magicNumber));
+    if (!hadBurning) {
+      this.exhaustOnUseOnce = true;
+    }
   }
 
   @Override

@@ -6,9 +6,11 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import thesimpleton.cards.attack.FlamingSpud;
 import thesimpleton.cards.attack.SpudMissile;
 import thesimpleton.cards.curse.Dregs;
 import thesimpleton.cards.skill.RootOut;
+import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.powers.*;
 import thesimpleton.relics.unused.FourLeafCloverCharm;
 
@@ -21,7 +23,12 @@ public class SimpletonUtil {
     // As MakeTempCard... actions copy the card object, just define a static Dregs here for common use.
     public static final AbstractCard DREGS = new Dregs();
     public static final AbstractCard SPUD_MISSILE = new SpudMissile();
+    public static final AbstractCard FLAMING_SPUD = new FlamingSpud();
     public static final AbstractCard ROOT_OUT = new RootOut();
+
+    public static TheSimpletonCharacter getPlayer() {
+        return (TheSimpletonCharacter) AbstractDungeon.player;
+    }
 
     public static int getNumCurse(ArrayList<AbstractCard> cards) {
         return (int) cards.stream()

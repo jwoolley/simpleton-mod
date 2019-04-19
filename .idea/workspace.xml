@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9bd6eee4-ee25-4e8c-af56-bec4bcc208a5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/BirdFeeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/BirdFeeder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/BirdFeederPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/BirdFeederPower.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/FlamingSpud.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/SimpletonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/SimpletonUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/SpudMissile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/SpudMissile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/ControlledBurn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/ControlledBurn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantPotatoPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantPotatoPower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/HotPotato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thesimpleton/relics/HotPotato.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CardStrings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CardStrings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/PowerStrings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/PowerStrings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/RelicStrings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/RelicStrings.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,8 +29,8 @@
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CardStrings.json">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="333">
-                    <caret line="127" column="13" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="13" />
+                  <state relative-caret-position="200">
+                    <caret line="51" column="77" selection-start-line="51" selection-start-column="77" selection-end-line="51" selection-end-column="77" />
                   </state>
                 </provider>
               </entry>
@@ -50,47 +56,71 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CardStrings.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="139" column="162" selection-start-line="139" selection-start-column="162" selection-end-line="139" selection-end-column="162" />
+            <state relative-caret-position="179">
+              <caret line="51" column="51" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="51" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/utilities/CropUtil.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/ControlledBurn.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="40" column="57" selection-start-line="40" selection-start-column="57" selection-end-line="40" selection-end-column="57" />
+            <state relative-caret-position="540">
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
               <folding>
-                <element signature="e#3500#3501#0" expanded="true" />
-                <element signature="e#5010#5011#0" expanded="true" />
-                <element signature="e#7522#7523#0" expanded="true" />
-                <element signature="e#7558#7559#0" expanded="true" />
+                <element signature="e#2146#2147#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/SimpletonUtil.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/actions/DoubleBarrelAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="55" column="31" lean-forward="true" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
+            <state relative-caret-position="440">
+              <caret line="32" column="15" selection-start-line="32" selection-start-column="15" selection-end-line="32" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/ManuallyActivateBleedAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="16" column="15" selection-start-line="16" selection-end-line="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/SpudMissile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-241">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
               <folding>
-                <element signature="e#2770#2771#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Pruning.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/UltimatePainAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="74" column="23" selection-start-line="74" selection-start-column="14" selection-end-line="74" selection-end-column="23" />
+            <state relative-caret-position="440">
+              <caret line="33" column="8" lean-forward="true" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/FlamingSpud.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="406">
+              <caret line="51" column="3" lean-forward="true" selection-start-line="51" selection-start-column="3" selection-end-line="51" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -99,44 +129,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/BirdFeederPower.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantPotatoPower.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/actions/common/ReducePowerAction.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="12" column="116" selection-start-line="12" selection-start-column="116" selection-end-line="12" selection-end-column="116" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/BirdFeeder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="677">
-              <caret line="55" column="25" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
-              <folding>
-                <element signature="e#1907#1908#0" expanded="true" />
-                <element signature="e#1973#1974#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/AbstractCropTriggerCard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="49" column="46" lean-forward="true" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
+            <state relative-caret-position="257">
+              <caret line="61" column="61" lean-forward="true" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/HotPotato.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="34" column="12" lean-forward="true" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -153,36 +161,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>onRemove</find>
-      <find>oncropgain</find>
-      <find>onHarvest</find>
-      <find>onCropGained</find>
-      <find>los</find>
-      <find>lost</find>
-      <find>onremove</find>
-      <find>addActiveCrop</find>
-      <find>oncropGained</find>
-      <find>triggerListeners =</find>
-      <find>resetforcombatStart</find>
-      <find>resetForCombatStart</find>
-      <find>isDeadOr</find>
-      <find>FlashPower</find>
-      <find>Apply</find>
-      <find>flash</find>
-      <find>triggerCropGained</find>
-      <find>dummy</find>
-      <find>Tough</find>
-      <find>mart</find>
-      <find>DESCRIPTIONS</find>
-      <find>addPrecombatTrigger</find>
-      <find>onvi</find>
-      <find>apply</find>
-      <find>birdfee</find>
-      <find>descri</find>
-      <find>updateDescription</find>
-      <find>updateDes</find>
       <find>extended</find>
       <find>desc</find>
+      <find>missil</find>
+      <find>Spud</find>
+      <find>owner</find>
+      <find>Player</find>
+      <find>atEndOfTurn</find>
+      <find>target ==</find>
+      <find>getPl</find>
+      <find>isPlayer</find>
+      <find>player</find>
+      <find>hna</find>
+      <find>SPUD_MISSILE</find>
+      <find>hasRe</find>
+      <find>hasRelic</find>
+      <find>spud</find>
+      <find>getRelic</find>
+      <find>SPUD_MISS</find>
+      <find>HotPo</find>
+      <find>hotpotato</find>
+      <find>getPower</find>
+      <find>hasPo</find>
+      <find>Exhaust</find>
+      <find>exhaustAction</find>
+      <find>target</find>
+      <find>logger</find>
+      <find>hotpotoat</find>
+      <find>exhaust</find>
+      <find>burning</find>
+      <find>ex</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -232,10 +240,10 @@
       <dir>D:\development\java\IntelliJ\my_mods\lib\desktop-1.0.jar!\com\megacrit\cardcrawl\actions</dir>
       <dir>D:\development\java\IntelliJ\my_mods\thesimpleton\src\main\java\thesimpleton\cards\skill</dir>
       <dir>D:\development\java\IntelliJ\my_mods\thesimpleton\src\main\java\thesimpleton\cards\skillfla</dir>
-      <dir>D:\development\java\IntelliJ\my_mods\thesimpleton\src\main\java\thesimpleton\</dir>
       <dir>newset</dir>
-      <dir>D:\development\java\IntelliJ\my_mods\thesimpleton\src\main\java\thesimpleton\powers</dir>
       <dir>D:\development\java\IntelliJ\my_mods\thesimpleton\src\main\java\thesimpleton</dir>
+      <dir>D:\development\java\IntelliJ\my_mods\thesimpleton\src\main\java\thesimpleton\powers</dir>
+      <dir>D:\development\java\IntelliJ\my_mods\thesimpleton\src\main\java\thesimpleton\</dir>
       <dir>D:\development\java\IntelliJ\my_mods\thesimpleton\src\main\java\thesimpleton\cards</dir>
     </dirStrings>
   </component>
@@ -245,12 +253,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/relics/GrassPellets.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/RelicStrings.json" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/actions/CropDiversityAction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/crop/AbstractCropPowerCard.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/CropRotation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/utils.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/utils/Crops.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PhotosynthesisPower.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/PestManagement.java" />
@@ -260,7 +262,6 @@
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/TheSimpletonMod.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Swelter.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/SlashAndBurn.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/ControlledBurn.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/utilities/CropTriggerListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/utilities/CropTriggerClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/utilities/TriggerClient.java" />
@@ -283,19 +284,26 @@
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/AbstractCropTriggerCard.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/utilities/CropUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/actions/PruningAction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantPotatoPower.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/crop/Spinach.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/utilities/TriggerManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/characters/TheSimpletonCharacter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/SimpletonUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/SpudOfTheMartyrPower.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/relics/SpudOfTheMartyr.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantArtichokePower.java" />
         <option value="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/PowerStrings.json" />
-        <option value="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CardStrings.json" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/BirdFeederPower.java" />
         <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/BirdFeeder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/relics/HotPotato.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/unused/FlamingSpud.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/SimpletonUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/RelicStrings.json" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantPotatoPower.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/SpudMissile.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/FlamingSpud.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Rototilling.java" />
+        <option value="$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/ControlledBurn.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CardStrings.json" />
       </list>
     </option>
   </component>
@@ -328,8 +336,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="174" />
-    <option name="y" value="454" />
+    <option name="x" value="-1" />
+    <option name="y" value="-8" />
     <option name="width" value="1815" />
     <option name="height" value="1163" />
   </component>
@@ -384,6 +392,27 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="thesimpleton" type="462c0819:PsiDirectoryNode" />
               <item name="cards" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TheSimpleton" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesimpleton" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="thesimpleton" type="462c0819:PsiDirectoryNode" />
+              <item name="cards" type="462c0819:PsiDirectoryNode" />
+              <item name="attack" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TheSimpleton" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesimpleton" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="thesimpleton" type="462c0819:PsiDirectoryNode" />
+              <item name="cards" type="462c0819:PsiDirectoryNode" />
+              <item name="attack" type="462c0819:PsiDirectoryNode" />
+              <item name="unused" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TheSimpleton" type="b2602c69:ProjectViewProjectNode" />
@@ -500,8 +529,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="thesimpleton.cards.skill" />
       <recent name="thesimpleton.cards.attack" />
+      <recent name="thesimpleton.cards.skill" />
       <recent name="thesimpleton.actions" />
       <recent name="thecursed.cards.skill" />
       <recent name="thecursed.cards.attack" />
@@ -674,85 +703,6 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantChiliPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="47" column="92" selection-start-line="47" selection-start-column="92" selection-end-line="47" selection-end-column="92" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantOnionPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="46" column="119" selection-start-line="46" selection-start-column="119" selection-end-line="46" selection-end-column="119" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/cards/AbstractCard.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="13" column="32" lean-forward="true" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/TheSimpletonMod/img/cards/aerate.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/utilities/CombatLifecycleTriggerListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="47" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/utilities/TriggerListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/unused/SpreadPlague.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="44" column="17" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/ControlledBurn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="20" column="37" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Defend_TheSimpleton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/actions/SunchokeAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12">
-          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../lib/BaseMod.jar!/basemod/BaseMod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="99" column="38" selection-start-line="99" selection-start-column="38" selection-end-line="99" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/utilities/TriggerClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
@@ -866,16 +816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantPotatoPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="63" column="32" lean-forward="true" selection-start-line="63" selection-start-column="32" selection-end-line="63" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/utilities/TriggerManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="431">
@@ -896,21 +836,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="287" column="52" selection-start-line="287" selection-start-column="52" selection-end-line="287" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5432#5433#0" expanded="true" />
-            <element signature="e#5459#5460#0" expanded="true" />
-            <element signature="e#8915#8916#0" expanded="true" />
-            <element signature="e#8952#8953#0" expanded="true" />
-            <element signature="e#15073#15074#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/monsters/AbstractMonster.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
@@ -922,13 +847,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="38" column="52" selection-start-line="38" selection-start-column="52" selection-end-line="38" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/HotPotato.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="19" column="41" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -1015,16 +933,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/SimpletonUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="55" column="31" lean-forward="true" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
-          <folding>
-            <element signature="e#2770#2771#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../lib/desktop-1.0.jar!/com/megacrit/cardcrawl/actions/common/ReducePowerAction.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -1049,13 +957,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CardStrings.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="139" column="162" selection-start-line="139" selection-start-column="162" selection-end-line="139" selection-end-column="162" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/AbstractCropTriggerCard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="466">
@@ -1075,12 +976,156 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/power/BirdFeeder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="677">
-          <caret line="55" column="25" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
+        <state relative-caret-position="257">
+          <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
           <folding>
             <element signature="e#1907#1908#0" expanded="true" />
             <element signature="e#1973#1974#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/BurningPower.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="42" column="42" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="42" />
+          <folding>
+            <element signature="e#1360#1361#0" expanded="true" />
+            <element signature="e#1398#1399#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/PhotosynthesisPower.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="61" column="21" selection-start-line="61" selection-start-column="10" selection-end-line="61" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/AbstractCropPower.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="151" column="59" selection-start-line="151" selection-start-column="48" selection-end-line="151" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5552#5553#0" expanded="true" />
+            <element signature="e#5594#5595#0" expanded="true" />
+            <element signature="e#15028#15029#0" expanded="true" />
+            <element signature="e#15073#15074#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/RelicStrings.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="104" column="69" selection-start-line="104" selection-start-column="65" selection-end-line="104" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/SimpletonUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="25" column="64" lean-forward="true" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
+          <folding>
+            <element signature="e#1217#1218#0" expanded="true" />
+            <element signature="e#1280#1281#0" expanded="true" />
+            <element signature="e#2707#2708#0" expanded="true" />
+            <element signature="e#2770#2771#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/UltimatePainAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="33" column="8" lean-forward="true" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/relics/HotPotato.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="34" column="12" lean-forward="true" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/powers/PlantPotatoPower.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="61" column="61" lean-forward="true" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/Rototilling.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="41" column="25" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/actions/DoubleBarrelAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="32" column="15" selection-start-line="32" selection-start-column="15" selection-end-line="32" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/actions/unused/ManuallyActivateBleedAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="16" column="15" selection-start-line="16" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/SpudMissile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-241">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/attack/FlamingSpud.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="51" column="3" lean-forward="true" selection-start-line="51" selection-start-column="3" selection-end-line="51" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../lib/BaseMod.jar!/basemod/abstracts/CustomCard.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/thesimpleton/cards/skill/ControlledBurn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="e#2146#2147#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/TheSimpletonMod/localization/eng/CardStrings.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="51" column="51" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="51" />
         </state>
       </provider>
     </entry>

@@ -11,14 +11,15 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.ApplyBurningAction;
 import thesimpleton.cards.TheSimpletonCardTags;
 
 ;
-public class SpudMissile extends CustomCard {
-  public static final String ID = "TheSimpletonMod:SpudMissile";
+public class FlamingSpud extends CustomCard {
+  public static final String ID = "TheSimpletonMod:FlamingSpud";
   public static final String NAME;
   public static final String DESCRIPTION;
-  public static final String IMG_PATH = "cards/spudmissile.png";
+  public static final String IMG_PATH = "cards/flamingspud.png";
 
   private static final CardStrings cardStrings;
 
@@ -29,10 +30,13 @@ public class SpudMissile extends CustomCard {
   private static final int COST = 0;
   private static final int DAMAGE = 4;
   private static final int UPGRADE_DAMAGE_AMOUNT = 3;
+  private static final int BURNING_AMOUNT = 4;
+  private static final int UPGRADE_BURNING_AMOUNT = 3;
 
-  public SpudMissile() {
+  public FlamingSpud() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
+    this.baseMagicNumber = this.magicNumber = BURNING_AMOUNT;
     this.exhaust = true;
     this.isEthereal = true;
     this.tags.add(TheSimpletonCardTags.CROP);
@@ -42,12 +46,14 @@ public class SpudMissile extends CustomCard {
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(
         new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
-        AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+            AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+
+    AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(m, p, this.magicNumber));
   }
 
   @Override
   public AbstractCard makeCopy() {
-    return new SpudMissile();
+    return new FlamingSpud();
   }
 
   @Override
@@ -55,6 +61,7 @@ public class SpudMissile extends CustomCard {
     if (!this.upgraded) {
       this.upgradeName();
       this.upgradeDamage(UPGRADE_DAMAGE_AMOUNT);
+      this.upgradeMagicNumber(UPGRADE_BURNING_AMOUNT);
     }
   }
 

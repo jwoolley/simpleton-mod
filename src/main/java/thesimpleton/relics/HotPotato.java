@@ -33,7 +33,7 @@ public class HotPotato extends CustomRelic {
 
   public void activate(AbstractCreature source, AbstractCreature target, int amount) {
     flash();
-    AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(target, source, amount));
+//    AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(target, source, amount));
   }
 
   @Override

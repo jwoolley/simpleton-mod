@@ -16,6 +16,7 @@ import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Potatoes;
 import thesimpleton.powers.utils.Crop;
+import thesimpleton.relics.HotPotato;
 
 public class PlantPotatoPower extends AbstractCropPower {
   public static final Crop enumValue = Crop.POTATOES;
@@ -53,11 +54,19 @@ public class PlantPotatoPower extends AbstractCropPower {
   public void harvest(boolean harvestAll, int maxHarvestAmount) {
     super.harvest(harvestAll, maxHarvestAmount);
 
-    if  (amount > 0) {
+    if  (amount > 0 && this.owner == SimpletonUtil.getPlayer()) {
       final int harvestAmount = Math.min(this.amount, harvestAll ? this.amount : maxHarvestAmount);
 
       this.flash();
-      AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(SimpletonUtil.SPUD_MISSILE, harvestAmount));
+
+      if (SimpletonUtil.getPlayer().hasRelic(HotPotato.ID)) {
+        SimpletonUtil.getPlayer().getRelic(HotPotato.ID).flash();
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(SimpletonUtil.FLAMING_SPUD, harvestAmount));
+      } else {
+        logger.debug("PlantPotatoPower.harvest : owner does not have Hot Potato. owner: " + owner.name);
+
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(SimpletonUtil.SPUD_MISSILE, harvestAmount));
+      }
 
       if (harvestAmount < amount) {
         AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this.owner, this.owner, POWER_ID, harvestAmount));

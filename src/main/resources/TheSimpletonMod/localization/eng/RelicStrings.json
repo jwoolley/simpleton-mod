@@ -102,7 +102,7 @@
     "NAME": "Hot Potato",
     "FLAVOR": "There's no topping this one.",
     "DESCRIPTIONS": [
-      "Whenever you play a #ySpud card, the enemy also gains #yBurning equal to that card's attack."
+      "Harvesting #yPotatoes now yields #yFlaming #ySpuds, which also apply #yBurning damage."
     ]
   },
 

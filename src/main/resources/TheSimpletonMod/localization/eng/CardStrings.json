@@ -49,7 +49,7 @@
 
   "TheSimpletonMod:ControlledBurn": {
     "NAME": "Controlled Burn",
-    "DESCRIPTION": "Apply !M! Burning."
+    "DESCRIPTION": "Apply !M! Burning. NL Exhaust if the enemy didn't already have Burning."
   },
 
   "TheSimpletonMod:CropDiversity": {
@@ -88,6 +88,13 @@
     "NAME": "Fertilaser",
     "DESCRIPTION": "Deal !D! damage. NL Add !M! stack to each Crop."
   },
+
+  "TheSimpletonMod:FlamingSpud": {
+    "NAME": "Flaming Spud",
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Apply !M! Burning. NL Exhaust."
+  },
+
+
 
   "TheSimpletonMod:GiantTurnip": {
     "NAME": "Turnip",

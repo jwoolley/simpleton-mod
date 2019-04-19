@@ -139,8 +139,8 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     return this.amount >= this.getMaturityThreshold();
   }
 
-  static TheSimpletonCharacter getPlayer() {
-    return (TheSimpletonCharacter) AbstractDungeon.player;
+  private static TheSimpletonCharacter getPlayer() {
+    return SimpletonUtil.getPlayer();
   }
 
   public void harvest(boolean all, int amount) {
@@ -408,9 +408,9 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
         hasHarvestedThisTurn = false;
       }
     };
-    getPlayer().addPrecombatPredrawTrigger(trigger);
-    getPlayer().addStartOfTurnTrigger(trigger);
-    getPlayer().addEndOfTurnTrigger(trigger);
+    TheSimpletonCharacter.addPrecombatPredrawTrigger(trigger);
+    TheSimpletonCharacter.addStartOfTurnTrigger(trigger);
+    TheSimpletonCharacter.addEndOfTurnTrigger(trigger);
   }
   // TODO: move shared functionality(e.g. harvest logic) to here
 }

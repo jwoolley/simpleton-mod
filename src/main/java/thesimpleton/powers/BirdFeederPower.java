@@ -2,6 +2,7 @@ package thesimpleton.powers;
 
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -22,11 +23,14 @@ public class BirdFeederPower extends AbstractTheSimpletonPower {
 
   private AbstractCreature source;
 
-  public BirdFeederPower(AbstractCreature owner, AbstractCreature source, int amount) {
+  private final int hpPerStack;
+
+  public BirdFeederPower(AbstractCreature owner, AbstractCreature source, int amount, int hpPerStack) {
     super(IMG);
     this.owner = owner;
     this.source = source;
     this.amount = amount;
+    this.hpPerStack = hpPerStack;
 
     this.name = NAME;
     this.ID = POWER_ID;
@@ -37,14 +41,16 @@ public class BirdFeederPower extends AbstractTheSimpletonPower {
 
   @Override
   public void updateDescription() {
-    this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+    this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + hpPerStack + DESCRIPTIONS[2];
   }
 
   @Override
   public void onUseCard(AbstractCard c, UseCardAction action) {
     if (c.type == AbstractCard.CardType.POWER) {
       flash();
-      AbstractDungeon.actionManager.addToBottom(new HealAction(owner, source, this.amount));
+      AbstractDungeon.actionManager.addToBottom(new HealAction(owner, source, hpPerStack));
+      AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(owner, source, this, 1));
+      updateDescription();
     }
   }
 

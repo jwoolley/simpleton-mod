@@ -43,7 +43,8 @@
 
   "TheSimpletonMod:BirdFeeder": {
     "NAME": "Birdfeeder",
-    "DESCRIPTION": "Whenever you play a Power card, heal !M! HP."
+    "DESCRIPTION": "The next !M! times you play a Power card this combat, heal ",
+    "EXTENDED_DESCRIPTION" : [" HP."]
   },
 
   "TheSimpletonMod:ControlledBurn": {

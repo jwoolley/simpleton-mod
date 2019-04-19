@@ -159,7 +159,8 @@
   "TheSimpletonMod:BirdFeederPower": {
     "NAME": "Birdfeeder",
     "DESCRIPTIONS": [
-      "Whenever you play a #yPower card, heal #b",
+      "The next #b",
+      " times you play a #yPower card this combat, heal #b",
       " HP."
     ]
   },

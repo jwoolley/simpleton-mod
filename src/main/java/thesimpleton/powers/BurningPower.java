@@ -50,7 +50,7 @@ public class BurningPower extends AbstractTheSimpletonPower {
   }
 
   public void activateBurning(int numStacks) {
-    DamageInfo burningDamageInfo = new DamageInfo(this.source, numStacks, DamageInfo.DamageType.NORMAL);
+    DamageInfo burningDamageInfo = new DamageInfo(this.source, numStacks, DamageInfo.DamageType.THORNS);
       this.flash();
       DamageAction action = new DamageAction(this.owner, burningDamageInfo, AbstractGameAction.AttackEffect.FIRE);
       AbstractDungeon.actionManager.addToTop(action);

@@ -215,6 +215,11 @@
     "DESCRIPTION": "Gain !M! Corn."
   },
 
+  "TheSimpletonMod:Mushrooms": {
+    "NAME": "Mushrooms",
+    "DESCRIPTION": "Gain !M! Mushrooms."
+  },
+
   "TheSimpletonMod:Onions": {
     "NAME": "Onions",
     "DESCRIPTION": "Gain !M! Onions."

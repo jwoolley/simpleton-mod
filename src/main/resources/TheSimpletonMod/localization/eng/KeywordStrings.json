@@ -78,6 +78,14 @@
   },
 
 
+  "TheSimpletonMod:MushroomKeyword": {
+    "PROPER_NAME": "Mushrooms",
+    "NAMES": [
+      "mushroom", "mushrooms"
+    ],
+    "DESCRIPTION": "#yCrop. Gain random colorless cards when harvested."
+  },
+
   "TheSimpletonMod:OnionKeyword": {
     "PROPER_NAME": "Onions",
     "NAMES": [

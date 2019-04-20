@@ -127,6 +127,13 @@
     ]
   },
 
+  "TheSimpletonMod:PlantMushroomPower": {
+    "NAME": "Mushrooms",
+    "DESCRIPTIONS": [
+      "#gHarvest: Add a random colorless card to your hand for each stack harvested."
+    ]
+  },
+
   "TheSimpletonMod:PlantOnionPower": {
     "NAME": "Onions",
     "DESCRIPTIONS": [

@@ -287,21 +287,25 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     if (referencePowers.isEmpty()) {
       AbstractCreature dummy = SimpletonUtil.getDummyCreature();
 
-      final PlantPotatoPower potatoPower = new PlantPotatoPower(dummy, 0);
+      //TODO: accomplish this dynamically via Crop enum
+
       final PlantArtichokePower artichokePower = new PlantArtichokePower(dummy, 0);
-      final PlantCornPower cornPower = new PlantCornPower(dummy, 0);
       final PlantChiliPower chiliPower = new PlantChiliPower(dummy, 0);
+      final PlantCornPower cornPower = new PlantCornPower(dummy, 0);
+      final PlantMushroomPower mushroomPower = new PlantMushroomPower(dummy, 0);
       final PlantOnionPower onionPower = new PlantOnionPower(dummy, 0);
+      final PlantPotatoPower potatoPower = new PlantPotatoPower(dummy, 0);
       final PlantSpinachPower spinachPower = new PlantSpinachPower(dummy, 0);
       final PlantTurnipPower turnipPower = new PlantTurnipPower(dummy, 0);
 
-      referencePowers.add(potatoPower);
       referencePowers.add(artichokePower);
-      referencePowers.add(spinachPower);
-      referencePowers.add(onionPower);
-      referencePowers.add(turnipPower);
-      referencePowers.add(cornPower);
       referencePowers.add(chiliPower);
+      referencePowers.add(cornPower);
+      referencePowers.add(spinachPower);
+      referencePowers.add(mushroomPower);
+      referencePowers.add(onionPower);
+      referencePowers.add(potatoPower);
+      referencePowers.add(turnipPower);
 
     }
     return referencePowers;

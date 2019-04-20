@@ -1,6 +1,6 @@
 package thesimpleton.powers;
 
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -12,26 +12,26 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import thesimpleton.cards.HarvestCard;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
-import thesimpleton.cards.power.crop.Corn;
+import thesimpleton.cards.power.crop.Mushrooms;
 import thesimpleton.powers.utils.Crop;
 
-public class PlantCornPower extends AbstractCropPower {
-  public static final Crop enumValue = Crop.CORN;
+public class PlantMushroomPower extends AbstractCropPower {
+  public static final Crop enumValue = Crop.MUSHROOMS;
 
-  public static final String POWER_ID = "TheSimpletonMod:PlantCornPower";
+  public static final String POWER_ID = "TheSimpletonMod:PlantMushroomPower";
   private static final PowerStrings powerStrings;
 
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
   public static PowerType POWER_TYPE = PowerType.BUFF;
-  public static final String IMG = "plantcorn.png";
-  public static final CardRarity cropRarity = CardRarity.UNCOMMON;
-  private static final AbstractCropPowerCard powerCard = new Corn();
+  public static final String IMG = "plantmushroom.png";
+  public static final CardRarity cropRarity = CardRarity.RARE;
+  private static final AbstractCropPowerCard powerCard = new Mushrooms();
 
   private static final int MATURITY_THRESHOLD = 2;
 
-  public PlantCornPower(AbstractCreature owner, int amount) {
-    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard,  amount, false, MATURITY_THRESHOLD);
+  public PlantMushroomPower(AbstractCreature owner, int amount) {
+    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, false, MATURITY_THRESHOLD);
     updateDescription();
   }
 
@@ -61,7 +61,14 @@ public class PlantCornPower extends AbstractCropPower {
       final int harvestAmount = Math.min(this.amount, harvestAll ? this.amount : maxHarvestAmount);
 
       this.flash();
-      AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player, harvestAmount));
+
+      if (harvestAmount > 0) {
+        for (int i = 0; i < harvestAmount; i++) {
+          AbstractCard card = AbstractDungeon.returnTrulyRandomColorlessCardInCombat().makeCopy();
+          AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, 1));
+        }
+      }
+
       amount -= harvestAmount;
 
       if (amount == 0) {

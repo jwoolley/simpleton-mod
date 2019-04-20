@@ -6,8 +6,9 @@ public enum Crop {
   ARTICHOKES,
   CORN,
   CHILIS,
-  POTATOES,
+  MUSHROOMS,
   ONIONS,
+  POTATOES,
   SPINACH,
   TURNIPS;
 
@@ -19,10 +20,12 @@ public enum Crop {
         return new PlantCornPower(owner, amount);
       case CHILIS:
         return new PlantChiliPower(owner, amount);
-      case POTATOES:
-        return new PlantPotatoPower(owner, amount);
+      case MUSHROOMS:
+        return new PlantMushroomPower(owner, amount);
       case ONIONS:
         return new PlantOnionPower(owner, amount);
+      case POTATOES:
+        return new PlantPotatoPower(owner, amount);
       case SPINACH:
         return new PlantSpinachPower(owner, amount);
       case TURNIPS:

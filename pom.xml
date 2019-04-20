@@ -9,7 +9,9 @@
     <name>TheHayseed</name>
     <description>Now *I'm* attempting to make a mod!</description>
     <properties>
-        <steam-mods-directory>D:/Program Files (x86)/Steam/steamapps/common/SlayTheSpire/mods</steam-mods-directory>
+        <steam-sts-directory>D:/Program Files (x86)/Steam/steamapps/common/SlayTheSpire</steam-sts-directory>
+        <steam-sts-mods-directory>${steam-sts-directory}/mods</steam-sts-mods-directory>
+        <steam-sts-publish-directory>${steam-sts-directory}/thehayseed/content</steam-sts-publish-directory>
     </properties>
 
     <dependencies>
@@ -65,7 +67,8 @@
                         <configuration>
                             <target>
                                 <copy file="target/TheHayseed.jar" tofile="../lib/TheHayseed.jar"/>
-                                <copy file="target/TheHayseed.jar" tofile="${steam-mods-directory}/TheHayseed.jar"/>
+                                <copy file="target/TheHayseed.jar" tofile="${steam-sts-mods-directory}/TheHayseed.jar"/>
+                                <copy file="target/TheHayseed.jar" tofile="${steam-sts-publish-directory}/TheHayseed.jar"/>
                             </target>
                         </configuration>
                         <goals>

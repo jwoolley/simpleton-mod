@@ -72,7 +72,7 @@ public class PlantChiliPower extends AbstractCropPower {
         for (int i = 0; i < harvestAmount; i++) {
           AbstractDungeon.actionManager.addToTop(
               new DamageAllEnemiesAction(this.owner, DamageInfo.createDamageMatrix(damageAmount, true),
-                  DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.FIRE, true));
+                  DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE, true));
         }
 
         AbstractDungeon.getMonsters().monsters.stream()

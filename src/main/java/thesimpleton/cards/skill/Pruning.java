@@ -82,12 +82,14 @@ public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
       if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
         AbstractCropPower crop = AbstractCropPower.getOldestCropPower();
         TheSimpletonMod.logger.debug("Pruning::getDescription: using dynamic description. Crop: " + crop.name);
-        description += EXTENDED_DESCRIPTION[2] +  crop.name + EXTENDED_DESCRIPTION[3];
+        description += EXTENDED_DESCRIPTION[3] +  crop.name + EXTENDED_DESCRIPTION[4];
       } else {
         TheSimpletonMod.logger.debug("Pruning::getDescription: using placeholder description");
-        description += EXTENDED_DESCRIPTION[1];
+        description += EXTENDED_DESCRIPTION[2];
       }
     }
+
+    description += EXTENDED_DESCRIPTION[1];
 
     return description;
   }

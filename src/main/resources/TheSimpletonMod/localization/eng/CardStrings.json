@@ -16,11 +16,12 @@
 
   "TheSimpletonMod:Aerate": {
     "NAME": "Aerate",
-    "DESCRIPTION": "Gain !B! Block. NL Add !M! stacks to your newest Crop NL ",
+    "DESCRIPTION": "Gain !B! Block. NL Add !M! stacks to your newest Crop",
     "EXTENDED_DESCRIPTION" : [
-      "(No eligible Crops currently).",
-      "(Currently ",
-      ")."
+      ".",
+      " NL (No eligible Crops currently)",
+      " NL (Currently ",
+      ")"
     ]
   },
 
@@ -128,18 +129,17 @@
     "DESCRIPTION": "At the end of your turn, convert any unused Energy into an equal number of random  Crop stacks."
   },
 
-
   "TheSimpletonMod:Pruning": {
     "NAME": "Pruning",
     "DESCRIPTION": "Harvest ",
     "EXTENDED_DESCRIPTION" : [
-      " stack of your oldest crop, then gain !M! stacks.",
-      " NL (No eligible Crops currently).",
+      " stack of your oldest crop, then gain !M! stacks",
+      ".",
+      " NL (No eligible Crops currently)",
       " NL (Currently ",
-      ")."
+      ")"
     ]
   },
-
 
   "TheSimpletonMod:ReapAndSow": {
     "NAME": "Reap and Sow",

@@ -38,6 +38,7 @@ public class CropUtil implements PostUpdateSubscriber, PostDrawSubscriber, PostP
       //TODO: consider moving to precombat trigger (and precombat trigger to precombatpredraw trigger_
       wasResetForCombat = false;
     });
+    
 //    TheSimpletonCharacter.addStartOfTurnTrigger(() -> {
 //      logger.debug("CropUtil::startOfTurnTrigger refreshing activeCrops");
 //      if (activeCrops.size() == 0) {

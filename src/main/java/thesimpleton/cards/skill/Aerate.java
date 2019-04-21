@@ -11,7 +11,7 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.AbstractCropPower;
 
-public class Aerate extends AbstractCropTriggerCard {
+public class Aerate extends AbstractDynamicTextCard {
   public static final String ID = "TheSimpletonMod:Aerate";
   public static final String NAME;
   public static final String DESCRIPTION;
@@ -30,14 +30,13 @@ public class Aerate extends AbstractCropTriggerCard {
   private static final int CROP_INCREASE_AMOUNT = 2;
 
   public Aerate() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET, null);
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
     this.baseMagicNumber = this.magicNumber = CROP_INCREASE_AMOUNT;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    super.use(p, m);
     AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
 
     if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
@@ -50,26 +49,23 @@ public class Aerate extends AbstractCropTriggerCard {
     return new Aerate();
   }
 
-  @Override
-  protected void updateDescription() {
-    TheSimpletonMod.logger.debug("Aerate::updateDescription(" + this.instanceId + ") called");
-    this.rawDescription = getDescription(true);
+  public void updateDescription(boolean extendedDescription) {
+    this.rawDescription = getDescription(extendedDescription);
     this.initializeDescription();
   }
 
-  private static String getDescription(boolean checkCropValue) {
+  private static String getDescription(boolean extendedDescription) {
     String description = DESCRIPTION;
-    if (checkCropValue && AbstractCropPower.playerHasAnyActiveCropPowers()) {
+
+    if (extendedDescription)
+      if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
       AbstractCropPower crop = AbstractCropPower.getNewestCropPower();
-      TheSimpletonMod.logger.debug("Aerate::getDescription checkCropValue: " + checkCropValue + "; playerHasAnyActiveCropPowers: " + AbstractCropPower.playerHasAnyActiveCropPowers());
-      description += EXTENDED_DESCRIPTION[1] + crop.name + EXTENDED_DESCRIPTION[2];
+      description += EXTENDED_DESCRIPTION[2] + crop.name + EXTENDED_DESCRIPTION[3];
     } else {
-      TheSimpletonMod.logger.debug("Aerate::getDescription: using placeholder description");
-
-      TheSimpletonMod.logger.debug("Aerate::getDescription: using placeholder description");
-
-      description += EXTENDED_DESCRIPTION[0];
+      description += EXTENDED_DESCRIPTION[1];
     }
+
+    description += EXTENDED_DESCRIPTION[0];
     return description;
   }
 

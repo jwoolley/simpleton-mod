@@ -1,5 +1,7 @@
 package thesimpleton.powers;
 
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,8 +10,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import thesimpleton.actions.UpdateCardsAction;
+import thesimpleton.cards.HarvestCard;
 import thesimpleton.cards.SimpletonUtil;
+import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.powers.utils.Crop;
@@ -143,9 +146,30 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     return SimpletonUtil.getPlayer();
   }
 
-  public void harvest(boolean all, int amount) {
-    onHarvest(amount);
+  public void onUseCard(AbstractCard card, UseCardAction action) {
+    if (card.hasTag(TheSimpletonCardTags.HARVEST) && card instanceof HarvestCard && ((HarvestCard) card).isAutoHarvest()) {
+      harvest(((HarvestCard) card).isHarvestAll(), ((HarvestCard) card).getHarvestAmount());
+    }
   }
+
+  public void harvest(boolean harvestAll, int maxHarvestAmount) {
+    onHarvest(amount);
+    final int harvestAmount = calculateHarvestAmount(this.amount, maxHarvestAmount, harvestAll);
+
+    if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+      if (harvestAmount > 0) {
+        this.flash();
+        harvestAction(harvestAmount);
+        AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this.owner, this.owner, this.ID, harvestAmount));
+      }
+    }
+  }
+
+  protected int calculateHarvestAmount(int amount, int maxAmount, boolean harvestAll) {
+    return Math.min(amount, harvestAll ? amount : maxAmount);
+  }
+
+  abstract protected int harvestAction(int harvestAmount);
 
   public void atStartOfTurn() {
     logger.debug("Checking for auto-harvest triggers (amount: " + this.amount + "; hasHarvester:  " +  getPlayer().hasRelic(TheHarvester.ID)+ ")");
@@ -238,16 +262,16 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     super.stackPower(amount);
     logger.debug("Called stackPower for " + this.ID + " amount: " + amount + ". Updated amount: " + this.amount);
 
-    logger.debug("Triggering stackPower for " + this.name);
+    logger.debug("Triggering card updated triggers for " + this.name + ".stackPower");
     CropUtil.triggerCardUpdates();
 
     // TODO: change to triggerCropIncreased / triggerCropChanged
 //    triggerCropGained();
     CropUtil.triggerCardUpdates();
 
-    if (this.amount > autoHarvestThreshold) {
+    if (this.amount > this.autoHarvestThreshold) {
       this.flash();
-      this.harvest(false, this.amount - autoHarvestThreshold);
+      this.harvest(false, this.amount - this.autoHarvestThreshold);
     }
   }
 

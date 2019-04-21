@@ -1,9 +1,6 @@
 package thesimpleton.powers;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,9 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import thesimpleton.cards.HarvestCard;
 import thesimpleton.cards.SimpletonUtil;
-import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Onions;
 import thesimpleton.powers.utils.Crop;
@@ -42,11 +37,17 @@ public class PlantOnionPower extends AbstractCropPower {
     this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0];
   }
 
-  //TODO: AbstractCard should be an HarvestCard, with harvestAmount, harvestEffect, etc.
-  public void onUseCard(AbstractCard card, UseCardAction action) {
-    if (card.hasTag(TheSimpletonCardTags.HARVEST) && card instanceof HarvestCard && ((HarvestCard)card).isAutoHarvest()) {
-      harvest(((HarvestCard) card).isHarvestAll(), ((HarvestCard) card).getHarvestAmount());
+  protected int harvestAction(int harvestAmount) {
+    if (harvestAmount > 0) {
+      for (int i = 0; i < harvestAmount; i++) {
+        AbstractMonster m = SimpletonUtil.getRandomMonster();
+        if (m != null) {
+          AbstractDungeon.actionManager.addToBottom(
+              new ApplyPowerAction(m, this.owner, new WeakPower(m, 1, false),1));
+        }
+      }
     }
+    return harvestAmount;
   }
 
   static {
@@ -54,38 +55,4 @@ public class PlantOnionPower extends AbstractCropPower {
     NAME = powerStrings.NAME;
     DESCRIPTIONS = powerStrings.DESCRIPTIONS;
   }
-
-  @Override
-  public void harvest(boolean harvestAll, int maxHarvestAmount) {
-    super.harvest(harvestAll, maxHarvestAmount);
-
-    if  (amount > 0) {
-      final int harvestAmount = Math.min(this.amount, harvestAll ? this.amount : maxHarvestAmount);
-
-      if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
-        this.flash();
-
-        for (int i = 0; i < harvestAmount; i++) {
-          AbstractMonster randomMonster = SimpletonUtil.getRandomMonster();
-          if (randomMonster != null) {
-            applyWeakPower(randomMonster, 1);
-          }
-        }
-      }
-
-      amount -= harvestAmount;
-
-      if (amount == 0) {
-        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
-      }
-    }
-  }
-
-  private void applyWeakPower(AbstractMonster m, int numApplications) {
-    final int weakAmount =  this.weakPerStack * numApplications;
-
-    AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(m, this.owner, new WeakPower(m, weakAmount, false),weakAmount));
-  }
-
 }

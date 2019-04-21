@@ -1,7 +1,6 @@
 package thesimpleton.powers;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
@@ -46,24 +45,20 @@ public class PlantTurnipPower extends AbstractCropPower {
     }
   }
 
-  @Override
-  public void harvest(boolean harvestAll, int maxHarvestAmount) {
-    super.harvest(harvestAll, maxHarvestAmount);
-    if  (amount > 0) {
-      final int harvestAmount = this.amount;
-      this.flash();
+  protected int calculateHarvestAmount(int amount, int maxAmount, boolean harvestAll) {
+    return this.amount;
+  }
 
+  @Override
+  protected int harvestAction(int harvestAmount) {
+    if (harvestAmount > 0) {
       if (harvestAmount == 1) {
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new BabyTurnip(), 1));
       } else {
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new GiantTurnip(harvestAmount), 1));
       }
-      amount -= harvestAmount;
-
-      if (amount == 0) {
-        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
-      }
     }
+    return harvestAmount;
   }
 
   static {

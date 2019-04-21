@@ -1,18 +1,12 @@
 package thesimpleton.powers;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import thesimpleton.cards.HarvestCard;
 import thesimpleton.cards.SimpletonUtil;
-import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Potatoes;
 import thesimpleton.powers.utils.Crop;
@@ -43,39 +37,16 @@ public class PlantPotatoPower extends AbstractCropPower {
     this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0];
   }
 
-  //TODO: AbstractCard should be an HarvestCard, with harvestAmount, harvestEffect, etc.
-  public void onUseCard(AbstractCard card, UseCardAction action) {
-    if (card.hasTag(TheSimpletonCardTags.HARVEST) && card instanceof HarvestCard && ((HarvestCard)card).isAutoHarvest()) {
-       harvest(((HarvestCard) card).isHarvestAll(), ((HarvestCard) card).getHarvestAmount());
-    }
-  }
-
-  @Override
-  public void harvest(boolean harvestAll, int maxHarvestAmount) {
-    super.harvest(harvestAll, maxHarvestAmount);
-
-    if  (amount > 0 && this.owner == SimpletonUtil.getPlayer()) {
-      final int harvestAmount = Math.min(this.amount, harvestAll ? this.amount : maxHarvestAmount);
-
-      this.flash();
-
+  protected int harvestAction(int harvestAmount) {
+    if (harvestAmount > 0) {
       if (SimpletonUtil.getPlayer().hasRelic(HotPotato.ID)) {
         SimpletonUtil.getPlayer().getRelic(HotPotato.ID).flash();
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(SimpletonUtil.FLAMING_SPUD, harvestAmount));
       } else {
-        logger.debug("PlantPotatoPower.harvest : owner does not have Hot Potato. owner: " + owner.name);
-
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(SimpletonUtil.SPUD_MISSILE, harvestAmount));
       }
-
-      if (harvestAmount < amount) {
-        AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this.owner, this.owner, POWER_ID, harvestAmount));
-//      amount -= harvestAmount;
-      } else {
-        logger.debug("PlantPotatoPower.harvest : now at zero stacks, removing power");
-        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
-      }
     }
+    return harvestAmount;
   }
 
   static {

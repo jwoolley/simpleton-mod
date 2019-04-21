@@ -35,7 +35,7 @@ public class PungentSoil extends CustomRelic {
   @Override
   public void onShuffle() {
     List<AbstractCropPower> eligiblePowers = AbstractCropPower.getActiveCropPowers().stream()
-        .filter(power -> power.amount < 5)
+        .filter(power -> power.amount < power.getMaturityThreshold())
         .collect(Collectors.toList());
 
     eligiblePowers.forEach(power -> power.stackPower(CROP_AMOUNT));

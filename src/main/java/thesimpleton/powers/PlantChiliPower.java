@@ -2,9 +2,6 @@ package thesimpleton.powers;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -12,8 +9,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import thesimpleton.actions.ApplyBurningAction;
-import thesimpleton.cards.HarvestCard;
-import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Chilis;
 import thesimpleton.powers.utils.Crop;
@@ -30,7 +25,7 @@ public class PlantChiliPower extends AbstractCropPower {
   private static final CardRarity cropRarity = CardRarity.UNCOMMON;
   private static final AbstractCropPowerCard powerCard = new Chilis();
   private static int BASE_DAMAGE_STACK = 4;
-  private static int damagePerStack = 1;
+  private int damagePerStack;
 
   public PlantChiliPower(AbstractCreature owner, int amount) {
     super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
@@ -43,48 +38,27 @@ public class PlantChiliPower extends AbstractCropPower {
     this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0] + this.damagePerStack + DESCRIPTIONS[1] + this.damagePerStack + DESCRIPTIONS[2];;
   }
 
-  //TODO: AbstractCard should be an HarvestCard, with harvestAmount, harvestEffect, etc.
-  public void onUseCard(AbstractCard card, UseCardAction action) {
-    if (card.hasTag(TheSimpletonCardTags.HARVEST) && card instanceof HarvestCard && ((HarvestCard)card).isAutoHarvest()) {
-      harvest(((HarvestCard) card).isHarvestAll(), ((HarvestCard) card).getHarvestAmount());
+  protected int harvestAction(int harvestAmount) {
+    final int damageAmount = harvestAmount * this.damagePerStack;
+
+    if (harvestAmount > 0) {
+      // all monsters version
+      for (int i = 0; i < harvestAmount; i++) {
+        AbstractDungeon.actionManager.addToTop(
+            new DamageAllEnemiesAction(this.owner, DamageInfo.createDamageMatrix(damageAmount, true),
+                DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE, true));
+      }
+
+      AbstractDungeon.getMonsters().monsters.stream()
+          .filter(mo -> !mo.isDeadOrEscaped())
+          .forEach(mo -> AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(mo, this.owner, damageAmount)));
     }
+    return harvestAmount;
   }
 
   static {
     powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     NAME = powerStrings.NAME;
     DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-  }
-
-  @Override
-  public void harvest(boolean harvestAll, int maxHarvestAmount) {
-    super.harvest(harvestAll, maxHarvestAmount);
-
-    if  (amount > 0) {
-      final int harvestAmount = Math.min(this.amount, harvestAll ? this.amount : maxHarvestAmount);
-
-      if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
-        this.flash();
-
-        final int damageAmount = harvestAmount * this.damagePerStack;
-
-        // all monsters version
-        for (int i = 0; i < harvestAmount; i++) {
-          AbstractDungeon.actionManager.addToTop(
-              new DamageAllEnemiesAction(this.owner, DamageInfo.createDamageMatrix(damageAmount, true),
-                  DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE, true));
-        }
-
-        AbstractDungeon.getMonsters().monsters.stream()
-            .filter(mo -> !mo.isDeadOrEscaped())
-            .forEach(mo -> AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(mo, this.owner, damageAmount)));
-      }
-
-      amount -= harvestAmount;
-
-      if (amount == 0) {
-        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
-      }
-    }
   }
 }

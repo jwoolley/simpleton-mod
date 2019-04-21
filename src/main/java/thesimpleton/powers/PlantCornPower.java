@@ -1,16 +1,11 @@
 package thesimpleton.powers;
 
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import thesimpleton.cards.HarvestCard;
-import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Corn;
 import thesimpleton.powers.utils.Crop;
@@ -40,33 +35,16 @@ public class PlantCornPower extends AbstractCropPower {
     this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0];
   }
 
-  //TODO: AbstractCard should be an HarvestCard, with harvestAmount, harvestEffect, etc.
-  public void onUseCard(AbstractCard card, UseCardAction action) {
-    if (card.hasTag(TheSimpletonCardTags.HARVEST) && card instanceof HarvestCard && ((HarvestCard)card).isAutoHarvest()) {
-      harvest(((HarvestCard) card).isHarvestAll(), ((HarvestCard) card).getHarvestAmount());
+  protected int harvestAction(int harvestAmount) {
+    if (harvestAmount > 0) {
+        AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player, harvestAmount));
     }
+    return harvestAmount;
   }
 
   static {
     powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     NAME = powerStrings.NAME;
     DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-  }
-
-  @Override
-  public void harvest(boolean harvestAll, int maxHarvestAmount) {
-    super.harvest(harvestAll, maxHarvestAmount);
-
-    if  (amount > 0) {
-      final int harvestAmount = Math.min(this.amount, harvestAll ? this.amount : maxHarvestAmount);
-
-      this.flash();
-      AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player, harvestAmount));
-      amount -= harvestAmount;
-
-      if (amount == 0) {
-        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
-      }
-    }
   }
 }

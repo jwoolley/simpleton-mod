@@ -12,16 +12,15 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class TriggerManager {
-  private ArrayList<TriggerListener> triggerListeners;
+  private final ArrayList<TriggerListener> triggerListeners;
+  public final String name;
 
+  public TriggerManager(String name) { this(name, new ArrayList<>()); }
 
-  public TriggerManager() {
-    this(new ArrayList<>());
-  }
-
-  public TriggerManager(List<TriggerListener> triggerListeners) {
+  public TriggerManager(String name, List<TriggerListener> triggerListeners) {
     this.triggerListeners = new ArrayList<>(triggerListeners);
-    TheSimpletonMod.logger.debug("TriggerManager: Instantiated with " + this.triggerListeners.size() + " triggers");
+    this.name = name;
+    TheSimpletonMod.logger.debug("TriggerManager [" + this.name + "] instantiated with " + this.triggerListeners.size() + " triggers");
   }
 
   public int numTriggerListeners() {
@@ -30,6 +29,7 @@ public class TriggerManager {
 
   public void addTriggerListener(TriggerListener triggerListener) {
     triggerListeners.add(triggerListener);
+    TheSimpletonMod.logger.debug("TriggerManager [" + this.name + "] addTriggerListener called");
   }
 
   public void addTrigger(Trigger trigger) {
@@ -43,17 +43,20 @@ public class TriggerManager {
   }
 
   public void triggerAll() {
-    TheSimpletonMod.logger.debug("TriggerManager.triggerAll triggering " + this.triggerListeners.size() + " triggers");
+    TheSimpletonMod.logger.debug("TriggerManager.triggerAll [" + this.name + "] triggering " + this.triggerListeners.size() + " triggers");
     // copy to prevent concurrent modification
     List<TriggerListener> listeners = new ArrayList(triggerListeners);
     listeners.forEach(triggerListener ->  triggerListener.getTrigger().trigger());
-
-//      (new HashSet<>(triggerListeners)).forEach(triggerListener -> triggerListener.getTrigger().trigger());
   }
 
   public void clear() { this.clear(t -> true); }
 
   public void clear(Predicate predicate)  {
+    long numTriggersToClear = triggerListeners.stream()
+        .filter(t -> predicate.test(t)).count();
+
+    TheSimpletonMod.logger.debug("TriggerManager.clear [" + this.name + "] clearing " + numTriggersToClear + " triggers");
+
     List<TriggerListener> listenersToClear = triggerListeners.stream()
         .filter(t -> predicate.test(t))
         .collect(Collectors.toList());

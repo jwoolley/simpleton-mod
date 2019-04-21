@@ -83,11 +83,11 @@ public class TheSimpletonCharacter extends CustomPlayer {
                 20.0F, -10.0F, 220.0F, 290.0F,
                 new EnergyManager(ENERGY_PER_TURN));
 
-        precombatTriggers = new TriggerManager(staticPrecombatTriggerListeners);
-        precombatPredrawTriggers = new TriggerManager(staticPrecombatPredrawTriggerListeners);
-        startOfTurnTriggers = new TriggerManager(staticStartOfTurnTriggerListeners);
-        endOfTurnTriggers = new TriggerManager(staticEndOfTurnTriggerListeners);
-        endOfCombatTriggers = new TriggerManager(staticEndOfCombatTriggerListeners);
+        precombatTriggers = new TriggerManager("PrecombatTriggers", staticPrecombatTriggerListeners);
+        precombatPredrawTriggers = new TriggerManager("PrecombatPredrawTriggers", staticPrecombatPredrawTriggerListeners);
+        startOfTurnTriggers = new TriggerManager("StartOfTurnTriggers", staticStartOfTurnTriggerListeners);
+        endOfTurnTriggers = new TriggerManager("EndOfTurnTriggers", staticEndOfTurnTriggerListeners);
+        endOfCombatTriggers = new TriggerManager("EndOfCombatTriggers", staticEndOfCombatTriggerListeners);
 
 //        TheSimpletonMod.logger.debug(("instantiating precombatPredrawTriggers manager with " + staticPrecombatPredrawTriggerListeners.size() + " preregistered triggers"));
     }
@@ -401,6 +401,5 @@ public class TheSimpletonCharacter extends CustomPlayer {
         charStrings = CardCrawlGame.languagePack.getCharacterString("TheSimpleton");
         NAME = charStrings.NAMES[0];
         DESCRIPTION = charStrings.TEXT[0];
-
     }
 }

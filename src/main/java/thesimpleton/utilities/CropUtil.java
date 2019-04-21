@@ -27,7 +27,7 @@ public class CropUtil implements PostUpdateSubscriber, PostDrawSubscriber, PostP
   private boolean wasResetForCombat;
 
   public CropUtil() {
-    this.cropTickedTriggerManager = new TriggerManager();
+    this.cropTickedTriggerManager = new TriggerManager("CropUtil");
     wasResetForCombat = true;
     TheSimpletonCharacter.addEndOfCombatTrigger(this::resetForCombatEnd);
 //    TheSimpletonCharacter.addPrecombatPredrawTrigger(() -> {  triggerCardUpdates(); /* resetForCombat(); */});

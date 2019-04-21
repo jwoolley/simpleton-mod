@@ -1,13 +1,11 @@
 package thesimpleton.cards.skill;
 
-import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.PruningAction;
 import thesimpleton.cards.HarvestCard;
@@ -15,7 +13,7 @@ import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.AbstractCropPower;
 
-public class Pruning extends CustomCard implements HarvestCard {
+public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
   public static final String ID = "TheSimpletonMod:Pruning";
   public static final String NAME;
   public static final String DESCRIPTION;
@@ -44,8 +42,6 @@ public class Pruning extends CustomCard implements HarvestCard {
     this.numStacksToHarvest =  NUM_STACKS_TO_HARVEST;
     this.baseMagicNumber = this.magicNumber = NUM_STACKS_TO_GAIN;
     this.tags.add(TheSimpletonCardTags.HARVEST);
-
-    Logger logger = TheSimpletonMod.logger;
   }
 
   @Override
@@ -66,18 +62,6 @@ public class Pruning extends CustomCard implements HarvestCard {
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(new PruningAction(p, NUM_STACKS_TO_HARVEST, NUM_STACKS_TO_GAIN));
-  }
-
-  @Override
-  public void hover() {
-    this.rawDescription = getDescription(true);
-    this.initializeDescription();
-  }
-
-  @Override
-  public void unhover() {
-    super.unhover();
-    updateDescription(false);
   }
 
 

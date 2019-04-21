@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import thesimpleton.cards.attack.FlamingSpud;
 import thesimpleton.cards.attack.SpudMissile;
 import thesimpleton.cards.curse.Dregs;
@@ -40,6 +41,9 @@ public class SimpletonUtil {
         return getNumCurse(cards) > 0;
     }
 
+    public static boolean isPlayerInCombat() {
+        return AbstractDungeon.isPlayerInDungeon() && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT;
+    }
 
     public static AbstractCard getRandomCurseCard() {
         if (AbstractDungeon.player.hasRelic(FourLeafCloverCharm.ID)) {

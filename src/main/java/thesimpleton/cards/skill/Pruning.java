@@ -1,5 +1,6 @@
 package thesimpleton.cards.skill;
 
+import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -14,7 +15,7 @@ import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.AbstractCropPower;
 
-public class Pruning extends AbstractCropTriggerCard implements HarvestCard {
+public class Pruning extends CustomCard implements HarvestCard {
   public static final String ID = "TheSimpletonMod:Pruning";
   public static final String NAME;
   public static final String DESCRIPTION;
@@ -39,7 +40,7 @@ public class Pruning extends AbstractCropTriggerCard implements HarvestCard {
   public int numStacksToHarvest;
 
   public Pruning() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE,  AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET, null);
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE,  AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.numStacksToHarvest =  NUM_STACKS_TO_HARVEST;
     this.baseMagicNumber = this.magicNumber = NUM_STACKS_TO_GAIN;
     this.tags.add(TheSimpletonCardTags.HARVEST);
@@ -68,26 +69,42 @@ public class Pruning extends AbstractCropTriggerCard implements HarvestCard {
   }
 
   @Override
-  public AbstractCard makeCopy() {
-    return new Pruning();
-  }
-
-  public void updateDescription() {
+  public void hover() {
     this.rawDescription = getDescription(true);
     this.initializeDescription();
   }
 
-  private static String getDescription(boolean checkCropValue) {
+  @Override
+  public void unhover() {
+    super.unhover();
+    updateDescription(false);
+  }
+
+
+  @Override
+  public AbstractCard makeCopy() {
+    return new Pruning();
+  }
+
+  public void updateDescription(boolean extendedDescription) {
+    this.rawDescription = getDescription(extendedDescription);
+    this.initializeDescription();
+  }
+
+  private static String getDescription(boolean extendedDescription) {
     String description = DESCRIPTION + NUM_STACKS_TO_HARVEST + EXTENDED_DESCRIPTION[0];
 
-    if (checkCropValue && AbstractCropPower.playerHasAnyActiveCropPowers()) {
-      AbstractCropPower crop = AbstractCropPower.getOldestCropPower();
-      TheSimpletonMod.logger.debug("Pruning::getDescription: using dynamic description. Crop: " + crop.name);
-      description += EXTENDED_DESCRIPTION[2] +  crop.name + EXTENDED_DESCRIPTION[3];
-    } else {
-      TheSimpletonMod.logger.debug("Pruning::getDescription: using placeholder description");
-      description += EXTENDED_DESCRIPTION[1];
+    if (extendedDescription) {
+      if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
+        AbstractCropPower crop = AbstractCropPower.getOldestCropPower();
+        TheSimpletonMod.logger.debug("Pruning::getDescription: using dynamic description. Crop: " + crop.name);
+        description += EXTENDED_DESCRIPTION[2] +  crop.name + EXTENDED_DESCRIPTION[3];
+      } else {
+        TheSimpletonMod.logger.debug("Pruning::getDescription: using placeholder description");
+        description += EXTENDED_DESCRIPTION[1];
+      }
     }
+
     return description;
   }
 

@@ -133,9 +133,9 @@
     "NAME": "Pruning",
     "DESCRIPTION": "Harvest ",
     "EXTENDED_DESCRIPTION" : [
-      " stack of your oldest crop, then gain !M! stacks. NL ",
-      "(No eligible Crops currently).",
-      "(Currently ",
+      " stack of your oldest crop, then gain !M! stacks.",
+      " NL (No eligible Crops currently).",
+      " NL (Currently ",
       ")."
     ]
   },

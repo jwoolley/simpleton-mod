@@ -88,7 +88,6 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     logger.debug(this.name + "C: gained " + amount + " stacks. Owner: " + owner.name);
 
     getPlayer().getCropUtil().onCropGained(this);
-//    CropUtil.triggerCardUpdates();
   }
 
 //  private void triggerCropLost() {
@@ -439,6 +438,8 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     TheSimpletonCharacter.addPrecombatPredrawTrigger(trigger);
     TheSimpletonCharacter.addStartOfTurnTrigger(trigger);
     TheSimpletonCharacter.addEndOfTurnTrigger(trigger);
+
+//    getPlayer().drawPile.
   }
   // TODO: move shared functionality(e.g. harvest logic) to here
 }

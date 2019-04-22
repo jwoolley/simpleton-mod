@@ -25,7 +25,7 @@ public class PlantArtichokePower extends AbstractCropPower {
 
   private static final int MATURITY_THRESHOLD = 2;
 
-  private static int BASE_PLATED_ARMOR_PER_STACK = 2;
+  private static int BASE_PLATED_ARMOR_PER_STACK = 3;
   private int platedArmorPerStack;
 
   public PlantArtichokePower(AbstractCreature owner, int amount) {

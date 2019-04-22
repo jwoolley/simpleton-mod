@@ -85,7 +85,7 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   }
 
   private void triggerCropGained() {
-    logger.debug(this.name + "C: gained " + amount + " stacks. Owner: " + owner.name);
+    logger.debug(this.name + ": gained " + amount + " stacks. Owner: " + owner.name);
 
     getPlayer().getCropUtil().onCropGained(this);
   }

@@ -42,7 +42,9 @@ public class SimpletonUtil {
     }
 
     public static boolean isPlayerInCombat() {
-        return AbstractDungeon.isPlayerInDungeon() && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT;
+        return AbstractDungeon.isPlayerInDungeon()
+            && AbstractDungeon.currMapNode != null
+            && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT;
     }
 
     public static AbstractCard getRandomCurseCard() {

@@ -38,8 +38,13 @@ public class Barnstorm extends CustomCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(
-        new BarnstormAction(p, this.damage, this.damageAllEnemies));
+
+
+    AbstractDungeon.actionManager.addToBottom(new BarnstormAction(
+        p,
+        AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng),
+        this.damage,
+        this.damageAllEnemies));
   }
 
   @Override

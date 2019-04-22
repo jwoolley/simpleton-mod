@@ -1,5 +1,6 @@
 package thesimpleton.actions;
 
+import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -8,12 +9,19 @@ import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
+import org.apache.logging.log4j.Logger;
+import org.omg.PortableInterceptor.ACTIVE;
+import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.powers.AbstractCropPower;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class BarnstormAction extends AbstractGameAction {
   private static float ACTION_DURATION = Settings.ACTION_DUR_XFAST;
@@ -21,54 +29,107 @@ public class BarnstormAction extends AbstractGameAction {
   private final boolean damageAllEnemies;
   private final int baseDamage;
 
-  public BarnstormAction(AbstractPlayer player, int baseDamage, boolean damageAllEnemies) {
-    this.actionType = ActionType.DEBUFF;
-    this.attackEffect = AttackEffect.BLUNT_HEAVY;
+  private final List<CropCount> cropStacks;
+  private final DamageInfo info;
+
+  private Logger logger;
+
+  public BarnstormAction(AbstractPlayer player, AbstractCreature target, int baseDamage, boolean damageAllEnemies) {
+    this(player, target, baseDamage, damageAllEnemies, getCropCounts(player));
+  }
+
+  static List<CropCount> getCropCounts(AbstractPlayer player) {
+    return AbstractCropPower.getActiveCropPowers(player, false).stream()
+        .map(crop -> new CropCount(crop, crop.amount, crop.amount >= crop.getMaturityThreshold()))
+        .collect(Collectors.toList());
+  }
+
+  static class CropCount {
+    public CropCount(AbstractCropPower crop, int amount, boolean isMature) {
+      this.crop = crop;
+      this.amount = amount;
+      this.isMature = isMature;
+    }
+
+    final AbstractCropPower crop;
+    final boolean isMature;
+    int amount;
+  }
+
+  public BarnstormAction(AbstractPlayer player, AbstractCreature target, int baseDamage, boolean damageAllEnemies,
+                         List<CropCount> cropStacks) {
+    this.logger = TheSimpletonMod.logger;
+    this.actionType = ActionType.DAMAGE;
+    this.attackEffect = AttackEffect.SLASH_VERTICAL;
     this.damageType = DamageInfo.DamageType.NORMAL;
     this.duration = ACTION_DURATION;
 
     this.player = player;
     this.baseDamage = baseDamage;
+    this.target = target;
     this.damageAllEnemies = damageAllEnemies;
+
+    this.cropStacks = cropStacks;
+
+    this.info = new DamageInfo(this.player, this.baseDamage, DamageInfo.DamageType.NORMAL);
   }
 
   @Override
   public void update() {
-    if (this.duration != ACTION_DURATION) {
-      for (AbstractCropPower pow :AbstractCropPower.getActiveCropPowers(this.player, true)) {
-        final boolean isCropMature =  pow.amount >= pow.getMaturityThreshold();
-        final int damagePerStack = isCropMature ? 2 * this.baseDamage : this.baseDamage;
+     if (this.target == null) {
+      this.isDone = true;
+      return;
+    } else if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
+      AbstractDungeon.actionManager.clearPostCombatActions();
+      this.isDone = true;
+      return;
+    }
 
-        pow.flash();
+    this.duration -= Gdx.graphics.getDeltaTime();
+
+    if (this.duration < 0.0F)
+    {
+      if (this.target.currentHealth > 0)
+      {
+        CropCount cropCount = cropStacks.get(0);
+        this.info.base = cropCount.isMature ? 2 * baseDamage : baseDamage;
+
+        if (cropCount.amount > 1) {
+          cropCount.amount--;
+        } else {
+          cropStacks.remove(cropCount);
+        }
+
+        this.info.applyPowers(this.info.owner, this.target);
+
+        AbstractDungeon.actionManager.addToBottom(new PowerFlashAction(cropCount.crop));
+        AbstractDungeon.actionManager.addToBottom(new SFXAction("THUNDERCLAP", cropCount.isMature ? 0.075f : 0.025f));
 
         if (this.damageAllEnemies) {
-          for (int i = 0; i < pow.amount; i++) {
-
-            for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-              AbstractDungeon.actionManager.addToBottom(
-                  new VFXAction(player, new LightningEffect(monster.hb.cX, monster.hb.y), 0.1F));
-            }
-
-            AbstractDungeon.actionManager.addToBottom(new SFXAction("THUNDERCLAP", 0.075f));
-            AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(this.player, DamageInfo.createDamageMatrix(damagePerStack),
-                DamageInfo.DamageType.NORMAL, AttackEffect.NONE, isCropMature));
-          }
-        } else {
-          for (int i = 0; i < pow.amount; i++) {
-
-            AbstractMonster monster = SimpletonUtil.getRandomMonster();
+          for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
             AbstractDungeon.actionManager.addToBottom(
                 new VFXAction(player, new LightningEffect(monster.hb.cX, monster.hb.y), 0.1F));
-            AbstractDungeon.actionManager.addToBottom(new SFXAction("THUNDERCLAP", 0.025f));
-            AbstractDungeon.actionManager.addToBottom(
-                new DamageAction(monster, new DamageInfo(this.player, damagePerStack), AttackEffect.NONE, isCropMature));
           }
+          AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(this.player, DamageInfo.createDamageMatrix(this.info.base),
+              DamageInfo.DamageType.NORMAL, AttackEffect.NONE, true));
+        } else {
+          AbstractDungeon.actionManager.addToBottom(
+              new VFXAction(player, new LightningEffect(target.hb.cX, target.hb.y), 0.1F));
+          AbstractDungeon.actionManager.addToBottom(
+              new DamageAction(target, new DamageInfo(this.player, this.info.base), AttackEffect.NONE));
         }
-        AbstractDungeon.actionManager.addToBottom(new WaitAction(0.3F));
+
+        if ((this.cropStacks.size() > 0) && (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()))
+        {
+          AbstractDungeon.actionManager.addToBottom(new BarnstormAction(
+              this.player,
+              AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng),
+              this.baseDamage,
+              damageAllEnemies,
+              this.cropStacks));
+        }
       }
-      this.tickDuration();
       this.isDone = true;
     }
-    this.tickDuration();
   }
 }

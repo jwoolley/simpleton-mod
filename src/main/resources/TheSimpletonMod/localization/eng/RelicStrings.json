@@ -130,5 +130,15 @@
     "DESCRIPTIONS": [
       "Replaces #gSpud #gof #gthe #gInnocent. Whenever you take attack damage, and at the start of each combat, gain #b1 #yPotatoes."
     ]
+  },
+
+
+  "TheSimpletonMod:WoodChipper": {
+    "NAME": "Wood Chipper",
+    "FLAVOR": "Suitable for plant matter ONLY.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, choose up to #b",
+      " cards from your hand to exhaust, then draw that many."
+    ]
   }
 }

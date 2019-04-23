@@ -147,51 +147,51 @@ public class CropUtil implements PostUpdateSubscriber, PostDrawSubscriber, PostP
   }
 
   public static void triggerCardUpdates() {
-    AbstractPlayer player = AbstractDungeon.player;
-
-    logger.debug("CropUtil::triggerCardUpdates: updating master deck: " + player.masterDeck.group.stream().filter(c -> c instanceof AbstractCropTriggerCard).count() + " eligible cards, total cards: " + player.masterDeck.size());
-
-//    player.masterDeck.group.forEach(card -> {
-//        if (card instanceof AbstractCropTriggerCard) {
-//            ((AbstractCropTriggerCard) card).getTriggerListener().getTrigger().trigger();
-//        }
+//    AbstractPlayer player = AbstractDungeon.player;
+//
+//    logger.debug("CropUtil::triggerCardUpdates: updating master deck: " + player.masterDeck.group.stream().filter(c -> c instanceof AbstractCropTriggerCard).count() + " eligible cards, total cards: " + player.masterDeck.size());
+//
+////    player.masterDeck.group.forEach(card -> {
+////        if (card instanceof AbstractCropTriggerCard) {
+////            ((AbstractCropTriggerCard) card).getTriggerListener().getTrigger().trigger();
+////        }
+////    });
+//
+//    logger.debug("CropUtil::triggerCardUpdates: updating draw pile: " + player.drawPile.group.stream().filter(c -> c instanceof AbstractCropTriggerCard).count() + " eligible cards, total cards: " + player.drawPile.size());
+//
+//    player.drawPile.group.forEach(card -> {
+//      if (card instanceof AbstractCropTriggerCard) {
+//        ((AbstractCropTriggerCard) card).getTriggerListener().getTrigger().trigger();
+//      }
 //    });
-
-    logger.debug("CropUtil::triggerCardUpdates: updating draw pile: " + player.drawPile.group.stream().filter(c -> c instanceof AbstractCropTriggerCard).count() + " eligible cards, total cards: " + player.drawPile.size());
-
-    player.drawPile.group.forEach(card -> {
-      if (card instanceof AbstractCropTriggerCard) {
-        ((AbstractCropTriggerCard) card).getTriggerListener().getTrigger().trigger();
-      }
-    });
-
-    logger.debug("CropUtil::triggerCardUpdates: updating hand: " + player.hand.group.stream().filter(c -> c instanceof AbstractCropTriggerCard).count() + " eligible cards, total cards: " + player.hand.size());
-
-    player.hand.group.forEach(card -> {
-      if (card instanceof AbstractCropTriggerCard) {
-        ((AbstractCropTriggerCard) card).getTriggerListener().getTrigger().trigger();
-      }
-    });
-
-    logger.debug("CropUtil::triggerCardUpdates: updating discard pile: " + player.discardPile.group.stream().filter(c -> c instanceof AbstractCropTriggerCard).count() + " eligible cards, total cards: " + player.discardPile.size());
-
-    player.discardPile.group.forEach(card -> {
-      if (card instanceof AbstractCropTriggerCard) {
-        ((AbstractCropTriggerCard) card).getTriggerListener().getTrigger().trigger();
-      }
-    });
+//
+//    logger.debug("CropUtil::triggerCardUpdates: updating hand: " + player.hand.group.stream().filter(c -> c instanceof AbstractCropTriggerCard).count() + " eligible cards, total cards: " + player.hand.size());
+//
+//    player.hand.group.forEach(card -> {
+//      if (card instanceof AbstractCropTriggerCard) {
+//        ((AbstractCropTriggerCard) card).getTriggerListener().getTrigger().trigger();
+//      }
+//    });
+//
+//    logger.debug("CropUtil::triggerCardUpdates: updating discard pile: " + player.discardPile.group.stream().filter(c -> c instanceof AbstractCropTriggerCard).count() + " eligible cards, total cards: " + player.discardPile.size());
+//
+//    player.discardPile.group.forEach(card -> {
+//      if (card instanceof AbstractCropTriggerCard) {
+//        ((AbstractCropTriggerCard) card).getTriggerListener().getTrigger().trigger();
+//      }
+//    });
   }
 
   public void onCropGained(AbstractCropPower crop) {
     logger.debug("CropUtil::onCropGained: " + crop.name);
     addActiveCrop(crop);
-    triggerCardUpdates();
+//    triggerCardUpdates();
     cropTickedTriggerManager.triggerAll();
   }
 
   public void onCropLost(AbstractCropPower crop) {
     removeActiveCrop(crop);
-    triggerCardUpdates();
+//    triggerCardUpdates();
     cropTickedTriggerManager.triggerAll();
   }
 

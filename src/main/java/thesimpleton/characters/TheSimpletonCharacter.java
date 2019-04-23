@@ -17,12 +17,11 @@ import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.skill.AbstractCropTriggerCard;
 import thesimpleton.cards.attack.Haymaker;
 import thesimpleton.cards.attack.PestManagement;
+import thesimpleton.cards.attack.ReapAndSow;
 import thesimpleton.cards.attack.Strike_TheSimpleton;
 import thesimpleton.cards.skill.Defend_TheSimpleton;
-import thesimpleton.cards.attack.ReapAndSow;
 import thesimpleton.cards.skill.Rototilling;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
@@ -231,20 +230,8 @@ public class TheSimpletonCharacter extends CustomPlayer {
         super.applyStartOfTurnCards();
 
         AbstractPlayer player = AbstractDungeon.player;
-
-        TheSimpletonMod.logger.debug("TheSimpletonCharacter::applyStartOfCombatPreDrawLogic adding card triggers");
-        TheSimpletonMod.logger.debug("TheSimpletonCharacter::applyStartOfCombatPreDrawLogic precombatPredrawTriggers size before: " + precombatPredrawTriggers.numTriggerListeners());
-        player.masterDeck.group.forEach(card -> {
-            if (card instanceof AbstractCropTriggerCard) {
-                precombatPredrawTriggers.addTriggerListener(((AbstractCropTriggerCard) card).getTriggerListener());
-            }
-        });
-        TheSimpletonMod.logger.debug("TheSimpletonCharacter::applyStartOfCombatPreDrawLogic precombatPredrawTriggers size after: " + precombatPredrawTriggers.numTriggerListeners());
-
         TheSimpletonMod.logger.debug("TheSimpletonCharacter::applyStartOfCombatPreDrawLogic applying precombat-predraw triggers");
         this.precombatPredrawTriggers.triggerAll();
-
-        CropUtil.triggerCardUpdates();
     }
 
     @Override

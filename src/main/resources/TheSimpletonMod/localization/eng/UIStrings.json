@@ -5,6 +5,7 @@
       ")"
     ]
   },
+
   "TheSimpletonMod:PrepareRitualAction": {
     "TEXT": [
       "Exhaust. (Will Be Replaced With Dregs.)"
@@ -69,6 +70,12 @@
   "TheSimpletonMod:ChooseAndAddHandCardsToDeckAction": {
     "TEXT": [
       "be shuffled into your draw pile."
+    ]
+  },
+
+  "TheSimpletonMod:WoodChipperAction": {
+    "TEXT": [
+      "Exhaust. (Then Draw That Many)."
     ]
   }
 }

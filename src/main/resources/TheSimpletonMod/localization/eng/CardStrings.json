@@ -113,6 +113,12 @@
     "EXTENDED_DESCRIPTION" : [" Vulnerable to ALL enemies. NL Exhaust."]
   },
 
+  "TheSimpletonMod:HitTheSack": {
+    "NAME": "Hit the Sack",
+    "DESCRIPTION": "Deal !D! damage X times. NL Gain X Potatoes.",
+    "UPGRADE_DESCRIPTION" : "Deal !D! damage X+1 times. NL Gain X+1 Potatoes."
+  },
+
   "TheSimpletonMod:OnionBloom": {
     "NAME": "Onion Bloom",
     "DESCRIPTION": "Innate. Gain !M! Onion. Draw a card. NL Discard a card. NL Exhaust.",

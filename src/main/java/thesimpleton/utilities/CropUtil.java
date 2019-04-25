@@ -4,13 +4,10 @@ import basemod.interfaces.PostDrawSubscriber;
 import basemod.interfaces.PostPowerApplySubscriber;
 import basemod.interfaces.PostUpdateSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.skill.AbstractCropTriggerCard;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.powers.AbstractCropPower;
 

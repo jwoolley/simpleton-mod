@@ -81,6 +81,15 @@
     ]
   },
 
+  "TheSimpletonMod:CashCrop": {
+    "NAME": "Cash Crop",
+    "FLAVOR": "Cold, but not hard.",
+    "DESCRIPTIONS": [
+      "Whenever you Harvest a #yCrop for the fist time each combat, gain #b",
+      " Gold."
+    ]
+  },
+
   "TheSimpletonMod:GrassPellets": {
     "NAME": "Grass Pellets",
     "FLAVOR": "Sometimes you have to take the lawn view.",

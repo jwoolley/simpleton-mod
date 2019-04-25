@@ -16,6 +16,7 @@ import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.powers.utils.Crop;
+import thesimpleton.relics.CashCrop;
 import thesimpleton.relics.GrassPellets;
 import thesimpleton.relics.TheHarvester;
 import thesimpleton.utilities.CropUtil;
@@ -109,6 +110,10 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
 
     if (getPlayer().hasRelic(GrassPellets.ID)) {
       ((GrassPellets) getPlayer().getRelic(GrassPellets.ID)).increaseCountAndMaybeActivate();
+    }
+
+    if (getPlayer().hasRelic(CashCrop.ID)) {
+      ((CashCrop) getPlayer().getRelic(CashCrop.ID)).onHarvest(this.enumValue);
     }
   }
 
@@ -428,6 +433,7 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     rarityDistribution.put(CardRarity.RARE, 8);
     CROP_RARITY_DISTRIBUTION = Collections.unmodifiableMap(rarityDistribution);
 
+    // TODO: move to CropUtil?
     // reset hasHarvestedThisTurn at start of combat and at end of turn
     Trigger trigger = new Trigger() {
       public void trigger() {
@@ -441,5 +447,4 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
 
 //    getPlayer().drawPile.
   }
-  // TODO: move shared functionality(e.g. harvest logic) to here
 }

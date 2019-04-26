@@ -95,8 +95,6 @@
     "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Apply !M! Burning. NL Exhaust."
   },
 
-
-
   "TheSimpletonMod:GiantTurnip": {
     "NAME": "Turnip",
     "DESCRIPTION": "Deal !M! times !D! damage. NL Exhaust."
@@ -117,6 +115,14 @@
     "NAME": "Hit the Sack",
     "DESCRIPTION": "Deal !D! damage X times. NL Gain X Potatoes.",
     "UPGRADE_DESCRIPTION" : "Deal !D! damage X+1 times. NL Gain X+1 Potatoes."
+  },
+
+  "TheSimpletonMod:Mulching": {
+    "NAME": "Mulching",
+    "DESCRIPTION": "Exhaust a card, then gain an effect based on its type: NL NL Attack: Gain !B! Block. NL Skill: Apply ",
+    "EXTENDED_DESCRIPTION": [
+      " Burning to ALL. NL Power: Heal !M! HP. NL Status or Curse: Draw ",
+      " cards."]
   },
 
   "TheSimpletonMod:OnionBloom": {

@@ -73,7 +73,13 @@
     ]
   },
 
-  "TheSimpletonMod:WoodChipperAction": {
+  "MulchingAction": {
+    "TEXT": [
+      "Exhaust"
+    ]
+  },
+
+    "TheSimpletonMod:WoodChipperAction": {
     "TEXT": [
       "Exhaust. (Then Draw That Many)."
     ]

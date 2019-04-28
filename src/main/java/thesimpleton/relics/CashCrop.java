@@ -49,7 +49,6 @@ public class CashCrop extends CustomRelic {
     Logger logger = TheSimpletonMod.logger;
 
     if (!cropsHarvestedThisCombat.contains(crop)) {
-//      AbstractDungeon.actionManager.addToBottom(new SFXAction("GOLD_GAIN"));
       cropsHarvestedThisCombat.add(crop);
       this.flash();
 

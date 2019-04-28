@@ -72,7 +72,7 @@ public class HitTheSackAction  extends AbstractGameAction
         this.isDone = true;
         return;
     } else if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
-      AbstractDungeon.actionManager.clearPostCombatActions();
+//      AbstractDungeon.actionManager.clearPostCombatActions();
       this.isDone = true;
       return;
     }

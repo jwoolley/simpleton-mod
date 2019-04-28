@@ -107,6 +107,15 @@
     ]
   },
 
+  "TheSimpletonMod:GasCan": {
+    "NAME": "Gas Can",
+    "FLAVOR": "What can expand to fill any container?",
+    "DESCRIPTIONS": [
+      "Whenever you apply #yBurning, apply half that amount to each other enemy."
+    ]
+  },
+
+
   "TheSimpletonMod:HotPotato": {
     "NAME": "Hot Potato",
     "FLAVOR": "There's no topping this one.",

@@ -27,10 +27,7 @@ import org.apache.logging.log4j.Logger;
 import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
 import thesimpleton.cards.attack.CullingStrike;
-import thesimpleton.cards.power.Biorefinement;
-import thesimpleton.cards.power.BirdFeeder;
-import thesimpleton.cards.power.Photosynthesis;
-import thesimpleton.cards.power.ToughSkin;
+import thesimpleton.cards.power.*;
 import thesimpleton.cards.power.crop.*;
 import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
@@ -207,6 +204,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new Biorefinement());
         BaseMod.addCard(new Photosynthesis());
         BaseMod.addCard(new ToughSkin());
+        BaseMod.addCard(new VolatileFumes());
+
 
         BaseMod.addCard(new Artichokes());
         BaseMod.addCard(new Chilis());
@@ -221,7 +220,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        BaseMod.addCard(new SpudMissile());
 //        BaseMod.addCard(new GiantTurnip());
 //        BaseMod.addCard(new Harvest());
-//        BaseMod.addCard(new RootOut());
 
 //        // Curse
     }

@@ -212,6 +212,11 @@
     "DESCRIPTION": "Whenever you Harvest a Crop, gain !M! Block."
   },
 
+  "TheSimpletonMod:VolatileFumes": {
+    "NAME": "Volatile Fumes",
+    "DESCRIPTION": "Whenever you attack an enemy with Weak, apply !M! Burning."
+  },
+
   "TheSimpletonMod:Artichokes": {
     "NAME": "Artichokes",
     "DESCRIPTION": "Gain !M! Artichokes."

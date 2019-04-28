@@ -216,5 +216,13 @@
       "Whenever you #gHarvest a #yCrop, gain #b",
       " #yBlock."
     ]
+  },
+
+  "TheSimpletonMod:VolatileFumesPower": {
+    "NAME": "Volatile Fumes",
+    "DESCRIPTIONS": [
+      "Whenever you attack an enemy with #yWeak, apply ",
+      " #yBurning."
+    ]
   }
 }

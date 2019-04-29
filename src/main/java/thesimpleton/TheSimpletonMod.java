@@ -177,6 +177,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new CullingStrike());
         BaseMod.addCard(new DoubleBarrel());
         BaseMod.addCard(new Fertilaser());
+        BaseMod.addCard(new FlashPasteurize());
         BaseMod.addCard(new HitTheSack());
         BaseMod.addCard(new PestManagement());
         BaseMod.addCard(new RootDown());

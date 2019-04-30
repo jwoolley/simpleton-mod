@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
+
 ;
 public class PestManagement extends CustomCard {
   public static final String ID = "TheSimpletonMod:PestManagement";

@@ -53,6 +53,15 @@
     ],
     "DESCRIPTION": "Any card with the word \"Cursed\" in its name. Using it will make Dregs or random Curse cards."
   },
+
+  "TheSimpletonMod:DepletionKeyword": {
+    "PROPER_NAME": "Depletion",
+    "NAMES": [
+      "depletion", "depletions"
+    ],
+    "DESCRIPTION": "Depletions are status cards that Weaken you and make you Vulnerable when played."
+  },
+
   "TheSimpletonMod:DregsKeyword": {
     "PROPER_NAME": "Dregs",
     "NAMES": [

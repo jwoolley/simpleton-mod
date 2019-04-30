@@ -69,10 +69,26 @@
     "DESCRIPTION": "Deal !D! damage. NL If you've Harvested this turn, deal !D! damage again."
   },
 
+  "TheSimpletonMod:Depletion": {
+    "NAME": "Depletion",
+    "DESCRIPTION": "Gain ",
+    "EXTENDED_DESCRIPTION": [
+      " Weak. NL Gain ",
+      " Vulnerable. NL Exhaust."
+    ]
+  },
+
   "TheSimpletonMod:DesperatePlunge": {
     "NAME": "Desperate Plunge",
     "DESCRIPTION": "Costs [E] less for each Power card played this turn. NL Gain !B! Block. NL Next turn, lose [E]."
   },
+
+
+  "TheSimpletonMod:DigIn": {
+    "NAME": "Dig In",
+    "DESCRIPTION": "Gain !B! Block. Add a Depletion to your discard pile."
+  },
+
 
   "TheSimpletonMod:DoubleBarrel": {
     "NAME": "Double Barrel",

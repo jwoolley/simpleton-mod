@@ -30,7 +30,11 @@ public class PlantTurnipPower extends AbstractCropPower {
   private static final boolean IS_HARVEST_ALL = true;
 
   public PlantTurnipPower(AbstractCreature owner, int amount) {
-    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, IS_HARVEST_ALL);
+    this(owner, amount, false);
+  }
+
+  public PlantTurnipPower(AbstractCreature owner, int amount, boolean isFromCard) {
+    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, isFromCard, IS_HARVEST_ALL);
     updateDescription();
   }
 

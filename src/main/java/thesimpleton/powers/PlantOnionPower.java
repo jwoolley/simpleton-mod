@@ -28,7 +28,11 @@ public class PlantOnionPower extends AbstractCropPower {
   private static int weakPerStack = 1;
 
   public PlantOnionPower(AbstractCreature owner, int amount) {
-    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
+    this(owner, amount, false);
+  }
+
+  public PlantOnionPower(AbstractCreature owner, int amount, boolean isFromCard) {
+    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, isFromCard);
     updateDescription();
   }
 

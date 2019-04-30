@@ -40,7 +40,7 @@ public class Aerate extends AbstractDynamicTextCard {
     AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
 
     if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
-      AbstractCropPower.getNewestCropPower().stackPower(this.magicNumber);
+      AbstractCropPower.getNewestCropPower().stackPower(this.magicNumber, true);
     }
   }
 

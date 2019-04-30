@@ -26,7 +26,11 @@ public class PlantPotatoPower extends AbstractCropPower {
   private static final AbstractCropPowerCard powerCard = new Potatoes();
 
   public PlantPotatoPower(AbstractCreature owner, int amount) {
-    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount);
+    this(owner, amount, false);
+  }
+
+  public PlantPotatoPower(AbstractCreature owner, int amount, boolean isFromCard) {
+    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, isFromCard);
     this.name = NAME;
     updateDescription();
     logger.debug("MAKIN' POTATOES (instantiating plantpotatopower). name: " + NAME);

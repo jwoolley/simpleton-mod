@@ -52,7 +52,7 @@ public class OnionBloom extends CustomCard {
     }
 
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyCropAction(p, p, new PlantOnionPower(p, this.magicNumber), this.magicNumber, true));
+        new ApplyCropAction(p, p, new PlantOnionPower(p, this.magicNumber, true), this.magicNumber, true));
   }
 
   @Override

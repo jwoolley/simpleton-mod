@@ -29,7 +29,11 @@ public class PlantArtichokePower extends AbstractCropPower {
   private int platedArmorPerStack;
 
   public PlantArtichokePower(AbstractCreature owner, int amount) {
-    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, false, MATURITY_THRESHOLD);
+    this(owner, amount, false);
+  }
+
+  public PlantArtichokePower(AbstractCreature owner, int amount, boolean isFromCard) {
+    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, isFromCard,false, MATURITY_THRESHOLD);
     this.platedArmorPerStack = BASE_PLATED_ARMOR_PER_STACK;
     updateDescription();
   }

@@ -29,7 +29,11 @@ public class PlantSpinachPower extends AbstractCropPower {
   private int strengthPerStack;
 
   public PlantSpinachPower(AbstractCreature owner, int amount) {
-    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, false, MATURITY_THRESHOLD);
+    this(owner, amount, false);
+  }
+
+  public PlantSpinachPower(AbstractCreature owner, int amount, boolean isFromCard) {
+    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, isFromCard,false, MATURITY_THRESHOLD);
     this.strengthPerStack = BASE_STRENGTH_PER_STACK;
     updateDescription();
   }

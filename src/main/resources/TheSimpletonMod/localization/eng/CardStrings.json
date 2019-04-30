@@ -71,11 +71,7 @@
 
   "TheSimpletonMod:Depletion": {
     "NAME": "Depletion",
-    "DESCRIPTION": "Gain ",
-    "EXTENDED_DESCRIPTION": [
-      " Weak. NL Gain ",
-      " Vulnerable. NL Exhaust."
-    ]
+    "DESCRIPTION": "Draw !M! less card next turn. NL Gain !M! less Energy next turn. NL Exhaust."
   },
 
   "TheSimpletonMod:DesperatePlunge": {
@@ -144,7 +140,7 @@
     "NAME": "Mulching",
     "DESCRIPTION": "Exhaust a card, then gain an effect based on its type: NL NL Attack: Gain !B! Block. NL Skill: Apply ",
     "EXTENDED_DESCRIPTION": [
-      " Burning to ALL. NL Power: Heal !M! HP. NL Status or Curse: Draw ",
+      " Burning to ALL. NL All Others: Draw ",
       " cards."]
   },
 

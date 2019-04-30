@@ -29,19 +29,17 @@ public class Mulching extends CustomCard {
   private static final int EXHAUST_AMOUNT = 1;
   private static final int BLOCK = 6;
   private static final int BURNING_AMOUNT = 4;
-  private static final int HP_GAIN = 4;
   private static final int CARD_DRAW  = 2;
 
   public Mulching() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(HP_GAIN, CARD_DRAW), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
-    this.baseMagicNumber = this.magicNumber = HP_GAIN;
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(BURNING_AMOUNT, CARD_DRAW), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(
-        new MulchingAction(EXHAUST_AMOUNT, this.block, BURNING_AMOUNT, HP_GAIN, CARD_DRAW));
+        new MulchingAction(EXHAUST_AMOUNT, this.block, BURNING_AMOUNT, CARD_DRAW));
   }
 
   @Override

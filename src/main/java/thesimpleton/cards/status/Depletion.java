@@ -9,9 +9,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DrawReductionPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.powers.DeenergizedPower;
 
 public class Depletion extends CustomCard {
   public static final String ID = "TheSimpletonMod:Depletion";
@@ -27,21 +29,21 @@ public class Depletion extends CustomCard {
 
   private static final int COST = 0;
 
-  private static final int WEAK_AMOUNT = 1;
-  private static final int VULNERABLE_AMOUNT = 1;
+  private static final int REDUCTION_AMOUNT = 1;
 
   public Depletion() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST,
-        getDescription(WEAK_AMOUNT, VULNERABLE_AMOUNT), TYPE, CardColor.COLORLESS, RARITY, TARGET);
-
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY,
+        TARGET);
+    this.baseMagicNumber = this.magicNumber = REDUCTION_AMOUNT;
     this.exhaust = true;
   }
 
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, new WeakPower(p, WEAK_AMOUNT, false), WEAK_AMOUNT));
+        new ApplyPowerAction(p, p, new DeenergizedPower(p, REDUCTION_AMOUNT)));
+
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, new VulnerablePower(p, VULNERABLE_AMOUNT, false), VULNERABLE_AMOUNT));
+        new ApplyPowerAction(p, p, new DrawReductionPower(p, REDUCTION_AMOUNT)));
   }
 
   public void triggerWhenDrawn()
@@ -59,10 +61,6 @@ public class Depletion extends CustomCard {
   }
 
   public void upgrade() {
-  }
-
-  public static String getDescription(int weakAmount, int vulnAmount) {
-    return DESCRIPTION + weakAmount + EXTENDED_DESCRIPTION[0] + vulnAmount + EXTENDED_DESCRIPTION[1];
   }
 
   @Override

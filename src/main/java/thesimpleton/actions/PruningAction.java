@@ -19,17 +19,20 @@ public class PruningAction extends AbstractGameAction {
 
   private AbstractPlayer p;
   private final int numStacksToHarvest;
+  private final boolean isFromCard;
 
   private boolean hasHarvested;
   private boolean firstTickFinished;
 
+
   private AbstractCropPower oldestPower;
 
-  public PruningAction(AbstractPlayer player, int numStacksToHarvest, int numStacksToGain) {
+  public PruningAction(AbstractPlayer player, int numStacksToHarvest, int numStacksToGain, boolean isFromCard) {
     this.p = player;
     setValues(this.p,  this.p, numStacksToGain);
     this.numStacksToHarvest = numStacksToHarvest;
     this.amount = numStacksToGain;
+    this.isFromCard = isFromCard;
 
     this.actionType = ACTION_TYPE;
     this.duration = ACTION_DURATION;
@@ -46,8 +49,8 @@ public class PruningAction extends AbstractGameAction {
       logger.debug("PruningAction.update :: second tick");
       if (this.hasHarvested) {
         logger.debug("PruningAction.update :: stacking " + this.oldestPower.name + " for " + this.amount);
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, Crop.getCrop(oldestPower.enumValue, p, this.amount), this.amount));
-//        this.oldestPower.stackPower(this.amount);
+        AbstractDungeon.actionManager.addToBottom(
+            new ApplyPowerAction(p, p, Crop.getCrop(oldestPower.enumValue, p, this.amount, isFromCard), this.amount));
       }
 
       this.tickDuration();

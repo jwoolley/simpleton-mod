@@ -26,7 +26,8 @@ public class RootDownAction extends AbstractGameAction {
       (matureTurnipPower.get()).harvest(true, 1);
     } else {
       AbstractDungeon.actionManager.addToBottom(
-          new ApplyPowerAction(this.target, this.target, new PlantTurnipPower(this.target, this.amount), this.amount)
+          new ApplyPowerAction(this.target, this.target,
+              new PlantTurnipPower(this.target, this.amount, true), this.amount)
       );
     }
 

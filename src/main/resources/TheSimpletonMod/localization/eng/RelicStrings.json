@@ -99,14 +99,6 @@
     ]
   },
 
-  "TheSimpletonMod:TheHarvester": {
-    "NAME": "The Harvester",
-    "FLAVOR": "Its purpose is clear-cut.",
-    "DESCRIPTIONS": [
-      "Whenever you gain a #yCrop, if you have more than stacks than its #rMaturity level, #gHarvest all excess stacks."
-    ]
-  },
-
   "TheSimpletonMod:GasCan": {
     "NAME": "Gas Can",
     "FLAVOR": "What can expand to fill any container?",
@@ -115,6 +107,22 @@
     ]
   },
 
+  "TheSimpletonMod:TheHarvester": {
+    "NAME": "The Harvester",
+    "FLAVOR": "Its purpose is clear-cut.",
+    "DESCRIPTIONS": [
+      "Whenever you gain a #yCrop, if you have more than stacks than its #rMaturity level, #gHarvest all excess stacks."
+    ]
+  },
+
+  "TheSimpletonMod:HornOfPlenty": {
+    "NAME": "Horn Of Plenty",
+    "FLAVOR": "More than adequate.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, gain #b",
+      " #yFecundity."
+    ]
+  },
 
   "TheSimpletonMod:HotPotato": {
     "NAME": "Hot Potato",

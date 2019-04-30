@@ -4,6 +4,7 @@ package thesimpleton.actions;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -22,10 +23,9 @@ public class MulchingAction extends AbstractGameAction {
   private final int exhaustAmount;
   private final int blockAmount;
   private final int burningAmount;
-  private final int healAmount;
   private final int cardDrawAmount;
 
-  public MulchingAction(int exhaustAmount, int blockAmount, int burningAmount, int healAmount, int cardDrawAmount) {
+  public MulchingAction(int exhaustAmount, int blockAmount, int burningAmount, int cardDrawAmount) {
     this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
     this.p = AbstractDungeon.player;
     this.duration = ACTION_DURATION;
@@ -33,7 +33,6 @@ public class MulchingAction extends AbstractGameAction {
     this.exhaustAmount = exhaustAmount;
     this.blockAmount = blockAmount;
     this.burningAmount = burningAmount;
-    this.healAmount = healAmount;
     this.cardDrawAmount = cardDrawAmount;
   }
 
@@ -48,8 +47,6 @@ public class MulchingAction extends AbstractGameAction {
               .forEach(mo -> AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(mo, this.p, burningAmount)));
         return;
       case POWER:
-        AbstractDungeon.actionManager.addToBottom(new HealAction(this.p, this.p, healAmount));
-        return;
       case CURSE:
       case STATUS:
       default:

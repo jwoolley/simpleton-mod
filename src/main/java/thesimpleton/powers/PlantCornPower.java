@@ -26,7 +26,11 @@ public class PlantCornPower extends AbstractCropPower {
   private static final int MATURITY_THRESHOLD = 2;
 
   public PlantCornPower(AbstractCreature owner, int amount) {
-    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard,  amount, false, MATURITY_THRESHOLD);
+    this(owner, amount, false);
+  }
+
+  public PlantCornPower(AbstractCreature owner, int amount, boolean isFromCard) {
+    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard,  amount,  isFromCard,false, MATURITY_THRESHOLD);
     updateDescription();
   }
 

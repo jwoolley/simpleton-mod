@@ -39,7 +39,7 @@ public class Turnips extends AbstractCropPowerCard {
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyCropAction(p, p, new PlantTurnipPower(p, this.magicNumber), this.magicNumber, true));
+        new ApplyCropAction(p, p, new PlantTurnipPower(p, this.magicNumber, true), this.magicNumber, true));
   }
 
   @Override

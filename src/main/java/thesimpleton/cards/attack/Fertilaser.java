@@ -53,7 +53,7 @@ public class Fertilaser extends CustomCard {
             AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
 
     AbstractCropPower.getActiveCropPowers()
-        .forEach(power -> power.stackPower(this.magicNumber));
+        .forEach(power -> power.stackPower(this.magicNumber, true));
   }
 
   @Override

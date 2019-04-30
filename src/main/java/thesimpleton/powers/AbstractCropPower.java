@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import thesimpleton.actions.ApplyCropAction;
 import thesimpleton.cards.HarvestCard;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.TheSimpletonCardTags;
@@ -51,20 +52,20 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
 
 
   public AbstractCard.CardRarity cropRarity;
-
+//
   AbstractCropPower(Crop enumValue, String name, String id, PowerType powerType, String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
-                    AbstractCropPowerCard powerCard, int amount) {
-    this(enumValue, name, id, powerType, descriptions, imgName, owner, rarity, powerCard, amount, IS_HARVEST_ALL, AUTO_HARVEST_THRESHOLD);
+                    AbstractCropPowerCard powerCard, int amount, boolean isFromCard) {
+    this(enumValue, name, id, powerType, descriptions, imgName, owner, rarity, powerCard, amount, isFromCard, IS_HARVEST_ALL, AUTO_HARVEST_THRESHOLD);
     logger.debug("Instantiating CropPower:  enumValue:" + enumValue + ",  name:" + name+ ",  id:" + id + ",  powerType:" + powerType.name()+ ",  owner:" + owner);
   }
 
   AbstractCropPower(Crop enumValue, String name, String id, PowerType powerType,  String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
-                    AbstractCropPowerCard powerCard, int amount, boolean isHarvestAll) {
-    this(enumValue, name, id, powerType, descriptions, imgName, owner, rarity, powerCard, amount, isHarvestAll, AUTO_HARVEST_THRESHOLD);
+                    AbstractCropPowerCard powerCard, int amount, boolean isFromCard, boolean isHarvestAll) {
+    this(enumValue, name, id, powerType, descriptions, imgName, owner, rarity, powerCard, amount, isFromCard, isHarvestAll, AUTO_HARVEST_THRESHOLD);
   }
 
   AbstractCropPower(Crop enumValue, String name, String id, PowerType powerType, String[] descriptions, String imgName, AbstractCreature owner, AbstractCard.CardRarity rarity,
-                            AbstractCropPowerCard powerCard, int amount, boolean isHarvestAll,
+                            AbstractCropPowerCard powerCard, int amount,  boolean isFromCard, boolean isHarvestAll,
                             int autoHarvestThreshold) {
     super(imgName);
     this.enumValue = enumValue;
@@ -73,7 +74,7 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     this.name = name;
     this.descriptions = descriptions;
     this.owner = owner;
-    this.amount = amount;
+    this.amount = ApplyCropAction.calculateCropStacks(amount, isFromCard);
     this.cropRarity = rarity;
     this.isHarvestAll = isHarvestAll;
     this.autoHarvestThreshold = autoHarvestThreshold;
@@ -263,8 +264,13 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
 
   @Override
   public void stackPower(int amount) {
-    super.stackPower(amount);
-    logger.debug("Called stackPower for " + this.ID + " amount: " + amount + ". Updated amount: " + this.amount);
+    this.stackPower(amount, false);
+  }
+
+  public void stackPower(int amount, boolean isFromCard) {
+    super.stackPower(ApplyCropAction.calculateCropStacks(amount, isFromCard));
+    logger.debug("Called stackPower for " + this.ID + " amount: "
+        + amount + ". Updated amount: " + ApplyCropAction.calculateCropStacks(this.amount, isFromCard));
 
     logger.debug("Triggering card updated triggers for " + this.name + ".stackPower");
     CropUtil.triggerCardUpdates();

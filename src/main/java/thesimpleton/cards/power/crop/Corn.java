@@ -38,7 +38,7 @@ public class Corn extends AbstractCropPowerCard {
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyCropAction(p, p, new PlantCornPower(p, this.magicNumber), this.magicNumber, true));
+        new ApplyCropAction(p, p, new PlantCornPower(p, this.magicNumber, true), this.magicNumber, true));
   }
 
   @Override

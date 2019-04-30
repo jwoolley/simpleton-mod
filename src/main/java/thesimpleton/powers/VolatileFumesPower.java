@@ -38,7 +38,7 @@ public class VolatileFumesPower extends AbstractTheSimpletonPower  {
   public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target)
   {
     if (target.hasPower(WeakPower.POWER_ID) && (target != this.owner) && (info.type == DamageInfo.DamageType.NORMAL)) {
-      flash();
+      flashWithoutSound();
       AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(
           target, this.owner, new BurningPower(target, this.owner, this.amount), this.amount, true));
     }

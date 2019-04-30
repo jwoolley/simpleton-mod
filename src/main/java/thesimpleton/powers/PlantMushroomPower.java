@@ -27,7 +27,11 @@ public class PlantMushroomPower extends AbstractCropPower {
   private static final int MATURITY_THRESHOLD = 2;
 
   public PlantMushroomPower(AbstractCreature owner, int amount) {
-    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, false, MATURITY_THRESHOLD);
+    this(owner, amount, false);
+  }
+
+  public PlantMushroomPower(AbstractCreature owner, int amount, boolean isFromCard) {
+    super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount,  isFromCard,false, MATURITY_THRESHOLD);
     updateDescription();
   }
 

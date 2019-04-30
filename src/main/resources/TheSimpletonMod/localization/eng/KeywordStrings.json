@@ -59,7 +59,7 @@
     "NAMES": [
       "depletion", "depletions"
     ],
-    "DESCRIPTION": "Depletions are status cards that Weaken you and make you Vulnerable when played."
+    "DESCRIPTION": "Depletions are playable status cards that reduce your Energy and Draw next turn."
   },
 
   "TheSimpletonMod:DregsKeyword": {

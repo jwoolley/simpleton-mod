@@ -61,7 +61,8 @@ public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new PruningAction(p, NUM_STACKS_TO_HARVEST, NUM_STACKS_TO_GAIN));
+    AbstractDungeon.actionManager.addToBottom(
+        new PruningAction(p, NUM_STACKS_TO_HARVEST, NUM_STACKS_TO_GAIN, true));
   }
 
 

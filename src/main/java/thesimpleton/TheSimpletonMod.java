@@ -33,6 +33,7 @@ import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
+import thesimpleton.potions.FecundityPotion;
 import thesimpleton.relics.*;
 import thesimpleton.utilities.CropUtil;
 
@@ -151,9 +152,9 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                 badgeTexture, "The Hayseed", "jwoolley",
                 "Adds a new character to the game - The Hayseed", modPanel);
 
-//        BaseMod.addPotion(
-//                DregsPotion.class, Color.BLACK, Color.DARK_GRAY, Color.GRAY, DregsPotion.POTION_ID,
-//                TheSimpletonCharEnum.THE_SIMPLETON);
+        BaseMod.addPotion(
+            FecundityPotion.class, FecundityPotion.BASE_COLOR, FecundityPotion.HYBRID_COLOR,
+                FecundityPotion.SPOTS_COLOR, FecundityPotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
     }
 
     @Override
@@ -221,7 +222,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         // omitting non-purchasable cards
 //        BaseMod.addCard(new SpudMissile());
 //        BaseMod.addCard(new GiantTurnip());
-//        BaseMod.addCard(new Harvest());
+//        BaseMod.addCard(new Cultivate());
 
 //        // Curse
     }

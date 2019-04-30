@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.ApplyCropAction;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.PlantChiliPower;
@@ -37,7 +38,7 @@ public class Chilis extends AbstractCropPowerCard {
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, new PlantChiliPower(p, this.magicNumber), this.magicNumber));
+        new ApplyCropAction(p, p, new PlantChiliPower(p, this.magicNumber), this.magicNumber, true));
   }
 
   @Override

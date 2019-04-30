@@ -11,5 +11,19 @@
     "DESCRIPTIONS": [
       "Dregs are unplayable #rCurse cards."
     ]
+  },
+
+  "TheSimpletonMod:FecundityPotion": {
+  "NAME": "Fecundity Potion",
+  "DESCRIPTIONS": [
+    "Gain #b",
+    " #yFecundity."
+  ]
+},
+  "TheSimpletonMod:FecundityPotionKeyword": {
+    "NAME": "Fecundity",
+    "DESCRIPTIONS": [
+      "Gain additional #yCrop stacks from cards."
+    ]
   }
 }

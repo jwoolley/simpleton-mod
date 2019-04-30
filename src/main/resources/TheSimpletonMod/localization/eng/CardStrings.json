@@ -123,7 +123,7 @@
     "DESCRIPTION": "Deal !M! times !D! damage. NL Exhaust."
   },
 
-  "TheSimpletonMod:Harvest": {
+  "TheSimpletonMod:Cultivate": {
     "NAME": "Cultivate",
     "DESCRIPTION": "Gain !B! Block. Harvest !M! of each Crop. NL Exhaust."
   },

@@ -2,11 +2,8 @@ package thesimpleton.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import thesimpleton.cards.skill.Harvest;
 import thesimpleton.powers.AbstractCropPower;
 import thesimpleton.powers.PlantTurnipPower;
 

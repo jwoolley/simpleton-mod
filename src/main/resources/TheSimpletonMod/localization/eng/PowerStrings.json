@@ -195,6 +195,14 @@
     ]
   },
 
+  "TheSimpletonMod:FecundityPower": {
+    "NAME": "Fecundity",
+    "DESCRIPTIONS": [
+      "Increases #yCrop stacks gained from cards by #b",
+      "."
+    ]
+  },
+
   "TheSimpletonMod:PhotosynthesisPower": {
     "NAME": "Photosynthesis",
     "DESCRIPTIONS": [

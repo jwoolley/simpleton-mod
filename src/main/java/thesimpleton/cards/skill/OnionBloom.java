@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.ApplyCropAction;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.PlantOnionPower;
 
@@ -51,7 +52,7 @@ public class OnionBloom extends CustomCard {
     }
 
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, new PlantOnionPower(p, this.magicNumber), this.magicNumber));
+        new ApplyCropAction(p, p, new PlantOnionPower(p, this.magicNumber), this.magicNumber, true));
   }
 
   @Override

@@ -2,7 +2,6 @@ package thesimpleton.cards.attack;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -11,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.ApplyCropAction;
 import thesimpleton.actions.ReapAndSowThresholdAction;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.PlantPotatoPower;
@@ -50,7 +50,7 @@ public class ReapAndSow extends CustomCard {
 
     //TODO: need to add card-discard-discard pile vfx/sfx?
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, new PlantPotatoPower(p, this.magicNumber), this.magicNumber));
+        new ApplyCropAction(p, p, new PlantPotatoPower(p, this.magicNumber), this.magicNumber, true));
 
     AbstractDungeon.actionManager.addToBottom(
         new ReapAndSowThresholdAction(HARVEST_THRESHOLD, this.upgraded));

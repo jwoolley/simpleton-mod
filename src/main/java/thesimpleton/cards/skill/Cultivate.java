@@ -10,11 +10,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.TheSimpletonCardTags;
 
-public class Harvest extends AbstractHarvestCard {
-  public static final String ID = "TheSimpletonMod:Harvest";
+public class Cultivate extends AbstractHarvestCard {
+  public static final String ID = "TheSimpletonMod:Cultivate";
   public static final String NAME;
   public static final String DESCRIPTION;
-  public static final String IMG_PATH = "cards/harvest.png";
+  public static final String IMG_PATH = "cards/cultivate.png";
 
   private static final CardStrings cardStrings;
 
@@ -30,7 +30,7 @@ public class Harvest extends AbstractHarvestCard {
   private static final int HARVEST_BONUS = 1;
   private static final boolean HARVEST_ALL = false;
 
-  public Harvest() {
+  public Cultivate() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, RARITY, TARGET,
         HARVEST_AMOUNT, HARVEST_ALL, true);
     this.baseBlock = this.block = BLOCK;
@@ -46,7 +46,7 @@ public class Harvest extends AbstractHarvestCard {
 
   @Override
   public AbstractCard makeCopy() {
-    return new Harvest();
+    return new Cultivate();
   }
 
   @Override

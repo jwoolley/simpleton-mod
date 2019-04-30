@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.ApplyCropAction;
 import thesimpleton.powers.PlantPotatoPower;
 
 public class SpudOfTheInnocent extends CustomRelic {
@@ -38,7 +39,7 @@ public class SpudOfTheInnocent extends CustomRelic {
     final AbstractPlayer p = AbstractDungeon.player;
     this.flash();
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, new PlantPotatoPower(p, CROP_AMOUNT), CROP_AMOUNT));
+        new ApplyCropAction(p, p, new PlantPotatoPower(p, CROP_AMOUNT), CROP_AMOUNT));
 
   }
 

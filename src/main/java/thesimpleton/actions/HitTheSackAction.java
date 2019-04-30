@@ -94,8 +94,7 @@ public class HitTheSackAction  extends AbstractGameAction
         }
       } else if (numPotatoReps > 0) {
         AbstractDungeon.actionManager.addToBottom(
-            new ApplyPowerAction(p, p, new PlantPotatoPower(p, 1), 1,true,
-                AbstractGameAction.AttackEffect.NONE));
+            new ApplyCropAction(p, p, new PlantPotatoPower(p, 1), 1,true));
 
         numPotatoReps--;
       }

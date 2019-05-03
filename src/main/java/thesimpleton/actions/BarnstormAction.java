@@ -118,16 +118,14 @@ public class BarnstormAction extends AbstractGameAction {
           AbstractDungeon.actionManager.addToBottom(
               new DamageAction(target, new DamageInfo(this.player, this.info.base), AttackEffect.NONE));
         }
-
-        if ((this.cropStacks.size() > 0) && (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()))
-        {
-          AbstractDungeon.actionManager.addToBottom(new BarnstormAction(
-              this.player,
-              AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng),
-              this.baseDamage,
-              damageAllEnemies,
-              this.cropStacks));
-        }
+      }
+      if ((this.cropStacks.size() > 0) && (!AbstractDungeon.getMonsters().areMonstersBasicallyDead())) {
+        AbstractDungeon.actionManager.addToBottom(new BarnstormAction(
+            this.player,
+            AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng),
+            this.baseDamage,
+            damageAllEnemies,
+            this.cropStacks));
       }
       this.isDone = true;
     }

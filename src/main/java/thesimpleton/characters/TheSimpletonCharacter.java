@@ -1,6 +1,7 @@
 package thesimpleton.characters;
 
 import basemod.abstracts.CustomPlayer;
+import basemod.interfaces.StartGameSubscriber;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
@@ -37,7 +38,7 @@ import java.util.List;
 
 import static thesimpleton.TheSimpletonMod.getResourcePath;
 
-public class TheSimpletonCharacter extends CustomPlayer {
+public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubscriber {
     public static final Color CARD_RENDER_COLOR = new Color(0.1F, 0.4F, 0.9F, 1.0F);
 
     public static final int ENERGY_PER_TURN = 3;
@@ -260,17 +261,28 @@ public class TheSimpletonCharacter extends CustomPlayer {
     }
 
 
-    @Override
-    public void onVictory() {
-        super.onVictory();
-        TheSimpletonMod.logger.debug("TheSimpletonCharacter::onVictory: Applying end of combat triggers");
-        this.endOfCombatTriggers.triggerAll();
+    private void resetTriggers() {
 
         precombatPredrawTriggers.clear(t -> t instanceof CombatLifecycleTriggerListener);
         precombatTriggers.clear(t -> t instanceof CombatLifecycleTriggerListener);
         startOfTurnTriggers.clear(t -> t instanceof CombatLifecycleTriggerListener);
         endOfTurnTriggers.clear(t -> t instanceof CombatLifecycleTriggerListener);
         endOfCombatTriggers.clear(t -> t instanceof CombatLifecycleTriggerListener);
+    }
+
+    @Override
+    public void onVictory() {
+        super.onVictory();
+        TheSimpletonMod.logger.debug("TheSimpletonCharacter::onVictory: Applying end of combat triggers");
+        this.endOfCombatTriggers.triggerAll();
+        TheSimpletonMod.logger.debug("TheSimpletonCharacter::onVictory: Resetting triggers");
+        resetTriggers();
+    }
+
+    @Override
+    public void receiveStartGame() {
+        TheSimpletonMod.logger.debug("TheSimpletonCharacter::receiveStartGame: Resetting triggers");
+        resetTriggers();
     }
 
 //    @Override

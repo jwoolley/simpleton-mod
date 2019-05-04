@@ -3,6 +3,7 @@ package thesimpleton.utilities;
 import basemod.interfaces.PostDrawSubscriber;
 import basemod.interfaces.PostPowerApplySubscriber;
 import basemod.interfaces.PostUpdateSubscriber;
+import basemod.interfaces.StartGameSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CropUtil implements PostUpdateSubscriber, PostDrawSubscriber, PostPowerApplySubscriber {
+public class CropUtil implements PostUpdateSubscriber, PostDrawSubscriber, PostPowerApplySubscriber, StartGameSubscriber {
   private static Logger logger = TheSimpletonMod.logger;
 
   private final TriggerManager cropTickedTriggerManager;
@@ -190,6 +191,12 @@ public class CropUtil implements PostUpdateSubscriber, PostDrawSubscriber, PostP
     removeActiveCrop(crop);
 //    triggerCardUpdates();
     cropTickedTriggerManager.triggerAll();
+  }
+
+  @Override
+  public void receiveStartGame() {
+    logger.debug("*#*#*#*#*#*#*#*#**#*#*#*#*#*#* GAME STARTED! Clearing crops *#*#*#*#*#*#*#*#**#*#*#*#*#*#*");
+    resetForCombatEnd();
   }
 
   static class CropSeniorityList extends ArrayList<AbstractCropPower> {

@@ -42,12 +42,12 @@ public class PlantTurnipPower extends AbstractCropPower {
   public void updateDescription() {
     this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0];
   }
-
-  public void onUseCard(AbstractCard card, UseCardAction action) {
-    if (card.hasTag(TheSimpletonCardTags.HARVEST) && card instanceof HarvestCard && ((HarvestCard)card).isAutoHarvest()) {
-      harvest(true, this.amount);
-    }
-  }
+//
+//  public void onUseCard(AbstractCard card, UseCardAction action) {
+//    if (card.hasTag(TheSimpletonCardTags.HARVEST) && card instanceof HarvestCard && ((HarvestCard)card).isAutoHarvest()) {
+//      harvest(true, this.amount);
+//    }
+//  }
 
   protected int calculateHarvestAmount(int amount, int maxAmount, boolean harvestAll) {
     return this.amount;

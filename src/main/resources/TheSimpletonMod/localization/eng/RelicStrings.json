@@ -132,6 +132,19 @@
     ]
   },
 
+  "TheSimpletonMod:PicklingJar": {
+    "NAME": "Pickling Jar",
+    "FLAVOR": "Sour, salty, and full of dark magic.",
+    "DESCRIPTIONS": [
+      "Upon pickup, choose a card. Every #b",
+      " times you shuffle your draw pile, add a copy of that card to your hand. It costs 0 that turn.",
+      "Choose a card for ",
+      "Every #b",
+      " times you shuffle your draw pile, add a copy of ",
+      " to your hand. It costs 0 that turn."
+    ]
+  },
+
   "TheSimpletonMod:PungentSoil": {
     "NAME": "Pungent Soil",
     "FLAVOR": "It grows on you.",

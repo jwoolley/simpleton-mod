@@ -11,11 +11,13 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.attack.Haymaker;
 import thesimpleton.cards.attack.PestManagement;
@@ -87,6 +89,15 @@ public class TheSimpletonCharacter extends CustomPlayer {
         startOfTurnTriggers = new TriggerManager("StartOfTurnTriggers", staticStartOfTurnTriggerListeners);
         endOfTurnTriggers = new TriggerManager("EndOfTurnTriggers", staticEndOfTurnTriggerListeners);
         endOfCombatTriggers = new TriggerManager("EndOfCombatTriggers", staticEndOfCombatTriggerListeners);
+
+        List<AbstractCard> cards = CardLibrary.getAllCards();
+
+        Logger logger = TheSimpletonMod.logger;
+        logger.debug("Listing all cards");
+        int index = 0;
+        for(AbstractCard card : cards) {
+            logger.debug(index++ + ") " + card.name + " [cardId: " + card.cardID + "]");
+        }
 
 //        TheSimpletonMod.logger.debug(("instantiating precombatPredrawTriggers manager with " + staticPrecombatPredrawTriggerListeners.size() + " preregistered triggers"));
     }

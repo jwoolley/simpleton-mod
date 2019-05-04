@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.Logger;
+import org.omg.PortableInterceptor.ACTIVE;
 import thesimpleton.TheSimpletonMod;
 
 import java.util.List;
@@ -36,7 +37,11 @@ public class PicklingJar extends CustomRelic implements CustomBottleRelic, Custo
   private static final int COST_FOR_TURN = 0;
 
 
+  //TODO: support multiple upgrades (and store # of upgrades in serialized id)
+  private static final String SERIALIZABLE_UPGRADED_PREFIX = "UPGRADED__";
+
   private AbstractCard card;
+  private boolean isCardUpgraded = false;
 
   public PicklingJar() {
     super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
@@ -72,20 +77,31 @@ public class PicklingJar extends CustomRelic implements CustomBottleRelic, Custo
   @Override
   public String onSave() {
     // TODO: add upgraded prefix and parse on load
-    return card.cardID;
+    return (this.isCardUpgraded ? SERIALIZABLE_UPGRADED_PREFIX : "") + card.cardID;
   }
 
   public void onShuffle() {
+    Logger logger = TheSimpletonMod.logger;
+
     this.counter += 1;
     if (this.counter == 3) {
       this.counter = 0;
       flash();
       AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
 
+      logger.debug("PicklingJar.onShuffle: Copying card: " + card);
+
       AbstractCard cardCopy = card.makeCopy();
+      logger.debug("PicklingJar.onShuffle: Card copy: " + card);
+
+      if (this.isCardUpgraded) {
+        cardCopy.upgrade();
+      }
       if (cardCopy.cost > 0) {
         cardCopy.setCostForTurn(COST_FOR_TURN);
       }
+      logger.debug("PicklingJar.onShuffle: Card copy 2: " + card);
+
       AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(cardCopy));
     }
   }
@@ -94,10 +110,25 @@ public class PicklingJar extends CustomRelic implements CustomBottleRelic, Custo
   public void onLoad(String cardId) {
     List<AbstractCard> cards = CardLibrary.getAllCards();
 
+    String unpackedCardId =
+        cardId.startsWith(SERIALIZABLE_UPGRADED_PREFIX) ?
+            cardId.split(SERIALIZABLE_UPGRADED_PREFIX)[1] : cardId;
+
     Logger logger = TheSimpletonMod.logger;
+    logger.debug("PicklingJar.onLoad: cardId: " + cardId);
+    logger.debug("PicklingJar.onLoad: unpackedCardId: " + unpackedCardId);
+
+
     for(AbstractCard card : cards) {
-      if (card.cardID.equals(cardId)) {
+      if (card.cardID.equals(unpackedCardId)) {
+        logger.debug("PicklingJar.onLoad: matched card: " + card.cardID);
+
         this.card = card;
+        if (cardId.length() > unpackedCardId.length()) {
+          logger.debug("PicklingJar.onLoad: upgraeded card");
+          card.upgrade();
+          this.isCardUpgraded = true;
+        }
       }
     }
     this.setDescriptionAfterLoading();
@@ -120,7 +151,10 @@ public class PicklingJar extends CustomRelic implements CustomBottleRelic, Custo
     super.update();
     if ((!this.cardSelected) && (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty())) {
       this.cardSelected = true;
-      this.card = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
+
+      AbstractCard cardToCopy = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
+      this.card = cardToCopy.makeStatEquivalentCopy();
+      this.isCardUpgraded = this.card.upgraded;
       AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
       AbstractDungeon.gridSelectScreen.selectedCards.clear();
       this.description = DESCRIPTIONS[3] + NUM_SHUFFLES + this.DESCRIPTIONS[4] + FontHelper.colorString(card.name, "y") + DESCRIPTIONS[5];

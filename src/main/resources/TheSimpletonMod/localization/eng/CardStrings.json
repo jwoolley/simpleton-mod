@@ -116,7 +116,7 @@
 
   "TheSimpletonMod:GiantTurnip": {
     "NAME": "Turnip",
-    "DESCRIPTION": "Deal !M! times !D! damage. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage. NL Exhaust."
   },
 
   "TheSimpletonMod:Cultivate": {

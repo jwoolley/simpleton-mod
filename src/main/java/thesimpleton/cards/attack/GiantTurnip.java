@@ -17,6 +17,7 @@ public class GiantTurnip extends CustomCard {
   public static final String ID = "TheSimpletonMod:GiantTurnip";
   public static final String NAME;
   public static final String DESCRIPTION;
+  public static final String[] EXTENDED_DESCRIPTION;
   public static final String IMG_PATH = "cards/giantturnip.png";
 
   private static final CardStrings cardStrings;
@@ -33,10 +34,10 @@ public class GiantTurnip extends CustomCard {
     this(DAMAGE);
   }
   
-  public GiantTurnip(int damage) {
-    super(ID, damage + "-Lb. " + NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY, TARGET);
-    this.baseDamage = this.damage = damage;
-    this.baseMagicNumber = this.magicNumber = damage;
+  public GiantTurnip(int baseNumber) {
+    super(ID, baseNumber + "-Lb. " + NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY, TARGET);
+    this.baseMagicNumber = this.magicNumber = baseNumber;
+    this.baseDamage = this.damage = baseNumber * baseNumber;
     this.exhaust = true;
     this.tags.add(TheSimpletonCardTags.CROP);
   }
@@ -57,7 +58,7 @@ public class GiantTurnip extends CustomCard {
   public void upgrade() {
     if (!this.upgraded) {
       this.upgradeName();
-      this.upgradeDamage(UPGRADE_DAMAGE_AMOUNT);
+      this.upgradeDamage(UPGRADE_DAMAGE_AMOUNT * this.magicNumber);
     }
   }
 
@@ -65,5 +66,6 @@ public class GiantTurnip extends CustomCard {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
+    EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
   }
 }

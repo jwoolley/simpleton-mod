@@ -1,0 +1,22 @@
+{
+  "TheSimpletonMod:AbstractCrop": {
+    "NAME": "Abstract Crop",
+    "DESCRIPTION": [
+      "Crop: ",
+      " Harvest for plants."
+    ]
+  },
+  "TheSimpletonMod:PotatoCrop": {
+    "NAME": "Potato",
+    "DESCRIPTION": [
+      "Crop: ",
+      " harvest to get Spud cards."
+    ]
+  }
+}
+
+
+
+
+
+

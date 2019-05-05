@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 public class SimpletonUtil {
     // As MakeTempCard... actions copy the card object, just define a static Dregs here for common use.
     public static final AbstractCard DREGS = new Dregs();
+    public static final Boolean DREGS_ENABLED = false;
     public static final AbstractCard SPUD_MISSILE = new SpudMissile();
     public static final AbstractCard FLAMING_SPUD = new FlamingSpud();
     public static final AbstractCard ROOT_OUT = new RootOut();
@@ -48,9 +49,9 @@ public class SimpletonUtil {
     }
 
     public static AbstractCard getRandomCurseCard() {
-        if (AbstractDungeon.player.hasRelic(FourLeafCloverCharm.ID)) {
+        if (DREGS_ENABLED && AbstractDungeon.player.hasRelic(FourLeafCloverCharm.ID)) {
             AbstractDungeon.player.getRelic(FourLeafCloverCharm.ID).flash();
-            return DREGS;
+            return new Dregs();
         } else {
             return CardLibrary.getCurse();
         }

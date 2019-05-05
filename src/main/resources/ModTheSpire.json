@@ -3,7 +3,7 @@
   "name": "The Hayseed",
   "author_list": ["jwoolley"],
   "description": "An extremely simple character with a head like a pinewood block.",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "sts_version": "01-23-2019",
   "mts_version": "3.8.3",
   "dependencies": ["basemod", "stslib"]

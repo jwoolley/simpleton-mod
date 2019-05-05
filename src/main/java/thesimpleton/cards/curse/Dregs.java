@@ -15,7 +15,7 @@ public class Dregs extends CustomCard {
     private static final CardStrings cardStrings;
     public static final String NAME;
     public static final String DESCRIPTION;
-    public static final String IMG_PATH = "cards/dregs.png";
+    public static final String IMG_PATH = "cards/defend.png";
 
     private static final CardType TYPE = CardType.CURSE;
     private static final CardRarity RARITY = CardRarity.CURSE;

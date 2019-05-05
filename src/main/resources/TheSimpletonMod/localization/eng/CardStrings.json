@@ -71,7 +71,7 @@
 
   "TheSimpletonMod:Depletion": {
     "NAME": "Depletion",
-    "DESCRIPTION": "Draw !M! less card next turn. NL Gain !M! less Energy next turn. NL Exhaust."
+    "DESCRIPTION": "Gain !M! less Energy next turn. NL Draw !M! less card next turn. NL Exhaust. NL NL At the end of your turn, if this is in your hand, add a copy of it to your discard pile."
   },
 
   "TheSimpletonMod:DesperatePlunge": {

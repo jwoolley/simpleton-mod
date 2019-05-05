@@ -6,11 +6,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
-public class DeenergizedPower extends AbstractTheSimpletonPower
+public class DrawDownPower extends AbstractTheSimpletonPower
 {
-  public static final String IMG = "deenergized.png";
+  public static final String IMG = "drawdown.png";
 
-  public static final String POWER_ID = "TheSimpletonMod:DeenergizedPower";
+  public static final String POWER_ID = "TheSimpletonMod:DrawDownPower";
   private static final PowerStrings powerStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
@@ -18,13 +18,13 @@ public class DeenergizedPower extends AbstractTheSimpletonPower
 
   public static final int MAX_STACKS = 999;
 
-  public DeenergizedPower(AbstractCreature owner, int energyAmt)
+  public DrawDownPower(AbstractCreature owner, int amount)
   {
     super(IMG);
     this.name = NAME;
     this.ID = POWER_ID;
     this.owner = owner;
-    this.amount = energyAmt;
+    this.amount = amount;
     this.type = POWER_TYPE;
 
     if (this.amount >= MAX_STACKS) {
@@ -46,10 +46,16 @@ public class DeenergizedPower extends AbstractTheSimpletonPower
     this.description = (DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]);
   }
 
-  public void onEnergyRecharge() {
+  @Override
+  public void atStartOfTurn() {
     flash();
-    AbstractDungeon.player.loseEnergy(this.amount);
+    AbstractDungeon.player.gameHandSize -= this.amount;
+  }
+
+  @Override
+  public void atStartOfTurnPostDraw() {
     AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+    AbstractDungeon.player.gameHandSize += this.amount;
   }
 
   static {

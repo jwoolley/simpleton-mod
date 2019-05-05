@@ -195,11 +195,28 @@
     ]
   },
 
-  "TheSimpletonMod:FecundityPower": {
-    "NAME": "Fecundity",
+  "TheSimpletonMod:FertilityPower": {
+    "NAME": "Fertility",
     "DESCRIPTIONS": [
       "Increases #yCrop stacks gained from cards by #b",
       "."
+    ]
+  },
+
+  "TheSimpletonMod:NextTurnWeakPower": {
+    "NAME": "Weak Next Turn",
+    "DESCRIPTIONS": [
+      "Gain #b",
+      " #yWeak next turn."
+    ]
+  },
+
+  "TheSimpletonMod:DrawDownPower": {
+    "NAME": "Draw Down",
+    "DESCRIPTIONS": [
+      "Draw #b",
+      " less card next turn.",
+      " less cards next turn."
     ]
   },
 

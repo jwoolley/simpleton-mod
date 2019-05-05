@@ -3,17 +3,18 @@ package thesimpleton.cards.status;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawReductionPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.powers.DeenergizedPower;
+import thesimpleton.powers.DrawDownPower;
 
 public class Depletion extends CustomCard {
   public static final String ID = "TheSimpletonMod:Depletion";
@@ -29,21 +30,31 @@ public class Depletion extends CustomCard {
 
   private static final int COST = 0;
 
-  private static final int REDUCTION_AMOUNT = 1;
+  private static final int DEBUFF_AMOUNT = 1;
 
   public Depletion() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY,
         TARGET);
-    this.baseMagicNumber = this.magicNumber = REDUCTION_AMOUNT;
+    this.baseMagicNumber = this.magicNumber = DEBUFF_AMOUNT;
     this.exhaust = true;
   }
 
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, new DeenergizedPower(p, REDUCTION_AMOUNT)));
-
-    AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, new DrawReductionPower(p, REDUCTION_AMOUNT)));
+    if ((!this.dontTriggerOnUseCard)) {
+      this.exhaust = true;
+      if (p.hasRelic("Medical Kit")) {
+        useMedicalKit(p);
+      } else {
+        AbstractDungeon.actionManager.addToBottom(
+            new ApplyPowerAction(p, p, new DeenergizedPower(p, DEBUFF_AMOUNT), DEBUFF_AMOUNT));
+        AbstractDungeon.actionManager.addToBottom(
+            new ApplyPowerAction(p, p, new DrawDownPower(p, DEBUFF_AMOUNT), DEBUFF_AMOUNT));
+      }
+    } else {
+      this.dontTriggerOnUseCard = false;
+      AbstractDungeon.actionManager.addToTop(new MakeTempCardInDiscardAction(this.makeStatEquivalentCopy(), 1));
+      this.exhaust = false;
+    }
   }
 
   public void triggerWhenDrawn()
@@ -54,6 +65,11 @@ public class Depletion extends CustomCard {
       AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player,
           AbstractDungeon.player.getPower("Evolve").amount));
     }
+  }
+
+  public void triggerOnEndOfTurnForPlayingCard() {
+    this.dontTriggerOnUseCard = true;
+    AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
   }
 
   public AbstractCard makeCopy() {

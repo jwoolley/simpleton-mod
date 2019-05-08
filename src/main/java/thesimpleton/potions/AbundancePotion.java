@@ -9,14 +9,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.badlogic.gdx.graphics.Color;
-import org.apache.logging.log4j.Logger;
-import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
-import thesimpleton.powers.FecundityPower;
+import thesimpleton.powers.AbundancePower;
 
 
-public class FecundityPotion extends CustomPotion {
-  public static final String POTION_ID = "TheSimpletonMod:FecundityPotion";
+public class AbundancePotion extends CustomPotion {
+  public static final String POTION_ID = "TheSimpletonMod:AbundancePotion";
   private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
   public static final String NAME = potionStrings.NAME;
   public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
@@ -29,7 +27,7 @@ public class FecundityPotion extends CustomPotion {
   public static final Color HYBRID_COLOR = Color.CLEAR;
   public static final Color SPOTS_COLOR = Color.RED;
 
-  public FecundityPotion() {
+  public AbundancePotion() {
     super(NAME, POTION_ID, PotionRarity.UNCOMMON, POTION_SHAPE, POTION_COLOR);
     this.potency = getPotency();
     this.description = (DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1]);
@@ -38,7 +36,7 @@ public class FecundityPotion extends CustomPotion {
     this.tips.add(new PowerTip(this.name, this.description));
 
     PotionStrings potionKeywordStrings =
-        CardCrawlGame.languagePack.getPotionString("TheSimpletonMod:FecundityPotionKeyword");
+        CardCrawlGame.languagePack.getPotionString("TheSimpletonMod:AbundancePotionKeyword");
 
     this.tips.add(new PowerTip(potionKeywordStrings.NAME, potionKeywordStrings.DESCRIPTIONS[0]));
   }
@@ -47,12 +45,12 @@ public class FecundityPotion extends CustomPotion {
     AbstractPlayer player = SimpletonUtil.getPlayer();
     final int potency = this.getPotency();
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(player,player, new FecundityPower(player, player, potency), potency));
+        new ApplyPowerAction(player,player, new AbundancePower(player, player, potency), potency));
   }
 
 
   public CustomPotion makeCopy() {
-    return new FecundityPotion();
+    return new AbundancePotion();
   }
 
   public int getPotency(int ascensionLevel) {

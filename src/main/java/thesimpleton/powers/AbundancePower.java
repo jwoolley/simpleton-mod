@@ -5,17 +5,17 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
 
-public class FecundityPower extends AbstractTheSimpletonPower {
-  public static final String POWER_ID = "TheSimpletonMod:FecundityPower";
+public class AbundancePower extends AbstractTheSimpletonPower {
+  public static final String POWER_ID = "TheSimpletonMod:AbundancePower";
   private static final PowerStrings powerStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
   public static PowerType POWER_TYPE = PowerType.BUFF;
-  public static final String IMG = "fecundity.png";
+  public static final String IMG = "abundance.png";
 
   private AbstractCreature source;
 
-  public FecundityPower(AbstractCreature owner, AbstractCreature source, int amount) {
+  public AbundancePower(AbstractCreature owner, AbstractCreature source, int amount) {
     super(IMG);
     this.owner = owner;
     this.source = source;

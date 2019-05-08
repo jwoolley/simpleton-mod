@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.powers.FecundityPower;
+import thesimpleton.powers.AbundancePower;
 
 public class HornOfPlenty extends CustomRelic {
   public static final String ID = "TheSimpletonMod:HornOfPlenty";
@@ -19,7 +19,7 @@ public class HornOfPlenty extends CustomRelic {
   private static final RelicTier TIER = RelicTier.UNCOMMON;
   private static final LandingSound SOUND = LandingSound.MAGICAL;
 
-  private static final int FECUNDITY_AMOUNT = 1;
+  private static final int ABUNDANCE_AMOUNT = 1;
 
   public HornOfPlenty() {
     super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
@@ -32,12 +32,12 @@ public class HornOfPlenty extends CustomRelic {
     final AbstractPlayer p = AbstractDungeon.player;
     this.flash();
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, new FecundityPower(p, p, FECUNDITY_AMOUNT), FECUNDITY_AMOUNT));
+        new ApplyPowerAction(p, p, new AbundancePower(p, p, ABUNDANCE_AMOUNT), ABUNDANCE_AMOUNT));
   }
 
   @Override
   public String getUpdatedDescription() {
-    return this.DESCRIPTIONS[0] + FECUNDITY_AMOUNT + this.DESCRIPTIONS[1];
+    return this.DESCRIPTIONS[0] + ABUNDANCE_AMOUNT + this.DESCRIPTIONS[1];
   }
 
   @Override

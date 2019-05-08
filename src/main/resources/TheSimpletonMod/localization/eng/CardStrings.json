@@ -9,11 +9,6 @@
     "DESCRIPTION": "Gain !B! Block."
   },
 
-  "TheSimpletonMod:Abundance": {
-    "NAME": "Abundance",
-    "DESCRIPTION": "Draw a card for each different type of Crop you have."
-  },
-
   "TheSimpletonMod:Aerate": {
     "NAME": "Aerate",
     "DESCRIPTION": "Gain !B! Block. NL Add !M! stacks to your newest Crop",
@@ -69,6 +64,11 @@
     "DESCRIPTION": "Deal !D! damage. NL If you've Harvested this turn, deal !D! damage again."
   },
 
+  "TheSimpletonMod:Cultivate": {
+    "NAME": "Cultivate",
+    "DESCRIPTION": "Gain !B! Block. Harvest !M! of each Crop. NL Exhaust."
+  },
+
   "TheSimpletonMod:Depletion": {
     "NAME": "Depletion",
     "DESCRIPTION": "Gain !M! less Energy next turn. NL Draw !M! less card next turn. NL Exhaust. NL NL At the end of your turn, if this is in your hand, add a copy of it to your discard pile."
@@ -113,15 +113,14 @@
     "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL characters. NL Remove all of your Debuffs. NL Gain !B! Block. NL Exhaust."
   },
 
-
   "TheSimpletonMod:GiantTurnip": {
     "NAME": "Turnip",
     "DESCRIPTION": "Deal !D! damage. NL Exhaust."
   },
 
-  "TheSimpletonMod:Cultivate": {
-    "NAME": "Cultivate",
-    "DESCRIPTION": "Gain !B! Block. Harvest !M! of each Crop. NL Exhaust."
+  "TheSimpletonMod:GoToMarket": {
+    "NAME": "Go to Market",
+    "DESCRIPTION": "Draw a card for each different type of Crop you have."
   },
 
   "TheSimpletonMod:Haymaker": {
@@ -194,6 +193,12 @@
     "DESCRIPTION": "Draw !M! cards. Exhaust a card from your hand."
   },
 
+  "TheSimpletonMod:SaltTheEarth": {
+    "NAME": "Salt the Earth",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Add !M! Depletions to your hand."
+  },
+
+
   "TheSimpletonMod:SoilSample": {
     "NAME": "Soil Sample",
     "DESCRIPTION": "Shuffle up to !M! cards from your discard pile into your draw pile, then draw a card. It costs 0 this turn. NL Exhaust.",
@@ -225,6 +230,19 @@
     "NAME": "Sunchoke",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Each Weak enemy that takes damage also gains !M! Burning."
   },
+
+  "TheSimpletonMod:TillTheField": {
+    "NAME": "Till the Field",
+    "DESCRIPTION": "Add !M! stacks to your newest Crop",
+    "EXTENDED_DESCRIPTION" : [
+      ". NL Exhaust",
+      ".",
+      " NL (No eligible Crops currently)",
+      " NL (Currently ",
+      ")"
+    ]
+  },
+
 
   "TheSimpletonMod:ToughSkin": {
     "NAME": "Tough Skin",

@@ -2,7 +2,6 @@ package thesimpleton.cards.skill;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -14,11 +13,11 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.AbstractCropPower;
 
-public class Abundance extends CustomCard {
-  public static final String ID = "TheSimpletonMod:Abundance";
+public class GoToMarket extends CustomCard {
+  public static final String ID = "TheSimpletonMod:GoToMarket";
   public static final String NAME;
   public static final String DESCRIPTION;
-  public static final String IMG_PATH = "cards/abundance.png";
+  public static final String IMG_PATH = "cards/gotomarket.png";
 
   private static final CardStrings cardStrings;
 
@@ -30,7 +29,7 @@ public class Abundance extends CustomCard {
   private static final int UPGRADED_COST = 0;
   private static final int CARDS_PER_CROP_TYPE = 1;
 
-  public Abundance() {
+  public GoToMarket() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = CARDS_PER_CROP_TYPE;
   }
@@ -48,7 +47,7 @@ public class Abundance extends CustomCard {
 
   @Override
   public AbstractCard makeCopy() {
-    return new Abundance();
+    return new GoToMarket();
   }
 
   @Override

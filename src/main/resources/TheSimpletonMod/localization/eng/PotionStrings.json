@@ -13,15 +13,15 @@
     ]
   },
 
-  "TheSimpletonMod:FecundityPotion": {
-  "NAME": "Fecundity Potion",
+  "TheSimpletonMod:AbundancePotion": {
+  "NAME": ":Abundance Potion",
   "DESCRIPTIONS": [
     "Gain #b",
-    " #yFecundity."
+    " #yAbundance."
   ]
 },
-  "TheSimpletonMod:FecundityPotionKeyword": {
-    "NAME": "Fecundity",
+  "TheSimpletonMod:AbundancePotionKeyword": {
+    "NAME": "Abundance",
     "DESCRIPTIONS": [
       "Gain additional #yCrop stacks from cards."
     ]

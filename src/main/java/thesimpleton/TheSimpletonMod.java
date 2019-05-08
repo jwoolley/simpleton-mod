@@ -20,7 +20,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import org.apache.logging.log4j.LogManager;
@@ -34,7 +33,7 @@ import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
-import thesimpleton.potions.FecundityPotion;
+import thesimpleton.potions.AbundancePotion;
 import thesimpleton.relics.*;
 import thesimpleton.utilities.CropUtil;
 
@@ -154,8 +153,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                 "Adds a new character to the game - The Hayseed", modPanel);
 
         BaseMod.addPotion(
-            FecundityPotion.class, FecundityPotion.BASE_COLOR, FecundityPotion.HYBRID_COLOR,
-                FecundityPotion.SPOTS_COLOR, FecundityPotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
+            AbundancePotion.class, AbundancePotion.BASE_COLOR, AbundancePotion.HYBRID_COLOR,
+                AbundancePotion.SPOTS_COLOR, AbundancePotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
     }
 
     @Override
@@ -174,7 +173,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new Haymaker());
         BaseMod.addCard(new ReapAndSow());
 
-        // Attack (10)
+        // Attack (11)
         BaseMod.addCard(new Barnstorm());
         BaseMod.addCard(new CullingStrike());
         BaseMod.addCard(new DoubleBarrel());
@@ -183,11 +182,11 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new HitTheSack());
         BaseMod.addCard(new PestManagement());
         BaseMod.addCard(new RootDown());
+        BaseMod.addCard(new SaltTheEarth());
         BaseMod.addCard(new SlashAndBurn());
         BaseMod.addCard(new Sunchoke());
 
-        // Skill (15)
-        BaseMod.addCard(new Abundance());
+        // Skill (16)
         BaseMod.addCard(new Aerate());
         BaseMod.addCard(new Mulching());
         BaseMod.addCard(new ControlledBurn());
@@ -196,12 +195,14 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new DesperatePlunge());
         BaseMod.addCard(new DigIn());
         BaseMod.addCard(new Ferment());
+        BaseMod.addCard(new GoToMarket());
         BaseMod.addCard(new OnionBloom());
         BaseMod.addCard(new Pruning());
         BaseMod.addCard(new Rototilling());
         BaseMod.addCard(new SoilSample());
         BaseMod.addCard(new StockTheCellar());
         BaseMod.addCard(new Swelter());
+        BaseMod.addCard(new TillTheField());
 
         // Power (13)
         BaseMod.addCard(new BirdFeeder());

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
-import thesimpleton.powers.FecundityPower;
+import thesimpleton.powers.AbundancePower;
 
 public class ApplyCropAction extends ApplyPowerAction {
 
@@ -29,8 +29,8 @@ public class ApplyCropAction extends ApplyPowerAction {
     logger.debug("ApplyCropAction:calculateCropStacks");
 
     int adjustedAmount = amount;
-    if (player.hasPower(FecundityPower.POWER_ID) && isFromCard) {
-      AbstractPower power = player.getPower(FecundityPower.POWER_ID);
+    if (player.hasPower(AbundancePower.POWER_ID) && isFromCard) {
+      AbstractPower power = player.getPower(AbundancePower.POWER_ID);
       if (power.amount > 0) {
         power.flashWithoutSound();
         adjustedAmount += power.amount;

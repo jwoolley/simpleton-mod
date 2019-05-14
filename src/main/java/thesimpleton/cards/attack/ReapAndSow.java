@@ -32,8 +32,6 @@ public class ReapAndSow extends CustomCard {
   private static final int DAMAGE = 4;
   private static final int ATTACK_UPGRADE_BONUS = 2;
   private static final int PLANT_AMOUNT = 1;
-  private static final int PLANT_AMOUNT_UPGRADE_BONUS = 2;
-  private static final int HARVEST_THRESHOLD = 5;
 
   public ReapAndSow() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
@@ -53,7 +51,7 @@ public class ReapAndSow extends CustomCard {
         new ApplyCropAction(p, p, new PlantPotatoPower(p, this.magicNumber), this.magicNumber, true));
 
     AbstractDungeon.actionManager.addToBottom(
-        new ReapAndSowThresholdAction(HARVEST_THRESHOLD, this.upgraded));
+        new ReapAndSowThresholdAction(this.upgraded));
   }
 
   @Override

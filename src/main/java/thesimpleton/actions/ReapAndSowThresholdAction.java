@@ -8,18 +8,16 @@ import thesimpleton.cards.skill.Cultivate;
 import thesimpleton.powers.AbstractCropPower;
 
 public class ReapAndSowThresholdAction extends AbstractGameAction {
-  private final int harvestThreshold;
   private final boolean upgraded;
 
-  public ReapAndSowThresholdAction(int harvestThreshold, boolean upgraded) {
+  public ReapAndSowThresholdAction(boolean upgraded) {
     this.actionType = ActionType.SPECIAL;
-    this.harvestThreshold = harvestThreshold;
     this.upgraded = upgraded;
   }
 
   @Override
   public void update() {
-    if (AbstractCropPower.getActiveCropPowers().stream().anyMatch(pow -> pow.amount >= harvestThreshold)) {
+    if (AbstractCropPower.getActiveCropPowers().stream().anyMatch(pow -> pow.isMature())) {
       AbstractCard card = new Cultivate();
       if (this.upgraded) {
         card.upgrade();

@@ -69,7 +69,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     private Map<String, Keyword> keywords;
     private ThemeState currentTheme;
 
-    private CropUtil cropUtil;
+    private static CropUtil cropUtil;
 
     private class ThemeState {
         private HashMap<TheSimpletonCharEnum.Theme, Boolean> currentThemeMap;
@@ -286,6 +286,11 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     private static List<AbstractCard> getDeckBeforeShuffle() {
         List<AbstractCard> deckBefore = AbstractDungeon.player.drawPile.group;
         return deckBefore;
+    }
+
+    public static void handleSaveBefore() {
+        logger.debug("TheSimpletonMod.handleSaveBefore called");
+        theSimpletonCharacter.getCropUtil().resetForCombatEnd();
     }
 
     public static void handleEmptyDrawShuffleBefore() {

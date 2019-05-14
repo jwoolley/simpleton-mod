@@ -233,13 +233,13 @@
 
   "TheSimpletonMod:TillTheField": {
     "NAME": "Till the Field",
-    "DESCRIPTION": "Add !M! stacks to your newest Crop",
+    "DESCRIPTION": "If your newest crop is Mature, gain !B! Block. Otherwise, gain !M! stacks of that crop.",
     "EXTENDED_DESCRIPTION" : [
-      ". NL Exhaust",
       ".",
-      " NL (No eligible Crops currently)",
-      " NL (Currently ",
-      ")"
+      " NL (No eligible Crops)",
+      " NL (",
+      ", Mature)",
+      ", not Mature)"
     ]
   },
 

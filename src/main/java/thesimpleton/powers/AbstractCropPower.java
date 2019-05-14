@@ -307,8 +307,7 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
   @Override
   public void onGainCharge(int a) {
     super.onGainCharge(a);
-    logger.debug("**************@@@@@@@@@@@@@@@@@ onGainCharge: " + this.name + ", amount:" + a);
-
+    logger.debug("**************@@@@@@@@@@@@@@@@@ onGainCharge (after gain): " + this.name + ", amount:" + a  + ", this.amount:" + this.amount);
   }
 
   @Override

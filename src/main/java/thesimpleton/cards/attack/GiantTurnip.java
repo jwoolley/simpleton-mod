@@ -44,7 +44,7 @@ public class GiantTurnip extends CustomCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    final int totalDamage = this.magicNumber * this.damage;
+    final int totalDamage = this.damage;
     AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, totalDamage, this.damageTypeForTurn),
           AbstractGameAction.AttackEffect.BLUNT_HEAVY));
   }

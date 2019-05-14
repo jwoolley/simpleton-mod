@@ -21,7 +21,7 @@ public class TillTheField extends AbstractDynamicTextCard {
   private static final CardStrings cardStrings;
 
   private static final CardType TYPE = CardType.SKILL;
-  private static final CardRarity RARITY = CardRarity.UNCOMMON;
+  private static final CardRarity RARITY = CardRarity.COMMON;
   private static final CardTarget TARGET = CardTarget.SELF;
 
   private static final int COST = 1;
@@ -48,22 +48,32 @@ public class TillTheField extends AbstractDynamicTextCard {
   }
 
   public void updateDescription(boolean extendedDescription) {
-    this.rawDescription = getDescription(extendedDescription, this.exhaust);
+    TheSimpletonMod.logger.debug("TillTheField: Called updateDescription. this.upgraded: " + this.upgraded);
+    this.rawDescription = getDescription(extendedDescription, !this.upgraded);
     this.initializeDescription();
   }
 
   private static String getDescription(boolean extendedDescription, boolean mustExhaust) {
+    TheSimpletonMod.logger.debug("TillTheField: Called getDescription. mustExhaust: " + mustExhaust);
+
     String description = DESCRIPTION;
 
-    if (extendedDescription)
+    TheSimpletonMod.logger.debug("TillTheField: description before: " + description);
+
+    description += (mustExhaust ? EXTENDED_DESCRIPTION[0] : "" ) + EXTENDED_DESCRIPTION[1];
+
+    TheSimpletonMod.logger.debug("TillTheField: description after: " + description);
+
+
+    if (extendedDescription) {
       if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
         AbstractCropPower crop = AbstractCropPower.getNewestCropPower();
         description += EXTENDED_DESCRIPTION[3] + crop.name + EXTENDED_DESCRIPTION[4];
       } else {
         description += EXTENDED_DESCRIPTION[2];
       }
+    }
 
-    description += (mustExhaust ? EXTENDED_DESCRIPTION[0] : "" ) + EXTENDED_DESCRIPTION[1];
     return description;
   }
 
@@ -73,6 +83,7 @@ public class TillTheField extends AbstractDynamicTextCard {
       this.upgradeName();
       this.exhaust = false;
       this.rawDescription = getDescription(false, false);
+      this.initializeDescription();
     }
   }
 

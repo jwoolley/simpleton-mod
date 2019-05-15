@@ -91,6 +91,11 @@
     "DESCRIPTION": "Deal !D! damage. NL If the enemy is Weak, gain [E] and deal !D! damage again."
   },
 
+  "TheSimpletonMod:FanTheFlames": {
+    "NAME": "Fan the Flames",
+    "DESCRIPTION": " Apply !M! Burning, then double the enemy's Burning."
+  },
+
   "TheSimpletonMod:Ferment": {
     "NAME": "Ferment",
     "DESCRIPTION": "Shuffle 2 cards from your hand into your draw pile. NL Gain !M! Energy.",

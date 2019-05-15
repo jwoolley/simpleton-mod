@@ -194,6 +194,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new CropRotation());
         BaseMod.addCard(new DesperatePlunge());
         BaseMod.addCard(new DigIn());
+        BaseMod.addCard(new FanTheFlames());
         BaseMod.addCard(new Ferment());
         BaseMod.addCard(new GoToMarket());
         BaseMod.addCard(new OnionBloom());
@@ -210,7 +211,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new Photosynthesis());
         BaseMod.addCard(new ToughSkin());
         BaseMod.addCard(new VolatileFumes());
-
 
         BaseMod.addCard(new Artichokes());
         BaseMod.addCard(new Chilis());

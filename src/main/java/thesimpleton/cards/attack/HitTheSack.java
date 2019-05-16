@@ -23,7 +23,7 @@ public class HitTheSack extends CustomCard {
   private static final CardStrings cardStrings;
 
   private static final AbstractCard.CardType TYPE = CardType.ATTACK;
-  private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
+  private static final AbstractCard.CardRarity RARITY = CardRarity.RARE;
   private static final AbstractCard.CardTarget TARGET = CardTarget.ENEMY;
 
   private static final int COST = -1;

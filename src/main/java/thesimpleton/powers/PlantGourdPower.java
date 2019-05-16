@@ -1,7 +1,9 @@
 package thesimpleton.powers;
 
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -24,6 +26,8 @@ public class PlantGourdPower extends AbstractCropPower {
   public static final CardRarity cropRarity = CardRarity.COMMON;
   private static final AbstractCropPowerCard powerCard = new Gourds();
 
+  private static final int BLOCK_PER_STACK = 6;
+
   public PlantGourdPower(AbstractCreature owner, int amount) {
     this(owner, amount, false);
   }
@@ -36,12 +40,13 @@ public class PlantGourdPower extends AbstractCropPower {
 
   @Override
   public void updateDescription() {
-    this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0];
+    this.description = getPassiveDescription() + " NL " + DESCRIPTIONS[0] + BLOCK_PER_STACK + DESCRIPTIONS[1];
   }
 
   protected int harvestAction(int harvestAmount) {
+    AbstractPlayer player = SimpletonUtil.getPlayer();
     if (harvestAmount > 0) {
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(SimpletonUtil.HUSK, harvestAmount));
+      AbstractDungeon.actionManager.addToBottom(new GainBlockAction(player, player, BLOCK_PER_STACK));
     }
     return harvestAmount;
   }

@@ -138,7 +138,8 @@
   "TheSimpletonMod:PlantGourdPower": {
     "NAME": "Gourds",
     "DESCRIPTIONS": [
-      "#gHarvest: Add a #yHusk to your hand per stack harvested."
+      "#gHarvest: Gain #b",
+      " #yBlock for each stack harvested."
     ]
   },
 

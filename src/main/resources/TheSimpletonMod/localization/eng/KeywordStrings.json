@@ -83,7 +83,7 @@
     "NAMES": [
       "Gourd", "Gourds"
     ],
-    "DESCRIPTION": "#yCrop. When harvested, yields a 0-cost Husk card that grants block."
+    "DESCRIPTION": "#yCrop. Grants #yBlock When harvested."
   },
 
   "TheSimpletonMod:HarvestKeyword": {

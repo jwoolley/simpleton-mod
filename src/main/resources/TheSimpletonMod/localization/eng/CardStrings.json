@@ -140,6 +140,11 @@
     "UPGRADE_DESCRIPTION" : "Deal !D! damage X+1 times. NL Gain X+1 Potatoes."
   },
 
+  "TheSimpletonMod:Husk": {
+    "NAME": "Husk",
+    "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Exhaust."
+  },
+
   "TheSimpletonMod:Mulching": {
     "NAME": "Mulching",
     "DESCRIPTION": "Exhaust a card, then gain an effect based on its type: NL NL Attack: Gain !B! Block. NL Skill: Apply ",
@@ -264,6 +269,11 @@
     "DESCRIPTION": "Gain !M! Artichokes."
   },
 
+  "TheSimpletonMod:Asparagus": {
+    "NAME": "Asparagus",
+    "DESCRIPTION": "Gain !M! Asparagus."
+  },
+
   "TheSimpletonMod:Chilis": {
     "NAME": "Chilis",
     "DESCRIPTION": "Gain !M! Chilis."
@@ -273,6 +283,12 @@
     "NAME": "Corn",
     "DESCRIPTION": "Gain !M! Corn."
   },
+
+  "TheSimpletonMod:Gourds": {
+    "NAME": "Gourds",
+    "DESCRIPTION": "Gain !M! Gourds."
+  },
+
 
   "TheSimpletonMod:Mushrooms": {
     "NAME": "Mushrooms",

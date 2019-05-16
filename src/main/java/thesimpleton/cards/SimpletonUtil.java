@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import thesimpleton.cards.attack.FlamingSpud;
 import thesimpleton.cards.attack.SpudMissile;
 import thesimpleton.cards.curse.Dregs;
+import thesimpleton.cards.skill.Husk;
 import thesimpleton.cards.skill.RootOut;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.powers.*;
@@ -25,6 +26,7 @@ public class SimpletonUtil {
     public static final AbstractCard DREGS = new Dregs();
     public static final AbstractCard SPUD_MISSILE = new SpudMissile();
     public static final AbstractCard FLAMING_SPUD = new FlamingSpud();
+    public static final AbstractCard HUSK = new Husk();
     public static final AbstractCard ROOT_OUT = new RootOut();
 
     public static TheSimpletonCharacter getPlayer() {

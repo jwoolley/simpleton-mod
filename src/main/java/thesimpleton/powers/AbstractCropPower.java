@@ -323,8 +323,10 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
       //TODO: accomplish this dynamically via Crop enum
 
       final PlantArtichokePower artichokePower = new PlantArtichokePower(dummy, 0);
+      final PlantAsparagusPower asparagusPower = new PlantAsparagusPower(dummy, 0);
       final PlantChiliPower chiliPower = new PlantChiliPower(dummy, 0);
       final PlantCornPower cornPower = new PlantCornPower(dummy, 0);
+      final PlantGourdPower gourdPower = new PlantGourdPower(dummy, 0);
       final PlantMushroomPower mushroomPower = new PlantMushroomPower(dummy, 0);
       final PlantOnionPower onionPower = new PlantOnionPower(dummy, 0);
       final PlantPotatoPower potatoPower = new PlantPotatoPower(dummy, 0);
@@ -332,8 +334,10 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
       final PlantTurnipPower turnipPower = new PlantTurnipPower(dummy, 0);
 
       referencePowers.add(artichokePower);
+      referencePowers.add(asparagusPower);
       referencePowers.add(chiliPower);
       referencePowers.add(cornPower);
+      referencePowers.add(gourdPower);
       referencePowers.add(spinachPower);
       referencePowers.add(mushroomPower);
       referencePowers.add(onionPower);

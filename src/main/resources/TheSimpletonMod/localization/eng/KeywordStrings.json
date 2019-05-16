@@ -7,6 +7,14 @@
     "DESCRIPTION": "#yCrop. Grants Plated Armor strength when harvested."
   },
 
+  "TheSimpletonMod:AsparagusKeyword": {
+    "PROPER_NAME": "AsparagusKeyword",
+    "NAMES": [
+      "asparagus"
+    ],
+    "DESCRIPTION": "#yCrop. Grants Dexterity when harvested."
+  },
+
   "TheSimpletonMod:BurningKeyword": {
     "PROPER_NAME": "Burning",
     "NAMES": [
@@ -70,12 +78,28 @@
     "DESCRIPTION": "Dregs are unplayable Curse cards."
   },
 
+  "TheSimpletonMod:GourdKeyword": {
+    "PROPER_NAME": "Gourds",
+    "NAMES": [
+      "Gourd", "Gourds"
+    ],
+    "DESCRIPTION": "#yCrop. When harvested, yields a 0-cost Husk card that grants block."
+  },
+
   "TheSimpletonMod:HarvestKeyword": {
     "PROPER_NAME": "Harvest",
     "NAMES": [
       "harvest", "harvested"
     ],
     "DESCRIPTION": "Harvest different #yCrop stacks for various effects."
+  },
+
+  "TheSimpletonMod:HuskKeyword": {
+    "PROPER_NAME": "HuskKeyword",
+    "NAMES": [
+      "husk", "husks"
+    ],
+    "DESCRIPTION": "Husks #b0-cost skill cards that exhaust to grant a small amount of Block."
   },
 
   "TheSimpletonMod:MaturityKeyword": {
@@ -124,7 +148,7 @@
     "NAMES": [
       "spinach"
     ],
-    "DESCRIPTION": "#yCrop. Grants temporary Strength when harvested."
+    "DESCRIPTION": "#yCrop. Grants Strength when harvested."
   },
 
   "TheSimpletonMod:SpudKeyword": {
@@ -132,7 +156,7 @@
     "NAMES": [
       "spud", "spuds"
     ],
-    "DESCRIPTION": "A 0-cost attack card that deals modest damage."
+    "DESCRIPTION": "Spuds are 0-cost attack cards that exhaust to deal modest damage."
   },
 
   "TheSimpletonMod:StunKeyword": {

@@ -10,25 +10,25 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.ApplyCropAction;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.PlantArtichokePower;
+import thesimpleton.powers.PlantGourdPower;
 
-public class Artichokes extends AbstractCropPowerCard {
-  public static final String ID = "TheSimpletonMod:Artichokes";
+public class Gourds extends AbstractCropPowerCard {
+  public static final String ID = "TheSimpletonMod:Gourds";
   public static final String NAME;
   public static final String DESCRIPTION;
-  public static final String IMG_PATH = "cards/artichokes.png";
+  public static final String IMG_PATH = "cards/gourds.png";
 
   private static final CardStrings cardStrings;
 
   private static final CardType TYPE = CardType.POWER;
-  private static final CardRarity RARITY = CardRarity.RARE;
+  private static final CardRarity RARITY = CardRarity.UNCOMMON;
   private static final CardTarget TARGET = CardTarget.SELF;
 
-  private static final int COST = 2;
-  private static final int UPGRADED_COST = 1;
-  private static final int CROP_STACKS = 2;
+  private static final int COST = 1;
+  private static final int UPGRADED_COST = 0;
+  private static final int CROP_STACKS = 3;
 
-  public Artichokes() {
+  public Gourds() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = CROP_STACKS;
     this.tags.add(TheSimpletonCardTags.CROP_POWER);
@@ -37,12 +37,12 @@ public class Artichokes extends AbstractCropPowerCard {
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyCropAction(p, p, new PlantArtichokePower(p, this.magicNumber, true), this.magicNumber, true));
+        new ApplyCropAction(p, p, new PlantGourdPower(p, this.magicNumber), this.magicNumber, true));
   }
 
   @Override
   public AbstractCard makeCopy() {
-    return new Artichokes();
+    return new Gourds();
   }
 
   @Override

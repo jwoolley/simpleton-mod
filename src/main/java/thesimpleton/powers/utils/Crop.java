@@ -4,8 +4,10 @@ import thesimpleton.powers.*;
 
 public enum Crop {
   ARTICHOKES,
+  ASPARAGUS,
   CORN,
   CHILIS,
+  GOURDS,
   MUSHROOMS,
   ONIONS,
   POTATOES,
@@ -16,10 +18,14 @@ public enum Crop {
     switch(crop) {
       case ARTICHOKES:
         return new PlantArtichokePower(owner, amount, isFromCard);
+      case ASPARAGUS:
+        return new PlantAsparagusPower(owner, amount, isFromCard);
       case CORN:
         return new PlantCornPower(owner, amount, isFromCard);
       case CHILIS:
         return new PlantChiliPower(owner, amount, isFromCard);
+      case GOURDS:PlantGourdPower:
+        return new PlantGourdPower(owner, amount, isFromCard);
       case MUSHROOMS:
         return new PlantMushroomPower(owner, amount, isFromCard);
       case ONIONS:

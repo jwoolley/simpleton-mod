@@ -111,6 +111,14 @@
     ]
   },
 
+  "TheSimpletonMod:PlantAsparagusPower": {
+    "NAME": "Asparagus",
+    "DESCRIPTIONS": [
+      "#gHarvest: Gain #b",
+      " #yDexterity for each stack harvested."
+    ]
+  },
+
   "TheSimpletonMod:PlantChiliPower": {
     "NAME": "Chilis",
     "DESCRIPTIONS": [
@@ -124,6 +132,13 @@
     "NAME": "Corn",
     "DESCRIPTIONS": [
       "#gHarvest: Draw a card for each stack harvested."
+    ]
+  },
+
+  "TheSimpletonMod:PlantGourdPower": {
+    "NAME": "Gourds",
+    "DESCRIPTIONS": [
+      "#gHarvest: Add a #yHusk to your hand per stack harvested."
     ]
   },
 

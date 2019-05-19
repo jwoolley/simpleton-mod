@@ -135,14 +135,6 @@
     ]
   },
 
-  "TheSimpletonMod:PlantGourdPower": {
-    "NAME": "Gourds",
-    "DESCRIPTIONS": [
-      "#gHarvest: Gain #b",
-      " #yBlock for each stack harvested."
-    ]
-  },
-
   "TheSimpletonMod:PlantMushroomPower": {
     "NAME": "Mushrooms",
     "DESCRIPTIONS": [
@@ -169,6 +161,14 @@
     "DESCRIPTIONS": [
       "#gHarvest: Gain #b",
       " #yStrength for each stack harvested."
+    ]
+  },
+
+  "TheSimpletonMod:PlantSquashPower": {
+    "NAME": "Squash",
+    "DESCRIPTIONS": [
+      "#gHarvest: Gain #b",
+      " #yBlock for each stack harvested."
     ]
   },
 

@@ -10,13 +10,13 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.ApplyCropAction;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.PlantGourdPower;
+import thesimpleton.powers.PlantSquashPower;
 
-public class Gourds extends AbstractCropPowerCard {
-  public static final String ID = "TheSimpletonMod:Gourds";
+public class Squash extends AbstractCropPowerCard {
+  public static final String ID = "TheSimpletonMod:Squash";
   public static final String NAME;
   public static final String DESCRIPTION;
-  public static final String IMG_PATH = "cards/gourds.png";
+  public static final String IMG_PATH = "cards/squash.png";
 
   private static final CardStrings cardStrings;
 
@@ -28,7 +28,7 @@ public class Gourds extends AbstractCropPowerCard {
   private static final int UPGRADED_COST = 0;
   private static final int CROP_STACKS = 3;
 
-  public Gourds() {
+  public Squash() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = CROP_STACKS;
     this.tags.add(TheSimpletonCardTags.CROP_POWER);
@@ -37,12 +37,12 @@ public class Gourds extends AbstractCropPowerCard {
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyCropAction(p, p, new PlantGourdPower(p, this.magicNumber), this.magicNumber, true));
+        new ApplyCropAction(p, p, new PlantSquashPower(p, this.magicNumber), this.magicNumber, true));
   }
 
   @Override
   public AbstractCard makeCopy() {
-    return new Gourds();
+    return new Squash();
   }
 
   @Override

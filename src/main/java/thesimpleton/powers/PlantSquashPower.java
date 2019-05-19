@@ -1,7 +1,6 @@
 package thesimpleton.powers;
 
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -10,29 +9,29 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
-import thesimpleton.cards.power.crop.Gourds;
+import thesimpleton.cards.power.crop.Squash;
 import thesimpleton.powers.utils.Crop;
 
-public class PlantGourdPower extends AbstractCropPower {
+public class PlantSquashPower extends AbstractCropPower {
   public static final Crop enumValue = Crop.GOURDS;
 
-  public static final String POWER_ID = "TheSimpletonMod:PlantGourdPower";
+  public static final String POWER_ID = "TheSimpletonMod:PlantSquashPower";
   private static final PowerStrings powerStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
 
   public static PowerType POWER_TYPE = PowerType.BUFF;
-  public static final String IMG = "plantgourd.png";
+  public static final String IMG = "plantsquash.png";
   public static final CardRarity cropRarity = CardRarity.COMMON;
-  private static final AbstractCropPowerCard powerCard = new Gourds();
+  private static final AbstractCropPowerCard powerCard = new Squash();
 
   private static final int BLOCK_PER_STACK = 6;
 
-  public PlantGourdPower(AbstractCreature owner, int amount) {
+  public PlantSquashPower(AbstractCreature owner, int amount) {
     this(owner, amount, false);
   }
 
-  public PlantGourdPower(AbstractCreature owner, int amount, boolean isFromCard) {
+  public PlantSquashPower(AbstractCreature owner, int amount, boolean isFromCard) {
     super(enumValue, NAME, POWER_ID, POWER_TYPE, DESCRIPTIONS, IMG, owner, cropRarity, powerCard, amount, isFromCard);
     this.name = NAME;
     updateDescription();

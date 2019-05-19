@@ -24,8 +24,8 @@ public enum Crop {
         return new PlantCornPower(owner, amount, isFromCard);
       case CHILIS:
         return new PlantChiliPower(owner, amount, isFromCard);
-      case GOURDS:PlantGourdPower:
-        return new PlantGourdPower(owner, amount, isFromCard);
+      case GOURDS:PlantSquashPower:
+        return new PlantSquashPower(owner, amount, isFromCard);
       case MUSHROOMS:
         return new PlantMushroomPower(owner, amount, isFromCard);
       case ONIONS:

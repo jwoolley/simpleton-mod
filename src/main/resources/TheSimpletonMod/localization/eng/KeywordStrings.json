@@ -78,14 +78,6 @@
     "DESCRIPTION": "Dregs are unplayable Curse cards."
   },
 
-  "TheSimpletonMod:GourdKeyword": {
-    "PROPER_NAME": "Gourds",
-    "NAMES": [
-      "Gourd", "Gourds"
-    ],
-    "DESCRIPTION": "#yCrop. Grants #yBlock When harvested."
-  },
-
   "TheSimpletonMod:HarvestKeyword": {
     "PROPER_NAME": "Harvest",
     "NAMES": [
@@ -157,6 +149,14 @@
       "spud", "spuds"
     ],
     "DESCRIPTION": "Spuds are 0-cost attack cards that exhaust to deal modest damage."
+  },
+
+  "TheSimpletonMod:SquashKeyword": {
+    "PROPER_NAME": "Squash",
+    "NAMES": [
+      "Squash"
+    ],
+    "DESCRIPTION": "#yCrop. Grants #yBlock When harvested."
   },
 
   "TheSimpletonMod:StunKeyword": {

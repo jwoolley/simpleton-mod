@@ -107,6 +107,14 @@
     ]
   },
 
+  "TheSimpletonMod:GourdCharm": {
+    "NAME": "Gourd Charm",
+    "FLAVOR": "Crafted specifically for adventurers who prefer Hard Mode.",
+    "DESCRIPTIONS": [
+      "Replaces #gSpud #gof #gthe #gInnocent. At the start of each combat, gain #b1 #ySquash."
+    ]
+  },
+
   "TheSimpletonMod:TheHarvester": {
     "NAME": "The Harvester",
     "FLAVOR": "Its purpose is clear-cut.",

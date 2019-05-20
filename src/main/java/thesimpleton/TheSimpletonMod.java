@@ -186,7 +186,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new SlashAndBurn());
         BaseMod.addCard(new Sunchoke());
 
-        // Skill (16)
+        // Skill (18)
         BaseMod.addCard(new Aerate());
         BaseMod.addCard(new Mulching());
         BaseMod.addCard(new ControlledBurn());
@@ -204,6 +204,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addCard(new StockTheCellar());
         BaseMod.addCard(new Swelter());
         BaseMod.addCard(new TillTheField());
+        BaseMod.addCard(new ToughenUp());
+        BaseMod.addCard(new VineRipen());
 
         // Power (13)
         BaseMod.addCard(new BirdFeeder());

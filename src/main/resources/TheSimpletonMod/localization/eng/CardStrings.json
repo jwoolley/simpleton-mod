@@ -259,6 +259,17 @@
     "DESCRIPTION": "Whenever you Harvest a Crop, gain !M! Block."
   },
 
+  "TheSimpletonMod:ToughenUp": {
+    "NAME": "Toughen Up",
+    "DESCRIPTION": "Gain !B! Block. NL If you have any Squash, gain !M! Squash."
+  },
+
+  "TheSimpletonMod:VineRipen": {
+    "NAME": "Vine Ripen",
+    "DESCRIPTION": "Gain !M! Squash. NL If Squash is Mature, Block is not removed at the start of your next turn.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Gain !M! Squash. NL If Squash is Mature, Block is not removed at the start of your next turn."
+  },
+
   "TheSimpletonMod:VolatileFumes": {
     "NAME": "Volatile Fumes",
     "DESCRIPTION": "Whenever you attack an enemy with Weak, apply !M! Burning."
@@ -284,12 +295,6 @@
     "DESCRIPTION": "Gain !M! Corn."
   },
 
-  "TheSimpletonMod:Squash": {
-    "NAME": "Squash",
-    "DESCRIPTION": "Gain !M! Squash."
-  },
-
-
   "TheSimpletonMod:Mushrooms": {
     "NAME": "Mushrooms",
     "DESCRIPTION": "Gain !M! Mushrooms."
@@ -308,6 +313,11 @@
   "TheSimpletonMod:Spinach": {
     "NAME": "Spinach",
     "DESCRIPTION": "Gain !M! Spinach."
+  },
+
+  "TheSimpletonMod:Squash": {
+    "NAME": "Squash",
+    "DESCRIPTION": "Gain !M! Squash."
   },
 
   "TheSimpletonMod:Turnips": {

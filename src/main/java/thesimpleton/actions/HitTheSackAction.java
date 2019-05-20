@@ -58,13 +58,29 @@ public class HitTheSackAction  extends AbstractGameAction
   @Override
   public void update() {
     if (isFirstRep) {
+      TheSimpletonMod.logger.debug("HitTheSackAction:: update firstRep numDamageReps");
+
       this.numDamageReps = EnergyPanel.totalCount;
+
+      TheSimpletonMod.logger.debug("HitTheSackAction:: update firstRep numDamageReps (1): " + this.numDamageReps);
+
+
       if (this.energyOnUse != -1) {
         this.numDamageReps = this.energyOnUse;
+        TheSimpletonMod.logger.debug("HitTheSackAction:: update firstRep numDamageReps (2): " + this.numDamageReps);
       }
       if (this.upgraded) {
         this.numDamageReps++;
+        TheSimpletonMod.logger.debug("HitTheSackAction:: update firstRep numDamageReps (3): " + this.numDamageReps);
       }
+      if (this.p.hasRelic("Chemical X")) {
+        this.numDamageReps += 2;
+        this.p.getRelic("Chemical X").flash();
+
+      }
+
+      TheSimpletonMod.logger.debug("HitTheSackAction:: update firstRep numDamageReps (4): " + this.numDamageReps);
+
       this.numPotatoReps = numDamageReps;
     }
 
@@ -81,13 +97,13 @@ public class HitTheSackAction  extends AbstractGameAction
 
     if (this.duration < 0.0F)
     {
-      if (numDamageReps > 0)  {
+      if (this.numDamageReps > 0)  {
         if (!m.isDead && !m.isDying) {
           AbstractDungeon.actionManager.addToBottom(new DamageAction(this.m, this.info, AttackEffect.NONE, true));
           AbstractDungeon.actionManager.addToBottom(new SFXAction("BLUNT_FAST", 0.1f));
         }
 
-        numDamageReps--;
+        this.numDamageReps--;
 
         if (!this.freeToPlayOnce) {
           this.p.energy.use(EnergyPanel.totalCount);

@@ -47,9 +47,8 @@ public class SpudOfTheMartyrPower extends AbstractTheSimpletonPower {
     if ((info.type != DamageInfo.DamageType.THORNS) && (info.type != DamageInfo.DamageType.HP_LOSS) && damageAmount > 0)
     {
       logger.debug("SpudOfTheMartyrPower.onAttacked took normal damage");
-      flash();
+      this.relic.flash();
       SpudOfTheMartyr.addPotatoStack(CROP_AMOUNT);
-//      AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(this.owner, this.relic));
     }
     return damageAmount;
   }

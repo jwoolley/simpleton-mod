@@ -119,6 +119,16 @@
     "DESCRIPTION": "#yCrop. Applies Weak to a random enemy when harvested."
   },
 
+
+  "TheSimpletonMod:PlantKeyword": {
+    "PROPER_NAME": "Plant",
+    "NAMES": [
+      "plant", "planted"
+    ],
+    "DESCRIPTION": "Gain that may #yCrop stacks."
+  },
+
+
   "TheSimpletonMod:PotatoKeyword": {
     "PROPER_NAME": "Potatoes",
     "NAMES": [

@@ -214,7 +214,7 @@
   "TheSimpletonMod:AbundancePower": {
     "NAME": "Abundance",
     "DESCRIPTIONS": [
-      "Increases #yCrop stacks gained from cards by #b",
+      "Increases #yCrop stacks #yPlanted from cards by #b",
       "."
     ]
   },
@@ -239,14 +239,14 @@
   "TheSimpletonMod:PhotosynthesisPower": {
     "NAME": "Photosynthesis",
     "DESCRIPTIONS": [
-      "At the end of your turn, convert any unused #yEnergy into an equal number of random #yCrop stacks."
+      "At the end of your turn, spend all your unused #yEnergy and #yPlant that many random #yCrops."
     ]
   },
 
   "TheSimpletonMod:SpudOfTheMartyrPower": {
     "NAME": "Martyr's Spud",
     "DESCRIPTIONS": [
-      " Whenever you take attack damage, gain #b",
+      " Whenever you take attack damage, Plant #b",
       " #yPotatoes.\n"
     ]
   },

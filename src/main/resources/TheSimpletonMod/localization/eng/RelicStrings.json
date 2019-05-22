@@ -111,7 +111,7 @@
     "NAME": "Gourd Charm",
     "FLAVOR": "Crafted specifically for adventurers who prefer Hard Mode.",
     "DESCRIPTIONS": [
-      "Replaces #gSpud #gof #gthe #gInnocent. At the start of each combat, gain #b1 #ySquash."
+      "Replaces #gSpud #gof #gthe #gInnocent. At the start of each combat, #yPlant #b1 #ySquash."
     ]
   },
 
@@ -119,7 +119,7 @@
     "NAME": "The Harvester",
     "FLAVOR": "Its purpose is clear-cut.",
     "DESCRIPTIONS": [
-      "Whenever you gain a #yCrop, if you have more than stacks than its #rMaturity level, #gHarvest all excess stacks."
+      "Whenever you #yPlant a #yCrop, if you have more than stacks than its #rMaturity level, #gHarvest all excess stacks."
     ]
   },
 
@@ -157,9 +157,9 @@
     "NAME": "Pungent Soil",
     "FLAVOR": "It grows on you.",
     "DESCRIPTIONS": [
-      "Whenever you shuffle your deck, each of your #yCrops that isn't #rMature gains #b",
-      " additional stack.",
-      " additional stacks."
+      "Whenever you shuffle your deck, for each of your #yCrops that isn't #rMature, #yPlant #b",
+      " more.",
+      " more."
     ]
   },
 
@@ -167,7 +167,8 @@
     "NAME": "Spud of the Innocent",
     "FLAVOR": "Salvation for the thin-skinned.",
     "DESCRIPTIONS": [
-      "At the start of each combat, gain #b1 #yPotatoes."
+      "At the start of each combat, #yPlant #b",
+      " #yPotatoes."
     ]
   },
 
@@ -175,7 +176,8 @@
     "NAME": "Spud of the Martyr",
     "FLAVOR": "Roasted for a good cause.",
     "DESCRIPTIONS": [
-      "Replaces #gSpud #gof #gthe #gInnocent. Whenever you take attack damage, and at the start of each combat, gain #b1 #yPotatoes."
+      "Replaces #gSpud #gof #gthe #gInnocent. Whenever you take attack damage, and at the start of each combat, #yPlant #b",
+      " #yPotatoes."
     ]
   },
 

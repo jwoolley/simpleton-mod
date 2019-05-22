@@ -11,7 +11,7 @@
 
   "TheSimpletonMod:Aerate": {
     "NAME": "Aerate",
-    "DESCRIPTION": "Gain !B! Block. NL Add !M! stacks to your newest Crop",
+    "DESCRIPTION": "Gain !B! Block. NL Plant !M! of your newest Crop",
     "EXTENDED_DESCRIPTION" : [
       ".",
       " NL (No eligible Crops currently)",
@@ -136,8 +136,8 @@
 
   "TheSimpletonMod:HitTheSack": {
     "NAME": "Hit the Sack",
-    "DESCRIPTION": "Deal !D! damage X times. NL Gain X Potatoes.",
-    "UPGRADE_DESCRIPTION" : "Deal !D! damage X+1 times. NL Gain X+1 Potatoes."
+    "DESCRIPTION": "Deal !D! damage X times. NL Plant X Potatoes.",
+    "UPGRADE_DESCRIPTION" : "Deal !D! damage X+1 times. NL Plant X+1 Potatoes."
   },
 
   "TheSimpletonMod:Husk": {
@@ -155,8 +155,8 @@
 
   "TheSimpletonMod:OnionBloom": {
     "NAME": "Onion Bloom",
-    "DESCRIPTION": "Innate. Gain !M! Onion. Draw a card. NL Discard a card. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Gain !M! Onion. Draw a card. NL Discard a card."
+    "DESCRIPTION": "Innate. Plant !M! Onion. Draw a card. NL Discard a card. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Plant !M! Onion. Draw a card. NL Discard a card."
   },
 
   "TheSimpletonMod:PestManagement": {
@@ -166,14 +166,14 @@
 
   "TheSimpletonMod:Photosynthesis": {
     "NAME": "Photosynthesis",
-    "DESCRIPTION": "At the end of your turn, convert any unused Energy into an equal number of random  Crop stacks."
+    "DESCRIPTION": "At the end of your turn, spend all your unused Energy and Plant that many random Crops."
   },
 
   "TheSimpletonMod:Pruning": {
     "NAME": "Pruning",
     "DESCRIPTION": "Harvest ",
     "EXTENDED_DESCRIPTION" : [
-      " stack of your oldest crop, then gain !M! stacks",
+      " stack of your oldest Crop, then Plant !M! stacks",
       ".",
       " NL (No eligible Crops currently)",
       " NL (Currently ",
@@ -183,14 +183,14 @@
 
   "TheSimpletonMod:ReapAndSow": {
     "NAME": "Reap and Sow",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! Potatoes, then add a Cultivate to your discard pile if you have any Mature Crops.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! Potatoes, then add an upgraded Cultivate to your discard pile if you have any Mature Crops."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Plant !M! Potatoes, then add a Cultivate to your discard pile if you have any Mature Crops.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Plant !M! Potatoes, then add an upgraded Cultivate to your discard pile if you have any Mature Crops."
   },
 
   "TheSimpletonMod:RootDown": {
     "NAME": "Root Down",
-    "DESCRIPTION": "Deal !D! damage. NL If Turnips are Mature, Harvest all Turnips. Otherwise, gain !M! Turnips.",
-    "UPGRADE_DESCRIPTION": "Innate. Deal !D! damage. NL If Turnips are Mature, Harvest all Turnips. Otherwise, gain !M! Turnips."
+    "DESCRIPTION": "Deal !D! damage. NL If Turnips are Mature, Harvest all Turnips. Otherwise, Plant !M! Turnips.",
+    "UPGRADE_DESCRIPTION": "Innate. Deal !D! damage. NL If Turnips are Mature, Harvest all Turnips. Otherwise, Plant !M! Turnips."
   },
 
   "TheSimpletonMod:RootOut": {
@@ -243,7 +243,7 @@
 
   "TheSimpletonMod:TillTheField": {
     "NAME": "Till the Field",
-    "DESCRIPTION": "If your newest crop is Mature, gain !B! Block. Otherwise, gain !M! stacks of that crop.",
+    "DESCRIPTION": "If your newest Crop is Mature, gain !B! Block. Otherwise, Plant !M! of that Crop.",
     "EXTENDED_DESCRIPTION" : [
       ".",
       " NL (No eligible Crops)",
@@ -261,13 +261,13 @@
 
   "TheSimpletonMod:ToughenUp": {
     "NAME": "Toughen Up",
-    "DESCRIPTION": "Gain !B! Block. NL If you have any Squash, gain !M! Squash."
+    "DESCRIPTION": "Gain !B! Block. NL If you have any Squash, Plant  !M! Squash."
   },
 
   "TheSimpletonMod:VineRipen": {
     "NAME": "Vine Ripen",
-    "DESCRIPTION": "Gain !M! Squash. NL If Squash is Mature, Block is not removed at the start of your next turn.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Gain !M! Squash. NL If Squash is Mature, Block is not removed at the start of your next turn."
+    "DESCRIPTION": "Plant !M! Squash. NL If Squash is Mature, Block is not removed at the start of your next turn.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Plant !M! Squash. NL If Squash is Mature, Block is not removed at the start of your next turn."
   },
 
   "TheSimpletonMod:VolatileFumes": {
@@ -277,52 +277,52 @@
 
   "TheSimpletonMod:Artichokes": {
     "NAME": "Artichokes",
-    "DESCRIPTION": "Gain !M! Artichokes."
+    "DESCRIPTION": "Plant !M! Artichokes."
   },
 
   "TheSimpletonMod:Asparagus": {
     "NAME": "Asparagus",
-    "DESCRIPTION": "Gain !M! Asparagus."
+    "DESCRIPTION": "Plant !M! Asparagus."
   },
 
   "TheSimpletonMod:Chilis": {
     "NAME": "Chilis",
-    "DESCRIPTION": "Gain !M! Chilis."
+    "DESCRIPTION": "Plant !M! Chilis."
   },
 
   "TheSimpletonMod:Corn": {
     "NAME": "Corn",
-    "DESCRIPTION": "Gain !M! Corn."
+    "DESCRIPTION": "Plant !M! Corn."
   },
 
   "TheSimpletonMod:Mushrooms": {
     "NAME": "Mushrooms",
-    "DESCRIPTION": "Gain !M! Mushrooms."
+    "DESCRIPTION": "Plant !M! Mushrooms."
   },
 
   "TheSimpletonMod:Onions": {
     "NAME": "Onions",
-    "DESCRIPTION": "Gain !M! Onions."
+    "DESCRIPTION": "Plant !M! Onions."
   },
 
   "TheSimpletonMod:Potatoes": {
     "NAME": "Potatoes",
-    "DESCRIPTION": "Gain !M! Potatoes."
+    "DESCRIPTION": "Plant !M! Potatoes."
   },
 
   "TheSimpletonMod:Spinach": {
     "NAME": "Spinach",
-    "DESCRIPTION": "Gain !M! Spinach."
+    "DESCRIPTION": "Plant !M! Spinach."
   },
 
   "TheSimpletonMod:Squash": {
     "NAME": "Squash",
-    "DESCRIPTION": "Gain !M! Squash."
+    "DESCRIPTION": "Plant !M! Squash."
   },
 
   "TheSimpletonMod:Turnips": {
     "NAME": "Turnips",
-    "DESCRIPTION": "Gain !M! Turnips."
+    "DESCRIPTION": "Plant !M! Turnips."
   },
 
   "TheSimpletonMod:Dregs": {

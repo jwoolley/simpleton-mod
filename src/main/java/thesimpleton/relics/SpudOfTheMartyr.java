@@ -23,7 +23,7 @@ SpudOfTheMartyr extends CustomRelic {
     private static final RelicTier TIER = RelicTier.BOSS;
     private static final LandingSound SOUND = LandingSound.HEAVY;
 
-    private static final int CROP_AMOUNT = 1;
+    private static final int CROP_AMOUNT = 2;
 
     public SpudOfTheMartyr() {
         super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
@@ -36,7 +36,7 @@ SpudOfTheMartyr extends CustomRelic {
 
     @Override
     public String getUpdatedDescription() {
-        return this.DESCRIPTIONS[0];
+        return this.DESCRIPTIONS[0] + CROP_AMOUNT + this.DESCRIPTIONS[1];
     }
 
     @Override

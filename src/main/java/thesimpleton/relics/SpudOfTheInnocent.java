@@ -21,7 +21,7 @@ public class SpudOfTheInnocent extends CustomRelic {
   private static final RelicTier TIER = RelicTier.STARTER;
   private static final LandingSound SOUND = LandingSound.HEAVY;
 
-  private static final int CROP_AMOUNT = 1;
+  private static final int CROP_AMOUNT = 2;
 
   public SpudOfTheInnocent() {
     super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
@@ -31,7 +31,7 @@ public class SpudOfTheInnocent extends CustomRelic {
 
   @Override
   public String getUpdatedDescription() {
-    return this.DESCRIPTIONS[0];
+    return this.DESCRIPTIONS[0] + CROP_AMOUNT + this.DESCRIPTIONS[1];
   }
 
   @Override

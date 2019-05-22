@@ -20,7 +20,7 @@ public class GourdCharm extends CustomRelic {
   private static final RelicTier TIER = RelicTier.UNCOMMON;
   private static final LandingSound SOUND = LandingSound.HEAVY;
 
-  private static final int CROP_AMOUNT = 1;
+  private static final int CROP_AMOUNT = 2;
 
   public GourdCharm() {
     super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),

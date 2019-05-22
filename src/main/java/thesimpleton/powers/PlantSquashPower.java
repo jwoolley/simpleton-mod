@@ -45,7 +45,7 @@ public class PlantSquashPower extends AbstractCropPower {
   protected int harvestAction(int harvestAmount) {
     AbstractPlayer player = SimpletonUtil.getPlayer();
     if (harvestAmount > 0) {
-      AbstractDungeon.actionManager.addToBottom(new GainBlockAction(player, player, BLOCK_PER_STACK));
+      AbstractDungeon.actionManager.addToBottom(new GainBlockAction(player, player, harvestAmount * BLOCK_PER_STACK));
     }
     return harvestAmount;
   }

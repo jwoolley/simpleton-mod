@@ -29,6 +29,7 @@ public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
   private static final int COST = 0;
 
   private static final int NUM_STACKS_TO_HARVEST = 1;
+  private static final int NUM_STACKS_TO_HARVEST_UPGRADE = 1;
   private static final int NUM_STACKS_TO_GAIN = 2;
   private static final int NUM_STACKS_TO_GAIN_UPGRADE = 1;
 
@@ -38,7 +39,9 @@ public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
   public int numStacksToHarvest;
 
   public Pruning() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE,  AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST,
+        getDescription(false, NUM_STACKS_TO_HARVEST),
+        TYPE,  AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.numStacksToHarvest =  NUM_STACKS_TO_HARVEST;
     this.baseMagicNumber = this.magicNumber = NUM_STACKS_TO_GAIN;
     this.tags.add(TheSimpletonCardTags.HARVEST);
@@ -62,7 +65,7 @@ public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(
-        new PruningAction(p, NUM_STACKS_TO_HARVEST, NUM_STACKS_TO_GAIN, true));
+        new PruningAction(p, this.numStacksToHarvest, this.magicNumber, true));
   }
 
 
@@ -72,12 +75,12 @@ public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
   }
 
   public void updateDescription(boolean extendedDescription) {
-    this.rawDescription = getDescription(extendedDescription);
+    this.rawDescription = getDescription(extendedDescription, this.numStacksToHarvest);
     this.initializeDescription();
   }
 
-  private static String getDescription(boolean extendedDescription) {
-    String description = DESCRIPTION + NUM_STACKS_TO_HARVEST + EXTENDED_DESCRIPTION[0];
+  private static String getDescription(boolean extendedDescription, int numStacksToHarvest) {
+    String description = DESCRIPTION + numStacksToHarvest + EXTENDED_DESCRIPTION[0];
 
     if (extendedDescription) {
       if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
@@ -100,6 +103,7 @@ public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
     if (!this.upgraded) {
       this.upgradeName();
       this.upgradeMagicNumber(NUM_STACKS_TO_GAIN_UPGRADE);
+      this.numStacksToHarvest += NUM_STACKS_TO_HARVEST_UPGRADE;
     }
   }
 

@@ -13,10 +13,10 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class MulchingAction extends AbstractGameAction {
+public class MulchAction extends AbstractGameAction {
   private static final float ACTION_DURATION = Settings.ACTION_DUR_FAST;
 
-  private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("MulchingAction");
+  private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("MulchAction");
   public static final String[] TEXT = uiStrings.TEXT;
 
   private final AbstractPlayer p;
@@ -25,7 +25,7 @@ public class MulchingAction extends AbstractGameAction {
   private final int burningAmount;
   private final int cardDrawAmount;
 
-  public MulchingAction(int exhaustAmount, int blockAmount, int burningAmount, int cardDrawAmount) {
+  public MulchAction(int exhaustAmount, int blockAmount, int burningAmount, int cardDrawAmount) {
     this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
     this.p = AbstractDungeon.player;
     this.duration = ACTION_DURATION;

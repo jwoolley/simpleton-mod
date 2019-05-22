@@ -145,8 +145,8 @@
     "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Exhaust."
   },
 
-  "TheSimpletonMod:Mulching": {
-    "NAME": "Mulching",
+  "TheSimpletonMod:Mulch": {
+    "NAME": "Mulch",
     "DESCRIPTION": "Exhaust a card, then gain an effect based on its type: NL NL Attack: Gain !B! Block. NL Skill: Apply ",
     "EXTENDED_DESCRIPTION": [
       " Burning to ALL. NL All Others: Draw ",

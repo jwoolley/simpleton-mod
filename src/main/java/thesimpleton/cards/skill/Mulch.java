@@ -8,15 +8,15 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.actions.MulchingAction;
+import thesimpleton.actions.MulchAction;
 import thesimpleton.enums.AbstractCardEnum;
 
-public class Mulching extends CustomCard {
-  public static final String ID = "TheSimpletonMod:Mulching";
+public class Mulch extends CustomCard {
+  public static final String ID = "TheSimpletonMod:Mulch";
   public static final String NAME;
   public static final String DESCRIPTION;
   public static final String[] EXTENDED_DESCRIPTION;
-  public static final String IMG_PATH = "cards/mulching.png";
+  public static final String IMG_PATH = "cards/mulch.png";
 
   private static final CardStrings cardStrings;
 
@@ -31,7 +31,7 @@ public class Mulching extends CustomCard {
   private static final int BURNING_AMOUNT = 4;
   private static final int CARD_DRAW  = 2;
 
-  public Mulching() {
+  public Mulch() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(BURNING_AMOUNT, CARD_DRAW), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
   }
@@ -39,12 +39,12 @@ public class Mulching extends CustomCard {
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(
-        new MulchingAction(EXHAUST_AMOUNT, this.block, BURNING_AMOUNT, CARD_DRAW));
+        new MulchAction(EXHAUST_AMOUNT, this.block, BURNING_AMOUNT, CARD_DRAW));
   }
 
   @Override
   public AbstractCard makeCopy() {
-    return new Mulching();
+    return new Mulch();
   }
 
   @Override

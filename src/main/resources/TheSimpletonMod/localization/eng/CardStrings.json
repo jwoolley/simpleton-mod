@@ -66,7 +66,8 @@
 
   "TheSimpletonMod:Cultivate": {
     "NAME": "Cultivate",
-    "DESCRIPTION": "Gain !B! Block. Harvest !M! of each Crop. NL Exhaust."
+    "DESCRIPTION": "Gain !B! Block. NL Harvest ",
+    "EXTENDED_DESCRIPTION" : [" of each Crop, then Plant !M! of each Crop you Harvested. NL Exhaust."]
   },
 
   "TheSimpletonMod:Depletion": {
@@ -104,7 +105,7 @@
 
   "TheSimpletonMod:Fertilaser": {
     "NAME": "Fertilaser",
-    "DESCRIPTION": "Deal !D! damage. NL Add !M! stack to each Crop."
+    "DESCRIPTION": "Deal !D! damage. NL Plant !M! more of each Crop."
   },
 
   "TheSimpletonMod:FlamingSpud": {

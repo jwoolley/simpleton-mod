@@ -188,6 +188,12 @@
     "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Plant !M! Potatoes, then add an upgraded Cultivate to your discard pile if you have any Mature Crops."
   },
 
+  "TheSimpletonMod:ResearchGrant": {
+    "NAME": "ResearchGrant",
+    "DESCRIPTION": "Gain !B! Block. NL Add !M! copies of Soil Sample to your discard pile. NL Exhaust."
+  },
+
+
   "TheSimpletonMod:RootDown": {
     "NAME": "Root Down",
     "DESCRIPTION": "Deal !D! damage. NL If Turnips are Mature, Harvest all Turnips. Otherwise, Plant !M! Turnips.",

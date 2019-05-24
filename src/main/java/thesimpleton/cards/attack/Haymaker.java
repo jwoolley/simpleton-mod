@@ -1,11 +1,6 @@
 package thesimpleton.cards.attack;
 
-import java.util.Optional;
-
 import basemod.abstracts.CustomCard;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -40,7 +35,7 @@ public class Haymaker extends CustomCard {
     private final int vulnerableAmount;
 
     public Haymaker() {
-        super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getUpdatedDescription(VULNERABLE_AMOUNT), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+        super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(VULNERABLE_AMOUNT), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
         this.baseMagicNumber = this.magicNumber = HEAL_AMOUNT;
         this.vulnerableAmount = VULNERABLE_AMOUNT;
@@ -66,15 +61,16 @@ public class Haymaker extends CustomCard {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_DAMAGE_AMOUNT);
             this.upgradeMagicNumber(UPGRADE_HEAL_AMOUNT);
-            this.rawDescription = getUpdatedDescription();
+            this.rawDescription = getDescription();
+            initializeDescription();
         }
     }
 
-    public String getUpdatedDescription() {
-        return getUpdatedDescription(this.vulnerableAmount);
+    public String getDescription() {
+        return getDescription(this.vulnerableAmount);
     }
 
-    public static String getUpdatedDescription(int vulnerableAmount) {
+    public static String getDescription(int vulnerableAmount) {
         return DESCRIPTION + vulnerableAmount + EXTENDED_DESCRIPTION[0];
     }
 

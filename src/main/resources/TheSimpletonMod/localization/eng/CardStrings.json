@@ -215,6 +215,10 @@
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Add !M! Depletions to your hand."
   },
 
+  "TheSimpletonMod:SlashAndBurn": {
+    "NAME": "Slash And Burn",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Burning."
+  },
 
   "TheSimpletonMod:SoilSample": {
     "NAME": "Soil Sample",
@@ -222,9 +226,13 @@
     "UPGRADE_DESCRIPTION": "Shuffle up to !M! cards from your discard pile into your draw pile, then Draw a card. It costs 0 this turn."
   },
 
-  "TheSimpletonMod:SlashAndBurn": {
-    "NAME": "Slash And Burn",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Burning."
+  "TheSimpletonMod:SpiceUp": {
+    "NAME": "Spice Up",
+    "DESCRIPTION": "Apply !M! Burning. NL Draw ",
+    "EXTENDED_DESCRIPTION" : [
+      " card.",
+      " cards."
+    ]
   },
 
   "TheSimpletonMod:SpudMissile": {

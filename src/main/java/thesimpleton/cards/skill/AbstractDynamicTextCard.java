@@ -14,11 +14,13 @@ abstract public class AbstractDynamicTextCard extends CustomCard {
   @Override
   public void hover() {
     updateDescription(SimpletonUtil.isPlayerInCombat());
+//    super.hover();
   }
 
   @Override
   public void unhover() {
     super.unhover();
+    super.untip();
     updateDescription(false);
   }
 

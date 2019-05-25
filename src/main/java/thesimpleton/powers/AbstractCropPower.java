@@ -254,6 +254,12 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     return activeCropPowers;
   }
 
+  public static void resetHasHarvestedThisTurn() {
+    logger.debug("AbstractCropPower.resetHasHarvestedThisTurn :: Manual reset : Resetting hasHarvestedThisTurn");
+
+    hasHarvestedThisTurn = false;
+  }
+
   public static boolean hasHarvestedThisTurn() {
     return hasHarvestedThisTurn;
   }
@@ -446,7 +452,7 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     // reset hasHarvestedThisTurn at start of combat and at end of turn
     Trigger trigger = new Trigger() {
       public void trigger() {
-        logger.debug("Resetting hasHarvestedThisTurn");
+        logger.debug("Managed trigger: Resetting hasHarvestedThisTurn");
         hasHarvestedThisTurn = false;
       }
     };

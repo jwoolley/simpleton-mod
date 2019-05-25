@@ -30,11 +30,6 @@ public class ShuffleIfNeededAction extends AbstractGameAction {
       if (this.p.drawPile.isEmpty()) {
         AbstractDungeon.actionManager.addToBottom(new EmptyDeckShuffleAction());
       } else {
-        for(AbstractCard card : p.drawPile.group) {
-          if (card instanceof ShuffleTriggeredCard) {
-            ((ShuffleTriggeredCard)card).willBeShuffledTrigger();
-          }
-        }
         AbstractDungeon.actionManager.addToBottom(new ShuffleAction(this.p.drawPile, true));
       }
 

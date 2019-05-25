@@ -26,7 +26,7 @@ public class SoilSampleAction extends AbstractGameAction {
 
   public void update() {
     if (this.duration != ACTION_DURATION) {
-      AbstractDungeon.actionManager.addToTop(new ChooseAndAddDiscardCardsToDeckAction(this.amount));
+      AbstractDungeon.actionManager.addToTop(new ChooseAndAddDiscardCardsToDeckAction(this.amount, true));
       AbstractDungeon.actionManager.addToBottom(new ShuffleIfNeededAction());
       AbstractDungeon.actionManager.addToBottom(new DrawTopCardAndSetCostForTurnAction(COST_FOR_TURN));
       this.tickDuration();

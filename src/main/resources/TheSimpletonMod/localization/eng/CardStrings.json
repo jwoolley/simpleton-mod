@@ -65,9 +65,9 @@
     "EXTENDED_DESCRIPTION" : [
       ".",
       " NL (",
-      "Won't yet",
-      "Will",
-      " trigger)"
+      "Won't trigger yet",
+      "Will trigger",
+      ")"
     ]
   },
 

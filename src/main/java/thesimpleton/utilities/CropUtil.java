@@ -77,6 +77,7 @@ public class CropUtil implements PostUpdateSubscriber, PostDrawSubscriber, PostP
     logger.debug("CropUtil:resetForCombat activeCrops after combatStartCrops added: " + activeCrops.size());
 
     combatStartCrops.clear();
+    AbstractCropPower.resetHasHarvestedThisTurn();
     wasResetForCombat = true;
   }
 

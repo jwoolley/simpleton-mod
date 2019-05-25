@@ -7,19 +7,24 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.DiscardGlowEffect;
+import thesimpleton.cards.ShuffleTriggeredCard;
 
 public class ChooseAndAddDiscardCardsToDeckAction extends AbstractGameAction {
   private AbstractPlayer p;
   private AbstractGameAction.ActionType ACTION_TYPE = AbstractGameAction.ActionType.CARD_MANIPULATION;
   private static final float ACTION_DURATION = Settings.ACTION_DUR_FASTER;
 
-  public ChooseAndAddDiscardCardsToDeckAction(int numCardsToChoose) {
+  private final boolean triggerShuffle;
+
+  public ChooseAndAddDiscardCardsToDeckAction(int numCardsToChoose, boolean triggerShuffle) {
     this.p = AbstractDungeon.player;
     setValues(this.p,  this.p, numCardsToChoose);
 
     this.actionType = ACTION_TYPE;
     this.amount = numCardsToChoose;
     this.duration = ACTION_DURATION;
+
+    this.triggerShuffle = triggerShuffle;
   }
 
     @Override
@@ -38,6 +43,11 @@ public class ChooseAndAddDiscardCardsToDeckAction extends AbstractGameAction {
           //TODO: clean up: find the one (first) selected card and add it
           for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
             this.p.discardPile.moveToDeck(c, true);
+            if (triggerShuffle) {
+              if (c instanceof ShuffleTriggeredCard) {
+                ((ShuffleTriggeredCard)c).willBeShuffledTrigger();
+              }
+            }
 //            this.p.discardPile.removeCard(c);
           }
           AbstractDungeon.gridSelectScreen.selectedCards.clear();

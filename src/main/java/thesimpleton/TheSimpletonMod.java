@@ -63,7 +63,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     private static final String MOD_NAME = "TheSimpleton";
     private static final String CONFIG_NAME = "TheSimpletonConfig";
 
-    private static TheSimpletonCharacter theSimpletonCharacter;
+    public static TheSimpletonCharacter theSimpletonCharacter;
     private static Properties theSimpletonProperties = new Properties();
 
     private Map<String, Keyword> keywords;

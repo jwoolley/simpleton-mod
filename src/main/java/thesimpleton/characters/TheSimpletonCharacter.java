@@ -100,6 +100,8 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
             logger.debug(index++ + ") " + card.name + " [cardId: " + card.cardID + "]");
         }
 
+
+
 //        TheSimpletonMod.logger.debug(("instantiating precombatPredrawTriggers manager with " + staticPrecombatPredrawTriggerListeners.size() + " preregistered triggers"));
     }
 

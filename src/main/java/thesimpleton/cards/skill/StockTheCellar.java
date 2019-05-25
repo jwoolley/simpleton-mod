@@ -3,6 +3,7 @@ package thesimpleton.cards.skill;
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -60,9 +61,12 @@ public class StockTheCellar extends CustomCard implements ShuffleTriggeredCard  
   }
 
   public void willBeShuffledTrigger() {
-    this.flash(Color.BLUE);
-    upgradeBlock(this.magicNumber);
+//    this.flash(Color.BLUE);
+//    upgradeBlock(this.magicNumber);
+//    TheSimpletonMod.logger.debug(this.name + " upgraded block:" + this.block);
+    AbstractDungeon.actionManager.addToBottom(new ModifyBlockAction(this.uuid, this.magicNumber));
     TheSimpletonMod.logger.debug(this.name + " upgraded block:" + this.block);
+
   }
 
   static {

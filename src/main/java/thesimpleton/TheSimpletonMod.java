@@ -328,7 +328,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         newlyShuffledCards.stream()
             .filter(c -> c instanceof ShuffleTriggeredCard)
-            .forEach(c -> ((ShuffleTriggeredCard) c).willBeShuffledTrigger());
+            .forEach(c -> {
+                logger.debug("handleEmptyDrawShuffleTriggeredCardsAfter :: Triggering willBeShuffledTrigger for " + c.name);
+                ((ShuffleTriggeredCard) c).willBeShuffledTrigger();
+            });
     }
 
     private static void handleOtherShuffleTriggeredCardsAfter() {
@@ -340,7 +343,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         newlyShuffledCards.stream()
             .filter(c -> c instanceof ShuffleTriggeredCard)
-            .forEach(c -> ((ShuffleTriggeredCard) c).willBeShuffledTrigger());
+            .forEach(c -> {
+                logger.debug("handleOtherShuffleTriggeredCardsAfter :: Triggering willBeShuffledTrigger for " + c.name);
+                ((ShuffleTriggeredCard) c).willBeShuffledTrigger();
+            });
     }
 
     public static String cardListToString(List<AbstractCard> list) {

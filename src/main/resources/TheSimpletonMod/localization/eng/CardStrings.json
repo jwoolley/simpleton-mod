@@ -61,7 +61,14 @@
 
   "TheSimpletonMod:CullingStrike": {
     "NAME": "Culling Strike",
-    "DESCRIPTION": "Deal !D! damage. NL If you've Harvested this turn, deal !D! damage again."
+    "DESCRIPTION": "Deal !D! damage. NL If you've Harvested this turn, deal !D! damage again",
+    "EXTENDED_DESCRIPTION" : [
+      ".",
+      " NL (",
+      "Won't yet",
+      "Will",
+      " trigger)"
+    ]
   },
 
   "TheSimpletonMod:Cultivate": {
@@ -174,7 +181,9 @@
     "NAME": "Pruning",
     "DESCRIPTION": "Harvest ",
     "EXTENDED_DESCRIPTION" : [
-      " stack of your oldest Crop, then Plant !M! stacks",
+      " stack",
+      " stacks",
+      " of your oldest Crop, then Plant !M! stacks",
       ".",
       " NL (No eligible Crops currently)",
       " NL (Currently ",

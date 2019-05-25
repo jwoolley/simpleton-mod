@@ -123,7 +123,7 @@
   "TheSimpletonMod:PlantKeyword": {
     "PROPER_NAME": "Plant",
     "NAMES": [
-      "plant", "planted"
+      "plant", "planted", "plants", "re-plant", "re-plants", "re-planted"
     ],
     "DESCRIPTION": "Gain that may #yCrop stacks."
   },

@@ -19,9 +19,9 @@ abstract public class AbstractDynamicTextCard extends CustomCard {
 
   @Override
   public void unhover() {
+    updateDescription(false);
     super.unhover();
     super.untip();
-    updateDescription(false);
   }
 
   abstract protected void updateDescription(boolean extendedDescription);

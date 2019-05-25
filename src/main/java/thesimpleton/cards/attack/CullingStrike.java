@@ -12,12 +12,15 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
+import thesimpleton.cards.skill.AbstractDynamicTextCard;
 import thesimpleton.enums.AbstractCardEnum;
+import thesimpleton.powers.AbstractCropPower;
 
-public class CullingStrike extends CustomCard {
+public class CullingStrike extends AbstractDynamicTextCard {
   public static final String ID = "TheSimpletonMod:CullingStrike";
   public static final String NAME;
   public static final String DESCRIPTION;
+  public static final String[] EXTENDED_DESCRIPTION;
   public static final String IMG_PATH = "cards/cullingstrike.png";
 
   private static final CardStrings cardStrings;
@@ -31,7 +34,8 @@ public class CullingStrike extends CustomCard {
   private static final int UPGRADE_DAMAGE_AMOUNT = 2;
 
   public CullingStrike() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE,
+        AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
     this.isMultiDamage = true;
   }
@@ -68,9 +72,37 @@ public class CullingStrike extends CustomCard {
     }
   }
 
+  private static String getDescription(boolean extendedDescription) {
+    String description = DESCRIPTION;
+
+    if (extendedDescription) {
+      description += EXTENDED_DESCRIPTION[1];
+      if (!SimpletonUtil.hasHarvestedThisTurn()) {
+        description += EXTENDED_DESCRIPTION[2];
+      } else {
+        description += EXTENDED_DESCRIPTION[3];
+      }
+      description += EXTENDED_DESCRIPTION[4];
+    }
+
+    description += EXTENDED_DESCRIPTION[0];
+    return description;
+  }
+
+  public void updateDescription(boolean extendedDescription) {
+    this.rawDescription = getDescription(extendedDescription);
+    this.initializeDescription();
+  }
+
+  @Override
+  public void triggerWhenDrawn() {
+    TheSimpletonMod.logger.debug("CullingStrike drawn. HAS HARVESTED: " + SimpletonUtil.hasHarvestedThisTurn());
+  }
+
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
+    EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
   }
 }

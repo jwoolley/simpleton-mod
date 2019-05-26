@@ -22,7 +22,7 @@ public class PotatoCrop extends AbstractCrop {
 
     public static final Crop enumValue = Crop.POTATOES;
 
-    private static final OrbStrings powerStrings;
+    private static final OrbStrings orbStrings;
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
 
@@ -55,9 +55,9 @@ public class PotatoCrop extends AbstractCrop {
     }
 
     static {
-        powerStrings = CardCrawlGame.languagePack.getOrbString(ID);
-        NAME = powerStrings.NAME;
-        DESCRIPTIONS = powerStrings.DESCRIPTION;
+        orbStrings = CardCrawlGame.languagePack.getOrbString(ID);
+        NAME = orbStrings.NAME;
+        DESCRIPTIONS = orbStrings.DESCRIPTION;
     }
 
     @Override

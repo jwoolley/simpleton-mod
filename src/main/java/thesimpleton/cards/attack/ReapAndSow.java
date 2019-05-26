@@ -55,7 +55,7 @@ public class ReapAndSow extends CustomCard {
         new ApplyPowerAction(p, p, new PlantPotatoPower(p, this.magicNumber), this.magicNumber));
 
 
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCrop(this.magicNumber)));
+//    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCrop(this.magicNumber)));
 
     AbstractDungeon.actionManager.addToBottom(
         new ReapAndSowThresholdAction(HARVEST_THRESHOLD, this.upgraded));

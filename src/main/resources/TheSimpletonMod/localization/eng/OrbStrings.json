@@ -1,0 +1,46 @@
+{
+  "TheSimpletonMod:AbstractCrop": {
+    "NAME": "Abstract Crop",
+    "DESCRIPTION": [
+      "#yCrop. Matures at #r",
+      " stacks."
+    ]
+  },
+  "TheSimpletonMod:ChiliCrop": {
+    "NAME": "Chilis",
+    "DESCRIPTION": [
+      "#gHarvest: Deal #b",
+      " damage and apply #b",
+      " #yBurning to ALL enemies for each stack harvested."
+    ]
+  },
+
+  "TheSimpletonMod:CornCrop": {
+    "NAME": "Corn",
+    "DESCRIPTION": [
+      "#gHarvest: Draw a card for each stack harvested."
+    ]
+  },
+
+  "TheSimpletonMod:MushroomCrop": {
+    "NAME": "Mushrooms",
+    "DESCRIPTION": [
+      "#gHarvest: Add a random colorless card to your hand for each stack harvested."
+    ]
+  },
+
+
+  "TheSimpletonMod:PotatoCrop": {
+    "NAME": "Potatoes",
+    "DESCRIPTION": [
+      "Crop: ",
+      " harvest to get Spud cards."
+    ]
+  }
+}
+
+
+
+
+
+

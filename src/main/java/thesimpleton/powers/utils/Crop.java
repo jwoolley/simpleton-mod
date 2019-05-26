@@ -1,5 +1,7 @@
 package thesimpleton.powers.utils;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import thesimpleton.orbs.AbstractCrop;
+import thesimpleton.orbs.PotatoCrop;
 import thesimpleton.powers.*;
 
 public enum Crop {
@@ -36,6 +38,29 @@ public enum Crop {
         return new PlantSpinachPower(owner, amount, isFromCard);
       case TURNIPS:
         return new PlantTurnipPower(owner, amount, isFromCard);
+      default:
+        throw new IllegalArgumentException("Crop cannot be null");
+    }
+  }
+
+  public static AbstractCrop getCropOrb(Crop crop, int amount) {
+    switch(crop) {
+      case ARTICHOKES:
+//        return new ArtichokeCrop(amount);
+      case CORN:
+//        return new CornCrop(amount);
+      case CHILIS:
+//        return new ChiliCrop(amount);
+      case MUSHROOMS:
+//        return new MushroomCrop(amount);
+      case ONIONS:
+//        return new OnionCrop(amount);
+      case POTATOES:
+        return new PotatoCrop(amount);
+      case SPINACH:
+//        return new SpinachCrop(amount);
+      case TURNIPS:
+//        return new TurnipCrop(amount);
       default:
         throw new IllegalArgumentException("Crop cannot be null");
     }

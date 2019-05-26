@@ -238,6 +238,10 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     return getRandomCropPowers(p, numPowers, numStacks, withRarityDistribution, power -> true);
   }
 
+  public Crop getEnumValue() {
+    return this.enumValue;
+  }
+
   public static List<AbstractCropPower> getActiveCropPowers(AbstractPlayer player, boolean shuffle) {
     final ArrayList<AbstractPower> activePowers = new ArrayList<>(player.powers);
 
@@ -248,7 +252,7 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     List<AbstractCropPower> activeCropPowers = activePowers.stream()
         .filter(pow -> pow instanceof AbstractCropPower && pow.amount > 0 && !((AbstractCropPower) pow).finished)
         .map(pow -> (AbstractCropPower) pow)
-        .sorted(Comparator.comparing(AbstractCropPower::getInstanceId))
+        .sorted(Comparator.comparing(AbstractCropPower::getEnumValue))
         .collect(Collectors.toList());
 
     return activeCropPowers;

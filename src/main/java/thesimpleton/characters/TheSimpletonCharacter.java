@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
@@ -90,7 +91,6 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
         startOfTurnTriggers = new TriggerManager("StartOfTurnTriggers", staticStartOfTurnTriggerListeners);
         endOfTurnTriggers = new TriggerManager("EndOfTurnTriggers", staticEndOfTurnTriggerListeners);
         endOfCombatTriggers = new TriggerManager("EndOfCombatTriggers", staticEndOfCombatTriggerListeners);
-
         List<AbstractCard> cards = CardLibrary.getAllCards();
 
         Logger logger = TheSimpletonMod.logger;
@@ -99,10 +99,7 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
         for(AbstractCard card : cards) {
             logger.debug(index++ + ") " + card.name + " [cardId: " + card.cardID + "]");
         }
-
-
-
-//        TheSimpletonMod.logger.debug(("instantiating precombatPredrawTriggers manager with " + staticPrecombatPredrawTriggerListeners.size() + " preregistered triggers"));
+        initializeOrbSlotLocations();
     }
 
     @Override
@@ -150,7 +147,7 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
 
     public static final int STARTING_HP = 75;
     public static final int MAX_HP = 75;
-    public static final int ORB_SLOTS = 0;
+    public static final int ORB_SLOTS = 5;
     public static final int STARTING_GOLD = 99;
     public static final int HAND_SIZE = 5;
 
@@ -405,6 +402,45 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
         panels.add(new CutscenePanel(getResourcePath("scenes/thesimpleton2.png")));
         panels.add(new CutscenePanel(getResourcePath("scenes/thesimpleton3.png")));
         return panels;
+    }
+
+    // ORB LOGIC
+
+    public float[] orbPositionsX = {0,0,0,0,0,0,0,0,0,0};
+
+    public float[] orbPositionsY = {0,0,0,0,0,0,0,0,0,0};
+
+    public float xStartOffset = (float) Settings.WIDTH * 0.23F;
+    private static float xSpaceBetweenSlots = 90 * Settings.scale;
+    private static float xSpaceBottomAlternatingOffset = 0 * Settings.scale;
+
+    private static float yStartOffset = AbstractDungeon.floorY + (100 * Settings.scale);
+
+    private static float ySpaceBottomAlternatingOffset = -100 * Settings.scale;
+    private static float ySpaceAlternatingOffset = -50 * Settings.scale;
+
+    public void initializeOrbSlotLocations() {
+        orbPositionsX[0] = xStartOffset + (xSpaceBetweenSlots * 1);
+        orbPositionsX[1] = xStartOffset + (xSpaceBetweenSlots * 1) + xSpaceBottomAlternatingOffset;
+        orbPositionsX[2] = xStartOffset + (xSpaceBetweenSlots * 2);
+        orbPositionsX[3] = xStartOffset + (xSpaceBetweenSlots * 2) + xSpaceBottomAlternatingOffset;
+        orbPositionsX[4] = xStartOffset + (xSpaceBetweenSlots * 3);
+        orbPositionsX[5] = xStartOffset + (xSpaceBetweenSlots * 3) + xSpaceBottomAlternatingOffset;
+        orbPositionsX[6] = xStartOffset + (xSpaceBetweenSlots * 4);
+        orbPositionsX[7] = xStartOffset + (xSpaceBetweenSlots * 4) + xSpaceBottomAlternatingOffset;
+        orbPositionsX[8] = xStartOffset + (xSpaceBetweenSlots * 5);
+        orbPositionsX[9] = xStartOffset + (xSpaceBetweenSlots * 5) + xSpaceBottomAlternatingOffset;
+
+        orbPositionsY[0] = yStartOffset;
+        orbPositionsY[1] = yStartOffset + ySpaceBottomAlternatingOffset;
+        orbPositionsY[2] = yStartOffset + ySpaceAlternatingOffset;
+        orbPositionsY[3] = yStartOffset + ySpaceBottomAlternatingOffset + ySpaceAlternatingOffset;
+        orbPositionsY[4] = yStartOffset;
+        orbPositionsY[5] = yStartOffset + ySpaceBottomAlternatingOffset;
+        orbPositionsY[6] = yStartOffset + ySpaceAlternatingOffset;
+        orbPositionsY[7] = yStartOffset + ySpaceBottomAlternatingOffset + ySpaceAlternatingOffset;
+        orbPositionsY[8] = yStartOffset;
+        orbPositionsY[9] = yStartOffset + ySpaceBottomAlternatingOffset;
     }
 
 //    @Override shuffle

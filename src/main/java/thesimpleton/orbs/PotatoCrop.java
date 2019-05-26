@@ -26,7 +26,7 @@ public class PotatoCrop extends AbstractCrop {
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
 
-    public static final String IMG = "plantpotato.png";
+    public static final String IMG = "TheSimpletonMod/img/orbs/plantpotato.png";
     public static final AbstractCard.CardRarity cropRarity = AbstractCard.CardRarity.COMMON;
     private static final AbstractCropPowerCard powerCard = new Potatoes();
 

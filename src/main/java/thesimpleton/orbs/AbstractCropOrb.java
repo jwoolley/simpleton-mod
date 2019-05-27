@@ -1,12 +1,16 @@
 package thesimpleton.orbs;
 
 import basemod.abstracts.CustomOrb;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
+import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbActivateEffect;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.AbstractCrop;
+import thesimpleton.effects.orb.GainCropEffect;
 import thesimpleton.powers.utils.Crop;
 
 import java.util.List;
@@ -76,6 +80,13 @@ public abstract class AbstractCropOrb extends CustomOrb {
     return cropOrb.isPresent();
   }
 
+  public void gainCropEffectBefore() {
+    AbstractDungeon.effectList.add(new GainCropEffect());
+  }
+
+  public void gainCropEffectAfter() {
+    AbstractDungeon.effectList.add(new PlasmaOrbActivateEffect(this.hb.cX, this.hb.y));
+  }
 
   public static boolean playerHasAnyCropOrbs() {
     return getActiveCropOrbs().size() > 0;

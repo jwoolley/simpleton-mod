@@ -67,8 +67,10 @@ public class CropSpawnAction extends AbstractGameAction {
                     logger.debug("CropSpawnAction::update : Player doesn't have cropOrb "
                         + this.cropOrb.getClass().getSimpleName() + ". Adding " + this.amount);
 
+                    this.cropOrb.gainCropEffectBefore();
                     this.cropOrb.passiveAmount = this.amount;
                     AbstractDungeon.player.channelOrb(this.cropOrb);
+                    AbstractCropOrb.getCropOrb(this.cropOrb).gainCropEffectAfter();
                 }
                 this.secondTick = true;
             }

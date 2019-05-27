@@ -2,16 +2,8 @@ package thesimpleton.enums;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.colorless.Finesse;
-import com.megacrit.cardcrawl.cards.colorless.FlashOfSteel;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import thesimpleton.cards.attack.*;
-import thesimpleton.cards.attack.unused.*;
-import thesimpleton.cards.power.unused.*;
-import thesimpleton.cards.skill.unused.*;
-import thesimpleton.relics.unused.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

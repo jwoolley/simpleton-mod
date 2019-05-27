@@ -27,6 +27,7 @@ import org.apache.logging.log4j.Logger;
 import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
 import thesimpleton.cards.attack.CullingStrike;
+import thesimpleton.cards.curse.Nettles;
 import thesimpleton.cards.power.*;
 import thesimpleton.cards.power.crop.*;
 import thesimpleton.cards.skill.*;
@@ -232,7 +233,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        BaseMod.addCard(new GiantTurnip());
 //        BaseMod.addCard(new Cultivate());
 
-//        // Curse
+        // Curse
+        BaseMod.addCard(new Nettles());
     }
 
     @Override

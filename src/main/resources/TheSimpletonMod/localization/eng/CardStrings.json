@@ -36,7 +36,6 @@
     "DESCRIPTION": "Whenever you play a Harvest card for the first time each turn, gain [E]."
   },
 
-
   "TheSimpletonMod:BirdFeeder": {
     "NAME": "Birdfeeder",
     "DESCRIPTION": "The next !M! times you play a Power card this combat, heal ",
@@ -82,6 +81,11 @@
     "DESCRIPTION": "Gain !M! less Energy next turn. NL Draw !M! less card next turn. NL Exhaust. NL NL At the end of your turn, if this is in your hand, add a copy of it to your discard pile."
   },
 
+  "TheSimpletonMod:Nettles": {
+    "NAME": "Nettles",
+    "DESCRIPTION": "When you draw this, Apply !M! Thorns to a random enemy."
+  },
+
   "TheSimpletonMod:DesperatePlunge": {
     "NAME": "Desperate Plunge",
     "DESCRIPTION": "Costs [E] less for each Power card played this turn. NL Gain !B! Block. NL Next turn, lose [E]."
@@ -117,7 +121,7 @@
 
   "TheSimpletonMod:FlamingSpud": {
     "NAME": "Flaming Spud",
-    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Apply !M! Burning. NL Exhaust."
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL apply !M! Burning. NL Exhaust."
   },
 
   "TheSimpletonMod:FlashPasteurize": {

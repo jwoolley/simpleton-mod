@@ -12,9 +12,7 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.powers.BurningPower;
 import thesimpleton.relics.GasCan;
-import thesimpleton.relics.unused.DemonicMark;
 
-import java.rmi.activation.ActivationMonitor;
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -1,16 +1,17 @@
 package thesimpleton.orbs;
 
 import basemod.abstracts.CustomOrb;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
-import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbActivateEffect;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.AbstractCrop;
-import thesimpleton.effects.orb.GainCropEffect;
+import thesimpleton.effects.orb.GainCropSoundEffect;
+import thesimpleton.effects.orb.CropAnimationEffect;
+import thesimpleton.effects.orb.HarvestCropSoundEffect;
+import thesimpleton.effects.orb.StackCropSoundEffect;
 import thesimpleton.powers.utils.Crop;
 
 import java.util.List;
@@ -81,11 +82,22 @@ public abstract class AbstractCropOrb extends CustomOrb {
   }
 
   public void gainCropEffectBefore() {
-    AbstractDungeon.effectList.add(new GainCropEffect());
+    AbstractDungeon.effectList.add(new GainCropSoundEffect(-1.0F, -1.0F));
   }
 
   public void gainCropEffectAfter() {
-    AbstractDungeon.effectList.add(new PlasmaOrbActivateEffect(this.hb.cX, this.hb.y));
+    AbstractDungeon.effectList.add(new CropAnimationEffect(this.hb.cX, this.hb.y));
+  }
+
+  public void stackCropEffect() {
+    AbstractDungeon.effectList.add(new StackCropSoundEffect(this.hb.cX, this.hb.y));
+    AbstractDungeon.effectList.add(new CropAnimationEffect(this.hb.cX, this.hb.y));
+  }
+
+  public void harvestCropEffect() {
+    //TODO: use an animation that's visually distinct from gain or stack animations
+    AbstractDungeon.effectList.add(new HarvestCropSoundEffect(this.hb.cX, this.hb.y));
+    AbstractDungeon.effectList.add(new CropAnimationEffect(this.hb.cX, this.hb.y, Settings.ACTION_DUR_MED));
   }
 
   public static boolean playerHasAnyCropOrbs() {

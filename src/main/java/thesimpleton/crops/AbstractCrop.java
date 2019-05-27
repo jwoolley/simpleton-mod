@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.ApplyCropAction;
@@ -147,10 +146,11 @@ abstract public class AbstractCrop {
     onHarvest(amount);
     final int harvestAmount = calculateHarvestAmount(amount, maxHarvestAmount, harvestAll);
 
+    // TODO: move this logic down to AbstractCropOrb (e.g. a harvest() call)
+    this.getCropOrb().harvestCropEffect();
+
     if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
       if (harvestAmount > 0) {
-        // TODO: "flash" orb; or do elsewhere via trigger (e.g. onHarvest)
-        //        this.flash();
         harvestAction(harvestAmount);
         AbstractDungeon.actionManager.addToBottom(new CropReduceAction(getCropOrb(), harvestAmount));
       }

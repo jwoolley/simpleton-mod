@@ -61,6 +61,7 @@ public class CropSpawnAction extends AbstractGameAction {
 
                     AbstractCropOrb cropOrb = AbstractCropOrb.getCropOrb(this.cropOrb);
                     cropOrb.passiveAmount += this.amount;
+                    AbstractCropOrb.getCropOrb(this.cropOrb).stackCropEffect();
                     cropOrb.update();
                     // (trigger cropOrb crap}
                 } else {

@@ -26,6 +26,7 @@ public class CropRemoveAction extends AbstractGameAction {
 
     if (AbstractCropOrb.hasCropOrb(this.cropOrb)) {
         SimpletonUtil.getPlayer().removeOrb(this.cropOrb);
+        cropOrb.update();
     } else {
       logger.debug("CropRemoveAction::update : Player doesn't have " + cropOrb.name
           + " <======================================================");

@@ -29,7 +29,7 @@ public class CropReduceAction extends AbstractGameAction {
     if (AbstractCropOrb.hasCropOrb(this.cropOrb)) {
       AbstractCropOrb orb = AbstractCropOrb.getCropOrb(this.cropOrb);
       if (orb.getAmount() > amount) {
-        cropOrb.passiveAmount += this.amount;
+        cropOrb.passiveAmount -= this.amount;
         cropOrb.update();
       } else if (orb.getAmount() == amount) {
         AbstractDungeon.actionManager.addToBottom(new CropRemoveAction(this.cropOrb));

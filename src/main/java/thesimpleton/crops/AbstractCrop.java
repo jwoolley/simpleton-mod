@@ -5,8 +5,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.ApplyCropAction;
 import thesimpleton.actions.CropReduceAction;
 import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.cards.HarvestCard;
@@ -19,7 +21,6 @@ import thesimpleton.powers.ToughSkinPower;
 import thesimpleton.powers.utils.Crop;
 import thesimpleton.relics.CashCrop;
 import thesimpleton.relics.GrassPellets;
-import thesimpleton.relics.TheHarvester;
 import thesimpleton.utilities.CropUtil;
 import thesimpleton.utilities.Trigger;
 
@@ -60,16 +61,20 @@ abstract public class AbstractCrop {
   }
 
   public String getName() {
-    return this.getCropOrb().name;
+    return this.getCropOrb().getClass().getSimpleName();
   }
 
-    private void triggerCropGained() {
+  public String getCropOrbId() {
+    return this.cropOrbId;
+  }
+
+  private void triggerCropGained() {
     //  getPlayer().getCropUtil().onCropGained(this);
   }
 
   void onHarvest(int amount) {
     hasHarvestedThisTurn = true;
-    logger.debug("AbstractCrop " + this.getName() + ": harvested. Set hasHarvestedThisTurn");
+    logger.debug("AbstractCrop::" + this.getCropOrb().ID + ": onHarvestCalled.  amount: " + amount + ". Set hasHarvestedThisTurn");
 
     if (getPlayer().hasPower(ToughSkinPower.POWER_ID)) {
       ((ToughSkinPower) getPlayer().getPower(ToughSkinPower.POWER_ID)).applyPower(getPlayer());
@@ -94,18 +99,24 @@ abstract public class AbstractCrop {
   }
 
   public AbstractCropOrb getCropOrb() {
-    return AbstractCropOrb.getCropOrb(this.cropOrbId);
+    return AbstractCropOrb.getCropOrb(getCropOrbId());
   }
 
-  public void stackOrb(int amount) {
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction((AbstractCropOrb)getCropOrb().makeCopy(), amount));
-    CropUtil.triggerCardUpdates();
+  public void stackOrb(int amount, boolean isFromCard) {
+    final int stacks =  ApplyCropAction.calculateCropStacks(amount, isFromCard);
 
+    logger.debug("AbstractCrop::stackOrb amount:" + amount + " for " + getClass().getSimpleName());
+    logger.debug("AbstractCrop::stackOrb stacks:" + stacks);
 
-    if (amount > this.maturityThreshold) {
-      this.flash();
-      this.harvest(false, amount - this.maturityThreshold);
+    if (AbstractCropOrb.hasCropOrb(getCropOrbId())) {
+      logger.debug("AbstractCrop::stackOrb player has " +getClass().getSimpleName() + " already. Num stacks: " + getCropOrb().getAmount());
+    } else {
+      logger.debug("AbstractCrop::stackOrb doesn't have " + getClass().getSimpleName() + " already.");
     }
+
+
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction((AbstractCropOrb)getCropOrb().makeCopy(), stacks));
+    CropUtil.triggerCardUpdates();
   }
 
   public void reduceOrb(int amount) {
@@ -114,6 +125,8 @@ abstract public class AbstractCrop {
   }
 
   public boolean isMature() {
+    logger.debug("AbstractCrop::isMature: " + this.getClass().getTypeName());
+
     return AbstractCropOrb.hasCropOrb(getCropOrb()) && AbstractCropOrb.getCropOrb(getCropOrb()).isMature();
   }
 
@@ -128,6 +141,8 @@ abstract public class AbstractCrop {
   }
 
   public void harvest(boolean harvestAll, int maxHarvestAmount) {
+    logger.debug("AbstractCrop::harvest::" + this.getCropOrb().ID + " harvest() called. " + harvestAll + " maxHarvestAmount: " + maxHarvestAmount);
+
     final int amount = this.getAmount();
     onHarvest(amount);
     final int harvestAmount = calculateHarvestAmount(amount, maxHarvestAmount, harvestAll);

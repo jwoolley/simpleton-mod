@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.crops.AbstractCrop;
 import thesimpleton.orbs.AbstractCropOrb;
 
 import java.util.Optional;
@@ -17,51 +18,62 @@ public class CropSpawnAction extends AbstractGameAction {
     private static final float ACTION_DURATION = Settings.ACTION_DUR_FAST;
     private final int amount;
     private AbstractCropOrb cropOrb;
-    private final boolean secondApplication = false;
+
+    private boolean secondTick = false;
 
     // TODO: increment existing cropOrb instead if it
     public CropSpawnAction(AbstractCropOrb cropOrb) {
-        this(cropOrb, -1, false);
+        this(cropOrb, -1);
     }
 
-    public CropSpawnAction(AbstractCropOrb cropOrb, int spawnAmount) {
-        this(cropOrb, spawnAmount, false);
-    }
+    public CropSpawnAction(AbstractCropOrb cropOrb, int stacks) {
+        Logger logger = TheSimpletonMod.logger;
 
-    public CropSpawnAction(AbstractCropOrb cropOrb, int spawnAmount, boolean secondApplication) {
+        logger.debug("CropSpawnAction() constructor: " + cropOrb.getClass().getSimpleName() + "; amount: " + stacks + "; cropOrb.getAmount: "  + cropOrb.getAmount());
+
         this.duration = ACTION_DURATION;
         this.actionType = ACTION_TYPE;
-
-        this.amount = spawnAmount > 0 ? spawnAmount : cropOrb.getAmount();
-        if (cropOrb != null) {
-            this.cropOrb = cropOrb;
-        }
+        this.amount = stacks >= 0 ? stacks : cropOrb.passiveAmount;
+        this.cropOrb = cropOrb;
     }
 
     public void update() {
         Logger logger = TheSimpletonMod.logger;
-        if (AbstractDungeon.player.maxOrbs > 0) {
-            logger.debug("CropSpawnAction::update : Player can have orbs: " + AbstractDungeon.player.maxOrbs);
-            if (AbstractCropOrb.hasCropOrb(this.cropOrb)) {
-                logger.debug("CropSpawnAction::update : Player has cropOrb " + this.cropOrb.name);
 
-                AbstractCropOrb cropOrb = AbstractCropOrb.getCropOrb(this.cropOrb);
-                cropOrb.passiveAmount += this.amount;
-                cropOrb.update();
-                this.isDone = true;
-                // trigger cropOrb crap
-            } else if (secondApplication) {
-                logger.debug("CropSpawnAction::update : Second tick but player doesn't have cropOrb " + this.cropOrb.name);
+        if (AbstractDungeon.player.maxOrbs <= 0) {
+            this.isDone = true;
+            return;
+        } else {
+            if (secondTick) {
+                int newAmount =  AbstractCropOrb.getCropOrb(this.cropOrb).getAmount();
+                logger.debug("CropSpawnAction::update secondTick. newAmount: " + newAmount);
 
+                AbstractCrop crop = cropOrb.getCrop();
+                if (newAmount > crop.getMaturityThreshold()) {
+                    crop.flash();
+                    crop.harvest(false, newAmount - crop.getMaturityThreshold());
+                }
                 this.isDone = true;
             } else {
-                logger.debug("CropSpawnAction::update : Player doesn't have cropOrb " + this.cropOrb.name + ". Adding " + this.cropOrb.getAmount());
+                logger.debug("CropSpawnAction::update : Player can have orbs: " + AbstractDungeon.player.maxOrbs);
+                if (AbstractCropOrb.hasCropOrb(this.cropOrb)) {
+                    logger.debug("CropSpawnAction::update : Player has cropOrb " + this.cropOrb.name);
 
-                AbstractDungeon.player.channelOrb(this.cropOrb);
+                    AbstractCropOrb cropOrb = AbstractCropOrb.getCropOrb(this.cropOrb);
+                    cropOrb.passiveAmount += this.amount;
+                    cropOrb.update();
+                    // (trigger cropOrb crap}
+                } else {
+                    logger.debug("CropSpawnAction::update : Player doesn't have cropOrb "
+                        + this.cropOrb.getClass().getSimpleName() + ". Adding " + this.amount);
+
+                    this.cropOrb.passiveAmount = this.amount;
+                    AbstractDungeon.player.channelOrb(this.cropOrb);
+                }
+                this.secondTick = true;
             }
+            tickDuration();
         }
-        this.isDone = true;
-        tickDuration();
     }
 
 }

@@ -1,20 +1,28 @@
 package thesimpleton.powers.utils;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import thesimpleton.orbs.AbstractCrop;
-import thesimpleton.orbs.PotatoCrop;
+import thesimpleton.crops.AbstractCrop;
+import thesimpleton.crops.ChilisCrop;
+import thesimpleton.crops.PotatoesCrop;
+import thesimpleton.orbs.*;
 import thesimpleton.powers.*;
 
 public enum Crop {
-  ARTICHOKES,
-  ASPARAGUS,
-  CORN,
-  CHILIS,
-  GOURDS,
-  MUSHROOMS,
-  ONIONS,
-  POTATOES,
-  SPINACH,
-  TURNIPS;
+  ARTICHOKES(null),
+  ASPARAGUS(null),
+  CORN(null),
+  CHILIS(new ChilisCrop()),
+  GOURDS(null),
+  MUSHROOMS(null),
+  ONIONS(null),
+  POTATOES(new PotatoesCrop()),
+  SPINACH(null),
+  TURNIPS(null);
+
+  Crop(AbstractCrop crop) {
+    this.crop = crop;
+  }
+
+  public final AbstractCrop crop;
 
   public static AbstractCropPower getCrop(Crop crop, AbstractCreature owner, int amount, boolean isFromCard) {
     switch(crop) {
@@ -43,24 +51,32 @@ public enum Crop {
     }
   }
 
-  public static AbstractCrop getCropOrb(Crop crop, int amount) {
+  public String getName() {
+    return this.crop.getName();
+  }
+
+  public AbstractCrop getCrop() {
+    return this.crop;
+  }
+
+  public static AbstractCropOrb getCropOrb(Crop crop, int amount) {
     switch(crop) {
       case ARTICHOKES:
-//        return new ArtichokeCrop(amount);
+//        return new ArtichokeCropOrb(amount);
       case CORN:
-//        return new CornCrop(amount);
+        return new CornCropOrb(amount);
       case CHILIS:
-//        return new ChiliCrop(amount);
+        return new ChiliCropOrb(amount);
       case MUSHROOMS:
-//        return new MushroomCrop(amount);
+        return new MushroomCropOrb(amount);
       case ONIONS:
-//        return new OnionCrop(amount);
+//        return new OnionCropOrb(amount);
       case POTATOES:
-        return new PotatoCrop(amount);
+        return new PotatoCropOrb(amount);
       case SPINACH:
-//        return new SpinachCrop(amount);
+//        return new SpinachCropOrb(amount);
       case TURNIPS:
-//        return new TurnipCrop(amount);
+//        return new TurnipCropOrb(amount);
       default:
         throw new IllegalArgumentException("Crop cannot be null");
     }

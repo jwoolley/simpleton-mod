@@ -17,6 +17,8 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.Logger;
@@ -27,14 +29,17 @@ import thesimpleton.cards.attack.ReapAndSow;
 import thesimpleton.cards.attack.Strike_TheSimpleton;
 import thesimpleton.cards.skill.Defend_TheSimpleton;
 import thesimpleton.cards.skill.Rototilling;
+import thesimpleton.crops.AbstractCrop;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
+import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.relics.PungentSoil;
 import thesimpleton.relics.SpudOfTheInnocent;
 import thesimpleton.relics.TheHarvester;
 import thesimpleton.utilities.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static thesimpleton.TheSimpletonMod.getResourcePath;
@@ -441,6 +446,20 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
         orbPositionsY[7] = yStartOffset + ySpaceBottomAlternatingOffset + ySpaceAlternatingOffset;
         orbPositionsY[8] = yStartOffset;
         orbPositionsY[9] = yStartOffset + ySpaceBottomAlternatingOffset;
+    }
+
+    public void removeOrb(AbstractOrb orb) {
+        if ((!this.orbs.isEmpty()) && this.orbs.stream().anyMatch(o -> o.ID == orb.ID)) {
+            final int index = this.orbs.indexOf(this.orbs.stream().filter(o -> o.ID == orb.ID));
+            AbstractOrb orbSlot = new EmptyOrbSlot(((AbstractOrb)this.orbs.get(index)).cX, ((AbstractOrb)this.orbs.get(index)).cY);
+            for (int i = index+1; i < this.orbs.size(); i++) {
+                Collections.swap(this.orbs, i, i - 1);
+            }
+            this.orbs.set(this.orbs.size() - 1, orbSlot);
+            for (int i = 0; i < this.orbs.size(); i++) {
+                ((AbstractOrb)this.orbs.get(i)).setSlot(i, this.maxOrbs);
+            }
+        }
     }
 
 //    @Override shuffle

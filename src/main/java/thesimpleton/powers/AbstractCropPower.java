@@ -118,22 +118,6 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     }
   }
 
-//  @Override
-//  public void onGainCharge(int chargeAmount) {
-//    super.onGainCharge(chargeAmount);
-//    logger.debug(this.name + ": gained " + chargeAmount + " stacks");
-//  }
-//
-//
-//  @Override
-//  public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
-//    super.onApplyPower(power, target, source);
-//
-//    if (power instanceof AbstractCropPower && ((AbstractCropPower)power).getInstanceId() == this.getInstanceId()) {
-//      logger.debug(this.name + ": power applied");
-//    }
-//  }
-
   public int getMaturityThreshold() {
     return this.autoHarvestThreshold;
   }
@@ -311,13 +295,6 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     logger.debug("******************************* onInitialApplication: " + this.name);
     triggerCropGained();
 //    getPlayer().getCropUtil().onCropGained(this);
-  }
-
-
-  @Override
-  public void onGainCharge(int a) {
-    super.onGainCharge(a);
-    logger.debug("**************@@@@@@@@@@@@@@@@@ onGainCharge (after gain): " + this.name + ", amount:" + a  + ", this.amount:" + this.amount);
   }
 
   @Override

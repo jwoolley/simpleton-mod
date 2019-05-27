@@ -1,6 +1,5 @@
 package thesimpleton.cards.power.crop;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,10 +7,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.actions.ApplyCropAction;
+import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.PlantPotatoPower;
+import thesimpleton.orbs.PotatoCropOrb;
 
 public class Potatoes extends AbstractCropPowerCard {
   public static final String ID = "TheSimpletonMod:Potatoes";
@@ -37,8 +36,10 @@ public class Potatoes extends AbstractCropPowerCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(
-        new ApplyCropAction(p, p, new PlantPotatoPower(p, this.magicNumber), this.magicNumber, true));
+//    AbstractDungeon.actionManager.addToBottom(
+//        new ApplyCropAction(p, p, new PlantPotatoPower(p, this.magicNumber), this.magicNumber, true));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(this.magicNumber)));
+
   }
 
   @Override

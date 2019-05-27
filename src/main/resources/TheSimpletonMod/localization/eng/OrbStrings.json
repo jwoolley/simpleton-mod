@@ -1,12 +1,12 @@
 {
-  "TheSimpletonMod:AbstractCrop": {
+  "TheSimpletonMod:AbstractCropOrb": {
     "NAME": "Abstract Crop",
     "DESCRIPTION": [
       "#yCrop. Matures at #r",
       " stacks."
     ]
   },
-  "TheSimpletonMod:ChiliCrop": {
+  "TheSimpletonMod:ChiliCropOrb": {
     "NAME": "Chilis",
     "DESCRIPTION": [
       "#gHarvest: Deal #b",
@@ -15,32 +15,26 @@
     ]
   },
 
-  "TheSimpletonMod:CornCrop": {
+  "TheSimpletonMod:CornCropOrb": {
     "NAME": "Corn",
     "DESCRIPTION": [
       "#gHarvest: Draw a card for each stack harvested."
     ]
   },
 
-  "TheSimpletonMod:MushroomCrop": {
+  "TheSimpletonMod:MushroomCropOrb": {
     "NAME": "Mushrooms",
     "DESCRIPTION": [
       "#gHarvest: Add a random colorless card to your hand for each stack harvested."
     ]
   },
 
-
-  "TheSimpletonMod:PotatoCrop": {
+  "TheSimpletonMod:PotatoCropOrb": {
     "NAME": "Potatoes",
     "DESCRIPTION": [
-      "Crop: ",
-      " harvest to get Spud cards."
+      "#gHarvest: Add a #ySpud to your hand per stack harvested (check tooltip for Spud)."
     ]
   }
 }
-
-
-
-
 
 

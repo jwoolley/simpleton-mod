@@ -3,40 +3,44 @@ package thesimpleton.orbs;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import thesimpleton.TheSimpletonMod;
 import thesimpleton.powers.utils.Crop;
 
-public class ChiliCrop extends AbstractCropOrb {
-  public static final Crop enumValue = Crop.CHILIS;
-  public static final String ORB_ID = "TheSimpletonMod:ChiliCrop";
-  public static final String IMG_PATH = "TheSimpletonMod/img/orbs/plantchili.png";
-  public static final int MATURITY_THRESHOLD = 5;
-  public static final int DAMAGE_PER_STACK = 3;
+public class CornCropOrb extends AbstractCropOrb {
+  public static final Crop CROP_ENUM = Crop.CORN;
+  public static final String ORB_ID = "TheSimpletonMod:CornCropOrb";
+  public static final String IMG_PATH = "TheSimpletonMod/img/orbs/plantcorn.png";
+  public static final int MATURITY_THRESHOLD = 2;
   private static final OrbStrings orbStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
 
-  public ChiliCrop(int amount) {
-    super(ORB_ID, NAME, amount, MATURITY_THRESHOLD, DESCRIPTIONS[0], IMG_PATH);
+  public CornCropOrb() {
+    this(0);
+  }
+
+  public CornCropOrb(int amount) {
+    super(CROP_ENUM, ORB_ID, NAME, amount, MATURITY_THRESHOLD, DESCRIPTIONS[0], IMG_PATH);
   }
 
   @Override
   public void onEvoke() {
-//    this.
+//    this.o
   }
 
   @Override
   public AbstractOrb makeCopy() {
-    return new ChiliCrop(0);
+    return new CornCropOrb();
   }
 
   @Override
   public void playChannelSFX() {
-
+    TheSimpletonMod.logger.debug(" ============================================= ADD playChannelSFX for " + this.name + " =============================================");
   }
 
   private static String getDescription() {
     return getGenericDescription(MATURITY_THRESHOLD)
-        + " NL " + DESCRIPTIONS[0] + DAMAGE_PER_STACK + DESCRIPTIONS[1] + DAMAGE_PER_STACK + DESCRIPTIONS[2];
+        + " NL " + DESCRIPTIONS[0];
   }
 
   @Override

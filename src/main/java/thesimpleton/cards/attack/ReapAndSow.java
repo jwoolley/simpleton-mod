@@ -14,8 +14,6 @@ import thesimpleton.actions.ApplyCropAction;
 import thesimpleton.actions.ReapAndSowThresholdAction;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.PlantPotatoPower;
-import thesimpleton.actions.CropSpawnAction;
-import thesimpleton.orbs.PotatoCrop;
 
 public class ReapAndSow extends CustomCard {
   public static final String ID = "TheSimpletonMod:ReapAndSow";
@@ -53,7 +51,7 @@ public class ReapAndSow extends CustomCard {
         new ApplyCropAction(p, p, new PlantPotatoPower(p, this.magicNumber), this.magicNumber, true));
 
 
-//    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCrop(this.magicNumber)));
+//    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(this.magicNumber)));
 
     AbstractDungeon.actionManager.addToBottom(
         new ReapAndSowThresholdAction(this.upgraded));

@@ -13,6 +13,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -32,8 +33,10 @@ import thesimpleton.cards.power.*;
 import thesimpleton.cards.power.crop.*;
 import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
+import thesimpleton.crops.AbstractCrop;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
+import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.relics.*;
 import thesimpleton.utilities.CropUtil;
@@ -300,6 +303,15 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     public static void handleSaveBefore() {
         logger.debug("TheSimpletonMod.handleSaveBefore called");
         theSimpletonCharacter.getCropUtil().resetForCombatEnd();
+    }
+
+    public static void handleUseCard(AbstractCard card, UseCardAction action) {
+        logger.debug("TheSimpletonMod.handleUseCard called for card: " + card.name);
+
+        AbstractCrop.getActiveCrops().forEach(crop -> {
+            logger.debug("TheSimpletonMod.handleUseCard triggering: " + crop.getName() + " for " + card.name);
+            crop.onUseCard(card, action);
+        });
     }
 
     public static void handleEmptyDrawShuffleBefore() {

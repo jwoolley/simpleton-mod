@@ -11,9 +11,7 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.orbs.CornCrop;
-import thesimpleton.actions.ApplyCropAction;
-import thesimpleton.powers.PlantCornPower;
+import thesimpleton.orbs.CornCropOrb;
 
 public class Corn extends AbstractCropPowerCard {
   public static final String ID = "TheSimpletonMod:Corn";
@@ -42,7 +40,7 @@ public class Corn extends AbstractCropPowerCard {
 //    AbstractDungeon.actionManager.addToBottom(
 //        new ApplyCropAction(p, p, new PlantCornPower(p, this.magicNumber, true), this.magicNumber, true));
 
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new CornCrop(this.magicNumber)));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new CornCropOrb(this.magicNumber)));
   }
 
   @Override

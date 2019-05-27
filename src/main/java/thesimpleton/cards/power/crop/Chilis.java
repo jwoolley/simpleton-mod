@@ -11,11 +11,7 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.orbs.ChiliCrop;
-
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import thesimpleton.actions.ApplyCropAction;
-import thesimpleton.powers.PlantChiliPower;
+import thesimpleton.orbs.ChiliCropOrb;
 
 public class Chilis extends AbstractCropPowerCard {
   public static final String ID = "TheSimpletonMod:Chilis";
@@ -44,7 +40,7 @@ public class Chilis extends AbstractCropPowerCard {
   //    AbstractDungeon.actionManager.addToBottom(
   //        new ApplyCropAction(p, p, new PlantChiliPower(p, this.magicNumber, true), this.magicNumber, true));
 
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new ChiliCrop(this.magicNumber)));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new ChiliCropOrb(this.magicNumber)));
   }
 
   @Override

@@ -10,9 +10,7 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.orbs.MushroomCrop;
-import thesimpleton.actions.ApplyCropAction;
-import thesimpleton.powers.PlantMushroomPower;
+import thesimpleton.orbs.MushroomCropOrb;
 
 public class Mushrooms extends AbstractCropPowerCard {
   public static final String ID = "TheSimpletonMod:Mushrooms";
@@ -40,7 +38,7 @@ public class Mushrooms extends AbstractCropPowerCard {
   public void use(AbstractPlayer p, AbstractMonster m) {
 //    AbstractDungeon.actionManager.addToBottom(
 //        new ApplyCropAction(p, p, new PlantMushroomPower(p, this.magicNumber, true), this.magicNumber, true));
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new MushroomCrop(this.magicNumber)));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new MushroomCropOrb(this.magicNumber)));
   }
 
   @Override

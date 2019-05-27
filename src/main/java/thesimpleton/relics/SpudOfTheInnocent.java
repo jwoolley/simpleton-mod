@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.ApplyCropAction;
+import thesimpleton.actions.CropSpawnAction;
+import thesimpleton.orbs.PotatoCropOrb;
 import thesimpleton.powers.PlantPotatoPower;
 
 public class SpudOfTheInnocent extends CustomRelic {
@@ -38,9 +40,7 @@ public class SpudOfTheInnocent extends CustomRelic {
   public void atBattleStart() {
     final AbstractPlayer p = AbstractDungeon.player;
     this.flash();
-    AbstractDungeon.actionManager.addToBottom(
-        new ApplyCropAction(p, p, new PlantPotatoPower(p, CROP_AMOUNT), CROP_AMOUNT));
-
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(CROP_AMOUNT)));
   }
 
   @Override

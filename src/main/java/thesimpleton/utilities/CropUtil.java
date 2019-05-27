@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.characters.TheSimpletonCharacter;
-import thesimpleton.orbs.AbstractCrop;
+import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.powers.AbstractCropPower;
 
 import java.util.ArrayList;
@@ -141,6 +141,11 @@ public class CropUtil implements PostUpdateSubscriber, PostDrawSubscriber, PostP
     return getActiveCrops().get(0);
   }
 
+  public AbstractCropPower getOldestCropOrb() {
+    return getActiveCrops().get(0);
+  }
+
+
   public AbstractCropPower getNewestCrop() {
     List<AbstractCropPower> activeCrops = getActiveCrops();
     return activeCrops.get(activeCrops.size() - 1);
@@ -182,8 +187,8 @@ public class CropUtil implements PostUpdateSubscriber, PostDrawSubscriber, PostP
 //    });
   }
 
-  public void onCropOrbGained(AbstractCrop crop) {
-    logger.debug("CropUtil::onCropGained: " + crop.name);
+  public void onCropOrbGained(AbstractCropOrb cropOrb) {
+    logger.debug("CropUtil::onCropGained: " + cropOrb.name);
   }
 
   public void onCropGained(AbstractCropPower crop) {

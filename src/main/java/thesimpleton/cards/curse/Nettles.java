@@ -35,6 +35,7 @@ public class Nettles extends CustomCard {
 
     public Nettles() {
         super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.CURSE, RARITY, TARGET);
+        this.baseMagicNumber = this.magicNumber = THORNS_DAMAGE;
     }
 
     public void triggerWhenDrawn()
@@ -47,7 +48,7 @@ public class Nettles extends CustomCard {
 
         final AbstractCreature monster = monsters.get(AbstractDungeon.miscRng.random(0, monsters.size() - 1));
 
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, monster, new ThornsPower(monster, THORNS_DAMAGE), THORNS_DAMAGE));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, monster, new ThornsPower(monster, magicNumber), magicNumber));
 
         // No idea if every curse needs this
         if ((AbstractDungeon.player.hasPower("Evolve")) && (!AbstractDungeon.player.hasPower("No Draw")))

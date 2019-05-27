@@ -83,7 +83,7 @@
 
   "TheSimpletonMod:Nettles": {
     "NAME": "Nettles",
-    "DESCRIPTION": "When you draw this, add 1 thorns to a random enemy."
+    "DESCRIPTION": "When you draw this, Apply !M! Thorns to a random enemy."
   },
 
   "TheSimpletonMod:DesperatePlunge": {

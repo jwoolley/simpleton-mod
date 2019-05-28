@@ -32,7 +32,15 @@
   "TheSimpletonMod:PotatoCropOrb": {
     "NAME": "Potatoes",
     "DESCRIPTION": [
-      "#gHarvest: Add a #ySpud to your hand per stack harvested (check tooltip for Spud)."
+      "#gHarvest: Add a #ySpud to your hand for each stack harvested (check tooltip for Spud)."
+    ]
+  },
+
+  "TheSimpletonMod:SquashCropOrb": {
+    "NAME": "Squash",
+    "DESCRIPTION": [
+      "#gHarvest: Gain #b",
+      " Block for each stack harvested."
     ]
   }
 }

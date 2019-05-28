@@ -13,7 +13,7 @@ import thesimpleton.cards.power.crop.Squash;
 import thesimpleton.powers.utils.Crop;
 
 public class PlantSquashPower extends AbstractCropPower {
-  public static final Crop enumValue = Crop.GOURDS;
+  public static final Crop enumValue = Crop.SQUASH;
 
   public static final String POWER_ID = "TheSimpletonMod:PlantSquashPower";
   private static final PowerStrings powerStrings;

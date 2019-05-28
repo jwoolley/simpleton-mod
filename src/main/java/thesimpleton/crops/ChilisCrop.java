@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import thesimpleton.actions.ApplyBurningAction;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Chilis;
-import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.orbs.ChiliCropOrb;
 import thesimpleton.powers.utils.Crop;
 

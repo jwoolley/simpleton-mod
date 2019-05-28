@@ -1,18 +1,16 @@
 package thesimpleton.powers.utils;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import thesimpleton.crops.AbstractCrop;
-import thesimpleton.crops.ChilisCrop;
-import thesimpleton.crops.PotatoesCrop;
+import thesimpleton.crops.*;
 import thesimpleton.orbs.*;
 import thesimpleton.powers.*;
 
 public enum Crop {
   ARTICHOKES(null),
   ASPARAGUS(null),
-  CORN(null),
+  CORN(new CornCrop()),
   CHILIS(new ChilisCrop()),
-  GOURDS(null),
-  MUSHROOMS(null),
+  SQUASH(new SquashCrop()),
+  MUSHROOMS(new MushroomCrop()),
   ONIONS(null),
   POTATOES(new PotatoesCrop()),
   SPINACH(null),
@@ -34,7 +32,7 @@ public enum Crop {
         return new PlantCornPower(owner, amount, isFromCard);
       case CHILIS:
         return new PlantChiliPower(owner, amount, isFromCard);
-      case GOURDS:PlantSquashPower:
+      case SQUASH:PlantSquashPower:
         return new PlantSquashPower(owner, amount, isFromCard);
       case MUSHROOMS:
         return new PlantMushroomPower(owner, amount, isFromCard);
@@ -75,6 +73,8 @@ public enum Crop {
         return new PotatoCropOrb(amount);
       case SPINACH:
 //        return new SpinachCropOrb(amount);
+      case SQUASH:
+        return new SquashCropOrb(amount);
       case TURNIPS:
 //        return new TurnipCropOrb(amount);
       default:

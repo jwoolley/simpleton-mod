@@ -8,8 +8,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.ApplyCropAction;
+import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
+import thesimpleton.orbs.CornCropOrb;
+import thesimpleton.orbs.SquashCropOrb;
 import thesimpleton.powers.PlantSquashPower;
 
 public class Squash extends AbstractCropPowerCard {
@@ -36,8 +39,9 @@ public class Squash extends AbstractCropPowerCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(
-        new ApplyCropAction(p, p, new PlantSquashPower(p, this.magicNumber), this.magicNumber, true));
+//    AbstractDungeon.actionManager.addToBottom(
+//        new ApplyCropAction(p, p, new PlantSquashPower(p, this.magicNumber), this.magicNumber, true));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new SquashCropOrb(this.magicNumber)));
   }
 
   @Override

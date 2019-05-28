@@ -16,6 +16,7 @@ import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.orbs.AbstractCropOrb;
+import thesimpleton.powers.PlantAsparagusPower;
 import thesimpleton.powers.ToughSkinPower;
 import thesimpleton.powers.utils.Crop;
 import thesimpleton.relics.CashCrop;
@@ -301,7 +302,7 @@ abstract public class AbstractCrop {
       //TODO: accomplish this dynamically via Crop enum
 
 //      final PlantArtichokePower artichokePower = new PlantArtichokePower(dummy, 0);
-//      final PlantAsparagusPower asparagusPower = new PlantAsparagusPower(dummy, 0);
+      final AsparagusCrop asparagusCrop = new AsparagusCrop();
       final ChilisCrop chilisCrop = new ChilisCrop();
       final CornCrop cornCrop = new CornCrop();
       final SquashCrop squashCrop = new SquashCrop();
@@ -312,7 +313,7 @@ abstract public class AbstractCrop {
 //      final PlantTurnipPower turnipPower = new PlantTurnipPower(dummy, 0);
 
 //      referenceCrops.add(artichokePower);
-//      referenceCrops.add(asparagusPower);
+      referenceCrops.add(asparagusCrop);
       referenceCrops.add(chilisCrop);
       referenceCrops.add(potatoesCrop);
       referenceCrops.add(cornCrop);

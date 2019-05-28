@@ -8,8 +8,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.ApplyCropAction;
+import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
+import thesimpleton.orbs.AsparagusCropOrb;
+import thesimpleton.orbs.ChiliCropOrb;
 import thesimpleton.powers.PlantAsparagusPower;
 
 public class Asparagus extends AbstractCropPowerCard {
@@ -36,8 +39,11 @@ public class Asparagus extends AbstractCropPowerCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(
-        new ApplyCropAction(p, p, new PlantAsparagusPower(p, this.magicNumber, true), this.magicNumber, true));
+//    AbstractDungeon.actionManager.addToBottom(
+//        new ApplyCropAction(p, p, new PlantAsparagusPower(p, this.magicNumber, true), this.magicNumber, true));
+
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new AsparagusCropOrb(this.magicNumber)));
+
   }
 
   @Override

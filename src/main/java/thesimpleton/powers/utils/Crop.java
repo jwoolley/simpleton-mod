@@ -4,9 +4,10 @@ import thesimpleton.crops.*;
 import thesimpleton.orbs.*;
 import thesimpleton.powers.*;
 
+// TODO: instantiate these reference crops in CropUtil
 public enum Crop {
   ARTICHOKES(null),
-  ASPARAGUS(null),
+  ASPARAGUS(new AsparagusCrop()),
   CORN(new CornCrop()),
   CHILIS(new ChilisCrop()),
   SQUASH(new SquashCrop()),
@@ -61,6 +62,8 @@ public enum Crop {
     switch(crop) {
       case ARTICHOKES:
 //        return new ArtichokeCropOrb(amount);
+      case ASPARAGUS:
+        return new AsparagusCropOrb(amount);
       case CORN:
         return new CornCropOrb(amount);
       case CHILIS:

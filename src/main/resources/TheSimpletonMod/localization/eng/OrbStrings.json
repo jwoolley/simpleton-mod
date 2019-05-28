@@ -6,6 +6,15 @@
       " stacks."
     ]
   },
+
+  "TheSimpletonMod:AsparagusCropOrb": {
+    "NAME": "Asparagus",
+    "DESCRIPTION": [
+      "#gHarvest: Gain #b",
+      " Dexterity for each stack harvested."
+    ]
+  },
+
   "TheSimpletonMod:ChiliCropOrb": {
     "NAME": "Chilis",
     "DESCRIPTION": [
@@ -32,7 +41,7 @@
   "TheSimpletonMod:PotatoCropOrb": {
     "NAME": "Potatoes",
     "DESCRIPTION": [
-      "#gHarvest: Add a #ySpud to your hand for each stack harvested (check tooltip for Spud)."
+      "#gHarvest: Add a #ySpud to your hand for each stack harvested. NL (Need to add keyword tooltips)."
     ]
   },
 

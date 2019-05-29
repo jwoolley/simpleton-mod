@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.crops.SquashCrop;
 import thesimpleton.powers.utils.Crop;
 
 public class SquashCropOrb extends AbstractCropOrb {
@@ -14,8 +15,6 @@ public class SquashCropOrb extends AbstractCropOrb {
   private static final OrbStrings orbStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
-
-  private static final int BLOCK_PER_STACK = 6;
 
   public SquashCropOrb() {
     this(0);
@@ -42,7 +41,7 @@ public class SquashCropOrb extends AbstractCropOrb {
 
   private static String getDescription() {
     return getGenericDescription(MATURITY_THRESHOLD)
-        + " NL " + DESCRIPTIONS[0] + BLOCK_PER_STACK + DESCRIPTIONS[1];
+        + " NL " + DESCRIPTIONS[0] + SquashCrop.BLOCK_PER_STACK + DESCRIPTIONS[1];
   }
 
   @Override

@@ -43,7 +43,6 @@ public class Asparagus extends AbstractCropPowerCard {
 //        new ApplyCropAction(p, p, new PlantAsparagusPower(p, this.magicNumber, true), this.magicNumber, true));
 
     AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new AsparagusCropOrb(this.magicNumber)));
-
   }
 
   @Override

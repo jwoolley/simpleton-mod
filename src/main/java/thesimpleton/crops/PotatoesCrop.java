@@ -15,8 +15,9 @@ public class PotatoesCrop extends AbstractCrop {
   private static final String ORB_ID = PotatoCropOrb.ORB_ID;
   private static final AbstractCropPowerCard POWER_CARD = new Potatoes();
 
-  public static final int MATURITY_THRESHOLD = 5;
   private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.UNCOMMON;
+
+  public static final int MATURITY_THRESHOLD = 5;
 
   public PotatoesCrop() {
     super(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD);

@@ -14,7 +14,7 @@ public enum Crop {
   MUSHROOMS(new MushroomCrop()),
   ONIONS(null),
   POTATOES(new PotatoesCrop()),
-  SPINACH(null),
+  SPINACH(new SpinachCrop()),
   TURNIPS(null);
 
   Crop(AbstractCrop crop) {
@@ -75,7 +75,7 @@ public enum Crop {
       case POTATOES:
         return new PotatoCropOrb(amount);
       case SPINACH:
-//        return new SpinachCropOrb(amount);
+        return new SpinachCropOrb(amount);
       case SQUASH:
         return new SquashCropOrb(amount);
       case TURNIPS:

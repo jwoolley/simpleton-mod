@@ -15,10 +15,10 @@ public class SquashCrop extends AbstractCrop {
   private static final String ORB_ID = SquashCropOrb.ORB_ID;
   private static final AbstractCropPowerCard POWER_CARD = new Squash();
 
-  public static final int MATURITY_THRESHOLD = 5;
   private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.UNCOMMON;
 
-  private static final int BLOCK_PER_STACK = 6;
+  public static final int MATURITY_THRESHOLD = 5;
+  public static final int BLOCK_PER_STACK = 6;
 
   public SquashCrop() {
     super(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD);

@@ -16,15 +16,16 @@ public class ChilisCrop extends  AbstractCrop {
   private static final String ORB_ID = ChiliCropOrb.ORB_ID;
   private static final AbstractCropPowerCard POWER_CARD = new Chilis();
 
-  public static final int MATURITY_THRESHOLD = 5;
   private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.UNCOMMON;
 
-  private static int BASE_DAMAGE_STACK = 4;
+  public static final int MATURITY_THRESHOLD = 5;
+  public static int DAMAGE_PER_STACK = 3;
+
   private int damagePerStack;
 
   public ChilisCrop() {
     super(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD);
-    this.damagePerStack = BASE_DAMAGE_STACK;
+    this.damagePerStack = DAMAGE_PER_STACK;
   }
 
   protected int harvestAction(int harvestAmount) {

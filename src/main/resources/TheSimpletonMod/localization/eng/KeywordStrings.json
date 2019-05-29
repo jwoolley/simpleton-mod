@@ -164,7 +164,7 @@
   "TheSimpletonMod:SquashKeyword": {
     "PROPER_NAME": "Squash",
     "NAMES": [
-      "Squash"
+      "squash"
     ],
     "DESCRIPTION": "#yCrop. Grants #yBlock When harvested."
   },

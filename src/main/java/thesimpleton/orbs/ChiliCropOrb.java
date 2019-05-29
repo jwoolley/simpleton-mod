@@ -4,14 +4,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.crops.ChilisCrop;
+import thesimpleton.crops.SpinachCrop;
 import thesimpleton.powers.utils.Crop;
 
 public class ChiliCropOrb extends AbstractCropOrb {
   public static final Crop CROP_ENUM = Crop.CHILIS;
   public static final String ORB_ID = "TheSimpletonMod:ChiliCropOrb";
   public static final String IMG_PATH = "TheSimpletonMod/img/orbs/plantchili.png";
-  public static final int MATURITY_THRESHOLD = 5;
-  public static final int DAMAGE_PER_STACK = 3;
   private static final OrbStrings orbStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
@@ -21,7 +21,7 @@ public class ChiliCropOrb extends AbstractCropOrb {
   }
 
   public ChiliCropOrb(int amount) {
-    super(CROP_ENUM, ORB_ID, NAME, amount, MATURITY_THRESHOLD, DESCRIPTIONS[0], IMG_PATH);
+    super(CROP_ENUM, ORB_ID, NAME, amount, SpinachCrop.MATURITY_THRESHOLD, DESCRIPTIONS[0], IMG_PATH);
   }
 
   @Override
@@ -40,8 +40,9 @@ public class ChiliCropOrb extends AbstractCropOrb {
   }
 
   private static String getDescription() {
-    return getGenericDescription(MATURITY_THRESHOLD)
-        + " NL " + DESCRIPTIONS[0] + DAMAGE_PER_STACK + DESCRIPTIONS[1] + DAMAGE_PER_STACK + DESCRIPTIONS[2];
+    return getGenericDescription(SpinachCrop.MATURITY_THRESHOLD)
+        + " NL " + DESCRIPTIONS[0] + ChilisCrop.DAMAGE_PER_STACK + DESCRIPTIONS[1] + ChilisCrop.DAMAGE_PER_STACK
+        + DESCRIPTIONS[2];
   }
 
   @Override

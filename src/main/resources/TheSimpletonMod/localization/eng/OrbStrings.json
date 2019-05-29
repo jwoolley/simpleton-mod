@@ -45,6 +45,14 @@
     ]
   },
 
+  "TheSimpletonMod:SpinachCropOrb": {
+    "NAME": "Spinach",
+    "DESCRIPTION": [
+      "#gHarvest: Gain #b",
+      " Strength for each stack harvested."
+    ]
+  },
+
   "TheSimpletonMod:SquashCropOrb": {
     "NAME": "Squash",
     "DESCRIPTION": [

@@ -4,25 +4,24 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.crops.AbstractCrop;
-import thesimpleton.crops.AsparagusCrop;
+import thesimpleton.cards.power.crop.Spinach;
 import thesimpleton.crops.SpinachCrop;
 import thesimpleton.powers.utils.Crop;
 
-public class AsparagusCropOrb extends AbstractCropOrb {
-  public static final Crop CROP_ENUM = Crop.ASPARAGUS;
-  public static final String ORB_ID = "TheSimpletonMod:AsparagusCropOrb";
-  public static final String IMG_PATH = "TheSimpletonMod/img/orbs/plantasparagus.png";
+public class SpinachCropOrb extends AbstractCropOrb {
+  public static final Crop CROP_ENUM = Crop.SPINACH;
+  public static final String ORB_ID = "TheSimpletonMod:SpinachCropOrb";
+  public static final String IMG_PATH = "TheSimpletonMod/img/orbs/plantspinach.png";
   private static final OrbStrings orbStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
 
-  public AsparagusCropOrb() {
+  public SpinachCropOrb() {
     this(0);
   }
 
-  public AsparagusCropOrb(int amount) {
-    super(CROP_ENUM, ORB_ID, NAME, amount, AsparagusCrop.MATURITY_THRESHOLD, DESCRIPTIONS[0], IMG_PATH);
+  public SpinachCropOrb(int amount) {
+    super(CROP_ENUM, ORB_ID, NAME, amount, SpinachCrop.MATURITY_THRESHOLD, DESCRIPTIONS[0], IMG_PATH);
   }
 
   @Override
@@ -32,7 +31,7 @@ public class AsparagusCropOrb extends AbstractCropOrb {
 
   @Override
   public AbstractOrb makeCopy() {
-    return new AsparagusCropOrb();
+    return new SpinachCropOrb();
   }
 
   @Override
@@ -41,8 +40,8 @@ public class AsparagusCropOrb extends AbstractCropOrb {
   }
 
   private static String getDescription() {
-    return getGenericDescription(AsparagusCrop.MATURITY_THRESHOLD)
-        + " NL " + DESCRIPTIONS[0]  + AsparagusCrop.DEXTERITY_PER_STACK+ DESCRIPTIONS[1];
+    return getGenericDescription(SpinachCrop.MATURITY_THRESHOLD)
+        + " NL " + DESCRIPTIONS[0]  + SpinachCrop.STRENGTH_PER_STACK + DESCRIPTIONS[1];
   }
 
   @Override

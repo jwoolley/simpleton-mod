@@ -9,8 +9,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.ApplyCropAction;
+import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
+import thesimpleton.orbs.OnionCropOrb;
+import thesimpleton.orbs.SpinachCropOrb;
 import thesimpleton.powers.PlantOnionPower;
 
 public class Onions extends AbstractCropPowerCard {
@@ -37,8 +40,7 @@ public class Onions extends AbstractCropPowerCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(
-        new ApplyCropAction(p, p, new PlantOnionPower(p, this.magicNumber), this.magicNumber, true));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new OnionCropOrb(this.magicNumber)));
   }
 
   @Override

@@ -306,21 +306,20 @@ abstract public class AbstractCrop {
       final CornCrop cornCrop = new CornCrop();
       final SquashCrop squashCrop = new SquashCrop();
       final MushroomCrop mushroomCrop = new MushroomCrop();
-//      final PlantOnionPower onionPower = new PlantOnionPower(dummy, 0);
-      final PotatoesCrop potatoesCrop = new PotatoesCrop();
+      final OnionCrop onionCrop = new OnionCrop();
+      final PotatoCrop potatoCrop = new PotatoCrop();
       final SpinachCrop spinachCrop = new SpinachCrop();
-
 //      final PlantTurnipPower turnipPower = new PlantTurnipPower(dummy, 0);
 
 //      referenceCrops.add(artichokePower);
       referenceCrops.add(asparagusCrop);
       referenceCrops.add(chilisCrop);
-      referenceCrops.add(potatoesCrop);
+      referenceCrops.add(potatoCrop);
       referenceCrops.add(cornCrop);
       referenceCrops.add(squashCrop);
       referenceCrops.add(spinachCrop);
       referenceCrops.add(mushroomCrop);
-//      referenceCrops.add(onionPower);
+      referenceCrops.add(onionCrop);
 //      referenceCrops.add(turnipPower);
 
     }

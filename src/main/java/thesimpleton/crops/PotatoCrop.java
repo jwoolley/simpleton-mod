@@ -10,7 +10,7 @@ import thesimpleton.orbs.PotatoCropOrb;
 import thesimpleton.powers.utils.Crop;
 import thesimpleton.relics.HotPotato;
 
-public class PotatoesCrop extends AbstractCrop {
+public class PotatoCrop extends AbstractCrop {
   public static final Crop CROP_ENUM = Crop.POTATOES;
   private static final String ORB_ID = PotatoCropOrb.ORB_ID;
   private static final AbstractCropPowerCard POWER_CARD = new Potatoes();
@@ -19,13 +19,13 @@ public class PotatoesCrop extends AbstractCrop {
 
   public static final int MATURITY_THRESHOLD = 5;
 
-  public PotatoesCrop() {
+  public PotatoCrop() {
     super(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD);
-    logger.debug("MAKIN' POTATOES (instantiating PotatoesCrop).");
+    logger.debug("MAKIN' POTATOES (instantiating PotatoCrop).");
   }
 
   protected int harvestAction(int harvestAmount) {
-    logger.debug("PotatoesCrop::harvestAction harvestAmount:" + harvestAmount);
+    logger.debug("PotatoCrop::harvestAction harvestAmount:" + harvestAmount);
     if (harvestAmount > 0) {
       if (SimpletonUtil.getPlayer().hasRelic(HotPotato.ID)) {
         SimpletonUtil.getPlayer().getRelic(HotPotato.ID).flash();

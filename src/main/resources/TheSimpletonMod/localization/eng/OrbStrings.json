@@ -38,6 +38,14 @@
     ]
   },
 
+  "TheSimpletonMod:OnionCropOrb": {
+    "NAME": "Onion",
+    "DESCRIPTION": [
+      "#gHarvest: Apply #b",
+      " Weak to a random enemy for each stack harvested."
+    ]
+  },
+
   "TheSimpletonMod:PotatoCropOrb": {
     "NAME": "Potatoes",
     "DESCRIPTION": [

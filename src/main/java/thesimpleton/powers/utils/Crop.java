@@ -12,8 +12,8 @@ public enum Crop {
   CHILIS(new ChilisCrop()),
   SQUASH(new SquashCrop()),
   MUSHROOMS(new MushroomCrop()),
-  ONIONS(null),
-  POTATOES(new PotatoesCrop()),
+  ONIONS(new OnionCrop()),
+  POTATOES(new PotatoCrop()),
   SPINACH(new SpinachCrop()),
   TURNIPS(null);
 
@@ -33,7 +33,7 @@ public enum Crop {
         return new PlantCornPower(owner, amount, isFromCard);
       case CHILIS:
         return new PlantChiliPower(owner, amount, isFromCard);
-      case SQUASH:PlantSquashPower:
+      case SQUASH:
         return new PlantSquashPower(owner, amount, isFromCard);
       case MUSHROOMS:
         return new PlantMushroomPower(owner, amount, isFromCard);

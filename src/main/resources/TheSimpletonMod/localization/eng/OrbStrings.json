@@ -67,6 +67,13 @@
       "#gHarvest: Gain #b",
       " Block for each stack harvested."
     ]
+  },
+
+  "TheSimpletonMod:TurnipCropOrb": {
+    "NAME": "Turnip",
+    "DESCRIPTION": [
+      "#gHarvest: Convert ALL stacks into an attack card that deals increased damage for each stack harvested."
+    ]
   }
 }
 

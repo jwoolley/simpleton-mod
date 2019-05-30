@@ -15,7 +15,7 @@ public enum Crop {
   ONIONS(new OnionCrop()),
   POTATOES(new PotatoCrop()),
   SPINACH(new SpinachCrop()),
-  TURNIPS(null);
+  TURNIPS(new TurnipCrop());
 
   Crop(AbstractCrop crop) {
     this.crop = crop;
@@ -71,7 +71,7 @@ public enum Crop {
       case MUSHROOMS:
         return new MushroomCropOrb(amount);
       case ONIONS:
-//        return new OnionCropOrb(amount);
+        return new OnionCropOrb(amount);
       case POTATOES:
         return new PotatoCropOrb(amount);
       case SPINACH:
@@ -79,7 +79,7 @@ public enum Crop {
       case SQUASH:
         return new SquashCropOrb(amount);
       case TURNIPS:
-//        return new TurnipCropOrb(amount);
+        return new TurnipCropOrb(amount);
       default:
         throw new IllegalArgumentException("Crop cannot be null");
     }

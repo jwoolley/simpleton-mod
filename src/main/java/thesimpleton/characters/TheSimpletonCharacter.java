@@ -41,6 +41,7 @@ import thesimpleton.utilities.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static thesimpleton.TheSimpletonMod.getResourcePath;
 
@@ -450,14 +451,30 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
 
     public void removeOrb(AbstractOrb orb) {
         if ((!this.orbs.isEmpty()) && this.orbs.stream().anyMatch(o -> o.ID == orb.ID)) {
-            final int index = this.orbs.indexOf(this.orbs.stream().filter(o -> o.ID == orb.ID));
-            AbstractOrb orbSlot = new EmptyOrbSlot(((AbstractOrb)this.orbs.get(index)).cX, ((AbstractOrb)this.orbs.get(index)).cY);
-            for (int i = index+1; i < this.orbs.size(); i++) {
-                Collections.swap(this.orbs, i, i - 1);
-            }
-            this.orbs.set(this.orbs.size() - 1, orbSlot);
+
             for (int i = 0; i < this.orbs.size(); i++) {
-                ((AbstractOrb)this.orbs.get(i)).setSlot(i, this.maxOrbs);
+                AbstractOrb o = this.orbs.get(i);
+                TheSimpletonMod.logger.debug("TheSimpletonCharacter.removeOrb :: orbs[" + i + "]: " + o.name + "; amount: " + o.passiveAmount);
+            }
+
+            Optional<AbstractOrb> orbOptional  = this.orbs.stream().filter(o -> {
+                TheSimpletonMod.logger.debug("TheSimpletonCharacter.removeOrb :: finding : " + orb.name + ". next orb:" + o.name);
+                return o instanceof AbstractCropOrb && o.ID == orb.ID;
+            }).findFirst();
+
+            if (orbOptional.isPresent()) {
+                final AbstractCropOrb targetOrb = (AbstractCropOrb) orbOptional.get();
+
+                final int index = this.orbs.indexOf(targetOrb);
+
+                AbstractOrb orbSlot = new EmptyOrbSlot(((AbstractOrb) this.orbs.get(index)).cX, ((AbstractOrb) this.orbs.get(index)).cY);
+                for (int i = index + 1; i < this.orbs.size(); i++) {
+                    Collections.swap(this.orbs, i, i - 1);
+                }
+                this.orbs.set(this.orbs.size() - 1, orbSlot);
+                for (int i = 0; i < this.orbs.size(); i++) {
+                    ((AbstractOrb) this.orbs.get(i)).setSlot(i, this.maxOrbs);
+                }
             }
         }
     }

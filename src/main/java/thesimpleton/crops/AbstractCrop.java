@@ -114,7 +114,7 @@ abstract public class AbstractCrop {
     }
 
 
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction((AbstractCropOrb)getCropOrb().makeCopy(), stacks));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction((AbstractCropOrb)getCropOrb().makeCopy(), stacks, true));
     CropUtil.triggerCardUpdates();
   }
 
@@ -300,7 +300,7 @@ abstract public class AbstractCrop {
     if (referenceCrops.isEmpty()) {
       //TODO: accomplish this dynamically via Crop enum
 
-//      final PlantArtichokePower artichokePower = new PlantArtichokePower(dummy, 0);
+//      final ArtichokeCrop artichokeCrop = new ArtichokeCrop();
       final AsparagusCrop asparagusCrop = new AsparagusCrop();
       final ChilisCrop chilisCrop = new ChilisCrop();
       final CornCrop cornCrop = new CornCrop();
@@ -311,7 +311,7 @@ abstract public class AbstractCrop {
       final SpinachCrop spinachCrop = new SpinachCrop();
       final TurnipCrop turnipCrop = new TurnipCrop();
 
-//      referenceCrops.add(artichokePower);
+//      referenceCrops.add(artichokeCrop);
       referenceCrops.add(asparagusCrop);
       referenceCrops.add(chilisCrop);
       referenceCrops.add(potatoCrop);

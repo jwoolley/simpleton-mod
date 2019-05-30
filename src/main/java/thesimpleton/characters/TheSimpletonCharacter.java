@@ -29,7 +29,6 @@ import thesimpleton.cards.attack.ReapAndSow;
 import thesimpleton.cards.attack.Strike_TheSimpleton;
 import thesimpleton.cards.skill.Defend_TheSimpleton;
 import thesimpleton.cards.skill.Rototilling;
-import thesimpleton.crops.AbstractCrop;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.orbs.AbstractCropOrb;
@@ -133,19 +132,6 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
         retVal.add(SpudOfTheInnocent.ID);
         retVal.add(PungentSoil.ID);
         retVal.add(TheHarvester.ID);
-
-        /* for testing
-        retVal.add(BlackMagicAdvanced.ID);
-        retVal.add(BloodyHarpoon.ID);
-        retVal.add(CrystalBall.ID);
-        retVal.add(DemonicMark.ID);
-        retVal.add(FourLeafCloverCharm.ID);
-        retVal.add(MagicCandle.ID);
-        retVal.add(OminousMark.ID);
-        retVal.add(PinkPellets.ID);
-        retVal.add(SoulVessel.ID);
-        retVal.add(Tack.ID);
-        */
 
         retVal.forEach(id -> UnlockTracker.markRelicAsSeen(id));
         return retVal;

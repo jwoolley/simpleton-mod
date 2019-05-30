@@ -36,7 +36,7 @@ public class SpudOfTheInnocent extends CustomRelic {
   public void atBattleStart() {
     final AbstractPlayer p = AbstractDungeon.player;
     this.flash();
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(CROP_AMOUNT)));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(CROP_AMOUNT), false));
   }
 
   @Override

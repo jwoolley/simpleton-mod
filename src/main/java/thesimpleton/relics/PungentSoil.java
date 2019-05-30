@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.AbstractCrop;
-import thesimpleton.powers.AbstractCropPower;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,15 +35,6 @@ public class PungentSoil extends CustomRelic {
 
   @Override
   public void onShuffle() {
-//    List<AbstractCropPower> eligiblePowers = AbstractCropPower.getActiveCropPowers().stream()
-//        .filter(power -> power.amount < power.getMaturityThreshold())
-//        .collect(Collectors.toList());
-//
-//    eligiblePowers.forEach(power -> power.stackPower(CROP_AMOUNT));
-//
-//    if (eligiblePowers.size() > 0) {
-//      flash();
-//    }
     Logger logger = TheSimpletonMod.logger;
     logger.debug("PungentSoil::onShuffle");
 

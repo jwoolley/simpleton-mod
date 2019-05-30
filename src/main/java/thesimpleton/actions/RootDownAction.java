@@ -1,13 +1,11 @@
 package thesimpleton.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import thesimpleton.powers.AbstractCropPower;
-import thesimpleton.powers.PlantTurnipPower;
-
-import java.util.Optional;
+import thesimpleton.orbs.AbstractCropOrb;
+import thesimpleton.orbs.TurnipCropOrb;
+import thesimpleton.powers.utils.Crop;
 
 public class RootDownAction extends AbstractGameAction {
   public RootDownAction(AbstractCreature target, int numStacks) {
@@ -18,17 +16,10 @@ public class RootDownAction extends AbstractGameAction {
 
   @Override
   public void update() {
-    Optional<AbstractCropPower> matureTurnipPower = AbstractCropPower.getActiveCropPowers().stream()
-        .filter(p -> p.ID == PlantTurnipPower.POWER_ID && p.isMature())
-        .findFirst();
-
-    if (matureTurnipPower.isPresent()) {
-      (matureTurnipPower.get()).harvest(true, 1);
+    if (AbstractCropOrb.isMature(Crop.TURNIPS)) {
+     AbstractCropOrb.getCropOrb(Crop.TURNIPS).getCrop().harvest(true, 1);
     } else {
-      AbstractDungeon.actionManager.addToBottom(
-          new ApplyPowerAction(this.target, this.target,
-              new PlantTurnipPower(this.target, this.amount, true), this.amount)
-      );
+      AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new TurnipCropOrb(this.amount),true));
     }
 
     this.isDone = true;

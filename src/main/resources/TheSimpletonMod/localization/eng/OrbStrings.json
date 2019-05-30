@@ -39,7 +39,7 @@
   },
 
   "TheSimpletonMod:OnionCropOrb": {
-    "NAME": "Onion",
+    "NAME": "Onions",
     "DESCRIPTION": [
       "#gHarvest: Apply #b",
       " Weak to a random enemy for each stack harvested."
@@ -70,7 +70,7 @@
   },
 
   "TheSimpletonMod:TurnipCropOrb": {
-    "NAME": "Turnip",
+    "NAME": "Turnips",
     "DESCRIPTION": [
       "#gHarvest: Convert ALL stacks into an attack card that deals increased damage for each stack harvested."
     ]

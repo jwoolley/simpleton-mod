@@ -37,10 +37,7 @@ public class Chilis extends AbstractCropPowerCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-  //    AbstractDungeon.actionManager.addToBottom(
-  //        new ApplyCropAction(p, p, new PlantChiliPower(p, this.magicNumber, true), this.magicNumber, true));
-
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new ChiliCropOrb(this.magicNumber)));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new ChiliCropOrb(this.magicNumber), true));
   }
 
   @Override

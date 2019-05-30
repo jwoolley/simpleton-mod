@@ -7,13 +7,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.actions.ApplyCropAction;
 import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.orbs.OnionCropOrb;
 import thesimpleton.orbs.TurnipCropOrb;
-import thesimpleton.powers.PlantTurnipPower;
 
 public class Turnips extends AbstractCropPowerCard {
   public static final String ID = "TheSimpletonMod:Turnips";
@@ -40,7 +37,7 @@ public class Turnips extends AbstractCropPowerCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new TurnipCropOrb(this.magicNumber)));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new TurnipCropOrb(this.magicNumber),true));
   }
 
   @Override

@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.enums.AbstractCardEnum;
+import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.powers.AbstractCropPower;
 
 public class Fertilaser extends CustomCard {
@@ -52,8 +53,8 @@ public class Fertilaser extends CustomCard {
         new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
             AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
 
-    AbstractCropPower.getActiveCropPowers()
-        .forEach(power -> power.stackPower(this.magicNumber, true));
+    AbstractCropOrb.getActiveCropOrbs()
+        .forEach(orb -> orb.getCrop().stackOrb(this.magicNumber, true));
   }
 
   @Override

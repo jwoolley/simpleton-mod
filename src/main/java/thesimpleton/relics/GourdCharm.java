@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.actions.ApplyCropAction;
-import thesimpleton.powers.PlantSquashPower;
+import thesimpleton.actions.CropSpawnAction;
+import thesimpleton.orbs.SquashCropOrb;
 
 public class GourdCharm extends CustomRelic {
   public static final String ID = "TheSimpletonMod:GourdCharm";
@@ -60,8 +60,8 @@ public class GourdCharm extends CustomRelic {
     Logger logger = TheSimpletonMod.logger;
     logger.debug("GourdCharm: Adding squash stack");
     final AbstractPlayer p = AbstractDungeon.player;
-    AbstractDungeon.actionManager.addToBottom(
-        new ApplyCropAction(p, p, new PlantSquashPower(p, amount), amount));
+
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new SquashCropOrb(amount),false));
   }
 
   @Override

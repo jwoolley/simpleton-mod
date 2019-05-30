@@ -49,8 +49,16 @@ public abstract class AbstractCropOrb extends CustomOrb {
     return this.getAmount() >= getCrop().getMaturityThreshold();
   }
 
+  public static boolean isMature(Crop crop) {
+    return hasCropOrb(crop) && getCropOrb(crop).isMature();
+  }
+
   public boolean hasCropOrb() {
     return hasCropOrb(this.ID);
+  }
+
+  public static boolean hasCropOrb(Crop crop) {
+    return hasCropOrb(crop.getCrop().getCropOrbId());
   }
 
   public AbstractCropOrb getCropOrb() {
@@ -81,7 +89,12 @@ public abstract class AbstractCropOrb extends CustomOrb {
     return cropOrb.isPresent();
   }
 
-  public void gainCropEffectBefore() {
+  public static int getNumberActiveCropOrbs() {
+    return getActiveCropOrbs().size();
+  }
+
+
+    public void gainCropEffectBefore() {
     AbstractDungeon.effectList.add(new GainCropSoundEffect(-1.0F, -1.0F));
   }
 
@@ -124,12 +137,20 @@ public abstract class AbstractCropOrb extends CustomOrb {
     return getCropOrb(orbType.ID);
   }
 
+  public static AbstractCropOrb getCropOrb(Crop crop) {
+    return getCropOrb(crop.getCrop().getCropOrbId());
+  }
+
   public static AbstractCropOrb getCropOrb(String orbId) {
 
     TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : getting crop orb: " + orbId);
 
-        TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : Player has orbs:"
-            + AbstractDungeon.player.orbs.stream().map(orb -> orb.name).collect(Collectors.joining(", ")));
+    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : Player has orbs:"
+        + AbstractDungeon.player.orbs.stream().map(orb -> orb.name).collect(Collectors.joining(", ")));
+
+    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : Player has active orbs:"
+        + AbstractDungeon.player.orbs.stream()
+            .filter(orb -> orb.passiveAmount > 0).map(orb -> orb.name).collect(Collectors.joining(", ")));
 
     Optional<AbstractOrb> cropOrb =  AbstractDungeon.player.orbs.stream()
         .filter(orb -> orb instanceof AbstractCropOrb && orb.ID == orbId)

@@ -9,9 +9,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.actions.ApplyCropAction;
+import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.PlantSquashPower;
+import thesimpleton.orbs.AbstractCropOrb;
+import thesimpleton.orbs.SquashCropOrb;
+import thesimpleton.powers.utils.Crop;
 
 public class ToughenUp extends CustomCard {
   public static final String ID = "TheSimpletonMod:ToughenUp";
@@ -40,9 +42,8 @@ public class ToughenUp extends CustomCard {
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
 
-    if (p.hasPower(PlantSquashPower.POWER_ID)) {
-      AbstractDungeon.actionManager.addToBottom(
-          new ApplyCropAction(p, p, new PlantSquashPower(p, this.magicNumber, true), this.magicNumber, true));
+    if (AbstractCropOrb.hasCropOrb(Crop.SQUASH)) {
+      AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new SquashCropOrb(this.magicNumber),true));
     }
   }
 

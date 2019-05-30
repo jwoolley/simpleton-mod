@@ -10,7 +10,7 @@ import thesimpleton.orbs.AbstractCropOrb;
 
 public class CropRemoveAction extends AbstractGameAction {
   private static final ActionType ACTION_TYPE = ActionType.SPECIAL;
-  private static final float ACTION_DURATION = Settings.ACTION_DUR_FAST;
+  private static final float ACTION_DURATION = Settings.ACTION_DUR_MED;
 
   private AbstractCropOrb cropOrb;
   private final boolean secondApplication = false;

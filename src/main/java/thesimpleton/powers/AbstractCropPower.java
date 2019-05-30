@@ -16,6 +16,7 @@ import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.characters.TheSimpletonCharacter;
+import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.powers.utils.Crop;
 import thesimpleton.relics.CashCrop;
 import thesimpleton.relics.GrassPellets;
@@ -170,33 +171,33 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     } else { logger.debug("Not triggered"); }
   }
 
-  public AbstractCropPowerCard getPowerCard() throws UnsupportedOperationException {
-    if (!this.hasPowerCard()) {
+  public AbstractCropPowerCard getPowerCardREFACTOR() throws UnsupportedOperationException {
+    if (!this.hasPowerCardREFACTOR()) {
       throw new UnsupportedOperationException("No crop power card defined for " + this.getClass().getSimpleName());
     }
     return (AbstractCropPowerCard)this.powerCard.makeCopy();
   }
 
-  public boolean hasPowerCard() {
+  public boolean hasPowerCardREFACTOR() {
     return this.powerCard != null;
   }
 
-  public static boolean playerHasAnyActiveCropPowers() {
+  public static boolean playerHasAnyActiveCropPowersREFACTOR() {
 //    return AbstractCropPower.getActiveCropPowers().size() > 0;
     return getPlayer().getCropUtil().playerHasAnyCrops();
   }
 
-  public static AbstractCropPower getOldestCropPower() {
+  public static AbstractCropPower getOldestCropPowerREFACTOR() {
     logger.debug("Newest crop per CropUtil: " + (getPlayer().getCropUtil().playerHasAnyCrops() ? getPlayer().getCropUtil().getOldestCrop().name : "None"));
     return getPlayer().getCropUtil().getOldestCrop();
   }
 
-  public static AbstractCropPower getNewestCropPower() {
+  public static AbstractCropPower getNewestCropPowerREFACTOR() {
     logger.debug("Newest crop per CropUtil: " + (getPlayer().getCropUtil().playerHasAnyCrops() ? getPlayer().getCropUtil().getNewestCrop().name : "None"));
     return getPlayer().getCropUtil().getNewestCrop();
   }
 
-  public static List<AbstractCropPower> getActiveCropPowers() {
+  public static List<AbstractCropPower> getActiveCropPowersREFACTOR() {
     List<AbstractCropPower> cropPowers = new ArrayList<>();
     AbstractDungeon.player.powers.stream()
         .filter(power -> power instanceof AbstractCropPower)
@@ -413,8 +414,8 @@ public abstract class AbstractCropPower extends AbstractTheSimpletonPower {
     return resultPowers;
   }
 
-  public static int getNumberActiveCropTypes() {
-    return getActiveCropPowers().size();
+  public static int getNumberActiveCropTypesREFACTOR() {
+    return AbstractCropOrb.getActiveCropOrbs().size();
   }
 
   static {

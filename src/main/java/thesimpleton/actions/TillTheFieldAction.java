@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
+import thesimpleton.crops.AbstractCrop;
+import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.powers.AbstractCropPower;
 import thesimpleton.powers.utils.Crop;
 
@@ -38,13 +40,12 @@ public class TillTheFieldAction extends AbstractGameAction {
     if (this.duration != ACTION_DURATION) {
       AbstractPlayer player = SimpletonUtil.getPlayer();
 
-      if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
-        final AbstractCropPower newestCrop = AbstractCropPower.getNewestCropPower();
-        if (newestCrop.isMature()) {
+      if (AbstractCropOrb.playerHasAnyCropOrbs()) {
+        final AbstractCropOrb newestCropOrb = AbstractCropOrb.getNewestCropOrb();
+        if (newestCropOrb.isMature()) {
           AbstractDungeon.actionManager.addToBottom(new GainBlockAction(player, player, this.blockAmount));
         } else {
-          AbstractDungeon.actionManager.addToBottom(
-            new ApplyPowerAction(player, player, Crop.getCrop(newestCrop.enumValue, player, this.amount, this.isFromCard), this.amount));
+          AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(newestCropOrb, this.amount, true));
         }
         this.isDone = true;
       }

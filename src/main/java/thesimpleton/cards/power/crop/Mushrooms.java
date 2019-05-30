@@ -36,9 +36,7 @@ public class Mushrooms extends AbstractCropPowerCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-//    AbstractDungeon.actionManager.addToBottom(
-//        new ApplyCropAction(p, p, new PlantMushroomPower(p, this.magicNumber, true), this.magicNumber, true));
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new MushroomCropOrb(this.magicNumber)));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new MushroomCropOrb(this.magicNumber),true));
   }
 
   @Override

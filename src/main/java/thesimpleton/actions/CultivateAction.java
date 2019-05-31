@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.orbs.ChiliCropOrb;
+import thesimpleton.orbs.TurnipCropOrb;
 import thesimpleton.powers.AbstractCropPower;
 import thesimpleton.powers.utils.Crop;
 
@@ -75,7 +76,10 @@ public class CultivateAction extends AbstractGameAction {
           logger.debug("CultivateAction.update :: numStacksToHarvest: " + numStacksToHarvest);
           logger.debug("CultivateAction.update :: harvesting " + stacks + " stacks of " + cropOrb.name);
           cropCounts.put(cropOrb.getCrop().getCropOrb(), stacks);
-          cropOrb.getCrop().harvest(false, stacks);
+
+          AbstractDungeon.actionManager.addToTop(new HarvestCropAction(cropOrb, stacks,true));
+
+//          cropOrb.getCrop().harvest(false, stacks);
         }
 
         this.hasHarvested = true;

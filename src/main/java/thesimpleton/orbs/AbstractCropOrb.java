@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.AbstractCrop;
 import thesimpleton.effects.orb.GainCropSoundEffect;
@@ -32,6 +33,8 @@ public abstract class AbstractCropOrb extends CustomOrb {
     this.crop = crop;
     this.basePassiveAmount = this.passiveAmount = amount;
   }
+
+  abstract public AbstractCropOrb makeCopy(int amount);
 
   public AbstractCrop getCrop() { return this.crop.getCrop(); }
 
@@ -152,13 +155,20 @@ public abstract class AbstractCropOrb extends CustomOrb {
         + AbstractDungeon.player.orbs.stream()
             .filter(orb -> orb.passiveAmount > 0).map(orb -> orb.name).collect(Collectors.joining(", ")));
 
-    Optional<AbstractOrb> cropOrb =  AbstractDungeon.player.orbs.stream()
+    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : Player active orb counts:"
+        + AbstractDungeon.player.orbs.stream()
+        .filter(orb -> orb.passiveAmount > 0).map(orb -> orb.name + ": " + orb.passiveAmount).collect(Collectors.joining(", ")));
+
+    Optional<AbstractOrb> cropOrb = AbstractDungeon.player.orbs.stream()
         .filter(orb -> orb instanceof AbstractCropOrb && orb.ID == orbId)
         .findFirst();
 
     if (!cropOrb.isPresent()) {
       return null;
     }
+
+    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : returning orb " + ((AbstractCropOrb)cropOrb.get()).name  + " with " + cropOrb.get().passiveAmount + " passive stacks");
+
     return (AbstractCropOrb)cropOrb.get();
   }
 

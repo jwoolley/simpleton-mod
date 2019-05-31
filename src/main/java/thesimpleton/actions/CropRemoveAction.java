@@ -16,12 +16,16 @@ public class CropRemoveAction extends AbstractGameAction {
   private final boolean secondApplication = false;
 
   public CropRemoveAction(AbstractCropOrb cropOrb) {
+    TheSimpletonMod.logger.debug("============> CropRemoveAction::constructor =====");
+
     this.duration = ACTION_DURATION;
     this.actionType = ACTION_TYPE;
     this.cropOrb = cropOrb;
   }
 
   public void update() {
+    TheSimpletonMod.logger.debug("============> CropRemoveAction::update =====");
+
     Logger logger = TheSimpletonMod.logger;
 
     if (AbstractCropOrb.hasCropOrb(this.cropOrb)) {

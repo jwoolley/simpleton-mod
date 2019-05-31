@@ -30,8 +30,13 @@ public class PotatoCropOrb extends AbstractCropOrb {
 
     @Override
     public AbstractOrb makeCopy() {
-        return new PotatoCropOrb();
+       return this.makeCopy(0);
     }
+
+    public AbstractCropOrb makeCopy(int amount) {
+        return new PotatoCropOrb(amount);
+    }
+
 
     @Override
     public void playChannelSFX() {

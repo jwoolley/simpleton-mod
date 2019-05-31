@@ -34,6 +34,11 @@ public class ChiliCropOrb extends AbstractCropOrb {
     return new ChiliCropOrb();
   }
 
+  public AbstractCropOrb makeCopy(int amount) {
+    return new ChiliCropOrb(amount);
+  }
+
+
   @Override
   public void playChannelSFX() {
     TheSimpletonMod.logger.debug(" ============================================= ADD playChannelSFX for " + this.name + " =============================================");

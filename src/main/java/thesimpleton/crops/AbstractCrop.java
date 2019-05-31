@@ -72,6 +72,8 @@ abstract public class AbstractCrop {
   }
 
   void onHarvest(int amount) {
+    TheSimpletonMod.logger.debug("============> AbstractCrop::onHarvest =====");
+
     hasHarvestedThisTurn = true;
     logger.debug("AbstractCrop::" + this.getCropOrb().ID + ": onHarvestCalled.  amount: " + amount + ". Set hasHarvestedThisTurn");
 
@@ -140,6 +142,8 @@ abstract public class AbstractCrop {
   }
 
   public void harvest(boolean harvestAll, int maxHarvestAmount) {
+    TheSimpletonMod.logger.debug("============> AbstractCrop::harvest =====");
+
     logger.debug("AbstractCrop::harvest::" + this.getCropOrb().ID + " harvest() called. " + harvestAll + " maxHarvestAmount: " + maxHarvestAmount);
 
     final int amount = this.getAmount();
@@ -151,8 +155,10 @@ abstract public class AbstractCrop {
 
     if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
       if (harvestAmount > 0) {
+        TheSimpletonMod.logger.debug("============> AbstractCrop::harvest queueing CropReduceAction =====");
+
         harvestAction(harvestAmount);
-        AbstractDungeon.actionManager.addToBottom(new CropReduceAction(getCropOrb(), harvestAmount));
+        AbstractDungeon.actionManager.addToTop(new CropReduceAction(getCropOrb(), harvestAmount));
       }
     }
   }

@@ -33,6 +33,10 @@ public class TurnipCropOrb extends AbstractCropOrb {
     return new TurnipCropOrb();
   }
 
+  public AbstractCropOrb makeCopy(int amount) {
+    return new TurnipCropOrb(amount);
+  }
+
   @Override
   public void playChannelSFX() {
     TheSimpletonMod.logger.debug(" ============================================= ADD playChannelSFX for " + this.name + " =============================================");

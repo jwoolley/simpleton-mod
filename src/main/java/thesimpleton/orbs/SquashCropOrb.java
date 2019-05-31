@@ -34,6 +34,10 @@ public class SquashCropOrb extends AbstractCropOrb {
     return new SquashCropOrb();
   }
 
+  public AbstractCropOrb makeCopy(int amount) {
+    return new SquashCropOrb(amount);
+  }
+
   @Override
   public void playChannelSFX() {
     TheSimpletonMod.logger.debug(" ============================================= ADD playChannelSFX for " + this.name + " =============================================");

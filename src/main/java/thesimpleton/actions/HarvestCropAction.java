@@ -26,6 +26,8 @@ public class HarvestCropAction extends AbstractGameAction {
   }
 
   public HarvestCropAction(AbstractCropOrb cropOrb, int stacks, boolean isFromCard) {
+    TheSimpletonMod.logger.debug("============> HarvestCropAction::constructor =====");
+
     final int rawAmount = stacks >= 0 ? stacks : cropOrb.passiveAmount;
 
     this.duration = ACTION_DURATION;
@@ -35,18 +37,29 @@ public class HarvestCropAction extends AbstractGameAction {
     this.cropOrb = cropOrb;
 
     Logger logger = TheSimpletonMod.logger;
-    logger.debug("CropSpawnAction() constructor: " + cropOrb.getClass().getSimpleName() + "; rawAmount: " + rawAmount + " calculated amount: " + this.amount);
+    logger.debug("HarvestCropAction() constructor: " + cropOrb.getClass().getSimpleName() + "; rawAmount: " + rawAmount + " calculated amount: " + this.amount);
   }
 
   public void update() {
-    Logger logger = TheSimpletonMod.logger;
+    TheSimpletonMod.logger.debug("============> HarvestCropAction::update =====");
 
-    final int stacks = cropOrb.getAmount() < this.amount ? cropOrb.getAmount() : this.amount;
-    logger.debug("CultivateAction.update :: player has " + cropOrb.getAmount() + " stacks of " + cropOrb.name);
-    logger.debug("CultivateAction.update :: numStacksToHarvest: " + this.amount);
-    logger.debug("CultivateAction.update :: harvesting " + stacks + " stacks of " + cropOrb.name);
-    cropOrb.getCrop().harvest(false, stacks);
-    this.isDone = true;
+    if (this.duration == ACTION_DURATION) {
+      TheSimpletonMod.logger.debug("============> HarvestCropAction::update duration == ACTION_DURATION =====");
+
+      Logger logger = TheSimpletonMod.logger;
+
+      final int stacks = cropOrb.getAmount() < this.amount ? cropOrb.getAmount() : this.amount;
+      logger.debug("HarvestCropAction.update :: player has " + cropOrb.getAmount() + " stacks of " + cropOrb.name);
+      logger.debug("HarvestCropAction.update :: numStacksToHarvest: " + this.amount);
+      logger.debug("HarvestCropAction.update :: harvesting " + stacks + " stacks of " + cropOrb.name);
+
+      TheSimpletonMod.logger.debug("============> HarvestCropAction::update calling AbstractCrop.harvest() =====");
+
+      cropOrb.getCrop().harvest(false, stacks);
+      this.isDone = true;
+    }
+    TheSimpletonMod.logger.debug("============> HarvestCropAction::update tickDuration =====");
+
     tickDuration();
   }
 }

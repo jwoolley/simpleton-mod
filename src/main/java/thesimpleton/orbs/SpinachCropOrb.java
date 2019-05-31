@@ -34,6 +34,10 @@ public class SpinachCropOrb extends AbstractCropOrb {
     return new SpinachCropOrb();
   }
 
+  public AbstractCropOrb makeCopy(int amount) {
+    return new SpinachCropOrb(amount);
+  }
+
   @Override
   public void playChannelSFX() {
     TheSimpletonMod.logger.debug(" ============================================= ADD playChannelSFX for " + this.name + " =============================================");

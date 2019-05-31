@@ -33,6 +33,10 @@ public class OnionCropOrb extends AbstractCropOrb {
     return new OnionCropOrb();
   }
 
+  public AbstractCropOrb makeCopy(int amount) {
+    return new OnionCropOrb(amount);
+  }
+
   @Override
   public void playChannelSFX() {
     TheSimpletonMod.logger.debug(" ============================================= ADD playChannelSFX for " + this.name + " =============================================");

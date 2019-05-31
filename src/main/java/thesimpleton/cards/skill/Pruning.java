@@ -12,7 +12,6 @@ import thesimpleton.cards.HarvestCard;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.AbstractCropOrb;
-import thesimpleton.powers.AbstractCropPower;
 
 public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
   public static final String ID = "TheSimpletonMod:Pruning";
@@ -65,6 +64,7 @@ public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
+    TheSimpletonMod.logger.debug("Pruning::use stacksToHarvest: " + this.numStacksToHarvest + " stacksToAdd: " + this.magicNumber);
     AbstractDungeon.actionManager.addToBottom(
         new PruningAction(p, this.numStacksToHarvest, this.magicNumber, true));
   }

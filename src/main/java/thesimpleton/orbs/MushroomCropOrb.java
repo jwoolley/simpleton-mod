@@ -33,6 +33,10 @@ public class MushroomCropOrb extends AbstractCropOrb {
     return new MushroomCropOrb();
   }
 
+  public AbstractCropOrb makeCopy(int amount) {
+    return new MushroomCropOrb(amount);
+  }
+
   @Override
   public void playChannelSFX() {
     TheSimpletonMod.logger.debug(" ============================================= ADD playChannelSFX for " + this.name + " =============================================");

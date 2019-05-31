@@ -169,6 +169,13 @@ abstract public class AbstractCrop {
 
   abstract protected int harvestAction(int harvestAmount);
 
+  public static boolean hasHarvestedThisTurn() {
+    return hasHarvestedThisTurn;
+  }
+
+
+  public static void resetHasHarvestedThisTurn() { hasHarvestedThisTurn = false; }
+
   public void atStartOfTurn() {
     final int amount = this.getAmount();
 

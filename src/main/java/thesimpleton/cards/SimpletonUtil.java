@@ -11,6 +11,8 @@ import thesimpleton.cards.attack.SpudMissile;
 import thesimpleton.cards.skill.Husk;
 import thesimpleton.cards.skill.RootOut;
 import thesimpleton.characters.TheSimpletonCharacter;
+import thesimpleton.crops.AbstractCrop;
+import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.powers.AbstractCropPower;
 
 import java.util.ArrayList;
@@ -69,6 +71,6 @@ public class SimpletonUtil {
     }
 
     public static boolean hasHarvestedThisTurn() {
-        return AbstractCropPower.hasHarvestedThisTurn();
+        return AbstractCrop.hasHarvestedThisTurn();
     }
 }

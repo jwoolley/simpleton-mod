@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.characters.TheSimpletonCharacter;
+import thesimpleton.crops.AbstractCrop;
 import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.powers.AbstractCropPower;
 
@@ -78,7 +79,7 @@ public class CropUtil implements PostUpdateSubscriber, PostDrawSubscriber, PostP
     logger.debug("CropUtil:resetForCombat activeCrops after combatStartCrops added: " + activeCrops.size());
 
     combatStartCrops.clear();
-    AbstractCropPower.resetHasHarvestedThisTurn();
+    AbstractCrop.resetHasHarvestedThisTurn();
     wasResetForCombat = true;
   }
 

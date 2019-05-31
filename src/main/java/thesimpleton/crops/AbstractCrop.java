@@ -141,6 +141,10 @@ abstract public class AbstractCrop {
     return Math.min(amount, harvestAll ? amount : maxAmount);
   }
 
+  public void harvestAll() {
+    this.harvest(true, this.getAmount());
+  }
+
   public void harvest(boolean harvestAll, int maxHarvestAmount) {
     TheSimpletonMod.logger.debug("============> AbstractCrop::harvest =====");
 
@@ -226,8 +230,8 @@ abstract public class AbstractCrop {
   public static List<AbstractCropOrb> getActiveCropOrbs() {
     List<AbstractCropOrb> activeCropOrbs = AbstractCropOrb.getActiveCropOrbs();
 
-    logger.debug("AbstractCrop.getActiveCropOrbs: player has " + activeCropOrbs.size() + " active crop powers");
-    logger.debug("AbstractCrop.getActiveCropOrbs: player has " + AbstractDungeon.player.orbs.size() + " active total powers");
+    logger.debug("AbstractCrop.getActiveCropOrbs: player has " + activeCropOrbs.size() + " active crop orbs");
+    logger.debug("AbstractCrop.getActiveCropOrbs: player has " + SimpletonUtil.getActiveOrbs().size() + " active total orbs");
 
     return activeCropOrbs;
   }

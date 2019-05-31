@@ -23,16 +23,13 @@ public class OnionCropOrb extends AbstractCropOrb {
     super(CROP_ENUM, ORB_ID, NAME, amount, OnionCrop.MATURITY_THRESHOLD, DESCRIPTIONS[0], IMG_PATH);
   }
 
-  @Override
-  public void onEvoke() {
-//    this.
-  }
 
   @Override
   public AbstractOrb makeCopy() {
     return new OnionCropOrb();
   }
 
+  @Override
   public AbstractCropOrb makeCopy(int amount) {
     return new OnionCropOrb(amount);
   }

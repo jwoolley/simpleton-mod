@@ -24,11 +24,6 @@ public class TurnipCropOrb extends AbstractCropOrb {
   }
 
   @Override
-  public void onEvoke() {
-
-  }
-
-  @Override
   public AbstractOrb makeCopy() {
     return new TurnipCropOrb();
   }

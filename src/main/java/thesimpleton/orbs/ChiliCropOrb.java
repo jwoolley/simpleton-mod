@@ -25,11 +25,6 @@ public class ChiliCropOrb extends AbstractCropOrb {
   }
 
   @Override
-  public void onEvoke() {
-//    this.
-  }
-
-  @Override
   public AbstractOrb makeCopy() {
     return new ChiliCropOrb();
   }

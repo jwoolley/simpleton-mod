@@ -36,6 +36,11 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
   abstract public AbstractCropOrb makeCopy(int amount);
 
+  @Override
+  public void onEvoke() {
+    this.getCrop().harvestAll();
+  }
+
   public AbstractCrop getCrop() { return this.crop.getCrop(); }
 
   public int getAmount() {

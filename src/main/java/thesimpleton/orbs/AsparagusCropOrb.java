@@ -26,11 +26,6 @@ public class AsparagusCropOrb extends AbstractCropOrb {
   }
 
   @Override
-  public void onEvoke() {
-//    this.o
-  }
-
-  @Override
   public AbstractOrb makeCopy() {
     return new AsparagusCropOrb();
   }

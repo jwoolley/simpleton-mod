@@ -24,11 +24,6 @@ public class PotatoCropOrb extends AbstractCropOrb {
     }
 
     @Override
-    public void onEvoke() {
-//    this.
-    }
-
-    @Override
     public AbstractOrb makeCopy() {
        return this.makeCopy(0);
     }
@@ -36,7 +31,6 @@ public class PotatoCropOrb extends AbstractCropOrb {
     public AbstractCropOrb makeCopy(int amount) {
         return new PotatoCropOrb(amount);
     }
-
 
     @Override
     public void playChannelSFX() {

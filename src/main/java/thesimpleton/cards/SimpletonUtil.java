@@ -5,17 +5,18 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import org.apache.logging.log4j.Logger;
+import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.attack.FlamingSpud;
 import thesimpleton.cards.attack.SpudMissile;
 import thesimpleton.cards.skill.Husk;
 import thesimpleton.cards.skill.RootOut;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.crops.AbstractCrop;
-import thesimpleton.orbs.AbstractCropOrb;
-import thesimpleton.powers.AbstractCropPower;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,11 +31,6 @@ public class SimpletonUtil {
         return (TheSimpletonCharacter) AbstractDungeon.player;
     }
 
-    public static int getNumCurse(ArrayList<AbstractCard> cards) {
-        return (int) cards.stream()
-                .filter(card -> card.type == AbstractCard.CardType.CURSE)
-                .count();
-    }
 
     public static boolean isPlayerInCombat() {
         return AbstractDungeon.isPlayerInDungeon()
@@ -68,6 +64,14 @@ public class SimpletonUtil {
             protected void getMove(int i) {}
             public void takeTurn() {}
         });
+    }
+
+    // TODO: ensure that this counts Defect orbs etc. (i.e. orb.ID != null)
+    public static List<AbstractOrb> getActiveOrbs() {
+        Logger logger = TheSimpletonMod.logger;
+
+        logger.debug("SimpletonUtil::getActiveOrbs player has orbs: " + AbstractDungeon.player.orbs.stream().map(orb -> orb.ID).collect(Collectors.joining(", ")));
+        return AbstractDungeon.player.orbs.stream().filter(orb -> orb.ID != null && orb.ID != EmptyOrbSlot.ORB_ID).collect(Collectors.toList());
     }
 
     public static boolean hasHarvestedThisTurn() {

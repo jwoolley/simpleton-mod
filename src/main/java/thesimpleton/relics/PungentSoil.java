@@ -1,12 +1,21 @@
 package thesimpleton.relics;
 
 import basemod.abstracts.CustomRelic;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.combat.DamageImpactCurvyEffect;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.AbstractCrop;
+import thesimpleton.effects.relic.DelayedRelicFlashEffect;
 import thesimpleton.orbs.AbstractCropOrb;
 
 import java.util.List;
@@ -22,6 +31,7 @@ public class PungentSoil extends CustomRelic {
   private static final LandingSound SOUND = LandingSound.HEAVY;
 
   private static final int CROP_AMOUNT = 1;
+  private static final float RELIC_FLASH_DELAY = 1.2F;
 
   public PungentSoil() {
     super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
@@ -45,7 +55,10 @@ public class PungentSoil extends CustomRelic {
 
     logger.debug("PungentSoil::onShuffle found " + eligibleCropOrbs.size() + " eligible crops");
 
-    eligibleCropOrbs.forEach(orb -> AbstractCrop.stackOrb(orb, CROP_AMOUNT, false));
+    if (!eligibleCropOrbs.isEmpty()) {
+      AbstractDungeon.effectList.add(new DelayedRelicFlashEffect(this, RELIC_FLASH_DELAY));
+      eligibleCropOrbs.forEach(orb -> AbstractCrop.stackOrb(orb, CROP_AMOUNT, false));
+    }
   }
 
   @Override

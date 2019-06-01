@@ -105,7 +105,8 @@
 
   "TheSimpletonMod:FanTheFlames": {
     "NAME": "Fan the Flames",
-    "DESCRIPTION": " Apply !M! Burning, then double the enemy's Burning."
+    "DESCRIPTION": " Apply !M! Burning, then double the enemy's Burning. NL NL Exhaust.",
+    "UPGRADE_DESCRIPTION": " Apply !M! Burning to ALL enemies, then double each enemy's Burning. NL NL Exhaust."
   },
 
   "TheSimpletonMod:Ferment": {
@@ -202,7 +203,7 @@
   },
 
   "TheSimpletonMod:ResearchGrant": {
-    "NAME": "ResearchGrant",
+    "NAME": "Research Grant",
     "DESCRIPTION": "Gain !B! Block. NL Add !M! copies of Soil Sample to your discard pile. NL Exhaust."
   },
 
@@ -210,7 +211,7 @@
   "TheSimpletonMod:RootDown": {
     "NAME": "Root Down",
     "DESCRIPTION": "Deal !D! damage. NL If Turnips are Mature, Harvest all Turnips. Otherwise, Plant !M! Turnips.",
-    "UPGRADE_DESCRIPTION": "Innate. Deal !D! damage. NL If Turnips are Mature, Harvest all Turnips. Otherwise, Plant !M! Turnips."
+    "UPGRADE_DESCRIPTION": "Innate. NL Deal !D! damage. NL If Turnips are Mature, Harvest all Turnips. Otherwise, Plant !M! Turnips."
   },
 
   "TheSimpletonMod:RootOut": {

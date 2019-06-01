@@ -26,7 +26,7 @@ public class VolatileFumes extends CustomCard {
 
   private static final int COST = 0;
   private static final int BURNING_AMOUNT = 5;
-  private static final int BURNING_UPGRADE_AMOUNT = 8;
+  private static final int BURNING_UPGRADE_AMOUNT = 3;
 
   public VolatileFumes() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);

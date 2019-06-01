@@ -44,6 +44,7 @@ abstract public class AbstractCrop {
   private final AbstractCropPowerCard powerCard;
   private int maturityThreshold;
 
+
   AbstractCrop(Crop enumValue, String cropOrbId, AbstractCropPowerCard powerCard, AbstractCard.CardRarity rarity,
                int autoHarvestThreshold) {
     this(enumValue, cropOrbId, powerCard, rarity, autoHarvestThreshold, false);
@@ -51,6 +52,11 @@ abstract public class AbstractCrop {
 
   AbstractCrop(Crop enumValue, String cropOrbId, AbstractCropPowerCard powerCard, AbstractCard.CardRarity rarity, int autoHarvestThreshold,
                boolean isHarvestAll) {
+
+    logger.debug("instantiating AbstractCrop. enumValue: " + enumValue);
+    logger.debug("instantiating AbstractCrop. cropRarity: " + rarity);
+
+
     this.enumValue = enumValue;
     this.cropOrbId = cropOrbId;
     this.powerCard = powerCard;
@@ -60,7 +66,13 @@ abstract public class AbstractCrop {
   }
 
   public String getName() {
-    return this.getCropOrb().getClass().getSimpleName();
+    logger.debug("============> AbstractCrop::getName =====");
+    logger.debug("============> AbstractCrop::getName this.enumValue: " + this.enumValue);
+    logger.debug("============> AbstractCrop::getName this.getClass().getSimpleName(): " + this.getClass().getSimpleName());
+    logger.debug("============> AbstractCrop::getName Crop.getCropOrb(): " + Crop.getCropOrb(this.enumValue));
+    logger.debug("============> AbstractCrop::getName  Crop.getCropOrb().name: " + Crop.getCropOrb(this.enumValue).name);
+
+    return Crop.getCropOrb(this.enumValue).name;
   }
 
   public String getCropOrbId() {
@@ -257,11 +269,11 @@ abstract public class AbstractCrop {
 
   public static List<AbstractCrop> getRandomCrops(
       AbstractPlayer p, int numPowers, int numStacks, boolean withRarityDistribution) {
-    return getRandomCrops(p, numPowers, numStacks, withRarityDistribution, power -> true);
+    return getRandomCrops(p, numPowers, numStacks, withRarityDistribution, crop -> true);
   }
 
   public static List<AbstractCrop> getRandomCrops(
-      AbstractPlayer p, int numPowers, int numStacks, boolean withRarityDistribution,
+      AbstractPlayer p, int numCrops, int numStacks, boolean withRarityDistribution,
       Predicate<AbstractCrop> predicate) {
     // TODO: move this logic to a plant power manager class
 
@@ -272,47 +284,51 @@ abstract public class AbstractCrop {
         .collect(Collectors.toList());
 
     logger.debug(AbstractCropPowerCard.class.getSimpleName()
-        + ".getRandomCropPowers :: referencePowers: "
-        + referenceCrops.stream().map(rp -> rp.getName()).collect(Collectors.joining(", ")));
+        + ".getRandomCrops :: referenceCrops: "
+        + referenceCrops.stream().map(rp ->rp.enumValue + "").collect(Collectors.joining(", ")));
 
     logger.debug(AbstractCropPowerCard.class.getSimpleName()
-        + ".getRandomCropPowers :: filteredPowers: "
-        + filteredCrops.stream().map(fp -> fp.getName()).collect(Collectors.joining(", ")));
+        + ".getRandomCrops :: referenceCrops: "
+        + referenceCrops.stream().map(rp ->rp.getName()).collect(Collectors.joining(", ")));
+
+    logger.debug(AbstractCropPowerCard.class.getSimpleName()
+        + ".getRandomCrops :: filteredCrops: "
+        + filteredCrops.stream().map(fp -> fp.enumValue + "").collect(Collectors.joining(", ")));
 
     ArrayList<AbstractCrop> resultCrops;
 
-    final int numTotalPowers = filteredCrops.size();
-    if (numPowers > numTotalPowers) {
-      throw new IndexOutOfBoundsException("Requested " + numPowers + " powers but only " + numTotalPowers
-          + " powers are available");
-    } else if (numPowers == numTotalPowers) {
-      logger.debug("Requested powers size equals total powers. Returning all powers.");
+    final int numTotalCrops = filteredCrops.size();
+    if (numCrops > numTotalCrops) {
+      throw new IndexOutOfBoundsException("Requested " + numCrops + " crop powers but only " + numTotalCrops
+          + " crop powers are available");
+    } else if (numCrops == numTotalCrops) {
+      logger.debug("Requested crop power cards size equals total crop power cards. Returning all powers.");
       resultCrops = new ArrayList(filteredCrops);
     } else {
-      logger.debug("Choosing powers by probability distribution");
+      logger.debug("Choosing crop power cards by probability distribution");
 
       ArrayList<AbstractCrop> distributedCrops = new ArrayList<>();
-      filteredCrops.forEach(power -> {
+      filteredCrops.forEach(crop -> {
         List<AbstractCrop> copies =
             Collections.nCopies(withRarityDistribution
-                    ? CROP_RARITY_DISTRIBUTION.get(power.cropRarity) : 1,
-                power);
+                    ? CROP_RARITY_DISTRIBUTION.get(crop.cropRarity) : 1,
+                crop);
         distributedCrops.addAll(copies);
       });
 
       logger.debug(AbstractCropPowerCard.class.getSimpleName()
           + ".getRandomCropPowers :: distributedPowers: "
-          + distributedCrops.stream().map(dp -> dp.getName()).collect(Collectors.joining(", ")));
+          + distributedCrops.stream().map(dp -> dp.enumValue + "").collect(Collectors.joining(", ")));
 
       Collections.shuffle(distributedCrops);
 
-      logger.debug("Choosing " + numPowers + " powers from distributedPowers");
+      logger.debug("Choosing " + numCrops + " powers from distributedPowers");
 
       resultCrops = new ArrayList<>();
-      for (int i = 0; i < numPowers; i++) {
+      for (int i = 0; i < numCrops; i++) {
         final AbstractCrop crop = distributedCrops.get(0);
         resultCrops.add(crop);
-        logger.debug("Selected " + crop.getName());
+        logger.debug("Selected " + crop.enumValue);
 
         distributedCrops.removeIf(dc -> dc == crop);
       }
@@ -335,7 +351,7 @@ abstract public class AbstractCrop {
       final SpinachCrop spinachCrop = new SpinachCrop();
       final TurnipCrop turnipCrop = new TurnipCrop();
 
-//      referenceCrops.add(artichokeCrop);
+//    referenceCrops.add(artichokeCrop);
       referenceCrops.add(asparagusCrop);
       referenceCrops.add(chilisCrop);
       referenceCrops.add(potatoCrop);
@@ -360,7 +376,7 @@ abstract public class AbstractCrop {
     rarityDistribution.put(CardRarity.COMMON, 18);
     rarityDistribution.put(CardRarity.UNCOMMON, 12);
     rarityDistribution.put(CardRarity.RARE, 8);
-
+    CROP_RARITY_DISTRIBUTION = Collections.unmodifiableMap(rarityDistribution);
 
     // TODO: move to CropUtil?
     // reset hasHarvestedThisTurn at start of combat and at end of turn

@@ -4,31 +4,59 @@ import thesimpleton.crops.*;
 import thesimpleton.orbs.*;
 import thesimpleton.powers.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 // TODO: instantiate these reference crops in CropUtil
 public enum Crop {
-  ARTICHOKES(null),
-  ASPARAGUS(new AsparagusCrop()),
-  CORN(new CornCrop()),
-  CHILIS(new ChilisCrop()),
-  SQUASH(new SquashCrop()),
-  MUSHROOMS(new MushroomCrop()),
-  ONIONS(new OnionCrop()),
-  POTATOES(new PotatoCrop()),
-  SPINACH(new SpinachCrop()),
-  TURNIPS(new TurnipCrop());
+  ARTICHOKES(),
+  ASPARAGUS(),
+  CORN(),
+  CHILIS(),
+  SQUASH(),
+  MUSHROOMS(),
+  ONIONS(),
+  POTATOES(),
+  SPINACH(),
+  TURNIPS();
 
-  Crop(AbstractCrop crop) {
-    this.crop = crop;
-  }
-
-  public final AbstractCrop crop;
+  private AbstractCrop crop;
 
   public String getName() {
-    return this.crop.getName();
+    return this.getCrop().getName();
+  }
+
+  public static void initialize() {
+      Map<Crop, AbstractCrop> mappings = new HashMap<>();
+      mappings.put(Crop.ARTICHOKES, new AsparagusCrop()); // TODO: FIX THIS!!
+      mappings.put(Crop.ASPARAGUS, new AsparagusCrop());
+      mappings.put(Crop.CORN, new CornCrop());
+      mappings.put(Crop.CHILIS, new ChilisCrop());
+      mappings.put(Crop.SQUASH, new SquashCrop());
+      mappings.put(Crop.MUSHROOMS, new MushroomCrop());
+      mappings.put(Crop.ONIONS, new OnionCrop());
+      mappings.put(Crop.POTATOES, new PotatoCrop());
+      mappings.put(Crop.SPINACH, new SpinachCrop());
+      mappings.put(Crop.TURNIPS, new TurnipCrop());
+
+      for (Crop crop : Crop.values()) {
+      crop.crop =  mappings.get(crop);
+      if (crop.crop == null) {
+        throw new RuntimeException("Crop field for Crop enum " + crop + " is not defined");
+      }
+    }
   }
 
   public AbstractCrop getCrop() {
+    if (this.crop == null) {
+      throw new RuntimeException("Crop field for Crop enum " + this + " is not defined");
+    }
+
     return this.crop;
+  }
+
+  public static AbstractCropOrb getCropOrb(Crop crop) {
+    return getCropOrb(crop, 0);
   }
 
   public static AbstractCropOrb getCropOrb(Crop crop, int amount) {

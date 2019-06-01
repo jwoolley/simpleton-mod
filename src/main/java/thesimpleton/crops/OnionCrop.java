@@ -17,7 +17,7 @@ public class OnionCrop extends AbstractCrop {
   private static final String ORB_ID = OnionCropOrb.ORB_ID;
   private static final AbstractCropPowerCard POWER_CARD = new Onions();
 
-  private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.COMMON;
+  private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.BASIC;
 
 
   public static final int MATURITY_THRESHOLD = 5;

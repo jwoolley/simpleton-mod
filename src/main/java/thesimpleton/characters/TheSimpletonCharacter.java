@@ -32,6 +32,7 @@ import thesimpleton.cards.skill.Rototilling;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.orbs.AbstractCropOrb;
+import thesimpleton.powers.utils.Crop;
 import thesimpleton.relics.PungentSoil;
 import thesimpleton.relics.SpudOfTheInnocent;
 import thesimpleton.relics.TheHarvester;
@@ -105,6 +106,7 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
             logger.debug(index++ + ") " + card.name + " [cardId: " + card.cardID + "]");
         }
         initializeOrbSlotLocations();
+        Crop.initialize();
     }
 
     @Override

@@ -15,13 +15,13 @@ public class PotatoCrop extends AbstractCrop {
   private static final String ORB_ID = PotatoCropOrb.ORB_ID;
   private static final AbstractCropPowerCard POWER_CARD = new Potatoes();
 
-  private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.UNCOMMON;
+  private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.BASIC;
 
   public static final int MATURITY_THRESHOLD = 5;
 
   public PotatoCrop() {
     super(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD);
-    logger.debug("MAKIN' POTATOES (instantiating PotatoCrop).");
+    logger.debug("MAKIN' POTATOES (instantiating PotatoCrop). CROP_EMUM: " + CROP_ENUM);
   }
 
   protected int harvestAction(int harvestAmount) {

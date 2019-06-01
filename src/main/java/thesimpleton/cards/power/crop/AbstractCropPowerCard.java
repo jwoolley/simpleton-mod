@@ -20,7 +20,7 @@ public abstract class AbstractCropPowerCard extends CustomCard {
 
   public static List<AbstractCropPowerCard> getRandomCropPowerCards(int number, boolean withRarityDistribution) {
     try {
-      return AbstractCrop.getRandomCrops(AbstractDungeon.player, number, 0, withRarityDistribution, o -> o.getCropOrb() != null)
+      return AbstractCrop.getRandomCrops(AbstractDungeon.player, number, 0, withRarityDistribution)
           .stream()
           .map(crop -> crop.getPowerCard())
           .collect(Collectors.toList());

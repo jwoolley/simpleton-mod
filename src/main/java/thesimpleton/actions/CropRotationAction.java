@@ -9,11 +9,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
-import thesimpleton.powers.AbstractCropPower;
+import thesimpleton.crops.AbstractCrop;
+import thesimpleton.orbs.AbstractCropOrb;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Optional;
 
 public class CropRotationAction extends AbstractGameAction {
   private static final ActionType ACTION_TYPE = ActionType.SPECIAL;
@@ -24,7 +24,7 @@ public class CropRotationAction extends AbstractGameAction {
   private final int numCardsToGain;
   private final boolean reduceCost;
 
-  private boolean hasHarvested;
+  private boolean secondTick;
 
   public CropRotationAction(AbstractPlayer player, int numCropsToHarvest, int numCardsToGain, boolean reduceCost) {
     this.p = player;
@@ -36,12 +36,12 @@ public class CropRotationAction extends AbstractGameAction {
 
     this.actionType = ACTION_TYPE;
     this.duration = ACTION_DURATION;
-    this.hasHarvested = false;
+    this.secondTick = false;
   }
 
   public void update() {
     if (this.duration != ACTION_DURATION) {
-      if (this.hasHarvested) {
+      if (this.secondTick) {
         AbstractDungeon.actionManager.addToTop(new WaitAction(0.1F));
 
         final AbstractCropPowerCard randomCropPowerCard = AbstractCropPowerCard.getRandomCropPowerCard(true);
@@ -59,16 +59,15 @@ public class CropRotationAction extends AbstractGameAction {
     // harvest existing stacks
     final ArrayList<AbstractPower> activePowers =  new ArrayList<>(p.powers);
     Collections.shuffle(activePowers);
-    Optional<AbstractPower> oldPower = activePowers.stream()
-        .filter(pow -> pow instanceof AbstractCropPower && !((AbstractCropPower) pow).finished)
-        .findFirst();
+    AbstractCropOrb oldestCropOrb = AbstractCrop.getOldestCropOrb();
 
-    if (!this.hasHarvested && oldPower.isPresent()) {
-      ((AbstractCropPower) oldPower.get()).harvest(false, this.numCropsToHarvest );
-      this.hasHarvested = true;
+    if (!this.secondTick && oldestCropOrb != null) {
+      AbstractDungeon.actionManager.addToTop(new HarvestCropAction(oldestCropOrb,  numCropsToHarvest,true));
     } else {
       AbstractDungeon.actionManager.addToBottom(new SFXAction("CARD_SELECT"));
     }
+    this.secondTick = true;
+
 
     this.tickDuration();
   }

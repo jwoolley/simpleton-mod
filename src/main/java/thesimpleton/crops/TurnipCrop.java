@@ -15,7 +15,7 @@ public class TurnipCrop extends AbstractCrop {
   private static final String ORB_ID = TurnipCropOrb.ORB_ID;
   private static final AbstractCropPowerCard POWER_CARD = new Turnips();
 
-  private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.UNCOMMON;
+  private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.COMMON;
 
   public static final int MATURITY_THRESHOLD = 5;
 

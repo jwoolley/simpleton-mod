@@ -27,7 +27,7 @@ public class AsparagusCropOrb extends AbstractCropOrb {
 
   @Override
   public AbstractOrb makeCopy() {
-    return new AsparagusCropOrb();
+    return this.makeCopy(0);
   }
 
   public AbstractCropOrb makeCopy(int amount) {

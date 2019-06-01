@@ -7,6 +7,15 @@
     ]
   },
 
+  "TheSimpletonMod:ArtichokeCropOrb": {
+    "NAME": "Artichokes",
+    "DESCRIPTION": [
+      "#gHarvest: Gain #b",
+      " Plated Armor for each stack harvested."
+    ]
+  },
+
+
   "TheSimpletonMod:AsparagusCropOrb": {
     "NAME": "Asparagus",
     "DESCRIPTION": [

@@ -16,6 +16,7 @@ import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.orbs.AbstractCropOrb;
+import thesimpleton.powers.AbstractCropPower;
 import thesimpleton.powers.ToughSkinPower;
 import thesimpleton.powers.utils.Crop;
 import thesimpleton.relics.CashCrop;
@@ -247,7 +248,15 @@ abstract public class AbstractCrop {
 
 
   public static List<AbstractCropOrb> getActiveCropOrbs() {
+    return getActiveCropOrbs(false);
+  }
+
+  public static List<AbstractCropOrb> getActiveCropOrbs(boolean shuffle) {
     List<AbstractCropOrb> activeCropOrbs = AbstractCropOrb.getActiveCropOrbs();
+
+    if (shuffle) {
+      Collections.shuffle(activeCropOrbs);
+    }
 
     logger.debug("AbstractCrop.getActiveCropOrbs: player has " + activeCropOrbs.size() + " active crop orbs");
     logger.debug("AbstractCrop.getActiveCropOrbs: player has " + SimpletonUtil.getActiveOrbs().size() + " active total orbs");
@@ -340,7 +349,7 @@ abstract public class AbstractCrop {
     if (referenceCrops.isEmpty()) {
       //TODO: accomplish this dynamically via Crop enum
 
-//      final ArtichokeCrop artichokeCrop = new ArtichokeCrop();
+      final ArtichokeCrop artichokeCrop = new ArtichokeCrop();
       final AsparagusCrop asparagusCrop = new AsparagusCrop();
       final ChilisCrop chilisCrop = new ChilisCrop();
       final CornCrop cornCrop = new CornCrop();
@@ -351,7 +360,7 @@ abstract public class AbstractCrop {
       final SpinachCrop spinachCrop = new SpinachCrop();
       final TurnipCrop turnipCrop = new TurnipCrop();
 
-//    referenceCrops.add(artichokeCrop);
+    referenceCrops.add(artichokeCrop);
       referenceCrops.add(asparagusCrop);
       referenceCrops.add(chilisCrop);
       referenceCrops.add(potatoCrop);

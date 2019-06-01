@@ -1,8 +1,7 @@
 package thesimpleton.powers.utils;
-import com.megacrit.cardcrawl.core.AbstractCreature;
+
 import thesimpleton.crops.*;
 import thesimpleton.orbs.*;
-import thesimpleton.powers.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +27,7 @@ public enum Crop {
 
   public static void initialize() {
       Map<Crop, AbstractCrop> mappings = new HashMap<>();
-      mappings.put(Crop.ARTICHOKES, new AsparagusCrop()); // TODO: FIX THIS!!
+      mappings.put(Crop.ARTICHOKES, new ArtichokeCrop());
       mappings.put(Crop.ASPARAGUS, new AsparagusCrop());
       mappings.put(Crop.CORN, new CornCrop());
       mappings.put(Crop.CHILIS, new ChilisCrop());
@@ -62,7 +61,7 @@ public enum Crop {
   public static AbstractCropOrb getCropOrb(Crop crop, int amount) {
     switch(crop) {
       case ARTICHOKES:
-//        return new ArtichokeCropOrb(amount);
+        return new ArtichokeCropOrb(amount);
       case ASPARAGUS:
         return new AsparagusCropOrb(amount);
       case CORN:

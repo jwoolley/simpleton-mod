@@ -25,7 +25,7 @@ public class TurnipCropOrb extends AbstractCropOrb {
 
   @Override
   public AbstractOrb makeCopy() {
-    return new TurnipCropOrb();
+    return this.makeCopy(0);
   }
 
   public AbstractCropOrb makeCopy(int amount) {

@@ -46,5 +46,4 @@ public class ChilisCrop extends  AbstractCrop {
     }
     return harvestAmount;
   }
-
 }

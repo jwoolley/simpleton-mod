@@ -8,10 +8,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.crops.AbstractCrop;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.AbstractCropOrb;
-import thesimpleton.powers.AbstractCropPower;
 
 public class Aerate extends AbstractDynamicTextCard {
   public static final String ID = "TheSimpletonMod:Aerate";

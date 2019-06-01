@@ -16,7 +16,6 @@ import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.orbs.AbstractCropOrb;
-import thesimpleton.powers.AbstractCropPower;
 import thesimpleton.powers.ToughSkinPower;
 import thesimpleton.powers.utils.Crop;
 import thesimpleton.relics.CashCrop;
@@ -237,12 +236,12 @@ abstract public class AbstractCrop {
   }
 
   public static AbstractCropOrb getOldestCropOrb() {
-    logger.debug("Oldest crop orb per CropUtil: " + (getPlayer().getCropUtil().playerHasAnyCrops() ? getPlayer().getCropUtil().getOldestCrop().name : "None"));
+    logger.debug("Oldest crop orb per CropUtil: " + (getPlayer().getCropUtil().playerHasAnyCrops() ?AbstractCropOrb.getOldestCropOrb().name : "None"));
     return AbstractCropOrb.getOldestCropOrb();
   }
 
   public static AbstractCropOrb getNewestCropOrb() {
-    logger.debug("Newest crop orb per CropUtil: " + (getPlayer().getCropUtil().playerHasAnyCrops() ? getPlayer().getCropUtil().getNewestCrop().name : "None"));
+    logger.debug("Newest crop orb per CropUtil: " + (getPlayer().getCropUtil().playerHasAnyCrops() ? AbstractCropOrb.getNewestCropOrb().name : "None"));
     return AbstractCropOrb.getNewestCropOrb();
   }
 

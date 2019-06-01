@@ -9,10 +9,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.powers.AbstractCropPower;
-import thesimpleton.powers.PlantTurnipPower;
-
-import java.util.Optional;
+import thesimpleton.orbs.AbstractCropOrb;
+import thesimpleton.powers.utils.Crop;
 
 public class RootOut extends AbstractHarvestCard {
   public static final String ID = "TheSimpletonMod:RootOut";
@@ -45,13 +43,8 @@ public class RootOut extends AbstractHarvestCard {
               new VulnerablePower(mo, this.magicNumber, false), this.magicNumber));
     }
 
-    // harvest turnip stacks
-    Optional<AbstractCropPower> turnipPower = AbstractCropPower.getActiveCropPowers().stream()
-        .filter(pow -> pow instanceof PlantTurnipPower && !pow.finished)
-        .findFirst();
-
-    if (turnipPower.isPresent()) {
-      (turnipPower.get()).harvest(true, 1);
+    if (AbstractCropOrb.hasCropOrb(Crop.TURNIPS)) {
+      AbstractCropOrb.getCropOrb(Crop.TURNIPS).getCrop().harvest(true, 1);
     }
   }
 

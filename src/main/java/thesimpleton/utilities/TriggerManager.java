@@ -1,12 +1,8 @@
 package thesimpleton.utilities;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;

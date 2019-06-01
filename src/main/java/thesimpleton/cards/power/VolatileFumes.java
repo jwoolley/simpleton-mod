@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.ToughSkinPower;
 import thesimpleton.powers.VolatileFumesPower;
 
 public class VolatileFumes extends CustomCard {

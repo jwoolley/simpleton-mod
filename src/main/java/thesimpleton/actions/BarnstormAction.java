@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -15,10 +14,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import org.apache.logging.log4j.Logger;
-import org.omg.PortableInterceptor.ACTIVE;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.SimpletonUtil;
-import thesimpleton.powers.AbstractCropPower;
+import thesimpleton.crops.AbstractCrop;
+import thesimpleton.orbs.AbstractCropOrb;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,19 +37,19 @@ public class BarnstormAction extends AbstractGameAction {
   }
 
   static List<CropCount> getCropCounts(AbstractPlayer player) {
-    return AbstractCropPower.getActiveCropPowers(player, false).stream()
-        .map(crop -> new CropCount(crop, crop.amount, crop.amount >= crop.getMaturityThreshold()))
+    return AbstractCrop.getActiveCropOrbs(false).stream()
+        .map(cropOrb -> new CropCount(cropOrb, cropOrb.passiveAmount, cropOrb.isMature()))
         .collect(Collectors.toList());
   }
 
   static class CropCount {
-    public CropCount(AbstractCropPower crop, int amount, boolean isMature) {
+    public CropCount(AbstractCropOrb crop, int amount, boolean isMature) {
       this.crop = crop;
       this.amount = amount;
       this.isMature = isMature;
     }
 
-    final AbstractCropPower crop;
+    final AbstractCropOrb crop;
     final boolean isMature;
     int amount;
   }
@@ -102,7 +100,8 @@ public class BarnstormAction extends AbstractGameAction {
 
         this.info.applyPowers(this.info.owner, this.target);
 
-        AbstractDungeon.actionManager.addToBottom(new PowerFlashAction(cropCount.crop));
+        // TODO: "flash" the crop orb
+        // AbstractDungeon.actionManager.addToBottom(new PowerFlashAction(cropCount.crop));
         AbstractDungeon.actionManager.addToBottom(new SFXAction("THUNDERCLAP", cropCount.isMature ? 0.075f : 0.025f));
 
         if (this.damageAllEnemies) {

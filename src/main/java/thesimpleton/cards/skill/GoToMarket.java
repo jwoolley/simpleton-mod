@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.AbstractCropPower;
+import thesimpleton.orbs.AbstractCropOrb;
 
 public class GoToMarket extends CustomCard {
   public static final String ID = "TheSimpletonMod:GoToMarket";
@@ -36,10 +36,10 @@ public class GoToMarket extends CustomCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    final int numCropTypes = AbstractCropPower.getNumberActiveCropTypes();
+    final int numCropTypes = AbstractCropOrb.getNumberActiveCropOrbs();
 
     if (numCropTypes > 0) {
-      AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, AbstractCropPower.getNumberActiveCropTypes()));
+      AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, numCropTypes));
     } else {
       AbstractDungeon.actionManager.addToBottom(new SFXAction("CARD_DRAW_8"));
     }

@@ -1,0 +1,89 @@
+{
+  "TheSimpletonMod:AbstractCropOrb": {
+    "NAME": "Abstract Crop",
+    "DESCRIPTION": [
+      "#yCrop. Matures at #r",
+      " stacks."
+    ]
+  },
+
+  "TheSimpletonMod:ArtichokeCropOrb": {
+    "NAME": "Artichokes",
+    "DESCRIPTION": [
+      "#gHarvest: Gain #b",
+      " Plated Armor for each stack harvested."
+    ]
+  },
+
+
+  "TheSimpletonMod:AsparagusCropOrb": {
+    "NAME": "Asparagus",
+    "DESCRIPTION": [
+      "#gHarvest: Gain #b",
+      " Dexterity for each stack harvested."
+    ]
+  },
+
+  "TheSimpletonMod:ChiliCropOrb": {
+    "NAME": "Chilis",
+    "DESCRIPTION": [
+      "#gHarvest: Deal #b",
+      " damage and apply #b",
+      " #yBurning to ALL enemies for each stack harvested."
+    ]
+  },
+
+  "TheSimpletonMod:CornCropOrb": {
+    "NAME": "Corn",
+    "DESCRIPTION": [
+      "#gHarvest: Draw a card for each stack harvested."
+    ]
+  },
+
+  "TheSimpletonMod:MushroomCropOrb": {
+    "NAME": "Mushrooms",
+    "DESCRIPTION": [
+      "#gHarvest: Add a random colorless card to your hand for each stack harvested."
+    ]
+  },
+
+  "TheSimpletonMod:OnionCropOrb": {
+    "NAME": "Onions",
+    "DESCRIPTION": [
+      "#gHarvest: Apply #b",
+      " Weak to a random enemy for each stack harvested."
+    ]
+  },
+
+  "TheSimpletonMod:PotatoCropOrb": {
+    "NAME": "Potatoes",
+    "DESCRIPTION": [
+      "#gHarvest: Add a #ySpud to your hand for each stack harvested. NL (Need to add keyword tooltips)."
+    ]
+  },
+
+  "TheSimpletonMod:SpinachCropOrb": {
+    "NAME": "Spinach",
+    "DESCRIPTION": [
+      "#gHarvest: Gain #b",
+      " Strength for each stack harvested."
+    ]
+  },
+
+  "TheSimpletonMod:SquashCropOrb": {
+    "NAME": "Squash",
+    "DESCRIPTION": [
+      "#gHarvest: Gain #b",
+      " Block for each stack harvested."
+    ]
+  },
+
+  "TheSimpletonMod:TurnipCropOrb": {
+    "NAME": "Turnips",
+    "DESCRIPTION": [
+      "#gHarvest: Convert ALL stacks into an attack card that deals increased damage for each stack harvested."
+    ]
+  }
+}
+
+

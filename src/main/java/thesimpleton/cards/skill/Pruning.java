@@ -11,7 +11,7 @@ import thesimpleton.actions.PruningAction;
 import thesimpleton.cards.HarvestCard;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.AbstractCropPower;
+import thesimpleton.orbs.AbstractCropOrb;
 
 public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
   public static final String ID = "TheSimpletonMod:Pruning";
@@ -64,6 +64,7 @@ public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
+    TheSimpletonMod.logger.debug("Pruning::use stacksToHarvest: " + this.numStacksToHarvest + " stacksToAdd: " + this.magicNumber);
     AbstractDungeon.actionManager.addToBottom(
         new PruningAction(p, this.numStacksToHarvest, this.magicNumber, true));
   }
@@ -84,10 +85,10 @@ public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
         + (numStacksToHarvest == 1 ? EXTENDED_DESCRIPTION[0] : EXTENDED_DESCRIPTION[1]) + EXTENDED_DESCRIPTION[2];
 
     if (extendedDescription) {
-      if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
-        AbstractCropPower crop = AbstractCropPower.getOldestCropPower();
-        TheSimpletonMod.logger.debug("Pruning::getDescription: using dynamic description. Crop: " + crop.name);
-        description += EXTENDED_DESCRIPTION[5] +  crop.name + EXTENDED_DESCRIPTION[6];
+      if (AbstractCropOrb.playerHasAnyCropOrbs()) {
+        AbstractCropOrb cropOrb = AbstractCropOrb.getOldestCropOrb();
+        TheSimpletonMod.logger.debug("Pruning::getDescription: using dynamic description. Crop: " + cropOrb.name);
+        description += EXTENDED_DESCRIPTION[5] +  cropOrb.name + EXTENDED_DESCRIPTION[6];
       } else {
         TheSimpletonMod.logger.debug("Pruning::getDescription: using placeholder description");
         description += EXTENDED_DESCRIPTION[4];

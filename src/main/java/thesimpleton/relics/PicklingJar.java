@@ -16,7 +16,6 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.Logger;
-import org.omg.PortableInterceptor.ACTIVE;
 import thesimpleton.TheSimpletonMod;
 
 import java.util.List;

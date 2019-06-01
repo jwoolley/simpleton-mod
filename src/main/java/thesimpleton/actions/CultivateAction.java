@@ -1,7 +1,6 @@
 package thesimpleton.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,8 +8,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.powers.AbstractCropPower;
-import thesimpleton.powers.utils.Crop;
+import thesimpleton.orbs.AbstractCropOrb;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,8 +26,7 @@ public class CultivateAction extends AbstractGameAction {
   private boolean hasHarvested;
   private boolean firstTickFinished;
 
-
-  private Map<Crop,Integer> cropCounts;
+  private Map<AbstractCropOrb,Integer> cropCounts;
 
   public CultivateAction(AbstractPlayer player, int numStacksToHarvest, int numStacksToGain, boolean isFromCard) {
     this.p = player;
@@ -52,12 +49,9 @@ public class CultivateAction extends AbstractGameAction {
       AbstractDungeon.actionManager.addToBottom(new WaitAction(0.1F));
       logger.debug("CultivateAction.update :: second tick");
       if (this.hasHarvested) {
-        for(Crop crop : cropCounts.keySet()) {
-          logger.debug("CultivateAction.update :: stacking " + crop + " for 1");
-          AbstractDungeon.actionManager.addToBottom(new ApplyCropAction(p, p, Crop.getCrop(crop, p, 1, this.isFromCard), 1, this.isFromCard));
-//
-//          AbstractDungeon.actionManager.addToBottom(
-//              new ApplyPowerAction(p, p,Crop.getCrop(crop, p, 1, this.isFromCard)));
+        for(AbstractCropOrb cropOrb : cropCounts.keySet()) {
+          logger.debug("CultivateAction.update :: stacking " + cropOrb.name + " for 1");
+          AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(cropOrb, 1, true));
         }
       }
 
@@ -68,15 +62,19 @@ public class CultivateAction extends AbstractGameAction {
     if (!this.firstTickFinished) {
       logger.debug("PruningAction.update :: first tick");
 
-      if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
-        List<AbstractCropPower> crops = AbstractCropPower.getActiveCropPowers();
+      if (AbstractCropOrb.playerHasAnyCropOrbs()) {
+        List<AbstractCropOrb> cropOrbs = AbstractCropOrb.getActiveCropOrbs();
 
-        for(AbstractCropPower crop : crops) {
-          final int stacks = crop.amount < numStacksToHarvest ? crop.amount : numStacksToHarvest;
-          logger.debug("CultivateAction.update :: player has " + crop.amount + " stacks of " + crop.name);
-          logger.debug("CultivateAction.update :: harvesting " + numStacksToHarvest + " stacks of " + crop.name);
-          cropCounts.put(crop.enumValue, crop.amount);
-          crop.harvest(false, stacks);
+        for(AbstractCropOrb cropOrb : cropOrbs) {
+          final int stacks = cropOrb.getAmount() < numStacksToHarvest ? cropOrb.getAmount() : numStacksToHarvest;
+          logger.debug("CultivateAction.update :: player has " + cropOrb.getAmount() + " stacks of " + cropOrb.name);
+          logger.debug("CultivateAction.update :: numStacksToHarvest: " + numStacksToHarvest);
+          logger.debug("CultivateAction.update :: harvesting " + stacks + " stacks of " + cropOrb.name);
+          cropCounts.put(cropOrb.getCrop().getCropOrb(), stacks);
+
+          AbstractDungeon.actionManager.addToTop(new HarvestCropAction(cropOrb, stacks,true));
+
+//          cropOrb.getCrop().harvest(false, stacks);
         }
 
         this.hasHarvested = true;

@@ -1,7 +1,6 @@
 package thesimpleton.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -9,8 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
-import thesimpleton.powers.AbstractCropPower;
-import thesimpleton.powers.utils.Crop;
+import thesimpleton.orbs.AbstractCropOrb;
 
 public class TillTheFieldAction extends AbstractGameAction {
   private static final float ACTION_DURATION = Settings.ACTION_DUR_MED;
@@ -38,13 +36,12 @@ public class TillTheFieldAction extends AbstractGameAction {
     if (this.duration != ACTION_DURATION) {
       AbstractPlayer player = SimpletonUtil.getPlayer();
 
-      if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
-        final AbstractCropPower newestCrop = AbstractCropPower.getNewestCropPower();
-        if (newestCrop.isMature()) {
+      if (AbstractCropOrb.playerHasAnyCropOrbs()) {
+        final AbstractCropOrb newestCropOrb = AbstractCropOrb.getNewestCropOrb();
+        if (newestCropOrb.isMature()) {
           AbstractDungeon.actionManager.addToBottom(new GainBlockAction(player, player, this.blockAmount));
         } else {
-          AbstractDungeon.actionManager.addToBottom(
-            new ApplyPowerAction(player, player, Crop.getCrop(newestCrop.enumValue, player, this.amount, this.isFromCard), this.amount));
+          AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(newestCropOrb, this.amount, true));
         }
         this.isDone = true;
       }

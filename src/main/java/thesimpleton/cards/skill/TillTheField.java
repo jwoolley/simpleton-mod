@@ -6,11 +6,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.TillTheFieldAction;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.AbstractCropPower;
+import thesimpleton.orbs.AbstractCropOrb;
 
 public class TillTheField extends AbstractDynamicTextCard {
   public static final String ID = "TheSimpletonMod:TillTheField";
@@ -56,9 +55,9 @@ public class TillTheField extends AbstractDynamicTextCard {
     String description = DESCRIPTION;
 
     if (extendedDescription) {
-      if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
-        final AbstractCropPower crop = AbstractCropPower.getNewestCropPower();
-        description += EXTENDED_DESCRIPTION[2] + crop.name + (crop.isMature() ? EXTENDED_DESCRIPTION[3] : EXTENDED_DESCRIPTION[4]);
+      if (AbstractCropOrb.playerHasAnyCropOrbs()) {
+        AbstractCropOrb newestCropOrb = AbstractCropOrb.getNewestCropOrb();
+        description += EXTENDED_DESCRIPTION[2] + newestCropOrb.name + (newestCropOrb.isMature() ? EXTENDED_DESCRIPTION[3] : EXTENDED_DESCRIPTION[4]);
       } else {
         description += EXTENDED_DESCRIPTION[1];
       }

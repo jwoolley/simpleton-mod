@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.AbstractCropPower;
+import thesimpleton.orbs.AbstractCropOrb;
 
 public class Aerate extends AbstractDynamicTextCard {
   public static final String ID = "TheSimpletonMod:Aerate";
@@ -39,8 +39,8 @@ public class Aerate extends AbstractDynamicTextCard {
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
 
-    if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
-      AbstractCropPower.getNewestCropPower().stackPower(this.magicNumber, true);
+    if (AbstractCropOrb.playerHasAnyCropOrbs()) {
+      AbstractCropOrb.getNewestCropOrb().getCrop().stackOrb(this.magicNumber, true);
     }
   }
 
@@ -58,9 +58,9 @@ public class Aerate extends AbstractDynamicTextCard {
     String description = DESCRIPTION;
 
     if (extendedDescription)
-      if (AbstractCropPower.playerHasAnyActiveCropPowers()) {
-      AbstractCropPower crop = AbstractCropPower.getNewestCropPower();
-      description += EXTENDED_DESCRIPTION[2] + crop.name + EXTENDED_DESCRIPTION[3];
+      if (AbstractCropOrb.playerHasAnyCropOrbs()) {
+      AbstractCropOrb cropOrb = AbstractCropOrb.getNewestCropOrb();
+      description += EXTENDED_DESCRIPTION[2] + cropOrb.name + EXTENDED_DESCRIPTION[3];
     } else {
       description += EXTENDED_DESCRIPTION[1];
     }

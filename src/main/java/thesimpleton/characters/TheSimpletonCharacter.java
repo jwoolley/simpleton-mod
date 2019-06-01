@@ -10,12 +10,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.Logger;
@@ -28,13 +31,17 @@ import thesimpleton.cards.skill.Defend_TheSimpleton;
 import thesimpleton.cards.skill.Rototilling;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
+import thesimpleton.orbs.AbstractCropOrb;
+import thesimpleton.powers.utils.Crop;
 import thesimpleton.relics.PungentSoil;
 import thesimpleton.relics.SpudOfTheInnocent;
 import thesimpleton.relics.TheHarvester;
 import thesimpleton.utilities.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static thesimpleton.TheSimpletonMod.getResourcePath;
 
@@ -90,7 +97,6 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
         startOfTurnTriggers = new TriggerManager("StartOfTurnTriggers", staticStartOfTurnTriggerListeners);
         endOfTurnTriggers = new TriggerManager("EndOfTurnTriggers", staticEndOfTurnTriggerListeners);
         endOfCombatTriggers = new TriggerManager("EndOfCombatTriggers", staticEndOfCombatTriggerListeners);
-
         List<AbstractCard> cards = CardLibrary.getAllCards();
 
         Logger logger = TheSimpletonMod.logger;
@@ -99,10 +105,8 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
         for(AbstractCard card : cards) {
             logger.debug(index++ + ") " + card.name + " [cardId: " + card.cardID + "]");
         }
-
-
-
-//        TheSimpletonMod.logger.debug(("instantiating precombatPredrawTriggers manager with " + staticPrecombatPredrawTriggerListeners.size() + " preregistered triggers"));
+        initializeOrbSlotLocations();
+        Crop.initialize();
     }
 
     @Override
@@ -131,26 +135,13 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
         retVal.add(PungentSoil.ID);
         retVal.add(TheHarvester.ID);
 
-        /* for testing
-        retVal.add(BlackMagicAdvanced.ID);
-        retVal.add(BloodyHarpoon.ID);
-        retVal.add(CrystalBall.ID);
-        retVal.add(DemonicMark.ID);
-        retVal.add(FourLeafCloverCharm.ID);
-        retVal.add(MagicCandle.ID);
-        retVal.add(OminousMark.ID);
-        retVal.add(PinkPellets.ID);
-        retVal.add(SoulVessel.ID);
-        retVal.add(Tack.ID);
-        */
-
         retVal.forEach(id -> UnlockTracker.markRelicAsSeen(id));
         return retVal;
     }
 
     public static final int STARTING_HP = 75;
     public static final int MAX_HP = 75;
-    public static final int ORB_SLOTS = 0;
+    public static final int ORB_SLOTS = 5;
     public static final int STARTING_GOLD = 99;
     public static final int HAND_SIZE = 5;
 
@@ -405,6 +396,75 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
         panels.add(new CutscenePanel(getResourcePath("scenes/thesimpleton2.png")));
         panels.add(new CutscenePanel(getResourcePath("scenes/thesimpleton3.png")));
         return panels;
+    }
+
+    // ORB LOGIC
+
+    public float[] orbPositionsX = {0,0,0,0,0,0,0,0,0,0};
+
+    public float[] orbPositionsY = {0,0,0,0,0,0,0,0,0,0};
+
+    public float xStartOffset = (float) Settings.WIDTH * 0.23F;
+    private static float xSpaceBetweenSlots = 90 * Settings.scale;
+    private static float xSpaceBottomAlternatingOffset = 0 * Settings.scale;
+
+    private static float yStartOffset = AbstractDungeon.floorY + (100 * Settings.scale);
+
+    private static float ySpaceBottomAlternatingOffset = -100 * Settings.scale;
+    private static float ySpaceAlternatingOffset = -50 * Settings.scale;
+
+    public void initializeOrbSlotLocations() {
+        orbPositionsX[0] = xStartOffset + (xSpaceBetweenSlots * 1);
+        orbPositionsX[1] = xStartOffset + (xSpaceBetweenSlots * 1) + xSpaceBottomAlternatingOffset;
+        orbPositionsX[2] = xStartOffset + (xSpaceBetweenSlots * 2);
+        orbPositionsX[3] = xStartOffset + (xSpaceBetweenSlots * 2) + xSpaceBottomAlternatingOffset;
+        orbPositionsX[4] = xStartOffset + (xSpaceBetweenSlots * 3);
+        orbPositionsX[5] = xStartOffset + (xSpaceBetweenSlots * 3) + xSpaceBottomAlternatingOffset;
+        orbPositionsX[6] = xStartOffset + (xSpaceBetweenSlots * 4);
+        orbPositionsX[7] = xStartOffset + (xSpaceBetweenSlots * 4) + xSpaceBottomAlternatingOffset;
+        orbPositionsX[8] = xStartOffset + (xSpaceBetweenSlots * 5);
+        orbPositionsX[9] = xStartOffset + (xSpaceBetweenSlots * 5) + xSpaceBottomAlternatingOffset;
+
+        orbPositionsY[0] = yStartOffset;
+        orbPositionsY[1] = yStartOffset + ySpaceBottomAlternatingOffset;
+        orbPositionsY[2] = yStartOffset + ySpaceAlternatingOffset;
+        orbPositionsY[3] = yStartOffset + ySpaceBottomAlternatingOffset + ySpaceAlternatingOffset;
+        orbPositionsY[4] = yStartOffset;
+        orbPositionsY[5] = yStartOffset + ySpaceBottomAlternatingOffset;
+        orbPositionsY[6] = yStartOffset + ySpaceAlternatingOffset;
+        orbPositionsY[7] = yStartOffset + ySpaceBottomAlternatingOffset + ySpaceAlternatingOffset;
+        orbPositionsY[8] = yStartOffset;
+        orbPositionsY[9] = yStartOffset + ySpaceBottomAlternatingOffset;
+    }
+
+    public void removeOrb(AbstractOrb orb) {
+        if ((!this.orbs.isEmpty()) && this.orbs.stream().anyMatch(o -> o.ID == orb.ID)) {
+
+            for (int i = 0; i < this.orbs.size(); i++) {
+                AbstractOrb o = this.orbs.get(i);
+                TheSimpletonMod.logger.debug("TheSimpletonCharacter.removeOrb :: orbs[" + i + "]: " + o.name + "; amount: " + o.passiveAmount);
+            }
+
+            Optional<AbstractOrb> orbOptional  = this.orbs.stream().filter(o -> {
+                TheSimpletonMod.logger.debug("TheSimpletonCharacter.removeOrb :: finding : " + orb.name + ". next orb:" + o.name);
+                return o instanceof AbstractCropOrb && o.ID == orb.ID;
+            }).findFirst();
+
+            if (orbOptional.isPresent()) {
+                final AbstractCropOrb targetOrb = (AbstractCropOrb) orbOptional.get();
+
+                final int index = this.orbs.indexOf(targetOrb);
+
+                AbstractOrb orbSlot = new EmptyOrbSlot(((AbstractOrb) this.orbs.get(index)).cX, ((AbstractOrb) this.orbs.get(index)).cY);
+                for (int i = index + 1; i < this.orbs.size(); i++) {
+                    Collections.swap(this.orbs, i, i - 1);
+                }
+                this.orbs.set(this.orbs.size() - 1, orbSlot);
+                for (int i = 0; i < this.orbs.size(); i++) {
+                    ((AbstractOrb) this.orbs.get(i)).setSlot(i, this.maxOrbs);
+                }
+            }
+        }
     }
 
 //    @Override shuffle

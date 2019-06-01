@@ -9,8 +9,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import thesimpleton.cards.TheSimpletonCardTags;
 
-import java.util.Collections;
-
 public class BiorefinementPower extends AbstractTheSimpletonPower {
   public static final String POWER_ID = "TheSimpletonMod:BiorefinementPower";
   private static final PowerStrings powerStrings;

@@ -1,8 +1,6 @@
 package thesimpleton.cards.skill;
 
 import basemod.abstracts.CustomCard;
-import com.megacrit.cardcrawl.actions.common.DiscardAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,10 +8,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.actions.ApplyCropAction;
+import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.actions.VineRipenThresholdAction;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.PlantSquashPower;
+import thesimpleton.orbs.SquashCropOrb;
 
 public class VineRipen extends CustomCard {
   public static final String ID = "TheSimpletonMod:VineRipen";
@@ -39,11 +37,8 @@ public class VineRipen extends CustomCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(
-        new ApplyCropAction(p, p, new PlantSquashPower(p, this.magicNumber, true), this.magicNumber, true));
-
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new SquashCropOrb(this.magicNumber),true));
     AbstractDungeon.actionManager.addToBottom(new VineRipenThresholdAction());
-
   }
 
   @Override

@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.actions.ApplyCropAction;
-import thesimpleton.powers.PlantPotatoPower;
+import thesimpleton.actions.CropSpawnAction;
+import thesimpleton.orbs.PotatoCropOrb;
 import thesimpleton.powers.SpudOfTheMartyrPower;
 
 public class
@@ -65,8 +65,8 @@ SpudOfTheMartyr extends CustomRelic {
         Logger logger = TheSimpletonMod.logger;
         logger.debug("SpudOfTheMartyr: Adding potato stack");
         final AbstractPlayer p = AbstractDungeon.player;
-        AbstractDungeon.actionManager.addToBottom(
-            new ApplyCropAction(p, p, new PlantPotatoPower(p, amount), amount));
+
+        AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(amount), false));
     }
 
     @Override

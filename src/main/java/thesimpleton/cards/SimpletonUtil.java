@@ -5,21 +5,22 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import org.apache.logging.log4j.Logger;
+import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.attack.FlamingSpud;
 import thesimpleton.cards.attack.SpudMissile;
 import thesimpleton.cards.skill.Husk;
 import thesimpleton.cards.skill.RootOut;
 import thesimpleton.characters.TheSimpletonCharacter;
-import thesimpleton.powers.AbstractCropPower;
-
-import java.util.ArrayList;
+import thesimpleton.crops.AbstractCrop;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SimpletonUtil {
-    // As MakeTempCard... actions copy the card object, just define a static Dregs here for common use.
     public static final AbstractCard SPUD_MISSILE = new SpudMissile();
     public static final AbstractCard FLAMING_SPUD = new FlamingSpud();
     public static final AbstractCard HUSK = new Husk();
@@ -27,12 +28,6 @@ public class SimpletonUtil {
 
     public static TheSimpletonCharacter getPlayer() {
         return (TheSimpletonCharacter) AbstractDungeon.player;
-    }
-
-    public static int getNumCurse(ArrayList<AbstractCard> cards) {
-        return (int) cards.stream()
-                .filter(card -> card.type == AbstractCard.CardType.CURSE)
-                .count();
     }
 
     public static boolean isPlayerInCombat() {
@@ -69,7 +64,15 @@ public class SimpletonUtil {
         });
     }
 
+    // TODO: ensure that this counts Defect orbs etc. (i.e. orb.ID != null)
+    public static List<AbstractOrb> getActiveOrbs() {
+        Logger logger = TheSimpletonMod.logger;
+
+        logger.debug("SimpletonUtil::getActiveOrbs player has orbs: " + AbstractDungeon.player.orbs.stream().map(orb -> orb.ID).collect(Collectors.joining(", ")));
+        return AbstractDungeon.player.orbs.stream().filter(orb -> orb.ID != null && orb.ID != EmptyOrbSlot.ORB_ID).collect(Collectors.toList());
+    }
+
     public static boolean hasHarvestedThisTurn() {
-        return AbstractCropPower.hasHarvestedThisTurn();
+        return AbstractCrop.hasHarvestedThisTurn();
     }
 }

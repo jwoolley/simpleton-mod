@@ -1,41 +1,85 @@
 package thesimpleton.powers.utils;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import thesimpleton.powers.*;
 
+import thesimpleton.crops.*;
+import thesimpleton.orbs.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
+// TODO: instantiate these reference crops in CropUtil
 public enum Crop {
-  ARTICHOKES,
-  ASPARAGUS,
-  CORN,
-  CHILIS,
-  GOURDS,
-  MUSHROOMS,
-  ONIONS,
-  POTATOES,
-  SPINACH,
-  TURNIPS;
+  ARTICHOKES(),
+  ASPARAGUS(),
+  CORN(),
+  CHILIS(),
+  SQUASH(),
+  MUSHROOMS(),
+  ONIONS(),
+  POTATOES(),
+  SPINACH(),
+  TURNIPS();
 
-  public static AbstractCropPower getCrop(Crop crop, AbstractCreature owner, int amount, boolean isFromCard) {
+  private AbstractCrop crop;
+
+  public String getName() {
+    return this.getCrop().getName();
+  }
+
+  public static void initialize() {
+      Map<Crop, AbstractCrop> mappings = new HashMap<>();
+      mappings.put(Crop.ARTICHOKES, new ArtichokeCrop());
+      mappings.put(Crop.ASPARAGUS, new AsparagusCrop());
+      mappings.put(Crop.CORN, new CornCrop());
+      mappings.put(Crop.CHILIS, new ChilisCrop());
+      mappings.put(Crop.SQUASH, new SquashCrop());
+      mappings.put(Crop.MUSHROOMS, new MushroomCrop());
+      mappings.put(Crop.ONIONS, new OnionCrop());
+      mappings.put(Crop.POTATOES, new PotatoCrop());
+      mappings.put(Crop.SPINACH, new SpinachCrop());
+      mappings.put(Crop.TURNIPS, new TurnipCrop());
+
+      for (Crop crop : Crop.values()) {
+      crop.crop =  mappings.get(crop);
+      if (crop.crop == null) {
+        throw new RuntimeException("Crop field for Crop enum " + crop + " is not defined");
+      }
+    }
+  }
+
+  public AbstractCrop getCrop() {
+    if (this.crop == null) {
+      throw new RuntimeException("Crop field for Crop enum " + this + " is not defined");
+    }
+
+    return this.crop;
+  }
+
+  public static AbstractCropOrb getCropOrb(Crop crop) {
+    return getCropOrb(crop, 0);
+  }
+
+  public static AbstractCropOrb getCropOrb(Crop crop, int amount) {
     switch(crop) {
       case ARTICHOKES:
-        return new PlantArtichokePower(owner, amount, isFromCard);
+        return new ArtichokeCropOrb(amount);
       case ASPARAGUS:
-        return new PlantAsparagusPower(owner, amount, isFromCard);
+        return new AsparagusCropOrb(amount);
       case CORN:
-        return new PlantCornPower(owner, amount, isFromCard);
+        return new CornCropOrb(amount);
       case CHILIS:
-        return new PlantChiliPower(owner, amount, isFromCard);
-      case GOURDS:PlantSquashPower:
-        return new PlantSquashPower(owner, amount, isFromCard);
+        return new ChiliCropOrb(amount);
       case MUSHROOMS:
-        return new PlantMushroomPower(owner, amount, isFromCard);
+        return new MushroomCropOrb(amount);
       case ONIONS:
-        return new PlantOnionPower(owner, amount, isFromCard);
+        return new OnionCropOrb(amount);
       case POTATOES:
-        return new PlantPotatoPower(owner, amount, isFromCard);
+        return new PotatoCropOrb(amount);
       case SPINACH:
-        return new PlantSpinachPower(owner, amount, isFromCard);
+        return new SpinachCropOrb(amount);
+      case SQUASH:
+        return new SquashCropOrb(amount);
       case TURNIPS:
-        return new PlantTurnipPower(owner, amount, isFromCard);
+        return new TurnipCropOrb(amount);
       default:
         throw new IllegalArgumentException("Crop cannot be null");
     }

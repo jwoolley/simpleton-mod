@@ -4,8 +4,10 @@ import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.powers.AbstractCropPower;
+import thesimpleton.crops.AbstractCrop;
+import thesimpleton.orbs.AbstractCropOrb;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,15 +36,16 @@ public class PungentSoil extends CustomRelic {
 
   @Override
   public void onShuffle() {
-    List<AbstractCropPower> eligiblePowers = AbstractCropPower.getActiveCropPowers().stream()
-        .filter(power -> power.amount < power.getMaturityThreshold())
-        .collect(Collectors.toList());
+    Logger logger = TheSimpletonMod.logger;
+    logger.debug("PungentSoil::onShuffle");
 
-    eligiblePowers.forEach(power -> power.stackPower(CROP_AMOUNT));
+      List<AbstractCropOrb> eligibleCropOrbs = AbstractCrop.getActiveCropOrbs().stream()
+          .filter(orb -> !orb.isMature())
+          .collect(Collectors.toList());
 
-    if (eligiblePowers.size() > 0) {
-      flash();
-    }
+    logger.debug("PungentSoil::onShuffle found " + eligibleCropOrbs.size() + " eligible crops");
+
+    eligibleCropOrbs.forEach(orb -> AbstractCrop.stackOrb(orb, CROP_AMOUNT, false));
   }
 
   @Override

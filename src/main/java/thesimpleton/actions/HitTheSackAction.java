@@ -2,7 +2,6 @@ package thesimpleton.actions;
 
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -12,10 +11,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.powers.PlantPotatoPower;
+import thesimpleton.orbs.PotatoCropOrb;
 
 public class HitTheSackAction  extends AbstractGameAction
 {
+  private static final int SPUDS_PER_TICK = 1;
   private DamageInfo info;
   private boolean freeToPlayOnce;
   private boolean upgraded ;
@@ -28,6 +28,7 @@ public class HitTheSackAction  extends AbstractGameAction
   private int numDamageReps;
 
   private boolean isFirstRep;
+
 
   public HitTheSackAction(AbstractPlayer p, AbstractMonster m, DamageInfo info, int potatoesPerTick, boolean upgraded, boolean freeToPlayOnce, int energyOnUse)
   {
@@ -109,9 +110,7 @@ public class HitTheSackAction  extends AbstractGameAction
           this.p.energy.use(EnergyPanel.totalCount);
         }
       } else if (numPotatoReps > 0) {
-        AbstractDungeon.actionManager.addToBottom(
-            new ApplyCropAction(p, p, new PlantPotatoPower(p, 1), 1,true));
-
+        AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(SPUDS_PER_TICK),true));
         numPotatoReps--;
       }
       AbstractDungeon.actionManager.addToBottom(

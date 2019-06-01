@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.ApplyBurningAction;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.BurningPower;
 
 public class Swelter extends CustomCard {
   public static final String ID = "TheSimpletonMod:Swelter";

@@ -1,9 +1,6 @@
 package thesimpleton;
 
-import basemod.BaseMod;
-import basemod.ModLabel;
-import basemod.ModLabeledToggleButton;
-import basemod.ModPanel;
+import basemod.*;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -13,6 +10,9 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.audio.Sfx;
+import com.megacrit.cardcrawl.audio.SoundMaster;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -26,12 +26,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
-import thesimpleton.cards.attack.CullingStrike;
 import thesimpleton.cards.curse.Nettles;
 import thesimpleton.cards.power.*;
 import thesimpleton.cards.power.crop.*;
 import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
+import thesimpleton.crops.AbstractCrop;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.potions.AbundancePotion;
@@ -156,6 +156,16 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addPotion(
             AbundancePotion.class, AbundancePotion.BASE_COLOR, AbundancePotion.HYBRID_COLOR,
                 AbundancePotion.SPOTS_COLOR, AbundancePotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
+
+        HashMap<String, Sfx> reflectedMap = getSoundsMap();
+        reflectedMap.put("ATTACK_SCYTHE_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_AttackScythe1.ogg"));
+
+    }
+
+    @SuppressWarnings("unchecked")
+    private HashMap<String, Sfx> getSoundsMap() {
+        return (HashMap<String, Sfx>) ReflectionHacks.getPrivate(CardCrawlGame.sound, SoundMaster.class, "map");
     }
 
     @Override
@@ -302,6 +312,15 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         theSimpletonCharacter.getCropUtil().resetForCombatEnd();
     }
 
+    public static void handleUseCard(AbstractCard card, UseCardAction action) {
+        logger.debug("TheSimpletonMod.handleUseCard called for card: " + card.name);
+
+        AbstractCrop.getActiveCrops().forEach(crop -> {
+            logger.debug("TheSimpletonMod.handleUseCard triggering: " + crop.getName() + " for " + card.name);
+            crop.onUseCard(card, action);
+        });
+    }
+
     public static void handleEmptyDrawShuffleBefore() {
         deckBeforeShuffle = new ArrayList<>(getDeckBeforeShuffle());
     }
@@ -397,6 +416,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.loadCustomStringsFile(UIStrings.class, l10nPath + language + "/UIStrings.json");
         BaseMod.loadCustomStringsFile(CharacterStrings.class, l10nPath + language + "/CharacterStrings.json");
         BaseMod.loadCustomStringsFile(PotionStrings.class, l10nPath + language + "/PotionStrings.json");
+        BaseMod.loadCustomStringsFile(OrbStrings.class, l10nPath + language + "/OrbStrings.json");
     }
 
     @Override

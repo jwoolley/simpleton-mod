@@ -1,16 +1,10 @@
 package thesimpleton.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.SimpletonUtil;
-import thesimpleton.crops.AbstractCrop;
 import thesimpleton.orbs.AbstractCropOrb;
-import thesimpleton.powers.AbundancePower;
 
 
 public class HarvestCropAction extends AbstractGameAction {

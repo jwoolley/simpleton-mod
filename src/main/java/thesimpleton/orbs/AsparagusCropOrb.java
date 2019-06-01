@@ -4,9 +4,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.crops.AbstractCrop;
 import thesimpleton.crops.AsparagusCrop;
-import thesimpleton.crops.SpinachCrop;
 import thesimpleton.powers.utils.Crop;
 
 public class AsparagusCropOrb extends AbstractCropOrb {

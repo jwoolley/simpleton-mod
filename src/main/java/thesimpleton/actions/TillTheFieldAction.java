@@ -1,7 +1,6 @@
 package thesimpleton.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -9,10 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
-import thesimpleton.crops.AbstractCrop;
 import thesimpleton.orbs.AbstractCropOrb;
-import thesimpleton.powers.AbstractCropPower;
-import thesimpleton.powers.utils.Crop;
 
 public class TillTheFieldAction extends AbstractGameAction {
   private static final float ACTION_DURATION = Settings.ACTION_DUR_MED;

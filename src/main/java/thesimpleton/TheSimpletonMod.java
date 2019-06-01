@@ -31,11 +31,10 @@ import thesimpleton.cards.power.*;
 import thesimpleton.cards.power.crop.*;
 import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
-import thesimpleton.crops.*;
+import thesimpleton.crops.AbstractCrop;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.potions.AbundancePotion;
-import thesimpleton.powers.utils.Crop;
 import thesimpleton.relics.*;
 import thesimpleton.utilities.CropUtil;
 

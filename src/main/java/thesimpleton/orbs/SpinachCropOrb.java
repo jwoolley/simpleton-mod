@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.power.crop.Spinach;
 import thesimpleton.crops.SpinachCrop;
 import thesimpleton.powers.utils.Crop;
 

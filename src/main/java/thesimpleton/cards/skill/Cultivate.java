@@ -12,7 +12,6 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CultivateAction;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.AbstractCropPower;
 
 public class Cultivate extends CustomCard {
   public static final String ID = "TheSimpletonMod:Cultivate";

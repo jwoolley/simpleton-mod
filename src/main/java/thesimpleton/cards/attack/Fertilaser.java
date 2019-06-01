@@ -17,7 +17,6 @@ import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.AbstractCropOrb;
-import thesimpleton.powers.AbstractCropPower;
 
 public class Fertilaser extends CustomCard {
   public static final String ID = "TheSimpletonMod:Fertilaser";

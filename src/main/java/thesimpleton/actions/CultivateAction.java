@@ -1,7 +1,6 @@
 package thesimpleton.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,10 +9,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.orbs.AbstractCropOrb;
-import thesimpleton.orbs.ChiliCropOrb;
-import thesimpleton.orbs.TurnipCropOrb;
-import thesimpleton.powers.AbstractCropPower;
-import thesimpleton.powers.utils.Crop;
 
 import java.util.HashMap;
 import java.util.List;

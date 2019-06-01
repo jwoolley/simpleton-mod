@@ -1,6 +1,5 @@
 package thesimpleton.cards.attack;
 
-import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,7 +13,6 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.skill.AbstractDynamicTextCard;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.AbstractCropPower;
 
 public class CullingStrike extends AbstractDynamicTextCard {
   public static final String ID = "TheSimpletonMod:CullingStrike";

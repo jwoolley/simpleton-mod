@@ -11,7 +11,6 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CropDiversityAction extends AbstractGameAction {
   private static int COST_FOR_TURN = 0;

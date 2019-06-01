@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.status.Depletion;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.AbstractCropPower;
 
 public class DigIn extends CustomCard {
   public static final String ID = "TheSimpletonMod:DigIn";

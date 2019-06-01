@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.actions.HaymakerSplashAction;
+import thesimpleton.enums.AbstractCardEnum;
 
 public class Haymaker extends CustomCard {
     public static final String ID = "TheSimpletonMod:Haymaker";

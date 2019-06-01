@@ -1,7 +1,6 @@
 package thesimpleton.cards.skill;
 
 import basemod.abstracts.CustomCard;
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;

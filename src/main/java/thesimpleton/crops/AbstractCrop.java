@@ -110,14 +110,21 @@ abstract public class AbstractCrop {
     logger.debug("AbstractCrop::stackOrb stacks:" + stacks);
 
     if (AbstractCropOrb.hasCropOrb(getCropOrbId())) {
-      logger.debug("AbstractCrop::stackOrb player has " +getClass().getSimpleName() + " already. Num stacks: " + getCropOrb().getAmount());
+      logger.debug("AbstractCrop::stackOrb player has " + getClass().getSimpleName() + " already. Num stacks: " + getCropOrb().getAmount());
     } else {
       logger.debug("AbstractCrop::stackOrb doesn't have " + getClass().getSimpleName() + " already.");
     }
 
-
     AbstractDungeon.actionManager.addToBottom(new CropSpawnAction((AbstractCropOrb)getCropOrb().makeCopy(), stacks, true));
     CropUtil.triggerCardUpdates();
+  }
+
+  public static void stackOrb(AbstractCropOrb cropOrb, int amount, boolean isFromCard) {
+    // optimize by making one call instead of calling AbstractCropOrb.hasCropOrb
+    //    AbstractCropOrb actualCropOrb = AbstractCropOrb.getCropOrb(cropOrb);
+    //    logger.debug("AbstractCrop::stackOrb player " + (actualCropOrb != null ? "has " + actualCropOrb.passiveAmount + " stacks of " : "does not have ") + cropOrb.name + " already.");
+
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction((AbstractCropOrb) cropOrb.makeCopy(), amount, isFromCard));
   }
 
   public void reduceOrb(int amount) {

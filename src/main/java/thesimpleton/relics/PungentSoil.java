@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.AbstractCrop;
+import thesimpleton.orbs.AbstractCropOrb;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,22 +39,13 @@ public class PungentSoil extends CustomRelic {
     Logger logger = TheSimpletonMod.logger;
     logger.debug("PungentSoil::onShuffle");
 
-    List<AbstractCrop> activeCrops = AbstractCrop.getActiveCrops();
-    for (AbstractCrop activeCrop : activeCrops) {
-      logger.debug("PungentSoil::onShuffle checking " + activeCrop.toString() + ". count: " + activeCrop.getCropOrb().getAmount() + "; mature at: " + activeCrop.getMaturityThreshold());
-    }
-
-    List<AbstractCrop> eligibleCrops = AbstractCrop.getActiveCrops().stream()
-          .filter(crop -> !crop.isMature())
+      List<AbstractCropOrb> eligibleCropOrbs = AbstractCrop.getActiveCropOrbs().stream()
+          .filter(orb -> !orb.isMature())
           .collect(Collectors.toList());
 
-    logger.debug("PungentSoil::onShuffle found " + eligibleCrops.size() + " eligible crops");
-    for (AbstractCrop eligibleCrop : eligibleCrops) {
-      logger.debug("PungentSoil::onShuffle stacking " + eligibleCrop.toString() + ". count: " + eligibleCrop.getCropOrb().getAmount() + "; mature at: " + eligibleCrop.getMaturityThreshold());
-    }
+    logger.debug("PungentSoil::onShuffle found " + eligibleCropOrbs.size() + " eligible crops");
 
-
-    eligibleCrops.forEach(crop -> crop.stackOrb(CROP_AMOUNT, false));
+    eligibleCropOrbs.forEach(orb -> AbstractCrop.stackOrb(orb, CROP_AMOUNT, false));
   }
 
   @Override

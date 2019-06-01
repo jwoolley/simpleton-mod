@@ -101,8 +101,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
     return getActiveCropOrbs().size();
   }
 
-
-    public void gainCropEffectBefore() {
+  public void gainCropEffectBefore() {
     AbstractDungeon.effectList.add(new GainCropSoundEffect(-1.0F, -1.0F));
   }
 
@@ -147,6 +146,10 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
   public static AbstractCropOrb getCropOrb(Crop crop) {
     return getCropOrb(crop.getCrop().getCropOrbId());
+  }
+
+  public void stackOrb(int amount) {
+
   }
 
   public static AbstractCropOrb getCropOrb(String orbId) {

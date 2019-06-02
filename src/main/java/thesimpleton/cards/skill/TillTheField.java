@@ -26,9 +26,11 @@ public class TillTheField extends AbstractDynamicTextCard {
 
   private static final int COST = 1;
   private static final int CROP_AMOUNT = 2;
-  private static final int UPGRADE_CROP_AMOUNT = 1;
+  private static final int UPGRADE_CROP_AMOUNT = 0;
 
-  private static final int BLOCK_AMOUNT = 15;
+  private static final int BLOCK_AMOUNT = 14;
+  private static final int BLOCK_UPGRADE_AMOUNT = 4;
+
 
   public TillTheField() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
@@ -72,6 +74,7 @@ public class TillTheField extends AbstractDynamicTextCard {
     if (!this.upgraded) {
       this.upgradeName();
       this.upgradeMagicNumber(UPGRADE_CROP_AMOUNT);
+      this.upgradeBlock(BLOCK_UPGRADE_AMOUNT);
       this.initializeDescription();
     }
   }

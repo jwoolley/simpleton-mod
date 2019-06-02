@@ -27,8 +27,8 @@
 
   "TheSimpletonMod:Barnstorm": {
     "NAME": "Barnstorm",
-    "DESCRIPTION": "Deal !D! damage to a random enemy for each Crop stack you have. NL Crops at Maturity deal double damage.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies for each Crop stack you have. NL Crops at Maturity deal double damage."
+    "DESCRIPTION": "Deal !D! damage to a random enemy for each Crop stack you have. NL Mature Crops deal double damage. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies for each Crop stack you have. NL Mature Crops deal double damage.  NL Exhaust."
   },
 
   "TheSimpletonMod:Biorefinement": {
@@ -91,12 +91,10 @@
     "DESCRIPTION": "Costs [E] less for each Power card played this turn. NL Gain !B! Block. NL Next turn, lose [E]."
   },
 
-
   "TheSimpletonMod:DigIn": {
     "NAME": "Dig In",
     "DESCRIPTION": "Gain !B! Block. Add a Depletion to your discard pile."
   },
-
 
   "TheSimpletonMod:DoubleBarrel": {
     "NAME": "Double Barrel",
@@ -105,8 +103,13 @@
 
   "TheSimpletonMod:FanTheFlames": {
     "NAME": "Fan the Flames",
-    "DESCRIPTION": " Apply !M! Burning, then double the enemy's Burning. NL NL Exhaust.",
-    "UPGRADE_DESCRIPTION": " Apply !M! Burning to ALL enemies, then double each enemy's Burning. NL NL Exhaust."
+    "DESCRIPTION": " Apply !M! Burning, then double the enemy's Burning. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": " Apply !M! Burning to ALL enemies, then double each enemy's Burning. NL Exhaust."
+  },
+
+  "TheSimpletonMod:Fecundity": {
+    "NAME": "Fecundity",
+    "DESCRIPTION": "Gain !M! Abundance."
   },
 
   "TheSimpletonMod:Ferment": {
@@ -207,6 +210,10 @@
     "DESCRIPTION": "Gain !B! Block. NL Add !M! copies of Soil Sample to your discard pile. NL Exhaust."
   },
 
+  "TheSimpletonMod:ResistantStrain": {
+    "NAME": "Resistant Strain",
+    "DESCRIPTION": "Whenever you apply a debuff to an enemy, gain !M! Block."
+  },
 
   "TheSimpletonMod:RootDown": {
     "NAME": "Root Down",

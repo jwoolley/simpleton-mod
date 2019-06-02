@@ -39,7 +39,7 @@ public class ArtichokeCropOrb extends AbstractCropOrb {
 
   private static String getDescription() {
     return getGenericDescription(ArtichokeCrop.MATURITY_THRESHOLD)
-        + " NL " + DESCRIPTIONS[0]  + ArtichokeCrop.ARMOR_PER_STACK + DESCRIPTIONS[1];
+        + " NL " + DESCRIPTIONS[0]  + ArtichokeCrop.THORNS_PER_STACK + DESCRIPTIONS[1];
   }
 
   @Override

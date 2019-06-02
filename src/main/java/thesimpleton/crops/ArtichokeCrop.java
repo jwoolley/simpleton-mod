@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import com.megacrit.cardcrawl.powers.ThornsPower;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Artichokes;
@@ -15,10 +15,10 @@ public class ArtichokeCrop extends AbstractCrop {
   public static final Crop CROP_ENUM = Crop.ARTICHOKES;
   private static final String ORB_ID = ArtichokeCropOrb.ORB_ID;
   private static final AbstractCropPowerCard POWER_CARD = new Artichokes();
-  private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.RARE;
+  private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.UNCOMMON;
 
   public static final int MATURITY_THRESHOLD = 2;
-  public static int ARMOR_PER_STACK = 3;
+  public static int THORNS_PER_STACK = 1;
 
   public ArtichokeCrop() {
     super(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD);
@@ -33,7 +33,7 @@ public class ArtichokeCrop extends AbstractCrop {
       AbstractDungeon.actionManager.addToBottom(
           new ApplyPowerAction(
               player, player,
-              new PlatedArmorPower(player,harvestAmount *  ARMOR_PER_STACK), harvestAmount * ARMOR_PER_STACK));
+              new ThornsPower(player,harvestAmount * THORNS_PER_STACK), harvestAmount * THORNS_PER_STACK));
     }
     return harvestAmount;
   }

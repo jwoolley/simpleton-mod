@@ -107,7 +107,7 @@
     "NAME": "Artichokes",
     "DESCRIPTIONS": [
       "#gHarvest: Gain #b",
-      " #yPlated #yArmor for each stack harvested."
+      " #yThorns for each stack harvested."
     ]
   },
 
@@ -240,6 +240,14 @@
     "NAME": "Photosynthesis",
     "DESCRIPTIONS": [
       "At the end of your turn, spend all your unused #yEnergy and #yPlant that many random #yCrops."
+    ]
+  },
+
+  "TheSimpletonMod:ResistantStrainPower": {
+    "NAME": "Resistant Strain",
+    "DESCRIPTIONS": [
+      "Whenever you apply a debuff to an enemy, gain #b",
+      " #yBlock."
     ]
   },
 

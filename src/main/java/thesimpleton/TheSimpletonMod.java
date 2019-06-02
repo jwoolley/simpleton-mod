@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.relics.PaperCrane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.cards.ShuffleTriggeredCard;
@@ -223,8 +224,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         // Power (13)
         BaseMod.addCard(new BirdFeeder());
         BaseMod.addCard(new Biorefinement());
+        BaseMod.addCard(new Fecundity());
         BaseMod.addCard(new Photosynthesis());
-        BaseMod.addCard(new ToughSkin());
+//        BaseMod.addCard(new ToughSkin());
+        BaseMod.addCard(new ResistantStrain());
         BaseMod.addCard(new VolatileFumes());
 
         BaseMod.addCard(new Artichokes());
@@ -261,6 +264,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addRelicToCustomPool(new PungentSoil(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new SpudOfTheMartyr(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new WoodChipper(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+
+        BaseMod.addRelicToCustomPool(new PaperCrane(), AbstractCardEnum.THE_SIMPLETON_BLUE);
     }
 
     @Override

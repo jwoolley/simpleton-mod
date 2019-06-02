@@ -24,7 +24,7 @@ public class Barnstorm extends CustomCard {
   private static final CardRarity RARITY = CardRarity.RARE;
   private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
 
-  private static final int COST = 2;
+  private static final int COST = 3;
   private static final int DAMAGE = 4;
 
   private boolean damageAllEnemies;
@@ -33,6 +33,7 @@ public class Barnstorm extends CustomCard {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
     this.damageAllEnemies = false;
+    this.exhaust = true;
   }
 
   @Override

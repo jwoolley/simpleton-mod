@@ -280,7 +280,7 @@ abstract public class AbstractCrop {
     return getRandomCrops(p, numPowers, numStacks, withRarityDistribution, crop -> true);
   }
 
-  public static List<AbstractCrop> getRandomCrops(
+  public static List<AbstractCrop>  getRandomCrops(
       AbstractPlayer p, int numCrops, int numStacks, boolean withRarityDistribution,
       Predicate<AbstractCrop> predicate) {
     // TODO: move this logic to a plant power manager class

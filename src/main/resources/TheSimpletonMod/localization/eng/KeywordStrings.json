@@ -30,6 +30,16 @@
     ],
     "DESCRIPTION": "Bleeding creature loses HP whenever it Attacks. Each turn, Bleed is reduced by #b1."
   },
+
+
+  "TheSimpletonMod:ChilisKeyword": {
+    "PROPER_NAME": "Chilis",
+    "NAMES": [
+      "chili", "chilis"
+    ],
+    "DESCRIPTION": "#yCrop. Deals damage and applies #yBurning to all enemies when harvested."
+  },
+
   "TheSimpletonMod:CircleKeyword": {
     "PROPER_NAME": "Circle",
     "NAMES": [
@@ -68,14 +78,6 @@
       "depletion", "depletions"
     ],
     "DESCRIPTION": "Depletions are playable status cards that reduce your Energy and Draw next turn."
-  },
-
-  "TheSimpletonMod:DregsKeyword": {
-    "PROPER_NAME": "Dregs",
-    "NAMES": [
-      "dregs"
-    ],
-    "DESCRIPTION": "Dregs are unplayable Curse cards."
   },
 
   "TheSimpletonMod:HarvestKeyword": {

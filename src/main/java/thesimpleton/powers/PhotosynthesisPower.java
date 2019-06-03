@@ -8,6 +8,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import thesimpleton.actions.CropSpawnAction;
+import thesimpleton.crops.AbstractCrop;
+import thesimpleton.powers.utils.Crop;
 
 
 public class PhotosynthesisPower extends AbstractTheSimpletonPower {
@@ -19,15 +22,10 @@ public class PhotosynthesisPower extends AbstractTheSimpletonPower {
   public static PowerType POWER_TYPE = AbstractPower.PowerType.BUFF;
   public static final String IMG = "photosynthesis.png";
 
-  private static final int CROPS_PER_ENERGY = 1;
-
-  private AbstractCreature source;
-
-  public PhotosynthesisPower(AbstractCreature owner, AbstractCreature source, int amount) {
+  public PhotosynthesisPower(AbstractCreature owner) {
     super(IMG);
     this.owner = owner;
-    this.source = source;
-    this.amount = amount;
+    this.amount = -1;
 
     this.name = NAME;
     this.ID = POWER_ID;
@@ -49,10 +47,10 @@ public class PhotosynthesisPower extends AbstractTheSimpletonPower {
       this.flash();
       for (int i = 0; i < energy; i++) {
         player.loseEnergy(1);
-        final AbstractCropPower newCrop = AbstractCropPower.getRandomCropPower(player, 1);
-        newCrop.owner = player;
+        AbstractCrop randomCrop = AbstractCrop.getRandomCrop(player, 1);
         AbstractDungeon.actionManager.addToBottom(
-            new ApplyPowerAction(player, player, newCrop, CROPS_PER_ENERGY));
+            new CropSpawnAction(Crop.getCropOrb(randomCrop.enumValue, 1), 1, false));
+
       }
     }
   }

@@ -83,7 +83,7 @@
 
   "TheSimpletonMod:Nettles": {
     "NAME": "Nettles",
-    "DESCRIPTION": "When you draw this, Apply !M! Thorns to a random enemy."
+    "DESCRIPTION": "Whenever this card is drawn, Apply !M! Thorns to a random enemy."
   },
 
   "TheSimpletonMod:DesperatePlunge": {
@@ -183,6 +183,14 @@
   "TheSimpletonMod:Photosynthesis": {
     "NAME": "Photosynthesis",
     "DESCRIPTION": "At the end of your turn, spend all your unused Energy and Plant that many random Crops."
+  },
+
+  "TheSimpletonMod:ProtectiveShell": {
+    "NAME": "ProtectiveShell",
+    "DESCRIPTION": "Gain !B! Block. NL Decrease this card's Block by ",
+    "EXTENDED_DESCRIPTION" : [
+      " this combat. If Block is reduced to 0 this way, Exhaust."
+    ]
   },
 
   "TheSimpletonMod:Pruning": {

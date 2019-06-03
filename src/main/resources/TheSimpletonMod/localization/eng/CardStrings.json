@@ -186,7 +186,7 @@
   },
 
   "TheSimpletonMod:ProtectiveShell": {
-    "NAME": "ProtectiveShell",
+    "NAME": "Protective Shell",
     "DESCRIPTION": "Gain !B! Block. NL Decrease this card's Block by ",
     "EXTENDED_DESCRIPTION" : [
       " this combat. If Block is reduced to 0 this way, Exhaust."

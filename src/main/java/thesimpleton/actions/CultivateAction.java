@@ -51,7 +51,7 @@ public class CultivateAction extends AbstractGameAction {
       if (this.hasHarvested) {
         for(AbstractCropOrb cropOrb : cropCounts.keySet()) {
           logger.debug("CultivateAction.update :: stacking " + cropOrb.name + " for 1");
-          AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(cropOrb, 1, true));
+          AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(cropOrb, this.amount, true));
         }
       }
 

@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.relics.PaperCrane;
 import org.apache.logging.log4j.LogManager;
@@ -37,6 +38,7 @@ import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.relics.*;
+import thesimpleton.ui.seasons.SeasonScreen;
 import thesimpleton.utilities.CropUtil;
 
 import java.lang.reflect.Type;
@@ -48,7 +50,7 @@ import java.util.stream.Collectors;
 @SpireInitializer
 public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber,
         EditStringsSubscriber, EditKeywordsSubscriber, PostInitializeSubscriber, PostCreateStartingDeckSubscriber,
-        PostCreateStartingRelicsSubscriber {
+        PostCreateStartingRelicsSubscriber, StartActSubscriber  {
     private static final Color CUSTOM_COLOR = CardHelper.getColor(57.0F, 131.0F, 245.0F);
 
     private static final String ATTACK_CARD = "512/attack_thesimpleton.png";
@@ -73,6 +75,18 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     private static CropUtil cropUtil;
 
+    @Override
+    public void receiveStartAct() {
+        logger.debug("TheSimpletonMod::receiveStartAct receiveStartAct called ===========================>>>>>>>");
+        logger.debug("TheSimpletonMod::receiveStartAct Doing nothing though.");
+
+        // TODO: change current screen state rather than forcing update here
+//
+//        currentTheme.update(TheSimpletonCharEnum.Theme.SEASON_THEME, true);
+//        seasonScreen.open();
+        // when closed, call currentTheme.update(TheSimpletonCharEnum.Theme.SEASON_THEME, false); // I think?
+    }
+
     private class ThemeState {
         private HashMap<TheSimpletonCharEnum.Theme, Boolean> currentThemeMap;
 
@@ -94,6 +108,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         }
 
         public boolean isCurrentTheme(TheSimpletonCharEnum.Theme theme) {
+            logger.debug("ThemeState::isCurrentTheme called for theme: " + theme + "; isCurrentTheme: " + currentTheme.equals(theme));
             return this.getCurrentTheme().map(cur -> cur.equals(theme)).orElse(false);
         }
     }
@@ -112,7 +127,15 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                 getResourcePath(CARD_ENERGY_ORB));
 
         currentTheme = new ThemeState();
+
+        // initialize season screen
+        // seasonScreen.init
+
         loadConfigData();
+    }
+
+    public static String makeID(String idText) {
+        return "TheSimpletonMod:" + idText;
     }
 
     public static final String getResourcePath(String resource) {
@@ -135,7 +158,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                 new ModLabel(descriptionString.TEXT[1], 350.0f, 700.0f, Color.LIME, modPanel, label -> {}));
 
         Arrays.stream(TheSimpletonCharEnum.Theme.values())
-                .filter(theme -> theme != TheSimpletonCharEnum.Theme.EXAMPLE_THEME)
+                .filter(theme -> theme != TheSimpletonCharEnum.Theme.BASE_THEME)
                 .forEach(theme -> {
                     logger.debug("Adding theme: " + theme);
                     modPanel.addUIElement(new ModLabeledToggleButton(
@@ -440,5 +463,18 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         keywords.forEach((k, v) -> {
             BaseMod.addKeyword(v.PROPER_NAME, v.NAMES, v.DESCRIPTION);
         });
+    }
+
+    public static final SeasonScreen seasonScreen = new SeasonScreen();
+
+    private static HashMap<String, Texture> imgMap = new HashMap<>();
+
+    public static Texture loadTexture(String path) {
+        logger.debug("TheSimpletonMod::loadTexture loading texture: " + path);
+        if (!imgMap.containsKey(path)) {
+            logger.debug("TheSimpletonMod::adding texture to map");
+            imgMap.put(path, ImageMaster.loadImage(path));
+        }
+        return imgMap.get(path);
     }
 }

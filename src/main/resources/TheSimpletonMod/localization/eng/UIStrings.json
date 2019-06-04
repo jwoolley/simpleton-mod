@@ -17,6 +17,7 @@
       "(Note - only the topmost checked theme will be applied.)"
     ]
   },
+
   "TheSimpletonMod:EndlessStrikeTheme": {
     "TEXT": [
       "[Endless Strike] Use \"Strike\" cards infinitely. (starting relic: Four-Leaf Clover Charm)"
@@ -62,18 +63,40 @@
       "[Strength Machine] Keep gaining Strength by 1. (starting relic: Demonic Mark)"
     ]
   },
+
   "TheSimpletonMod:VoidLordTheme": {
     "TEXT": [
       "[Void Lord] Feel the power of Void Form. (starting relic: Ominous Mark)"
     ]
   },
+
+
+  "TheSimpletonMod:BaseTheme": {
+    "TEXT": [
+      "[This is the Base Theme]"
+    ]
+  },
+
+
+  "TheSimpletonMod:SeasonTheme": {
+    "TEXT": [
+      "'Tis the season!"
+    ]
+  },
+
+  "TheSimpletonMod:SeasonScreen": {
+    "TEXT": [
+      "[Season screen UI text]"
+    ]
+  },
+
   "TheSimpletonMod:ChooseAndAddHandCardsToDeckAction": {
     "TEXT": [
       "be shuffled into your draw pile."
     ]
   },
 
-  "MulchAction": {
+  "TheSimpletonMod:MulchAction": {
     "TEXT": [
       "Exhaust"
     ]

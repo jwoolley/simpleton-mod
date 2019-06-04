@@ -3,6 +3,7 @@ package thesimpleton.enums;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import thesimpleton.TheSimpletonMod;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +13,8 @@ public class TheSimpletonCharEnum {
     public static AbstractPlayer.PlayerClass THE_SIMPLETON;
 
     public enum Theme {
-        EXAMPLE_THEME("TheSimpletonMod:ExampleTheme");
+        BASE_THEME(TheSimpletonMod.makeID("BaseTheme")),
+        SEASON_THEME(TheSimpletonMod.makeID("SeasonTheme"));
 
         private final String themeId;
 

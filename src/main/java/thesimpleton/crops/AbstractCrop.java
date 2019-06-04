@@ -121,11 +121,11 @@ abstract public class AbstractCrop {
     logger.debug("AbstractCrop::stackOrb amount:" + amount + " for " + getClass().getSimpleName());
     logger.debug("AbstractCrop::stackOrb stacks:" + stacks);
 
-    if (AbstractCropOrb.hasCropOrb(getCropOrbId())) {
-      logger.debug("AbstractCrop::stackOrb player has " + getClass().getSimpleName() + " already. Num stacks: " + getCropOrb().getAmount());
-    } else {
-      logger.debug("AbstractCrop::stackOrb doesn't have " + getClass().getSimpleName() + " already.");
-    }
+//    if (AbstractCropOrb.hasCropOrb(getCropOrbId())) {
+//      logger.debug("AbstractCrop::stackOrb player has " + getClass().getSimpleName() + " already. Num stacks: " + getCropOrb().getAmount());
+//    } else {
+//      logger.debug("AbstractCrop::stackOrb doesn't have " + getClass().getSimpleName() + " already.");
+//    }
 
     AbstractDungeon.actionManager.addToBottom(new CropSpawnAction((AbstractCropOrb)getCropOrb().makeCopy(), stacks, true));
     CropUtil.triggerCardUpdates();
@@ -146,8 +146,9 @@ abstract public class AbstractCrop {
 
   public boolean isMature() {
     logger.debug("AbstractCrop::isMature: " + this.getClass().getTypeName());
-
-    return AbstractCropOrb.hasCropOrb(getCropOrb()) && AbstractCropOrb.getCropOrb(getCropOrb()).isMature();
+       AbstractCropOrb orb = AbstractCropOrb.getCropOrb(getCropOrbId());
+      return orb != null && orb.isMature(true);
+//    return AbstractCropOrb.hasCropOrb(getCropOrb()) && AbstractCropOrb.getCropOrb(getCropOrb()).isMature();
   }
 
   public void onUseCard(AbstractCard card, UseCardAction action) {
@@ -166,24 +167,36 @@ abstract public class AbstractCrop {
     this.harvest(true, this.getAmount());
   }
 
+
   public void harvest(boolean harvestAll, int maxHarvestAmount) {
-    TheSimpletonMod.logger.debug("============> AbstractCrop::harvest =====");
+    AbstractCropOrb orb = AbstractCropOrb.getCropOrb(getCropOrbId());
+    if (orb != null) {
+      harvest(harvestAll, maxHarvestAmount, orb);
+    }
+  }
 
-    logger.debug("AbstractCrop::harvest::" + this.getCropOrb().ID + " harvest() called. " + harvestAll + " maxHarvestAmount: " + maxHarvestAmount);
 
-    final int amount = this.getAmount();
-    onHarvest(amount);
-    final int harvestAmount = calculateHarvestAmount(amount, maxHarvestAmount, harvestAll);
+  public void harvest(boolean harvestAll, int maxHarvestAmount, AbstractCropOrb orb) {
+//    TheSimpletonMod.logger.debug("============> AbstractCrop::harvest =====");
+
+//   logger.debug("AbstractCrop::harvest::" + this.getCropOrb().ID + " harvest() called. " + harvestAll + " maxHarvestAmount: " + maxHarvestAmount);
+
+//   return cropOrb != null ? cropOrb.passiveAmount : 0;
+
+//  final int amount = this.getAmount();
+    // TODO: should onHarvest get passed harvestAmount instead of orb.passiveAmount?
+    onHarvest(orb.passiveAmount);
+    final int harvestAmount = calculateHarvestAmount(orb.passiveAmount, maxHarvestAmount, harvestAll);
 
     // TODO: move this logic down to AbstractCropOrb (e.g. a harvest() call)
-    this.getCropOrb().harvestCropEffect();
+    orb.harvestCropEffect();
 
     if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
       if (harvestAmount > 0) {
-        TheSimpletonMod.logger.debug("============> AbstractCrop::harvest queueing CropReduceAction =====");
+//        TheSimpletonMod.logger.debug("============> AbstractCrop::harvest queueing CropReduceAction =====");
 
         harvestAction(harvestAmount);
-        AbstractDungeon.actionManager.addToTop(new CropReduceAction(getCropOrb(), harvestAmount));
+        AbstractDungeon.actionManager.addToTop(new CropReduceAction(orb, harvestAmount));
       }
     }
   }
@@ -212,10 +225,10 @@ abstract public class AbstractCrop {
   }
 
   public int getAmount() {
-    if (!AbstractCropOrb.hasCropOrb(getCropOrb())) {
-      return 0;
-    }
-    return AbstractCropOrb.getCropOrb(getCropOrb()).getAmount();
+    AbstractCropOrb cropOrb = AbstractCropOrb.getCropOrb(getCropOrbId());
+
+    return cropOrb != null ? cropOrb.passiveAmount : 0;
+//    return AbstractCropOrb.getCropOrb(getCropOrb()).getAmount();
   }
 
   public AbstractCropPowerCard getPowerCard() throws UnsupportedOperationException {
@@ -259,8 +272,8 @@ abstract public class AbstractCrop {
       Collections.shuffle(activeCropOrbs);
     }
 
-    logger.debug("AbstractCrop.getActiveCropOrbs: player has " + activeCropOrbs.size() + " active crop orbs");
-    logger.debug("AbstractCrop.getActiveCropOrbs: player has " + SimpletonUtil.getActiveOrbs().size() + " active total orbs");
+//    logger.debug("AbstractCrop.getActiveCropOrbs: player has " + activeCropOrbs.size() + " active crop orbs");
+//    logger.debug("AbstractCrop.getActiveCropOrbs: player has " + SimpletonUtil.getActiveOrbs().size() + " active total orbs");
 
     return activeCropOrbs;
   }
@@ -293,17 +306,17 @@ abstract public class AbstractCrop {
         .filter(predicate)
         .collect(Collectors.toList());
 
-    logger.debug(AbstractCropPowerCard.class.getSimpleName()
-        + ".getRandomCrops :: referenceCrops: "
-        + referenceCrops.stream().map(rp ->rp.enumValue + "").collect(Collectors.joining(", ")));
-
-    logger.debug(AbstractCropPowerCard.class.getSimpleName()
-        + ".getRandomCrops :: referenceCrops: "
-        + referenceCrops.stream().map(rp ->rp.getName()).collect(Collectors.joining(", ")));
-
-    logger.debug(AbstractCropPowerCard.class.getSimpleName()
-        + ".getRandomCrops :: filteredCrops: "
-        + filteredCrops.stream().map(fp -> fp.enumValue + "").collect(Collectors.joining(", ")));
+//    logger.debug(AbstractCropPowerCard.class.getSimpleName()
+//        + ".getRandomCrops :: referenceCrops: "
+//        + referenceCrops.stream().map(rp ->rp.enumValue + "").collect(Collectors.joining(", ")));
+//
+//    logger.debug(AbstractCropPowerCard.class.getSimpleName()
+//        + ".getRandomCrops :: referenceCrops: "
+//        + referenceCrops.stream().map(rp ->rp.getName()).collect(Collectors.joining(", ")));
+//
+//    logger.debug(AbstractCropPowerCard.class.getSimpleName()
+//        + ".getRandomCrops :: filteredCrops: "
+//        + filteredCrops.stream().map(fp -> fp.enumValue + "").collect(Collectors.joining(", ")));
 
     ArrayList<AbstractCrop> resultCrops;
 

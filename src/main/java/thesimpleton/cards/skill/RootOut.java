@@ -43,7 +43,9 @@ public class RootOut extends AbstractHarvestCard {
               new VulnerablePower(mo, this.magicNumber, false), this.magicNumber));
     }
 
-    if (AbstractCropOrb.hasCropOrb(Crop.TURNIPS)) {
+    AbstractCropOrb cropOrb = AbstractCropOrb.getCropOrb(Crop.TURNIPS);
+
+    if (cropOrb != null) {
       AbstractCropOrb.getCropOrb(Crop.TURNIPS).getCrop().harvest(true, 1);
     }
   }

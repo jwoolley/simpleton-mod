@@ -43,28 +43,36 @@ public abstract class AbstractCropOrb extends CustomOrb {
   public AbstractCrop getCrop() { return this.crop.getCrop(); }
 
   public int getAmount() {
-    return hasCropOrb() ? getCropOrb().passiveAmount : 0;
+    AbstractCropOrb orb = getCropOrb();
+
+    return orb != null ? orb.passiveAmount : 0;
+//    return hasCropOrbX() ? getCropOrb().passiveAmount : 0;
   }
 
   public static String getGenericDescription(int maturityThreshold) {
     return GENERIC_DESCRIPTION[0] + maturityThreshold + GENERIC_DESCRIPTION[1];
   }
 
-  public boolean isMature() {
-    TheSimpletonMod.logger.debug("AbstractCropOrb::isMature amount: " + this.getAmount() + " maturityThreshold: " + getCrop().getMaturityThreshold());
-
-    return this.getAmount() >= getCrop().getMaturityThreshold();
+  public boolean isMature(boolean thisIsActiveOrb) {
+//    TheSimpletonMod.logger.debug("AbstractCropOrb::isMature amount: " + this.getAmount() + " maturityThreshold: " + getCrop().getMaturityThreshold());
+    if (thisIsActiveOrb) {
+      return this.passiveAmount >= this.getCrop().getMaturityThreshold();
+    } else {
+      return this.getAmount() >= getCrop().getMaturityThreshold();
+    }
   }
 
   public static boolean isMature(Crop crop) {
-    return hasCropOrb(crop) && getCropOrb(crop).isMature();
+    AbstractCropOrb orb = AbstractCropOrb.getCropOrb(crop);
+    return orb != null && orb.isMature(false);
+//    return hasCropOrbX(crop) && getCropOrb(crop).isMature();
   }
 
-  public boolean hasCropOrb() {
+  public boolean hasCropOrbX() {
     return hasCropOrb(this.ID);
   }
 
-  public static boolean hasCropOrb(Crop crop) {
+  public static boolean hasCropOrbX(Crop crop) {
     return hasCropOrb(crop.getCrop().getCropOrbId());
   }
 
@@ -73,7 +81,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
   }
 
   //TODO: move to util
-  public static boolean hasCropOrb(AbstractCropOrb orbType) {
+  public static boolean hasCropOrbX(AbstractCropOrb orbType) {
     return hasCropOrb(orbType.ID);
   }
 
@@ -86,8 +94,8 @@ public abstract class AbstractCropOrb extends CustomOrb {
   }
 
   public static boolean hasCropOrb(String orbId) {
-    TheSimpletonMod.logger.debug("AbstractCropOrb::hasCropOrb : Player has orbs:"
-        + AbstractDungeon.player.orbs.stream().map(orb -> orb.name).collect(Collectors.joining(", ")));
+//    TheSimpletonMod.logger.debug("AbstractCropOrb::hasCropOrb : Player has orbs:"
+//        + AbstractDungeon.player.orbs.stream().map(orb -> orb.name).collect(Collectors.joining(", ")));
 
     Optional<AbstractOrb> cropOrb = AbstractDungeon.player.orbs.stream()
         .filter(orb -> orb.ID == orbId)
@@ -153,18 +161,18 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
   public static AbstractCropOrb getCropOrb(String orbId) {
 
-    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : getting crop orb: " + orbId);
-
-    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : Player has orbs:"
-        + AbstractDungeon.player.orbs.stream().map(orb -> orb.name).collect(Collectors.joining(", ")));
-
-    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : Player has active orbs:"
-        + AbstractDungeon.player.orbs.stream()
-            .filter(orb -> orb.passiveAmount > 0).map(orb -> orb.name).collect(Collectors.joining(", ")));
-
-    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : Player active orb counts:"
-        + AbstractDungeon.player.orbs.stream()
-        .filter(orb -> orb.passiveAmount > 0).map(orb -> orb.name + ": " + orb.passiveAmount).collect(Collectors.joining(", ")));
+//    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : getting crop orb: " + orbId);
+//
+//    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : Player has orbs:"
+//        + AbstractDungeon.player.orbs.stream().map(orb -> orb.name).collect(Collectors.joining(", ")));
+//
+//    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : Player has active orbs:"
+//        + AbstractDungeon.player.orbs.stream()
+//            .filter(orb -> orb.passiveAmount > 0).map(orb -> orb.name).collect(Collectors.joining(", ")));
+//
+//    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : Player active orb counts:"
+//        + AbstractDungeon.player.orbs.stream()
+//        .filter(orb -> orb.passiveAmount > 0).map(orb -> orb.name + ": " + orb.passiveAmount).collect(Collectors.joining(", ")));
 
     Optional<AbstractOrb> cropOrb = AbstractDungeon.player.orbs.stream()
         .filter(orb -> orb instanceof AbstractCropOrb && orb.ID == orbId)

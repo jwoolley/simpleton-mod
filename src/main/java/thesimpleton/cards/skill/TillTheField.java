@@ -59,7 +59,7 @@ public class TillTheField extends AbstractDynamicTextCard {
     if (extendedDescription) {
       if (AbstractCropOrb.playerHasAnyCropOrbs()) {
         AbstractCropOrb newestCropOrb = AbstractCropOrb.getNewestCropOrb();
-        description += EXTENDED_DESCRIPTION[2] + newestCropOrb.name + (newestCropOrb.isMature() ? EXTENDED_DESCRIPTION[3] : EXTENDED_DESCRIPTION[4]);
+        description += EXTENDED_DESCRIPTION[2] + newestCropOrb.name + (newestCropOrb.isMature(true) ? EXTENDED_DESCRIPTION[3] : EXTENDED_DESCRIPTION[4]);
       } else {
         description += EXTENDED_DESCRIPTION[1];
       }

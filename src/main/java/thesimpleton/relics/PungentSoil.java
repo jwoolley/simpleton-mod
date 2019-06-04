@@ -24,7 +24,7 @@ public class PungentSoil extends CustomRelic {
   private static final LandingSound SOUND = LandingSound.HEAVY;
 
   private static final int CROP_AMOUNT = 1;
-  private static final float RELIC_FLASH_DELAY = 1.2F;
+  private static final float RELIC_FLASH_DELAY = 0.8F;
 
   public PungentSoil() {
     super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
@@ -40,13 +40,13 @@ public class PungentSoil extends CustomRelic {
   @Override
   public void onShuffle() {
     Logger logger = TheSimpletonMod.logger;
-    logger.debug("PungentSoil::onShuffle");
+//    logger.debug("PungentSoil::onShuffle");
 
       List<AbstractCropOrb> eligibleCropOrbs = AbstractCrop.getActiveCropOrbs().stream()
-          .filter(orb -> !orb.isMature())
+          .filter(orb -> !orb.isMature(true))
           .collect(Collectors.toList());
 
-    logger.debug("PungentSoil::onShuffle found " + eligibleCropOrbs.size() + " eligible crops");
+//    logger.debug("PungentSoil::onShuffle found " + eligibleCropOrbs.size() + " eligible crops");
 
     if (!eligibleCropOrbs.isEmpty()) {
       AbstractDungeon.effectList.add(new DelayedRelicFlashEffect(this, RELIC_FLASH_DELAY));

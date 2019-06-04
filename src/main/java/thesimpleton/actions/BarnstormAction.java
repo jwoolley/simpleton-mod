@@ -38,7 +38,7 @@ public class BarnstormAction extends AbstractGameAction {
 
   static List<CropCount> getCropCounts(AbstractPlayer player) {
     return AbstractCrop.getActiveCropOrbs(false).stream()
-        .map(cropOrb -> new CropCount(cropOrb, cropOrb.passiveAmount, cropOrb.isMature()))
+        .map(cropOrb -> new CropCount(cropOrb, cropOrb.passiveAmount, cropOrb.isMature(true)))
         .collect(Collectors.toList());
   }
 

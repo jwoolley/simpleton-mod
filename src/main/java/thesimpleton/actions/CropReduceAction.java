@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.orbs.AbstractCropOrb;
+import thesimpleton.powers.utils.Crop;
 
 
 public class CropReduceAction extends AbstractGameAction {
@@ -27,26 +28,25 @@ public class CropReduceAction extends AbstractGameAction {
 
   public void update() {
     Logger logger = TheSimpletonMod.logger;
-    logger.debug("============> CropReduceAction::update =====");
-
-    if (AbstractCropOrb.hasCropOrb(this.cropOrb)) {
-      AbstractCropOrb orb = AbstractCropOrb.getCropOrb(this.cropOrb);
-      if (orb.getAmount() > amount) {
-        logger.debug("============> CropReduceAction::reducing " + this.cropOrb.name + " by " + this.amount + " from " + cropOrb.passiveAmount + " =====");
+//    logger.debug("============> CropReduceAction::update =====");
+    AbstractCropOrb orb = AbstractCropOrb.getCropOrb(this.cropOrb);
+    if (orb != null) {
+      if (orb.passiveAmount > amount) {
+//        logger.debug("============> CropReduceAction::reducing " + this.cropOrb.name + " by " + this.amount + " from " + cropOrb.passiveAmount + " =====");
         cropOrb.passiveAmount -= this.amount;
         cropOrb.update();
-      } else if (orb.getAmount() == amount) {
-        TheSimpletonMod.logger.debug("============> CropReduceAction::update queueing CropRemoveAction =====");
+      } else if (orb.passiveAmount == amount) {
+//        TheSimpletonMod.logger.debug("============> CropReduceAction::update queueing CropRemoveAction =====");
 
         AbstractDungeon.actionManager.addToTop(new CropRemoveAction(this.cropOrb));
       } else {
-        logger.debug("CropReduceAction::update : Player has less " + cropOrb.name
-            + " than requested reduce amount." + " Actual " + orb.getAmount() + " Requested: "  + amount
-            + " <======================================================");
+//        logger.debug("CropReduceAction::update : Player has less " + cropOrb.name
+//            + " than requested reduce amount." + " Actual " + orb.getAmount() + " Requested: "  + amount
+//            + " <======================================================");
       }
     } else {
-      logger.debug("CropReduceAction::update : Player doesn't have " + cropOrb.name
-          + " <======================================================");
+//      logger.debug("CropReduceAction::update : Player doesn't have " + cropOrb.name
+//          + " <======================================================");
     }
     this.isDone = true;
     tickDuration();

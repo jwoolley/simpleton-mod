@@ -38,7 +38,7 @@ public class TillTheFieldAction extends AbstractGameAction {
 
       if (AbstractCropOrb.playerHasAnyCropOrbs()) {
         final AbstractCropOrb newestCropOrb = AbstractCropOrb.getNewestCropOrb();
-        if (newestCropOrb.isMature()) {
+        if (newestCropOrb.isMature(true)) {
           AbstractDungeon.actionManager.addToBottom(new GainBlockAction(player, player, this.blockAmount));
         } else {
           AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(newestCropOrb, this.amount, true));

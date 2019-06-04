@@ -35,24 +35,24 @@ public class HarvestCropAction extends AbstractGameAction {
   }
 
   public void update() {
-    TheSimpletonMod.logger.debug("============> HarvestCropAction::update =====");
+//    TheSimpletonMod.logger.debug("============> HarvestCropAction::update =====");
 
     if (this.duration == ACTION_DURATION) {
-      TheSimpletonMod.logger.debug("============> HarvestCropAction::update duration == ACTION_DURATION =====");
+//      TheSimpletonMod.logger.debug("============> HarvestCropAction::update duration == ACTION_DURATION =====");
 
       Logger logger = TheSimpletonMod.logger;
 
-      final int stacks = cropOrb.getAmount() < this.amount ? cropOrb.getAmount() : this.amount;
-      logger.debug("HarvestCropAction.update :: player has " + cropOrb.getAmount() + " stacks of " + cropOrb.name);
-      logger.debug("HarvestCropAction.update :: numStacksToHarvest: " + this.amount);
-      logger.debug("HarvestCropAction.update :: harvesting " + stacks + " stacks of " + cropOrb.name);
+      final int stacks = cropOrb.passiveAmount < this.amount ? cropOrb.passiveAmount : this.amount;
+//      logger.debug("HarvestCropAction.update :: player has " + cropOrb.getAmount() + " stacks of " + cropOrb.name);
+//      logger.debug("HarvestCropAction.update :: numStacksToHarvest: " + this.amount);
+//      logger.debug("HarvestCropAction.update :: harvesting " + stacks + " stacks of " + cropOrb.name);
 
-      TheSimpletonMod.logger.debug("============> HarvestCropAction::update calling AbstractCrop.harvest() =====");
+//      TheSimpletonMod.logger.debug("============> HarvestCropAction::update calling AbstractCrop.harvest() =====");
 
       cropOrb.getCrop().harvest(false, stacks);
       this.isDone = true;
     }
-    TheSimpletonMod.logger.debug("============> HarvestCropAction::update tickDuration =====");
+//    TheSimpletonMod.logger.debug("============> HarvestCropAction::update tickDuration =====");
 
     tickDuration();
   }

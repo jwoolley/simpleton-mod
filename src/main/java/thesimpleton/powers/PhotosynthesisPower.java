@@ -43,6 +43,9 @@ public class PhotosynthesisPower extends AbstractTheSimpletonPower {
     final AbstractPlayer player = AbstractDungeon.player;
     final int energy = EnergyPanel.getCurrentEnergy();
 
+
+    // TODO: optimize use of getCropOrb here
+
     if (energy > 0) {
       this.flash();
       for (int i = 0; i < energy; i++) {

@@ -66,8 +66,8 @@ public class CultivateAction extends AbstractGameAction {
         List<AbstractCropOrb> cropOrbs = AbstractCropOrb.getActiveCropOrbs();
 
         for(AbstractCropOrb cropOrb : cropOrbs) {
-          final int stacks = cropOrb.getAmount() < numStacksToHarvest ? cropOrb.getAmount() : numStacksToHarvest;
-          logger.debug("CultivateAction.update :: player has " + cropOrb.getAmount() + " stacks of " + cropOrb.name);
+          final int stacks = cropOrb.passiveAmount < numStacksToHarvest ? cropOrb.passiveAmount : numStacksToHarvest;
+//          logger.debug("CultivateAction.update :: player has " + cropOrb.getAmount() + " stacks of " + cropOrb.name);
           logger.debug("CultivateAction.update :: numStacksToHarvest: " + numStacksToHarvest);
           logger.debug("CultivateAction.update :: harvesting " + stacks + " stacks of " + cropOrb.name);
           cropCounts.put(cropOrb.getCrop().getCropOrb(), stacks);

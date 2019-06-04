@@ -36,7 +36,7 @@ public class CropOrbCycleAction extends AbstractGameAction {
     this.cropOrb = cropOrb;
 
     Logger logger = TheSimpletonMod.logger;
-    logger.debug("CropOrbCycleAction() constructor: " + cropOrb.getClass().getSimpleName() + "; rawAmount: " + rawAmount + " calculated amount: " + this.amount + " cropOrb.amount (current count): " + cropOrb.getAmount() + " cropOrb.passiveAmount " + cropOrb.passiveAmount);
+//    logger.debug("CropOrbCycleAction() constructor: " + cropOrb.getClass().getSimpleName() + "; rawAmount: " + rawAmount + " calculated amount: " + this.amount + " cropOrb.amount (current count): " + cropOrb.getAmount() + " cropOrb.passiveAmount " + cropOrb.passiveAmount);
   }
 
   public void update() {
@@ -51,7 +51,7 @@ public class CropOrbCycleAction extends AbstractGameAction {
 
     if (secondTick) {
       if (this.duration != ACTION_DURATION) {
-        logger.debug("CropOrbCycleAction::update spawning orb " + this.cropOrb.name + " for " + this.cropOrb.passiveAmount);
+//        logger.debug("CropOrbCycleAction::update spawning orb " + this.cropOrb.name + " for " + this.cropOrb.passiveAmount);
 
         AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(this.cropOrb, this.amount, this.isFromCard));
       }
@@ -60,7 +60,7 @@ public class CropOrbCycleAction extends AbstractGameAction {
     }
 
     if (!AbstractDungeon.player.orbs.isEmpty() &&  AbstractDungeon.player.orbs.get(0).ID != EmptyOrbSlot.ORB_ID) {
-      logger.debug("CropOrbCycleAction::update evoking orb: " + AbstractDungeon.player.orbs.get(0).name);
+//      logger.debug("CropOrbCycleAction::update evoking orb: " + AbstractDungeon.player.orbs.get(0).name);
       AbstractDungeon.actionManager.addToTop(new EvokeOrbAction(1));
     } else {
       logger.debug("CropOrbCycleAction::update no old orb to evoke");

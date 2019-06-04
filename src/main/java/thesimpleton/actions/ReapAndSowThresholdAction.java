@@ -17,7 +17,7 @@ public class ReapAndSowThresholdAction extends AbstractGameAction {
 
   @Override
   public void update() {
-    if (AbstractCropOrb.getActiveCropOrbs().stream().anyMatch(orb -> orb.isMature())) {
+    if (AbstractCropOrb.getActiveCropOrbs().stream().anyMatch(orb -> orb.isMature(true))) {
       AbstractCard card = new Cultivate();
       if (this.upgraded) {
         card.upgrade();

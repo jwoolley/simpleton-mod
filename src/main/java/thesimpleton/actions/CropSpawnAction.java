@@ -53,8 +53,9 @@ public class CropSpawnAction extends AbstractGameAction {
         } else {
             if (secondTick) {
                 if (this.duration != ACTION_DURATION) {
-                    if (AbstractCropOrb.hasCropOrb(this.cropOrb)) {
-                        int newAmount = AbstractCropOrb.getCropOrb(this.cropOrb).getAmount();
+                    AbstractCropOrb cropOrb = AbstractCropOrb.getCropOrb(this.cropOrb);
+                    if (cropOrb != null) {
+                        int newAmount = cropOrb.getAmount();
                         logger.debug("CropSpawnAction::update secondTick. newAmount: " + newAmount);
 
                         AbstractCrop crop = cropOrb.getCrop();

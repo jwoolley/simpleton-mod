@@ -156,6 +156,8 @@ abstract public class AbstractCrop {
     }
   }
 
+
+
   protected int calculateHarvestAmount(int amount, int maxAmount, boolean harvestAll) {
     return Math.min(amount, harvestAll ? amount : maxAmount);
   }

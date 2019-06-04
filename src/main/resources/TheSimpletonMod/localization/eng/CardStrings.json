@@ -171,8 +171,8 @@
 
   "TheSimpletonMod:OnionBloom": {
     "NAME": "Onion Bloom",
-    "DESCRIPTION": "Innate. Plant !M! Onion. Draw a card. NL Discard a card. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Plant !M! Onion. Draw a card. NL Discard a card."
+    "DESCRIPTION": "Innate. NL Plant !M! Onion. NL  Draw a card. NL Discard a card. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Plant !M! Onion. NL Draw a card. NL Discard a card."
   },
 
   "TheSimpletonMod:PestManagement": {

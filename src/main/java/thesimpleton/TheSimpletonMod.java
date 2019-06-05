@@ -38,6 +38,8 @@ import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.relics.*;
+import thesimpleton.seasons.Season;
+import thesimpleton.seasons.SeasonInfo;
 import thesimpleton.ui.seasons.SeasonScreen;
 import thesimpleton.utilities.CropUtil;
 

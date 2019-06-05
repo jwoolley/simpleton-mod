@@ -39,11 +39,11 @@ public enum Crop {
       mappings.put(Crop.TURNIPS, new TurnipCrop());
 
       for (Crop crop : Crop.values()) {
-      crop.crop =  mappings.get(crop);
-      if (crop.crop == null) {
-        throw new RuntimeException("Crop field for Crop enum " + crop + " is not defined");
+        crop.crop =  mappings.get(crop);
+        if (crop.crop == null) {
+          throw new RuntimeException("Crop field for Crop enum " + crop + " is not defined");
+        }
       }
-    }
   }
 
   public AbstractCrop getCrop() {

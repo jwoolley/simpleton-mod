@@ -66,11 +66,11 @@ abstract public class AbstractCrop {
   }
 
   public String getName() {
-    logger.debug("============> AbstractCrop::getName =====");
-    logger.debug("============> AbstractCrop::getName this.enumValue: " + this.enumValue);
-    logger.debug("============> AbstractCrop::getName this.getClass().getSimpleName(): " + this.getClass().getSimpleName());
-    logger.debug("============> AbstractCrop::getName Crop.getCropOrb(): " + Crop.getCropOrb(this.enumValue));
-    logger.debug("============> AbstractCrop::getName  Crop.getCropOrb().name: " + Crop.getCropOrb(this.enumValue).name);
+//    logger.debug("============> AbstractCrop::getName =====");
+//    logger.debug("============> AbstractCrop::getName this.enumValue: " + this.enumValue);
+//    logger.debug("============> AbstractCrop::getName this.getClass().getSimpleName(): " + this.getClass().getSimpleName());
+//    logger.debug("============> AbstractCrop::getName Crop.getCropOrb(): " + Crop.getCropOrb(this.enumValue));
+//    logger.debug("============> AbstractCrop::getName  Crop.getCropOrb().name: " + Crop.getCropOrb(this.enumValue).name);
 
     return Crop.getCropOrb(this.enumValue).name;
   }
@@ -339,9 +339,9 @@ abstract public class AbstractCrop {
         distributedCrops.addAll(copies);
       });
 
-      logger.debug(AbstractCropPowerCard.class.getSimpleName()
-          + ".getRandomCropPowers :: distributedPowers: "
-          + distributedCrops.stream().map(dp -> dp.enumValue + "").collect(Collectors.joining(", ")));
+//      logger.debug(AbstractCropPowerCard.class.getSimpleName()
+//          + ".getRandomCropPowers :: distributedPowers: "
+//          + distributedCrops.stream().map(dp -> dp.enumValue + "").collect(Collectors.joining(", ")));
 
       Collections.shuffle(distributedCrops);
 
@@ -393,25 +393,28 @@ abstract public class AbstractCrop {
     return getActiveCropOrbs().size();
   }
 
-  static {
-    Map<CardRarity, Integer> rarityDistribution = new HashMap<>();
-    rarityDistribution.put(CardRarity.BASIC, 27);
-    rarityDistribution.put(CardRarity.COMMON, 18);
-    rarityDistribution.put(CardRarity.UNCOMMON, 12);
-    rarityDistribution.put(CardRarity.RARE, 8);
-    CROP_RARITY_DISTRIBUTION = Collections.unmodifiableMap(rarityDistribution);
+  private static boolean initialized = false;
+  public static void initialize() {
+    if (!initialized) {
+      Map<CardRarity, Integer> rarityDistribution = new HashMap<>();
+      rarityDistribution.put(CardRarity.BASIC, 27);
+      rarityDistribution.put(CardRarity.COMMON, 18);
+      rarityDistribution.put(CardRarity.UNCOMMON, 12);
+      rarityDistribution.put(CardRarity.RARE, 8);
+      CROP_RARITY_DISTRIBUTION = Collections.unmodifiableMap(rarityDistribution);
 
-    // TODO: move to CropUtil?
-    // reset hasHarvestedThisTurn at start of combat and at end of turn
-    Trigger trigger = new Trigger() {
-      public void trigger() {
-        logger.debug("AbstractCrop: Managed trigger: Resetting hasHarvestedThisTurn ");
-        hasHarvestedThisTurn = false;
-      }
-    };
+      // TODO: move to CropUtil?
+      // reset hasHarvestedThisTurn at start of combat and at end of turn
+      Trigger trigger = new Trigger() {
+        public void trigger() {
+          logger.debug("AbstractCrop: Managed trigger: Resetting hasHarvestedThisTurn ");
+          hasHarvestedThisTurn = false;
+        }
+      };
 
-    TheSimpletonCharacter.addPrecombatPredrawTrigger(trigger);
-    TheSimpletonCharacter.addStartOfTurnTrigger(trigger);
-    TheSimpletonCharacter.addEndOfTurnTrigger(trigger);
+      TheSimpletonCharacter.addPrecombatPredrawTrigger(trigger);
+      TheSimpletonCharacter.addStartOfTurnTrigger(trigger);
+      TheSimpletonCharacter.addEndOfTurnTrigger(trigger);
+    }
   }
 }

@@ -15,7 +15,7 @@ public class ArtichokeCrop extends AbstractCrop {
   public static final Crop CROP_ENUM = Crop.ARTICHOKES;
   private static final String ORB_ID = ArtichokeCropOrb.ORB_ID;
   private static final AbstractCropPowerCard POWER_CARD = new Artichokes();
-  private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.UNCOMMON;
+  private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.COMMON;
 
   public static final int MATURITY_THRESHOLD = 2;
   public static int THORNS_PER_STACK = 1;

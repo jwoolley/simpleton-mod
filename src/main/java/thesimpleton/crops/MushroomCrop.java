@@ -13,7 +13,7 @@ public class MushroomCrop extends AbstractCrop {
   private static final String ORB_ID = MushroomCropOrb.ORB_ID;
   private static final AbstractCropPowerCard POWER_CARD = new Mushrooms();
 
-  private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.UNCOMMON;
+  private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.RARE;
 
   public static final int MATURITY_THRESHOLD = 2;
 

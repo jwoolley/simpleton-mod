@@ -63,9 +63,9 @@ public class SeasonInfo {
 
   static  {
     List<Predicate<Crop>> randomCropByRarityPredicates = new ArrayList<>();
-    randomCropByRarityPredicates.add(c -> c.getCrop().cropRarity == AbstractCard.CardRarity.BASIC);
-    randomCropByRarityPredicates.add(c -> c.getCrop().cropRarity == AbstractCard.CardRarity.COMMON);
-    randomCropByRarityPredicates.add(c -> c.getCrop().cropRarity == AbstractCard.CardRarity.UNCOMMON);
+    randomCropByRarityPredicates.add(c -> c.getCropInfo().rarity == AbstractCard.CardRarity.BASIC);
+    randomCropByRarityPredicates.add(c -> c.getCropInfo().rarity == AbstractCard.CardRarity.COMMON);
+    randomCropByRarityPredicates.add(c -> c.getCropInfo().rarity == AbstractCard.CardRarity.UNCOMMON);
 
     RANDOM_CROP_BY_RARITY_STRATEGY = new CropsInSeasonStrategy(randomCropByRarityPredicates);
   }

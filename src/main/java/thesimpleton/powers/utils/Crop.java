@@ -8,51 +8,59 @@ import java.util.Map;
 
 // TODO: instantiate these reference crops in CropUtil
 public enum Crop {
-  ARTICHOKES(),
-  ASPARAGUS(),
-  CORN(),
-  CHILIS(),
-  SQUASH(),
-  MUSHROOMS(),
-  ONIONS(),
-  POTATOES(),
-  SPINACH(),
-  TURNIPS();
+  ARTICHOKES(ArtichokeCrop.CROP_INFO),
+  ASPARAGUS(AsparagusCrop.CROP_INFO),
+  CHILIS(ChilisCrop.CROP_INFO),
+  CORN(CornCrop.CROP_INFO),
+  SQUASH(SquashCrop.CROP_INFO),
+  MUSHROOMS(MushroomCrop.CROP_INFO),
+  ONIONS(OnionCrop.CROP_INFO),
+  POTATOES(PotatoCrop.CROP_INFO),
+  SPINACH(SpinachCrop.CROP_INFO),
+  TURNIPS(TurnipCrop.CROP_INFO);
 
-  private AbstractCrop crop;
+  private CropInfo cropInfo;
+
+  Crop(CropInfo cropInfo) {
+    this.cropInfo = cropInfo;
+  }
+
+  public CropInfo getCropInfo() {
+    return cropInfo;
+  }
 
   public String getName() {
-    return this.getCrop().getName();
+    return this.name();
   }
 
-  public static void initialize() {
-      Map<Crop, AbstractCrop> mappings = new HashMap<>();
-      mappings.put(Crop.ARTICHOKES, new ArtichokeCrop());
-      mappings.put(Crop.ASPARAGUS, new AsparagusCrop());
-      mappings.put(Crop.CORN, new CornCrop());
-      mappings.put(Crop.CHILIS, new ChilisCrop());
-      mappings.put(Crop.SQUASH, new SquashCrop());
-      mappings.put(Crop.MUSHROOMS, new MushroomCrop());
-      mappings.put(Crop.ONIONS, new OnionCrop());
-      mappings.put(Crop.POTATOES, new PotatoCrop());
-      mappings.put(Crop.SPINACH, new SpinachCrop());
-      mappings.put(Crop.TURNIPS, new TurnipCrop());
-
-      for (Crop crop : Crop.values()) {
-        crop.crop =  mappings.get(crop);
-        if (crop.crop == null) {
-          throw new RuntimeException("Crop field for Crop enum " + crop + " is not defined");
-        }
-      }
-  }
-
-  public AbstractCrop getCrop() {
-    if (this.crop == null) {
-      throw new RuntimeException("Crop field for Crop enum " + this + " is not defined");
-    }
-
-    return this.crop;
-  }
+//  public static void initialize() {
+//      Map<Crop, AbstractCrop> mappings = new HashMap<>();
+//      mappings.put(Crop.ARTICHOKES, new ArtichokeCrop());
+//      mappings.put(Crop.ASPARAGUS, new AsparagusCrop());
+//      mappings.put(Crop.CHILIS, new ChilisCrop());
+//      mappings.put(Crop.CORN, new CornCrop());
+//      mappings.put(Crop.MUSHROOMS, new MushroomCrop());
+//      mappings.put(Crop.ONIONS, new OnionCrop());
+//      mappings.put(Crop.POTATOES, new PotatoCrop());
+//      mappings.put(Crop.SPINACH, new SpinachCrop());
+//      mappings.put(Crop.SQUASH, new SquashCrop());
+//      mappings.put(Crop.TURNIPS, new TurnipCrop());
+//
+//      for (Crop crop : Crop.values()) {
+//        crop.crop =  mappings.get(crop);
+//        if (crop.crop == null) {
+//          throw new RuntimeException("Crop field for Crop enum " + crop + " is not defined");
+//        }
+//      }
+//  }
+//
+//  public AbstractCrop getCrop() {
+//    if (this.crop == null) {
+//      throw new RuntimeException("Crop field for Crop enum " + this + " is not defined");
+//    }
+//
+//    return this.crop;
+//  }
 
   public static AbstractCropOrb getCropOrb(Crop crop) {
     return getCropOrb(crop, 0);

@@ -10,12 +10,12 @@ import thesimpleton.TheSimpletonMod;
 )
 public class DungeonMapScreenUpdateAfter {
   public static void Postfix (DungeonMapScreen __instance) {
-    TheSimpletonMod.logger.debug("DungeonMapScreenUpdateAfter invoked post trigger");
+//    TheSimpletonMod.logger.debug("DungeonMapScreenUpdateAfter invoked post trigger");
     if (TheSimpletonMod.seasonScreen.isOpen()) {
-      TheSimpletonMod.logger.debug("DungeonMapScreenUpdateAfter season screen open; updating");
+//      TheSimpletonMod.logger.debug("DungeonMapScreenUpdateAfter season screen open; updating");
       TheSimpletonMod.seasonScreen.update();
     } else {
-      TheSimpletonMod.logger.debug("DungeonMapScreenUpdateAfter season screen not open; not updating");
+//      TheSimpletonMod.logger.debug("DungeonMapScreenUpdateAfter season screen not open; not updating");
     }
   }
 }

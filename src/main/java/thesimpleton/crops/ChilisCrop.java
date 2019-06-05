@@ -13,10 +13,12 @@ import thesimpleton.powers.utils.Crop;
 
 public class ChilisCrop extends  AbstractCrop {
   public static final Crop CROP_ENUM = Crop.CHILIS;
+  public static final CropInfo CROP_INFO;
+
   private static final String ORB_ID = ChiliCropOrb.ORB_ID;
   private static final AbstractCropPowerCard POWER_CARD = new Chilis();
-
   private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.UNCOMMON;
+  private static AbstractCrop placeholderCrop;
 
   public static final int MATURITY_THRESHOLD = 5;
   public static int DAMAGE_PER_STACK = 3;
@@ -45,5 +47,17 @@ public class ChilisCrop extends  AbstractCrop {
           .forEach(mo -> AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(mo, getPlayer(), damageAmount)));
     }
     return harvestAmount;
+  }
+
+  static {
+    CROP_INFO = new CropInfo(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD) {
+      @Override
+      public AbstractCrop getCrop() {
+        if (placeholderCrop == null) {
+          placeholderCrop = new ChilisCrop();
+        }
+        return placeholderCrop;
+      }
+    };
   }
 }

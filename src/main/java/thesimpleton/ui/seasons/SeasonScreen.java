@@ -59,13 +59,16 @@ public class SeasonScreen {
   }
 
   public void open() {
-    logger.debug("SeasonScreen::open called");
-    AbstractDungeon.isScreenUp = true;
-    show = true;
-
-    // AbstractDungeon.overlayMenu.showBlackScreen(0.5f);
-    // TODO: set theme to this
-    // TODO: set isScreenUp to false on close
+    // DEBUG
+    return;
+//
+//    logger.debug("SeasonScreen::open called");
+//    AbstractDungeon.isScreenUp = true;
+//    show = true;
+//
+//    // AbstractDungeon.overlayMenu.showBlackScreen(0.5f);
+//    // TODO: set theme to this
+//    // TODO: set isScreenUp to false on close
   }
 
   public void close() {
@@ -74,13 +77,13 @@ public class SeasonScreen {
   }
 
   public void update() {
-    logger.debug("SeasonScreen::update called");
+//    logger.debug("SeasonScreen::update called");
     if (!isOpen()) {
-      logger.debug("SeasonScreen::update not open; returning");
+//      logger.debug("SeasonScreen::update not open; returning");
       return;
     }
 
-    logger.debug("SeasonScreen::update open; calling hb.update");
+//    logger.debug("SeasonScreen::update open; calling hb.update");
 
 
     // handle ready button click /window dismissal here
@@ -95,14 +98,14 @@ public class SeasonScreen {
   }
 
   public void render(SpriteBatch sb) {
-    logger.debug("SeasonScreen::render called");
+//    logger.debug("SeasonScreen::render called");
 
     if (!isOpen()) {
-      logger.debug("SeasonScreen::render not open; returning");
+//      logger.debug("SeasonScreen::render not open; returning");
       return;
     }
 
-    logger.debug("SeasonScreen::render drawing background image");
+//    logger.debug("SeasonScreen::render drawing background image");
 
     sb.draw(getBackgroundImage(), 0.0F, backgroundImageY, Settings.WIDTH, Settings.HEIGHT);
     hb.render(sb);

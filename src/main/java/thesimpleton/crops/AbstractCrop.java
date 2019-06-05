@@ -72,7 +72,7 @@ abstract public class AbstractCrop {
 //    logger.debug("============> AbstractCrop::getName Crop.getCropOrb(): " + Crop.getCropOrb(this.enumValue));
 //    logger.debug("============> AbstractCrop::getName  Crop.getCropOrb().name: " + Crop.getCropOrb(this.enumValue).name);
 
-    return Crop.getCropOrb(this.enumValue).name;
+    return this.enumValue.name();
   }
 
   public String getCropOrbId() {
@@ -334,7 +334,7 @@ abstract public class AbstractCrop {
       filteredCrops.forEach(crop -> {
         List<AbstractCrop> copies =
             Collections.nCopies(withRarityDistribution
-                    ? CROP_RARITY_DISTRIBUTION.get(crop.cropRarity) : 1,
+                    ? getCropRarityDistribution().get(crop.cropRarity) : 1,
                 crop);
         distributedCrops.addAll(copies);
       });
@@ -393,16 +393,23 @@ abstract public class AbstractCrop {
     return getActiveCropOrbs().size();
   }
 
-  private static boolean initialized = false;
-  public static void initialize() {
-    if (!initialized) {
+  private static Map<AbstractCard.CardRarity, Integer> getCropRarityDistribution() {
+    if (CROP_RARITY_DISTRIBUTION == null) {
       Map<CardRarity, Integer> rarityDistribution = new HashMap<>();
       rarityDistribution.put(CardRarity.BASIC, 27);
       rarityDistribution.put(CardRarity.COMMON, 18);
       rarityDistribution.put(CardRarity.UNCOMMON, 12);
       rarityDistribution.put(CardRarity.RARE, 8);
       CROP_RARITY_DISTRIBUTION = Collections.unmodifiableMap(rarityDistribution);
+    }
+    return CROP_RARITY_DISTRIBUTION;
+  }
 
+  private static boolean initialized = false;
+  public static void initialize() {
+    if (!initialized) {
+
+      getCropRarityDistribution();
       // TODO: move to CropUtil?
       // reset hasHarvestedThisTurn at start of combat and at end of turn
       Trigger trigger = new Trigger() {
@@ -415,6 +422,8 @@ abstract public class AbstractCrop {
       TheSimpletonCharacter.addPrecombatPredrawTrigger(trigger);
       TheSimpletonCharacter.addStartOfTurnTrigger(trigger);
       TheSimpletonCharacter.addEndOfTurnTrigger(trigger);
+
+      initialized = true;
     }
   }
 }

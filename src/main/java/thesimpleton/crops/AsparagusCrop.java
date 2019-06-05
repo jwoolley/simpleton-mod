@@ -13,9 +13,12 @@ import thesimpleton.powers.utils.Crop;
 
 public class AsparagusCrop extends AbstractCrop {
   public static final Crop CROP_ENUM = Crop.ASPARAGUS;
+  public static final CropInfo CROP_INFO;
+
   private static final String ORB_ID = AsparagusCropOrb.ORB_ID;
   private static final AbstractCropPowerCard POWER_CARD = new Asparagus();
   private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.UNCOMMON;
+  private static AbstractCrop placeholderCrop;
 
   public static final int MATURITY_THRESHOLD = 3;
   public static int DEXTERITY_PER_STACK = 1;
@@ -34,5 +37,17 @@ public class AsparagusCrop extends AbstractCrop {
               harvestAmount * DEXTERITY_PER_STACK));
     }
     return harvestAmount;
+  }
+
+  static {
+    CROP_INFO = new CropInfo(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD) {
+      @Override
+      public AbstractCrop getCrop() {
+        if (placeholderCrop == null) {
+          placeholderCrop = new AsparagusCrop();
+        }
+        return placeholderCrop;
+      }
+    };
   }
 }

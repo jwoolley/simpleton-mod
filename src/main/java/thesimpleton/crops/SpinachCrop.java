@@ -13,10 +13,12 @@ import thesimpleton.powers.utils.Crop;
 
 public class SpinachCrop extends AbstractCrop {
   public static final Crop CROP_ENUM = Crop.SPINACH;
+  public static final CropInfo CROP_INFO;
+
   private static final String ORB_ID = SpinachCropOrb.ORB_ID;
   private static final AbstractCropPowerCard POWER_CARD = new Spinach();
-
   private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.UNCOMMON;
+  private static AbstractCrop placeholderCrop;
 
   public static final int MATURITY_THRESHOLD = 2;
   public static int STRENGTH_PER_STACK = 1;
@@ -36,5 +38,17 @@ public class SpinachCrop extends AbstractCrop {
               new StrengthPower(player, harvestAmount * STRENGTH_PER_STACK), harvestAmount * STRENGTH_PER_STACK));
     }
     return harvestAmount;
+  }
+
+  static {
+    CROP_INFO = new CropInfo(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD) {
+      @Override
+      public AbstractCrop getCrop() {
+        if (placeholderCrop == null) {
+          placeholderCrop = new SpinachCrop();
+        }
+        return placeholderCrop;
+      }
+    };
   }
 }

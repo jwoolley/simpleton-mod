@@ -27,6 +27,7 @@ import thesimpleton.cards.attack.Haymaker;
 import thesimpleton.cards.attack.PestManagement;
 import thesimpleton.cards.attack.ReapAndSow;
 import thesimpleton.cards.attack.Strike_TheSimpleton;
+import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.skill.Defend_TheSimpleton;
 import thesimpleton.cards.skill.Rototilling;
 import thesimpleton.enums.AbstractCardEnum;
@@ -40,10 +41,7 @@ import thesimpleton.seasons.Season;
 import thesimpleton.seasons.SeasonInfo;
 import thesimpleton.utilities.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static thesimpleton.TheSimpletonMod.getResourcePath;
@@ -109,21 +107,21 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
             logger.debug(index++ + ") " + card.name + " [cardId: " + card.cardID + "]");
         }
         initializeOrbSlotLocations();
-        Crop.initialize();
+//        Crop.initialize();
 
-        logger.debug("@@@@@DEBUG@@@@@ Generating season info examples...");
-        for (int i = 0; i < 10; i++) {
-            logger.debug("Generating season info...");
-            Season season = Season.randomSeason();
-            SeasonInfo seasonInfo = new SeasonInfo(season, SeasonInfo.RANDOM_CROP_BY_RARITY_STRATEGY);
-
-            logger.debug("SeasonInfo | "
-                + "season: " + seasonInfo.getSeason()
-                + " cropsInSeason: "
-                + seasonInfo.getCropsInSeason().stream().map(c -> c.getName()).collect(Collectors.joining(", "))
-                + "\n\n"
-            );
-        }
+//        logger.debug("@@@@@DEBUG@@@@@ Generating season info examples...");
+//        for (int i = 0; i < 10; i++) {
+//            logger.debug("Generating season info...");
+//            Season season = Season.randomSeason();
+//            SeasonInfo seasonInfo = new SeasonInfo(season, SeasonInfo.RANDOM_CROP_BY_RARITY_STRATEGY);
+//
+//            logger.debug("SeasonInfo | "
+//                + "season: " + seasonInfo.getSeason()
+//                + " cropsInSeason: "
+//                + seasonInfo.getCropsInSeason().stream().map(c -> c.getName()).collect(Collectors.joining(", "))
+//                + "\n\n"
+//            );
+//        }
     }
 
     @Override

@@ -40,7 +40,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
     this.getCrop().harvestAll();
   }
 
-  public AbstractCrop getCrop() { return this.crop.getCrop(); }
+  public AbstractCrop getCrop() { return this.crop.getCropInfo().getCrop(); }
 
   public int getAmount() {
     AbstractCropOrb orb = getCropOrb();
@@ -73,7 +73,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
   }
 
   public static boolean hasCropOrbX(Crop crop) {
-    return hasCropOrb(crop.getCrop().getCropOrbId());
+    return hasCropOrb(crop.getCropInfo().orbId);
   }
 
   public AbstractCropOrb getCropOrb() {
@@ -152,7 +152,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
   }
 
   public static AbstractCropOrb getCropOrb(Crop crop) {
-    return getCropOrb(crop.getCrop().getCropOrbId());
+    return getCropOrb(crop.getCropInfo().orbId);
   }
 
   public void stackOrb(int amount) {

@@ -12,10 +12,12 @@ import thesimpleton.relics.HotPotato;
 
 public class PotatoCrop extends AbstractCrop {
   public static final Crop CROP_ENUM = Crop.POTATOES;
+  public static final CropInfo CROP_INFO;
+
   private static final String ORB_ID = PotatoCropOrb.ORB_ID;
   private static final AbstractCropPowerCard POWER_CARD = new Potatoes();
-
   private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.BASIC;
+  private static AbstractCrop placeholderCrop;
 
   public static final int MATURITY_THRESHOLD = 5;
 
@@ -35,5 +37,17 @@ public class PotatoCrop extends AbstractCrop {
       }
     }
     return harvestAmount;
+  }
+
+  static {
+    CROP_INFO = new CropInfo(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD) {
+      @Override
+      public AbstractCrop getCrop() {
+        if (placeholderCrop == null) {
+          placeholderCrop = new PotatoCrop();
+        }
+        return placeholderCrop;
+      }
+    };
   }
 }

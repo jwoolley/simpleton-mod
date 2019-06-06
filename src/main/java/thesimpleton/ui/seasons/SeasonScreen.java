@@ -66,18 +66,21 @@ public class SeasonScreen {
     // DEBUG
 
 //
-      logger.debug("SeasonScreen::open called");
-      AbstractDungeon.isScreenUp = true;
+    logger.debug("SeasonScreen::open called");
+    AbstractDungeon.isScreenUp = true;
 
-      if (AbstractDungeon.overlayMenu != null) {
-        CancelButton cancelButton = AbstractDungeon.overlayMenu.cancelButton;
-        showCancelButton = cancelButton.isHidden;
-        cancelButtonText = cancelButton.buttonText;
+    if (AbstractDungeon.overlayMenu != null) {
+      CancelButton cancelButton = AbstractDungeon.overlayMenu.cancelButton;
+      showCancelButton = cancelButton.isHidden;
+      cancelButtonText = cancelButton.buttonText;
 //        cancelButton.hide();
 //        AbstractDungeon.overlayMenu.hideBlackScreen();
 //        show = true;
-      }
-      show = true;
+    }
+
+//   AbstractDungeon.dungeonMapScreen.map.hideInstantly();
+    show = true;
+
 //    // TODO: set theme to this
 //    // TODO: set isScreenUp to false on close
   }
@@ -110,16 +113,19 @@ public class SeasonScreen {
   }
 
   public void render(SpriteBatch sb) {
-    logger.debug("SeasonScreen::render called");
+//    logger.debug("SeasonScreen::render called");
 
     if (!isOpen()) {
       return;
     }
 
+//    AbstractDungeon.dungeonMapScreen.map.hide();
+//        AbstractDungeon.dungeonMapScreen.map.targetAlpha = .99f;
 //    logger.debug("#@#@#@#@#@#@#@## SeasonScreen.render Current Screen: " + AbstractDungeon.screen);
 
 //    logger.debug("SeasonScreen::render drawing background image");
 //    AbstractDungeon.overlayMenu.hideBlackScreen();
+    // TODO: scale this to screen
     sb.draw(getBackgroundImage(), 0.0F, backgroundImageY, Settings.WIDTH, Settings.HEIGHT);
     hb.render(sb);
     if ((this.hb.clicked) || ((this.hb.hovered) && (CInputActionSet.select.isJustPressed()))) {

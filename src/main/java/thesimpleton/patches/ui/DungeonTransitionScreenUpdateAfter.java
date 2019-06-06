@@ -12,7 +12,7 @@ import thesimpleton.TheSimpletonMod;
 public class DungeonTransitionScreenUpdateAfter {
   public static void Postfix (DungeonTransitionScreen __instance) {
     if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.MAP && !TheSimpletonMod.seasonScreen.wasDismissed()) {
-     TheSimpletonMod.seasonScreen.open();
+//     TheSimpletonMod.seasonScreen.open();
     }
   }
 }

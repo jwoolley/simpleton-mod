@@ -1,5 +1,6 @@
 package thesimpleton.patches.ui;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
@@ -17,6 +18,7 @@ public class DungeonMapScreenRenderAfter {
 //    TheSimpletonMod.logger.debug("DungeonMapScreenRenderAfter invoked post trigger");
     if (TheSimpletonMod.seasonScreen.isOpen()) {
 //      TheSimpletonMod.logger.debug("DungeonMapScreenRenderAfter season screen open; rendering");
+      __spriteBatch.setColor(Color.WHITE);
       TheSimpletonMod.seasonScreen.render(__spriteBatch);
     }
   }

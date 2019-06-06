@@ -2,31 +2,18 @@ package thesimpleton.crops;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import thesimpleton.actions.ApplyBurningAction;
-import thesimpleton.cards.power.crop.AbstractCropPowerCard;
-import thesimpleton.cards.power.crop.Chilis;
-import thesimpleton.orbs.ChiliCropOrb;
-import thesimpleton.powers.utils.Crop;
 
 public class ChilisCrop extends  AbstractCrop {
   public static final Crop CROP_ENUM = Crop.CHILIS;
-  public static final CropInfo CROP_INFO;
-
-  private static final String ORB_ID = ChiliCropOrb.ORB_ID;
-  private static final AbstractCropPowerCard POWER_CARD = new Chilis();
-  private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.UNCOMMON;
-  private static AbstractCrop placeholderCrop;
-
-  public static final int MATURITY_THRESHOLD = 5;
   public static int DAMAGE_PER_STACK = 3;
 
   private int damagePerStack;
 
   public ChilisCrop() {
-    super(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD);
+    super(CROP_ENUM);
     this.damagePerStack = DAMAGE_PER_STACK;
   }
 
@@ -47,17 +34,5 @@ public class ChilisCrop extends  AbstractCrop {
           .forEach(mo -> AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(mo, getPlayer(), damageAmount)));
     }
     return harvestAmount;
-  }
-
-  static {
-    CROP_INFO = new CropInfo(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD) {
-      @Override
-      public AbstractCrop getCrop() {
-        if (placeholderCrop == null) {
-          placeholderCrop = new ChilisCrop();
-        }
-        return placeholderCrop;
-      }
-    };
   }
 }

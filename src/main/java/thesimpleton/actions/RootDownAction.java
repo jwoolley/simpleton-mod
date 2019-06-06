@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.orbs.TurnipCropOrb;
-import thesimpleton.powers.utils.Crop;
+import thesimpleton.crops.Crop;
 
 public class RootDownAction extends AbstractGameAction {
   public RootDownAction(AbstractCreature target, int numStacks) {

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.ChilisCrop;
 import thesimpleton.crops.SpinachCrop;
-import thesimpleton.powers.utils.Crop;
+import thesimpleton.crops.Crop;
 
 public class ChiliCropOrb extends AbstractCropOrb {
   public static final Crop CROP_ENUM = Crop.CHILIS;
@@ -21,7 +21,7 @@ public class ChiliCropOrb extends AbstractCropOrb {
   }
 
   public ChiliCropOrb(int amount) {
-    super(CROP_ENUM, ORB_ID, NAME, amount, SpinachCrop.MATURITY_THRESHOLD, DESCRIPTIONS[0], IMG_PATH);
+    super(CROP_ENUM, ORB_ID, NAME, amount, Crop.CHILIS.getCropInfo().maturityThreshold, DESCRIPTIONS[0], IMG_PATH);
   }
 
   @Override
@@ -40,7 +40,7 @@ public class ChiliCropOrb extends AbstractCropOrb {
   }
 
   private static String getDescription() {
-    return getGenericDescription(SpinachCrop.MATURITY_THRESHOLD)
+    return getGenericDescription(Crop.CHILIS.getCropInfo().maturityThreshold)
         + " NL " + DESCRIPTIONS[0] + ChilisCrop.DAMAGE_PER_STACK + DESCRIPTIONS[1] + ChilisCrop.DAMAGE_PER_STACK
         + DESCRIPTIONS[2];
   }

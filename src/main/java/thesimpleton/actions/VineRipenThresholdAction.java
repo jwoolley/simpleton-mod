@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.BlurPower;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.orbs.AbstractCropOrb;
-import thesimpleton.powers.utils.Crop;
+import thesimpleton.crops.Crop;
 
 public class VineRipenThresholdAction  extends AbstractGameAction {
 

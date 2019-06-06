@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.ArtichokeCrop;
-import thesimpleton.powers.utils.Crop;
+import thesimpleton.crops.Crop;
 
 public class ArtichokeCropOrb extends AbstractCropOrb {
   public static final Crop CROP_ENUM = Crop.ARTICHOKES;
@@ -20,7 +20,7 @@ public class ArtichokeCropOrb extends AbstractCropOrb {
   }
 
   public ArtichokeCropOrb(int amount) {
-    super(CROP_ENUM, ORB_ID, NAME, amount, ArtichokeCrop.MATURITY_THRESHOLD, DESCRIPTIONS[0], IMG_PATH);
+    super(CROP_ENUM, ORB_ID, NAME, amount, Crop.ARTICHOKES.getCropInfo().maturityThreshold, DESCRIPTIONS[0], IMG_PATH);
   }
 
   @Override
@@ -38,7 +38,7 @@ public class ArtichokeCropOrb extends AbstractCropOrb {
   }
 
   private static String getDescription() {
-    return getGenericDescription(ArtichokeCrop.MATURITY_THRESHOLD)
+    return getGenericDescription(Crop.ARTICHOKES.getCropInfo().maturityThreshold)
         + " NL " + DESCRIPTIONS[0]  + ArtichokeCrop.THORNS_PER_STACK + DESCRIPTIONS[1];
   }
 

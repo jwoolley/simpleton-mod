@@ -2,10 +2,9 @@ package thesimpleton.crops;
 
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
-import thesimpleton.powers.utils.Crop;
 
 public abstract class CropInfo {
-  public final Crop cropEnum;
+  public Crop cropEnum;
   public final String orbId;
   public final AbstractCropPowerCard powerCard;
   public final CardRarity rarity;
@@ -17,6 +16,14 @@ public abstract class CropInfo {
     this.powerCard = powerCard;
     this.rarity = rarity;
     this.maturityThreshold = maturityThreshold;
+  }
+
+  public CropInfo(Crop cropEnum, CropInfoDefinition cropInfoDefinition) {
+    this.cropEnum = cropEnum;
+    this.orbId =  cropInfoDefinition.orbId;
+    this.powerCard =  cropInfoDefinition.powerCard;
+    this.rarity =  cropInfoDefinition.rarity;
+    this.maturityThreshold =  cropInfoDefinition.maturityThreshold;
   }
 
   public abstract AbstractCrop getCrop();

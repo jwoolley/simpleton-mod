@@ -1,7 +1,7 @@
 package thesimpleton.seasons;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import thesimpleton.powers.utils.Crop;
+import thesimpleton.crops.Crop;
 
 import java.util.ArrayList;
 import java.util.Arrays;

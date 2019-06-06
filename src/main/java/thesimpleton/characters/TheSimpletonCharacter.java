@@ -27,22 +27,17 @@ import thesimpleton.cards.attack.Haymaker;
 import thesimpleton.cards.attack.PestManagement;
 import thesimpleton.cards.attack.ReapAndSow;
 import thesimpleton.cards.attack.Strike_TheSimpleton;
-import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.skill.Defend_TheSimpleton;
 import thesimpleton.cards.skill.Rototilling;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.orbs.AbstractCropOrb;
-import thesimpleton.powers.utils.Crop;
 import thesimpleton.relics.PungentSoil;
 import thesimpleton.relics.SpudOfTheInnocent;
 import thesimpleton.relics.TheHarvester;
-import thesimpleton.seasons.Season;
-import thesimpleton.seasons.SeasonInfo;
 import thesimpleton.utilities.*;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static thesimpleton.TheSimpletonMod.getResourcePath;
 

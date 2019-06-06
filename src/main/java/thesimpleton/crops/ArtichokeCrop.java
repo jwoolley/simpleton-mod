@@ -5,27 +5,18 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ThornsPower;
-import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Artichokes;
 import thesimpleton.orbs.ArtichokeCropOrb;
-import thesimpleton.powers.utils.Crop;
 
 public class ArtichokeCrop extends AbstractCrop {
   public static final Crop CROP_ENUM = Crop.ARTICHOKES;
-  public static final CropInfo CROP_INFO;
 
-  private static final String ORB_ID = ArtichokeCropOrb.ORB_ID;
-  private static final AbstractCropPowerCard POWER_CARD = new Artichokes();
-  private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.COMMON;
-  private static AbstractCrop placeholderCrop;
-
-  public static final int MATURITY_THRESHOLD = 2;
   public static int THORNS_PER_STACK = 1;
 
   public ArtichokeCrop() {
-    super(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD);
+    super(CROP_ENUM);
     logger.debug("MAKIN' Artichokes (instantiating ArtichokeCrop).");
   }
 
@@ -40,17 +31,5 @@ public class ArtichokeCrop extends AbstractCrop {
               new ThornsPower(player,harvestAmount * THORNS_PER_STACK), harvestAmount * THORNS_PER_STACK));
     }
     return harvestAmount;
-  }
-
-  static {
-    CROP_INFO = new CropInfo(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD) {
-      @Override
-      public AbstractCrop getCrop() {
-        if (placeholderCrop == null) {
-          placeholderCrop = new ArtichokeCrop();
-        }
-        return placeholderCrop;
-      }
-    };
   }
 }

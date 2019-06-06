@@ -17,7 +17,6 @@ import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.powers.ToughSkinPower;
-import thesimpleton.powers.utils.Crop;
 import thesimpleton.relics.CashCrop;
 import thesimpleton.relics.GrassPellets;
 import thesimpleton.utilities.CropUtil;
@@ -44,6 +43,10 @@ abstract public class AbstractCrop {
   private final AbstractCropPowerCard powerCard;
   private int maturityThreshold;
 
+  AbstractCrop(Crop crop) {
+    this(crop, crop.getCropInfo().orbId, crop.getCropInfo().powerCard, crop.getCropInfo().rarity,
+        crop.getCropInfo().maturityThreshold);
+  }
 
   AbstractCrop(Crop enumValue, String cropOrbId, AbstractCropPowerCard powerCard, AbstractCard.CardRarity rarity,
                int autoHarvestThreshold) {
@@ -230,6 +233,7 @@ abstract public class AbstractCrop {
     return cropOrb != null ? cropOrb.passiveAmount : 0;
 //    return AbstractCropOrb.getCropOrb(getCropOrb()).getAmount();
   }
+
 
   public AbstractCropPowerCard getPowerCard() throws UnsupportedOperationException {
     if (!this.hasPowerCard()) {

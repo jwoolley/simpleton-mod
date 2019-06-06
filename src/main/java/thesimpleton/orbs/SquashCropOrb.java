@@ -5,13 +5,12 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.SquashCrop;
-import thesimpleton.powers.utils.Crop;
+import thesimpleton.crops.Crop;
 
 public class SquashCropOrb extends AbstractCropOrb {
   public static final Crop CROP_ENUM = Crop.SQUASH;
   public static final String ORB_ID = "TheSimpletonMod:SquashCropOrb";
   public static final String IMG_PATH = "TheSimpletonMod/img/orbs/plantsquash.png";
-  public static final int MATURITY_THRESHOLD = 5;
   private static final OrbStrings orbStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
@@ -21,7 +20,7 @@ public class SquashCropOrb extends AbstractCropOrb {
   }
 
   public SquashCropOrb(int amount) {
-    super(CROP_ENUM, ORB_ID, NAME, amount, MATURITY_THRESHOLD, DESCRIPTIONS[0], IMG_PATH);
+    super(CROP_ENUM, ORB_ID, NAME, amount, Crop.SQUASH.getCropInfo().maturityThreshold, DESCRIPTIONS[0], IMG_PATH);
   }
 
   @Override
@@ -39,7 +38,7 @@ public class SquashCropOrb extends AbstractCropOrb {
   }
 
   private static String getDescription() {
-    return getGenericDescription(MATURITY_THRESHOLD)
+    return getGenericDescription(Crop.SQUASH.getCropInfo().maturityThreshold)
         + " NL " + DESCRIPTIONS[0] + SquashCrop.BLOCK_PER_STACK + DESCRIPTIONS[1];
   }
 

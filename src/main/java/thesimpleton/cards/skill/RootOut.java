@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.orbs.AbstractCropOrb;
-import thesimpleton.powers.utils.Crop;
+import thesimpleton.crops.Crop;
 
 public class RootOut extends AbstractHarvestCard {
   public static final String ID = "TheSimpletonMod:RootOut";

@@ -13,7 +13,7 @@ import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.orbs.SquashCropOrb;
-import thesimpleton.powers.utils.Crop;
+import thesimpleton.crops.Crop;
 
 public class ToughenUp extends CustomCard {
   public static final String ID = "TheSimpletonMod:ToughenUp";

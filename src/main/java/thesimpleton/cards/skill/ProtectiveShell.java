@@ -1,6 +1,5 @@
 package thesimpleton.cards.skill;
 
-import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -10,12 +9,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.orbs.AbstractCropOrb;
-import thesimpleton.orbs.SquashCropOrb;
-import thesimpleton.powers.utils.Crop;
 
 public class ProtectiveShell  extends AbstractDynamicTextCard  {
   public static final String ID = "TheSimpletonMod:ProtectiveShell";

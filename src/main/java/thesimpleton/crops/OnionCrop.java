@@ -10,23 +10,13 @@ import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Onions;
 import thesimpleton.orbs.OnionCropOrb;
-import thesimpleton.powers.utils.Crop;
 
 public class OnionCrop extends AbstractCrop {
   public static final Crop CROP_ENUM = Crop.ONIONS;
-  public static final CropInfo CROP_INFO;
-
-  private static final String ORB_ID = OnionCropOrb.ORB_ID;
-  private static final AbstractCropPowerCard POWER_CARD = new Onions();
-  private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.BASIC;
-  private static AbstractCrop placeholderCrop;
-
-
-  public static final int MATURITY_THRESHOLD = 5;
   public static final int WEAK_PER_STACK = 1;
 
   public OnionCrop() {
-    super(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD);
+    super(CROP_ENUM);
   }
 
   protected int harvestAction(int harvestAmount) {
@@ -41,17 +31,5 @@ public class OnionCrop extends AbstractCrop {
       }
     }
     return harvestAmount;
-  }
-
-  static {
-    CROP_INFO = new CropInfo(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD) {
-      @Override
-      public AbstractCrop getCrop() {
-        if (placeholderCrop == null) {
-          placeholderCrop = new OnionCrop();
-        }
-        return placeholderCrop;
-      }
-    };
   }
 }

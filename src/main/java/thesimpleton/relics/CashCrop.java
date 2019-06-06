@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
-import thesimpleton.powers.utils.Crop;
+import thesimpleton.crops.Crop;
 
 import java.util.ArrayList;
 import java.util.List;

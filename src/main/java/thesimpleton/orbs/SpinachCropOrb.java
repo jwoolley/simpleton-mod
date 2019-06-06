@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.SpinachCrop;
-import thesimpleton.powers.utils.Crop;
+import thesimpleton.crops.Crop;
 
 public class SpinachCropOrb extends AbstractCropOrb {
   public static final Crop CROP_ENUM = Crop.SPINACH;
@@ -20,7 +20,7 @@ public class SpinachCropOrb extends AbstractCropOrb {
   }
 
   public SpinachCropOrb(int amount) {
-    super(CROP_ENUM, ORB_ID, NAME, amount, SpinachCrop.MATURITY_THRESHOLD, DESCRIPTIONS[0], IMG_PATH);
+    super(CROP_ENUM, ORB_ID, NAME, amount, Crop.SPINACH.getCropInfo().maturityThreshold, DESCRIPTIONS[0], IMG_PATH);
   }
 
   @Override
@@ -38,7 +38,7 @@ public class SpinachCropOrb extends AbstractCropOrb {
   }
 
   private static String getDescription() {
-    return getGenericDescription(SpinachCrop.MATURITY_THRESHOLD)
+    return getGenericDescription(Crop.SPINACH.getCropInfo().maturityThreshold)
         + " NL " + DESCRIPTIONS[0]  + SpinachCrop.STRENGTH_PER_STACK + DESCRIPTIONS[1];
   }
 

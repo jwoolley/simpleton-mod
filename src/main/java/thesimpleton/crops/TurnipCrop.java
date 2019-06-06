@@ -8,21 +8,12 @@ import thesimpleton.cards.attack.GiantTurnip;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Turnips;
 import thesimpleton.orbs.TurnipCropOrb;
-import thesimpleton.powers.utils.Crop;
 
 public class TurnipCrop extends AbstractCrop {
   public static final Crop CROP_ENUM = Crop.TURNIPS;
-  public static final CropInfo CROP_INFO;
-
-  private static final String ORB_ID = TurnipCropOrb.ORB_ID;
-  private static final AbstractCropPowerCard POWER_CARD = new Turnips();
-  private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.COMMON;
-  private static AbstractCrop placeholderCrop;
-
-  public static final int MATURITY_THRESHOLD = 5;
 
   public TurnipCrop() {
-    super(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD);
+    super(CROP_ENUM);
   }
 
   protected int calculateHarvestAmount(int amount, int maxAmount, boolean harvestAll) { return this.getAmount();  }
@@ -36,17 +27,5 @@ public class TurnipCrop extends AbstractCrop {
       }
     }
     return harvestAmount;
-  }
-
-  static {
-    CROP_INFO = new CropInfo(CROP_ENUM, ORB_ID, POWER_CARD, RARITY, MATURITY_THRESHOLD) {
-      @Override
-      public AbstractCrop getCrop() {
-        if (placeholderCrop == null) {
-          placeholderCrop = new TurnipCrop();
-        }
-        return placeholderCrop;
-      }
-    };
   }
 }

@@ -12,7 +12,7 @@ import thesimpleton.effects.orb.CropAnimationEffect;
 import thesimpleton.effects.orb.GainCropSoundEffect;
 import thesimpleton.effects.orb.HarvestCropSoundEffect;
 import thesimpleton.effects.orb.StackCropSoundEffect;
-import thesimpleton.powers.utils.Crop;
+import thesimpleton.crops.Crop;
 
 import java.util.List;
 import java.util.Optional;

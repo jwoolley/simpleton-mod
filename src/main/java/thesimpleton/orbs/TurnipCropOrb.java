@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.TurnipCrop;
-import thesimpleton.powers.utils.Crop;
+import thesimpleton.crops.Crop;
 
 public class TurnipCropOrb extends AbstractCropOrb {
   public static final Crop CROP_ENUM = Crop.TURNIPS;
@@ -20,7 +20,7 @@ public class TurnipCropOrb extends AbstractCropOrb {
   }
 
   public TurnipCropOrb(int amount) {
-    super(CROP_ENUM, ORB_ID, NAME, amount, TurnipCrop.MATURITY_THRESHOLD, DESCRIPTIONS[0], IMG_PATH);
+    super(CROP_ENUM, ORB_ID, NAME, amount, Crop.TURNIPS.getCropInfo().maturityThreshold, DESCRIPTIONS[0], IMG_PATH);
   }
 
   @Override
@@ -38,7 +38,7 @@ public class TurnipCropOrb extends AbstractCropOrb {
   }
 
   private static String getDescription() {
-    return getGenericDescription(TurnipCrop.MATURITY_THRESHOLD)
+    return getGenericDescription(Crop.TURNIPS.getCropInfo().maturityThreshold)
         + " NL " + DESCRIPTIONS[0];
   }
 

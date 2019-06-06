@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.MushroomCrop;
-import thesimpleton.powers.utils.Crop;
+import thesimpleton.crops.Crop;
 
 public class MushroomCropOrb extends AbstractCropOrb {
   public static final Crop CROP_ENUM = Crop.MUSHROOMS;
@@ -20,7 +20,7 @@ public class MushroomCropOrb extends AbstractCropOrb {
   }
 
   public MushroomCropOrb(int amount) {
-    super(CROP_ENUM, ORB_ID, NAME, amount, MushroomCrop.MATURITY_THRESHOLD, DESCRIPTIONS[0], IMG_PATH);
+    super(CROP_ENUM, ORB_ID, NAME, amount, Crop.MUSHROOMS.getCropInfo().maturityThreshold, DESCRIPTIONS[0], IMG_PATH);
   }
 
   @Override
@@ -38,7 +38,7 @@ public class MushroomCropOrb extends AbstractCropOrb {
   }
 
   private static String getDescription() {
-    return getGenericDescription(MushroomCrop.MATURITY_THRESHOLD)
+    return getGenericDescription(Crop.MUSHROOMS.getCropInfo().maturityThreshold)
         + " NL " + DESCRIPTIONS[0];
   }
 

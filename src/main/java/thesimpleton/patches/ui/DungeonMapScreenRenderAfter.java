@@ -18,8 +18,6 @@ public class DungeonMapScreenRenderAfter {
     if (TheSimpletonMod.seasonScreen.isOpen()) {
 //      TheSimpletonMod.logger.debug("DungeonMapScreenRenderAfter season screen open; rendering");
       TheSimpletonMod.seasonScreen.render(__spriteBatch);
-    } else {
-//      TheSimpletonMod.logger.debug("DungeonMapScreenRenderAfter season screen not open; rendering");
     }
   }
 }

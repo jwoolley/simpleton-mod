@@ -14,7 +14,7 @@ import thesimpleton.TheSimpletonMod;
 public class DungeonMapScreenOpenAfter {
   public static void Postfix (DungeonMapScreen __instance, boolean doScrollingAnimation) {
 //    TheSimpletonMod.logger.debug("DungeonMapScreenOpenAfter invoked post trigger");
-    if (!TheSimpletonMod.seasonScreen.wasDismissed()) {
+    if (!TheSimpletonMod.seasonScreen.isOpen() && !TheSimpletonMod.seasonScreen.wasDismissed()) {
 //      TheSimpletonMod.logger.debug("DungeonMapScreenOpenAfter opening season screen");
       TheSimpletonMod.seasonScreen.open();
     } else {

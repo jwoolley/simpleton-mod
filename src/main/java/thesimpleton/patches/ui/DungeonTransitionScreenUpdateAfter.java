@@ -1,6 +1,7 @@
 package thesimpleton.patches.ui;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.screens.DungeonTransitionScreen;
 import thesimpleton.TheSimpletonMod;
 
@@ -10,7 +11,7 @@ import thesimpleton.TheSimpletonMod;
 )
 public class DungeonTransitionScreenUpdateAfter {
   public static void Postfix (DungeonTransitionScreen __instance) {
-    if (!TheSimpletonMod.seasonScreen.wasDismissed()) {
+    if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.MAP && !TheSimpletonMod.seasonScreen.wasDismissed()) {
      TheSimpletonMod.seasonScreen.open();
     }
   }

@@ -1,13 +1,16 @@
 package thesimpleton.ui.seasons;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Array;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.ui.buttons.CancelButton;
+import com.megacrit.cardcrawl.vfx.TintEffect;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.ui.ReadyButtonPanel;
@@ -16,12 +19,20 @@ import thesimpleton.ui.buttons.ReadyButton;
 // TODO: see ShopScreen.open for example screen display logic (set game state as well as initialize pieces)
 //        use showBlockScreen
 
+// TODO: animate fade-in
+
 public class SeasonScreen implements ReadyButtonPanel  {
   private static final String ID = "SeasonScreen";
   private static final String BACKGROUND_IMG_PATH = getUiPath("season-screen-background");
   private static UIStrings uiStrings;
 
-  public static String[] TEXT;
+  public static String[] TEXT = {
+      "The Season is",
+      "The Following Crops are in Season:"
+  };
+
+  private float scale = 1.0F;
+
 
   private ReadyButton readyButton;
 
@@ -31,13 +42,17 @@ public class SeasonScreen implements ReadyButtonPanel  {
   private Texture backgroundImage = null;
   private final float backgroundImageY = Settings.HEIGHT;
 
+
   private boolean show = false;
   private boolean wasDismissed = false;
 
-  private static final Logger logger = TheSimpletonMod.logger;
-
   private boolean showCancelButton = false;
   private String cancelButtonText = "";
+  private float cropsInSeasonTextY = 764.0F;
+
+  private static final TintEffect textEffect = new TintEffect();
+
+  private static final Logger logger = TheSimpletonMod.logger;
 
   // TODO: narrow hitbox down to ready button
   private final Hitbox hb;
@@ -49,9 +64,10 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   public SeasonScreen() {
     hb = new Hitbox(width * Settings.scale, height * Settings.scale);
-//    hb.move(Settings.WIDTH * .08f, Settings.HEIGHT * .08f );
 
+    textEffect.changeColor(new Color(0.9F, 0.9F, 0.9F, 1.0F));
     // TODO: fix NPE on game load
+
 //    uiStrings = CardCrawlGame.languagePack.getUIString(TheSimpletonMod.makeID(ID));
 //    TEXT = uiStrings.TEXT;
   }
@@ -65,9 +81,6 @@ public class SeasonScreen implements ReadyButtonPanel  {
   }
 
   public void open() {
-    // DEBUG
-
-//
     logger.debug("SeasonScreen::open called");
     AbstractDungeon.isScreenUp = true;
 
@@ -98,14 +111,10 @@ public class SeasonScreen implements ReadyButtonPanel  {
   }
 
   public void update() {
-//    logger.debug("SeasonScreen::update called");
     if (!isOpen()) {
       return;
     }
 
-//    logger.debug("SeasonScreen::update open; calling hb.update");
-
-    // handle ready button click /window dismissal here
     hb.update();
     getReadyButton().update();
   }
@@ -125,6 +134,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
   }
 
   private ReadyButton makeReadyButton() {
+    // TODO: scale this appropriately
     final int READY_BUTTON_X = 810;
     final int READY_BUTTON_Y = 254;
     final String READY_BUTTON_IMG = "Ready";
@@ -133,34 +143,22 @@ public class SeasonScreen implements ReadyButtonPanel  {
   }
 
   public void render(SpriteBatch sb) {
-//    logger.debug("SeasonScreen::render called");
-
     if (!isOpen()) {
       return;
     }
 
-//    AbstractDungeon.dungeonMapScreen.map.hide();
-//        AbstractDungeon.dungeonMapScreen.map.targetAlpha = .99f;
-//    logger.debug("#@#@#@#@#@#@#@## SeasonScreen.render Current Screen: " + AbstractDungeon.screen);
-
-//    logger.debug("SeasonScreen::render drawing background image");
-//    AbstractDungeon.overlayMenu.hideBlackScreen();
     // TODO: scale this to screen
     sb.draw(getBackgroundImage(), 0.0F, backgroundImageY, Settings.WIDTH, Settings.HEIGHT);
     hb.render(sb);
 
     getReadyButton().render(sb);
 
-//    if ((this.hb.clicked) || ((this.hb.hovered) && (CInputActionSet.select.isJustPressed()))) {
-//      this.close();
-//      return;
-//    }
+    FontHelper.renderFontCentered(sb, FontHelper.bannerFont, TEXT[1], Settings.WIDTH / 2.0F,   cropsInSeasonTextY * Settings.scale, textEffect.color, this.scale);
   }
 
   @Override
   public void onReadyClicked() {
     logger.debug("SeasonScreen.onReadyClicked Called");
-
     getReadyButton().disable();
     getReadyButton().hide();
     wasDismissed = true;

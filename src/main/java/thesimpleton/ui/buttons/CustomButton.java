@@ -32,7 +32,6 @@ abstract public class CustomButton extends Button {
   }
 
   void handleClick() {
-    logger.debug("CustomButton.handleClick called");
     if (!this.isDisabled) {
       this.onClick();
     }
@@ -59,15 +58,12 @@ abstract public class CustomButton extends Button {
   }
 
   public void show() {
-    logger.debug("CustomButton.handleClick called");
-
     if (this.isHidden) {
       this.isHidden = false;
     }
   }
 
   public void render(SpriteBatch sb) {
-    logger.debug("CustomButton.render called | x: " + x + ", y: " + y + ", height: " + height + ", width: " + width);
     super.render(sb);
   }
 

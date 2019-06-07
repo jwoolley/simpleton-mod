@@ -67,7 +67,7 @@ abstract public class CustomButton extends Button {
   }
 
   public void render(SpriteBatch sb) {
-    logger.debug("CustomButton.render called");
+    logger.debug("CustomButton.render called | x: " + x + ", y: " + y + ", height: " + height + ", width: " + width);
     super.render(sb);
   }
 

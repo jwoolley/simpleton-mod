@@ -126,7 +126,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   private ReadyButton makeReadyButton() {
     final int READY_BUTTON_X = 810;
-    final int READY_BUTTON_Y = 840;
+    final int READY_BUTTON_Y = 254;
     final String READY_BUTTON_IMG = "Ready";
 
     return new ReadyButton(READY_BUTTON_X, READY_BUTTON_Y, READY_BUTTON_IMG, this);
@@ -148,6 +148,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
     // TODO: scale this to screen
     sb.draw(getBackgroundImage(), 0.0F, backgroundImageY, Settings.WIDTH, Settings.HEIGHT);
     hb.render(sb);
+
     getReadyButton().render(sb);
 
 //    if ((this.hb.clicked) || ((this.hb.hovered) && (CInputActionSet.select.isJustPressed()))) {

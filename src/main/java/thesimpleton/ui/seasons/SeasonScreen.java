@@ -38,7 +38,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   private float scale = 1.0F;
 
-  private static final float X_OFFSET = 8.0F;
+  private static final float CARD_OFFSET_X = -16.0F;
 
   private ReadyButton readyButton;
 
@@ -178,9 +178,9 @@ public class SeasonScreen implements ReadyButtonPanel  {
   private void positionCards(float x, float y) {
     // TODO: animation — currentx for all starts at x; approaches target x on each tick (fans out)
 
-    inSeasonCropCards.get(0).target_x = Settings.WIDTH / 2.0f - AbstractCard.IMG_WIDTH - X_OFFSET;
+    inSeasonCropCards.get(0).target_x = Settings.WIDTH / 2.0f - AbstractCard.IMG_WIDTH - CARD_OFFSET_X;
     inSeasonCropCards.get(1).target_x = Settings.WIDTH / 2.0f;
-    inSeasonCropCards.get(2).target_x = Settings.WIDTH / 2.0f + AbstractCard.IMG_WIDTH + X_OFFSET;
+    inSeasonCropCards.get(2).target_x = Settings.WIDTH / 2.0f + AbstractCard.IMG_WIDTH + CARD_OFFSET_X;
     inSeasonCropCards.get(0).target_y = y;
     inSeasonCropCards.get(1).target_y = y;
     inSeasonCropCards.get(2).target_y = y;

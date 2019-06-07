@@ -74,6 +74,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     private Map<String, Keyword> keywords;
     private ThemeState currentTheme;
+    private static final List<AbstractCropPowerCard> SEASONAL_CROP_CARDS = new ArrayList<>();
 
     private static CropUtil cropUtil;
 
@@ -274,12 +275,12 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        BaseMod.addCard(new GiantTurnip());
 //        BaseMod.addCard(new Cultivate());
 
-        addCropPowers();
+        addSeasonalCrops();
         // Curse
         BaseMod.addCard(new Nettles());
     }
 
-    private void addCropPowers() {
+    private void addSeasonalCrops() {
         Season season = Season.randomSeason();
         SeasonInfo seasonInfo = new SeasonInfo(season, SeasonInfo.RANDOM_CROP_BY_RARITY_STRATEGY);
 
@@ -293,16 +294,15 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         List<AbstractCropPowerCard> cropPowerCards = seasonInfo.getCropsInSeason().stream()
             .map(crop -> crop.getCropInfo().powerCard)
             .collect(Collectors.toList());
-//
-//        List<AbstractCropPowerCard> cardsToRemove = Arrays.asList(Crop.values()).stream()
-//            .filter(crop -> !cropPowerCards.contains(crop)).map(crop -> crop.getCrop().getPowerCard()).collect(Collectors.toList());
 
+        SEASONAL_CROP_CARDS.clear();
         TheSimpletonMod.addCropPowerCardsToPool(cropPowerCards);
     }
 
     public static void removeCropPowerCardFromPool(AbstractCropPowerCard card) {
         logger.debug("TheSimpletonMod::removeCropPowerCardFromPool called ===========================>>>>>>>");
         BaseMod.removeCard(card.cardID, AbstractCardEnum.THE_SIMPLETON_BLUE);
+        SEASONAL_CROP_CARDS.remove(card);
     }
 
     public static void removeCropPowerCardsFromPool(List<AbstractCropPowerCard> cards) {
@@ -314,13 +314,21 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         for (AbstractCropPowerCard card : cards) {
             BaseMod.removeCard(card.cardID, AbstractCardEnum.THE_SIMPLETON_BLUE);
         }
+
+        SEASONAL_CROP_CARDS.removeAll(cards);
     }
 
     public static void addCropPowerCardsToPool(List<AbstractCropPowerCard> cards) {
-        logger.debug("TheSimpletonMod::addCropPowerCardsToPool called ===========================>>>>>>>");
+        logger.debug("addCropPowerCardsToPool called ===========================>>>>>>>");
         for (AbstractCropPowerCard card : cards) {
             BaseMod.addCard(card);
         }
+        SEASONAL_CROP_CARDS.addAll(cards);
+    }
+
+    // TODO: ImmutableList?
+    public static List<AbstractCropPowerCard> getSeasonalCropCards() {
+        return SEASONAL_CROP_CARDS;
     }
 
     @Override

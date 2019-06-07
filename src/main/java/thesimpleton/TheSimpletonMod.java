@@ -516,13 +516,25 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     public static final SeasonScreen seasonScreen = new SeasonScreen();
 
-    private static HashMap<String, Texture> imgMap = new HashMap<>();
+    private static HashMap<String, Texture> imgMap;
+    private static HashMap<String, Texture> getImgMap() {
+        if (imgMap == null) {
+            imgMap = new HashMap<>();
+        }
+        return imgMap;
+    };
 
     public static Texture loadTexture(String path) {
         logger.debug("TheSimpletonMod::loadTexture loading texture: " + path);
+
+        HashMap<String, Texture> imgMap = getImgMap();
         if (!imgMap.containsKey(path)) {
-            logger.debug("TheSimpletonMod::adding texture to map");
-            imgMap.put(path, ImageMaster.loadImage(path));
+            Texture img = ImageMaster.loadImage(path);
+            logger.debug("TheSimpletonMod::adding texture to map: " + img);
+            imgMap.put(path, img);
+        } else {
+            logger.debug("TheSimpletonMod::loadTexture already in imgMap: " + path);
+
         }
         return imgMap.get(path);
     }

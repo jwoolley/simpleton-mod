@@ -30,6 +30,8 @@ abstract class CropInfoDefinition {
   static final CropInfoDefinition Squash;
   static final CropInfoDefinition Turnips;
 
+  // TODO: make a separate CropRarity enum
+
   static {
     Artichokes = new CropInfoDefinition(
         ArtichokeCropOrb.ORB_ID,
@@ -70,20 +72,20 @@ abstract class CropInfoDefinition {
       public AbstractCrop getCrop() { return new MushroomCrop(); }
     };
 
-    Onions = new CropInfoDefinition(
-        PotatoCropOrb.ORB_ID,
-        new Potatoes(),
-        AbstractCard.CardRarity.BASIC,
-        5) {
-      public AbstractCrop getCrop() { return new PotatoCrop(); }
-    };
-
-    Potatoes = new CropInfoDefinition(
+    Onions= new CropInfoDefinition(
         OnionCropOrb.ORB_ID,
         new Onions(),
         AbstractCard.CardRarity.BASIC,
         5) {
       public AbstractCrop getCrop() { return new OnionCrop(); }
+    };
+
+    Potatoes = new CropInfoDefinition(
+        PotatoCropOrb.ORB_ID,
+        new Potatoes(),
+        AbstractCard.CardRarity.BASIC,
+        5) {
+      public AbstractCrop getCrop() { return new PotatoCrop(); }
     };
 
     Spinach = new CropInfoDefinition(
@@ -95,11 +97,11 @@ abstract class CropInfoDefinition {
     };
 
     Squash = new CropInfoDefinition(
-        SpinachCropOrb.ORB_ID,
+        SquashCropOrb.ORB_ID,
         new Spinach(),
         AbstractCard.CardRarity.UNCOMMON,
-        2) {
-      public AbstractCrop getCrop() { return new SpinachCrop(); }
+        5) {
+      public AbstractCrop getCrop() { return new SquashCrop(); }
     };
 
     Turnips = new CropInfoDefinition(

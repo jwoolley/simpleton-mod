@@ -63,6 +63,12 @@ abstract public class CustomButton extends Button {
     }
   }
 
+  public void reset() {
+    this.pressed = false;
+    this.hide();
+    this.disable();
+  }
+
   public void render(SpriteBatch sb) {
     super.render(sb);
   }

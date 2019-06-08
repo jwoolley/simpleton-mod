@@ -91,6 +91,14 @@ public class SeasonScreen implements ReadyButtonPanel  {
     return wasDismissed;
   }
 
+  public void reset() {
+    getReadyButton().reset();
+    inSeasonCropCards.clear();
+    wasDismissed = false;
+    show = false;
+    backgroundImage = null;
+  }
+
   public void open() {
     logger.debug("SeasonScreen::open called");
     AbstractDungeon.isScreenUp = true;
@@ -111,7 +119,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
     for (final AbstractCropPowerCard card : this.inSeasonCropCards) {
       UnlockTracker.markCardAsSeen(card.cardID);
     }
-//    // TODO: set isScreenUp to false on close
+//    // TODO: set isScreenUp to previous value on close
   }
 
   public void close() {
@@ -147,8 +155,8 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   private ReadyButton makeReadyButton() {
     // TODO: scale this appropriately
-    final int READY_BUTTON_X = 810;
-    final int READY_BUTTON_Y = 254;
+    final int READY_BUTTON_X = 806;
+    final int READY_BUTTON_Y = 216;
     final String READY_BUTTON_IMG = "Ready";
 
     return new ReadyButton(READY_BUTTON_X, READY_BUTTON_Y, READY_BUTTON_IMG, this);

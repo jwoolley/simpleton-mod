@@ -9,6 +9,7 @@ import thesimpleton.TheSimpletonMod;
     clz = DungeonTransitionScreen.class,
     method = "update"
 )
+
 public class DungeonTransitionScreenUpdateAfter {
   public static void Postfix (DungeonTransitionScreen __instance) {
     if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.MAP && !TheSimpletonMod.seasonScreen.wasDismissed()) {

@@ -1,5 +1,6 @@
 package thesimpleton.characters;
 
+import basemod.BaseMod;
 import basemod.abstracts.CustomPlayer;
 import basemod.interfaces.StartGameSubscriber;
 import com.badlogic.gdx.graphics.Color;
@@ -27,8 +28,10 @@ import thesimpleton.cards.attack.Haymaker;
 import thesimpleton.cards.attack.PestManagement;
 import thesimpleton.cards.attack.ReapAndSow;
 import thesimpleton.cards.attack.Strike_TheSimpleton;
+import thesimpleton.cards.power.ToughSkin;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.skill.Defend_TheSimpleton;
+import thesimpleton.cards.skill.Husk;
 import thesimpleton.cards.skill.Rototilling;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
@@ -96,12 +99,13 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
         endOfCombatTriggers = new TriggerManager("EndOfCombatTriggers", staticEndOfCombatTriggerListeners);
         List<AbstractCard> cards = CardLibrary.getAllCards();
 
-        Logger logger = TheSimpletonMod.logger;
-        logger.debug("Listing all cards");
-        int index = 0;
-        for(AbstractCard card : cards) {
-            logger.debug(index++ + ") " + card.name + " [cardId: " + card.cardID + "]");
-        }
+//        Logger logger = TheSimpletonMod.logger;
+//        logger.debug("Listing all cards");
+//        int index = 0;
+//        for(AbstractCard card : cards) {
+//            logger.debug(index++ + ") " + card.name + " [cardId: " + card.cardID + "]");
+//        }
+
         initializeOrbSlotLocations();
 //        Crop.initialize();
 
@@ -120,9 +124,10 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
 //        }
     }
 
+
     @Override
     public ArrayList<String> getStartingDeck() {
-        ArrayList<String> retVal = new ArrayList<String>();
+        ArrayList<String> retVal = new ArrayList<>();
 
         retVal.add(Strike_TheSimpleton.ID);
         retVal.add(Strike_TheSimpleton.ID);
@@ -152,7 +157,7 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
 
     public static final int STARTING_HP = 75;
     public static final int MAX_HP = 75;
-    public static final int ORB_SLOTS = 5;
+    public static final int ORB_SLOTS = 3;
     public static final int STARTING_GOLD = 99;
     public static final int HAND_SIZE = 5;
 
@@ -266,7 +271,6 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
 
 
     private void resetTriggers() {
-
         precombatPredrawTriggers.clear(t -> t instanceof CombatLifecycleTriggerListener);
         precombatTriggers.clear(t -> t instanceof CombatLifecycleTriggerListener);
         startOfTurnTriggers.clear(t -> t instanceof CombatLifecycleTriggerListener);

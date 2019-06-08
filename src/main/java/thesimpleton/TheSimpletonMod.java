@@ -94,7 +94,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     @Override
     public void receivePostDungeonInitialize() {
         logger.debug("TheSimpletonMod::receivePostDungeonInitialize receivePostDungeonInitialize called ===========================>>>>>>>");
-        initializeSeason();
+//        initializeSeason();
         seasonScreen.reset();
     }
 
@@ -359,16 +359,21 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     public static void addCropPowerCardsToPool(List<AbstractCropPowerCard> cards) {
-        logger.debug("addCropPowerCardsToPool called ===========================>>>>>>>");
+        logger.debug("addCropPowerCardsToPool called ===========================>>>>>>> # of cards: " + cards.size());
+
         for (AbstractCropPowerCard card : cards) {
             switch (card.rarity) {
                 case COMMON:
+                    logger.debug("Adding common crop power to pool:" + card.name);
                     AbstractDungeon.commonCardPool.group.add(card);
                     break;
                 case UNCOMMON:
                     AbstractDungeon.uncommonCardPool.group.add(card);
+                    logger.debug("Adding uncommon crop power to pool:" + card.name);
                     break;
                 case RARE:
+                    AbstractDungeon.uncommonCardPool.group.add(card);
+                    logger.debug("Adding rare crop power to pool:" + card.name);
                     AbstractDungeon.rareCardPool.group.add(card);
                     break;
                 default:
@@ -413,6 +418,9 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         if (playerClass != TheSimpletonCharEnum.THE_SIMPLETON) {
             return;
         }
+        logger.debug("TheSimpletonMod.receivePostCreateStartingDeck initializing Season");
+
+        initializeSeason();
 
         logger.debug("TheSimpletonMod.receivePostCreateStartingDeck adding seasonal cards to card pool");
 

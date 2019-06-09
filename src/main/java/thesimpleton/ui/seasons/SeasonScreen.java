@@ -40,7 +40,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
 //  private static final float CARD_OFFSET_X = -16.0F;
   private static final float CARD_OFFSET_X = -30.0F;
-  private static final float CROP_TEXT_OFFSET_X = -2.0F;
+  private static final float CROP_TEXT_OFFSET_X = -4.0F;
 
 
   private ReadyButton readyButton;

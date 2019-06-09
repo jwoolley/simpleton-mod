@@ -13,7 +13,6 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.seasons.Season;
 
-import javax.smartcardio.Card;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -104,6 +103,9 @@ public abstract class AbstractSeasonRelic extends CustomRelic implements CustomS
         } else {
           logger.info(this.getClass().getSimpleName() + ".onLoad :: dungeon is not yet initialized. Trusting it will happen eventually.");
         }
+
+//        logger.debug(this.getClass().getSimpleName() + ".onLoad :: disabling season screen");
+//        TheSimpletonMod.seasonScreen.dismiss();
       }
     } else {
       logger.info(this.getClass().getSimpleName() + ".onLoad :: no save data found");

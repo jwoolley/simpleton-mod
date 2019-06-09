@@ -191,6 +191,15 @@
     ]
   },
 
+
+  "TheSimpletonMod:PlaceholderSeasonRelic": {
+    "NAME": "The Seasons",
+    "FLAVOR": "Even within the Spire, it is the nature of all things to change.",
+    "DESCRIPTIONS": [
+      "Each season, a different group of Crops are available as card rewards and in shops."
+    ]
+  },
+
   "TheSimpletonMod:AutumnSeasonRelic": {
     "NAME": "Season: Autumn",
     "FLAVOR": "Joyful and sweet as an untimely end.",

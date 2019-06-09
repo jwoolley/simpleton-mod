@@ -11,7 +11,6 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,6 +44,9 @@ public class GetCardPoolPatchBefore {
 
         logger.debug("GetCardPoolPatchBefore ::  You are playing with: " + tmpPool.size() + " cards.");
         logger.debug("GetCardPoolPatchBefore :: cards: " + tmpPool.toString());
+
+        logger.debug("GetCardPoolPatchBefore :: disabling season screen");
+        TheSimpletonMod.seasonScreen.dismiss();
 
         return SpireReturn.Return(tmpPool);
       } else {

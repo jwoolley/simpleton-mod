@@ -35,7 +35,7 @@ import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.relics.PungentSoil;
 import thesimpleton.relics.SpudOfTheInnocent;
 import thesimpleton.relics.TheHarvester;
-import thesimpleton.relics.seasons.AutumnSeasonRelic;
+import thesimpleton.relics.seasons.PlaceholderSeasonRelic;
 import thesimpleton.utilities.*;
 
 import java.util.ArrayList;
@@ -126,12 +126,14 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<String>();
 
-        retVal.add(Circlet.ID); // TODO: Replace with "Seasons" placeholder relic
+        retVal.add(PlaceholderSeasonRelic.ID);
+
         retVal.add(SpudOfTheInnocent.ID);
         retVal.add(PungentSoil.ID);
         retVal.add(TheHarvester.ID);
 
-        retVal.forEach(id -> UnlockTracker.markRelicAsSeen(id));
+        retVal.stream().filter(id -> id != PlaceholderSeasonRelic.ID).forEach(id -> UnlockTracker.markRelicAsSeen(id));
+
         return retVal;
     }
 

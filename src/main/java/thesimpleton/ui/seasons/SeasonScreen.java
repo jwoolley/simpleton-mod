@@ -38,7 +38,10 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   private float scale = 1.0F;
 
-  private static final float CARD_OFFSET_X = -16.0F;
+//  private static final float CARD_OFFSET_X = -16.0F;
+  private static final float CARD_OFFSET_X = -30.0F;
+  private static final float CROP_TEXT_OFFSET_X = -2.0F;
+
 
   private ReadyButton readyButton;
 
@@ -54,9 +57,8 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   private boolean showCancelButton = false;
   private String cancelButtonText = "";
-  private static final float CROPS_IN_SEASON_TEXT_Y = 772.0F;
-
-  private static final float CROP_CARDS_Y = 560.0F;
+  private static final float CROPS_IN_SEASON_TEXT_Y = 787.0F;
+  private static final float CROP_CARDS_Y = 575.0F;
 
   private static final TintEffect textEffect = new TintEffect();
 
@@ -132,7 +134,12 @@ public class SeasonScreen implements ReadyButtonPanel  {
     logger.debug("SeasonScreen::close called");
     AbstractDungeon.overlayMenu.cancelButton.show(cancelButtonText);
     AbstractDungeon.dungeonMapScreen.open(true);
-    wasDismissed = true;
+    this.dismiss();
+  }
+
+  public void dismiss() {
+    logger.debug("SeasonScreen::dismiss called");
+    this.wasDismissed = true;
     show = false;
   }
 
@@ -179,7 +186,8 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
     getReadyButton().render(sb);
 
-    FontHelper.renderFontCentered(sb, FontHelper.bannerFont, TEXT[1], Settings.WIDTH / 2.0F,   CROPS_IN_SEASON_TEXT_Y * Settings.scale, textEffect.color, this.scale);
+    FontHelper.renderFontCentered(sb, FontHelper.bannerFont, TEXT[1], (Settings.WIDTH / 2.0F) + CROP_TEXT_OFFSET_X,
+        CROPS_IN_SEASON_TEXT_Y * Settings.scale, textEffect.color, this.scale);
 
     for (final AbstractCard c : inSeasonCropCards) {
       c.render(sb);

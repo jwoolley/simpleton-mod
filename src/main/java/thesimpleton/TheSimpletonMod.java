@@ -40,6 +40,7 @@ import thesimpleton.potions.AbundancePotion;
 import thesimpleton.relics.*;
 import thesimpleton.relics.seasons.AbstractSeasonRelic;
 import thesimpleton.relics.seasons.AutumnSeasonRelic;
+import thesimpleton.relics.seasons.PlaceholderSeasonRelic;
 import thesimpleton.seasons.Season;
 import thesimpleton.seasons.SeasonInfo;
 import thesimpleton.ui.seasons.SeasonScreen;
@@ -558,7 +559,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addRelicToCustomPool(new SpudOfTheMartyr(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new WoodChipper(), AbstractCardEnum.THE_SIMPLETON_BLUE);
 
+
+
         autumnSeasonRelic = new AutumnSeasonRelic();
+        BaseMod.addRelicToCustomPool(new PlaceholderSeasonRelic(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(autumnSeasonRelic, AbstractCardEnum.THE_SIMPLETON_BLUE);
 
         BaseMod.addRelicToCustomPool(new PaperCrane(), AbstractCardEnum.THE_SIMPLETON_BLUE);

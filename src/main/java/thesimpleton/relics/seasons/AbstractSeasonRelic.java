@@ -13,6 +13,7 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.seasons.Season;
 
+import javax.smartcardio.Card;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -78,13 +79,14 @@ public abstract class AbstractSeasonRelic extends CustomRelic implements CustomS
   public void onLoad(List<String> ids) {
     TheSimpletonMod.setSeasonRelic(this);
 
-    logger.debug(this.getClass().getSimpleName() + ".onLoad :: Loading cards into card pool. Card ids:");
-    int index = 0;
-    for(String id : ids) {
-      logger.debug(index++ + ") " + id);
-    }
+    if (ids != null && !ids.isEmpty()) {
 
-    if (SimpletonUtil.getPlayer().hasRelic(this.relicId) && ids == null && !ids.isEmpty()) {
+      logger.debug(this.getClass().getSimpleName() + ".onLoad :: Loading cards into card pool. Card ids:");
+      int index = 0;
+      for(String id : ids) {
+        logger.debug(index++ + ") " + id);
+      }
+
       int cardIndex = 0;
       logger.info(this.getClass().getSimpleName() + ".onLoad :: Loading cards for card pool from save:");
       for (String id : ids) {
@@ -97,7 +99,11 @@ public abstract class AbstractSeasonRelic extends CustomRelic implements CustomS
 
       if (!TheSimpletonMod.getSaveCardPool().isEmpty()) {
         logger.info(this.getClass().getSimpleName() + ".onLoad :: Card pool loaded from save with " + ids.size() + " cards. Initializing");
-        CardCrawlGame.dungeon.initializeCardPools();
+        if (CardCrawlGame.dungeon != null) {
+          CardCrawlGame.dungeon.initializeCardPools();
+        } else {
+          logger.info(this.getClass().getSimpleName() + ".onLoad :: dungeon is not yet initialized. Trusting it will happen eventually.");
+        }
       }
     } else {
       logger.info(this.getClass().getSimpleName() + ".onLoad :: no save data found");

@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 public class MulchAction extends AbstractGameAction {
   private static final float ACTION_DURATION = Settings.ACTION_DUR_FAST;
 
-  private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("MulchAction");
+  private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("TheSimpletonMod:MulchAction");
   public static final String[] TEXT = uiStrings.TEXT;
 
   private final AbstractPlayer p;

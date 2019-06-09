@@ -89,17 +89,17 @@ abstract class CropInfoDefinition {
     };
 
     Spinach = new CropInfoDefinition(
-        SquashCropOrb.ORB_ID,
-        new Squash(),
-        AbstractCard.CardRarity.BASIC,
+        SpinachCropOrb.ORB_ID,
+        new Spinach(),
+        AbstractCard.CardRarity.UNCOMMON,
         5) {
-      public AbstractCrop getCrop() { return new SquashCrop(); }
+      public AbstractCrop getCrop() { return new SpinachCrop(); }
     };
 
     Squash = new CropInfoDefinition(
         SquashCropOrb.ORB_ID,
-        new Spinach(),
-        AbstractCard.CardRarity.UNCOMMON,
+        new Squash(),
+        AbstractCard.CardRarity.BASIC,
         5) {
       public AbstractCrop getCrop() { return new SquashCrop(); }
     };

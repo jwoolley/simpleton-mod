@@ -1,6 +1,7 @@
 package thesimpleton;
 
 import basemod.*;
+import basemod.abstracts.CustomSavable;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -31,12 +32,13 @@ import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
 import thesimpleton.cards.curse.Nettles;
 import thesimpleton.cards.power.*;
-import thesimpleton.cards.power.crop.*;
+import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.crops.AbstractCrop;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
+import thesimpleton.patches.cards.CardPoolSavable;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.relics.*;
 import thesimpleton.seasons.Season;
@@ -53,7 +55,7 @@ import java.util.stream.Collectors;
 @SpireInitializer
 public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber,
         EditStringsSubscriber, EditKeywordsSubscriber, PostInitializeSubscriber, PostCreateStartingDeckSubscriber,
-        PostCreateStartingRelicsSubscriber, PostDungeonInitializeSubscriber, StartActSubscriber  {
+        PostCreateStartingRelicsSubscriber, PostDungeonInitializeSubscriber, PreStartGameSubscriber, StartActSubscriber  {
     private static final Color CUSTOM_COLOR = CardHelper.getColor(57.0F, 131.0F, 245.0F);
 
     private static final String ATTACK_CARD = "512/attack_thesimpleton.png";
@@ -76,8 +78,9 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     private Map<String, Keyword> keywords;
     private ThemeState currentTheme;
     private static final List<AbstractCropPowerCard> SEASONAL_CROP_CARDS = new ArrayList<>();
-
+    private static final  List<AbstractCard> cardPoolFromSave = new ArrayList<>();
     private static CropUtil cropUtil;
+    private static CardPoolSavable cardpoolSave = new CardPoolSavable();
 
     @Override
     public void receiveStartAct() {
@@ -96,6 +99,16 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         logger.debug("TheSimpletonMod::receivePostDungeonInitialize receivePostDungeonInitialize called ===========================>>>>>>>");
 //        initializeSeason();
         seasonScreen.reset();
+    }
+
+    @Override
+    public void receivePreStartGame() {
+        cardPoolFromSave.clear();
+        loadCardPool();
+    }
+
+    public static void addCardToLoadedCardPool(AbstractCard card) {
+        cardPoolFromSave.add(card);
     }
 
     private class ThemeState {
@@ -319,6 +332,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         SEASONAL_CROP_CARDS.clear();
         SEASONAL_CROP_CARDS.addAll(seasonalCropCards);
+        cardPoolFromSave.addAll(seasonalCropCards);
     }
 
     private SeasonInfo chooseRandomSeason() {
@@ -468,7 +482,35 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     public static void handleSaveBefore() {
         logger.debug("TheSimpletonMod.handleSaveBefore called");
+        saveCardPool();
         theSimpletonCharacter.getCropUtil().resetForCombatEnd();
+    }
+
+    public static List<AbstractCard> getSaveCardPool() {
+        return cardPoolFromSave;
+    }
+
+    private static void saveCardPool() {
+        logger.debug("TheSimpletonMod.saveCardPool saving card pool. (CURRENTLY DOES NOTHING)");
+//        CustomSavable<List<String>> cardpoolSave = new CardPoolSavable(cardPoolFromSave);
+//
+//        if (BaseMod.getSaveFields().get("simpletonCardPool") == null) {
+//            BaseMod.addSaveField("simpletonCardPool", cardpoolSave);
+//        }
+//        cardpoolSave.onSave();
+    }
+
+    private static void loadCardPool() {
+        logger.debug("TheSimpletonMod.loadCardPool loading card pool (CURRENTLY DOES NOTHING)");
+
+//        if (!cardpoolSave.getCardpool().isEmpty()) {
+//            logger.debug("TheSimpletonMod.loadCardPool found cards. Loading");
+//
+//            cardPoolFromSave.addAll(cardpoolSave.getCardpool());
+//            CardCrawlGame.dungeon.initializeCardPools();
+//        } else {
+//            logger.debug("TheSimpletonMod.loadCardPool no cards found.");
+//        }
     }
 
     public static void handleUseCard(AbstractCard card, UseCardAction action) {

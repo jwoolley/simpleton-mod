@@ -1,6 +1,5 @@
 package thesimpleton.characters;
 
-import basemod.BaseMod;
 import basemod.abstracts.CustomPlayer;
 import basemod.interfaces.StartGameSubscriber;
 import com.badlogic.gdx.graphics.Color;
@@ -22,16 +21,12 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.attack.Haymaker;
 import thesimpleton.cards.attack.PestManagement;
 import thesimpleton.cards.attack.ReapAndSow;
 import thesimpleton.cards.attack.Strike_TheSimpleton;
-import thesimpleton.cards.power.ToughSkin;
-import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.skill.Defend_TheSimpleton;
-import thesimpleton.cards.skill.Husk;
 import thesimpleton.cards.skill.Rototilling;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
@@ -42,6 +37,7 @@ import thesimpleton.relics.TheHarvester;
 import thesimpleton.utilities.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static thesimpleton.TheSimpletonMod.getResourcePath;
 
@@ -481,6 +477,23 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
             }
         }
     }
+
+//    @Override
+//    public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool) {
+//        TheSimpletonMod.logger.debug("TheSimpletonCharacter::getSaveCardPool called");
+//        List<AbstractCard> cardPoolFromSave = TheSimpletonMod.getSaveCardPool();
+//        if (!cardPoolFromSave.isEmpty()) {
+//            ArrayList<AbstractCard> finalPool = new ArrayList<>();
+//            TheSimpletonMod.logger.debug("TheSimpletonCharacter::getSaveCardPool using save data");
+//            finalPool.addAll(cardPoolFromSave.stream().distinct().filter(tmpPool::contains).collect(Collectors.toSet()));
+//            return finalPool;
+//        } else {
+//            TheSimpletonMod.logger.debug("TheSimpletonCharacter::getSaveCardPool no save data found. Using default pool");
+//            ArrayList<AbstractCard> finalPool = super.getCardPool(tmpPool);
+//            TheSimpletonMod.getSaveCardPool().addAll(finalPool);
+//            return finalPool;
+//        }
+//    }
 
 //    @Override shuffle
 

@@ -109,12 +109,18 @@ public class SeasonScreen implements ReadyButtonPanel  {
       cancelButtonText = cancelButton.buttonText;
     }
 
-    inSeasonCropCards.addAll(TheSimpletonMod.getSeasonalCropCards());
-    positionCards(Settings.WIDTH / 2.0f, CROP_CARDS_Y);
+    final List<AbstractCropPowerCard> seasonalCropCards = TheSimpletonMod.getSeasonalCropCards();
 
-    show = true;
-    this.getReadyButton().enable();
-    this.getReadyButton().show();
+    if (seasonalCropCards != null && !seasonalCropCards.isEmpty()) {
+      inSeasonCropCards.addAll(TheSimpletonMod.getSeasonalCropCards());
+      positionCards(Settings.WIDTH / 2.0f, CROP_CARDS_Y);
+
+      show = true;
+      this.getReadyButton().enable();
+      this.getReadyButton().show();
+    } else {
+      logger.warn("No seasonal crops found");
+    }
 
     for (final AbstractCropPowerCard card : this.inSeasonCropCards) {
       UnlockTracker.markCardAsSeen(card.cardID);

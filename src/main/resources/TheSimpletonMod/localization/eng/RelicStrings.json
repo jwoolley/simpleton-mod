@@ -189,5 +189,15 @@
       "At the start of each combat, choose up to #b",
       " cards from your hand to exhaust, then draw that many."
     ]
+  },
+
+  "TheSimpletonMod:AutumnSeasonRelic": {
+    "NAME": "Season: Autumn",
+    "FLAVOR": "Joyful and sweet as an untimely end.",
+    "DESCRIPTIONS": [
+      "It is Autumn.",
+      "The following Crops are In Season:",
+      "Crops that are In Season will appear as card rewards in shops."
+    ]
   }
 }

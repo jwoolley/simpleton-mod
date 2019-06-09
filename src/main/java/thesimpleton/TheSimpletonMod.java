@@ -1,7 +1,6 @@
 package thesimpleton;
 
 import basemod.*;
-import basemod.abstracts.CustomSavable;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -20,15 +19,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardHelper;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.relics.PaperCrane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.cards.ShuffleTriggeredCard;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.attack.*;
 import thesimpleton.cards.curse.Nettles;
 import thesimpleton.cards.power.*;
@@ -38,13 +35,13 @@ import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.crops.AbstractCrop;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
-import thesimpleton.patches.cards.CardPoolSavable;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.relics.*;
+import thesimpleton.relics.seasons.AbstractSeasonRelic;
+import thesimpleton.relics.seasons.AutumnSeasonRelic;
 import thesimpleton.seasons.Season;
 import thesimpleton.seasons.SeasonInfo;
 import thesimpleton.ui.seasons.SeasonScreen;
-import thesimpleton.utilities.CropUtil;
 
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
@@ -55,7 +52,7 @@ import java.util.stream.Collectors;
 @SpireInitializer
 public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber,
         EditStringsSubscriber, EditKeywordsSubscriber, PostInitializeSubscriber, PostCreateStartingDeckSubscriber,
-        PostCreateStartingRelicsSubscriber, PostDungeonInitializeSubscriber, PreStartGameSubscriber, StartActSubscriber  {
+        PostCreateStartingRelicsSubscriber, PostDungeonInitializeSubscriber, StartActSubscriber  {
     private static final Color CUSTOM_COLOR = CardHelper.getColor(57.0F, 131.0F, 245.0F);
 
     private static final String ATTACK_CARD = "512/attack_thesimpleton.png";
@@ -79,8 +76,9 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     private ThemeState currentTheme;
     private static final List<AbstractCropPowerCard> SEASONAL_CROP_CARDS = new ArrayList<>();
     private static final  List<AbstractCard> cardPoolFromSave = new ArrayList<>();
-    private static CropUtil cropUtil;
-    private static CardPoolSavable cardpoolSave = new CardPoolSavable();
+
+    private static AutumnSeasonRelic autumnSeasonRelic;
+    private static AbstractSeasonRelic seasonRelic;
 
     @Override
     public void receiveStartAct() {
@@ -100,16 +98,11 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        initializeSeason();
         seasonScreen.reset();
     }
-
-    @Override
-    public void receivePreStartGame() {
-        cardPoolFromSave.clear();
-        loadCardPool();
-    }
-
-    public static void addCardToLoadedCardPool(AbstractCard card) {
-        cardPoolFromSave.add(card);
-    }
+//
+//    @Override
+//    public void receivePreStartGame() {
+//        loadCardPool();
+//    }
 
     private class ThemeState {
         private HashMap<TheSimpletonCharEnum.Theme, Boolean> currentThemeMap;
@@ -325,14 +318,36 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //    }
 
     private void initializeSeason() {
-        logger.debug("@@@@@DEBUG@@@@@ Initializing Season ...");
+        logger.debug("@@@@@DEBUG@@@@@ TheSimpletonMod::initializeSeason Initializing Season ...");
 
         SeasonInfo seasonInfo = chooseRandomSeason();
         List<AbstractCropPowerCard> seasonalCropCards = chooseSeasonalCropCards(seasonInfo);
 
+        setSeasonalCropCards(seasonalCropCards);
+
+        setSeasonRelic(AbstractSeasonRelic.getSeasonRelic(seasonInfo.getSeason()));
+        equipSeasonalRelic(seasonRelic);
+
+        List<AbstractCard> cardPool = new ArrayList<>();
+        cardPool.addAll(AbstractDungeon.commonCardPool.group);
+        cardPool.addAll(AbstractDungeon.uncommonCardPool.group);
+        cardPool.addAll(AbstractDungeon.rareCardPool.group);
+        cardPool.addAll(seasonalCropCards);
+
+//        seasonRelic.setCardPool(cardPool);
+//        seasonRelic.onEquip(cardPool);
+    }
+
+    public static void setSeasonalCropCards(List<AbstractCropPowerCard> cards) {
+        logger.debug("@@@@@DEBUG@@@@@ Generating season info ...");
+
         SEASONAL_CROP_CARDS.clear();
-        SEASONAL_CROP_CARDS.addAll(seasonalCropCards);
-        cardPoolFromSave.addAll(seasonalCropCards);
+        SEASONAL_CROP_CARDS.addAll(cards);
+    }
+
+    private void equipSeasonalRelic(AbstractSeasonRelic relic) {
+        RelicLibrary.getRelic(relic.relicId).makeCopy().instantObtain(SimpletonUtil.getPlayer(), 0,false);
+        AbstractDungeon.relicsToRemoveOnStart.add(relic.relicId);
     }
 
     private SeasonInfo chooseRandomSeason() {
@@ -407,8 +422,15 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         return Collections.unmodifiableList(SEASONAL_CROP_CARDS);
     }
 
+    public static AbstractSeasonRelic getSeasonRelic() {
+        return seasonRelic;
+    }
+
     @Override
     public void receiveEditRelics() {
+        logger.debug("TheSimpletonMod::receiveEditRelics called ===========================>>>>>>>");
+
+
         BaseMod.addRelicToCustomPool(new SpudOfTheInnocent(), AbstractCardEnum.THE_SIMPLETON_BLUE);
 
         BaseMod.addRelicToCustomPool(new CashCrop(), AbstractCardEnum.THE_SIMPLETON_BLUE);
@@ -421,6 +443,9 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addRelicToCustomPool(new PungentSoil(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new SpudOfTheMartyr(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new WoodChipper(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+
+        autumnSeasonRelic = new AutumnSeasonRelic();
+        BaseMod.addRelicToCustomPool(autumnSeasonRelic, AbstractCardEnum.THE_SIMPLETON_BLUE);
 
         BaseMod.addRelicToCustomPool(new PaperCrane(), AbstractCardEnum.THE_SIMPLETON_BLUE);
     }
@@ -444,7 +469,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         if (!themeToApply.isPresent()) {
             return;
         }
-
 
         try {
             group.clear();
@@ -486,11 +510,19 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         theSimpletonCharacter.getCropUtil().resetForCombatEnd();
     }
 
-    public static List<AbstractCard> getSaveCardPool() {
-        return cardPoolFromSave;
+    public static boolean playerHasSeasonRelic() {
+        return seasonRelic != null;
     }
 
-    private static void saveCardPool() {
+    public static List<AbstractCard> getSaveCardPool() {
+        return seasonRelic.getCardpool();
+    }
+
+    public static void setSeasonRelic(AbstractSeasonRelic relic) {
+        seasonRelic = relic;
+    }
+
+     private static void saveCardPool() {
         logger.debug("TheSimpletonMod.saveCardPool saving card pool. (CURRENTLY DOES NOTHING)");
 //        CustomSavable<List<String>> cardpoolSave = new CardPoolSavable(cardPoolFromSave);
 //

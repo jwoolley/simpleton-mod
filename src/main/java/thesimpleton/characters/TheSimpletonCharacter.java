@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
+import com.megacrit.cardcrawl.relics.Circlet;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import thesimpleton.TheSimpletonMod;
@@ -34,10 +35,13 @@ import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.relics.PungentSoil;
 import thesimpleton.relics.SpudOfTheInnocent;
 import thesimpleton.relics.TheHarvester;
+import thesimpleton.relics.seasons.AutumnSeasonRelic;
 import thesimpleton.utilities.*;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 import static thesimpleton.TheSimpletonMod.getResourcePath;
 
@@ -143,6 +147,7 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<String>();
 
+        retVal.add(Circlet.ID); // TODO: Replace with "Seasons" placeholder relic
         retVal.add(SpudOfTheInnocent.ID);
         retVal.add(PungentSoil.ID);
         retVal.add(TheHarvester.ID);

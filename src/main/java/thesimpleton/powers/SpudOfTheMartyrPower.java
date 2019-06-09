@@ -15,7 +15,7 @@ public class SpudOfTheMartyrPower extends AbstractTheSimpletonPower {
   public static PowerType POWER_TYPE = PowerType.BUFF;
   public static final String IMG = "spudofthemartyr.png";
 
-  private static final int CROP_AMOUNT = 1;
+  private static final int CROP_AMOUNT = 2;
   private static SpudOfTheMartyr relic;
 
   public SpudOfTheMartyrPower(AbstractCreature owner, int amount, SpudOfTheMartyr relic) {

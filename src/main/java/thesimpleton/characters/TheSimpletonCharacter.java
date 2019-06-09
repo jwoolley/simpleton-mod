@@ -99,29 +99,8 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
         endOfCombatTriggers = new TriggerManager("EndOfCombatTriggers", staticEndOfCombatTriggerListeners);
         List<AbstractCard> cards = CardLibrary.getAllCards();
 
-//        Logger logger = TheSimpletonMod.logger;
-//        logger.debug("Listing all cards");
-//        int index = 0;
-//        for(AbstractCard card : cards) {
-//            logger.debug(index++ + ") " + card.name + " [cardId: " + card.cardID + "]");
-//        }
 
         initializeOrbSlotLocations();
-//        Crop.initialize();
-
-//        logger.debug("@@@@@DEBUG@@@@@ Generating season info examples...");
-//        for (int i = 0; i < 10; i++) {
-//            logger.debug("Generating season info...");
-//            Season season = Season.randomSeason();
-//            SeasonInfo seasonInfo = new SeasonInfo(season, SeasonInfo.RANDOM_CROP_BY_RARITY_STRATEGY);
-//
-//            logger.debug("SeasonInfo | "
-//                + "season: " + seasonInfo.getSeason()
-//                + " cropsInSeason: "
-//                + seasonInfo.getCropsInSeason().stream().map(c -> c.getName()).collect(Collectors.joining(", "))
-//                + "\n\n"
-//            );
-//        }
     }
 
 

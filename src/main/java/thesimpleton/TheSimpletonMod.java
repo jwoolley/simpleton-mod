@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.PaperCrane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +30,7 @@ import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.attack.*;
 import thesimpleton.cards.curse.Nettles;
 import thesimpleton.cards.power.*;
-import thesimpleton.cards.power.crop.AbstractCropPowerCard;
+import thesimpleton.cards.power.crop.*;
 import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.crops.AbstractCrop;
@@ -217,6 +218,82 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                 TheSimpletonCharEnum.THE_SIMPLETON);
     }
 
+    public static List<AbstractCard> getBaseCardList() {
+        List<AbstractCard> cards = new ArrayList<>();
+        // Basic (4)
+        cards.add(new Strike_TheSimpleton());
+        cards.add(new Defend_TheSimpleton());
+        cards.add(new Haymaker());
+        cards.add(new ReapAndSow());
+
+        // Attack (11)
+        cards.add(new Barnstorm());
+        cards.add(new CullingStrike());
+        cards.add(new DoubleBarrel());
+        cards.add(new Fertilaser());
+        cards.add(new FlashPasteurize());
+        cards.add(new HitTheSack());
+        cards.add(new PestManagement());
+        cards.add(new RootDown());
+        cards.add(new SaltTheEarth());
+        cards.add(new SlashAndBurn());
+        cards.add(new Sunchoke());
+
+        // Skill (20)
+        cards.add(new Aerate());
+        cards.add(new ControlledBurn());
+        cards.add(new CropDiversity());
+        cards.add(new CropRotation());
+        cards.add(new DesperatePlunge());
+        cards.add(new DigIn());
+        cards.add(new FanTheFlames());
+        cards.add(new Ferment());
+        cards.add(new GoToMarket());
+        cards.add(new Mulch());
+        cards.add(new OnionBloom());
+        cards.add(new ProtectiveShell());
+        cards.add(new Pruning());
+        cards.add(new ResearchGrant());
+        cards.add(new Rototilling());
+        cards.add(new SoilSample());
+        cards.add(new SpiceUp());
+        cards.add(new StockTheCellar());
+        cards.add(new Swelter());
+        cards.add(new TillTheField());
+        cards.add(new ToughenUp());
+        cards.add(new VineRipen());
+
+        // Power (6)
+        cards.add(new BirdFeeder());
+        cards.add(new Biorefinement());
+        cards.add(new Fecundity());
+        cards.add(new Photosynthesis());
+        cards.add(new ResistantStrain());
+        cards.add(new VolatileFumes());
+
+        // Curse(6)
+        cards.add(new Nettles());
+        return cards;
+    }
+
+    public static List<AbstractCropPowerCard> getCropCardList() {
+        List<AbstractCropPowerCard> cards = new ArrayList<>();
+
+        // Crop (10)
+        cards.add(new Artichokes());
+        cards.add(new Asparagus());
+        cards.add(new Chilis());
+        cards.add(new Corn());
+        cards.add(new Squash());
+        cards.add(new Mushrooms());
+        cards.add(new Onions());
+        cards.add(new Potatoes());
+        cards.add(new Spinach());
+        cards.add(new Turnips());
+
+        return cards;
+    }
+
     @Override
     public void receiveEditCards() {
 
@@ -225,57 +302,65 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         logger.debug("TheSimpletonMod::receiveEditCards called ===========================>>>>>>>");
 
-        // Basic (4)
-        BaseMod.addCard(new Strike_TheSimpleton());
-        BaseMod.addCard(new Defend_TheSimpleton());
-        BaseMod.addCard(new Haymaker());
-        BaseMod.addCard(new ReapAndSow());
+        for(AbstractCard card : getBaseCardList()) {
+            BaseMod.addCard(card);
+        }
 
-        // Attack (11)
-        BaseMod.addCard(new Barnstorm());
-        BaseMod.addCard(new CullingStrike());
-        BaseMod.addCard(new DoubleBarrel());
-        BaseMod.addCard(new Fertilaser());
-        BaseMod.addCard(new FlashPasteurize());
-        BaseMod.addCard(new HitTheSack());
-        BaseMod.addCard(new PestManagement());
-        BaseMod.addCard(new RootDown());
-        BaseMod.addCard(new SaltTheEarth());
-        BaseMod.addCard(new SlashAndBurn());
-        BaseMod.addCard(new Sunchoke());
+        for(AbstractCard card : getCropCardList()) {
+            BaseMod.addCard(card);
+        }
 
-        // Skill (20)
-        BaseMod.addCard(new Aerate());
-        BaseMod.addCard(new ControlledBurn());
-        BaseMod.addCard(new CropDiversity());
-        BaseMod.addCard(new CropRotation());
-        BaseMod.addCard(new DesperatePlunge());
-        BaseMod.addCard(new DigIn());
-        BaseMod.addCard(new FanTheFlames());
-        BaseMod.addCard(new Ferment());
-        BaseMod.addCard(new GoToMarket());
-        BaseMod.addCard(new Mulch());
-        BaseMod.addCard(new OnionBloom());
-        BaseMod.addCard(new ProtectiveShell());
-        BaseMod.addCard(new Pruning());
-        BaseMod.addCard(new ResearchGrant());
-        BaseMod.addCard(new Rototilling());
-        BaseMod.addCard(new SoilSample());
-        BaseMod.addCard(new SpiceUp());
-        BaseMod.addCard(new StockTheCellar());
-        BaseMod.addCard(new Swelter());
-        BaseMod.addCard(new TillTheField());
-        BaseMod.addCard(new ToughenUp());
-        BaseMod.addCard(new VineRipen());
-
-        // Power (13)
-        BaseMod.addCard(new BirdFeeder());
-        BaseMod.addCard(new Biorefinement());
-        BaseMod.addCard(new Fecundity());
-        BaseMod.addCard(new Photosynthesis());
+//        // Basic (4)
+//        BaseMod.addCard(new Strike_TheSimpleton());
+//        BaseMod.addCard(new Defend_TheSimpleton());
+//        BaseMod.addCard(new Haymaker());
+//        BaseMod.addCard(new ReapAndSow());
+//
+//        // Attack (11)
+//        BaseMod.addCard(new Barnstorm());
+//        BaseMod.addCard(new CullingStrike());
+//        BaseMod.addCard(new DoubleBarrel());
+//        BaseMod.addCard(new Fertilaser());
+//        BaseMod.addCard(new FlashPasteurize());
+//        BaseMod.addCard(new HitTheSack());
+//        BaseMod.addCard(new PestManagement());
+//        BaseMod.addCard(new RootDown());
+//        BaseMod.addCard(new SaltTheEarth());
+//        BaseMod.addCard(new SlashAndBurn());
+//        BaseMod.addCard(new Sunchoke());
+//
+//        // Skill (20)
+//        BaseMod.addCard(new Aerate());
+//        BaseMod.addCard(new ControlledBurn());
+//        BaseMod.addCard(new CropDiversity());
+//        BaseMod.addCard(new CropRotation());
+//        BaseMod.addCard(new DesperatePlunge());
+//        BaseMod.addCard(new DigIn());
+//        BaseMod.addCard(new FanTheFlames());
+//        BaseMod.addCard(new Ferment());
+//        BaseMod.addCard(new GoToMarket());
+//        BaseMod.addCard(new Mulch());
+//        BaseMod.addCard(new OnionBloom());
+//        BaseMod.addCard(new ProtectiveShell());
+//        BaseMod.addCard(new Pruning());
+//        BaseMod.addCard(new ResearchGrant());
+//        BaseMod.addCard(new Rototilling());
+//        BaseMod.addCard(new SoilSample());
+//        BaseMod.addCard(new SpiceUp());
+//        BaseMod.addCard(new StockTheCellar());
+//        BaseMod.addCard(new Swelter());
+//        BaseMod.addCard(new TillTheField());
+//        BaseMod.addCard(new ToughenUp());
+//        BaseMod.addCard(new VineRipen());
+//
+//        // Power (13)
+//        BaseMod.addCard(new BirdFeeder());
+//        BaseMod.addCard(new Biorefinement());
+//        BaseMod.addCard(new Fecundity());
+//        BaseMod.addCard(new Photosynthesis());
 //        BaseMod.addCard(new ToughSkin());
-        BaseMod.addCard(new ResistantStrain());
-        BaseMod.addCard(new VolatileFumes());
+//        BaseMod.addCard(new ResistantStrain());
+//        BaseMod.addCard(new VolatileFumes());
 
 //        BaseMod.addCard(new Artichokes());
 //        BaseMod.addCard(new Asparagus());
@@ -295,7 +380,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
 //        setSeasonalCrops();
         // Curse
-        BaseMod.addCard(new Nettles());
+//        BaseMod.addCard(new Nettles());
     }
 //
 //    private void setSeasonalCrops() {
@@ -328,11 +413,11 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         setSeasonRelic(AbstractSeasonRelic.getSeasonRelic(seasonInfo.getSeason()));
         equipSeasonalRelic(seasonRelic);
 
-        List<AbstractCard> cardPool = new ArrayList<>();
-        cardPool.addAll(AbstractDungeon.commonCardPool.group);
-        cardPool.addAll(AbstractDungeon.uncommonCardPool.group);
-        cardPool.addAll(AbstractDungeon.rareCardPool.group);
-        cardPool.addAll(seasonalCropCards);
+//        List<AbstractCard> cardPool = new ArrayList<>();
+//        cardPool.addAll(AbstractDungeon.commonCardPool.group);
+//        cardPool.addAll(AbstractDungeon.uncommonCardPool.group);
+//        cardPool.addAll(AbstractDungeon.rareCardPool.group);
+//        cardPool.addAll(seasonalCropCards);
 
 //        seasonRelic.setCardPool(cardPool);
 //        seasonRelic.onEquip(cardPool);
@@ -340,7 +425,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     public static void setSeasonalCropCards(List<AbstractCropPowerCard> cards) {
         logger.debug("@@@@@DEBUG@@@@@ Generating season info ...");
-
         SEASONAL_CROP_CARDS.clear();
         SEASONAL_CROP_CARDS.addAll(cards);
     }
@@ -387,29 +471,63 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         SEASONAL_CROP_CARDS.removeAll(cards);
     }
 
-    public static void addCropPowerCardsToPool(List<AbstractCropPowerCard> cards) {
-        logger.debug("addCropPowerCardsToPool called ===========================>>>>>>> # of cards: " + cards.size());
+    public static void addCropPowerCardsToPool(List<AbstractCropPowerCard> cardsToAdd) {
+        logger.debug("addCropPowerCardsToPool called ===========================>>>>>>> # of cards: " + cardsToAdd.size());
 
-        for (AbstractCropPowerCard card : cards) {
+        List<AbstractCropPowerCard> cardsToRemove = getCropCardList().stream()
+            .filter(c -> !cardsToAdd.stream().anyMatch(c2 -> c.cardID == c2.cardID))
+            .collect(Collectors.toList());
+
+        for (AbstractCropPowerCard card : cardsToRemove) {
             switch (card.rarity) {
                 case COMMON:
-                    logger.debug("Adding common crop power to pool:" + card.name);
-                    AbstractDungeon.commonCardPool.group.add(card);
+                    logger.debug("Removing common crop power from pool:" + card.name);
+                    AbstractDungeon.commonCardPool.group.removeIf(c -> c.cardID == card.cardID);
                     break;
                 case UNCOMMON:
-                    AbstractDungeon.uncommonCardPool.group.add(card);
-                    logger.debug("Adding uncommon crop power to pool:" + card.name);
+                    AbstractDungeon.uncommonCardPool.group.removeIf(c -> c.cardID == card.cardID);
+                    logger.debug("Removing uncommon crop power from pool:" + card.name);
                     break;
                 case RARE:
-                    AbstractDungeon.uncommonCardPool.group.add(card);
-                    logger.debug("Adding rare crop power to pool:" + card.name);
-                    AbstractDungeon.rareCardPool.group.add(card);
+                    AbstractDungeon.rareCardPool.group.removeIf(c -> c.cardID == card.cardID);
+                    logger.debug("Removing rare crop power from pool:" + card.name);
                     break;
                 default:
                     logger.warn("Can't add card " + card.name + " to card pool: " + card.rarity + " is not a supported rarity");
                     break;
             }
+
+            List<AbstractCard> cardPool = new ArrayList<>();
+            cardPool.addAll(AbstractDungeon.commonCardPool.group);
+            cardPool.addAll(AbstractDungeon.uncommonCardPool.group);
+            cardPool.addAll(AbstractDungeon.rareCardPool.group);
+
+            logger.debug("addCropPowerCardsToPool :: cards remaining:");
+            int index = 0;
+            for (AbstractCard remainingCard : cardPool) {
+                logger.debug(index++ + ") " + remainingCard.name + " [cardId: " + remainingCard.cardID + "]");
+            }
+//            switch (card.rarity) {
+//                case COMMON:
+//                    logger.debug("Adding common crop power to pool:" + card.name);
+//                    AbstractDungeon.commonCardPool.group.add(card);
+//                    break;
+//                case UNCOMMON:
+//                    AbstractDungeon.uncommonCardPool.group.add(card);
+//                    logger.debug("Adding uncommon crop power to pool:" + card.name);
+//                    break;
+//                case RARE:
+//                    AbstractDungeon.uncommonCardPool.group.add(card);
+//                    logger.debug("Adding rare crop power to pool:" + card.name);
+//                    AbstractDungeon.rareCardPool.group.add(card);
+//                    break;
+//                default:
+//                    logger.warn("Can't add card " + card.name + " to card pool: " + card.rarity + " is not a supported rarity");
+//                    break;
+//            }
         }
+
+
     }
 
     public static void resetCardLibrary() {
@@ -420,10 +538,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     public static List<AbstractCropPowerCard> getSeasonalCropCards() {
         logger.debug("getSeasonalCropCards called: " + SEASONAL_CROP_CARDS.stream().map(c -> c.name).collect(Collectors.joining(", ")));
         return Collections.unmodifiableList(SEASONAL_CROP_CARDS);
-    }
-
-    public static AbstractSeasonRelic getSeasonRelic() {
-        return seasonRelic;
     }
 
     @Override
@@ -511,11 +625,25 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     public static boolean playerHasSeasonRelic() {
-        return seasonRelic != null;
+        return getSeasonRelic() != null;
     }
 
     public static List<AbstractCard> getSaveCardPool() {
-        return seasonRelic.getCardpool();
+        if (seasonRelic == null || seasonRelic.getCardpool().isEmpty()) {
+            return getSeasonRelic().getCardpool();
+        }
+       return seasonRelic.getCardpool();
+    }
+
+    public static AbstractSeasonRelic getSeasonRelic() {
+        Optional<AbstractRelic> relicOptional =  SimpletonUtil.getPlayer().relics.stream()
+            .filter(r -> r instanceof AbstractSeasonRelic)
+            .findFirst();
+
+        if (relicOptional.isPresent()) {
+            seasonRelic = (AbstractSeasonRelic)relicOptional.get();
+        }
+        return seasonRelic;
     }
 
     public static void setSeasonRelic(AbstractSeasonRelic relic) {

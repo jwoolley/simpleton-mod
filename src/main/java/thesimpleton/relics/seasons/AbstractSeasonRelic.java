@@ -53,7 +53,7 @@ public abstract class AbstractSeasonRelic extends CustomRelic implements CustomS
 
     List<String> idList = new ArrayList<>();
 
-    if (SimpletonUtil.getPlayer().hasRelic(this.relicId)) {
+    if (SimpletonUtil.getPlayer().hasRelic(this.relicId) && SimpletonUtil.getPlayer().getRelic(this.relicId) == this) {
 
       List<AbstractCard> cardPool = new ArrayList<>();
       cardPool.addAll(AbstractDungeon.commonCardPool.group);

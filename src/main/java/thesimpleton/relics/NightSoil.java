@@ -14,11 +14,11 @@ import thesimpleton.orbs.AbstractCropOrb;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PungentSoil extends CustomRelic {
-  public static final String ID = "TheSimpletonMod:PungentSoil";
-  public static final String IMG_PATH = "relics/pungentsoil.png";
-  public static final String IMG_PATH_LARGE = "relics/pungentsoil_large.png";
-  public static final String OUTLINE_IMG_PATH = "relics/pungentsoil_outline.png";
+public class NightSoil extends CustomRelic {
+  public static final String ID = "TheSimpletonMod:NightSoil";
+  public static final String IMG_PATH = "relics/nightsoil.png";
+  public static final String IMG_PATH_LARGE = "relics/nightsoillarge.png";
+  public static final String OUTLINE_IMG_PATH = "relics/nightsoil_outline.png";
 
   private static final RelicTier TIER = RelicTier.STARTER;
   private static final LandingSound SOUND = LandingSound.HEAVY;
@@ -26,7 +26,7 @@ public class PungentSoil extends CustomRelic {
   private static final int CROP_AMOUNT = 1;
   private static final float RELIC_FLASH_DELAY = 0.8F;
 
-  public PungentSoil() {
+  public NightSoil() {
     super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
         new Texture(TheSimpletonMod.getResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
     this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_LARGE));
@@ -40,13 +40,13 @@ public class PungentSoil extends CustomRelic {
   @Override
   public void onShuffle() {
     Logger logger = TheSimpletonMod.logger;
-//    logger.debug("PungentSoil::onShuffle");
+//    logger.debug("NightSoil::onShuffle");
 
       List<AbstractCropOrb> eligibleCropOrbs = AbstractCrop.getActiveCropOrbs().stream()
           .filter(orb -> !orb.isMature(true))
           .collect(Collectors.toList());
 
-//    logger.debug("PungentSoil::onShuffle found " + eligibleCropOrbs.size() + " eligible crops");
+//    logger.debug("NightSoil::onShuffle found " + eligibleCropOrbs.size() + " eligible crops");
 
     if (!eligibleCropOrbs.isEmpty()) {
       AbstractDungeon.effectList.add(new DelayedRelicFlashEffect(this, RELIC_FLASH_DELAY));
@@ -56,6 +56,6 @@ public class PungentSoil extends CustomRelic {
 
   @Override
   public AbstractRelic makeCopy() {
-    return new PungentSoil();
+    return new NightSoil();
   }
 }

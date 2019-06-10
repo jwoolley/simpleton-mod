@@ -153,8 +153,8 @@
     ]
   },
 
-  "TheSimpletonMod:PungentSoil": {
-    "NAME": "Pungent Soil",
+  "TheSimpletonMod:NightSoil": {
+    "NAME": "Night Soil",
     "FLAVOR": "It grows on you.",
     "DESCRIPTIONS": [
       "Whenever you shuffle your deck, for each of your #yCrops that isn't #rMature, #yPlant #b",

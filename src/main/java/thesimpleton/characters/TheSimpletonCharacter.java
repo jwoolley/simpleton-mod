@@ -32,7 +32,7 @@ import thesimpleton.cards.skill.Rototilling;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.orbs.AbstractCropOrb;
-import thesimpleton.relics.PungentSoil;
+import thesimpleton.relics.NightSoil;
 import thesimpleton.relics.SpudOfTheInnocent;
 import thesimpleton.relics.TheHarvester;
 import thesimpleton.relics.seasons.PlaceholderSeasonRelic;
@@ -129,7 +129,7 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
         retVal.add(PlaceholderSeasonRelic.ID);
 
         retVal.add(SpudOfTheInnocent.ID);
-        retVal.add(PungentSoil.ID);
+        retVal.add(NightSoil.ID);
         retVal.add(TheHarvester.ID);
 
         retVal.stream().filter(id -> id != PlaceholderSeasonRelic.ID).forEach(id -> UnlockTracker.markRelicAsSeen(id));

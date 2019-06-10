@@ -92,7 +92,7 @@ abstract class CropInfoDefinition {
         SpinachCropOrb.ORB_ID,
         new Spinach(),
         AbstractCard.CardRarity.UNCOMMON,
-        5) {
+        2) {
       public AbstractCrop getCrop() { return new SpinachCrop(); }
     };
 

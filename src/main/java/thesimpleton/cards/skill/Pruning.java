@@ -29,11 +29,10 @@ public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
   private static final int COST = 0;
 
   private static final int NUM_STACKS_TO_HARVEST = 1;
-  private static final int NUM_STACKS_TO_HARVEST_UPGRADE = 1;
-  private static final int NUM_STACKS_TO_GAIN = 2;
+  private static final int NUM_STACKS_TO_GAIN = 1;
   private static final int NUM_STACKS_TO_GAIN_UPGRADE = 1;
 
-  public final boolean harvestAll = false;
+  public final boolean harvestAll = true;
   public final boolean autoHarvest = false;
 
   public int numStacksToHarvest;
@@ -64,7 +63,7 @@ public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    TheSimpletonMod.logger.debug("Pruning::use stacksToHarvest: " + this.numStacksToHarvest + " stacksToAdd: " + this.magicNumber);
+    TheSimpletonMod.logger.debug("Pruning::use stacksToAdd: " + this.magicNumber);
     AbstractDungeon.actionManager.addToBottom(
         new PruningAction(p, this.numStacksToHarvest, this.magicNumber, true));
   }
@@ -76,26 +75,26 @@ public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
   }
 
   public void updateDescription(boolean extendedDescription) {
-    this.rawDescription = getDescription(extendedDescription, this.numStacksToHarvest);
+    this.rawDescription = getDescription(extendedDescription, this.magicNumber);
     this.initializeDescription();
   }
 
   private static String getDescription(boolean extendedDescription, int numStacksToHarvest) {
-    String description = DESCRIPTION + numStacksToHarvest
-        + (numStacksToHarvest == 1 ? EXTENDED_DESCRIPTION[0] : EXTENDED_DESCRIPTION[1]) + EXTENDED_DESCRIPTION[2];
+    String description = DESCRIPTION;
+
+    description += (numStacksToHarvest == 1 ? EXTENDED_DESCRIPTION[1] : EXTENDED_DESCRIPTION[2]);
 
     if (extendedDescription) {
       if (AbstractCropOrb.playerHasAnyCropOrbs()) {
         AbstractCropOrb cropOrb = AbstractCropOrb.getOldestCropOrb();
         TheSimpletonMod.logger.debug("Pruning::getDescription: using dynamic description. Crop: " + cropOrb.name);
-        description += EXTENDED_DESCRIPTION[5] +  cropOrb.name + EXTENDED_DESCRIPTION[6];
+        description += EXTENDED_DESCRIPTION[4] +  cropOrb.name + EXTENDED_DESCRIPTION[5];
       } else {
-        TheSimpletonMod.logger.debug("Pruning::getDescription: using placeholder description");
-        description += EXTENDED_DESCRIPTION[4];
+        description += EXTENDED_DESCRIPTION[3];
       }
     }
 
-    description += EXTENDED_DESCRIPTION[3];
+    description += EXTENDED_DESCRIPTION[0];
 
     return description;
   }
@@ -105,8 +104,7 @@ public class Pruning extends AbstractDynamicTextCard implements HarvestCard {
     if (!this.upgraded) {
       this.upgradeName();
       this.upgradeMagicNumber(NUM_STACKS_TO_GAIN_UPGRADE);
-      this.numStacksToHarvest += NUM_STACKS_TO_HARVEST_UPGRADE;
-      this.rawDescription = getDescription(false, this.numStacksToHarvest);
+      this.rawDescription = getDescription(false, this.magicNumber);
       this.initializeDescription();
     }
   }

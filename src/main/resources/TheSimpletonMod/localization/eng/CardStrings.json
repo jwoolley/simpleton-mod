@@ -195,12 +195,11 @@
 
   "TheSimpletonMod:Pruning": {
     "NAME": "Pruning",
-    "DESCRIPTION": "Harvest ",
+    "DESCRIPTION": "Harvest all of your oldest crop, then Plant !M!",
     "EXTENDED_DESCRIPTION" : [
+      ".",
       " stack",
       " stacks",
-      " of your oldest Crop, then Plant !M! stacks",
-      ".",
       " NL (No eligible Crops currently)",
       " NL (Currently ",
       ")"

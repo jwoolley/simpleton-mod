@@ -72,7 +72,7 @@ public class PruningAction extends AbstractGameAction {
         // this.oldestCropOrb.getCrop().harvest(false, this.numStacksToHarvest);
         TheSimpletonMod.logger.debug("============> PruningAction::update queueing HarvestCropAction =====");
 
-        AbstractDungeon.actionManager.addToTop(new HarvestCropAction(this.oldestCropOrb,  this.numStacksToHarvest,true));
+        AbstractDungeon.actionManager.addToTop(new HarvestCropAction(this.oldestCropOrb,  this.numStacksToHarvest,true, true));
 
         this.hasHarvested = true;
       } else {

@@ -11,6 +11,7 @@ public class HarvestCropAction extends AbstractGameAction {
   private static final ActionType ACTION_TYPE = ActionType.SPECIAL;
   private static final float ACTION_DURATION = Settings.ACTION_DUR_XFAST;
   private final boolean isFromCard;
+  private final boolean harvestAll;
   private final int amount;
   private AbstractCropOrb cropOrb;
 
@@ -20,6 +21,11 @@ public class HarvestCropAction extends AbstractGameAction {
   }
 
   public HarvestCropAction(AbstractCropOrb cropOrb, int stacks, boolean isFromCard) {
+    this(cropOrb, stacks, isFromCard, false);
+  }
+
+
+  public HarvestCropAction(AbstractCropOrb cropOrb, int stacks, boolean isFromCard, boolean harvestAll) {
     TheSimpletonMod.logger.debug("============> HarvestCropAction::constructor =====");
 
     final int rawAmount = stacks >= 0 ? stacks : cropOrb.passiveAmount;
@@ -27,11 +33,12 @@ public class HarvestCropAction extends AbstractGameAction {
     this.duration = ACTION_DURATION;
     this.actionType = ACTION_TYPE;
     this.isFromCard = isFromCard;
+    this.harvestAll = harvestAll;
     this.amount = CropSpawnAction.calculateCropStacks(rawAmount, this.isFromCard);
     this.cropOrb = cropOrb;
 
     Logger logger = TheSimpletonMod.logger;
-    logger.debug("HarvestCropAction() constructor: " + cropOrb.getClass().getSimpleName() + "; rawAmount: " + rawAmount + " calculated amount: " + this.amount);
+    logger.debug("HarvestCropAction() constructor: " + cropOrb.getClass().getSimpleName() + "; rawAmount: " + rawAmount + " calculated amount: " + this.amount + "; harvestAll: " + harvestAll);
   }
 
   public void update() {
@@ -49,7 +56,7 @@ public class HarvestCropAction extends AbstractGameAction {
 
 //      TheSimpletonMod.logger.debug("============> HarvestCropAction::update calling AbstractCrop.harvest() =====");
 
-      cropOrb.getCrop().harvest(false, stacks);
+      cropOrb.getCrop().harvest(this.harvestAll, stacks);
       this.isDone = true;
     }
 //    TheSimpletonMod.logger.debug("============> HarvestCropAction::update tickDuration =====");

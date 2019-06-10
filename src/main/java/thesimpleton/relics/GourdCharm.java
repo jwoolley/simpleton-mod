@@ -64,18 +64,25 @@ public class GourdCharm extends CustomRelic {
     AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new SquashCropOrb(amount),false));
   }
 
+
   @Override
   public void obtain() {
+    this.instantObtain();
+  }
+
+  @Override
+  public void instantObtain() {
     this.flash();
     if (AbstractDungeon.player.hasRelic(SpudOfTheInnocent.ID)) {
       for (int i = 0; i < AbstractDungeon.player.relics.size(); i++) {
         if (AbstractDungeon.player.relics.get(i).relicId.equals(SpudOfTheInnocent.ID)) {
           this.instantObtain(AbstractDungeon.player, i, true);
-          break;
+          this.onEquip();
+          this.relicTip();
         }
       }
     } else {
-      super.obtain();
+      super.instantObtain();
     }
   }
 }

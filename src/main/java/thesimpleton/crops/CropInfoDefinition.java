@@ -108,7 +108,7 @@ abstract class CropInfoDefinition {
         TurnipCropOrb.ORB_ID,
         new Turnips(),
         AbstractCard.CardRarity.COMMON,
-        5) {
+        3) {
       public AbstractCrop getCrop() { return new TurnipCrop(); }
     };
   }

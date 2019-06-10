@@ -136,7 +136,7 @@
 
   "TheSimpletonMod:GiantTurnip": {
     "NAME": "Turnip",
-    "DESCRIPTION": "Deal !D! damage. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage. NL Add a Turnips to your hand. NL Exhaust."
   },
 
   "TheSimpletonMod:GoToMarket": {

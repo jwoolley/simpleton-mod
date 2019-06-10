@@ -19,13 +19,7 @@ public class TurnipCrop extends AbstractCrop {
   protected int calculateHarvestAmount(int amount, int maxAmount, boolean harvestAll) { return this.getAmount();  }
 
   protected int harvestAction(int harvestAmount) {
-    if (harvestAmount > 0) {
-      if (harvestAmount == 1) {
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new BabyTurnip(), 1));
-      } else {
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new GiantTurnip(harvestAmount), 1));
-      }
-    }
+    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new GiantTurnip(harvestAmount), 1));
     return harvestAmount;
   }
 }

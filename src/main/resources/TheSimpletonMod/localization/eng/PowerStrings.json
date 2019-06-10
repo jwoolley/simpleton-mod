@@ -175,7 +175,7 @@
   "TheSimpletonMod:PlantTurnipPower": {
     "NAME": "Turnips",
     "DESCRIPTIONS": [
-      "#gHarvest: Convert ALL stacks into an attack card that deals increased damage for each stack harvested."
+      "#gHarvest: Convert ALL stacks into an attack card that deals increased damage for each stack harvested. Then gain a Turnips Crop card."
     ]
   },
 

@@ -81,7 +81,7 @@
   "TheSimpletonMod:TurnipCropOrb": {
     "NAME": "Turnips",
     "DESCRIPTION": [
-      "#gHarvest: Convert ALL stacks into an attack card that deals increased damage for each stack harvested."
+      "#gHarvest: Convert ALL stacks into an attack card that deals increased damage for each stack harvested and adds a Turnips card to your hand."
     ]
   }
 }

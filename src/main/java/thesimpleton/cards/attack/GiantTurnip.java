@@ -3,6 +3,7 @@ package thesimpleton.cards.attack;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,6 +13,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.TheSimpletonCardTags;
+import thesimpleton.cards.power.crop.Turnips;
 
 public class GiantTurnip extends CustomCard {
   public static final String ID = "TheSimpletonMod:GiantTurnip";
@@ -47,6 +49,7 @@ public class GiantTurnip extends CustomCard {
     final int totalDamage = this.damage;
     AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, totalDamage, this.damageTypeForTurn),
           AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Turnips(), 1));
   }
 
   @Override

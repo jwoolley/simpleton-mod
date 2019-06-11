@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.TintEffect;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
+import thesimpleton.seasons.Season;
 import thesimpleton.ui.ReadyButtonPanel;
 import thesimpleton.ui.buttons.ReadyButton;
 
@@ -29,7 +30,7 @@ import java.util.List;
 
 public class SeasonScreen implements ReadyButtonPanel  {
   private static final String UI_NAME = TheSimpletonMod.makeID("SeasonScreen");
-  private static final String BACKGROUND_IMG_PATH = getUiPath("season-screen-background");
+//  private static final String BACKGROUND_IMG_PATH = getUiPath("season-screen-background");
 
   private UIStrings uiStrings;
 
@@ -71,6 +72,20 @@ public class SeasonScreen implements ReadyButtonPanel  {
   // TODO: move this up
   private static String getUiPath(String id) {
     return "customui/seasonscreen/" + id + ".png";
+  }
+
+  private static String getSeasonImagePath(Season season) {
+    switch(season) {
+      case WINTER:
+        return getUiPath("season-screen-background-winter");
+      case SPRING:
+        return getUiPath("season-screen-background-spring");
+      case SUMMER:
+        return getUiPath("season-screen-background-summer");
+      case AUTUMN:
+      default:
+        return getUiPath("season-screen-background-autumn");
+    }
   }
 
   public SeasonScreen() {
@@ -146,7 +161,8 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   private Texture getBackgroundImage() {
     if (backgroundImage == null) {
-      backgroundImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getResourcePath(BACKGROUND_IMG_PATH));
+      backgroundImage = TheSimpletonMod.loadTexture(
+          TheSimpletonMod.getResourcePath(getSeasonImagePath(TheSimpletonMod.getSeason())));
     }
     return backgroundImage;
   }

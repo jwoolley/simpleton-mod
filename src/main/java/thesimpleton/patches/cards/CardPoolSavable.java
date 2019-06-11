@@ -48,8 +48,8 @@ public class CardPoolSavable implements CustomSavable<List<String>> {
 
     if (ids == null && !ids.isEmpty()) {
 //
-//      for (String id : ids) {
-//        TheSimpletonMod.addCardToLoadedCardPool(CardLibrary.getCard(id));
+//      for (String uiName : ids) {
+//        TheSimpletonMod.addCardToLoadedCardPool(CardLibrary.getCard(uiName));
 //      }
 
       int cardIndex = 0;

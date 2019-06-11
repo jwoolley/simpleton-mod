@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -27,18 +28,16 @@ import java.util.List;
 // TODO: animate fade-in
 
 public class SeasonScreen implements ReadyButtonPanel  {
-  private static final String ID = "SeasonScreen";
+  private static final String UI_NAME = TheSimpletonMod.makeID("SeasonScreen");
   private static final String BACKGROUND_IMG_PATH = getUiPath("season-screen-background");
-  private static UIStrings uiStrings;
 
-  public static String[] TEXT = {
-      "The Season is",
-      "The Following Crops are in Season:"
-  };
+  private UIStrings uiStrings;
 
   private float scale = 1.0F;
 
 //  private static final float CARD_OFFSET_X = -16.0F;
+  private final static float SEASON_DESCRIPTION_PREAMBLE_Y = 1024;
+  private final static float SEASON_DESCRIPTION_NAME_Y = 972;
   private static final float CARD_OFFSET_X = -30.0F;
   private static final float CROP_TEXT_OFFSET_X = -4.0F;
 
@@ -76,13 +75,6 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   public SeasonScreen() {
     hb = new Hitbox(width * Settings.scale, height * Settings.scale);
-
-    textEffect.changeColor(new Color(0.9F, 0.9F, 0.9F, 1.0F));
-    // TODO: fix NPE on game load
-
-    // TODO:
-    //  uiStrings = CardCrawlGame.languagePack.getUIString(TheSimpletonMod.makeID(ID));
-    //  TEXT = uiStrings.TEXT;
   }
 
   public boolean isOpen() {
@@ -180,13 +172,31 @@ public class SeasonScreen implements ReadyButtonPanel  {
       return;
     }
 
+    final String[] uiText = getUiText();
+
     // TODO: scale this to screen
     sb.draw(getBackgroundImage(), 0.0F, backgroundImageY, Settings.WIDTH, Settings.HEIGHT);
     hb.render(sb);
 
     getReadyButton().render(sb);
 
-    FontHelper.renderFontCentered(sb, FontHelper.bannerFont, TEXT[1], (Settings.WIDTH / 2.0F) + CROP_TEXT_OFFSET_X,
+
+   final TintEffect seasonNameTextEffect = new TintEffect();
+   seasonNameTextEffect.changeColor(new Color(1.0F, 0.87F, 0.0F, 1.0F));
+
+    FontHelper.renderFontCentered(sb, FontHelper.losePowerFont, uiText[0], (Settings.WIDTH / 2.0F),
+        SEASON_DESCRIPTION_PREAMBLE_Y * Settings.scale, seasonNameTextEffect.color, this.scale);
+
+    FontHelper.renderFontCentered(sb, FontHelper.bannerNameFont, TheSimpletonMod.getSeason().name, (Settings.WIDTH / 2.0F),
+        SEASON_DESCRIPTION_NAME_Y * Settings.scale, seasonNameTextEffect.color, this.scale);
+    FontHelper.renderFontCentered(sb, FontHelper.bannerNameFont,  TheSimpletonMod.getSeason().name, (Settings.WIDTH / 2.0F),
+        SEASON_DESCRIPTION_NAME_Y * Settings.scale, seasonNameTextEffect.color, this.scale);
+
+//    FontHelper.SCP_cardEnergyFont.setColor();
+
+    textEffect.changeColor(new Color(0.9F, 0.9F, 0.9F, 1.0F));
+
+    FontHelper.renderFontCentered(sb, FontHelper.bannerFont, uiText[1], (Settings.WIDTH / 2.0F) + CROP_TEXT_OFFSET_X,
         CROPS_IN_SEASON_TEXT_Y * Settings.scale, textEffect.color, this.scale);
 
     for (final AbstractCard c : inSeasonCropCards) {
@@ -213,6 +223,13 @@ public class SeasonScreen implements ReadyButtonPanel  {
       card.current_x = card.target_x;
       card.current_y = card.target_y;
     }
+  }
+
+  private String[] getUiText() {
+    if (uiStrings == null) {
+      uiStrings = CardCrawlGame.languagePack.getUIString(UI_NAME);
+    }
+    return uiStrings.TEXT;
   }
 
   @Override

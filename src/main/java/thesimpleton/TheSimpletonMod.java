@@ -403,17 +403,22 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        TheSimpletonMod.addCropPowerCardsToPool(cropPowerCards);
 //    }
 
+    private static SeasonInfo seasonInfo;
+
+    public static Season getSeason() {
+        return seasonInfo.getSeason();
+    }
+
     private void initializeSeason() {
         logger.debug("@@@@@DEBUG@@@@@ TheSimpletonMod::initializeSeason Initializing Season ...");
 
-        SeasonInfo seasonInfo = chooseRandomSeason();
+        seasonInfo = chooseRandomSeason();
         List<AbstractCropPowerCard> seasonalCropCards = chooseSeasonalCropCards(seasonInfo);
 
         setSeasonalCropCards(seasonalCropCards);
 
         setSeasonRelic(AbstractSeasonRelic.getSeasonRelic(seasonInfo.getSeason()));
         equipSeasonalRelic(seasonRelic);
-
 //        List<AbstractCard> cardPool = new ArrayList<>();
 //        cardPool.addAll(AbstractDungeon.commonCardPool.group);
 //        cardPool.addAll(AbstractDungeon.uncommonCardPool.group);

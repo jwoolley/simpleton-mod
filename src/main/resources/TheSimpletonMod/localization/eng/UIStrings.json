@@ -5,7 +5,6 @@
       ")"
     ]
   },
-
   "TheSimpletonMod:PrepareRitualAction": {
     "TEXT": [
       "Exhaust. (Will Be Replaced With Dregs.)"
@@ -17,7 +16,6 @@
       "(Note - only the topmost checked theme will be applied.)"
     ]
   },
-
   "TheSimpletonMod:EndlessStrikeTheme": {
     "TEXT": [
       "[Endless Strike] Use \"Strike\" cards infinitely. (starting relic: Four-Leaf Clover Charm)"
@@ -63,48 +61,60 @@
       "[Strength Machine] Keep gaining Strength by 1. (starting relic: Demonic Mark)"
     ]
   },
-
   "TheSimpletonMod:VoidLordTheme": {
     "TEXT": [
       "[Void Lord] Feel the power of Void Form. (starting relic: Ominous Mark)"
     ]
   },
-
-
   "TheSimpletonMod:BaseTheme": {
     "TEXT": [
       "[This is the Base Theme]"
     ]
   },
-
-
   "TheSimpletonMod:SeasonTheme": {
     "TEXT": [
       "'Tis the season!"
     ]
   },
-
-  "TheSimpletonMod:SeasonScreen": {
-    "TEXT": [
-      "[Season screen UI text]"
-    ]
-  },
-
   "TheSimpletonMod:ChooseAndAddHandCardsToDeckAction": {
     "TEXT": [
       "be shuffled into your draw pile."
     ]
   },
-
   "TheSimpletonMod:MulchAction": {
     "TEXT": [
       "Exhaust"
     ]
   },
-
   "TheSimpletonMod:WoodChipperAction": {
     "TEXT": [
       "Exhaust. (Then Draw That Many)."
     ]
+  },
+  "TheSimpletonMod:SeasonScreen": {
+    "TEXT": [
+      "The Season is",
+      "These Crops are in Season"
+    ]
+  },
+  "TheSimpletonMod:WinterSeason": {
+    "TEXT": [
+      "Winter"
+    ]
+  },
+  "TheSimpletonMod:SpringSeason": {
+    "TEXT": [
+      "Spring"
+    ]
+  },
+  "TheSimpletonMod:SummerSeason": {
+    "TEXT": [
+      "Summer"
+    ]
+  },
+  "TheSimpletonMod:AutumnSeason": {
+      "TEXT": [
+        "Autumn"
+      ]
   }
 }

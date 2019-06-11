@@ -151,7 +151,7 @@ public abstract class AbstractSeasonRelic extends CustomRelic implements CustomS
 
   public static AbstractSeasonRelic getSeasonRelic(Season season) {
     switch (season) {
-      case FALL:
+      case AUTUMN:
         return new AutumnSeasonRelic();
       case WINTER:
       case SPRING:

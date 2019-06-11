@@ -11,7 +11,7 @@ public class AutumnSeasonRelic extends AbstractSeasonRelic implements CustomSava
   public static final String IMG_PATH_LARGE = "relics/seasonautumn_large.png";
   public static final String OUTLINE_IMG_PATH = "relics/seasonautumn_outline.png";
 
-  private static final Season SEASON = Season.FALL;
+  private static final Season SEASON = Season.AUTUMN;
 
   public AutumnSeasonRelic() {
     super(ID, IMG_PATH, IMG_PATH_LARGE, OUTLINE_IMG_PATH ,SEASON);

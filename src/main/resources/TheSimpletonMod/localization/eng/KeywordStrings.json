@@ -1,4 +1,12 @@
 {
+  "TheSimpletonMod:AbundanceKeyword": {
+    "PROPER_NAME": "Abundance",
+    "NAMES": [
+      "abundance"
+    ],
+    "DESCRIPTION":  "Increases the number of #yCrop stacks #yPlanted by cards."
+  },
+
   "TheSimpletonMod:ArtichokeKeyword": {
     "PROPER_NAME": "Artichokes",
     "NAMES": [
@@ -22,15 +30,6 @@
     ],
     "DESCRIPTION": "Burning creatures take damage at the end of their turn, then lose Burning."
   },
-  "TheSimpletonMod:BleedKeyword": {
-    "PROPER_NAME": "Bleed",
-    "NAMES": [
-      "bleed",
-      "bleeding"
-    ],
-    "DESCRIPTION": "Bleeding creature loses HP whenever it Attacks. Each turn, Bleed is reduced by #b1."
-  },
-
 
   "TheSimpletonMod:ChilisKeyword": {
     "PROPER_NAME": "Chilis",

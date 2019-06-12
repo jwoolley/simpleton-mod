@@ -41,6 +41,7 @@ import thesimpleton.relics.*;
 import thesimpleton.relics.seasons.AbstractSeasonRelic;
 import thesimpleton.relics.seasons.AutumnSeasonRelic;
 import thesimpleton.relics.seasons.PlaceholderSeasonRelic;
+import thesimpleton.savedata.CardPoolCustomSavable;
 import thesimpleton.seasons.Season;
 import thesimpleton.seasons.SeasonInfo;
 import thesimpleton.ui.seasons.SeasonScreen;
@@ -81,6 +82,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     private static AutumnSeasonRelic autumnSeasonRelic;
     private static AbstractSeasonRelic seasonRelic;
+
+    public static class CUSTOM_SAVABLES {
+        public static final CardPoolCustomSavable cardPoolSavable = new CardPoolCustomSavable();
+    };
 
     @Override
     public void receiveStartAct() {
@@ -165,8 +170,16 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         new TheSimpletonMod();
     }
 
+    private static boolean isGameInitialized = false;
+
+    public static boolean isGameInitialized() {
+        return isGameInitialized;
+    }
+
     @Override
     public void receivePostInitialize() {
+        TheSimpletonMod.isGameInitialized = true;
+
         Texture badgeTexture = new Texture(getResourcePath("badge.png"));
         ModPanel modPanel = new ModPanel();
 
@@ -203,6 +216,11 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         HashMap<String, Sfx> reflectedMap = getSoundsMap();
         reflectedMap.put("ATTACK_SCYTHE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_AttackScythe1.ogg"));
+
+        registerCustomSaveKeys();
+    }
+
+    private void registerCustomSaveKeys() {
 
     }
 
@@ -477,6 +495,14 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         SEASONAL_CROP_CARDS.removeAll(cards);
     }
 
+    public static List<AbstractCard> getCurrentCardPool() {
+        List<AbstractCard> cardPool = new ArrayList<>();
+        cardPool.addAll(AbstractDungeon.commonCardPool.group);
+        cardPool.addAll(AbstractDungeon.uncommonCardPool.group);
+        cardPool.addAll(AbstractDungeon.rareCardPool.group);
+        return Collections.unmodifiableList(cardPool);
+    }
+
     public static void addCropPowerCardsToPool(List<AbstractCropPowerCard> cardsToAdd) {
         logger.debug("addCropPowerCardsToPool called ===========================>>>>>>> # of cards: " + cardsToAdd.size());
 
@@ -502,17 +528,17 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                     logger.warn("Can't add card " + card.name + " to card pool: " + card.rarity + " is not a supported rarity");
                     break;
             }
-
-            List<AbstractCard> cardPool = new ArrayList<>();
-            cardPool.addAll(AbstractDungeon.commonCardPool.group);
-            cardPool.addAll(AbstractDungeon.uncommonCardPool.group);
-            cardPool.addAll(AbstractDungeon.rareCardPool.group);
-
-            logger.debug("addCropPowerCardsToPool :: cards remaining:");
-            int index = 0;
-            for (AbstractCard remainingCard : cardPool) {
-                logger.debug(index++ + ") " + remainingCard.name + " [cardId: " + remainingCard.cardID + "]");
-            }
+//
+//            List<AbstractCard> cardPool = new ArrayList<>();
+//            cardPool.addAll(AbstractDungeon.commonCardPool.group);
+//            cardPool.addAll(AbstractDungeon.uncommonCardPool.group);
+//            cardPool.addAll(AbstractDungeon.rareCardPool.group);
+//
+//            logger.debug("addCropPowerCardsToPool :: cards remaining:");
+//            int index = 0;
+//            for (AbstractCard remainingCard : cardPool) {
+//                logger.debug(index++ + ") " + remainingCard.name + " [cardId: " + remainingCard.cardID + "]");
+//            }
 //            switch (card.rarity) {
 //                case COMMON:
 //                    logger.debug("Adding common crop power to pool:" + card.name);
@@ -638,10 +664,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     public static List<AbstractCard> getSaveCardPool() {
-        if (seasonRelic == null || seasonRelic.getCardpool().isEmpty()) {
-            return getSeasonRelic().getCardpool();
-        }
-       return seasonRelic.getCardpool();
+        return CUSTOM_SAVABLES.cardPoolSavable.getCardPool();
     }
 
     public static AbstractSeasonRelic getSeasonRelic() {

@@ -1,11 +1,8 @@
 package thesimpleton.relics.seasons;
 
-import basemod.abstracts.CustomSavable;
 import thesimpleton.seasons.Season;
 
-import java.util.List;
-
-public class AutumnSeasonRelic extends AbstractSeasonRelic implements CustomSavable<List<String>> {
+public class AutumnSeasonRelic extends AbstractSeasonRelic {
   public static final String ID = "TheSimpletonMod:AutumnSeasonRelic";
   public static final String IMG_PATH = "relics/seasonautumn.png";
   public static final String IMG_PATH_LARGE = "relics/seasonautumn_large.png";

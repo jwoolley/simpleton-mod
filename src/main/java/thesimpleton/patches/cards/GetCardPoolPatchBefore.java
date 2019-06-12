@@ -24,39 +24,37 @@ public class GetCardPoolPatchBefore {
   @SpirePrefixPatch
   public static SpireReturn<ArrayList<AbstractCard>> Prefix(CustomPlayer __instance, ArrayList<AbstractCard> tmpPool) {
     final Logger logger = TheSimpletonMod.logger;
-    if (TheSimpletonMod.playerHasSeasonRelic()) {
-      List<AbstractCard> saveCardPool = TheSimpletonMod.getSaveCardPool();
-      if (!saveCardPool.isEmpty()) {
-        logger.debug("GetCardPoolPatchBefore :: Card pool for " + AbstractDungeon.player.chosenClass + " is about to be replaced.");
-        logger.debug("GetCardPoolPatchBefore :: Original tmpPool: " + tmpPool.toString());
-        logger.debug("GetCardPoolPatchBefore :: Cards to replace with: " + saveCardPool.toString());
-        TheSimpletonMod.logger.debug("GetCardPoolPatchBefore::getSaveCardPool using save data");
+    List<AbstractCard> saveCardPool = TheSimpletonMod.getSaveCardPool();
+    if (!saveCardPool.isEmpty()) {
+      logger.debug("GetCardPoolPatchBefore :: Card pool for " + AbstractDungeon.player.chosenClass + " is about to be replaced.");
+      logger.debug("GetCardPoolPatchBefore :: Original tmpPool: " + tmpPool.toString());
+      logger.debug("GetCardPoolPatchBefore :: Cards to replace with: " + saveCardPool.toString());
+      TheSimpletonMod.logger.debug("GetCardPoolPatchBefore::getSaveCardPool using save data");
 
-        tmpPool.clear();
-        tmpPool.addAll(saveCardPool);
+      tmpPool.clear();
+      tmpPool.addAll(saveCardPool);
 
-        // TODO: reinitialize SeasonInfo
-        // TODO: move this logic to TSM class or elsewhere
-        TheSimpletonMod.setSeasonalCropCards(saveCardPool.stream()
-            .filter(c -> c instanceof AbstractCropPowerCard)
-            .map(c -> (AbstractCropPowerCard)c)
-            .collect(Collectors.toList()));
+      // TODO: reinitialize SeasonInfo
+      // TODO: move this logic to TSM class or elsewhere
+      TheSimpletonMod.setSeasonalCropCards(saveCardPool.stream()
+          .filter(c -> c instanceof AbstractCropPowerCard)
+          .map(c -> (AbstractCropPowerCard)c)
+          .collect(Collectors.toList()));
 
-        logger.debug("GetCardPoolPatchBefore ::  You are playing with: " + tmpPool.size() + " cards.");
-        logger.debug("GetCardPoolPatchBefore :: cards: " + tmpPool.toString());
+      logger.debug("GetCardPoolPatchBefore ::  You are playing with: " + tmpPool.size() + " cards.");
+      logger.debug("GetCardPoolPatchBefore :: cards: " + tmpPool.toString());
 
-        logger.debug("GetCardPoolPatchBefore :: disabling season screen");
-        TheSimpletonMod.seasonScreen.dismiss();
+      logger.debug("GetCardPoolPatchBefore :: disabling season screen");
 
-        return SpireReturn.Return(tmpPool);
-      } else {
-        logger.debug("GetCardPoolPatchBefore :: saveCardPool is empty");
+      // TODO: this does not belong here
+      TheSimpletonMod.seasonScreen.dismiss();
 
-      }
+      return SpireReturn.Return(tmpPool);
     } else {
-      logger.debug("GetCardPoolPatchBefore :: player doesn't have season relic");
+      logger.debug("GetCardPoolPatchBefore :: saveCardPool is empty");
 
     }
+
     return SpireReturn.Continue();
   }
 }

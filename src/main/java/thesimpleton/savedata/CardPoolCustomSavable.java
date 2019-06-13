@@ -1,7 +1,8 @@
 package thesimpleton.savedata;
-
 import basemod.BaseMod;
 import basemod.abstracts.CustomSavable;
+import basemod.interfaces.PostInitializeSubscriber;
+import basemod.interfaces.StartGameSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,9 +23,9 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
 
   public CardPoolCustomSavable() {
     logger.debug( this.getClass().getSimpleName() + " instantiated");
-    if (TheSimpletonMod.isGameInitialized()) {
-      registerSaveId();
-    }
+//    if (TheSimpletonMod.isGameInitialized()) {
+//      registerSaveId();
+//    }
     _customSavables.add(this);
   }
 
@@ -37,6 +38,8 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
   @Override
   public List<String> onSave() {
     this.cardpool.clear();
+
+    registerSaveId();
 
     logger.debug(getLogPrefix("onSave") + " called");
 
@@ -59,7 +62,7 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
 
   // TODO: make abstract
   public String getCustomSaveKey(){
-    return AbstractDungeon.player.chosenClass + "." + this.getClass().getSimpleName();
+    return "TheSimpletonMod" + this.getClass().getSimpleName();
   }
 
   @Override
@@ -93,24 +96,18 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
 
   private void registerSaveId() {
     logger.debug( this.getClass().getSimpleName() + "::registerSaveId");
-
-    if (BaseMod.getSaveFields().get(this.getCustomSaveKey()) == null) {
       logger.debug( this.getClass().getSimpleName() + "::registerSaveId registering customSaveKey: " + getCustomSaveKey());
-
-      logger.debug("Getting custom save key: " + AbstractDungeon.player.chosenClass + "." + this.getClass().getSimpleName());
-
       BaseMod.addSaveField(this.getCustomSaveKey(), this);
-    }
   }
 
   public void postInitializeTrigger() {
     logger.debug( this.getClass().getSimpleName() + "::postInitializeTrigger");
-    registerSaveId();
+//    registerSaveId();
   }
 
   public void startGameTrigger() {
     logger.debug( this.getClass().getSimpleName() + "::startGameTrigger");
-    registerSaveId();
+//    registerSaveId();
   }
 
   public static void receivePostInitialize() {

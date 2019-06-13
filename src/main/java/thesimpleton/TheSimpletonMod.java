@@ -278,7 +278,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new GoToMarket());
         cards.add(new Mulch());
         cards.add(new OnionBloom());
-        cards.add(new ProtectiveShell());
+        cards.add(new SeedCoat());
         cards.add(new Pruning());
         cards.add(new ResearchGrant());
         cards.add(new Rototilling());

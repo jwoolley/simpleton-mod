@@ -1,5 +1,6 @@
 package thesimpleton.cards.skill;
 
+import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -12,12 +13,13 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.enums.AbstractCardEnum;
 
-public class ProtectiveShell  extends AbstractDynamicTextCard  {
-  public static final String ID = "TheSimpletonMod:ProtectiveShell";
+public class SeedCoat extends CustomCard {
+  public static final String ID = "TheSimpletonMod:SeedCoat";
   public static final String NAME;
   public static final String DESCRIPTION;
+  public static final String UPGRADE_DESCRIPTION;
   public static final String[] EXTENDED_DESCRIPTION;
-  public static final String IMG_PATH = "cards/protectiveshell.png";
+  public static final String IMG_PATH = "cards/seedcoat.png";
 
   private static final CardStrings cardStrings;
 
@@ -28,59 +30,75 @@ public class ProtectiveShell  extends AbstractDynamicTextCard  {
   private static final int COST = 1;
   private static final int BLOCK = 12;
   private static final int BLOCK_REDUCTION = 6;
-  private static final int BLOCK_REDUCTION_UPGRADE = -3;
 
-  public ProtectiveShell() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(BLOCK_REDUCTION), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+  private boolean hasBeenPlayed = false;
+
+  public SeedCoat() {
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false, false), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
     this.baseMagicNumber = this.magicNumber = BLOCK_REDUCTION;
+    this.isEthereal = true;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    int blockReduction = getBlockReduction(this.magicNumber);
+    if (hasBeenPlayed) {
+      this.exhaust = true;
+    }
+
+    this.hasBeenPlayed = true;
 
     AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
 
-    if (blockReduction >= this.block) {
+    if (this.magicNumber >= this.block) {
       AbstractDungeon.actionManager.addToBottom(new ModifyBlockAction(this.uuid, -this.block));
-      this.exhaust = true;
     } else {
-      AbstractDungeon.actionManager.addToBottom(new ModifyBlockAction(this.uuid, -blockReduction));
+      AbstractDungeon.actionManager.addToBottom(new ModifyBlockAction(this.uuid, -this.magicNumber));
     }
+
+    updateDescription();
   }
 
   @Override
   public AbstractCard makeCopy() {
-    return new ProtectiveShell();
-  }
-
-  private static int getBlockReduction(int initialReduction) {
-    return SimpletonUtil.isPlayerInCombat() ? AbstractCard.applyPowerOnBlockHelper(initialReduction) : initialReduction;
+    return new SeedCoat();
   }
 
   @Override
   public void upgrade() {
     if (!this.upgraded) {
+      this.isEthereal = false;
       this.upgradeName();
-      this.upgradeMagicNumber(BLOCK_REDUCTION_UPGRADE);
+      updateDescription();
     }
   }
 
-  @Override
-  protected void updateDescription(boolean extendedDescription) {
-    this.rawDescription = getDescription(this.magicNumber);
+  protected void updateDescription() {
+    this.rawDescription = getDescription(this.hasBeenPlayed, this.upgraded);
     this.initializeDescription();
   }
 
-  private static String getDescription(int reductionAmount) {
-    return DESCRIPTION + getBlockReduction(reductionAmount) + EXTENDED_DESCRIPTION[0];
+  private static String getDescription(boolean hasBeenPlayed, boolean isUpgraded) {
+    if (hasBeenPlayed) {
+      if (!isUpgraded) {
+        return EXTENDED_DESCRIPTION[0];
+      } else {
+        return EXTENDED_DESCRIPTION[1];
+      }
+    } else {
+      if (!isUpgraded) {
+        return DESCRIPTION;
+      } else {
+        return UPGRADE_DESCRIPTION;
+      }
+    }
   }
 
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
+    UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
   }
 }

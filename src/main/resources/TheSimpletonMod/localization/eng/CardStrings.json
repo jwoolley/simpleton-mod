@@ -185,11 +185,13 @@
     "DESCRIPTION": "At the end of your turn, spend all your unused Energy and Plant that many random Crops."
   },
 
-  "TheSimpletonMod:ProtectiveShell": {
-    "NAME": "Protective Shell",
-    "DESCRIPTION": "Gain !B! Block. NL Decrease this card's Block by ",
-    "EXTENDED_DESCRIPTION" : [
-      " this combat. If Block is reduced to 0 this way, Exhaust."
+  "TheSimpletonMod:SeedCoat": {
+    "NAME": "Seed Coat",
+    "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL When this card is played, decrease its Block by !M! and it gains Exhaust for this combat.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL When this card is played, decrease its Block by !M! and it gains Exhaust for this combat.",
+    "EXTENDED_DESCRIPTION": [
+      "Ethereal. NL Gain !B! Block. NL When this card is played, decrease its Block by !M! this combat. NL Exhaust.",
+      "Gain !B! Block. NL When this card is played, decrease its Block by !M! this combat. NL Exhaust."
     ]
   },
 

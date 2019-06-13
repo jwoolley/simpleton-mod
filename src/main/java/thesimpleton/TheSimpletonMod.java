@@ -23,6 +23,7 @@ import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.PaperCrane;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.cards.ShuffleTriggeredCard;
@@ -55,7 +56,7 @@ import java.util.stream.Collectors;
 @SpireInitializer
 public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber,
         EditStringsSubscriber, EditKeywordsSubscriber, PostInitializeSubscriber, PostCreateStartingDeckSubscriber,
-        PostCreateStartingRelicsSubscriber, PostDungeonInitializeSubscriber, StartActSubscriber, StartGameSubscriber  {
+        PostCreateStartingRelicsSubscriber, PostDungeonInitializeSubscriber, StartActSubscriber, StartGameSubscriber, PostBattleSubscriber  {
     private static final Color CUSTOM_COLOR = CardHelper.getColor(57.0F, 131.0F, 245.0F);
 
     private static final String ATTACK_CARD = "512/attack_thesimpleton.png";
@@ -82,6 +83,11 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     private static AutumnSeasonRelic autumnSeasonRelic;
     private static AbstractSeasonRelic seasonRelic;
+
+    @Override
+    public void receivePostBattle(AbstractRoom abstractRoom) {
+        logger.debug("TheSimpletonMod::receivePostBattle isSeasonInitialized:" + isSeasonInitialized());
+    }
 
     private static class CUSTOM_SAVABLES {
         static CardPoolCustomSavable cardPoolSavable = new CardPoolCustomSavable();
@@ -336,8 +342,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     private static SeasonInfo seasonInfo;
 
     public static boolean isSeasonInitialized() {
-        logger.debug("@@@@@DEBUG@@@@@ TheSimpletonMod::isSeasonInitialized");
-
+        logger.debug("@@@@@DEBUG@@@@@ TheSimpletonMod::isSeasonInitialized : " + (seasonInfo != null));
         return seasonInfo != null;
     }
 

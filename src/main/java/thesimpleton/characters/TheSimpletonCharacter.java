@@ -467,16 +467,19 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
     public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool) {
         ArrayList<AbstractCard> cardPool = super.getCardPool(tmpPool);
 
-//        TheSimpletonMod.logger.debug("????????????????????????? TheSimpletonMod.getCardPool called. Stack: " + Arrays.stream(Thread.currentThread().getStackTrace()).limit(3).map(t -> t.getMethodName() + ":"  + t.getLineNumber()).collect(Collectors.joining(", ")));
-//
-//        TheSimpletonMod.logger.debug("????????????????????????? TheSimpletonMod.getCardPool tmpPool:"
-//            + tmpPool.stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
-//
-//
-//        TheSimpletonMod.logger.debug("????????????????????????? TheSimpletonMod.getCardPool cardPool:"
-//            + cardPool.stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
+        TheSimpletonMod.logger.debug("????????????????????????? TheSimpletonMod.getCardPool called. Stack: " + Arrays.stream(Thread.currentThread().getStackTrace()).limit(3).map(t -> t.getMethodName() + ":"  + t.getLineNumber()).collect(Collectors.joining(", ")));
 
-        List<AbstractCard> nonCropCards = cardPool.stream().filter(c -> c == c).collect(Collectors.toList());
+        TheSimpletonMod.logger.debug("????????????????????????? TheSimpletonMod.getCardPool tmpPool crop cards:"
+            + tmpPool.stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
+
+        TheSimpletonMod.logger.debug("????????????????????????? TheSimpletonMod.getCardPool cardPool crop cards:"
+            + cardPool.stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
+
+        List<AbstractCard> nonCropCards = cardPool.stream().filter(c -> !(c instanceof AbstractCropPowerCard)).collect(Collectors.toList());
+
+        TheSimpletonMod.logger.debug("????????????????????????? TheSimpletonMod.getCardPool cardPool non-crop cards:"
+            + nonCropCards.stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
+
 
         ArrayList<AbstractCard> finalCardPool = new ArrayList<>();
         finalCardPool.addAll(nonCropCards);

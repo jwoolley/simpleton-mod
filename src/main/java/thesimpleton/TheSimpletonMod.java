@@ -399,6 +399,33 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         return Collections.unmodifiableList(cardPool);
     }
 
+    public static void addToCardPool(AbstractCard card) {
+        switch (card.rarity) {
+            case COMMON:
+                logger.debug("Adding common crop power to pool:" + card.name);
+                // TODO: check for and don't add duplicates
+                if (AbstractDungeon.commonCardPool.group.stream().noneMatch(c -> c.cardID == card.cardID)) {
+                    AbstractDungeon.commonCardPool.group.add(card);
+                }
+                break;
+            case UNCOMMON:
+                if (AbstractDungeon.uncommonCardPool.group.stream().noneMatch(c -> c.cardID == card.cardID)) {
+                    AbstractDungeon.uncommonCardPool.group.add(card);
+                    logger.debug("Adding uncommon crop power to pool:" + card.name);
+                }
+                break;
+            case RARE:
+                if (AbstractDungeon.rareCardPool.group.stream().noneMatch(c -> c.cardID == card.cardID)) {
+                    AbstractDungeon.rareCardPool.group.add(card);
+                    logger.debug("Adding rare crop power to pool:" + card.name);
+                }
+                break;
+            default:
+                logger.warn("Can't add card " + card.name + " to card pool: " + card.rarity + " is not a supported rarity");
+                break;
+        }
+    }
+
     public static void removeUnusedCropPowerCardsFromPool() {
         List<AbstractCropPowerCard> seasonalCrops = getSeasonalCropCards();
 
@@ -433,7 +460,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                     logger.debug("Removing rare crop power from pool:" + card.name);
                     break;
                 default:
-                    logger.warn("Can't add card " + card.name + " to card pool: " + card.rarity + " is not a supported rarity");
+                    logger.warn("Can't remove card " + card.name + " from card pool: " + card.rarity + " is not a supported rarity");
                     break;
             }
         }
@@ -486,6 +513,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         initializeSeason();
 
         logger.debug("TheSimpletonMod.receivePostCreateStartingDeck adding seasonal cards to card pool");
+
+        for (AbstractCropPowerCard card : getSeasonalCropCards()) {
+            addToCardPool(card);
+        }
 
         TheSimpletonMod.removeUnusedCropPowerCardsFromPool();
 

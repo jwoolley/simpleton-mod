@@ -19,7 +19,6 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import com.megacrit.cardcrawl.relics.Circlet;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import thesimpleton.TheSimpletonMod;
@@ -125,13 +124,13 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<String>();
 
-        retVal.add(PlaceholderSeasonRelic.ID);
-
         retVal.add(SpudOfTheInnocent.ID);
         retVal.add(NightSoil.ID);
         retVal.add(TheHarvester.ID);
 
-        retVal.stream().filter(id -> id != PlaceholderSeasonRelic.ID).forEach(id -> UnlockTracker.markRelicAsSeen(id));
+        for (String id : retVal) {
+            UnlockTracker.markRelicAsSeen(id);
+        }
 
         return retVal;
     }

@@ -40,11 +40,10 @@ import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.relics.*;
 import thesimpleton.relics.seasons.AbstractSeasonRelic;
-import thesimpleton.relics.seasons.AutumnSeasonRelic;
-import thesimpleton.relics.seasons.PlaceholderSeasonRelic;
 import thesimpleton.savedata.CardPoolCustomSavable;
 import thesimpleton.seasons.Season;
 import thesimpleton.seasons.SeasonInfo;
+import thesimpleton.ui.seasons.SeasonIndicator;
 import thesimpleton.ui.seasons.SeasonScreen;
 
 import java.lang.reflect.Type;
@@ -80,9 +79,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     private ThemeState currentTheme;
     private static final List<AbstractCropPowerCard> SEASONAL_CROP_CARDS = new ArrayList<>();
     private static final  List<AbstractCard> cardPoolFromSave = new ArrayList<>();
-
-    private static AutumnSeasonRelic autumnSeasonRelic;
-    private static AbstractSeasonRelic seasonRelic;
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
@@ -229,6 +225,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         logger.debug("TheSimpletonMod::receiveStartGame called ===========================>>>>>>>");
         CardPoolCustomSavable.receiveStartGame();
         isGameInitialized = true;
+
+        //TODO: initialize SeasonInfo on load from save
+        seasonIndicator = SeasonIndicator.getIndicator(
+            isSeasonInitialized() ? seasonInfo.getSeason() : Season.randomSeason());
     }
 
 
@@ -357,20 +357,13 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         List<AbstractCropPowerCard> seasonalCropCards = chooseSeasonalCropCards(seasonInfo);
 
         setSeasonalCropCards(seasonalCropCards);
-
-        setSeasonRelic(AbstractSeasonRelic.getSeasonRelic(seasonInfo.getSeason()));
-        equipSeasonalRelic(seasonRelic);
     }
+
 
     public static void setSeasonalCropCards(List<AbstractCropPowerCard> cards) {
         logger.debug("@@@@@DEBUG@@@@@ Generating season info ...");
         SEASONAL_CROP_CARDS.clear();
         SEASONAL_CROP_CARDS.addAll(cards);
-    }
-
-    private void equipSeasonalRelic(AbstractSeasonRelic relic) {
-        RelicLibrary.getRelic(relic.relicId).makeCopy().instantObtain(SimpletonUtil.getPlayer(), 0,false);
-        AbstractDungeon.relicsToRemoveOnStart.add(relic.relicId);
     }
 
     private SeasonInfo chooseRandomSeason() {
@@ -494,10 +487,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addRelicToCustomPool(new SpudOfTheMartyr(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new WoodChipper(), AbstractCardEnum.THE_SIMPLETON_BLUE);
 
-        autumnSeasonRelic = new AutumnSeasonRelic();
-        BaseMod.addRelicToCustomPool(new PlaceholderSeasonRelic(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(autumnSeasonRelic, AbstractCardEnum.THE_SIMPLETON_BLUE);
-
         BaseMod.addRelicToCustomPool(new PaperCrane(), AbstractCardEnum.THE_SIMPLETON_BLUE);
     }
 
@@ -565,27 +554,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         theSimpletonCharacter.getCropUtil().resetForCombatEnd();
     }
 
-    public static boolean playerHasSeasonRelic() {
-        return getSeasonRelic() != null;
-    }
-
     public static List<AbstractCard> getSaveCardPool() {
         return CUSTOM_SAVABLES.cardPoolSavable.getCardPool();
-    }
-
-    public static AbstractSeasonRelic getSeasonRelic() {
-        Optional<AbstractRelic> relicOptional =  SimpletonUtil.getPlayer().relics.stream()
-            .filter(r -> r instanceof AbstractSeasonRelic)
-            .findFirst();
-
-        if (relicOptional.isPresent()) {
-            seasonRelic = (AbstractSeasonRelic)relicOptional.get();
-        }
-        return seasonRelic;
-    }
-
-    public static void setSeasonRelic(AbstractSeasonRelic relic) {
-        seasonRelic = relic;
     }
 
     public static void handleUseCard(AbstractCard card, UseCardAction action) {
@@ -713,6 +683,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     public static final SeasonScreen seasonScreen = new SeasonScreen();
+    public static SeasonIndicator seasonIndicator;
 
     private static HashMap<String, Texture> imgMap;
     private static HashMap<String, Texture> getImgMap() {

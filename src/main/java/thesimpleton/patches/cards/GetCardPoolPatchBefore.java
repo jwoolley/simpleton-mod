@@ -26,6 +26,7 @@ public class GetCardPoolPatchBefore {
     final Logger logger = TheSimpletonMod.logger;
     List<AbstractCard> saveCardPool = TheSimpletonMod.getSaveCardPool();
     if (!saveCardPool.isEmpty()) {
+
       logger.debug("GetCardPoolPatchBefore :: Card pool for " + AbstractDungeon.player.chosenClass + " is about to be replaced.");
       logger.debug("GetCardPoolPatchBefore :: Original tmpPool: " + tmpPool.toString());
       logger.debug("GetCardPoolPatchBefore :: Cards to replace with: " + saveCardPool.toString());
@@ -41,18 +42,16 @@ public class GetCardPoolPatchBefore {
           .map(c -> (AbstractCropPowerCard)c)
           .collect(Collectors.toList()));
 
-      logger.debug("GetCardPoolPatchBefore ::  You are playing with: " + tmpPool.size() + " cards.");
+      logger.debug("GetCardPoolPatchBefore :: Saved card pool contains: " + tmpPool.size() + " cards.");
       logger.debug("GetCardPoolPatchBefore :: cards: " + tmpPool.toString());
 
-      logger.debug("GetCardPoolPatchBefore :: disabling season screen");
-
       // TODO: this does not belong here
+      logger.debug("GetCardPoolPatchBefore :: disabling season screen");
       TheSimpletonMod.seasonScreen.dismiss();
 
       return SpireReturn.Return(tmpPool);
     } else {
       logger.debug("GetCardPoolPatchBefore :: saveCardPool is empty");
-
     }
 
     return SpireReturn.Continue();

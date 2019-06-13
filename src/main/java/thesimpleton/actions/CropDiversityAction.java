@@ -10,7 +10,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CropDiversityAction extends AbstractGameAction {
   private static int COST_FOR_TURN = 0;
@@ -35,6 +37,8 @@ public class CropDiversityAction extends AbstractGameAction {
   }
 
   public void update() {
+    List<AbstractCard> allCardPoolDebug = new ArrayList<>();
+
     if (this.duration != Settings.ACTION_DUR_MED) {
       if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
         //TODO: clean up: find the one (first) selected card and add it
@@ -43,8 +47,36 @@ public class CropDiversityAction extends AbstractGameAction {
           c.setCostForTurn(COST_FOR_TURN);
           AbstractDungeon.actionManager.addToTop(new MakeTempCardInHandAction(c, 1));
         }
+
+        TheSimpletonMod.logger.debug("CropDiversityAction::update [4] CardPool | commons:"
+            + AbstractDungeon.commonCardPool.size() + "; uncommon: "
+            + AbstractDungeon.uncommonCardPool.size() +  "; rare: "
+            + AbstractDungeon.rareCardPool.size());
+        allCardPoolDebug.clear();
+        allCardPoolDebug.addAll(AbstractDungeon.commonCardPool.group);
+        allCardPoolDebug.addAll(AbstractDungeon.uncommonCardPool.group);
+        allCardPoolDebug.addAll(AbstractDungeon.rareCardPool.group);
+        TheSimpletonMod.logger.debug("CropDiversityAction::update [4] CardPool | CROPS:"
+            + allCardPoolDebug.stream().filter(c -> c instanceof  AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
+
+
+
         AbstractDungeon.gridSelectScreen.selectedCards.clear();
         this.p.hand.refreshHandLayout();
+
+        TheSimpletonMod.logger.debug("CropDiversityAction::update [5] CardPool | commons:"
+            + AbstractDungeon.commonCardPool.size() + "; uncommon: "
+            + AbstractDungeon.uncommonCardPool.size() + "; rare:"
+            + AbstractDungeon.rareCardPool.size());
+        allCardPoolDebug.clear();
+        allCardPoolDebug.addAll(AbstractDungeon.commonCardPool.group);
+        allCardPoolDebug.addAll(AbstractDungeon.uncommonCardPool.group);
+        allCardPoolDebug.addAll(AbstractDungeon.rareCardPool.group);
+        TheSimpletonMod.logger.debug("CropDiversityAction::update [5] CardPool | CROPS:"
+            + allCardPoolDebug.stream().filter(c -> c instanceof  AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
+
+
+
 
         this.tickDuration();
         this.isDone = true;
@@ -52,13 +84,53 @@ public class CropDiversityAction extends AbstractGameAction {
       }
     }
 
+
+
+    TheSimpletonMod.logger.debug("CropDiversityAction::update [0] CardPool | commons:"
+        + AbstractDungeon.commonCardPool.size() + "; uncommon: "
+        + AbstractDungeon.uncommonCardPool.size() + "; rare: "
+        + AbstractDungeon.rareCardPool.size());
+    allCardPoolDebug.clear();
+    allCardPoolDebug.addAll(AbstractDungeon.commonCardPool.group);
+    allCardPoolDebug.addAll(AbstractDungeon.uncommonCardPool.group);
+    allCardPoolDebug.addAll(AbstractDungeon.rareCardPool.group);
+    TheSimpletonMod.logger.debug("CropDiversityAction::update [0] CardPool | CROPS:"
+            + allCardPoolDebug.stream().filter(c -> c instanceof  AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
+
+
     final CardGroup cardGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
     List<AbstractCropPowerCard> cards = AbstractCropPowerCard.getRandomCropPowerCards(this.amount, true);
 
+    TheSimpletonMod.logger.debug("CropDiversityAction::update [1] CardPool | commons:"
+        + AbstractDungeon.commonCardPool.size() + "; uncommon: "
+        + AbstractDungeon.uncommonCardPool.size() + "; rare: "
+        + AbstractDungeon.rareCardPool.size());
+    allCardPoolDebug.clear();
+    allCardPoolDebug.addAll(AbstractDungeon.commonCardPool.group);
+    allCardPoolDebug.addAll(AbstractDungeon.uncommonCardPool.group);
+    allCardPoolDebug.addAll(AbstractDungeon.rareCardPool.group);
+    TheSimpletonMod.logger.debug("CropDiversityAction::update [1] CardPool | CROPS:"
+        + allCardPoolDebug.stream().filter(c -> c instanceof  AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
+
+
     for (final AbstractCropPowerCard c2 : cards) {
       cardGroup.addToRandomSpot(c2);
     }
+
+    TheSimpletonMod.logger.debug("CropDiversityAction::update [2] CardPool | commons:"
+        + AbstractDungeon.commonCardPool.size() + "; uncommon: "
+        + AbstractDungeon.uncommonCardPool.size() +  "; rare: "
+        + AbstractDungeon.rareCardPool.size());
+    allCardPoolDebug.clear();
+    allCardPoolDebug.addAll(AbstractDungeon.commonCardPool.group);
+    allCardPoolDebug.addAll(AbstractDungeon.uncommonCardPool.group);
+    allCardPoolDebug.addAll(AbstractDungeon.rareCardPool.group);
+    TheSimpletonMod.logger.debug("CropDiversityAction::update [2] CardPool | CROPS:"
+        + allCardPoolDebug.stream().filter(c -> c instanceof  AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
+
+
+
 
     if (cardGroup.size() == 0) {
       this.isDone = true;
@@ -73,6 +145,20 @@ public class CropDiversityAction extends AbstractGameAction {
     }
     // TODO: move to localized strings
     AbstractDungeon.gridSelectScreen.open(cardGroup, 1, "Select a card.", false);
+
+    TheSimpletonMod.logger.debug("CropDiversityAction::update [3] CardPool | commons:"
+        + AbstractDungeon.commonCardPool.size() + "; uncommon: "
+        + AbstractDungeon.uncommonCardPool.size() +  "; rare: "
+        + AbstractDungeon.rareCardPool.size());
+    allCardPoolDebug.clear();
+    allCardPoolDebug.addAll(AbstractDungeon.commonCardPool.group);
+    allCardPoolDebug.addAll(AbstractDungeon.uncommonCardPool.group);
+    allCardPoolDebug.addAll(AbstractDungeon.rareCardPool.group);
+    TheSimpletonMod.logger.debug("CropDiversityAction::update [3] CardPool | CROPS:"
+        + allCardPoolDebug.stream().filter(c -> c instanceof  AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
+
+
+
     this.tickDuration();
   }
 }

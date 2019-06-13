@@ -1,7 +1,7 @@
 package thesimpleton.savedata;
+
 import basemod.BaseMod;
 import basemod.abstracts.CustomSavable;
-import basemod.interfaces.PostInitializeSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -14,14 +14,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CardPoolCustomSavable implements CustomSavable<List<String>>, PostInitializeSubscriber {
+public class CardPoolCustomSavable implements CustomSavable<List<String>> {
   final private List<AbstractCard> cardpool = new ArrayList<>();
   final Logger logger = TheSimpletonMod.logger;
 
+  final static List<CardPoolCustomSavable> _customSavables  = new ArrayList<>();
+
   public CardPoolCustomSavable() {
+    logger.debug( this.getClass().getSimpleName() + " instantiated");
     if (TheSimpletonMod.isGameInitialized()) {
       registerSaveId();
     }
+    _customSavables.add(this);
   }
 
   public CardPoolCustomSavable(List<AbstractCard> cardpool) {
@@ -60,12 +64,6 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>>, PostI
 
   @Override
   public void onLoad(List<String> ids) {
-  //    logger.debug("CardPoolCustomSavable.onLoad :: Loading cards into card pool. Card ids:");
-  //    int index = 0;
-  //    for (String id : ids) {
-  //      logger.debug(index++ + ") " + id);
-  //    }
-
     if (ids != null && !ids.isEmpty()) {
 
       int cardIndex = 0;
@@ -94,13 +92,36 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>>, PostI
   }
 
   private void registerSaveId() {
+    logger.debug( this.getClass().getSimpleName() + "::registerSaveId");
+
     if (BaseMod.getSaveFields().get(this.getCustomSaveKey()) == null) {
+      logger.debug( this.getClass().getSimpleName() + "::registerSaveId registering customSaveKey: " + getCustomSaveKey());
+
+      logger.debug("Getting custom save key: " + AbstractDungeon.player.chosenClass + "." + this.getClass().getSimpleName());
+
       BaseMod.addSaveField(this.getCustomSaveKey(), this);
     }
   }
 
-  @Override
-  public void receivePostInitialize() {
+  public void postInitializeTrigger() {
+    logger.debug( this.getClass().getSimpleName() + "::postInitializeTrigger");
     registerSaveId();
+  }
+
+  public void startGameTrigger() {
+    logger.debug( this.getClass().getSimpleName() + "::startGameTrigger");
+    registerSaveId();
+  }
+
+  public static void receivePostInitialize() {
+    for(CardPoolCustomSavable savable : _customSavables) {
+      savable.postInitializeTrigger();
+    }
+  }
+
+  public static void receiveStartGame() {
+    for(CardPoolCustomSavable savable : _customSavables) {
+      savable.startGameTrigger();
+    }
   }
 }

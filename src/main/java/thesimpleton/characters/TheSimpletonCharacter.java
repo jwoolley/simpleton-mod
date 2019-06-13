@@ -27,6 +27,7 @@ import thesimpleton.cards.attack.Haymaker;
 import thesimpleton.cards.attack.PestManagement;
 import thesimpleton.cards.attack.ReapAndSow;
 import thesimpleton.cards.attack.Strike_TheSimpleton;
+import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.skill.Defend_TheSimpleton;
 import thesimpleton.cards.skill.Rototilling;
 import thesimpleton.enums.AbstractCardEnum;
@@ -38,10 +39,8 @@ import thesimpleton.relics.TheHarvester;
 import thesimpleton.relics.seasons.PlaceholderSeasonRelic;
 import thesimpleton.utilities.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static thesimpleton.TheSimpletonMod.getResourcePath;
 
@@ -463,6 +462,28 @@ public class TheSimpletonCharacter extends CustomPlayer implements StartGameSubs
             }
         }
     }
+
+    @Override
+    public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool) {
+        ArrayList<AbstractCard> cardPool = super.getCardPool(tmpPool);
+
+//        TheSimpletonMod.logger.debug("????????????????????????? TheSimpletonMod.getCardPool called. Stack: " + Arrays.stream(Thread.currentThread().getStackTrace()).limit(3).map(t -> t.getMethodName() + ":"  + t.getLineNumber()).collect(Collectors.joining(", ")));
+//
+//        TheSimpletonMod.logger.debug("????????????????????????? TheSimpletonMod.getCardPool tmpPool:"
+//            + tmpPool.stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
+//
+//
+//        TheSimpletonMod.logger.debug("????????????????????????? TheSimpletonMod.getCardPool cardPool:"
+//            + cardPool.stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
+
+        List<AbstractCard> nonCropCards = cardPool.stream().filter(c -> c == c).collect(Collectors.toList());
+
+        ArrayList<AbstractCard> finalCardPool = new ArrayList<>();
+        finalCardPool.addAll(nonCropCards);
+        finalCardPool.addAll(TheSimpletonMod.getSeasonalCropCards().stream().distinct().collect(Collectors.toList()));
+        return finalCardPool;
+    }
+
 
 //    @Override
 //    public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool) {

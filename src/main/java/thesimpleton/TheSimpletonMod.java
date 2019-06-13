@@ -46,6 +46,7 @@ import thesimpleton.seasons.Season;
 import thesimpleton.seasons.SeasonInfo;
 import thesimpleton.ui.seasons.SeasonScreen;
 
+import javax.smartcardio.Card;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -55,7 +56,7 @@ import java.util.stream.Collectors;
 @SpireInitializer
 public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber,
         EditStringsSubscriber, EditKeywordsSubscriber, PostInitializeSubscriber, PostCreateStartingDeckSubscriber,
-        PostCreateStartingRelicsSubscriber, PostDungeonInitializeSubscriber, StartActSubscriber  {
+        PostCreateStartingRelicsSubscriber, PostDungeonInitializeSubscriber, StartActSubscriber, StartGameSubscriber  {
     private static final Color CUSTOM_COLOR = CardHelper.getColor(57.0F, 131.0F, 245.0F);
 
     private static final String ATTACK_CARD = "512/attack_thesimpleton.png";
@@ -83,9 +84,13 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     private static AutumnSeasonRelic autumnSeasonRelic;
     private static AbstractSeasonRelic seasonRelic;
 
-    public static class CUSTOM_SAVABLES {
-        public static final CardPoolCustomSavable cardPoolSavable = new CardPoolCustomSavable();
+    private static class CUSTOM_SAVABLES {
+        static CardPoolCustomSavable cardPoolSavable = new CardPoolCustomSavable();
     };
+
+    public void resetCustomSavables() {
+        CUSTOM_SAVABLES.cardPoolSavable = new CardPoolCustomSavable();
+    }
 
     @Override
     public void receiveStartAct() {
@@ -178,6 +183,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receivePostInitialize() {
+        logger.debug("TheSimpletonMod::receivePostInitialize called ===========================>>>>>>>");
+
         TheSimpletonMod.isGameInitialized = true;
 
         Texture badgeTexture = new Texture(getResourcePath("badge.png"));
@@ -217,12 +224,20 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         reflectedMap.put("ATTACK_SCYTHE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_AttackScythe1.ogg"));
 
-        registerCustomSaveKeys();
+        CardPoolCustomSavable.receivePostInitialize();
+//        registerCustomSaveKeys();
     }
 
     private void registerCustomSaveKeys() {
 
     }
+
+    @Override
+    public void receiveStartGame() {
+        logger.debug("TheSimpletonMod::receiveStartGame called ===========================>>>>>>>");
+        CardPoolCustomSavable.receiveStartGame();
+    }
+
 
     @SuppressWarnings("unchecked")
     private HashMap<String, Sfx> getSoundsMap() {
@@ -329,99 +344,13 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             BaseMod.addCard(card);
         }
 
-//        // Basic (4)
-//        BaseMod.addCard(new Strike_TheSimpleton());
-//        BaseMod.addCard(new Defend_TheSimpleton());
-//        BaseMod.addCard(new Haymaker());
-//        BaseMod.addCard(new ReapAndSow());
-//
-//        // Attack (11)
-//        BaseMod.addCard(new Barnstorm());
-//        BaseMod.addCard(new CullingStrike());
-//        BaseMod.addCard(new DoubleBarrel());
-//        BaseMod.addCard(new Fertilaser());
-//        BaseMod.addCard(new FlashPasteurize());
-//        BaseMod.addCard(new HitTheSack());
-//        BaseMod.addCard(new PestManagement());
-//        BaseMod.addCard(new RootDown());
-//        BaseMod.addCard(new SaltTheEarth());
-//        BaseMod.addCard(new SlashAndBurn());
-//        BaseMod.addCard(new Sunchoke());
-//
-//        // Skill (20)
-//        BaseMod.addCard(new Aerate());
-//        BaseMod.addCard(new ControlledBurn());
-//        BaseMod.addCard(new CropDiversity());
-//        BaseMod.addCard(new CropRotation());
-//        BaseMod.addCard(new DesperatePlunge());
-//        BaseMod.addCard(new DigIn());
-//        BaseMod.addCard(new FanTheFlames());
-//        BaseMod.addCard(new Ferment());
-//        BaseMod.addCard(new GoToMarket());
-//        BaseMod.addCard(new Mulch());
-//        BaseMod.addCard(new OnionBloom());
-//        BaseMod.addCard(new ProtectiveShell());
-//        BaseMod.addCard(new Pruning());
-//        BaseMod.addCard(new ResearchGrant());
-//        BaseMod.addCard(new Rototilling());
-//        BaseMod.addCard(new SoilSample());
-//        BaseMod.addCard(new SpiceUp());
-//        BaseMod.addCard(new StockTheCellar());
-//        BaseMod.addCard(new Swelter());
-//        BaseMod.addCard(new TillTheField());
-//        BaseMod.addCard(new ToughenUp());
-//        BaseMod.addCard(new VineRipen());
-//
-//        // Power (13)
-//        BaseMod.addCard(new BirdFeeder());
-//        BaseMod.addCard(new Biorefinement());
-//        BaseMod.addCard(new Fecundity());
-//        BaseMod.addCard(new Photosynthesis());
-//        BaseMod.addCard(new ToughSkin());
-//        BaseMod.addCard(new ResistantStrain());
-//        BaseMod.addCard(new VolatileFumes());
-
-//        BaseMod.addCard(new Artichokes());
-//        BaseMod.addCard(new Asparagus());
-//        BaseMod.addCard(new Chilis());
-//        BaseMod.addCard(new Corn());
-//        BaseMod.addCard(new Squash());
-//        BaseMod.addCard(new Mushrooms());
-//        BaseMod.addCard(new Onions());
-//        BaseMod.addCard(new Potatoes());
-//        BaseMod.addCard(new Spinach());
-//        BaseMod.addCard(new Turnips());
-
-        // omitting non-purchasable cards
-//        BaseMod.addCard(new SpudMissile());
-//        BaseMod.addCard(new GiantTurnip());
-//        BaseMod.addCard(new Cultivate());
-
-//        setSeasonalCrops();
-        // Curse
-//        BaseMod.addCard(new Nettles());
     }
-//
-//    private void setSeasonalCrops() {
-//        Season season = Season.randomSeason();
-//        SeasonInfo seasonInfo = new SeasonInfo(season, SeasonInfo.RANDOM_CROP_BY_RARITY_STRATEGY);
-//
-//        logger.debug("@@@@@DEBUG@@@@@ Generating season info ...");
-//        logger.debug("SeasonInfo | "
-//            + "season: " + seasonInfo.getSeason()
-//            + " cropsInSeason: "
-//            + seasonInfo.getCropsInSeason().stream().map(c -> c.getName()).collect(Collectors.joining(", "))
-//            + "\n\n"
-//        );
-//        List<AbstractCropPowerCard> cropPowerCards = seasonInfo.getCropsInSeason().stream()
-//            .map(crop -> crop.getCropInfo().powerCard)
-//            .collect(Collectors.toList());
-//
-//        SEASONAL_CROP_CARDS.clear();
-//        TheSimpletonMod.addCropPowerCardsToPool(cropPowerCards);
-//    }
 
     private static SeasonInfo seasonInfo;
+
+    public static boolean isSeasonInitialized() {
+        return seasonInfo != null;
+    }
 
     public static Season getSeason() {
         return seasonInfo.getSeason();
@@ -437,14 +366,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         setSeasonRelic(AbstractSeasonRelic.getSeasonRelic(seasonInfo.getSeason()));
         equipSeasonalRelic(seasonRelic);
-//        List<AbstractCard> cardPool = new ArrayList<>();
-//        cardPool.addAll(AbstractDungeon.commonCardPool.group);
-//        cardPool.addAll(AbstractDungeon.uncommonCardPool.group);
-//        cardPool.addAll(AbstractDungeon.rareCardPool.group);
-//        cardPool.addAll(seasonalCropCards);
-
-//        seasonRelic.setCardPool(cardPool);
-//        seasonRelic.onEquip(cardPool);
     }
 
     public static void setSeasonalCropCards(List<AbstractCropPowerCard> cards) {
@@ -476,25 +397,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             .collect(Collectors.toList());
     }
 
-    public static void removeCropPowerCardFromPool(AbstractCropPowerCard card) {
-        logger.debug("TheSimpletonMod::removeCropPowerCardFromPool called ===========================>>>>>>>");
-        BaseMod.removeCard(card.cardID, AbstractCardEnum.THE_SIMPLETON_BLUE);
-        SEASONAL_CROP_CARDS.remove(card);
-    }
-
-    public static void removeCropPowerCardsFromPool(List<AbstractCropPowerCard> cards) {
-        logger.debug("TheSimpletonMod::removeCropPowerCardsFromPool called ===========================>>>>>>>");
-
-        logger.debug("@@@@@DEBUG@@@@@ ");
-        logger.debug("Removing Power Cards: " + cards.stream().map(c -> c.name).collect(Collectors.joining(", ")));
-
-        for (AbstractCropPowerCard card : cards) {
-            BaseMod.removeCard(card.cardID, AbstractCardEnum.THE_SIMPLETON_BLUE);
-        }
-
-        SEASONAL_CROP_CARDS.removeAll(cards);
-    }
-
     public static List<AbstractCard> getCurrentCardPool() {
         List<AbstractCard> cardPool = new ArrayList<>();
         cardPool.addAll(AbstractDungeon.commonCardPool.group);
@@ -503,12 +405,24 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         return Collections.unmodifiableList(cardPool);
     }
 
-    public static void addCropPowerCardsToPool(List<AbstractCropPowerCard> cardsToAdd) {
-        logger.debug("addCropPowerCardsToPool called ===========================>>>>>>> # of cards: " + cardsToAdd.size());
+    public static void removeUnusedCropPowerCardsFromPool() {
+        List<AbstractCropPowerCard> seasonalCrops = getSeasonalCropCards();
 
         List<AbstractCropPowerCard> cardsToRemove = getCropCardList().stream()
-            .filter(c -> !cardsToAdd.stream().anyMatch(c2 -> c.cardID == c2.cardID))
+            .filter(c -> !seasonalCrops.stream().anyMatch(c2 -> c.cardID == c2.cardID))
             .collect(Collectors.toList());
+
+        logger.debug("removeUnusedCropPowerCardsFromPool called. Complete List: " + getCropCardList().stream().map(c -> c.name).collect(Collectors.joining(", ")));
+        logger.debug("removeUnusedCropPowerCardsFromPool called. Seasonal Crops: " + getSeasonalCropCards().stream().map(c -> c.name).collect(Collectors.joining(", ")));
+        logger.debug("removeUnusedCropPowerCardsFromPool called. Unseasonal Crops: " + cardsToRemove.stream().map(c -> c.name).collect(Collectors.joining(", ")));
+
+        TheSimpletonMod.removeCropPowerCardsFromPool(cardsToRemove);
+    }
+
+    private static void removeCropPowerCardsFromPool(List<AbstractCropPowerCard> cardsToRemove) {
+        logger.debug("removeCropPowerCardsFromPool called ===========================>>>>>>> # of cards: " + cardsToRemove.size());
+
+
 
         for (AbstractCropPowerCard card : cardsToRemove) {
             switch (card.rarity) {
@@ -528,38 +442,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                     logger.warn("Can't add card " + card.name + " to card pool: " + card.rarity + " is not a supported rarity");
                     break;
             }
-//
-//            List<AbstractCard> cardPool = new ArrayList<>();
-//            cardPool.addAll(AbstractDungeon.commonCardPool.group);
-//            cardPool.addAll(AbstractDungeon.uncommonCardPool.group);
-//            cardPool.addAll(AbstractDungeon.rareCardPool.group);
-//
-//            logger.debug("addCropPowerCardsToPool :: cards remaining:");
-//            int index = 0;
-//            for (AbstractCard remainingCard : cardPool) {
-//                logger.debug(index++ + ") " + remainingCard.name + " [cardId: " + remainingCard.cardID + "]");
-//            }
-//            switch (card.rarity) {
-//                case COMMON:
-//                    logger.debug("Adding common crop power to pool:" + card.name);
-//                    AbstractDungeon.commonCardPool.group.add(card);
-//                    break;
-//                case UNCOMMON:
-//                    AbstractDungeon.uncommonCardPool.group.add(card);
-//                    logger.debug("Adding uncommon crop power to pool:" + card.name);
-//                    break;
-//                case RARE:
-//                    AbstractDungeon.uncommonCardPool.group.add(card);
-//                    logger.debug("Adding rare crop power to pool:" + card.name);
-//                    AbstractDungeon.rareCardPool.group.add(card);
-//                    break;
-//                default:
-//                    logger.warn("Can't add card " + card.name + " to card pool: " + card.rarity + " is not a supported rarity");
-//                    break;
-//            }
         }
-
-
     }
 
     public static void resetCardLibrary() {
@@ -612,7 +495,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         logger.debug("TheSimpletonMod.receivePostCreateStartingDeck adding seasonal cards to card pool");
 
-        TheSimpletonMod.addCropPowerCardsToPool(getSeasonalCropCards());
+        TheSimpletonMod.removeUnusedCropPowerCardsFromPool();
 
         Optional<TheSimpletonCharEnum.Theme> themeToApply = currentTheme.getCurrentTheme();
         if (!themeToApply.isPresent()) {

@@ -17,7 +17,6 @@ public class SeedCoat extends CustomCard {
   public static final String ID = "TheSimpletonMod:SeedCoat";
   public static final String NAME;
   public static final String DESCRIPTION;
-  public static final String UPGRADE_DESCRIPTION;
   public static final String[] EXTENDED_DESCRIPTION;
   public static final String IMG_PATH = "cards/seedcoat.png";
 
@@ -29,34 +28,32 @@ public class SeedCoat extends CustomCard {
 
   private static final int COST = 1;
   private static final int BLOCK = 12;
-  private static final int BLOCK_REDUCTION = 6;
+  private static final int BLOCK_REDUCTION = 8;
+  private static final int UPGRADE_BLOCK_REDUCTION_DISCOUNT = 4;
 
   private boolean hasBeenPlayed = false;
 
   public SeedCoat() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false, false), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
     this.baseMagicNumber = this.magicNumber = BLOCK_REDUCTION;
-    this.isEthereal = true;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    if (hasBeenPlayed) {
-      this.exhaust = true;
-    }
-
-    this.hasBeenPlayed = true;
-
     AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
 
-    if (this.magicNumber >= this.block) {
-      AbstractDungeon.actionManager.addToBottom(new ModifyBlockAction(this.uuid, -this.block));
+    if (!this.hasBeenPlayed) {
+      this.hasBeenPlayed = true;
+      if (this.magicNumber >= this.block) {
+        AbstractDungeon.actionManager.addToBottom(new ModifyBlockAction(this.uuid, -this.block));
+      } else {
+        AbstractDungeon.actionManager.addToBottom(new ModifyBlockAction(this.uuid, -this.magicNumber));
+      }
+      updateDescription();
     } else {
-      AbstractDungeon.actionManager.addToBottom(new ModifyBlockAction(this.uuid, -this.magicNumber));
+      this.exhaust = true;
     }
-
-    updateDescription();
   }
 
   @Override
@@ -67,38 +64,21 @@ public class SeedCoat extends CustomCard {
   @Override
   public void upgrade() {
     if (!this.upgraded) {
-      this.isEthereal = false;
       this.upgradeName();
+      this.upgradeMagicNumber(-UPGRADE_BLOCK_REDUCTION_DISCOUNT);
       updateDescription();
     }
   }
 
   protected void updateDescription() {
-    this.rawDescription = getDescription(this.hasBeenPlayed, this.upgraded);
+    this.rawDescription = !hasBeenPlayed ? DESCRIPTION : EXTENDED_DESCRIPTION[0];
     this.initializeDescription();
-  }
-
-  private static String getDescription(boolean hasBeenPlayed, boolean isUpgraded) {
-    if (hasBeenPlayed) {
-      if (!isUpgraded) {
-        return EXTENDED_DESCRIPTION[0];
-      } else {
-        return EXTENDED_DESCRIPTION[1];
-      }
-    } else {
-      if (!isUpgraded) {
-        return DESCRIPTION;
-      } else {
-        return UPGRADE_DESCRIPTION;
-      }
-    }
   }
 
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
-    UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
   }
 }

@@ -187,11 +187,9 @@
 
   "TheSimpletonMod:SeedCoat": {
     "NAME": "Seed Coat",
-    "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL When this card is played, decrease its Block by !M! and it gains Exhaust for this combat.",
-    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL When this card is played, decrease its Block by !M! and it gains Exhaust for this combat.",
+    "DESCRIPTION": "Gain !B! Block. NL The first time this card is played this combat, decrease its Block by !M! and it gains Exhaust.",
     "EXTENDED_DESCRIPTION": [
-      "Ethereal. NL Gain !B! Block. NL When this card is played, decrease its Block by !M! this combat. NL Exhaust.",
-      "Gain !B! Block. NL When this card is played, decrease its Block by !M! this combat. NL Exhaust."
+      "Gain !B! Block. NL Exhaust."
     ]
   },
 

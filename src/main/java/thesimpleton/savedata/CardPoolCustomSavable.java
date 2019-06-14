@@ -19,20 +19,8 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
   final private List<AbstractCard> cardpool = new ArrayList<>();
   final Logger logger = TheSimpletonMod.logger;
 
-  final static List<CardPoolCustomSavable> _customSavables  = new ArrayList<>();
-
   public CardPoolCustomSavable() {
     logger.debug( this.getClass().getSimpleName() + " instantiated");
-//    if (TheSimpletonMod.isGameInitialized()) {
-//      registerSaveId();
-//    }
-    _customSavables.add(this);
-  }
-
-  public CardPoolCustomSavable(List<AbstractCard> cardpool) {
-    this();
-    logger.debug( this.getClass().getSimpleName() + ":: instantiated with card pool. size:" + cardpool.size());
-    this.cardpool.addAll(cardpool);
   }
 
   @Override
@@ -98,27 +86,5 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
     logger.debug( this.getClass().getSimpleName() + "::registerSaveId");
       logger.debug( this.getClass().getSimpleName() + "::registerSaveId registering customSaveKey: " + getCustomSaveKey());
       BaseMod.addSaveField(this.getCustomSaveKey(), this);
-  }
-
-  public void postInitializeTrigger() {
-    logger.debug( this.getClass().getSimpleName() + "::postInitializeTrigger");
-//    registerSaveId();
-  }
-
-  public void startGameTrigger() {
-    logger.debug( this.getClass().getSimpleName() + "::startGameTrigger");
-//    registerSaveId();
-  }
-
-  public static void receivePostInitialize() {
-    for(CardPoolCustomSavable savable : _customSavables) {
-      savable.postInitializeTrigger();
-    }
-  }
-
-  public static void receiveStartGame() {
-    for(CardPoolCustomSavable savable : _customSavables) {
-      savable.startGameTrigger();
-    }
   }
 }

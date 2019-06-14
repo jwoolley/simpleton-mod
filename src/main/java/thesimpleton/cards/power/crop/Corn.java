@@ -25,9 +25,9 @@ public class Corn extends AbstractCropPowerCard {
   private static final CardRarity RARITY = CardRarity.UNCOMMON;
   private static final CardTarget TARGET = CardTarget.SELF;
 
-  private static final int COST = 2;
-  private static final int UPGRADED_COST = 1;
-  private static final int CROP_STACKS = 2;
+  private static final int COST = 1;
+  private static final int CROP_STACKS = 1;
+  private static final int CROP_STACKS_UPGRADE = 1;
 
   public Corn() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
@@ -49,7 +49,7 @@ public class Corn extends AbstractCropPowerCard {
   public void upgrade() {
     if (!this.upgraded) {
       this.upgradeName();
-      this.upgradeBaseCost(UPGRADED_COST);
+      this.upgradeMagicNumber(CROP_STACKS_UPGRADE);
     }
   }
 

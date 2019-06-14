@@ -105,7 +105,7 @@
       ", and ",
       " and ",
       " are #gIn #gSeason.",
-      " NL In-Season #yCrops are available as power cards through rewards and in the shop."
+      " NL NL In-Season #yCrops are available as power cards through rewards and in the shop."
     ]
   },
   "TheSimpletonMod:WinterSeason": {
@@ -127,5 +127,10 @@
       "TEXT": [
         "Autumn"
       ]
+  },
+  "TheSimpletonMod:UnknownSeason": {
+    "TEXT": [
+      "Unknown"
+    ]
   }
 }

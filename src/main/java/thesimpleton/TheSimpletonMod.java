@@ -21,7 +21,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.*;
@@ -42,6 +41,7 @@ import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.relics.*;
 import thesimpleton.savedata.CardPoolCustomSavable;
+import thesimpleton.savedata.SeasonCustomSavable;
 import thesimpleton.seasons.Season;
 import thesimpleton.seasons.SeasonInfo;
 import thesimpleton.ui.seasons.SeasonIndicator;
@@ -57,7 +57,7 @@ import java.util.stream.Collectors;
 public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber,
         EditStringsSubscriber, EditKeywordsSubscriber, PostInitializeSubscriber, PostCreateStartingDeckSubscriber,
         PostCreateStartingRelicsSubscriber, PostDungeonInitializeSubscriber, StartActSubscriber, StartGameSubscriber,
-        PostBattleSubscriber, PreRoomRenderSubscriber  {
+        PostBattleSubscriber, PreRoomRenderSubscriber, PostDeathSubscriber  {
     private static final Color CUSTOM_COLOR = CardHelper.getColor(57.0F, 131.0F, 245.0F);
 
     private static final String ATTACK_CARD = "512/attack_thesimpleton.png";
@@ -94,8 +94,17 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        }
     }
 
+    @Override
+    public void receivePostDeath() {
+        seasonInfo = null;
+        CUSTOM_SAVABLES.seasonCustomSavable.reset();
+        seasonScreen.reset();
+        SEASONAL_CROP_CARDS.clear();
+    }
+
     private static class CUSTOM_SAVABLES {
         static CardPoolCustomSavable cardPoolSavable = new CardPoolCustomSavable();
+        static SeasonCustomSavable seasonCustomSavable = new SeasonCustomSavable();
     }
 
     @Override
@@ -156,6 +165,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         // seasonScreen.init
 
         BaseMod.addSaveField(CUSTOM_SAVABLES.cardPoolSavable.getCustomSaveKey(), CUSTOM_SAVABLES.cardPoolSavable);
+        BaseMod.addSaveField(CUSTOM_SAVABLES.seasonCustomSavable.getCustomSaveKey(), CUSTOM_SAVABLES.seasonCustomSavable);
 
         loadConfigData();
     }
@@ -221,7 +231,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         reflectedMap.put("ATTACK_SCYTHE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_AttackScythe1.ogg"));
 
-        CardPoolCustomSavable.receivePostInitialize();
 //        registerCustomSaveKeys();
     }
 
@@ -232,12 +241,26 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     @Override
     public void receiveStartGame() {
         logger.debug("TheSimpletonMod::receiveStartGame called ===========================>>>>>>>");
-        CardPoolCustomSavable.receiveStartGame();
         isGameInitialized = true;
 
+        Season savedSeason = CUSTOM_SAVABLES.seasonCustomSavable.getSeason();
+
+        Season season;
+        if (savedSeason != null) {
+            logger.debug("TheSimpletonMod::receiveStartGame applying season from save");
+            seasonInfo = new SeasonInfo(savedSeason, SeasonInfo.RANDOM_CROP_BY_RARITY_STRATEGY);
+            season = savedSeason;
+        } else if (isSeasonInitialized()) {
+            logger.debug("TheSimpletonMod::receiveStartGame applying season from seasonInfo (game start)");
+
+            season = seasonInfo.getSeason();
+        } else {
+            logger.debug("TheSimpletonMod::receiveStartGame applying random season");
+            season = Season.randomSeason();
+        }
+
         //TODO: initialize SeasonInfo on load from save
-        seasonIndicator = SeasonIndicator.getIndicator(
-            isSeasonInitialized() ? seasonInfo.getSeason() : Season.randomSeason());
+        seasonIndicator = SeasonIndicator.getIndicator(season);
     }
 
 
@@ -332,9 +355,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receiveEditCards() {
-
-//        initializeSeason(); // TODO: NOT SURE IF THIS NEEDS TO BE IN THIS HOOK OR CAN BE ELSEWHERE
-
+        //  initializeSeason(); // TODO: NOT SURE IF THIS NEEDS TO BE IN THIS HOOK OR CAN BE ELSEWHERE
 
         logger.debug("TheSimpletonMod::receiveEditCards called ===========================>>>>>>>");
 
@@ -345,7 +366,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         for(AbstractCard card : getCropCardList()) {
             BaseMod.addCard(card);
         }
-
     }
 
     private static SeasonInfo seasonInfo;
@@ -359,16 +379,23 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         return seasonInfo.getSeason();
     }
 
+    public void setSeasonFromSave() {
+        seasonInfo = new SeasonInfo(CUSTOM_SAVABLES.seasonCustomSavable.getSeason(), SeasonInfo.RANDOM_CROP_BY_RARITY_STRATEGY);
+    }
+
     private void initializeSeason() {
         logger.debug("@@@@@DEBUG@@@@@ TheSimpletonMod::initializeSeason Initializing Season ...");
 
         seasonInfo = chooseRandomSeason();
+
         List<AbstractCropPowerCard> seasonalCropCards = chooseSeasonalCropCards(seasonInfo);
 
         setSeasonalCropCards(seasonalCropCards);
         if (seasonIndicator != null) {
             seasonIndicator.reset();
         }
+
+        CUSTOM_SAVABLES.seasonCustomSavable.reset();
     }
 
     public static void setSeasonalCropCards(List<AbstractCropPowerCard> cards) {
@@ -468,11 +495,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                     break;
             }
         }
-    }
-
-    public static void resetCardLibrary() {
-        CardLibrary.resetForReload();
-        CardLibrary.initialize();
     }
 
     public static List<AbstractCropPowerCard> getSeasonalCropCards() {

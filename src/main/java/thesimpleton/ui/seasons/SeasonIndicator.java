@@ -17,10 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SeasonIndicator {
-  private static final SeasonIndicator WINTER_INIDCATOR;
-  private static final SeasonIndicator SPRING_INDICATOR;
-  private static final SeasonIndicator SUMMER_INDICATOR;
-  private static final SeasonIndicator AUTUMN_INDICATOR;
   private static final String[] TEXT;
 
   private static final float WIDTH = 190;
@@ -190,24 +186,19 @@ public class SeasonIndicator {
   public static SeasonIndicator getIndicator(Season season) {
     switch(season) {
       case WINTER:
-        return WINTER_INIDCATOR;
+        return new SeasonIndicator("WinterSeason", "season-indicator-winter");
       case SPRING:
-        return SPRING_INDICATOR;
+        return new SeasonIndicator("SpringSeason", "season-indicator-spring");
       case SUMMER:
-        return SUMMER_INDICATOR;
+        return new SeasonIndicator("SummerSeason", "season-indicator-summer");
       case AUTUMN:
       default:
-        return AUTUMN_INDICATOR;
+        return new SeasonIndicator("AutumnSeason", "season-indicator-autumn");
     }
   }
 
   static {
-    WINTER_INIDCATOR = new SeasonIndicator("WinterSeason", "season-indicator-winter");
-    SPRING_INDICATOR = new SeasonIndicator("SpringSeason", "season-indicator-spring");
-    SUMMER_INDICATOR  = new SeasonIndicator("SummerSeason", "season-indicator-summer");
-    AUTUMN_INDICATOR  = new SeasonIndicator("AutumnSeason", "season-indicator-autumn");
-
-    UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(UI_NAME);
+     UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(UI_NAME);
     TEXT = uiStrings.TEXT;
   }
 }

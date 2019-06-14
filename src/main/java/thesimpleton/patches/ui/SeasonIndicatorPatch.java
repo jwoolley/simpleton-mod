@@ -4,11 +4,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.ui.buttons.CancelButton;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.enums.TheSimpletonCharEnum;
+import thesimpleton.ui.seasons.SeasonIndicator;
 
 public class SeasonIndicatorPatch {
 //  @SpirePatch(clz = AbstractPlayer.class, method = "combatUpdate")
@@ -25,24 +24,31 @@ public class SeasonIndicatorPatch {
   public static class SeasonIndicatorUpdatePatch {
     @SpirePrefixPatch
     public static void Prefix(EnergyPanel __instance) {
-      if (shouldRender()) {
+      if (SeasonIndicator.shouldRender()) {
         TheSimpletonMod.seasonIndicator.update();
       }
     }
   }
 
+  // for rendering in combat
   @SpirePatch(clz = EnergyPanel.class, method = "renderOrb")
   public static class SeasonIndicatorRenderPatch {
     @SpirePostfixPatch
     public static void Postfix(EnergyPanel __instance, SpriteBatch sb) {
-      if (shouldRender()) {
+      if (SeasonIndicator.shouldRender()) {
         TheSimpletonMod.seasonIndicator.render(sb);
       }
     }
   }
 
-  private static boolean shouldRender() {
-    return AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT &&
-        AbstractDungeon.player.chosenClass == TheSimpletonCharEnum.THE_SIMPLETON;
+  // for rendering over dungeon map
+  @SpirePatch(clz = CancelButton.class, method = "render")
+  public static class SeasonIndicatorRenderMapPatch {
+    @SpirePostfixPatch
+    public static void Postfix(CancelButton __instance, SpriteBatch sb) {
+      if (SeasonIndicator.shouldRender()) {
+        TheSimpletonMod.seasonIndicator.render(sb);
+      }
+    }
   }
 }

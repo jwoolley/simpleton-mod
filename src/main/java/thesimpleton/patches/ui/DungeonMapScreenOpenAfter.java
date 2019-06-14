@@ -34,7 +34,7 @@ public class DungeonMapScreenOpenAfter {
 
    log("DungeonMapScreenOpenAfter seasonScreen.isOpen: "
        + TheSimpletonMod.seasonScreen.isOpen()
-       +  "seasonScreen.wasDismissed: "
+       +  " seasonScreen.wasDismissed: "
        + TheSimpletonMod.seasonScreen.wasDismissed());
 
     if (!TheSimpletonMod.seasonScreen.isOpen() && !TheSimpletonMod.seasonScreen.wasDismissed()) {

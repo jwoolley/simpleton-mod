@@ -100,6 +100,11 @@ public class SeasonScreen implements ReadyButtonPanel  {
     return wasDismissed;
   }
 
+  public void resetDismissed() {
+    wasDismissed = false;
+  }
+
+
   public void reset() {
     getReadyButton().reset();
     inSeasonCropCards.clear();
@@ -178,7 +183,8 @@ public class SeasonScreen implements ReadyButtonPanel  {
     // TODO: scale this appropriately
     final int READY_BUTTON_X = 806;
     final int READY_BUTTON_Y = 216;
-    final String READY_BUTTON_IMG = "Ready";
+
+    final String READY_BUTTON_IMG = getUiText()[2];
 
     return new ReadyButton(READY_BUTTON_X, READY_BUTTON_Y, READY_BUTTON_IMG, this);
   }

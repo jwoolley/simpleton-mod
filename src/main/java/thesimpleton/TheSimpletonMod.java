@@ -5,6 +5,7 @@ import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
@@ -19,15 +20,16 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.*;
+import com.megacrit.cardcrawl.helpers.CardHelper;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.*;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.PaperCrane;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.cards.ShuffleTriggeredCard;
-import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.attack.*;
 import thesimpleton.cards.curse.Nettles;
 import thesimpleton.cards.power.*;
@@ -39,7 +41,6 @@ import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.relics.*;
-import thesimpleton.relics.seasons.AbstractSeasonRelic;
 import thesimpleton.savedata.CardPoolCustomSavable;
 import thesimpleton.seasons.Season;
 import thesimpleton.seasons.SeasonInfo;
@@ -55,7 +56,8 @@ import java.util.stream.Collectors;
 @SpireInitializer
 public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber,
         EditStringsSubscriber, EditKeywordsSubscriber, PostInitializeSubscriber, PostCreateStartingDeckSubscriber,
-        PostCreateStartingRelicsSubscriber, PostDungeonInitializeSubscriber, StartActSubscriber, StartGameSubscriber, PostBattleSubscriber  {
+        PostCreateStartingRelicsSubscriber, PostDungeonInitializeSubscriber, StartActSubscriber, StartGameSubscriber,
+        PostBattleSubscriber, PreRoomRenderSubscriber  {
     private static final Color CUSTOM_COLOR = CardHelper.getColor(57.0F, 131.0F, 245.0F);
 
     private static final String ATTACK_CARD = "512/attack_thesimpleton.png";
@@ -83,6 +85,13 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
         logger.debug("TheSimpletonMod::receivePostBattle isSeasonInitialized:" + isSeasonInitialized());
+    }
+
+    @Override
+    public void receivePreRoomRender(SpriteBatch sb) {
+//        if (seasonIndicator != null) {
+//            seasonIndicator.render(sb);
+//        }
     }
 
     private static class CUSTOM_SAVABLES {
@@ -357,8 +366,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         List<AbstractCropPowerCard> seasonalCropCards = chooseSeasonalCropCards(seasonInfo);
 
         setSeasonalCropCards(seasonalCropCards);
+        if (seasonIndicator != null) {
+            seasonIndicator.reset();
+        }
     }
-
 
     public static void setSeasonalCropCards(List<AbstractCropPowerCard> cards) {
         logger.debug("@@@@@DEBUG@@@@@ Generating season info ...");

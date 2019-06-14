@@ -34,6 +34,7 @@ abstract public class CustomButton extends Button {
   void handleClick() {
     if (!this.isDisabled) {
       this.onClick();
+      this.pressed = false;
     }
   }
 

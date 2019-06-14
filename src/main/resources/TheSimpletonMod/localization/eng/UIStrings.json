@@ -94,7 +94,8 @@
   "TheSimpletonMod:SeasonScreen": {
     "TEXT": [
       "The Season is",
-      "These Crops are in Season"
+      "These Crops are in Season",
+      "Continue"
     ]
   },
   "TheSimpletonMod:SeasonalIndicator": {

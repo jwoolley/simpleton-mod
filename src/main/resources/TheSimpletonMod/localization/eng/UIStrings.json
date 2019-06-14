@@ -97,6 +97,16 @@
       "These Crops are in Season"
     ]
   },
+  "TheSimpletonMod:SeasonalIndicator": {
+    "TEXT": [
+      "It is ",
+      ", ",
+      ", and ",
+      " and ",
+      " are #gIn #gSeason.",
+      " NL In-Season #yCrops are available as power cards through rewards and in the shop."
+    ]
+  },
   "TheSimpletonMod:WinterSeason": {
     "TEXT": [
       "Winter"

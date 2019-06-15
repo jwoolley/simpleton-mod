@@ -248,7 +248,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         Season season;
         if (savedSeason != null) {
             logger.debug("TheSimpletonMod::receiveStartGame applying season from save");
-            seasonInfo = new SeasonInfo(savedSeason, SeasonInfo.RANDOM_CROP_BY_RARITY_STRATEGY);
+            seasonInfo = new SeasonInfo(savedSeason, SeasonInfo.RANDOM_SEASON_BY_RARE_CROP_STRATEGY);
             season = savedSeason;
         } else if (isSeasonInitialized()) {
             logger.debug("TheSimpletonMod::receiveStartGame applying season from seasonInfo (game start)");
@@ -380,7 +380,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     public void setSeasonFromSave() {
-        seasonInfo = new SeasonInfo(CUSTOM_SAVABLES.seasonCustomSavable.getSeason(), SeasonInfo.RANDOM_CROP_BY_RARITY_STRATEGY);
+        seasonInfo = new SeasonInfo(CUSTOM_SAVABLES.seasonCustomSavable.getSeason(), SeasonInfo.RANDOM_SEASON_BY_RARE_CROP_STRATEGY);
     }
 
     private void initializeSeason() {
@@ -406,7 +406,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     private SeasonInfo chooseRandomSeason() {
         Season season = Season.randomSeason();
-        return new SeasonInfo(season, SeasonInfo.RANDOM_CROP_BY_RARITY_STRATEGY);
+        return new SeasonInfo(season, SeasonInfo.RANDOM_SEASON_BY_RARE_CROP_STRATEGY);
     }
 
     private List<AbstractCropPowerCard> chooseSeasonalCropCards(SeasonInfo seasonInfo) {

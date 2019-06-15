@@ -50,7 +50,7 @@ public class SeasonCustomSavable implements CustomSavable<String> {
         break;
     }
 
-    logger.debug( this.getClass().getSimpleName() + "::onLoad retrieved season from save: " + this.season.name
+    logger.debug( this.getClass().getSimpleName() + "::onLoad retrieved season from save: " + (this.season == null ? Season.UNKNOWN : this.season.name)
         + "(saved value: " + id + ")");
   }
 

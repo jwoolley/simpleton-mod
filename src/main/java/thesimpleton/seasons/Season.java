@@ -3,27 +3,38 @@ package thesimpleton.seasons;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.crops.Crop;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public enum Season {
-  WINTER("WinterSeason"),
-  SPRING("SpringSeason"),
-  SUMMER("SummerSeason"),
-  AUTUMN("AutumnSeason"),
-  UNKNOWN("UnknownSeason");
+  WINTER("WinterSeason", Crop.SPINACH),
+  SPRING("SpringSeason", Crop.SPINACH),
+  SUMMER("SummerSeason", Crop.CHILIS),
+  AUTUMN("AutumnSeason", Crop.ASPARAGUS),
+  UNKNOWN("UnknownSeason", null);
 
   public final String uiName;
   public final String name;
+  public final Crop associatedCrop;
 
-  Season(String uiName) {
+  Season(String uiName, Crop crop) {
     this.uiName = uiName;
 
     final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(TheSimpletonMod.makeID(uiName));
     name = uiStrings.TEXT[0];
+    this.associatedCrop = crop;
   }
 
-  public static Season randomSeason() { return SEASONS.get(RANDOM.nextInt(SEASONS.size())); }
+  public static Season randomSeason() {
+    final int numSeasons = SEASONS.size() - 1;
+    final int randomIndex = RANDOM.nextInt(numSeasons);
+
+    TheSimpletonMod.logger.debug("Season::randomSeason numSeasons: " + numSeasons + "; randomIndex: " + randomIndex);
+
+    return SEASONS.stream()
+        .filter(s -> s != UNKNOWN).collect(Collectors.toList()).get(RANDOM.nextInt(SEASONS.size() - 1)); }
 
   private static final List<Season> SEASONS = Collections.unmodifiableList(Arrays.asList(values()));
   private static final Random RANDOM = new Random();

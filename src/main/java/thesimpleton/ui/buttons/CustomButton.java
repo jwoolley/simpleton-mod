@@ -19,6 +19,10 @@ abstract public class CustomButton extends Button {
     super(x, y, TheSimpletonMod.loadTexture(TheSimpletonMod.getResourcePath(getUiPath(buttonId))));
   }
 
+  public CustomButton(final float x, final float y, final float scale, final String buttonId, final String label) {
+    super(x, y, TheSimpletonMod.loadTexture(TheSimpletonMod.getResourcePath(getUiPath(buttonId))));
+  }
+
   public CustomButton(final float x, final float y, final Texture img, final String label) {
     super(x, y, img);
   }

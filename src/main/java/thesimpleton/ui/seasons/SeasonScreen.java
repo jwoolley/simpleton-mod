@@ -127,7 +127,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
     if (seasonalCropCards != null && !seasonalCropCards.isEmpty()) {
       inSeasonCropCards.addAll(TheSimpletonMod.getSeasonalCropCards());
-      positionCards(Settings.WIDTH / 2.0f, CROP_CARDS_Y);
+      positionCards(Settings.WIDTH / 2.0f, CROP_CARDS_Y * Settings.scale);
 
       show = true;
       this.getReadyButton().enable();
@@ -181,8 +181,8 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   private ReadyButton makeReadyButton() {
     // TODO: scale this appropriately
-    final int READY_BUTTON_X = 806;
-    final int READY_BUTTON_Y = 216;
+    final float READY_BUTTON_X = 806 * Settings.scale;
+    final float READY_BUTTON_Y = 216 * Settings.scale;
 
     final String READY_BUTTON_IMG = getUiText()[2];
 

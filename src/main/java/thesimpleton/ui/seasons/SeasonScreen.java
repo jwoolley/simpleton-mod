@@ -18,6 +18,7 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.seasons.Season;
 import thesimpleton.ui.ReadyButtonPanel;
+import thesimpleton.ui.SettingsHelper;
 import thesimpleton.ui.buttons.ReadyButton;
 
 import java.util.ArrayList;
@@ -73,13 +74,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
     return "customui/seasonscreen/" + id + ".png";
   }
 
-  public static float getScaleX() {
-    return Settings.scale;
-  }
 
-  public static float getScaleY() {
-    return Settings.HEIGHT / 1200.0F;
-  }
   private static String getSeasonImagePath(Season season) {
     switch(season) {
       case WINTER:
@@ -97,9 +92,9 @@ public class SeasonScreen implements ReadyButtonPanel  {
   public SeasonScreen() {
 
     logger.debug("SeasonScreen::constructor Settings.scale: "
-        + Settings.scale + ", Settings.HEIGHT: " + Settings.HEIGHT + ", SCALE_X: " + getScaleX() +", getScaleY(): " + getScaleY());
+        + Settings.scale + ", Settings.HEIGHT: " + Settings.HEIGHT + ", SCALE_X: " + SettingsHelper.getScaleX() +", SettingsHelper.getScaleY(): " + SettingsHelper.getScaleY());
 
-    hb = new Hitbox(width * getScaleX(), height * getScaleY());
+    hb = new Hitbox(width * SettingsHelper.getScaleX(), height * SettingsHelper.getScaleY());
   }
 
   public boolean isOpen() {
@@ -142,7 +137,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
     if (seasonalCropCards != null && !seasonalCropCards.isEmpty()) {
       inSeasonCropCards.addAll(TheSimpletonMod.getSeasonalCropCards());
-      positionCards(Settings.WIDTH / 2.0f, CROP_CARDS_Y * getScaleY());
+      positionCards(Settings.WIDTH / 2.0f, CROP_CARDS_Y * SettingsHelper.getScaleY());
 
       show = true;
       this.getReadyButton().enable();
@@ -200,11 +195,11 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   private ReadyButton makeReadyButton() {
     // TODO: scale this appropriately
-    final float READY_BUTTON_X = 806 * getScaleX();
-    final float READY_BUTTON_Y = 216 * getScaleY();
+    final float READY_BUTTON_X = 806 * SettingsHelper.getScaleX();
+    final float READY_BUTTON_Y = 216 * SettingsHelper.getScaleY();
 
     final String READY_BUTTON_IMG = getUiText()[2];
-    return new ReadyButton(READY_BUTTON_X, READY_BUTTON_Y, getScaleY(), READY_BUTTON_IMG, this);
+    return new ReadyButton(READY_BUTTON_X, READY_BUTTON_Y, SettingsHelper.getScaleY(), READY_BUTTON_IMG, this);
   }
 
 
@@ -219,8 +214,8 @@ public class SeasonScreen implements ReadyButtonPanel  {
 //        + " Settings.HEIGHT: "  + Settings.HEIGHT
 //        + " Settings.isSixteenByTen: " + Settings.isSixteenByTen
 //        + " Settings.scale: "  + Settings.scale
-//        + " SCALE_X: "  + getScaleX()
-//        + " getScaleY() "  + getScaleY());
+//        + " SCALE_X: "  + SettingsHelper.getScaleX()
+//        + " SettingsHelper.getScaleY() "  + SettingsHelper.getScaleY());
 
     final String[] uiText = getUiText();
 
@@ -235,19 +230,19 @@ public class SeasonScreen implements ReadyButtonPanel  {
    seasonNameTextEffect.changeColor(new Color(1.0F, 0.87F, 0.0F, 1.0F));
 
     FontHelper.renderFontCentered(sb, FontHelper.losePowerFont, uiText[0], (Settings.WIDTH / 2.0F),
-        SEASON_DESCRIPTION_PREAMBLE_Y * getScaleY(), seasonNameTextEffect.color, getScaleY());
+        SEASON_DESCRIPTION_PREAMBLE_Y * SettingsHelper.getScaleY(), seasonNameTextEffect.color, SettingsHelper.getScaleY());
 
     FontHelper.renderFontCentered(sb, FontHelper.bannerNameFont, TheSimpletonMod.getSeason().name, (Settings.WIDTH / 2.0F),
-        SEASON_DESCRIPTION_NAME_Y * getScaleY(), seasonNameTextEffect.color, getScaleY());
+        SEASON_DESCRIPTION_NAME_Y * SettingsHelper.getScaleY(), seasonNameTextEffect.color, SettingsHelper.getScaleY());
     FontHelper.renderFontCentered(sb, FontHelper.bannerNameFont,  TheSimpletonMod.getSeason().name, (Settings.WIDTH / 2.0F),
-        SEASON_DESCRIPTION_NAME_Y * getScaleY(), seasonNameTextEffect.color, getScaleY());
+        SEASON_DESCRIPTION_NAME_Y * SettingsHelper.getScaleY(), seasonNameTextEffect.color, SettingsHelper.getScaleY());
 
 //    FontHelper.SCP_cardEnergyFont.setColor();
 
     textEffect.changeColor(new Color(0.9F, 0.9F, 0.9F, 1.0F));
 
     FontHelper.renderFontCentered(sb, FontHelper.bannerFont, uiText[1], (Settings.WIDTH / 2.0F) + CROP_TEXT_OFFSET_X,
-        CROPS_IN_SEASON_TEXT_Y * getScaleY(), textEffect.color, getScaleY());
+        CROPS_IN_SEASON_TEXT_Y * SettingsHelper.getScaleY(), textEffect.color, SettingsHelper.getScaleY());
 
     for (final AbstractCard c : inSeasonCropCards) {
       c.render(sb);

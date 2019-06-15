@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.seasons.Season;
+import thesimpleton.ui.SettingsHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +23,15 @@ public class SeasonIndicator {
   private static final float WIDTH = 190;
   private static final float HEIGHT = 52;
   private static final float X_OFFSET = 0;
-  private static final float Y_OFFSET = 190;
+  private static final float Y_OFFSET = 191;
+  private static final float Y_OFFSET_WIDESCREEN = 207;
   private static final float X_TEXT_OFFSET = 10;
   private static final float Y_TEXT_OFFSET = 28;
+  private static final float Y_TEXT_OFFSET_WIDESCREEN = Y_TEXT_OFFSET;
 
   private static final BitmapFont LABEL_FONT = FontHelper.panelNameFont;
   private static final Color LABEL_COLOR = Color.valueOf("ffffdbff");
+  private static final boolean IS_CLICKABLE = false;
   private final String uiName;
   private String seasonLabel;
   private String imgPath;
@@ -53,12 +57,15 @@ public class SeasonIndicator {
     this.uiName = uiName;
     this.imgPath = getUiPath(imgName);
 
-    this.xOffset = Math.round(X_OFFSET * Settings.scale);
-    this.yOffset =  Math.round((Settings.HEIGHT - Y_OFFSET)* Settings.scale);
-    this.xTextOffset = Math.round(X_TEXT_OFFSET * Settings.scale);
-    this.yTextOffset =  Math.round(Y_TEXT_OFFSET * Settings.scale);
+    this.xOffset = Math.round(X_OFFSET * SettingsHelper.getScaleX());
+    this.xTextOffset = Math.round(X_TEXT_OFFSET * SettingsHelper.getScaleX());
 
-    this.hb = new Hitbox(WIDTH * Settings.scale, HEIGHT * Settings.scale);
+    this.yOffset =  Math.round(
+        (Settings.HEIGHT - (Settings.isSixteenByTen ? Y_OFFSET : Y_OFFSET_WIDESCREEN) * SettingsHelper.getScaleY()));
+    this.yTextOffset =  Math.round(
+        (Settings.isSixteenByTen ? Y_TEXT_OFFSET : Y_TEXT_OFFSET_WIDESCREEN) * SettingsHelper.getScaleY());
+
+    this.hb = new Hitbox(WIDTH * SettingsHelper.getScaleX(), HEIGHT * SettingsHelper.getScaleY());
     hb.translate(xOffset, yOffset);
   }
 
@@ -98,11 +105,11 @@ public class SeasonIndicator {
 
   public void update() {
     hb.update();
-    //  handleClick();
+    handleClick();
   }
 
   private void handleClick() {
-    if (InputHelper.justClickedLeft) {
+    if (IS_CLICKABLE && InputHelper.justClickedLeft) {
       TheSimpletonMod.logger.debug("SeasonIndicator::update handling click");
 
       if (TheSimpletonMod.seasonScreen.isOpen()) {
@@ -123,10 +130,20 @@ public class SeasonIndicator {
       if (this.hb.hovered) {
         final float TOOLTIP_X_OFFSET = 0.0F;
         final float TOOLTIP_Y_OFFSET = -32.0F;
-        TipHelper.queuePowerTips(hb.x + TOOLTIP_X_OFFSET, hb.y - TOOLTIP_Y_OFFSET, getPowerTips());
+        TipHelper.queuePowerTips(
+            hb.x + TOOLTIP_X_OFFSET * SettingsHelper.getScaleX(),
+            hb.y - TOOLTIP_Y_OFFSET * SettingsHelper.getScaleY(), getPowerTips());
       }
 
-      sb.draw(this.getIndicatorImage(), this.xOffset, this.yOffset, 0, 0, Math.round(hb.width), Math.round(hb.height));
+//      sb.draw(this.getIndicatorImage(), this.xOffset, this.yOffset, 0, 0, Math.round(hb.width), Math.round(hb.height));
+
+      Texture indicatorImg = this.getIndicatorImage();
+      sb.draw(indicatorImg,
+          this.xOffset, this.yOffset,
+          indicatorImg.getWidth() * SettingsHelper.getScaleX(),  indicatorImg.getHeight() * SettingsHelper.getScaleY(),
+          0, 0,
+          indicatorImg.getWidth(), indicatorImg.getHeight(),
+          false, false);
 
       FontHelper.renderFontLeft(
           sb,

@@ -53,7 +53,8 @@ public class SeasonScreen implements ReadyButtonPanel  {
   private boolean show = false;
   private boolean wasDismissed = false;
 
-  private boolean showCancelButton = false;
+  private final boolean SHOULD_SHOW_CANCEL_BUTTON = false;
+  private boolean showCancelButtonOnClose = false;
   private String cancelButtonText = "";
   private static final float CROPS_IN_SEASON_TEXT_Y = 787.0F;
   private static final float CROP_CARDS_Y = 575.0F;
@@ -128,8 +129,13 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
     if (AbstractDungeon.overlayMenu != null) {
       CancelButton cancelButton = AbstractDungeon.overlayMenu.cancelButton;
-      showCancelButton = cancelButton.isHidden;
+      showCancelButtonOnClose = cancelButton.isHidden;
       cancelButtonText = cancelButton.buttonText;
+
+      if (!SHOULD_SHOW_CANCEL_BUTTON && !cancelButton.isHidden) {
+        cancelButton.hide();
+        showCancelButtonOnClose = true;
+      }
     }
 
     final List<AbstractCropPowerCard> seasonalCropCards = TheSimpletonMod.getSeasonalCropCards();
@@ -153,8 +159,12 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   public void close() {
     logger.debug("SeasonScreen::close called");
-    AbstractDungeon.overlayMenu.cancelButton.show(cancelButtonText);
+
+    if (showCancelButtonOnClose) {
+      AbstractDungeon.overlayMenu.cancelButton.show(cancelButtonText);
+    }
     AbstractDungeon.dungeonMapScreen.open(true);
+
     this.dismiss();
   }
 

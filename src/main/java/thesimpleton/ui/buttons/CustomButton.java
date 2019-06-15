@@ -1,5 +1,6 @@
 package thesimpleton.ui.buttons;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.ui.buttons.Button;
@@ -12,15 +13,28 @@ abstract public class CustomButton extends Button {
 
   private static final String BUTTONS_UI_PATH = "customui/buttons/";
   private Logger logger = TheSimpletonMod.logger;
+  private float scale;
+  private Texture imgForScale;
+
+
+  // hack in this temporary reference for the img texture to capture it before it's passed to super and saved as private
+  private static Texture tempImg = null;
 
   // TODO: load UI text and Texture by ID
+  private static Texture getImg(String path) {
+    tempImg = TheSimpletonMod.loadTexture(path);
+    return tempImg;
+  }
 
   public CustomButton(final float x, final float y, final String buttonId, final String label) {
-    super(x, y, TheSimpletonMod.loadTexture(TheSimpletonMod.getResourcePath(getUiPath(buttonId))));
+    this(x, y, 1.0F, buttonId, label);
   }
 
   public CustomButton(final float x, final float y, final float scale, final String buttonId, final String label) {
-    super(x, y, TheSimpletonMod.loadTexture(TheSimpletonMod.getResourcePath(getUiPath(buttonId))));
+    super(x, y, getImg(TheSimpletonMod.getResourcePath(getUiPath(buttonId))));
+    this.scale = scale;
+    this.imgForScale = tempImg;
+    tempImg = null;
   }
 
   public CustomButton(final float x, final float y, final Texture img, final String label) {
@@ -75,7 +89,20 @@ abstract public class CustomButton extends Button {
   }
 
   public void render(SpriteBatch sb) {
-    super.render(sb);
+    if (this.hb.hovered) {
+      sb.setColor(this.activeColor);
+    } else {
+      sb.setColor(this.inactiveColor);
+    }
+//    sb.draw(this.imgForScale, this.x, this.y);
+    sb.draw(this.imgForScale,
+        this.x, this.y,
+        this.scale * this.width, this.scale * this.height,
+        0, 0,
+        width, height,
+        false, false);
+    sb.setColor(Color.WHITE);
+    this.hb.render(sb);
   }
 
   private static String getUiPath(String id) {

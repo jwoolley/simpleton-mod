@@ -8,12 +8,12 @@ public class ReadyButton extends CustomButton {
   private Logger logger = TheSimpletonMod.logger;
 
   public final static String BUTTON_ID = "TheSimpletonMod:ReadyButton";
-  public final static String BUTTON_IMG_ = "ready-button-1";
+  public final static String BUTTON_IMG = "ready-button-1";
 
   public final ReadyButtonPanel panel;
 
-  public ReadyButton(float x, float y, String label, ReadyButtonPanel panel) {
-    super(x, y, BUTTON_IMG_, label);
+  public ReadyButton(float x, float y, float scale, String label, ReadyButtonPanel panel) {
+    super(x, y, scale, BUTTON_IMG, label);
     this.panel = panel;
     logger.debug("ReadyButton instantiated");
   }

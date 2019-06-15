@@ -128,7 +128,7 @@ public class SeasonIndicator {
     if (shouldRender()) {
 
       if (this.hb.hovered) {
-        final float TOOLTIP_X_OFFSET = 0.0F;
+        final float TOOLTIP_X_OFFSET = 16.0F;
         final float TOOLTIP_Y_OFFSET = -32.0F;
         TipHelper.queuePowerTips(
             hb.x + TOOLTIP_X_OFFSET * SettingsHelper.getScaleX(),

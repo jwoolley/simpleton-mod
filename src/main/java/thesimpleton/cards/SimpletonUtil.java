@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.attack.FlamingSpud;
+import thesimpleton.cards.attack.Gnawberry;
 import thesimpleton.cards.attack.SpudMissile;
 import thesimpleton.cards.skill.Husk;
 import thesimpleton.cards.skill.RootOut;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 public class SimpletonUtil {
     public static final AbstractCard SPUD_MISSILE = new SpudMissile();
     public static final AbstractCard FLAMING_SPUD = new FlamingSpud();
+    public static final AbstractCard GNAWBERRY = new Gnawberry();
     public static final AbstractCard HUSK = new Husk();
     public static final AbstractCard ROOT_OUT = new RootOut();
 

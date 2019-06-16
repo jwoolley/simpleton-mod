@@ -144,6 +144,11 @@
     "DESCRIPTION": "Draw a card for each different type of Crop you have."
   },
 
+  "TheSimpletonMod:Gnawberry": {
+    "NAME": "Gnawberry",
+    "DESCRIPTION": "Deal !D! Damage. NL Heal !M! HP. NL Exhaust."
+  },
+
   "TheSimpletonMod:Haymaker": {
     "NAME": "Haymaker",
     "DESCRIPTION": "Deal !D! damage. NL Heal !M! HP. NL Apply ",
@@ -361,6 +366,11 @@
   "TheSimpletonMod:Squash": {
     "NAME": "Squash",
     "DESCRIPTION": "Plant !M! Squash."
+  },
+
+  "TheSimpletonMod:Strawberries": {
+    "NAME": "Strawberries",
+    "DESCRIPTION": "Plant !M! Strawberries."
   },
 
   "TheSimpletonMod:Turnips": {

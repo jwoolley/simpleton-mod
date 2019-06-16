@@ -376,6 +376,7 @@ abstract public class AbstractCrop {
       final OnionCrop onionCrop = new OnionCrop();
       final PotatoCrop potatoCrop = new PotatoCrop();
       final SpinachCrop spinachCrop = new SpinachCrop();
+      final StrawberryCrop strawberryCrop = new StrawberryCrop();
       final TurnipCrop turnipCrop = new TurnipCrop();
 
     referenceCrops.add(artichokeCrop);
@@ -388,7 +389,7 @@ abstract public class AbstractCrop {
       referenceCrops.add(mushroomCrop);
       referenceCrops.add(onionCrop);
       referenceCrops.add(turnipCrop);
-
+      referenceCrops.add(strawberryCrop);
     }
     return referenceCrops;
   }

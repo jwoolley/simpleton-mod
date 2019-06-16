@@ -14,6 +14,7 @@ public enum Crop {
   POTATOES(CropInfoDefinition.Potatoes),
   SPINACH(CropInfoDefinition.Spinach),
   SQUASH(CropInfoDefinition.Squash),
+  STRAWBERRIES(CropInfoDefinition.Strawberries),
   TURNIPS(CropInfoDefinition.Turnips);
 
   private CropInfo cropInfo;
@@ -62,6 +63,8 @@ public enum Crop {
         return new SpinachCropOrb(amount);
       case SQUASH:
         return new SquashCropOrb(amount);
+      case STRAWBERRIES:
+        return new MushroomCropOrb(amount); // return new StrawberryCropOrb(amount);
       case TURNIPS:
         return new TurnipCropOrb(amount);
       default:

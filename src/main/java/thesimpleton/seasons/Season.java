@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public enum Season {
   WINTER("WinterSeason", Crop.SPINACH),
-  SPRING("SpringSeason", Crop.SPINACH),
+  SPRING("SpringSeason", Crop.STRAWBERRIES),
   SUMMER("SummerSeason", Crop.CHILIS),
   AUTUMN("AutumnSeason", Crop.ASPARAGUS),
   UNKNOWN("UnknownSeason", null);

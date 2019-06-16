@@ -343,11 +343,12 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new Asparagus());
         cards.add(new Chilis());
         cards.add(new Corn());
-        cards.add(new Squash());
         cards.add(new Mushrooms());
         cards.add(new Onions());
         cards.add(new Potatoes());
         cards.add(new Spinach());
+        cards.add(new Squash());
+        cards.add(new Strawberries());
         cards.add(new Turnips());
 
         return cards;

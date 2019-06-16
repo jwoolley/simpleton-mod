@@ -79,6 +79,14 @@
     "DESCRIPTION": "Depletions are playable status cards that reduce your Energy and Draw next turn."
   },
 
+  "TheSimpletonMod:GnawberryKeyword": {
+    "PROPER_NAME": "Gnawberry",
+    "NAMES": [
+      "gnawberry", "gnawberries"
+    ],
+    "DESCRIPTION": "Gnawberries are attack cards that deal moderate damage and heal HP."
+  },
+
   "TheSimpletonMod:HarvestKeyword": {
     "PROPER_NAME": "Harvest",
     "NAMES": [
@@ -135,7 +143,7 @@
     "NAMES": [
       "potato", "potatoes"
     ],
-    "DESCRIPTION": "#yCrop. Yields a 0-cost Spud attack card when harvested."
+    "DESCRIPTION": "#yCrop. Yields 0-cost Spud attack cards when harvested."
   },
 
   "TheSimpletonMod:RitualKeyword": {
@@ -170,6 +178,14 @@
     "DESCRIPTION": "#yCrop. Grants #yBlock When harvested."
   },
 
+  "TheSimpletonMod:StrawberryKeyword": {
+    "PROPER_NAME": "Strawberries",
+    "NAMES": [
+      "strawberry", "strawberries"
+    ],
+    "DESCRIPTION": "#yCrop. Yields Gnawberry attack cards when harvested that also heal a small amount of HP."
+  },
+
   "TheSimpletonMod:StunKeyword": {
     "PROPER_NAME": "Stun",
     "NAMES": [
@@ -183,6 +199,6 @@
     "NAMES": [
       "turnip", "turnips"
     ],
-    "DESCRIPTION": "#yCrop. Yields an attack card when harvested that scales with number of stacks."
+    "DESCRIPTION": "#yCrop. Yields an attack card when harvested that scales with number of stacks and adds a Turnips card to your hand."
   }
 }

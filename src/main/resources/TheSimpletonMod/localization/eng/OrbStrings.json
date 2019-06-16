@@ -77,6 +77,13 @@
       " Block for each stack harvested."
     ]
   },
+  "TheSimpletonMod:StrawberryCropOrb": {
+    "NAME": "Strawberries",
+    "DESCRIPTION": [
+      "#gHarvest: Consume ALL stacks and add a #yGnawberries to your hand for each stack harvested."
+    ]
+  },
+
 
   "TheSimpletonMod:TurnipCropOrb": {
     "NAME": "Turnips",

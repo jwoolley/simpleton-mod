@@ -177,7 +177,7 @@ public class SeasonIndicator {
   }
 
   public String getTipHeader() {
-    return TEXT[0] + getSeasonLabel() + ".";
+    return TEXT[0] + getSeasonLabel() + TEXT[1];
   }
 
   public String getTipText() {
@@ -188,14 +188,14 @@ public class SeasonIndicator {
       tipText += "#y" + seasonalCropLabels.get(0);
       if (seasonalCropLabels.size() > 1) {
         if (seasonalCropLabels.size() > 2) {
-          tipText += TEXT[1] + "#y" + seasonalCropLabels.get(1) + TEXT[2] + "#y" + seasonalCropLabels.get(2);
+          tipText += TEXT[2] + "#y" + seasonalCropLabels.get(1) + TEXT[3] + "#y" + seasonalCropLabels.get(2);
         } else {
-          tipText += TEXT[3] + "#y" + seasonalCropLabels.get(1);
+          tipText += TEXT[4] + "#y" + seasonalCropLabels.get(1);
         }
       }
-      tipText += TEXT[4];
+      tipText += TEXT[5];
     }
-    tipText += TEXT[5];
+    tipText += TEXT[6];
 
     return tipText;
   }

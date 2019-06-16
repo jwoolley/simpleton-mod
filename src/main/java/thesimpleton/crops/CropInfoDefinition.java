@@ -1,6 +1,7 @@
 package thesimpleton.crops;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.relics.Strawberry;
 import thesimpleton.cards.power.crop.*;
 import thesimpleton.orbs.*;
 
@@ -28,6 +29,7 @@ abstract class CropInfoDefinition {
   static final CropInfoDefinition Potatoes;
   static final CropInfoDefinition Spinach;
   static final CropInfoDefinition Squash;
+  static final CropInfoDefinition Strawberries;
   static final CropInfoDefinition Turnips;
 
   // TODO: make a separate CropRarity enum
@@ -102,6 +104,14 @@ abstract class CropInfoDefinition {
         AbstractCard.CardRarity.BASIC,
         5) {
       public AbstractCrop getCrop() { return new SquashCrop(); }
+    };
+
+    Strawberries = new CropInfoDefinition(
+        StrawberryCropOrb.ORB_ID,
+        new Strawberries(),
+        AbstractCard.CardRarity.UNCOMMON,
+        3) {
+      public AbstractCrop getCrop() { return new StrawberryCrop(); }
     };
 
     Turnips = new CropInfoDefinition(

@@ -57,7 +57,7 @@ import java.util.stream.Collectors;
 public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber,
         EditStringsSubscriber, EditKeywordsSubscriber, PostInitializeSubscriber, PostCreateStartingDeckSubscriber,
         PostCreateStartingRelicsSubscriber, PostDungeonInitializeSubscriber, StartActSubscriber, StartGameSubscriber,
-        PostBattleSubscriber, PreRoomRenderSubscriber, PostDeathSubscriber  {
+        OnStartBattleSubscriber, PostBattleSubscriber, PreRoomRenderSubscriber, PostEnergyRechargeSubscriber, PostDeathSubscriber  {
     private static final Color CUSTOM_COLOR = CardHelper.getColor(57.0F, 131.0F, 245.0F);
 
     private static final String ATTACK_CARD = "512/attack_thesimpleton.png";
@@ -100,6 +100,18 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         CUSTOM_SAVABLES.seasonCustomSavable.reset();
         seasonScreen.reset();
         SEASONAL_CROP_CARDS.clear();
+    }
+
+    @Override
+    public void receivePostEnergyRecharge() {
+        logger.debug("TheSimpletonMod::receivePostEnergyRecharge : reseting hasHarvestedThisTurn");
+        AbstractCrop.resetHasHarvestedThisTurn();
+    }
+
+    @Override
+    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
+        logger.debug("TheSimpletonMod::receiveOnBattleStart : resetting hasHarvestedThisTurn");
+        AbstractCrop.resetHasHarvestedThisTurn();
     }
 
     private static class CUSTOM_SAVABLES {

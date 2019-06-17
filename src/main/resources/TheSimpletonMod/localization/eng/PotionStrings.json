@@ -1,18 +1,4 @@
 {
-  "TheSimpletonMod:DregsPotion": {
-    "NAME": "Dregs Potion",
-    "DESCRIPTIONS": [
-      "Add #b",
-      " #rDregs card into your hand."
-    ]
-  },
-  "TheSimpletonMod:DregsPotionKeyword": {
-    "NAME": "Dregs",
-    "DESCRIPTIONS": [
-      "Dregs are unplayable #rCurse cards."
-    ]
-  },
-
   "TheSimpletonMod:AbundancePotion": {
   "NAME": "Abundance Potion",
   "DESCRIPTIONS": [

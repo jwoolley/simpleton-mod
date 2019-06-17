@@ -1,100 +1,4 @@
 {
-  "TheSimpletonMod:BleedPower": {
-    "NAME": "Bleed",
-    "DESCRIPTIONS": [
-      "Whenever this creature attacks, it loses #b",
-      " HP. At the end of its turn, reduce #b1 #yBleed."
-    ]
-  },
-  "TheSimpletonMod:CollectTributePower": {
-    "NAME": "Collect Tribute",
-    "DESCRIPTIONS": [
-      "At the start of your turn, gain [E] and add #b1 random #rCurse card into your hand.",
-      "At the start of your turn, gain #b",
-      " #yEnergy and add #b",
-      " random #rCurse cards into your hand."
-    ]
-  },
-
-  "TheSimpletonMod:DemonicPactPower": {
-    "NAME": "Demonic Pact",
-    "DESCRIPTIONS": [
-      "Whenever you use a #yRitual card, draw #b1 card.",
-      "Whenever you use a #yRitual card, draw #b",
-      " cards."
-    ]
-  },
-  "TheSimpletonMod:EmpowerCirclesPower": {
-    "NAME": "Empower Circles",
-    "DESCRIPTIONS": [
-      "Whenever you draw a #yCircle card, gain [E] and draw #b1 card.",
-      "Whenever you drwa a #yCircle card, gain #b",
-      " Energy and draw #b",
-      " cards."
-    ]
-  },
-  "TheSimpletonMod:HellfireBreathingPower": {
-    "NAME": "Hellfire Breathing",
-    "DESCRIPTIONS": [
-      "Whenever you draw a #rCurse card, deal #b",
-      " damage to ALL enemies."
-    ]
-  },
-  "TheSimpletonMod:HellsGateOpenPower": {
-    "NAME": "Hell's Gate Open",
-    "DESCRIPTIONS": [
-      "At the start of your turn, add #b1 random #yCursed card into your hand.",
-      "At the start of your turn, add #b",
-      " random #yCursed cards into your hand."
-    ]
-  },
-  "TheSimpletonMod:HemoplaguePower": {
-    "NAME": "Hemoplague",
-    "DESCRIPTIONS": [
-      "At the start of your turn, Apply #b",
-      " #yBleed to ALL enemies."
-    ]
-  },
-  "TheSimpletonMod:LuckyCharmPower": {
-    "NAME": "Lucky Charm",
-    "DESCRIPTIONS": [
-      "Whenever a #rCurse card is drawn or #yExhausted, gain #b",
-      " #yBlock."
-    ]
-  },
-  "TheSimpletonMod:ManaCirculationPower": {
-    "NAME": "Mana Circulation",
-    "DESCRIPTIONS": [
-      "Whenever a #rCurse card is #yExhausted, gain [E].",
-      "Whenever a #rCurse card is #yExhausted, gain #b",
-      " Energy."
-    ]
-  },
-  "TheSimpletonMod:OutForBloodPower": {
-    "NAME": "Out for Blood",
-    "DESCRIPTIONS": [
-      "Whenever you deal unblocked attack damage, apply #b",
-      " #yBleed."
-    ]
-  },
-
-  "TheSimpletonMod:SpitefulPlanPower": {
-    "NAME": "Spiteful Plan",
-    "DESCRIPTIONS": [
-      "Whenever you draw a #rCurse card, draw #b1 card.",
-      "Whenever you draw a #rCurse card, draw #b",
-      " cards."
-    ]
-  },
-
-  "TheSimpletonMod:VoidFormPower": {
-    "NAME": "Void Form",
-    "DESCRIPTIONS": [
-      "Whenever you draw a #rCurse card, gain #b",
-      " #yStrength."
-    ]
-  },
-
   "TheSimpletonMod:AbstractCropPower": {
     "NAME": "AbstractCrop",
     "DESCRIPTIONS": [
@@ -103,79 +7,11 @@
     ]
   },
 
-  "TheSimpletonMod:PlantArtichokePower": {
-    "NAME": "Artichokes",
+  "TheSimpletonMod:AbundancePower": {
+    "NAME": "Abundance",
     "DESCRIPTIONS": [
-      "#gHarvest: Gain #b",
-      " #yThorns for each stack harvested."
-    ]
-  },
-
-  "TheSimpletonMod:PlantAsparagusPower": {
-    "NAME": "Asparagus",
-    "DESCRIPTIONS": [
-      "#gHarvest: Gain #b",
-      " #yDexterity for each stack harvested."
-    ]
-  },
-
-  "TheSimpletonMod:PlantChiliPower": {
-    "NAME": "Chilis",
-    "DESCRIPTIONS": [
-      "#gHarvest: Deal #b",
-      " damage and apply #b",
-      " #yBurning to ALL enemies for each stack harvested."
-    ]
-  },
-
-  "TheSimpletonMod:PlantCornPower": {
-    "NAME": "Corn",
-    "DESCRIPTIONS": [
-      "#gHarvest: Draw a card for each stack harvested."
-    ]
-  },
-
-  "TheSimpletonMod:PlantMushroomPower": {
-    "NAME": "Mushrooms",
-    "DESCRIPTIONS": [
-      "#gHarvest: Add a random colorless card to your hand for each stack harvested."
-    ]
-  },
-
-  "TheSimpletonMod:PlantOnionPower": {
-    "NAME": "Onions",
-    "DESCRIPTIONS": [
-      "#gHarvest: Apply 1 Weak to a random enemy for each stack harvested."
-    ]
-  },
-
-  "TheSimpletonMod:PlantPotatoPower": {
-    "NAME": "Potatoes",
-    "DESCRIPTIONS": [
-      "#gHarvest: Add a #ySpud to your hand per stack harvested."
-    ]
-  },
-
-  "TheSimpletonMod:PlantSpinachPower": {
-    "NAME": "Spinach",
-    "DESCRIPTIONS": [
-      "#gHarvest: Gain #b",
-      " #yStrength for each stack harvested."
-    ]
-  },
-
-  "TheSimpletonMod:PlantSquashPower": {
-    "NAME": "Squash",
-    "DESCRIPTIONS": [
-      "#gHarvest: Gain #b",
-      " #yBlock for each stack harvested."
-    ]
-  },
-
-  "TheSimpletonMod:PlantTurnipPower": {
-    "NAME": "Turnips",
-    "DESCRIPTIONS": [
-      "#gHarvest: Convert ALL stacks into an attack card that deals increased damage for each stack harvested. Then gain a Turnips Crop card."
+      "Increases #yCrop stacks #yPlanted from cards by #b",
+      "."
     ]
   },
 
@@ -208,14 +44,6 @@
     "DESCRIPTIONS": [
       "At the start of your turn, lose #b",
       " #yEnergy."
-    ]
-  },
-
-  "TheSimpletonMod:AbundancePower": {
-    "NAME": "Abundance",
-    "DESCRIPTIONS": [
-      "Increases #yCrop stacks #yPlanted from cards by #b",
-      "."
     ]
   },
 

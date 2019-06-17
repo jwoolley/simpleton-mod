@@ -1,7 +1,6 @@
 package thesimpleton.characters;
 
 import basemod.abstracts.CustomPlayer;
-import basemod.interfaces.StartGameSubscriber;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
@@ -35,7 +34,6 @@ import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.relics.NightSoil;
 import thesimpleton.relics.SpudOfTheInnocent;
 import thesimpleton.relics.TheHarvester;
-import thesimpleton.relics.seasons.PlaceholderSeasonRelic;
 import thesimpleton.utilities.*;
 
 import java.util.*;

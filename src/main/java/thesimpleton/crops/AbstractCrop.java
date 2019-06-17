@@ -35,7 +35,6 @@ abstract public class AbstractCrop {
   private static final List<AbstractCrop> referenceCrops = new ArrayList<>();;
 
   private static int STACKS_PER_TRIGGER = 1;
-  private static boolean hasHarvestedThisTurn = false;
 
   private final boolean isHarvestAll;
   private final AbstractCropPowerCard powerCard;
@@ -78,10 +77,12 @@ abstract public class AbstractCrop {
     //  getPlayer().getCropUtil().onCropGained(this);
   }
 
+  private static int numTimesHarvestedThisTurn = 0;
+
   void onHarvest(int amount) {
     TheSimpletonMod.logger.debug("============> AbstractCrop::onHarvest =====");
 
-    hasHarvestedThisTurn = true;
+    numTimesHarvestedThisTurn++;
     logger.debug("AbstractCrop::" + this.getCropOrb().ID + ": onHarvestCalled.  amount: " + amount + ". Set hasHarvestedThisTurn");
 
     if (getPlayer().hasPower(ToughSkinPower.POWER_ID)) {
@@ -191,11 +192,10 @@ abstract public class AbstractCrop {
   abstract protected int harvestAction(int harvestAmount);
 
   public static boolean hasHarvestedThisTurn() {
-    return hasHarvestedThisTurn;
+    return numTimesHarvestedThisTurn > 0;
   }
 
-
-  public static void resetHasHarvestedThisTurn() { hasHarvestedThisTurn = false; }
+  public static void resetHasHarvestedThisTurn() { numTimesHarvestedThisTurn = 0; }
 
   public void atStartOfTurn() {
     final int amount = this.getAmount();

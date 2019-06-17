@@ -20,7 +20,6 @@ import thesimpleton.powers.ToughSkinPower;
 import thesimpleton.relics.CashCrop;
 import thesimpleton.relics.GrassPellets;
 import thesimpleton.utilities.CropUtil;
-import thesimpleton.utilities.Trigger;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -69,12 +68,6 @@ abstract public class AbstractCrop {
   }
 
   public String getName() {
-//    logger.debug("============> AbstractCrop::getName =====");
-//    logger.debug("============> AbstractCrop::getName this.enumValue: " + this.enumValue);
-//    logger.debug("============> AbstractCrop::getName this.getClass().getSimpleName(): " + this.getClass().getSimpleName());
-//    logger.debug("============> AbstractCrop::getName Crop.getCropOrb(): " + Crop.getCropOrb(this.enumValue));
-//    logger.debug("============> AbstractCrop::getName  Crop.getCropOrb().name: " + Crop.getCropOrb(this.enumValue).name);
-
     return this.enumValue.name();
   }
 
@@ -124,14 +117,7 @@ abstract public class AbstractCrop {
     logger.debug("AbstractCrop::stackOrb amount:" + amount + " for " + getClass().getSimpleName());
     logger.debug("AbstractCrop::stackOrb stacks:" + stacks);
 
-//    if (AbstractCropOrb.hasCropOrb(getCropOrbId())) {
-//      logger.debug("AbstractCrop::stackOrb player has " + getClass().getSimpleName() + " already. Num stacks: " + getCropOrb().getAmount());
-//    } else {
-//      logger.debug("AbstractCrop::stackOrb doesn't have " + getClass().getSimpleName() + " already.");
-//    }
-
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction((AbstractCropOrb)getCropOrb().makeCopy(), stacks, true));
-    CropUtil.triggerCardUpdates();
+        AbstractDungeon.actionManager.addToBottom(new CropSpawnAction((AbstractCropOrb)getCropOrb().makeCopy(), stacks, true));
   }
 
   public static void stackOrb(AbstractCropOrb cropOrb, int amount, boolean isFromCard) {
@@ -140,11 +126,6 @@ abstract public class AbstractCrop {
     //    logger.debug("AbstractCrop::stackOrb player " + (actualCropOrb != null ? "has " + actualCropOrb.passiveAmount + " stacks of " : "does not have ") + cropOrb.name + " already.");
 
     AbstractDungeon.actionManager.addToBottom(new CropSpawnAction((AbstractCropOrb) cropOrb.makeCopy(), amount, isFromCard));
-  }
-
-  public void reduceOrb(int amount) {
-    AbstractDungeon.actionManager.addToBottom(new CropReduceAction((AbstractCropOrb)getCropOrb().makeCopy(), amount));
-    CropUtil.triggerCardUpdates();
   }
 
   public boolean isMature() {
@@ -310,18 +291,6 @@ abstract public class AbstractCrop {
         .filter(predicate)
         .collect(Collectors.toList());
 
-//    logger.debug(AbstractCropPowerCard.class.getSimpleName()
-//        + ".getRandomCrops :: referenceCrops: "
-//        + referenceCrops.stream().map(rp ->rp.enumValue + "").collect(Collectors.joining(", ")));
-//
-//    logger.debug(AbstractCropPowerCard.class.getSimpleName()
-//        + ".getRandomCrops :: referenceCrops: "
-//        + referenceCrops.stream().map(rp ->rp.getName()).collect(Collectors.joining(", ")));
-//
-//    logger.debug(AbstractCropPowerCard.class.getSimpleName()
-//        + ".getRandomCrops :: filteredCrops: "
-//        + filteredCrops.stream().map(fp -> fp.enumValue + "").collect(Collectors.joining(", ")));
-
     ArrayList<AbstractCrop> resultCrops;
 
     final int numTotalCrops = filteredCrops.size();
@@ -413,21 +382,7 @@ abstract public class AbstractCrop {
   private static boolean initialized = false;
   public static void initialize() {
     if (!initialized) {
-
       getCropRarityDistribution();
-      // TODO: move to CropUtil?
-      // reset hasHarvestedThisTurn at start of combat and at end of turn
-      Trigger trigger = new Trigger() {
-        public void trigger() {
-          logger.debug("AbstractCrop: Managed trigger: Resetting hasHarvestedThisTurn ");
-          hasHarvestedThisTurn = false;
-        }
-      };
-
-      TheSimpletonCharacter.addPrecombatPredrawTrigger(trigger);
-      TheSimpletonCharacter.addStartOfTurnTrigger(trigger);
-      TheSimpletonCharacter.addEndOfTurnTrigger(trigger);
-
       initialized = true;
     }
   }

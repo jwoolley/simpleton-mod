@@ -519,7 +519,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     public void receiveEditRelics() {
         logger.debug("TheSimpletonMod::receiveEditRelics called ===========================>>>>>>>");
 
-
         BaseMod.addRelicToCustomPool(new SpudOfTheInnocent(), AbstractCardEnum.THE_SIMPLETON_BLUE);
 
         BaseMod.addRelicToCustomPool(new CashCrop(), AbstractCardEnum.THE_SIMPLETON_BLUE);
@@ -592,12 +591,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     private static List<AbstractCard> getDeckBeforeShuffle() {
         List<AbstractCard> deckBefore = AbstractDungeon.player.drawPile.group;
         return deckBefore;
-    }
-
-    public static void handleSaveBefore() {
-        logger.debug("TheSimpletonMod.handleSaveBefore called");
-//        saveCardPool();
-        theSimpletonCharacter.getCropUtil().resetForCombatEnd();
     }
 
     public static List<AbstractCard> getSaveCardPool() {

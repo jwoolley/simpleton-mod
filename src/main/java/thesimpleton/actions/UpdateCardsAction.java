@@ -22,7 +22,6 @@ public class UpdateCardsAction extends AbstractGameAction {
   @Override
   public void update() {
     if (this.duration != ACTION_DURATION) {
-      CropUtil.triggerCardUpdates();
       this.tickDuration();
       this.isDone = true;
       return;

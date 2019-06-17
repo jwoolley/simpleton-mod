@@ -289,6 +289,11 @@
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Each Weak enemy that takes damage also gains !M! Burning."
   },
 
+  "TheSimpletonMod:Thresh": {
+    "NAME": "Thresh",
+    "DESCRIPTION": "Deal !D! damage. NL Costs [E] less for each time you Harvest this turn."
+  },
+
   "TheSimpletonMod:TillTheField": {
     "NAME": "Till the Field",
     "DESCRIPTION": "If your newest Crop is Mature, gain !B! Block. Otherwise, Plant !M! of that Crop.",
@@ -300,7 +305,6 @@
       ", not Mature)"
     ]
   },
-
 
   "TheSimpletonMod:ToughSkin": {
     "NAME": "Tough Skin",

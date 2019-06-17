@@ -28,6 +28,7 @@ import com.megacrit.cardcrawl.relics.PaperCrane;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
 import thesimpleton.cards.curse.Nettles;
@@ -309,6 +310,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new SaltTheEarth());
         cards.add(new SlashAndBurn());
         cards.add(new Sunchoke());
+        cards.add(new Thresh());
 
         // Skill (20)
         cards.add(new Aerate());
@@ -604,6 +606,22 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             logger.debug("TheSimpletonMod.handleUseCard triggering: " + crop.getName() + " for " + card.name);
             crop.onUseCard(card, action);
         });
+    }
+
+    public static void updateCardsOnHarvest() {
+        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+            AbstractDungeon.player.hand.group.stream()
+                .filter(c -> c instanceof HarvestTriggeredCard)
+                .forEach(c -> ((HarvestTriggeredCard)c).harvestedTrigger());
+
+            AbstractDungeon.player.discardPile.group.stream()
+                .filter(c -> c instanceof HarvestTriggeredCard)
+                .forEach(c -> ((HarvestTriggeredCard)c).harvestedTrigger());
+
+            AbstractDungeon.player.drawPile.group.stream()
+                .filter(c -> c instanceof HarvestTriggeredCard)
+                .forEach(c -> ((HarvestTriggeredCard)c).harvestedTrigger());
+        }
     }
 
     public static void handleEmptyDrawShuffleBefore() {

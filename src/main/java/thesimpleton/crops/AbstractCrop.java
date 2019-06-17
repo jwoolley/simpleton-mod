@@ -30,10 +30,10 @@ abstract public class AbstractCrop {
   public final  AbstractCard.CardRarity cropRarity;
   private final String cropOrbId;
 
+  private static int numTimesHarvestedThisTurn = 0;
+
   protected static final Logger logger = TheSimpletonMod.logger;
-
   private static final List<AbstractCrop> referenceCrops = new ArrayList<>();;
-
   private static int STACKS_PER_TRIGGER = 1;
 
   private final boolean isHarvestAll;
@@ -73,11 +73,6 @@ abstract public class AbstractCrop {
     return this.cropOrbId;
   }
 
-  private void triggerCropGained() {
-    //  getPlayer().getCropUtil().onCropGained(this);
-  }
-
-  private static int numTimesHarvestedThisTurn = 0;
 
   void onHarvest(int amount) {
     TheSimpletonMod.logger.debug("============> AbstractCrop::onHarvest =====");
@@ -96,6 +91,8 @@ abstract public class AbstractCrop {
     if (getPlayer().hasRelic(CashCrop.ID)) {
       ((CashCrop) getPlayer().getRelic(CashCrop.ID)).onHarvest(this.enumValue);
     }
+
+    TheSimpletonMod.updateCardsOnHarvest();
   }
 
   public int getMaturityThreshold() {
@@ -193,6 +190,10 @@ abstract public class AbstractCrop {
 
   public static boolean hasHarvestedThisTurn() {
     return numTimesHarvestedThisTurn > 0;
+  }
+
+  public static int getNumTimesHarvestedThisTurn() {
+    return numTimesHarvestedThisTurn;
   }
 
   public static void resetHasHarvestedThisTurn() { numTimesHarvestedThisTurn = 0; }

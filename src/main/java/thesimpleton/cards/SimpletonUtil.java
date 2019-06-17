@@ -74,7 +74,13 @@ public class SimpletonUtil {
         return AbstractDungeon.player.orbs.stream().filter(orb -> orb.ID != null && orb.ID != EmptyOrbSlot.ORB_ID).collect(Collectors.toList());
     }
 
+    // TODO: move these harvest functions to CropUtil, move CropUtil to Crop package, and make the called functions
+    //       package-scoped
     public static boolean hasHarvestedThisTurn() {
         return AbstractCrop.hasHarvestedThisTurn();
+    }
+
+    public static int getNumTimesHarvestedThisTurn() {
+        return AbstractCrop.getNumTimesHarvestedThisTurn();
     }
 }

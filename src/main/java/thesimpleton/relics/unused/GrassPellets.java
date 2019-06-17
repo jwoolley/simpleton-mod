@@ -1,4 +1,4 @@
-package thesimpleton.relics;
+package thesimpleton.relics.unused;
 
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;

@@ -1,4 +1,4 @@
-package thesimpleton.cards.attack;
+package thesimpleton.cards.attack.unused;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

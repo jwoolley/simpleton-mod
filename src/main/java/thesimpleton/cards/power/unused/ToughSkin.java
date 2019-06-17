@@ -1,4 +1,4 @@
-package thesimpleton.cards.power;
+package thesimpleton.cards.power.unused;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.ToughSkinPower;
+import thesimpleton.powers.unused.ToughSkinPower;
 
 public class ToughSkin extends CustomCard {
   public static final String ID = "TheSimpletonMod:ToughSkin";

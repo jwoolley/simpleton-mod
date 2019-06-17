@@ -16,10 +16,9 @@ import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.orbs.AbstractCropOrb;
-import thesimpleton.powers.ToughSkinPower;
+import thesimpleton.powers.unused.ToughSkinPower;
 import thesimpleton.relics.CashCrop;
-import thesimpleton.relics.GrassPellets;
-import thesimpleton.utilities.CropUtil;
+import thesimpleton.relics.unused.GrassPellets;
 
 import java.util.*;
 import java.util.function.Predicate;

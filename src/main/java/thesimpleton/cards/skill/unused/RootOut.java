@@ -1,4 +1,4 @@
-package thesimpleton.cards.skill;
+package thesimpleton.cards.skill.unused;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.skill.AbstractHarvestCard;
 import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.crops.Crop;
 

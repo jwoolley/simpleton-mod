@@ -1,4 +1,4 @@
-package thesimpleton.cards.skill;
+package thesimpleton.cards.skill.unused;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;

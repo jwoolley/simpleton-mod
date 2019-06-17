@@ -339,6 +339,7 @@ abstract public class AbstractCrop {
       final ArtichokeCrop artichokeCrop = new ArtichokeCrop();
       final AsparagusCrop asparagusCrop = new AsparagusCrop();
       final ChilisCrop chilisCrop = new ChilisCrop();
+      final CoffeeCrop coffeeCrop= new CoffeeCrop();
       final CornCrop cornCrop = new CornCrop();
       final SquashCrop squashCrop = new SquashCrop();
       final MushroomCrop mushroomCrop = new MushroomCrop();
@@ -351,13 +352,14 @@ abstract public class AbstractCrop {
     referenceCrops.add(artichokeCrop);
       referenceCrops.add(asparagusCrop);
       referenceCrops.add(chilisCrop);
-      referenceCrops.add(potatoCrop);
+      referenceCrops.add(coffeeCrop);
       referenceCrops.add(cornCrop);
-      referenceCrops.add(squashCrop);
-      referenceCrops.add(spinachCrop);
       referenceCrops.add(mushroomCrop);
       referenceCrops.add(onionCrop);
+      referenceCrops.add(potatoCrop);
       referenceCrops.add(turnipCrop);
+      referenceCrops.add(squashCrop);
+      referenceCrops.add(spinachCrop);
       referenceCrops.add(strawberryCrop);
     }
     return referenceCrops;

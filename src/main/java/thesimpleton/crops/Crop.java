@@ -8,6 +8,7 @@ public enum Crop {
   ARTICHOKES(CropInfoDefinition.Artichokes),
   ASPARAGUS(CropInfoDefinition.Asparagus),
   CHILIS(CropInfoDefinition.Chilis),
+  COFFEE(CropInfoDefinition.Coffee),
   CORN(CropInfoDefinition.Corn),
   MUSHROOMS(CropInfoDefinition.Mushrooms),
   ONIONS(CropInfoDefinition.Onions),
@@ -49,6 +50,8 @@ public enum Crop {
         return new ArtichokeCropOrb(amount);
       case ASPARAGUS:
         return new AsparagusCropOrb(amount);
+      case COFFEE:
+        return new CoffeeCropOrb(amount);
       case CORN:
         return new CornCropOrb(amount);
       case CHILIS:

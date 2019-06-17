@@ -39,6 +39,15 @@
     "DESCRIPTION": "#yCrop. Deals damage and applies #yBurning to all enemies when harvested."
   },
 
+  "TheSimpletonMod:CoffeeKeyword": {
+    "PROPER_NAME": "Coffee",
+    "NAMES": [
+      "coffee"
+    ],
+    "DESCRIPTION": "#yCrop. Gain energy when harvested."
+  },
+
+
   "TheSimpletonMod:CornKeyword": {
     "PROPER_NAME": "Corn",
     "NAMES": [

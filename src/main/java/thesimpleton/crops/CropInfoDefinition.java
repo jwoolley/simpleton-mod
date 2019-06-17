@@ -23,6 +23,7 @@ abstract class CropInfoDefinition {
   static final CropInfoDefinition Artichokes;
   static final CropInfoDefinition Asparagus;
   static final CropInfoDefinition Chilis;
+  static final CropInfoDefinition Coffee;
   static final CropInfoDefinition Corn;
   static final CropInfoDefinition Mushrooms;
   static final CropInfoDefinition Onions;
@@ -57,6 +58,15 @@ abstract class CropInfoDefinition {
         5) {
       public AbstractCrop getCrop() { return new ChilisCrop(); }
     };
+
+    Coffee = new CropInfoDefinition(
+        CoffeeCropOrb.ORB_ID,
+        new Coffee(),
+        AbstractCard.CardRarity.COMMON,
+        2) {
+      public AbstractCrop getCrop() { return new CoffeeCrop(); }
+    };
+
 
     Corn = new CropInfoDefinition(
         CornCropOrb.ORB_ID,

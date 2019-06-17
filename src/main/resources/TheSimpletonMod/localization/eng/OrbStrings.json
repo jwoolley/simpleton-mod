@@ -33,6 +33,13 @@
     ]
   },
 
+  "TheSimpletonMod:CoffeeCropOrb": {
+    "NAME": "Coffee",
+    "DESCRIPTION": [
+      "#gHarvest: Gain an energy for each stack harvested."
+    ]
+  },
+
   "TheSimpletonMod:CornCropOrb": {
     "NAME": "Corn",
     "DESCRIPTION": [

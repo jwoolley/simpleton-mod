@@ -342,6 +342,11 @@
     "DESCRIPTION": "Plant !M! Chilis."
   },
 
+  "TheSimpletonMod:Coffee": {
+    "NAME": "Coffee",
+    "DESCRIPTION": "Plant !M! Coffee."
+  },
+
   "TheSimpletonMod:Corn": {
     "NAME": "Corn",
     "DESCRIPTION": "Plant !M! Corn."

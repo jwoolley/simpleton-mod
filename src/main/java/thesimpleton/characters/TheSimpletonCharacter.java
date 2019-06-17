@@ -339,26 +339,6 @@ public class TheSimpletonCharacter extends CustomPlayer {
         return finalCardPool;
     }
 
-
-//    @Override
-//    public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool) {
-//        TheSimpletonMod.logger.debug("TheSimpletonCharacter::getSaveCardPool called");
-//        List<AbstractCard> cardPoolFromSave = TheSimpletonMod.getSaveCardPool();
-//        if (!cardPoolFromSave.isEmpty()) {
-//            ArrayList<AbstractCard> finalPool = new ArrayList<>();
-//            TheSimpletonMod.logger.debug("TheSimpletonCharacter::getSaveCardPool using save data");
-//            finalPool.addAll(cardPoolFromSave.stream().distinct().filter(tmpPool::contains).collect(Collectors.toSet()));
-//            return finalPool;
-//        } else {
-//            TheSimpletonMod.logger.debug("TheSimpletonCharacter::getSaveCardPool no save data found. Using default pool");
-//            ArrayList<AbstractCard> finalPool = super.getCardPool(tmpPool);
-//            TheSimpletonMod.getSaveCardPool().addAll(finalPool);
-//            return finalPool;
-//        }
-//    }
-
-//    @Override shuffle
-
     static {
         charStrings = CardCrawlGame.languagePack.getCharacterString("TheSimpleton");
         NAME = charStrings.NAMES[0];

@@ -58,7 +58,7 @@ import java.util.stream.Collectors;
 public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber,
         EditStringsSubscriber, EditKeywordsSubscriber, PostInitializeSubscriber, PostCreateStartingDeckSubscriber,
         PostCreateStartingRelicsSubscriber, PostDungeonInitializeSubscriber, StartActSubscriber, StartGameSubscriber,
-        OnStartBattleSubscriber, PostBattleSubscriber, PreRoomRenderSubscriber, PostEnergyRechargeSubscriber, PostDeathSubscriber  {
+        OnStartBattleSubscriber, PostBattleSubscriber, PreRoomRenderSubscriber, PostDeathSubscriber  {
     private static final Color CUSTOM_COLOR = CardHelper.getColor(57.0F, 131.0F, 245.0F);
 
     private static final String ATTACK_CARD = "512/attack_thesimpleton.png";
@@ -102,16 +102,21 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         seasonScreen.reset();
         SEASONAL_CROP_CARDS.clear();
     }
-
-    @Override
-    public void receivePostEnergyRecharge() {
-        logger.debug("TheSimpletonMod::receivePostEnergyRecharge : reseting hasHarvestedThisTurn");
-        AbstractCrop.resetHasHarvestedThisTurn();
-    }
+//
+//    @Override
+//    public void receivePostEnergyRecharge() {
+//        logger.debug("TheSimpletonMod::receivePostEnergyRecharge : resetting hasHarvestedThisTurn");
+//        AbstractCrop.resetHasHarvestedThisTurn();
+//    }
 
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         logger.debug("TheSimpletonMod::receiveOnBattleStart : resetting hasHarvestedThisTurn");
+        AbstractCrop.resetHasHarvestedThisTurn();
+    }
+
+    public static void onBeforeStartOfTurnOrbs() {
+        logger.debug("TheSimpletonMod::onBeforeStartOfTurnOrbs : resetting hasHarvestedThisTurn");
         AbstractCrop.resetHasHarvestedThisTurn();
     }
 
@@ -261,7 +266,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         Season season;
         if (savedSeason != null) {
             logger.debug("TheSimpletonMod::receiveStartGame applying season from save");
-            seasonInfo = new SeasonInfo(savedSeason, SeasonInfo.RANDOM_SEASON_BY_RARE_CROP_STRATEGY);
+            seasonInfo = new SeasonInfo(savedSeason, SeasonInfo.RANDOM_CROP_SET_BY_RARITY);
             season = savedSeason;
         } else if (isSeasonInitialized()) {
             logger.debug("TheSimpletonMod::receiveStartGame applying season from seasonInfo (game start)");
@@ -395,14 +400,14 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         return seasonInfo.getSeason();
     }
 
-    public void setSeasonFromSave() {
-        seasonInfo = new SeasonInfo(CUSTOM_SAVABLES.seasonCustomSavable.getSeason(), SeasonInfo.RANDOM_SEASON_BY_RARE_CROP_STRATEGY);
-    }
+//    public void setSeasonFromSave() {
+//        seasonInfo = new SeasonInfo(CUSTOM_SAVABLES.seasonCustomSavable.getSeason(), SeasonInfo.RANDOM_CROP_SET_BY_RARE_CROP_RARITY);
+//    }
 
     private void initializeSeason() {
         logger.debug("@@@@@DEBUG@@@@@ TheSimpletonMod::initializeSeason Initializing Season ...");
 
-        seasonInfo = chooseRandomSeason();
+        seasonInfo = chooseSeason();
 
         List<AbstractCropPowerCard> seasonalCropCards = chooseSeasonalCropCards(seasonInfo);
 
@@ -420,9 +425,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         SEASONAL_CROP_CARDS.addAll(cards);
     }
 
-    private SeasonInfo chooseRandomSeason() {
-        Season season = Season.randomSeason();
-        return new SeasonInfo(season, SeasonInfo.RANDOM_SEASON_BY_RARE_CROP_STRATEGY);
+    private SeasonInfo chooseSeason() {
+        return new SeasonInfo(SeasonInfo.RANDOM_CROP_SET_BY_RARE_CROP_RARITY);
     }
 
     private List<AbstractCropPowerCard> chooseSeasonalCropCards(SeasonInfo seasonInfo) {

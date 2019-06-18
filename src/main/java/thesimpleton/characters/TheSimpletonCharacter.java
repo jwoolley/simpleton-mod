@@ -81,6 +81,18 @@ public class TheSimpletonCharacter extends CustomPlayer {
         initializeOrbSlotLocations();
     }
 
+    @Override
+    // TODO: change this applyStartOfTurnOrbs prefix hook
+    public void applyStartOfTurnPowers() {
+        super.applyStartOfTurnPowers();
+        onBeforeStartOfTurnOrbs();
+    }
+
+    public void onBeforeStartOfTurnOrbs() {
+        TheSimpletonMod.logger.debug("TheSimpletonCharacter::onBeforeStartOfTurnOrbs : calling TheSimpletonMod.onBeforeStartOfTurnOrbs");
+        TheSimpletonMod.onBeforeStartOfTurnOrbs();
+    }
+
 
     @Override
     public ArrayList<String> getStartingDeck() {

@@ -10,11 +10,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.utilities.CropUtil;
 
 public class Thresh extends CustomCard implements HarvestTriggeredCard {
   public static final String ID = "TheSimpletonMod:Thresh";
@@ -62,7 +62,8 @@ public class Thresh extends CustomCard implements HarvestTriggeredCard {
   @Override
   public AbstractCard makeCopy() {
     AbstractCard tmp = new Thresh();
-    if (SimpletonUtil.hasHarvestedThisTurn()) {
+    if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT &&
+        SimpletonUtil.hasHarvestedThisTurn()) {
       tmp.updateCost(-SimpletonUtil.getNumTimesHarvestedThisTurn() * COST_DECREASE_PER_HARVEST);
     }
     return tmp;

@@ -302,14 +302,14 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new Barnstorm());
         cards.add(new CullingStrike());
         cards.add(new DoubleBarrel());
-        cards.add(new Fertilaser());
-        cards.add(new FlashPasteurize());
+//        cards.add(new Fertilaser());
+//        cards.add(new FlashPasteurize());
         cards.add(new HitTheSack());
         cards.add(new PestManagement());
-        cards.add(new RootDown());
-        cards.add(new SaltTheEarth());
-        cards.add(new SlashAndBurn());
-        cards.add(new Sunchoke());
+//        cards.add(new RootDown());
+//        cards.add(new SaltTheEarth());
+//        cards.add(new SlashAndBurn());
+//        cards.add(new Sunchoke());
         cards.add(new Thresh());
 
         // Skill (20)
@@ -318,21 +318,21 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new CropDiversity());
         cards.add(new CropRotation());
         cards.add(new DesperatePlunge());
-        cards.add(new DigIn());
-        cards.add(new FanTheFlames());
-        cards.add(new Ferment());
-        cards.add(new GoToMarket());
-        cards.add(new Mulch());
-        cards.add(new OnionBloom());
-        cards.add(new SeedCoat());
+//        cards.add(new DigIn());
+//        cards.add(new FanTheFlames());
+//        cards.add(new Ferment());
+//        cards.add(new GoToMarket());
+//        cards.add(new Mulch());
+//        cards.add(new OnionBloom());
+//        cards.add(new SeedCoat());
         cards.add(new Pruning());
-        cards.add(new ResearchGrant());
-        cards.add(new Rototilling());
-        cards.add(new SoilSample());
-        cards.add(new SpiceUp());
-        cards.add(new StockTheCellar());
-        cards.add(new Swelter());
-        cards.add(new TillTheField());
+//        cards.add(new ResearchGrant());
+//        cards.add(new Rototilling());
+//        cards.add(new SoilSample());
+//        cards.add(new SpiceUp());
+//        cards.add(new StockTheCellar());
+//        cards.add(new Swelter());
+//        cards.add(new TillTheField());
         cards.add(new ToughenUp());
         cards.add(new VineRipen());
 

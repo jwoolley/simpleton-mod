@@ -25,7 +25,7 @@ public class Rototilling extends CustomCard {
   private static final CardTarget TARGET = CardTarget.SELF;
 
   private static final int COST = 1;
-  private static final int DRAW_AMOUNT = 3;
+  private static final int DRAW_AMOUNT = 2;
   private static final int DRAW_UPGRADE_AMOUNT = 1;
   private static final int EXHAUST_AMOUNT = 1;
 

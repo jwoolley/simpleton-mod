@@ -240,7 +240,7 @@
 
   "TheSimpletonMod:Rototilling": {
     "NAME": "Rototilling",
-    "DESCRIPTION": "Draw !M! cards. Exhaust a card from your hand."
+    "DESCRIPTION": "Draw !M! cards. NL Exhaust a card from your hand."
   },
 
   "TheSimpletonMod:SaltTheEarth": {

@@ -1,6 +1,7 @@
 package thesimpleton;
 
 import basemod.*;
+import basemod.abstracts.CustomUnlockBundle;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -26,6 +27,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.relics.PaperCrane;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.unlock.AbstractUnlock;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.cards.HarvestTriggeredCard;
@@ -43,8 +46,10 @@ import thesimpleton.potions.AbundancePotion;
 import thesimpleton.relics.*;
 import thesimpleton.savedata.CardPoolCustomSavable;
 import thesimpleton.savedata.SeasonCustomSavable;
+import thesimpleton.seasons.RandomSeasonCropSetDefinition;
 import thesimpleton.seasons.Season;
 import thesimpleton.seasons.SeasonInfo;
+import thesimpleton.seasons.UnlockableSeasonCropSetDefinition;
 import thesimpleton.ui.seasons.SeasonIndicator;
 import thesimpleton.ui.seasons.SeasonScreen;
 
@@ -58,7 +63,7 @@ import java.util.stream.Collectors;
 public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber,
         EditStringsSubscriber, EditKeywordsSubscriber, PostInitializeSubscriber, PostCreateStartingDeckSubscriber,
         PostCreateStartingRelicsSubscriber, PostDungeonInitializeSubscriber, StartActSubscriber, StartGameSubscriber,
-        OnStartBattleSubscriber, PostBattleSubscriber, PreRoomRenderSubscriber, PostDeathSubscriber  {
+        OnStartBattleSubscriber, PostBattleSubscriber, PreRoomRenderSubscriber, PostDeathSubscriber, SetUnlocksSubscriber  {
     private static final Color CUSTOM_COLOR = CardHelper.getColor(57.0F, 131.0F, 245.0F);
 
     private static final String ATTACK_CARD = "512/attack_thesimpleton.png";
@@ -85,7 +90,16 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
-        logger.debug("TheSimpletonMod::receivePostBattle isSeasonInitialized:" + isSeasonInitialized());
+        logger.debug("TheSimpletonMod::receivePostBattle isSeasonInitialized:"
+            + isSeasonInitialized() + "; isDebug: " + Settings.isDebug);
+
+//        // DEBUG: reset unlock level
+//        if (UnlockTracker.getUnlockLevel(TheSimpletonCharEnum.THE_SIMPLETON) > 0) {
+//            logger.info("Resetting UnlockLevel to 0");
+//            UnlockTracker.unlockProgress.putInteger(TheSimpletonCharEnum.THE_SIMPLETON.toString() + "UnlockLevel", 0);
+//            SaveFile saveFile = new SaveFile(SaveFile.SaveType.POST_COMBAT);
+//            SaveAndContinue.save(saveFile);
+//        }
     }
 
     @Override
@@ -117,6 +131,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     public static void onBeforeStartOfTurnOrbs() {
         logger.debug("TheSimpletonMod::onBeforeStartOfTurnOrbs : resetting hasHarvestedThisTurn");
+
+        logger.debug(">>>>>>>>>> DEBUG <<<<<<<<<< TheSimpletonMod::onBeforeStartOfTurnOrbs unlockLevel: " + UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass));
+
+
         AbstractCrop.resetHasHarvestedThisTurn();
     }
 
@@ -136,6 +154,59 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         logger.debug("TheSimpletonMod::receivePostDungeonInitialize receivePostDungeonInitialize called ===========================>>>>>>>");
 //        initializeSeason();
         seasonScreen.reset();
+    }
+
+    @Override
+        public void receiveSetUnlocks() {
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(
+            AbstractUnlock.UnlockType.CARD,
+            "TheSimpletonMod:Squash",
+            "TheSimpletonMod:Artichokes",
+            "TheSimpletonMod:Spinach"
+        ), TheSimpletonCharEnum.THE_SIMPLETON, 0);
+        UnlockTracker.addCard("TheSimpletonMod:Squash");
+        UnlockTracker.addCard("TheSimpletonMod:Artichokes");
+        UnlockTracker.addCard("TheSimpletonMod:Spinach");
+
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(
+            AbstractUnlock.UnlockType.CARD,
+            "TheSimpletonMod:Onions",
+            "TheSimpletonMod:Turnips",
+            "TheSimpletonMod:Strawberries"
+        ), TheSimpletonCharEnum.THE_SIMPLETON, 1);
+        UnlockTracker.addCard("TheSimpletonMod:Onions");
+        UnlockTracker.addCard("TheSimpletonMod:Turnips");
+        UnlockTracker.addCard("TheSimpletonMod:Strawberries");
+
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(
+            AbstractUnlock.UnlockType.CARD,
+            "TheSimpletonMod:Coffee",
+            "TheSimpletonMod:Chilis",
+            "TheSimpletonMod:FanTheFlames"
+        ), TheSimpletonCharEnum.THE_SIMPLETON, 2);
+        UnlockTracker.addCard("TheSimpletonMod:Coffee");
+        UnlockTracker.addCard("TheSimpletonMod:Chilis");
+        UnlockTracker.addCard("TheSimpletonMod:FanTheFlames");
+
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(
+            AbstractUnlock.UnlockType.CARD,
+            "TheSimpletonMod:Barnstorm",
+            "TheSimpletonMod:CropDiversity",
+            "TheSimpletonMod:Fecundity"
+        ), TheSimpletonCharEnum.THE_SIMPLETON, 3);
+        UnlockTracker.addCard("TheSimpletonMod:Barnstorm");
+        UnlockTracker.addCard("TheSimpletonMod:CropDiversity");
+        UnlockTracker.addCard("TheSimpletonMod:Fecundity");
+
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(
+            AbstractUnlock.UnlockType.CARD,
+            "TheSimpletonMod:Barnstorm",
+            "TheSimpletonMod:CropDiversity",
+            "TheSimpletonMod:Fecundity"
+        ), TheSimpletonCharEnum.THE_SIMPLETON, 4);
+        UnlockTracker.addCard("TheSimpletonMod:Barnstorm");
+        UnlockTracker.addCard("TheSimpletonMod:CropDiversity");
+        UnlockTracker.addCard("TheSimpletonMod:Fecundity");
     }
 
     private class ThemeState {
@@ -266,7 +337,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         Season season;
         if (savedSeason != null) {
             logger.debug("TheSimpletonMod::receiveStartGame applying season from save");
-            seasonInfo = new SeasonInfo(savedSeason, SeasonInfo.RANDOM_CROP_SET_BY_RARITY);
+            seasonInfo = new SeasonInfo(savedSeason, RandomSeasonCropSetDefinition.RANDOM_CROP_SET_BY_RARITY);
             season = savedSeason;
         } else if (isSeasonInitialized()) {
             logger.debug("TheSimpletonMod::receiveStartGame applying season from seasonInfo (game start)");
@@ -426,7 +497,18 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     private SeasonInfo chooseSeason() {
-        return new SeasonInfo(SeasonInfo.RANDOM_CROP_SET_BY_RARE_CROP_RARITY);
+        switch (UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass)) {
+            case 0:
+                return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_0);
+            case 1:
+                return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_1);
+            case 2:
+                return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_2);
+            case 3:
+                return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_3);
+            default:
+                return new SeasonInfo(Season.randomSeason(), RandomSeasonCropSetDefinition.RANDOM_CROP_SET_BY_RARE_CROP_RARITY);
+        }
     }
 
     private List<AbstractCropPowerCard> chooseSeasonalCropCards(SeasonInfo seasonInfo) {

@@ -125,12 +125,12 @@ abstract public class AbstractCrop {
     AbstractDungeon.actionManager.addToBottom(new CropSpawnAction((AbstractCropOrb) cropOrb.makeCopy(), amount, isFromCard));
   }
 
-  public boolean isMature() {
-    logger.debug("AbstractCrop::isMature: " + this.getClass().getTypeName());
-       AbstractCropOrb orb = AbstractCropOrb.getCropOrb(getCropOrbId());
-      return orb != null && orb.isMature(true);
-//    return AbstractCropOrb.hasCropOrb(getCropOrb()) && AbstractCropOrb.getCropOrb(getCropOrb()).isMature();
-  }
+//  public boolean isMature() {
+//    logger.debug("AbstractCrop::isMature: " + this.getClass().getTypeName());
+//       AbstractCropOrb orb = AbstractCropOrb.getCropOrb(getCropOrbId());
+//      return orb != null && orb.isMature(true);
+////    return AbstractCropOrb.hasCropOrb(getCropOrb()) && AbstractCropOrb.getCropOrb(getCropOrb()).isMature();
+//  }
 
   public void onUseCard(AbstractCard card, UseCardAction action) {
     if (card.hasTag(TheSimpletonCardTags.HARVEST) && card instanceof HarvestCard && ((HarvestCard) card).isAutoHarvest()) {

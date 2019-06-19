@@ -1,4 +1,4 @@
-package thesimpleton.patches;
+package thesimpleton.patches.combat;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;

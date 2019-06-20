@@ -9,7 +9,8 @@ import thesimpleton.crops.Crop;
 public class CoffeeCropOrb extends AbstractCropOrb {
   public static final Crop CROP_ENUM = Crop.COFFEE;
   public static final String ORB_ID = "TheSimpletonMod:CoffeeCropOrb";
-  public static final String IMG_PATH = "TheSimpletonMod/img/orbs/plantcoffee.png";
+  public static final String IMG_PATH = "plantcoffee";
+  public static final String HALO_IMG_PATH = "orbcoffee_halo";
   private static final OrbStrings orbStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
@@ -19,7 +20,8 @@ public class CoffeeCropOrb extends AbstractCropOrb {
   }
 
   public CoffeeCropOrb(int amount) {
-    super(CROP_ENUM, ORB_ID, NAME, amount, Crop.COFFEE.getCropInfo().maturityThreshold, DESCRIPTIONS[0], IMG_PATH);
+    super(CROP_ENUM, ORB_ID, NAME, amount, Crop.COFFEE.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
+        IMG_PATH, HALO_IMG_PATH);
   }
 
   @Override

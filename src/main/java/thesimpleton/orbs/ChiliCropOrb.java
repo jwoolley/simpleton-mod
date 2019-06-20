@@ -11,7 +11,8 @@ import thesimpleton.crops.Crop;
 public class ChiliCropOrb extends AbstractCropOrb {
   public static final Crop CROP_ENUM = Crop.CHILIS;
   public static final String ORB_ID = "TheSimpletonMod:ChiliCropOrb";
-  public static final String IMG_PATH = "TheSimpletonMod/img/orbs/plantchili.png";
+  public static final String IMG_PATH = "plantchili";
+  public static final String HALO_IMG_PATH = "orbchili_halo";
   private static final OrbStrings orbStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
@@ -21,7 +22,8 @@ public class ChiliCropOrb extends AbstractCropOrb {
   }
 
   public ChiliCropOrb(int amount) {
-    super(CROP_ENUM, ORB_ID, NAME, amount, Crop.CHILIS.getCropInfo().maturityThreshold, DESCRIPTIONS[0], IMG_PATH);
+    super(CROP_ENUM, ORB_ID, NAME, amount, Crop.CHILIS.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
+        IMG_PATH, HALO_IMG_PATH);
   }
 
   @Override

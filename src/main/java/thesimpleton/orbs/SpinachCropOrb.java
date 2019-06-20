@@ -10,7 +10,8 @@ import thesimpleton.crops.Crop;
 public class SpinachCropOrb extends AbstractCropOrb {
   public static final Crop CROP_ENUM = Crop.SPINACH;
   public static final String ORB_ID = "TheSimpletonMod:SpinachCropOrb";
-  public static final String IMG_PATH = "TheSimpletonMod/img/orbs/plantspinach.png";
+  public static final String IMG_PATH = "plantspinach";
+  public static final String HALO_IMG_PATH = "orbspinach_halo";
   private static final OrbStrings orbStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
@@ -20,7 +21,8 @@ public class SpinachCropOrb extends AbstractCropOrb {
   }
 
   public SpinachCropOrb(int amount) {
-    super(CROP_ENUM, ORB_ID, NAME, amount, Crop.SPINACH.getCropInfo().maturityThreshold, DESCRIPTIONS[0], IMG_PATH);
+    super(CROP_ENUM, ORB_ID, NAME, amount, Crop.SPINACH.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
+        IMG_PATH, HALO_IMG_PATH);
   }
 
   @Override

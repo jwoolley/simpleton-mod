@@ -10,7 +10,8 @@ import thesimpleton.crops.Crop;
 public class PotatoCropOrb extends AbstractCropOrb {
     public static final Crop CROP_ENUM = Crop.POTATOES;
     public static final String ORB_ID = "TheSimpletonMod:PotatoCropOrb";
-    public static final String IMG_PATH = "TheSimpletonMod/img/orbs/plantpotato.png";
+    public static final String IMG_PATH = "plantpotato";
+  public static final String HALO_IMG_PATH = "orbpotato_halo";
     private static final OrbStrings orbStrings;
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
@@ -20,7 +21,8 @@ public class PotatoCropOrb extends AbstractCropOrb {
     }
 
     public PotatoCropOrb(int amount) {
-        super(CROP_ENUM, ORB_ID, NAME, amount, Crop.POTATOES.getCropInfo().maturityThreshold, DESCRIPTIONS[0], IMG_PATH);
+        super(CROP_ENUM, ORB_ID, NAME, amount, Crop.POTATOES.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
+            IMG_PATH, HALO_IMG_PATH);
     }
 
     @Override

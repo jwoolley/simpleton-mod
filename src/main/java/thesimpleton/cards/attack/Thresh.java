@@ -62,7 +62,7 @@ public class Thresh extends CustomCard implements HarvestTriggeredCard {
   @Override
   public AbstractCard makeCopy() {
     AbstractCard tmp = new Thresh();
-    if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT &&
+    if (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT &&
         SimpletonUtil.hasHarvestedThisTurn()) {
       tmp.updateCost(-SimpletonUtil.getNumTimesHarvestedThisTurn() * COST_DECREASE_PER_HARVEST);
     }

@@ -225,13 +225,15 @@ public abstract class AbstractCropOrb extends CustomOrb {
       Color filterColor = MATURE_CROP_HALO_COLOR;
       Color textColor = MATURE_CROP_STACK_COUNT_FONT_COLOR;
 
-// TODO: when stacks > maturity level, replace with flash image + add sound effect for those few frames
-//      final Color overplantFilterColor = Color.LIME;
-//      final Color overplantTextColor = Color.LIME;
-//      if (this.getAmount() >  this.getCrop().getMaturityThreshold()) {
-//        filterColor = overplantFilterColor;
-//        textColor = overplantTextColor;
-//      }
+      // TODO: when stacks > maturity level, replace with flash image + add sound effect for those few frames
+      //      final Color overplantFilterColor = Color.LIME;
+      //      final Color overplantTextColor = Color.LIME;
+      //      if (this.getAmount() >  this.getCrop().getMaturityThreshold()) {
+      //        filterColor = overplantFilterColor;
+      //        textColor = overplantTextColor;
+      //      }
+
+      // TODO: Highlight targeted crop on dynamic card hover (e.g. Aerate) with different-colored halo
 
       sb.draw(this.getHaloImage(), this.cX - 48.0F + this.bobEffect.y / 4.0F, this.cY - 48.0F + this.bobEffect.y / 4.0F, 48.0F, 48.0F, 96.0F, 96.0F, this.scale, this.scale, 0.0F, 0, 0, 96, 96, false, false);
       this.c = textColor;

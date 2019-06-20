@@ -93,7 +93,7 @@
 
   "TheSimpletonMod:DigIn": {
     "NAME": "Dig In",
-    "DESCRIPTION": "Gain !B! Block. Add a Depletion to your discard pile."
+    "DESCRIPTION": "Gain !B! Block. NL Add a Depletion to your discard pile."
   },
 
   "TheSimpletonMod:DoubleBarrel": {
@@ -182,7 +182,7 @@
 
   "TheSimpletonMod:PestManagement": {
     "NAME": "Pest Management",
-    "DESCRIPTION": "Deal !D! damage. NL  Next turn, gain !B! Block."
+    "DESCRIPTION": "Deal !D! damage. NL Next turn, gain !B! Block."
   },
 
   "TheSimpletonMod:Photosynthesis": {
@@ -209,6 +209,11 @@
       " NL (Currently ",
       ")"
     ]
+  },
+
+  "TheSimpletonMod:Rake": {
+    "NAME": "Rake",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
   },
 
   "TheSimpletonMod:ReapAndSow": {
@@ -257,6 +262,11 @@
     "NAME": "Soil Sample",
     "DESCRIPTION": "Shuffle up to !M! cards from your discard pile into your draw pile, then draw a card. It costs 0 this turn. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Shuffle up to !M! cards from your discard pile into your draw pile, then Draw a card. It costs 0 this turn."
+  },
+
+  "TheSimpletonMod:SowingStrike": {
+    "NAME": "Sowing Strike",
+    "DESCRIPTION": "Deal !D! damage. NL Plant !M! of your oldest Crop."
   },
 
   "TheSimpletonMod:SpiceUp": {
@@ -313,7 +323,7 @@
 
   "TheSimpletonMod:ToughenUp": {
     "NAME": "Toughen Up",
-    "DESCRIPTION": "Gain !B! Block. NL If you have any Squash, Plant  !M! Squash."
+    "DESCRIPTION": "Gain !B! Block. NL If you have any Squash, Plant !M! Squash."
   },
 
   "TheSimpletonMod:VineRipen": {
@@ -385,10 +395,5 @@
   "TheSimpletonMod:Turnips": {
     "NAME": "Turnips",
     "DESCRIPTION": "Plant !M! Turnips."
-  },
-
-  "TheSimpletonMod:Dregs": {
-    "NAME": "Dregs",
-    "DESCRIPTION": "Unplayable."
   }
 }

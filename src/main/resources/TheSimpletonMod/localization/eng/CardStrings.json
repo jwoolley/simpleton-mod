@@ -42,6 +42,17 @@
     "EXTENDED_DESCRIPTION" : [" HP."]
   },
 
+  "TheSimpletonMod:CloseScrape": {
+    "NAME": "Close Scrape",
+    "DESCRIPTION": "Deal !D! damage. NL Plant !M! of your oldest Crop",
+    "EXTENDED_DESCRIPTION" : [
+      ".",
+      " NL (No eligible Crops currently)",
+      " NL (Currently ",
+      ")"
+    ]
+  },
+
   "TheSimpletonMod:ControlledBurn": {
     "NAME": "Controlled Burn",
     "DESCRIPTION": "Apply !M! Burning. NL Exhaust if the enemy didn't already have Burning."
@@ -200,7 +211,7 @@
 
   "TheSimpletonMod:Pruning": {
     "NAME": "Pruning",
-    "DESCRIPTION": "Harvest all of your oldest crop, then Plant !M!",
+    "DESCRIPTION": "Harvest all of your oldest Crop, then Plant !M!",
     "EXTENDED_DESCRIPTION" : [
       ".",
       " stack",
@@ -262,11 +273,6 @@
     "NAME": "Soil Sample",
     "DESCRIPTION": "Shuffle up to !M! cards from your discard pile into your draw pile, then draw a card. It costs 0 this turn. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Shuffle up to !M! cards from your discard pile into your draw pile, then Draw a card. It costs 0 this turn."
-  },
-
-  "TheSimpletonMod:SowingStrike": {
-    "NAME": "Sowing Strike",
-    "DESCRIPTION": "Deal !D! damage. NL Plant !M! of your oldest Crop."
   },
 
   "TheSimpletonMod:SpiceUp": {

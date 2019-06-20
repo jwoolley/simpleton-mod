@@ -13,7 +13,7 @@ public class HotPotato extends CustomRelic {
   public static final String IMG_PATH_LARGE = "relics/hotpotato_large.png";
   public static final String OUTLINE_IMG_PATH = "relics/hotpotato_outline.png";
 
-  private static final RelicTier TIER = RelicTier.COMMON;
+  private static final RelicTier TIER = RelicTier.UNCOMMON;
   private static final LandingSound SOUND = LandingSound.SOLID;
 
 
@@ -30,7 +30,6 @@ public class HotPotato extends CustomRelic {
 
   public void activate(AbstractCreature source, AbstractCreature target, int amount) {
     flash();
-//    AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(target, source, amount));
   }
 
   @Override

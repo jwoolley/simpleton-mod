@@ -65,8 +65,8 @@
 
   "TheSimpletonMod:CropRotation": {
     "NAME": "Crop Rotation",
-    "DESCRIPTION": "Harvest !M! random Crop stack. NL Gain a random Crop Power card.",
-    "UPGRADE_DESCRIPTION": "Harvest !M! random Crop stack. NL Gain a random Crop Power card. It costs 1 less this turn."
+    "DESCRIPTION": "Harvest all of a random Crop. NL Gain a random In-Season Crop Power card.",
+    "UPGRADE_DESCRIPTION": "Harvest all of a random Crop. NL Gain a random In-Season Crop Power card."
   },
 
   "TheSimpletonMod:CullingStrike": {

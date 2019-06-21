@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
+import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.crops.AbstractCrop;
 import thesimpleton.orbs.AbstractCropOrb;
 
@@ -44,7 +46,8 @@ public class CropRotationAction extends AbstractGameAction {
       if (this.secondTick) {
         AbstractDungeon.actionManager.addToTop(new WaitAction(0.1F));
 
-        final AbstractCropPowerCard randomCropPowerCard = AbstractCropPowerCard.getRandomCropPowerCard(true);
+//        final AbstractCropPowerCard randomCropPowerCard = AbstractCropPowerCard.getRandomCropPowerCard(true);
+        final AbstractCropPowerCard randomCropPowerCard = ((TheSimpletonCharacter)AbstractDungeon.player).getCropUtil().getRandomCropCardInSeason();
         if (this.reduceCost) {
           randomCropPowerCard.modifyCostForTurn(-1);
         }
@@ -62,7 +65,7 @@ public class CropRotationAction extends AbstractGameAction {
     AbstractCropOrb oldestCropOrb = AbstractCrop.getOldestCropOrb();
 
     if (!this.secondTick && oldestCropOrb != null) {
-      AbstractDungeon.actionManager.addToTop(new HarvestCropAction(oldestCropOrb,  numCropsToHarvest,true));
+      AbstractDungeon.actionManager.addToTop(new HarvestCropAction(oldestCropOrb,  numCropsToHarvest,true, true));
     } else {
       AbstractDungeon.actionManager.addToBottom(new SFXAction("CARD_SELECT"));
     }

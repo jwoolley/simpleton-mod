@@ -16,8 +16,6 @@ import thesimpleton.TheSimpletonMod;
 
 public class DungeonMapRenderBefore {
   public static void Prefix (DungeonMap __instance, SpriteBatch __spriteBatch) {
-//    if (TheSimpletonMod.seasonScreen.isOpen()) {
-//      TheSimpletonMod.seasonScreen.render(__spriteBatch);
-//    }
+
   }
 }

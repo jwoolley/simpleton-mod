@@ -2,8 +2,11 @@ package thesimpleton.savedata;
 
 import basemod.BaseMod;
 import basemod.abstracts.CustomSavable;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.seasons.Season;
 
 public class SeasonCustomSavable implements CustomSavable<String> {
@@ -15,11 +18,14 @@ public class SeasonCustomSavable implements CustomSavable<String> {
 
   @Override
   public String onSave() {
-    reset();
-    registerSaveId();
-    Season season = TheSimpletonMod.getSeason();
-    logger.debug(getLogPrefix("onSave") + " called. season: " + season);
-    return season != null ? season.uiName : Season.UNKNOWN.uiName;
+    if (AbstractDungeon.player.chosenClass == TheSimpletonCharEnum.THE_SIMPLETON) {
+      reset();
+      registerSaveId();
+      Season season = TheSimpletonMod.getSeason();
+      logger.debug(getLogPrefix("onSave") + " called. season: " + season);
+      return season != null ? season.uiName : Season.UNKNOWN.uiName;
+    }
+    return Season.UNKNOWN.uiName;
   }
 
 
@@ -30,28 +36,31 @@ public class SeasonCustomSavable implements CustomSavable<String> {
 
   @Override
   public void onLoad(String id) {
-    logger.debug( this.getClass().getSimpleName() + "::onLoad called");
+    if (AbstractDungeon.player.chosenClass == TheSimpletonCharEnum.THE_SIMPLETON) {
 
-    switch(id) {
-      case Season.WINTER_UI_NAME:
-        this.season = Season.WINTER;
-        break;
-      case Season.SPRING_UI_NAME:
-        this.season = Season.SPRING;
-        break;
-      case Season.SUMMER_UI_NAME:
-        this.season = Season.SUMMER;
-        break;
-      case Season.AUTUMN_UI_NAME:
-        this.season = Season.AUTUMN;
-        break;
-      case Season.UNKNOWN_UI_NAME:
-      default:
-        break;
+      logger.debug(this.getClass().getSimpleName() + "::onLoad called");
+
+      switch (id) {
+        case Season.WINTER_UI_NAME:
+          this.season = Season.WINTER;
+          break;
+        case Season.SPRING_UI_NAME:
+          this.season = Season.SPRING;
+          break;
+        case Season.SUMMER_UI_NAME:
+          this.season = Season.SUMMER;
+          break;
+        case Season.AUTUMN_UI_NAME:
+          this.season = Season.AUTUMN;
+          break;
+        case Season.UNKNOWN_UI_NAME:
+        default:
+          break;
+      }
+
+      logger.debug(this.getClass().getSimpleName() + "::onLoad retrieved season from save: " + (this.season == null ? Season.UNKNOWN : this.season.name)
+          + "(saved value: " + id + ")");
     }
-
-    logger.debug( this.getClass().getSimpleName() + "::onLoad retrieved season from save: " + (this.season == null ? Season.UNKNOWN : this.season.name)
-        + "(saved value: " + id + ")");
   }
 
   public Season getSeason() {

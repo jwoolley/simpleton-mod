@@ -70,7 +70,7 @@ public class SeasonIndicator {
   }
 
   public static boolean shouldRender() {
-     return AbstractDungeon.screen == AbstractDungeon.CurrentScreen.MAP && !TheSimpletonMod.seasonScreen.isOpen();
+     return TheSimpletonMod.isPlayingAsSimpleton() && AbstractDungeon.screen == AbstractDungeon.CurrentScreen.MAP && !TheSimpletonMod.seasonScreen.isOpen();
   }
 
   private Texture getIndicatorImage() {

@@ -30,18 +30,20 @@ public class DungeonMapScreenOpenAfter {
   }
 
   public static void Postfix (DungeonMapScreen __instance, boolean doScrollingAnimation) {
-   log("DungeonMapScreenOpenAfter invoked post trigger.");
+    if (TheSimpletonMod.isPlayingAsSimpleton()) {
+      log("DungeonMapScreenOpenAfter invoked post trigger.");
 
-   log("DungeonMapScreenOpenAfter seasonScreen.isOpen: "
-       + TheSimpletonMod.seasonScreen.isOpen()
-       +  " seasonScreen.wasDismissed: "
-       + TheSimpletonMod.seasonScreen.wasDismissed());
+      log("DungeonMapScreenOpenAfter seasonScreen.isOpen: "
+          + TheSimpletonMod.seasonScreen.isOpen()
+          + " seasonScreen.wasDismissed: "
+          + TheSimpletonMod.seasonScreen.wasDismissed());
 
-    if (!TheSimpletonMod.seasonScreen.isOpen() && !TheSimpletonMod.seasonScreen.wasDismissed()) {
-      log("DungeonMapScreenOpenAfter opening season screen");
-      TheSimpletonMod.seasonScreen.open();
-    } else {
-      log("DungeonMapScreenOpenAfter season screen was already dismissed; not opening");
+      if (!TheSimpletonMod.seasonScreen.isOpen() && !TheSimpletonMod.seasonScreen.wasDismissed()) {
+        log("DungeonMapScreenOpenAfter opening season screen");
+        TheSimpletonMod.seasonScreen.open();
+      } else {
+        log("DungeonMapScreenOpenAfter season screen was already dismissed; not opening");
+      }
     }
   }
 }

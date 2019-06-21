@@ -15,9 +15,7 @@ import thesimpleton.TheSimpletonMod;
 )
 public class DungeonMapScreenRenderAfter {
   public static void Postfix (DungeonMapScreen __instance, SpriteBatch __spriteBatch) {
-//    TheSimpletonMod.logger.debug("DungeonMapScreenRenderAfter invoked post trigger");
     if (TheSimpletonMod.seasonScreen.isOpen()) {
-//      TheSimpletonMod.logger.debug("DungeonMapScreenRenderAfter season screen open; rendering");
       __spriteBatch.setColor(Color.WHITE);
       TheSimpletonMod.seasonScreen.render(__spriteBatch);
     }

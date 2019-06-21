@@ -31,6 +31,7 @@ import com.megacrit.cardcrawl.unlock.AbstractUnlock;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import thesimpleton.actions.ApplyCropAction;
 import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
@@ -136,6 +137,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
 
         AbstractCrop.resetHasHarvestedThisTurn();
+    }
+
+    public static boolean isPlayingAsSimpleton() {
+        return  AbstractDungeon.player != null && AbstractDungeon.player.chosenClass == TheSimpletonCharEnum.THE_SIMPLETON;
     }
 
     private static class CUSTOM_SAVABLES {
@@ -628,33 +633,35 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receivePostCreateStartingDeck(AbstractPlayer.PlayerClass playerClass, CardGroup group) {
-        logger.debug("TheSimpletonMod.receivePostCreateStartingDeck receivePostCreateStartingDeck called");
+        if (isPlayingAsSimpleton()) {
+            logger.debug("TheSimpletonMod.receivePostCreateStartingDeck receivePostCreateStartingDeck called");
 
-        if (playerClass != TheSimpletonCharEnum.THE_SIMPLETON) {
-            return;
-        }
-        logger.debug("TheSimpletonMod.receivePostCreateStartingDeck initializing Season");
+            if (playerClass != TheSimpletonCharEnum.THE_SIMPLETON) {
+                return;
+            }
+            logger.debug("TheSimpletonMod.receivePostCreateStartingDeck initializing Season");
 
-        initializeSeason();
+            initializeSeason();
 
-        logger.debug("TheSimpletonMod.receivePostCreateStartingDeck adding seasonal cards to card pool");
+            logger.debug("TheSimpletonMod.receivePostCreateStartingDeck adding seasonal cards to card pool");
 
-        for (AbstractCropPowerCard card : getSeasonalCropCards()) {
-            addToCardPool(card);
-        }
+            for (AbstractCropPowerCard card : getSeasonalCropCards()) {
+                addToCardPool(card);
+            }
 
-        TheSimpletonMod.removeUnusedCropPowerCardsFromPool();
+            TheSimpletonMod.removeUnusedCropPowerCardsFromPool();
 
-        Optional<TheSimpletonCharEnum.Theme> themeToApply = currentTheme.getCurrentTheme();
-        if (!themeToApply.isPresent()) {
-            return;
-        }
+            Optional<TheSimpletonCharEnum.Theme> themeToApply = currentTheme.getCurrentTheme();
+            if (!themeToApply.isPresent()) {
+                return;
+            }
 
-        try {
-            group.clear();
-            themeToApply.get().getStartingDeck().forEach(card -> group.addToTop(card));
-        } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                group.clear();
+                themeToApply.get().getStartingDeck().forEach(card -> group.addToTop(card));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

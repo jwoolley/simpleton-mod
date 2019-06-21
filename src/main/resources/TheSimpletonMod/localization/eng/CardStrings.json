@@ -198,7 +198,7 @@
 
   "TheSimpletonMod:Photosynthesis": {
     "NAME": "Photosynthesis",
-    "DESCRIPTION": "At the end of your turn, spend all your unused Energy and Plant that many random Crops."
+    "DESCRIPTION": "At the end of your turn, spend all your unused Energy and Plant that many random In-Season Crops."
   },
 
   "TheSimpletonMod:SeedCoat": {

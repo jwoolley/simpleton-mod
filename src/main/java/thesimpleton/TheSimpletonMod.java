@@ -580,6 +580,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         TheSimpletonMod.removeCropPowerCardsFromPool(cardsToRemove);
     }
 
+    public static SeasonInfo getSeasonInfo() {
+        return seasonInfo;
+    }
+
     private static void removeCropPowerCardsFromPool(List<AbstractCropPowerCard> cardsToRemove) {
         logger.debug("removeCropPowerCardsFromPool called ===========================>>>>>>> # of cards: " + cardsToRemove.size());
 

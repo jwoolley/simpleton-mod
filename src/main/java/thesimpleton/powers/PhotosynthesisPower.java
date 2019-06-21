@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.crops.AbstractCrop;
 import thesimpleton.crops.Crop;
@@ -49,9 +50,10 @@ public class PhotosynthesisPower extends AbstractTheSimpletonPower {
       this.flash();
       for (int i = 0; i < energy; i++) {
         player.loseEnergy(1);
-        AbstractCrop randomCrop = AbstractCrop.getRandomCrop(player, 1);
+//        Crop randomCrop = AbstractCrop.getRandomCrop(player, 1).enumValue;
+        Crop randomCrop = TheSimpletonMod.getSeasonInfo().getRandomCropInSeason();
         AbstractDungeon.actionManager.addToBottom(
-            new CropSpawnAction(Crop.getCropOrb(randomCrop.enumValue, 1), 1, false));
+            new CropSpawnAction(Crop.getCropOrb(randomCrop, 1), 1, false));
 
       }
     }

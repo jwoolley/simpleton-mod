@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
-import thesimpleton.cards.skill.AbstractDynamicTextCard;
+import thesimpleton.cards.interfaces.AbstractDynamicTextCard;
 import thesimpleton.enums.AbstractCardEnum;
 
 public class CullingStrike extends AbstractDynamicTextCard {

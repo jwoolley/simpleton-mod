@@ -16,6 +16,7 @@ import thesimpleton.effects.orb.GainCropSoundEffect;
 import thesimpleton.effects.orb.HarvestCropSoundEffect;
 import thesimpleton.effects.orb.StackCropSoundEffect;
 import thesimpleton.crops.Crop;
+import thesimpleton.orbs.utilities.CropOrbHelper;
 
 import java.util.List;
 import java.util.Optional;
@@ -219,12 +220,10 @@ public abstract class AbstractCropOrb extends CustomOrb {
   public void render(SpriteBatch sb) {
     super.render(sb);
 
+    Color filterColor = MATURE_CROP_HALO_COLOR;
+    Color textColor = MATURE_CROP_STACK_COUNT_FONT_COLOR;
 
     if (this.isMature(true)) {
-
-      Color filterColor = MATURE_CROP_HALO_COLOR;
-      Color textColor = MATURE_CROP_STACK_COUNT_FONT_COLOR;
-
       // TODO: when stacks > maturity level, replace with flash image + add sound effect for those few frames
       //      final Color overplantFilterColor = Color.LIME;
       //      final Color overplantTextColor = Color.LIME;
@@ -241,6 +240,15 @@ public abstract class AbstractCropOrb extends CustomOrb {
       this.c = filterColor;
     } else {
       this.c = CROP_STACK_COUNT_FONT_COLOR;
+    }
+
+    Color highlightFilterColor = Color.GOLD;
+    if (CropOrbHelper.hasHighlightedOrb()) {
+      if (CropOrbHelper.getHighlightedOrb().name == this.name) {
+        this.c = highlightFilterColor;
+      }
+    } else {
+      this.c = filterColor;
     }
   }
 

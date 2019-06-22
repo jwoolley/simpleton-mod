@@ -10,11 +10,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.skill.AbstractDynamicTextCard;
+import thesimpleton.cards.interfaces.AbstractDynamicCropOrbHighlighterCard;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.AbstractCropOrb;
 
-public class CloseScrape extends AbstractDynamicTextCard {
+public class CloseScrape extends AbstractDynamicCropOrbHighlighterCard {
     public static final String ID = "TheSimpletonMod:CloseScrape";
     public static final String NAME;
     public static final String DESCRIPTION;
@@ -88,5 +88,10 @@ public class CloseScrape extends AbstractDynamicTextCard {
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
     EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
+  }
+
+  @Override
+  public AbstractCropOrb findCropOrb() {
+    return AbstractCropOrb.getOldestCropOrb();
   }
 }

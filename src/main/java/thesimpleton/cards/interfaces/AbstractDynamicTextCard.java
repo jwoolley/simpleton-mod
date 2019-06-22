@@ -1,4 +1,4 @@
-package thesimpleton.cards.skill;
+package thesimpleton.cards.interfaces;
 
 import basemod.abstracts.CustomCard;
 import thesimpleton.cards.SimpletonUtil;

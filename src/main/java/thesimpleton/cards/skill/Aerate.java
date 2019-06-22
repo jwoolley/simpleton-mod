@@ -8,10 +8,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.interfaces.AbstractDynamicCropOrbHighlighterCard;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.AbstractCropOrb;
 
-public class Aerate extends AbstractDynamicTextCard {
+public class Aerate extends AbstractDynamicCropOrbHighlighterCard {
   public static final String ID = "TheSimpletonMod:Aerate";
   public static final String NAME;
   public static final String DESCRIPTION;
@@ -82,5 +83,10 @@ public class Aerate extends AbstractDynamicTextCard {
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
     EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
+  }
+
+  @Override
+  public AbstractCropOrb findCropOrb() {
+    return AbstractCropOrb.getNewestCropOrb();
   }
 }

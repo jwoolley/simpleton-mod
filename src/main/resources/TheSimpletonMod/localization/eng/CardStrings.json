@@ -259,6 +259,12 @@
     "DESCRIPTION": "Draw !M! cards. NL Exhaust a card from your hand."
   },
 
+  "TheSimpletonMod:SaladShooter": {
+    "NAME": "Salad Shooter",
+    "DESCRIPTION": "Deal !D! damage to a random enemy. NL Repeat for each time you've Harvested this turn."
+  },
+
+
   "TheSimpletonMod:SaltTheEarth": {
     "NAME": "Salt the Earth",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Add !M! Depletions to your hand."

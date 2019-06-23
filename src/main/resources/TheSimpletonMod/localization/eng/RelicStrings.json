@@ -71,6 +71,15 @@
     ]
   },
 
+  "TheSimpletonMod:PlanterBox": {
+    "NAME": "Planter Box",
+    "FLAVOR": "Imported soil tends to produce a less twisted harvest.",
+    "DESCRIPTIONS": [
+      "Start each combat with #b",
+      " additional #yPlot."
+    ]
+  },
+
   "TheSimpletonMod:NightSoil": {
     "NAME": "Night Soil",
     "FLAVOR": "It grows on you.",

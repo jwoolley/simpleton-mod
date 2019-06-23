@@ -97,11 +97,6 @@
     "DESCRIPTION": "Harvest all crops. NL Gain !M! Intangible. NL Exhaust."
   },
 
-  "TheSimpletonMod:Nettles": {
-    "NAME": "Nettles",
-    "DESCRIPTION": "Whenever this card is drawn, Apply !M! Thorns to a random enemy."
-  },
-
   "TheSimpletonMod:DesperatePlunge": {
     "NAME": "Desperate Plunge",
     "DESCRIPTION": "Costs [E] less for each Power card played this turn. NL Gain !B! Block. NL Next turn, lose [E]."
@@ -182,12 +177,23 @@
     "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Exhaust."
   },
 
+  "TheSimpletonMod:LandGrant": {
+    "NAME": "Land Grant",
+    "DESCRIPTION": "Gain !M! Plot.",
+    "UPGRADE_DESCRIPTION" :  "Gain !M! Plots."
+  },
+
   "TheSimpletonMod:Mulch": {
     "NAME": "Mulch",
     "DESCRIPTION": "Exhaust a card, then gain an effect based on its type: NL NL Attack: Gain !B! Block. NL Skill: Apply ",
     "EXTENDED_DESCRIPTION": [
       " Burning to ALL. NL All Others: Draw ",
       " cards."]
+  },
+
+  "TheSimpletonMod:Nettles": {
+    "NAME": "Nettles",
+    "DESCRIPTION": "Whenever this card is drawn, Apply !M! Thorns to a random enemy."
   },
 
   "TheSimpletonMod:OnionBloom": {

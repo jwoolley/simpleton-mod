@@ -138,6 +138,15 @@
     "DESCRIPTION": "#yCrop. Yields 0-cost Spud attack cards when harvested."
   },
 
+
+  "TheSimpletonMod:PlotKeyword": {
+    "PROPER_NAME": "Plot",
+    "NAMES": [
+      "plot", "plots"
+    ],
+    "DESCRIPTION": "#ySlot for planting Crops. Your Plots determine how many different Crops you can have at one time."
+  },
+
   "TheSimpletonMod:SpinachKeyword": {
     "PROPER_NAME": "Spinach",
     "NAMES": [

@@ -315,7 +315,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         BaseMod.registerModBadge(
                 badgeTexture, "The Hayseed", "jwoolley",
-                "Adds a new character to the game - The Hayseed", modPanel);
+                "Adds a new creature to the game - The Hayseed", modPanel);
 
         BaseMod.addPotion(
             AbundancePotion.class, AbundancePotion.BASE_COLOR, AbundancePotion.HYBRID_COLOR,
@@ -410,6 +410,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new Mulch());
         cards.add(new OnionBloom());
         cards.add(new SeedCoat());
+        cards.add(new Polyculture());
         cards.add(new Pruning());
         cards.add(new ResearchGrant());
         cards.add(new Rototilling());
@@ -613,8 +614,9 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     public static List<AbstractCropPowerCard> getSeasonalCropCards() {
-        logger.debug("getSeasonalCropCards called: " + SEASONAL_CROP_CARDS.stream().map(c -> c.name).collect(Collectors.joining(", ")));
-        return Collections.unmodifiableList(SEASONAL_CROP_CARDS);
+        logger.debug("getSeasonalCropCards called: " + SEASONAL_CROP_CARDS.stream()
+            .distinct().map(c -> c.name).collect(Collectors.joining(", ")));
+        return Collections.unmodifiableList(SEASONAL_CROP_CARDS.stream().distinct().collect(Collectors.toList()));
     }
 
     @Override

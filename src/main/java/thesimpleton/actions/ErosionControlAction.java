@@ -1,6 +1,7 @@
 package thesimpleton.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
@@ -8,8 +9,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.SmokePuffEffect;
+import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
+import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.effects.SoilCloudEffect;
 import thesimpleton.orbs.AbstractCropOrb;
 
 import java.util.HashMap;
@@ -40,6 +46,11 @@ public class ErosionControlAction extends AbstractGameAction {
   public void update() {
     Logger logger = TheSimpletonMod.logger;
     if (this.duration != ACTION_DURATION) {
+
+      AbstractGameEffect effect = new SoilCloudEffect(p.hb.cX, p.hb.cY);
+
+      AbstractDungeon.actionManager.addToBottom(new VFXAction(p, effect, 0.2F));
+
       AbstractDungeon.actionManager.addToBottom(new WaitAction(0.1F));
       logger.debug("ErosionControlAction.update :: second tick. Applying " + this.amount + " Intangible");
           AbstractDungeon.actionManager.addToBottom(

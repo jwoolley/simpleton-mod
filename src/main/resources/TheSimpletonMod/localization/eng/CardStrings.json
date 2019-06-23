@@ -206,6 +206,11 @@
     "DESCRIPTION": "At the end of your turn, spend all your unused Energy and Plant that many random In-Season Crops."
   },
 
+  "TheSimpletonMod:Polyculture": {
+    "NAME": "Polyculture",
+    "DESCRIPTION": "Shuffle !M! random Crop Power cards into your draw pile. NL Exhaust."
+  },
+
   "TheSimpletonMod:SeedCoat": {
     "NAME": "Seed Coat",
     "DESCRIPTION": "Gain !B! Block. NL The first time this card is played this combat, decrease its Block by !M! and it gains Exhaust.",

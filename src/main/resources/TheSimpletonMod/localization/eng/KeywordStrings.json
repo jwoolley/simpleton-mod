@@ -85,7 +85,7 @@
     "NAMES": [
       "harvest", "harvested"
     ],
-    "DESCRIPTION": "Harvest different #yCrop stacks for various effects."
+    "DESCRIPTION": "Harvest different #yCrops for various effects."
   },
 
   "TheSimpletonMod:HuskKeyword": {
@@ -101,7 +101,7 @@
     "NAMES": [
       "mature", "matures", "maturity"
     ],
-    "DESCRIPTION": "A #yCrop is mature if you have stacks equal to or greater than its maturity level (usually 2, 3 or 5). One stack of each mature crop is #gHarvested at the start of your turn."
+    "DESCRIPTION": "A #yCrop is mature if you have stacks equal to its maturity level. One stack of each mature crop is #gHarvested at the start of your turn."
   },
 
   "TheSimpletonMod:MushroomKeyword": {

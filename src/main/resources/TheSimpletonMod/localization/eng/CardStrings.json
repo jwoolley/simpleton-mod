@@ -92,6 +92,11 @@
     "DESCRIPTION": "Gain !M! less Energy next turn. NL Draw !M! less card next turn. NL Exhaust. NL NL At the end of your turn, if this is in your hand, add a copy of it to your discard pile."
   },
 
+  "TheSimpletonMod:ErosionControl": {
+    "NAME": "Erosion Control",
+    "DESCRIPTION": "Harvest ALL crops. NL Gain !M! Intangible. NL Exhaust."
+  },
+
   "TheSimpletonMod:Nettles": {
     "NAME": "Nettles",
     "DESCRIPTION": "Whenever this card is drawn, Apply !M! Thorns to a random enemy."

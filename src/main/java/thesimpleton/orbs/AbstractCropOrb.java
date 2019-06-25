@@ -66,7 +66,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
     AbstractCropOrb orb = getCropOrb();
 
     return orb != null ? orb.passiveAmount : 0;
-//    return hasCropOrbX() ? getCropOrb().passiveAmount : 0;
+//    return hasCropOrb() ? getCropOrb().passiveAmount : 0;
   }
 
   public static String getGenericDescription(int maturityThreshold) {
@@ -85,14 +85,14 @@ public abstract class AbstractCropOrb extends CustomOrb {
   public static boolean isMature(Crop crop) {
     AbstractCropOrb orb = AbstractCropOrb.getCropOrb(crop);
     return orb != null && orb.isMature(false);
-//    return hasCropOrbX(crop) && getCropOrb(crop).isMature();
+//    return hasCropOrb(crop) && getCropOrb(crop).isMature();
   }
 
-  public boolean hasCropOrbX() {
+  public boolean hasCropOrb() {
     return hasCropOrb(this.ID);
   }
 
-  public static boolean hasCropOrbX(Crop crop) {
+  public static boolean hasCropOrb(Crop crop) {
     return hasCropOrb(crop.getCropInfo().orbId);
   }
 
@@ -101,7 +101,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
   }
 
   //TODO: move to util
-  public static boolean hasCropOrbX(AbstractCropOrb orbType) {
+  public static boolean hasCropOrb(AbstractCropOrb orbType) {
     return hasCropOrb(orbType.ID);
   }
 

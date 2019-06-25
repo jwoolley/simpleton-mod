@@ -407,6 +407,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         // Skill (20)
         cards.add(new Aerate());
+        cards.add(new BumperCrop());
         cards.add(new ControlledBurn());
         cards.add(new CropDiversity());
         cards.add(new CropRotation());

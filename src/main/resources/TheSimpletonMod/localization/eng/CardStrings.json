@@ -42,6 +42,17 @@
     "EXTENDED_DESCRIPTION" : [" HP."]
   },
 
+  "TheSimpletonMod:BumperCrop": {
+    "NAME": "BumperCrop",
+    "DESCRIPTION": "Gain !B! Block. NL Harvest !M! of your newest Crop",
+    "EXTENDED_DESCRIPTION" : [
+      ".",
+      " NL (No eligible Crops currently)",
+      " NL (Currently ",
+      ")"
+    ]
+  },
+
   "TheSimpletonMod:BuzzBomb": {
     "NAME": "Buzz Bomb",
     "DESCRIPTION": "Deal !D! damage to a random enemy !M! times. NL Plant 1 Coffee for each enemy killed this way."

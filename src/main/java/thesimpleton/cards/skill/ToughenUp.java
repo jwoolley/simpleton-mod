@@ -42,7 +42,7 @@ public class ToughenUp extends CustomCard {
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
 
-    if (AbstractCropOrb.hasCropOrbX(Crop.SQUASH)) {
+    if (AbstractCropOrb.hasCropOrb(Crop.SQUASH)) {
       AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new SquashCropOrb(this.magicNumber),true));
     }
   }

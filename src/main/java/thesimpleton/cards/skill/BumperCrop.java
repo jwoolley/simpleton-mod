@@ -8,16 +8,21 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.CropSpawnAction;
+import thesimpleton.actions.HarvestCropAction;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.interfaces.AbstractDynamicCropOrbHighlighterCard;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.AbstractCropOrb;
+import thesimpleton.orbs.SquashCropOrb;
+import thesimpleton.crops.Crop;
 
-public class Aerate extends AbstractDynamicCropOrbHighlighterCard {
-  public static final String ID = "TheSimpletonMod:Aerate";
+public class BumperCrop extends AbstractDynamicCropOrbHighlighterCard {
+  public static final String ID = "TheSimpletonMod:BumperCrop";
   public static final String NAME;
   public static final String DESCRIPTION;
   public static final String[] EXTENDED_DESCRIPTION;
-  public static final String IMG_PATH = "cards/aerate.png";
+  public static final String IMG_PATH = "cards/bumpercrop.png";
 
   private static final CardStrings cardStrings;
 
@@ -25,29 +30,45 @@ public class Aerate extends AbstractDynamicCropOrbHighlighterCard {
   private static final CardRarity RARITY = CardRarity.COMMON;
   private static final CardTarget TARGET = CardTarget.SELF;
 
-  private static final int COST = 2;
-  private static final int BLOCK = 9;
-  private static final int UPGRADE_BLOCK_AMOUNT = 4;
-  private static final int CROP_INCREASE_AMOUNT = 2;
+  private static final int COST = 1;
+  private static final int BLOCK = 7;
+  private static final int BLOCK_UPGRADE_AMOUNT = 3;
+  private static final int HARVEST_AMOUNT = 1;
 
-  public Aerate() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+  public BumperCrop() {
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false),
+        TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
-    this.baseMagicNumber = this.magicNumber = CROP_INCREASE_AMOUNT;
+    this.baseMagicNumber = this.magicNumber = HARVEST_AMOUNT;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
-
+    // TODO: ensure this works as expect with Asparagus
     if (AbstractCropOrb.playerHasAnyCropOrbs()) {
-      AbstractCropOrb.getNewestCropOrb().getCrop().stackOrb(this.magicNumber, true);
+      AbstractCropOrb newestOrb = findCropOrb();
+      AbstractDungeon.actionManager.addToTop(new HarvestCropAction(newestOrb,  this.magicNumber,true));
     }
+
+    AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
   }
 
   @Override
   public AbstractCard makeCopy() {
-    return new Aerate();
+    return new BumperCrop();
+  }
+
+  @Override
+  public void upgrade() {
+    if (!this.upgraded) {
+      this.upgradeName();
+      this.upgradeBlock(BLOCK_UPGRADE_AMOUNT);
+    }
+  }
+
+  @Override
+  public AbstractCropOrb findCropOrb() {
+    return AbstractCropOrb.getNewestCropOrb();
   }
 
   public void updateDescription(boolean extendedDescription) {
@@ -60,28 +81,16 @@ public class Aerate extends AbstractDynamicCropOrbHighlighterCard {
 
     if (extendedDescription)
       if (AbstractCropOrb.playerHasAnyCropOrbs()) {
-      AbstractCropOrb cropOrb = AbstractCropOrb.getNewestCropOrb();
-      description += EXTENDED_DESCRIPTION[2] + cropOrb.name + EXTENDED_DESCRIPTION[3];
-    } else {
-      description += EXTENDED_DESCRIPTION[1];
-    }
+        AbstractCropOrb cropOrb = AbstractCropOrb.getNewestCropOrb();
+        description += EXTENDED_DESCRIPTION[2] + cropOrb.name + EXTENDED_DESCRIPTION[3];
+      } else {
+        description += EXTENDED_DESCRIPTION[1];
+      }
 
     description += EXTENDED_DESCRIPTION[0];
     return description;
   }
 
-  @Override
-  public void upgrade() {
-    if (!this.upgraded) {
-      this.upgradeName();
-      this.upgradeBlock(UPGRADE_BLOCK_AMOUNT);
-    }
-  }
-
-  @Override
-  public AbstractCropOrb findCropOrb() {
-    return AbstractCropOrb.getNewestCropOrb();
-  }
 
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);

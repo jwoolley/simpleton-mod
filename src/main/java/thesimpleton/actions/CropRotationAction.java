@@ -16,6 +16,7 @@ import thesimpleton.orbs.AbstractCropOrb;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class CropRotationAction extends AbstractGameAction {
   private static final ActionType ACTION_TYPE = ActionType.SPECIAL;
@@ -46,7 +47,6 @@ public class CropRotationAction extends AbstractGameAction {
       if (this.secondTick) {
         AbstractDungeon.actionManager.addToTop(new WaitAction(0.1F));
 
-//        final AbstractCropPowerCard randomCropPowerCard = AbstractCropPowerCard.getRandomCropPowerCard(true);
         final AbstractCropPowerCard randomCropPowerCard = ((TheSimpletonCharacter)AbstractDungeon.player).getCropUtil().getRandomCropCardInSeason();
         if (this.reduceCost) {
           randomCropPowerCard.modifyCostForTurn(-1);
@@ -57,15 +57,20 @@ public class CropRotationAction extends AbstractGameAction {
       this.isDone = true;
     }
 
+
     //TODO: make "getActiveCropPowers" a helper method on e.g. Util class
     // the logic exists - see Aerate / playerHasAnyActiveCropPowers / getOldestCropPower
     // harvest existing stacks
     final ArrayList<AbstractPower> activePowers =  new ArrayList<>(p.powers);
     Collections.shuffle(activePowers);
-    AbstractCropOrb oldestCropOrb = AbstractCrop.getOldestCropOrb();
 
-    if (!this.secondTick && oldestCropOrb != null) {
-      AbstractDungeon.actionManager.addToTop(new HarvestCropAction(oldestCropOrb,  numCropsToHarvest,true, true));
+    List<AbstractCropOrb> activeOrbs = AbstractCropOrb.getActiveCropOrbs();
+    Collections.shuffle(activeOrbs);
+
+    AbstractCropOrb randomOrb = activeOrbs.get(0);
+
+    if (!this.secondTick && randomOrb != null) {
+      AbstractDungeon.actionManager.addToTop(new HarvestCropAction(randomOrb,  numCropsToHarvest,true, true));
     } else {
       AbstractDungeon.actionManager.addToBottom(new SFXAction("CARD_SELECT"));
     }

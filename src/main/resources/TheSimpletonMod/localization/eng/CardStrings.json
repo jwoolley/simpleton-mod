@@ -42,6 +42,11 @@
     "EXTENDED_DESCRIPTION" : [" HP."]
   },
 
+  "TheSimpletonMod:BuzzBomb": {
+    "NAME": "Buzz Bomb",
+    "DESCRIPTION": "Deal !D! damage to a random enemy !M! times. NL Plant 1 Coffee for each enemy killed this way."
+  },
+
   "TheSimpletonMod:CloseScrape": {
     "NAME": "Close Scrape",
     "DESCRIPTION": "Deal !D! damage. NL Plant !M! of your oldest Crop",

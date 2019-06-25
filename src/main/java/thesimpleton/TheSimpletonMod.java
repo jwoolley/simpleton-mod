@@ -322,10 +322,18 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                 AbundancePotion.SPOTS_COLOR, AbundancePotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
 
         HashMap<String, Sfx> reflectedMap = getSoundsMap();
+
         reflectedMap.put("ATTACK_SCYTHE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_AttackScythe1.ogg"));
 
-//        registerCustomSaveKeys();
+        reflectedMap.put("ATTACK_BUZZ_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_Buzz1.ogg"));
+
+        reflectedMap.put("ATTACK_FIRE_IMPACT_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_ImpactFire1.ogg"));
+
+        reflectedMap.put("ATTACK_FIRE_IMPACT_2",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_ImpactFire2.ogg"));
     }
 
     private void registerCustomSaveKeys() {
@@ -381,6 +389,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         // Attack (11)
         cards.add(new Barnstorm());
+        cards.add(new BuzzBomb());
         cards.add(new CullingStrike());
         cards.add(new DoubleBarrel());
         cards.add(new Fertilaser());

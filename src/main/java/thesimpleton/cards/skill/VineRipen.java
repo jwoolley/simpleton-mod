@@ -32,7 +32,7 @@ public class VineRipen extends CustomCard {
   public VineRipen() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = SQUASH_STACKS;
-    this.isInnate = false;
+    this.exhaust = true;
   }
 
   @Override
@@ -50,7 +50,7 @@ public class VineRipen extends CustomCard {
   public void upgrade() {
     if (!this.upgraded) {
       this.upgradeName();
-      this.isInnate = true;
+      this.exhaust = false;
       this.rawDescription = UPGRADE_DESCRIPTION;
       initializeDescription();
     }

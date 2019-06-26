@@ -2,7 +2,6 @@ package thesimpleton.cards.skill;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,16 +9,15 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.actions.ApplyBurningAction;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.powers.DoubleDigPower;
+import thesimpleton.powers.DoubleDiggingPower;
 
-public class DoubleDig extends CustomCard {
-  public static final String ID = "TheSimpletonMod:DoubleDig";
+public class DoubleDigging extends CustomCard {
+  public static final String ID = "TheSimpletonMod:DoubleDigging";
   public static final String NAME;
   public static final String DESCRIPTION;
   public static final String[] EXTENDED_DESCRIPTION;
-  public static final String IMG_PATH = "cards/doubledig.png";
+  public static final String IMG_PATH = "cards/doubledigging.png";
 
   private static final CardStrings cardStrings;
 
@@ -31,7 +29,7 @@ public class DoubleDig extends CustomCard {
   private static final int NUM_POWER_STACKS = 1;
   private static final int NUM_POWER_STACKS_UPGRADE_AMOUNT = 1;
 
-  public DoubleDig() {
+  public DoubleDigging() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(NUM_POWER_STACKS), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = NUM_POWER_STACKS;
   }
@@ -39,12 +37,12 @@ public class DoubleDig extends CustomCard {
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, new DoubleDigPower(p, this.magicNumber), this.magicNumber));
+        new ApplyPowerAction(p, p, new DoubleDiggingPower(p, this.magicNumber), this.magicNumber));
   }
 
   @Override
   public AbstractCard makeCopy() {
-    return new DoubleDig();
+    return new DoubleDigging();
   }
 
   @Override

@@ -31,7 +31,6 @@ import com.megacrit.cardcrawl.unlock.AbstractUnlock;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import thesimpleton.actions.ApplyCropAction;
 import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
@@ -195,11 +194,11 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         BaseMod.addUnlockBundle(new CustomUnlockBundle(
             AbstractUnlock.UnlockType.CARD,
-            "TheSimpletonMod:DoubleDig",
+            "TheSimpletonMod:DoubleDigging",
             "TheSimpletonMod:CropDiversity",
             "TheSimpletonMod:Fecundity"
         ), TheSimpletonCharEnum.THE_SIMPLETON, 3);
-        UnlockTracker.addCard("TheSimpletonMod:DoubleDig");
+        UnlockTracker.addCard("TheSimpletonMod:DoubleDigging");
         UnlockTracker.addCard("TheSimpletonMod:CropDiversity");
         UnlockTracker.addCard("TheSimpletonMod:Fecundity");
 
@@ -412,7 +411,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new CropDiversity());
         cards.add(new CropRotation());
         cards.add(new DesperatePlunge());
-        cards.add(new DoubleDig());
+        cards.add(new DoubleDigging());
         cards.add(new ErosionControl());
         cards.add(new DigIn());
         cards.add(new FanTheFlames());

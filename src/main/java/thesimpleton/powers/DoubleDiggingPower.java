@@ -11,10 +11,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class DoubleDigPower extends AbstractTheSimpletonPower {
-  public static final String IMG = "doubledig.png";
+public class DoubleDiggingPower extends AbstractTheSimpletonPower {
+  public static final String IMG = "doubledigging.png";
 
-  public static final String POWER_ID = "TheSimpletonMod:DoubleDigPower";
+  public static final String POWER_ID = "TheSimpletonMod:DoubleDiggingPower";
   private static final PowerStrings powerStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
@@ -23,7 +23,7 @@ public class DoubleDigPower extends AbstractTheSimpletonPower {
 
   public static final int MAX_CARD_COST = 1;
 
-  public DoubleDigPower(AbstractCreature owner, int amount)
+  public DoubleDiggingPower(AbstractCreature owner, int amount)
   {
     super(IMG);
     this.name = NAME;
@@ -85,7 +85,7 @@ public class DoubleDigPower extends AbstractTheSimpletonPower {
       this.amount--;
       if (this.amount == 0) {
         AbstractDungeon.actionManager.addToBottom(
-            new RemoveSpecificPowerAction(this.owner, this.owner, "TheSimpletonMod:DoubleDigPower"));
+            new RemoveSpecificPowerAction(this.owner, this.owner, "TheSimpletonMod:DoubleDiggingPower"));
       }
     }
   }
@@ -93,7 +93,7 @@ public class DoubleDigPower extends AbstractTheSimpletonPower {
   public void atEndOfTurn(boolean isPlayer) {
     if (isPlayer) {
       AbstractDungeon.actionManager.addToBottom(
-          new RemoveSpecificPowerAction(this.owner, this.owner, "TheSimpletonMod:DoubleDigPower"));
+          new RemoveSpecificPowerAction(this.owner, this.owner, "TheSimpletonMod:DoubleDiggingPower"));
     }
   }
 

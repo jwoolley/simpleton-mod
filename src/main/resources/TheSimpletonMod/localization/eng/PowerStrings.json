@@ -47,12 +47,12 @@
     ]
   },
 
-  "TheSimpletonMod:DoubleDigPower": {
-    "NAME": "Double Dig",
+  "TheSimpletonMod:DoubleDiggingPower": {
+    "NAME": "Double Digging",
     "DESCRIPTIONS": [
-      "Your next card that costs #b1 or less is played twice this turn.",
+      "Your next card this turn that costs #b1 or less is played twice.",
       "Your next #b",
-      " cards that cost #b1 or less are played twice this turn."
+      " cards this turn that cost #b1 or less are played twice."
     ]
   },
 

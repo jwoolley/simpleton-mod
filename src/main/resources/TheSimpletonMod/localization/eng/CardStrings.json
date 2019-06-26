@@ -128,12 +128,12 @@
     "DESCRIPTION": "Deal !D! damage. NL If the enemy is Weak, gain [E] and deal !D! damage again."
   },
 
-  "TheSimpletonMod:DoubleDig": {
-    "NAME": "Double Dig",
+  "TheSimpletonMod:DoubleDigging": {
+    "NAME": "Double Digging",
     "DESCRIPTION": "This turn, the next",
     "EXTENDED_DESCRIPTION" : [
-      "  card you play that costs 1 or less is played twice.",
-      "  !M! cards you play that cost 1 or less are played twice."
+      " card you play that costs 1 or less is played twice.",
+      " !M! cards you play that cost 1 or less are played twice."
     ]
   },
 

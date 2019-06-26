@@ -195,23 +195,23 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         BaseMod.addUnlockBundle(new CustomUnlockBundle(
             AbstractUnlock.UnlockType.CARD,
-            "TheSimpletonMod:Barnstorm",
+            "TheSimpletonMod:DoubleDig",
             "TheSimpletonMod:CropDiversity",
             "TheSimpletonMod:Fecundity"
         ), TheSimpletonCharEnum.THE_SIMPLETON, 3);
-        UnlockTracker.addCard("TheSimpletonMod:Barnstorm");
+        UnlockTracker.addCard("TheSimpletonMod:DoubleDig");
         UnlockTracker.addCard("TheSimpletonMod:CropDiversity");
         UnlockTracker.addCard("TheSimpletonMod:Fecundity");
 
         BaseMod.addUnlockBundle(new CustomUnlockBundle(
             AbstractUnlock.UnlockType.CARD,
-            "TheSimpletonMod:Barnstorm",
-            "TheSimpletonMod:CropDiversity",
-            "TheSimpletonMod:Fecundity"
+            "TheSimpletonMod:Polyculture",
+            "TheSimpletonMod:LandGrant",
+            "TheSimpletonMod:Barnstorm"
         ), TheSimpletonCharEnum.THE_SIMPLETON, 4);
-        UnlockTracker.addCard("TheSimpletonMod:Barnstorm");
-        UnlockTracker.addCard("TheSimpletonMod:CropDiversity");
-        UnlockTracker.addCard("TheSimpletonMod:Fecundity");
+        UnlockTracker.addCard("TheSimpletonMod:Polyculture");
+        UnlockTracker.addCard("TheSimpletonMod:LandGrant");
+        UnlockTracker.addCard("Barnstorm:Barnstorm");
     }
 
     private class ThemeState {
@@ -412,6 +412,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new CropDiversity());
         cards.add(new CropRotation());
         cards.add(new DesperatePlunge());
+        cards.add(new DoubleDig());
         cards.add(new ErosionControl());
         cards.add(new DigIn());
         cards.add(new FanTheFlames());

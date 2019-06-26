@@ -47,6 +47,17 @@
     ]
   },
 
+  "TheSimpletonMod:DoubleDigPower": {
+    "NAME": "Double Dig",
+    "DESCRIPTIONS": [
+      "Your next card that costs #b1 or less is played twice this turn.",
+      "Your next #b",
+      " cards that cost #b1 or less are played twice this turn."
+    ]
+  },
+
+
+
   "TheSimpletonMod:NextTurnWeakPower": {
     "NAME": "Weak Next Turn",
     "DESCRIPTIONS": [

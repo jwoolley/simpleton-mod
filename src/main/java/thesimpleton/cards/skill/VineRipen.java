@@ -17,7 +17,6 @@ public class VineRipen extends CustomCard {
   public static final String ID = "TheSimpletonMod:VineRipen";
   public static final String NAME;
   public static final String DESCRIPTION;
-  public static final String UPGRADE_DESCRIPTION;
   public static final String IMG_PATH = "cards/vineripen.png";
 
   private static final CardStrings cardStrings;
@@ -26,13 +25,13 @@ public class VineRipen extends CustomCard {
   private static final CardRarity RARITY = CardRarity.UNCOMMON;
   private static final CardTarget TARGET = CardTarget.SELF;
 
-  private static final int COST = 1;
+  private static final int COST = 2;
+  private static final int UPGRADED_COST = 1;
   private static final int SQUASH_STACKS = 2;
 
   public VineRipen() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = SQUASH_STACKS;
-    this.exhaust = true;
   }
 
   @Override
@@ -50,9 +49,7 @@ public class VineRipen extends CustomCard {
   public void upgrade() {
     if (!this.upgraded) {
       this.upgradeName();
-      this.exhaust = false;
-      this.rawDescription = UPGRADE_DESCRIPTION;
-      initializeDescription();
+      this.upgradeBaseCost(UPGRADED_COST);
     }
   }
 
@@ -60,6 +57,5 @@ public class VineRipen extends CustomCard {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
-    UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
   }
 }

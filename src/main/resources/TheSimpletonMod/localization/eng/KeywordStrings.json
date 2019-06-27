@@ -16,7 +16,7 @@
   },
 
   "TheSimpletonMod:AsparagusKeyword": {
-    "PROPER_NAME": "AsparagusKeyword",
+    "PROPER_NAME": "Asparagus",
     "NAMES": [
       "asparagus"
     ],
@@ -89,7 +89,7 @@
   },
 
   "TheSimpletonMod:HuskKeyword": {
-    "PROPER_NAME": "HuskKeyword",
+    "PROPER_NAME": "Husk",
     "NAMES": [
       "husk", "husks"
     ],

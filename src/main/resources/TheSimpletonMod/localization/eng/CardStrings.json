@@ -381,8 +381,7 @@
 
   "TheSimpletonMod:VineRipen": {
     "NAME": "Vine Ripen",
-    "DESCRIPTION": "Plant !M! Squash. NL If Squash is Mature, Block is not removed at the start of your next turn. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Plant !M! Squash. NL If Squash is Mature, Block is not removed at the start of your next turn."
+    "DESCRIPTION": "Plant !M! Squash. NL If Squash is Mature, Block is not removed at the start of your next turn."
   },
 
   "TheSimpletonMod:VolatileFumes": {

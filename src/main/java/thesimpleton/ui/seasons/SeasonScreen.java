@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.ui.buttons.CancelButton;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -22,7 +23,10 @@ import thesimpleton.ui.SettingsHelper;
 import thesimpleton.ui.buttons.ReadyButton;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 // TODO: see ShopScreen.open for example screen display logic (set game state as well as initialize pieces)
 //        use showBlockScreen
@@ -138,6 +142,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
     if (seasonalCropCards != null && !seasonalCropCards.isEmpty()) {
       inSeasonCropCards.addAll(TheSimpletonMod.getSeasonalCropCards());
       positionCards(Settings.WIDTH / 2.0f, CROP_CARDS_Y * SettingsHelper.getScaleY());
+      generateCardHitboxes(inSeasonCropCards.stream().map(c -> (AbstractCard)c).collect(Collectors.toList()));
 
       show = true;
       this.getReadyButton().enable();
@@ -175,6 +180,11 @@ public class SeasonScreen implements ReadyButtonPanel  {
     }
 
     hb.update();
+
+    for (AbstractCard card : inSeasonCropCards) {
+      card.hb.update();
+    }
+
     getReadyButton().update();
   }
 
@@ -226,8 +236,8 @@ public class SeasonScreen implements ReadyButtonPanel  {
     getReadyButton().render(sb);
 
 
-   final TintEffect seasonNameTextEffect = new TintEffect();
-   seasonNameTextEffect.changeColor(new Color(1.0F, 0.87F, 0.0F, 1.0F));
+    final TintEffect seasonNameTextEffect = new TintEffect();
+    seasonNameTextEffect.changeColor(new Color(1.0F, 0.87F, 0.0F, 1.0F));
 
     FontHelper.renderFontCentered(sb, FontHelper.losePowerFont, uiText[0], (Settings.WIDTH / 2.0F),
         SEASON_DESCRIPTION_PREAMBLE_Y * SettingsHelper.getScaleY(), seasonNameTextEffect.color, SettingsHelper.getScaleY());
@@ -244,11 +254,24 @@ public class SeasonScreen implements ReadyButtonPanel  {
     FontHelper.renderFontCentered(sb, FontHelper.bannerFont, uiText[1], (Settings.WIDTH / 2.0F) + CROP_TEXT_OFFSET_X,
         CROPS_IN_SEASON_TEXT_Y * SettingsHelper.getScaleY(), textEffect.color, SettingsHelper.getScaleY());
 
+    for (AbstractCard card : inSeasonCropCards) {
+      card.hb.render(sb);
+    }
+
     for (final AbstractCard c : inSeasonCropCards) {
       c.render(sb);
+      c.hb.render(sb);
+
+      if (c.hb.hovered) {
+        TipHelper.renderTipForCard(c, sb, c.keywords);
+      }
     }
-    for (final AbstractCard c : inSeasonCropCards) {
-      c.renderCardTip(sb);
+  }
+
+  private void generateCardHitboxes(List<AbstractCard> cards) {
+    for (AbstractCard card : cards) {
+      card.hb = new Hitbox(card.target_x - card.hb.width / 2, (card.target_y - card.hb.height / 2 ),
+          card.hb.width, card.hb.height);
     }
   }
 
@@ -279,10 +302,10 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   @Override
   public void onReadyClicked() {
-    logger.debug("SeasonScreen.onReadyClicked Called");
     getReadyButton().disable();
     getReadyButton().hide();
     wasDismissed = true;
     this.close();
+
   }
 }

@@ -11,7 +11,7 @@
     "NAME": "Artichokes",
     "DESCRIPTION": [
       "#gHarvest: Gain #b",
-      " Thorns for each stack harvested."
+      " #yThorns for each stack harvested."
     ]
   },
 
@@ -20,7 +20,7 @@
     "NAME": "Asparagus",
     "DESCRIPTION": [
       "#gHarvest: Gain #b",
-      " Dexterity for each stack harvested."
+      " #yDexterity for each stack harvested."
     ]
   },
 
@@ -36,7 +36,7 @@
   "TheSimpletonMod:CoffeeCropOrb": {
     "NAME": "Coffee",
     "DESCRIPTION": [
-      "#gHarvest: Gain an energy for each stack harvested."
+      "#gHarvest: Gain an Energy for each stack harvested."
     ]
   },
 
@@ -58,14 +58,14 @@
     "NAME": "Onions",
     "DESCRIPTION": [
       "#gHarvest: Apply #b",
-      " Weak to a random enemy for each stack harvested."
+      " #yWeak to a random enemy for each stack harvested."
     ]
   },
 
   "TheSimpletonMod:PotatoCropOrb": {
     "NAME": "Potatoes",
     "DESCRIPTION": [
-      "#gHarvest: Add a #ySpud to your hand for each stack harvested. NL (Need to add keyword tooltips)."
+      "#gHarvest: Add a #ySpud to your hand for each stack harvested."
     ]
   },
 
@@ -73,7 +73,7 @@
     "NAME": "Spinach",
     "DESCRIPTION": [
       "#gHarvest: Gain #b",
-      " Strength for each stack harvested."
+      " #yStrength for each stack harvested."
     ]
   },
 
@@ -81,13 +81,13 @@
     "NAME": "Squash",
     "DESCRIPTION": [
       "#gHarvest: Gain #b",
-      " Block for each stack harvested."
+      " #yBlock for each stack harvested."
     ]
   },
   "TheSimpletonMod:StrawberryCropOrb": {
     "NAME": "Strawberries",
     "DESCRIPTION": [
-      "#gHarvest: Consume ALL stacks and add a #yGnawberries to your hand for each stack harvested."
+      "#gHarvest: Consume ALL stacks and add a #yGnawberry to your hand for each stack harvested."
     ]
   },
 
@@ -95,7 +95,7 @@
   "TheSimpletonMod:TurnipCropOrb": {
     "NAME": "Turnips",
     "DESCRIPTION": [
-      "#gHarvest: Convert ALL stacks into an attack card that deals increased damage for each stack harvested and adds a Turnips card to your hand."
+      "#gHarvest: Convert ALL stacks into an attack card that deals increased damage for each stack harvested and adds a #yTurnips card to your hand."
     ]
   }
 }

@@ -1,17 +1,24 @@
 package thesimpleton.orbs;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.GameDictionary;
+import com.megacrit.cardcrawl.localization.Keyword;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.OnionCrop;
 import thesimpleton.crops.Crop;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class OnionCropOrb extends AbstractCropOrb {
   public static final Crop CROP_ENUM = Crop.ONIONS;
   public static final String ORB_ID = "TheSimpletonMod:OnionCropOrb";
   public static final String IMG_PATH = "plantonion";
   public static final String HALO_IMG_PATH = "orbonion_halo";
+  public static final List<Keyword> BASEGAME_KEYWORDS = Arrays.asList(GameDictionary.WEAK);
+
   private static final OrbStrings orbStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
@@ -49,6 +56,11 @@ public class OnionCropOrb extends AbstractCropOrb {
   public void updateDescription() {
     this.description = getDescription();
     this.update();
+  }
+
+  @Override
+  protected List<Keyword> getBaseGameKeywords() {
+    return BASEGAME_KEYWORDS;
   }
 
   static {

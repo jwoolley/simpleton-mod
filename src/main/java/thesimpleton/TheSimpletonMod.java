@@ -23,6 +23,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.relics.PaperCrane;
@@ -31,6 +32,7 @@ import com.megacrit.cardcrawl.unlock.AbstractUnlock;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.xml.sax.Locator;
 import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
@@ -55,6 +57,7 @@ import thesimpleton.ui.seasons.SeasonScreen;
 
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -83,7 +86,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     public static TheSimpletonCharacter theSimpletonCharacter;
     private static Properties theSimpletonProperties = new Properties();
 
-    private Map<String, Keyword> keywords;
+    private static Map<String, Keyword> keywords;
     private ThemeState currentTheme;
     private static final List<AbstractCropPowerCard> SEASONAL_CROP_CARDS = new ArrayList<>();
     private static final  List<AbstractCard> cardPoolFromSave = new ArrayList<>();
@@ -854,6 +857,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         keywords.forEach((k, v) -> {
             BaseMod.addKeyword(v.PROPER_NAME, v.NAMES, v.DESCRIPTION);
         });
+    }
+
+    public static Keyword getKeyword(String key) {
+       return keywords.get(key);
     }
 
     public static final SeasonScreen seasonScreen = new SeasonScreen();

@@ -7,19 +7,23 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.MathHelper;
+import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.localization.Keyword;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.AbstractCrop;
+import thesimpleton.crops.Crop;
 import thesimpleton.effects.orb.CropAnimationEffect;
 import thesimpleton.effects.orb.GainCropSoundEffect;
 import thesimpleton.effects.orb.HarvestCropSoundEffect;
 import thesimpleton.effects.orb.StackCropSoundEffect;
-import thesimpleton.crops.Crop;
 import thesimpleton.orbs.utilities.CropOrbHelper;
+import thesimpleton.ui.SettingsHelper;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class AbstractCropOrb extends CustomOrb {
@@ -32,6 +36,9 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
   private final static Color CROP_STACK_COUNT_FONT_COLOR = Color.WHITE;
   private final static Color MATURE_CROP_STACK_COUNT_FONT_COLOR = Color.YELLOW; // new Color(250.0F, 255.0F, 190.0F, 1.0F); //Color.YELLOW;
+  private static final float TOOLTIP_X_OFFSET = 80.0F;
+  private static final float TOOLTIP_Y_OFFSET = -48.0F;
+
   private final Crop crop;
 
   private Texture haloImage;
@@ -250,6 +257,71 @@ public abstract class AbstractCropOrb extends CustomOrb {
     } else {
       this.c = filterColor;
     }
+  }
+
+  @Override
+  public void update() {
+//    super.update();
+//    if (this.hb.hovered) {
+//      TipHelper.queuePowerTips(
+//          hb.x + TOOLTIP_X_OFFSET * SettingsHelper.getScaleX(),
+//          hb.y - TOOLTIP_Y_OFFSET * SettingsHelper.getScaleY(), getPowerTips());
+//    } else {
+//      hb.x = hb.x;
+//    }
+
+    this.hb.update();
+
+    if (this.hb.hovered) {
+      TipHelper.queuePowerTips(
+          hb.x + TOOLTIP_X_OFFSET * SettingsHelper.getScaleX(),
+          hb.y - TOOLTIP_Y_OFFSET * SettingsHelper.getScaleY(),
+          getPowerTips());
+
+      this.fontScale = MathHelper.scaleLerpSnap(this.fontScale, 0.7F);
+    }
+  }
+
+  protected List<Keyword> getBaseGameKeywords() {
+    return new ArrayList<>();
+  }
+
+  protected List<String> getCustomKeywords() {
+    return new ArrayList<>();
+  }
+
+  private ArrayList<PowerTip> keywordPowerTips;
+
+  private ArrayList<PowerTip> getPowerTips() {
+      if (keywordPowerTips == null) {
+        keywordPowerTips = new ArrayList<>();
+
+        // main tooltip
+        keywordPowerTips.add(new PowerTip(this.name, this.description));
+        // crop keyword tooltips
+        for (Map.Entry<String,String> entry : getKeywords().entrySet()) {
+          keywordPowerTips.add(new PowerTip(TipHelper.capitalize(entry.getKey()), entry.getValue()));
+        }
+      }
+      return keywordPowerTips;
+  }
+
+
+
+  private Map<String, String> getKeywords() {
+    Map<String, String> keywords = getCustomKeywords().stream()
+        .map(k -> TheSimpletonMod.getKeyword(k))
+        .filter(kw -> kw != null)
+        .collect(Collectors.toMap(kw -> kw.PROPER_NAME, kw -> kw.DESCRIPTION));
+
+    keywords.putAll(getBaseGameKeywords().stream()
+        .collect(Collectors.toMap(kw -> kw.NAMES[0], kw -> kw.DESCRIPTION)));
+
+    com.evacipated.cardcrawl.mod.stslib.Keyword maturityKeyword
+        = TheSimpletonMod.getKeyword("TheSimpletonMod:MaturityKeyword");
+    keywords.put(maturityKeyword.PROPER_NAME, maturityKeyword.DESCRIPTION);
+
+    return keywords;
   }
 
   static {

@@ -6,11 +6,16 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.Crop;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class StrawberryCropOrb extends AbstractCropOrb {
   public static final Crop CROP_ENUM = Crop.STRAWBERRIES;
   public static final String ORB_ID = "TheSimpletonMod:StrawberryCropOrb";
   public static final String IMG_PATH = "plantstrawberry";
   public static final String HALO_IMG_PATH = "orbstrawberry_halo";
+  public static final List<String> KEYWORD_LIST = Arrays.asList("TheSimpletonMod:GnawberryKeyword");
+
   private static final OrbStrings orbStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
@@ -47,6 +52,10 @@ public class StrawberryCropOrb extends AbstractCropOrb {
   public void updateDescription() {
     this.description = getDescription();
     this.update();
+  }
+
+  protected List<String> getCustomKeywords() {
+    return KEYWORD_LIST;
   }
 
   static {

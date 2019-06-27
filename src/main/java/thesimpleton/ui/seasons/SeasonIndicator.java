@@ -28,6 +28,8 @@ public class SeasonIndicator {
   private static final float X_TEXT_OFFSET = 10;
   private static final float Y_TEXT_OFFSET = 28;
   private static final float Y_TEXT_OFFSET_WIDESCREEN = Y_TEXT_OFFSET;
+  private static final float TOOLTIP_X_OFFSET = 16.0F;
+  private static final float TOOLTIP_Y_OFFSET = -32.0F;
 
   private static final BitmapFont LABEL_FONT = FontHelper.panelNameFont;
   private static final Color LABEL_COLOR = Color.valueOf("ffffdbff");
@@ -128,8 +130,6 @@ public class SeasonIndicator {
     if (shouldRender()) {
 
       if (this.hb.hovered) {
-        final float TOOLTIP_X_OFFSET = 16.0F;
-        final float TOOLTIP_Y_OFFSET = -32.0F;
         TipHelper.queuePowerTips(
             hb.x + TOOLTIP_X_OFFSET * SettingsHelper.getScaleX(),
             hb.y - TOOLTIP_Y_OFFSET * SettingsHelper.getScaleY(), getPowerTips());

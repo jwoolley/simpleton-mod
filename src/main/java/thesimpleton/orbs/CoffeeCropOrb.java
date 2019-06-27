@@ -1,16 +1,22 @@
 package thesimpleton.orbs;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.GameDictionary;
+import com.megacrit.cardcrawl.localization.Keyword;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.Crop;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class CoffeeCropOrb extends AbstractCropOrb {
   public static final Crop CROP_ENUM = Crop.COFFEE;
   public static final String ORB_ID = "TheSimpletonMod:CoffeeCropOrb";
   public static final String IMG_PATH = "plantcoffee";
   public static final String HALO_IMG_PATH = "orbcoffee_halo";
+
   private static final OrbStrings orbStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;

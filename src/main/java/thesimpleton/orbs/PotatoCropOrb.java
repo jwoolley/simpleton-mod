@@ -7,12 +7,17 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.PotatoCrop;
 import thesimpleton.crops.Crop;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class PotatoCropOrb extends AbstractCropOrb {
     public static final Crop CROP_ENUM = Crop.POTATOES;
     public static final String ORB_ID = "TheSimpletonMod:PotatoCropOrb";
     public static final String IMG_PATH = "plantpotato";
-  public static final String HALO_IMG_PATH = "orbpotato_halo";
-    private static final OrbStrings orbStrings;
+    public static final String HALO_IMG_PATH = "orbpotato_halo";
+    public static final List<String> KEYWORD_LIST = Arrays.asList("TheSimpletonMod:SpudKeyword");
+
+  private static final OrbStrings orbStrings;
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
 
@@ -48,6 +53,10 @@ public class PotatoCropOrb extends AbstractCropOrb {
     public void updateDescription() {
         this.description = getDescription();
         this.update();
+    }
+
+    protected List<String> getCustomKeywords() {
+      return KEYWORD_LIST;
     }
 
     static {

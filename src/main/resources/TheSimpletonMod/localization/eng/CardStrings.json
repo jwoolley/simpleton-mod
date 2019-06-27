@@ -341,6 +341,11 @@
     "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Each time this is card shuffled into your draw pile, increase its Block by !M! for this combat."
   },
 
+  "TheSimpletonMod:Surplus": {
+    "NAME": "Surplus",
+    "DESCRIPTION": "Add !M! random Common Crop Power cards to your hand. NL Exhaust."
+  },
+
   "TheSimpletonMod:Swelter": {
     "NAME": "Swelter",
     "DESCRIPTION": "Apply 1 Weak and !M! Burning. NL Gain !B! Block.",

@@ -6,6 +6,7 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.AbstractCrop;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public abstract class AbstractCropPowerCard extends CustomCard {
@@ -19,8 +20,14 @@ public abstract class AbstractCropPowerCard extends CustomCard {
   }
 
   public static List<AbstractCropPowerCard> getRandomCropPowerCards(int number, boolean withRarityDistribution) {
+    return getRandomCropPowerCards(number, withRarityDistribution, c -> true);
+  }
+
+
+  public static List<AbstractCropPowerCard> getRandomCropPowerCards(int number, boolean withRarityDistribution,
+                                                                    Predicate<AbstractCrop> predicate) {
     try {
-      return AbstractCrop.getRandomCrops(AbstractDungeon.player, number, 0, withRarityDistribution)
+      return AbstractCrop.getRandomCrops(AbstractDungeon.player, number, 0, withRarityDistribution, predicate)
           .stream()
           .map(crop -> crop.getPowerCard())
           .collect(Collectors.toList());
@@ -29,7 +36,6 @@ public abstract class AbstractCropPowerCard extends CustomCard {
       return null;
     }
   }
-
 
 //  public static List<AbstractCropPowerCard> getRandomCropPowerCards(int number, boolean withRarityDistribution) {
 //    try {
@@ -45,6 +51,10 @@ public abstract class AbstractCropPowerCard extends CustomCard {
 //  }
 
   public static AbstractCropPowerCard getRandomCropPowerCard(boolean withRarityDistribution) {
-    return getRandomCropPowerCards(1, withRarityDistribution).get(0);
+    return getRandomCropPowerCards(1, withRarityDistribution, c -> true).get(0);
+  }
+
+  public static AbstractCropPowerCard getRandomCropPowerCard(boolean withRarityDistribution, Predicate<AbstractCrop> predicate) {
+    return getRandomCropPowerCards(1, withRarityDistribution, predicate).get(0);
   }
 }

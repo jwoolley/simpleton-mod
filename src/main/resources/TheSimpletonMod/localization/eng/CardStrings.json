@@ -242,14 +242,6 @@
     "DESCRIPTION": "Shuffle !M! random Crop Power cards into your draw pile. NL Exhaust."
   },
 
-  "TheSimpletonMod:SeedCoat": {
-    "NAME": "Seed Coat",
-    "DESCRIPTION": "Gain !B! Block. NL The first time this card is played this combat, decrease its Block by !M! and it gains Exhaust.",
-    "EXTENDED_DESCRIPTION": [
-      "Gain !B! Block. NL Exhaust."
-    ]
-  },
-
   "TheSimpletonMod:Pruning": {
     "NAME": "Pruning",
     "DESCRIPTION": "Harvest all of your oldest Crop, then Plant !M!",
@@ -311,6 +303,15 @@
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Add !M! Depletions to your hand."
   },
 
+
+  "TheSimpletonMod:SeedCoat": {
+    "NAME": "Seed Coat",
+    "DESCRIPTION": "Gain !B! Block. NL The first time this card is played this combat, decrease its Block by !M! and it gains Exhaust.",
+    "EXTENDED_DESCRIPTION": [
+      "Gain !B! Block. NL Exhaust."
+    ]
+  },
+
   "TheSimpletonMod:SlashAndBurn": {
     "NAME": "Slash And Burn",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! Burning."
@@ -340,6 +341,14 @@
     "NAME": "Stock the Cellar",
     "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Each time this is card shuffled into your draw pile, increase its Block by !M! for this combat."
   },
+
+
+  "TheSimpletonMod:Sunseed": {
+    "NAME": "Sunseed",
+    "DESCRIPTION": "When this is shuffled into your draw pile, shuffle in a second copy. NL Deal !D! damage. NL Gain [E]. NL Exhaust."
+  },
+
+
 
   "TheSimpletonMod:Surplus": {
     "NAME": "Surplus",

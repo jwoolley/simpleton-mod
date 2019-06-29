@@ -1,0 +1,35 @@
+{
+  "TheSimpletonMod:BorealisEvent": {
+    "NAME": "Borealis",
+    "DESCRIPTIONS": [
+      "A vast #gghostly #gglow stretches across the night sky. You find yourself in absolute stillness. The silence is haunting. NL NL As you gaze upon the expanse of lights, you notice a low and pervasive #phumming. You suppose it's been there all along. NL NL You're suddenly feeling very afraid."
+    ],
+    "OPTIONS": [
+      "[Cover Your Ears] #rLose #r",
+      "[Cover Your Eyes] #rLose #r",
+      "[Surrender Yourself] #rBecome #rCursed #r– #r",
+      ". #gReceive #ga #gCommon #gRelic.",
+      " #rHP. #gUpgrade #g",
+      " #grandom #gcards.",
+      ". #gReceive ",
+      ".",
+      "Leave."
+    ]
+  },
+  "TheSimpletonMod:EarlyThaw": {
+    "NAME": "Early Thaw",
+    "DESCRIPTIONS": [
+      "The last of the winter ice begins to melt. A tentative promise of new life emerges again."
+    ],
+    "OPTIONS": [
+      "[Enjoy the Breeze] #gUpgrade ",
+      "[Start Planting]] #rBecome #rCursed #r– #r",
+      "[Surrender Yourself] #rBecome #rCursed #r– #r",
+      ". #gHeal #g",
+      " HP.",
+      ". #gReceive ",
+      ".",
+      "Leave."
+    ]
+  }
+}

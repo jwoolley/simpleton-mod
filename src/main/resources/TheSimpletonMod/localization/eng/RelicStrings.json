@@ -29,7 +29,7 @@
     "NAME": "Gourd Charm",
     "FLAVOR": "Crafted specifically for adventurers who prefer Hard Mode.",
     "DESCRIPTIONS": [
-      "Replaces #gSpud #gof #gthe #gInnocent. At the start of each combat, #yPlant #b1 #ySquash."
+      "Replaces #gSpud #gof #gthe #gInnocent. At the start of each combat, #yPlant #b2 #ySquash."
     ]
   },
 
@@ -55,6 +55,15 @@
     "FLAVOR": "There's no topping this one.",
     "DESCRIPTIONS": [
       "Harvesting #yPotatoes now yields #yFlaming #ySpuds, which also apply #yBurning damage."
+    ]
+  },
+
+
+  "TheSimpletonMod:OnionBelt": {
+    "NAME": "Onion Belt",
+    "FLAVOR": "Once wielded by the Elders, now largely out of style.",
+    "DESCRIPTIONS": [
+      "Replaces #gSpud #gof #gthe #gInnocent. At the start of each combat, #yPlant #b2 #yOnions."
     ]
   },
 

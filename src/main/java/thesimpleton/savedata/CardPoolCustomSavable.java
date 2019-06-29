@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,6 +40,12 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
     int index = 0;
     for(AbstractCard card : currentCardPool) {
       logger.debug(index++ + ") " + card.name + " [cardId: " + card.cardID + "]");
+    }
+
+    for (AbstractCropPowerCard c : TheSimpletonMod.getSeasonalCropCards()) {
+      if (idList.contains(c.cardID)) {
+        idList.add(c.cardID);
+      }
     }
 
     return idList;

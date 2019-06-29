@@ -21,9 +21,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.relics.PaperCrane;
@@ -32,7 +32,6 @@ import com.megacrit.cardcrawl.unlock.AbstractUnlock;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.xml.sax.Locator;
 import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
@@ -44,6 +43,7 @@ import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.crops.AbstractCrop;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
+import thesimpleton.events.BorealisEvent;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.relics.*;
 import thesimpleton.savedata.CardPoolCustomSavable;
@@ -57,7 +57,6 @@ import thesimpleton.ui.seasons.SeasonScreen;
 
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
-import java.security.Key;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -315,6 +314,9 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                     );}
                 );
 
+        // TODO: determine events based on season
+        BaseMod.addEvent(BorealisEvent.ID, BorealisEvent.class, Exordium.ID);
+
         BaseMod.registerModBadge(
                 badgeTexture, "The Hayseed", "jwoolley",
                 "Adds a new creature to the game - The Hayseed", modPanel);
@@ -327,13 +329,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         reflectedMap.put("ATTACK_SCYTHE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_AttackScythe1.ogg"));
-
         reflectedMap.put("ATTACK_BUZZ_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_Buzz1.ogg"));
-
         reflectedMap.put("ATTACK_FIRE_IMPACT_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_ImpactFire1.ogg"));
-
         reflectedMap.put("ATTACK_FIRE_IMPACT_2",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_ImpactFire2.ogg"));
     }
@@ -647,12 +646,12 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addRelicToCustomPool(new TheHarvester(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new HornOfPlenty(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new HotPotato(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new OnionBelt(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new PicklingJar(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new PlanterBox(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new NightSoil(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new SpudOfTheMartyr(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new WoodChipper(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-
         BaseMod.addRelicToCustomPool(new PaperCrane(), AbstractCardEnum.THE_SIMPLETON_BLUE);
     }
 
@@ -841,6 +840,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.loadCustomStringsFile(CharacterStrings.class, l10nPath + language + "/CharacterStrings.json");
         BaseMod.loadCustomStringsFile(PotionStrings.class, l10nPath + language + "/PotionStrings.json");
         BaseMod.loadCustomStringsFile(OrbStrings.class, l10nPath + language + "/OrbStrings.json");
+        BaseMod.loadCustomStringsFile(EventStrings.class, l10nPath + language + "/EventStrings.json");
+
     }
 
     @Override
@@ -889,6 +890,4 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         }
         return imgMap.get(path);
     }
-
-
 }

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
+import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -38,7 +39,6 @@ public class BorealisEvent extends AbstractImageEvent
     super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getResourcePath(IMG_PATH));
     REWARD_CARD.upgrade();
     surrenderCard = SimpletonEventHelper.getRandomNonCurseCardFromDeck();
-
     this.imageEventText.setDialogOption(OPTIONS[0] + surrenderCard + OPTIONS[3]);
     this.imageEventText.setDialogOption(OPTIONS[1] + HP_COST + OPTIONS[4] + NUM_CARDS_UPGRADED + OPTIONS[5]);
     this.imageEventText.setDialogOption(OPTIONS[2] + CURSE_CARD.name + OPTIONS[6] + REWARD_CARD.name + OPTIONS[7]);
@@ -67,7 +67,6 @@ public class BorealisEvent extends AbstractImageEvent
 
           case 2:
             CardCrawlGame.sound.play("EVENT_ANCIENT");
-
             SimpletonEventHelper.gainCards(CURSE_CARD, REWARD_CARD);
             break;
 

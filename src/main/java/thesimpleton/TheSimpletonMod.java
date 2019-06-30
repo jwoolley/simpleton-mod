@@ -45,6 +45,7 @@ import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.events.BorealisEvent;
 import thesimpleton.events.EarlyThawEvent;
+import thesimpleton.events.HeatWaveEvent;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.relics.*;
 import thesimpleton.savedata.CardPoolCustomSavable;
@@ -95,6 +96,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     public void receivePostBattle(AbstractRoom abstractRoom) {
         logger.debug("TheSimpletonMod::receivePostBattle isSeasonInitialized:"
             + isSeasonInitialized() + "; isDebug: " + Settings.isDebug);
+
+        if (AbstractDungeon.player.hasRelic(HeatStroke.ID)) {
+           ((HeatStroke)(AbstractDungeon.player.getRelic(HeatStroke.ID))).removeIfUsed();
+        }
 
 //        // DEBUG: reset unlock level
 //        if (UnlockTracker.getUnlockLevel(TheSimpletonCharEnum.THE_SIMPLETON) > 0) {
@@ -318,7 +323,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         // TODO: determine events based on season
         BaseMod.addEvent(BorealisEvent.ID, BorealisEvent.class, Exordium.ID);
         BaseMod.addEvent(EarlyThawEvent.ID, EarlyThawEvent.class, Exordium.ID);
-
+        BaseMod.addEvent(HeatWaveEvent.ID, HeatWaveEvent.class, Exordium.ID);
 
         BaseMod.registerModBadge(
                 badgeTexture, "The Hayseed", "jwoolley",
@@ -338,6 +343,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_ImpactFire1.ogg"));
         reflectedMap.put("ATTACK_FIRE_IMPACT_2",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_ImpactFire2.ogg"));
+        reflectedMap.put("BIRD_TWEET_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_BirdTweet1.ogg"));
+        reflectedMap.put("LOW_RUMBLE_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_LowRumble1.ogg"));
     }
 
     private void registerCustomSaveKeys() {

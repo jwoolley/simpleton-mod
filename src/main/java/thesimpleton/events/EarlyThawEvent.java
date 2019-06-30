@@ -38,6 +38,7 @@ public class EarlyThawEvent extends AbstractImageEvent
     this.imageEventText.setDialogOption(OPTIONS[1] + CURSE_CARD + OPTIONS[4] + REWARD_CARD + OPTIONS[5]);
 
     this.state = EventState.WAITING;
+    CardCrawlGame.sound.play("BIRD_TWEET_1");
   }
 
   @Override

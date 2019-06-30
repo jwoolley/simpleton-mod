@@ -41,6 +41,15 @@
     ]
   },
 
+  "TheSimpletonMod:HeatStroke": {
+    "NAME": "Heat Stroke",
+    "FLAVOR": "First the fever, then the chills.",
+    "DESCRIPTIONS": [
+      "Gain #b",
+      " #y Burning at the start of the next combat."
+    ]
+  },
+
   "TheSimpletonMod:HornOfPlenty": {
     "NAME": "Horn Of Plenty",
     "FLAVOR": "More than adequate.",

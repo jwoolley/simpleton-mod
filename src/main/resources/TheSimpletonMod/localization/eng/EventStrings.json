@@ -30,5 +30,21 @@
       ".",
       "Leave."
     ]
+  },
+  "TheSimpletonMod:HeatWaveEvent": {
+    "NAME": "Heat Wave",
+    "DESCRIPTIONS": [
+      "A relentless #rheat permeates the dungeon. Your limbs throb beneath your gear. You've lost your ability to sweat. NL NL You may not be able to endure this much longer."
+    ],
+    "OPTIONS": [
+      "[Slake Your Thirst] #rLose #r",
+      "[Drop Some Gear] #rLose #r",
+      "[Press Forward] #gGain ",
+      ". #gHeal #g",
+      " #gHP.",
+      ". #rGain #r",
+      " #rBurning next combat.",
+      "Leave."
+    ]
   }
 }

@@ -1,37 +1,25 @@
 package thesimpleton.events;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
-import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.curse.Nettles;
 import thesimpleton.cards.power.crop.Mushrooms;
-import thesimpleton.events.SimpletonEventHelper;
 import thesimpleton.events.SimpletonEventHelper.EventState;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class BorealisEvent extends AbstractImageEvent
 {
-  public static final String ID = TheSimpletonMod.makeID("EarlyThaw");
+  public static final String ID = TheSimpletonMod.makeID("BorealisEvent");
 
-  private static final String IMG_PATH = getUiPath("earlythaw1");
+  private static final String IMG_PATH =  SimpletonEventHelper.getUiPath("borealis1");
   private static final EventStrings eventStrings;
   private static final String NAME;
   private static final String[] DESCRIPTIONS;
@@ -49,20 +37,7 @@ public class BorealisEvent extends AbstractImageEvent
   public BorealisEvent() {
     super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getResourcePath(IMG_PATH));
     REWARD_CARD.upgrade();
-
-    AbstractCard attackCard = CardHelper.hasCardType(CardType.ATTACK)
-        ? CardHelper.returnCardOfType(CardType.ATTACK, AbstractDungeon.miscRng) : null;
-
-    AbstractCard skillCard  = CardHelper.hasCardType(CardType.SKILL)
-        ? CardHelper.returnCardOfType(AbstractCard.CardType.SKILL, AbstractDungeon.miscRng) : null;
-
-    AbstractCard powerCard = CardHelper.hasCardType(CardType.POWER)
-        ?  CardHelper.returnCardOfType(AbstractCard.CardType.POWER, AbstractDungeon.miscRng) : null;
-
-    List<AbstractCard> candidateCards = Arrays.asList(attackCard, skillCard, powerCard).stream()
-        .filter(c -> c != null).collect(Collectors.toList());
-
-    surrenderCard = candidateCards.remove(AbstractDungeon.miscRng.random(candidateCards.size() - 1));
+    surrenderCard = SimpletonEventHelper.getRandomNonCurseCardFromDeck();
 
     this.imageEventText.setDialogOption(OPTIONS[0] + surrenderCard + OPTIONS[3]);
     this.imageEventText.setDialogOption(OPTIONS[1] + HP_COST + OPTIONS[4] + NUM_CARDS_UPGRADED + OPTIONS[5]);
@@ -87,14 +62,13 @@ public class BorealisEvent extends AbstractImageEvent
           case 1:
             AbstractDungeon.player.damage(new DamageInfo(null, HP_COST, DamageInfo.DamageType.HP_LOSS));
             CardCrawlGame.sound.play("DEBUFF_2");
-            upgradeRandomCardsAction();
+            SimpletonEventHelper.upgradeCards(SimpletonEventHelper.getRandomUpgradableCards(2));
             break;
 
           case 2:
-            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(CURSE_CARD.makeStatEquivalentCopy(),
-                Settings.WIDTH / 2.0F - AbstractCard.IMG_WIDTH / 2.0F - 20.0F * Settings.scale, Settings.HEIGHT / 2.0F));
-            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(REWARD_CARD.makeStatEquivalentCopy(),
-                Settings.WIDTH / 2.0F + AbstractCard.IMG_WIDTH / 2.0F + 20.0F * Settings.scale, Settings.HEIGHT / 2.0F));
+            CardCrawlGame.sound.play("EVENT_ANCIENT");
+
+            SimpletonEventHelper.gainCards(CURSE_CARD, REWARD_CARD);
             break;
 
           default:
@@ -111,47 +85,6 @@ public class BorealisEvent extends AbstractImageEvent
         openMap();
         break;
     }
-  }
-
-  private void upgradeRandomCardsAction() {
-    ArrayList<AbstractCard> upgradableCards = new ArrayList();
-
-    for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
-      if ((c.canUpgrade()) && (c.type == AbstractCard.CardType.ATTACK)) {
-        upgradableCards.add(c);
-      }
-    }
-
-    Collections.shuffle(upgradableCards, new java.util.Random(AbstractDungeon.miscRng.randomLong()));
-
-    if (!upgradableCards.isEmpty()) {
-      if (upgradableCards.size() == 1) {
-        AbstractDungeon.effectList.add(new PurgeCardEffect(surrenderCard));
-        AbstractDungeon.player.masterDeck.removeCard(surrenderCard);
-        upgradableCards.get(0).upgrade();
-        AbstractDungeon.player.bottledCardUpgradeCheck(upgradableCards.get(0));
-        AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(
-            upgradableCards.get(0).makeStatEquivalentCopy()));
-        AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect(Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-      } else {
-        upgradableCards.get(0).upgrade();
-        upgradableCards.get(1).upgrade();
-        AbstractDungeon.player.bottledCardUpgradeCheck(upgradableCards.get(0));
-        AbstractDungeon.player.bottledCardUpgradeCheck(upgradableCards.get(1));
-
-        AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(
-            upgradableCards.get(0).makeStatEquivalentCopy(),
-            Settings.WIDTH / 2.0F - AbstractCard.IMG_WIDTH / 2.0F - 20.0F * Settings.scale, Settings.HEIGHT / 2.0F));
-        AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(
-            upgradableCards.get(1).makeStatEquivalentCopy(),
-            Settings.WIDTH / 2.0F + AbstractCard.IMG_WIDTH / 2.0F + 20.0F * Settings.scale, Settings.HEIGHT / 2.0F));
-        AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect(Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-      }
-    }
-  }
-
-  private static String getUiPath(String id) {
-    return "events/" + id + ".png";
   }
 
   static {

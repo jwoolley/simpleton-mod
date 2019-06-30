@@ -44,6 +44,7 @@ import thesimpleton.crops.AbstractCrop;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.events.BorealisEvent;
+import thesimpleton.events.EarlyThawEvent;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.relics.*;
 import thesimpleton.savedata.CardPoolCustomSavable;
@@ -316,6 +317,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         // TODO: determine events based on season
         BaseMod.addEvent(BorealisEvent.ID, BorealisEvent.class, Exordium.ID);
+        BaseMod.addEvent(EarlyThawEvent.ID, EarlyThawEvent.class, Exordium.ID);
+
 
         BaseMod.registerModBadge(
                 badgeTexture, "The Hayseed", "jwoolley",

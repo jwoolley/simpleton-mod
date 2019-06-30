@@ -16,17 +16,16 @@
       "Leave."
     ]
   },
-  "TheSimpletonMod:EarlyThaw": {
+  "TheSimpletonMod:EarlyThawEvent": {
     "NAME": "Early Thaw",
     "DESCRIPTIONS": [
       "The last of the winter ice begins to melt. A tentative promise of new life emerges again."
     ],
     "OPTIONS": [
       "[Enjoy the Breeze] #gUpgrade ",
-      "[Start Planting]] #rBecome #rCursed #r– #r",
-      "[Surrender Yourself] #rBecome #rCursed #r– #r",
+      "[Start Planting] #rBecome #rCursed #r– #r",
       ". #gHeal #g",
-      " HP.",
+      " #gHP.",
       ". #gReceive ",
       ".",
       "Leave."

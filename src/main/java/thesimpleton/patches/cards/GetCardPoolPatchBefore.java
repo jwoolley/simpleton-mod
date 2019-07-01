@@ -37,10 +37,14 @@ public class GetCardPoolPatchBefore {
 
       // TODO: reinitialize SeasonInfo
       // TODO: move this logic to TSM class or elsewhere
-      TheSimpletonMod.setSeasonalCropCards(saveCardPool.stream()
-          .filter(c -> c instanceof AbstractCropPowerCard)
-          .map(c -> (AbstractCropPowerCard)c)
-          .collect(Collectors.toList()));
+//      TheSimpletonMod.setSeasonalCropCards();
+
+      if (TheSimpletonMod.isSeasonInitialized()) {
+        tmpPool.addAll(TheSimpletonMod.getSeasonalCropCards());
+      } else {
+        logger.debug("GetCardPoolPatchBefore :: Didn't add any seasonal crop cards to pool; season not initialized. Calling static method TheSimpletonMod.setSeasonalCropCards");
+        TheSimpletonMod.setSeasonalCropCards();
+      }
 
       logger.debug("GetCardPoolPatchBefore :: Saved card pool contains: " + tmpPool.size() + " cards.");
       logger.debug("GetCardPoolPatchBefore :: cards: " + tmpPool.toString());

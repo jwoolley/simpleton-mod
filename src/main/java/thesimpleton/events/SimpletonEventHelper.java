@@ -3,6 +3,7 @@ package thesimpleton.events;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
@@ -88,7 +89,10 @@ public class SimpletonEventHelper {
 
       if (cards.size() == 1) {
         AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(
-            cards.get(0).makeStatEquivalentCopy()));
+            cards.get(0).makeStatEquivalentCopy(),
+            Settings.WIDTH / 2.0F + AbstractCard.IMG_WIDTH / 2.0F,
+            Settings.HEIGHT / 2.0F));
+
         AbstractDungeon.topLevelEffects.add(
             new UpgradeShineEffect(Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
       } else {
@@ -117,4 +121,7 @@ public class SimpletonEventHelper {
     }
   }
 
+  public static void receiveRelic(AbstractRelic relic) {
+    AbstractDungeon.getCurrRoom().spawnRelicAndObtain(Settings.WIDTH * 0.28F, Settings.HEIGHT / 2.0F, relic);
+  }
 }

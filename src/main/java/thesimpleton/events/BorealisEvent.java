@@ -44,6 +44,7 @@ public class BorealisEvent extends AbstractImageEvent
     this.imageEventText.setDialogOption(OPTIONS[2] + CURSE_CARD.name + OPTIONS[6] + REWARD_CARD.name + OPTIONS[7]);
 
     this.state = EventState.WAITING;
+    CardCrawlGame.sound.play("GRADUAL_RUMBLE_1");
   }
 
   @Override
@@ -55,8 +56,7 @@ public class BorealisEvent extends AbstractImageEvent
           case 0:
             AbstractDungeon.effectList.add(new PurgeCardEffect(this.surrenderCard));
             AbstractDungeon.player.masterDeck.removeCard(this.surrenderCard);
-            AbstractDungeon.getCurrRoom().spawnRelicAndObtain(Settings.WIDTH * 0.28F, Settings.HEIGHT / 2.0F,
-                AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.COMMON));
+            SimpletonEventHelper.receiveRelic(AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.COMMON));
             break;
 
           case 1:

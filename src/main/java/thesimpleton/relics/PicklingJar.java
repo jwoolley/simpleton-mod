@@ -124,7 +124,7 @@ public class PicklingJar extends CustomRelic implements CustomBottleRelic, Custo
 
         this.card = card;
         if (cardId.length() > unpackedCardId.length()) {
-          logger.debug("PicklingJar.onLoad: upgraeded card");
+          logger.debug("PicklingJar.onLoad: upgraded card");
           card.upgrade();
           this.isCardUpgraded = true;
         }

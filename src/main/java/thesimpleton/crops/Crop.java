@@ -1,7 +1,9 @@
 package thesimpleton.crops;
 
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import thesimpleton.orbs.*;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public enum Crop {
@@ -42,6 +44,10 @@ public enum Crop {
 
   public static AbstractCropOrb getCropOrb(Crop crop) {
     return getCropOrb(crop, 0);
+  }
+
+  public static Crop getCropFromName(String name) {
+    return Arrays.stream(Crop.values()).filter(c -> c.name().equals(name)).findFirst().orElse(null);
   }
 
   public static AbstractCropOrb getCropOrb(Crop crop, int amount) {

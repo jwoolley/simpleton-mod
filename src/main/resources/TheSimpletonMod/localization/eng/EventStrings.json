@@ -34,7 +34,7 @@
   "TheSimpletonMod:HeatWaveEvent": {
     "NAME": "Heat Wave",
     "DESCRIPTIONS": [
-      "A relentless #rheat permeates the dungeon. Your limbs throb beneath your gear. You've lost your ability to sweat. NL NL You may not be able to endure this much longer."
+      "A relentless #rheat permeates the dungeon. Your limbs throb beneath your gear. You've lost the ability to sweat. NL NL You may not be able to endure this for much longer."
     ],
     "OPTIONS": [
       "[Slake Your Thirst] #rLose #r",
@@ -44,7 +44,28 @@
       " #gHP.",
       ". #rGain #r",
       " #rBurning next combat.",
+      "[Locked] Requires a Potion.",
+      "Leave."
+    ]
+  },
+
+  "TheSimpletonMod:ReaptideEvent": {
+    "NAME": "Reaptide",
+    "DESCRIPTIONS": [
+      "It's finally time for the #gharvest, and the earth has been good to you this season.  You'll eat well this year, though it always pays to plan for a long winter. NL NL Some insist on making offerings to the ancestors—rather than risking a poor harvest next year."
+    ],
+    "OPTIONS": [
+      "[Be Practical] #gReceive #g",
+      "[Be Indulgent] #gReceive ",
+      "[Be Superstitious] #gGain ",
+      ".",
+      ". #rLose #r",
+      " #rGold.",
+      ". #rGain #r",
+      ". #r50%: #rBecome #rCursed #r– #r",
+      "[Locked] Requires: At Least ",
       "Leave."
     ]
   }
 }
+

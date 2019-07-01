@@ -49,4 +49,8 @@ public class SeasonInfo {
     TheSimpletonMod.logger.debug("Returning random in-season crop: " + crops.get(0).getName());
     return crops.get(0);
   }
+
+  public boolean isInSeason(Crop crop) {
+    return cropsInSeason.contains(crop);
+  }
 }

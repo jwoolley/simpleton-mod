@@ -41,14 +41,17 @@ import thesimpleton.cards.power.crop.*;
 import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.crops.AbstractCrop;
+import thesimpleton.crops.Crop;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.events.BorealisEvent;
 import thesimpleton.events.EarlyThawEvent;
 import thesimpleton.events.HeatWaveEvent;
+import thesimpleton.events.ReaptideEvent;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.relics.*;
 import thesimpleton.savedata.CardPoolCustomSavable;
+import thesimpleton.savedata.SeasonCropsCustomSavable;
 import thesimpleton.savedata.SeasonCustomSavable;
 import thesimpleton.seasons.RandomSeasonCropSetDefinition;
 import thesimpleton.seasons.Season;
@@ -153,6 +156,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     private static class CUSTOM_SAVABLES {
         static CardPoolCustomSavable cardPoolSavable = new CardPoolCustomSavable();
         static SeasonCustomSavable seasonCustomSavable = new SeasonCustomSavable();
+        static SeasonCropsCustomSavable seasonCropsCustomSavable = new SeasonCropsCustomSavable();
     }
 
     @Override
@@ -265,8 +269,12 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         // initialize season screen
         // seasonScreen.init
 
-        BaseMod.addSaveField(CUSTOM_SAVABLES.cardPoolSavable.getCustomSaveKey(), CUSTOM_SAVABLES.cardPoolSavable);
-        BaseMod.addSaveField(CUSTOM_SAVABLES.seasonCustomSavable.getCustomSaveKey(), CUSTOM_SAVABLES.seasonCustomSavable);
+        BaseMod.addSaveField(CUSTOM_SAVABLES.cardPoolSavable.getCustomSaveKey(),
+            CUSTOM_SAVABLES.cardPoolSavable);
+        BaseMod.addSaveField(CUSTOM_SAVABLES.seasonCustomSavable.getCustomSaveKey(),
+            CUSTOM_SAVABLES.seasonCustomSavable);
+        BaseMod.addSaveField(CUSTOM_SAVABLES.seasonCropsCustomSavable.getCustomSaveKey(),
+            CUSTOM_SAVABLES.seasonCropsCustomSavable);
 
         loadConfigData();
     }
@@ -324,6 +332,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addEvent(BorealisEvent.ID, BorealisEvent.class, Exordium.ID);
         BaseMod.addEvent(EarlyThawEvent.ID, EarlyThawEvent.class, Exordium.ID);
         BaseMod.addEvent(HeatWaveEvent.ID, HeatWaveEvent.class, Exordium.ID);
+        BaseMod.addEvent(ReaptideEvent.ID, ReaptideEvent.class, Exordium.ID);
+
 
         BaseMod.registerModBadge(
                 badgeTexture, "The Hayseed", "jwoolley",
@@ -335,16 +345,20 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         HashMap<String, Sfx> reflectedMap = getSoundsMap();
 
-        reflectedMap.put("ATTACK_SCYTHE_1",
-            new Sfx("TheSimpletonMod/sounds/TheSimpleton_AttackScythe1.ogg"));
         reflectedMap.put("ATTACK_BUZZ_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_Buzz1.ogg"));
         reflectedMap.put("ATTACK_FIRE_IMPACT_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_ImpactFire1.ogg"));
         reflectedMap.put("ATTACK_FIRE_IMPACT_2",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_ImpactFire2.ogg"));
+        reflectedMap.put("ATTACK_SCYTHE_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_AttackScythe1.ogg"));
         reflectedMap.put("BIRD_TWEET_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_BirdTweet1.ogg"));
+        reflectedMap.put("FALL_MEADOW_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_FallMeadow1.ogg"));
+        reflectedMap.put("GRADUAL_RUMBLE_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_GradualBuzz1.ogg"));
         reflectedMap.put("LOW_RUMBLE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_LowRumble1.ogg"));
     }
@@ -359,15 +373,31 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         isGameInitialized = true;
 
         Season savedSeason = CUSTOM_SAVABLES.seasonCustomSavable.getSeason();
+        List<Crop> savedCrops = CUSTOM_SAVABLES.seasonCropsCustomSavable.getCropsInSeason();
+
+        if (!savedCrops.isEmpty()) {
+            List<AbstractCropPowerCard> cropCards = savedCrops.stream()
+                .map(c -> c.getCropInfo().powerCard).filter(Objects::nonNull).collect(Collectors.toList());
+
+            SEASONAL_CROP_CARDS.clear();
+            SEASONAL_CROP_CARDS.addAll(cropCards);
+
+            logger.debug(this.getClass().getSimpleName() + "::receiveStartGame | Loaded in-season crops from save:"
+                + savedCrops.stream().map(c -> c.name()).collect(Collectors.joining(", ")));
+            logger.debug(this.getClass().getSimpleName() + "::receiveStartGame | Setting in-season crop cards:"
+                + cropCards.stream().map(c -> c.name).collect(Collectors.joining(", ")));
+        } else {
+            logger.debug(this.getClass().getSimpleName() + "::receiveStartGame | empty crop list from savable."
+                + savedCrops.stream().map(c -> c.name()).collect(Collectors.joining(", ")));
+        }
 
         Season season;
         if (savedSeason != null) {
             logger.debug("TheSimpletonMod::receiveStartGame applying season from save");
-            seasonInfo = new SeasonInfo(savedSeason, RandomSeasonCropSetDefinition.RANDOM_CROP_SET_BY_RARITY);
+            seasonInfo = new SeasonInfo(savedSeason, savedCrops);
             season = savedSeason;
         } else if (isSeasonInitialized()) {
             logger.debug("TheSimpletonMod::receiveStartGame applying season from seasonInfo (game start)");
-
             season = seasonInfo.getSeason();
         } else {
             logger.debug("TheSimpletonMod::receiveStartGame applying random season");
@@ -527,8 +557,21 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         CUSTOM_SAVABLES.seasonCustomSavable.reset();
     }
 
+    public static void setSeasonalCropCards() {
+        logger.debug("@@@@@DEBUG@@@@@ setSeasonalCropCards Inferring from card pool..");
+        setSeasonalCropCards(TheSimpletonMod.getCurrentCardPool().stream()
+            .filter(c -> c instanceof AbstractCropPowerCard)
+            .map(c -> (AbstractCropPowerCard) c)
+            .collect(Collectors.toList()));
+    }
+
+
     public static void setSeasonalCropCards(List<AbstractCropPowerCard> cards) {
-        logger.debug("@@@@@DEBUG@@@@@ Generating season info ...");
+        logger.debug("@@@@@DEBUG@@@@@ setSeasonalCropCards Generating season info ...");
+        logger.debug("@@@@@DEBUG@@@@@ setSeasonalCropCards adding cards: " + cards.stream()
+            .filter(c -> c instanceof  AbstractCropPowerCard).map(c -> c.name)
+            .collect(Collectors.joining(", ")));
+
         SEASONAL_CROP_CARDS.clear();
         SEASONAL_CROP_CARDS.addAll(cards);
     }

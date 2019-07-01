@@ -2,7 +2,6 @@ package thesimpleton.events;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.localization.EventStrings;
@@ -11,7 +10,6 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.skill.ControlledBurn;
-import thesimpleton.cards.skill.FanTheFlames;
 import thesimpleton.relics.HeatStroke;
 
 public class HeatWaveEvent extends AbstractImageEvent {
@@ -24,9 +22,9 @@ public class HeatWaveEvent extends AbstractImageEvent {
   private static final String[] OPTIONS;
 
   private final AbstractCard REWARD_CARD = new ControlledBurn();
-  private static final int HEAL_AMOUNT = 5;
-  private static final int BURNING_AMOUNT_1 = 5;
-  private static final int BURNING_AMOUNT_2 = 15;
+  private static final int HEAL_AMOUNT = 10;
+  private static final int BURNING_AMOUNT_1 = 10;
+  private static final int BURNING_AMOUNT_2 = 20;
 
   private final AbstractPotion surrenderPotion;
   private final AbstractCard surrenderCard;
@@ -50,6 +48,8 @@ public class HeatWaveEvent extends AbstractImageEvent {
 
     if (hasPotion) {
       this.imageEventText.setDialogOption(OPTIONS[0] + surrenderPotion.name + OPTIONS[3] + HEAL_AMOUNT + OPTIONS[4]);
+    } else {
+      this.imageEventText.setDialogOption(OPTIONS[7], true);
     }
     this.imageEventText.setDialogOption(OPTIONS[1] + surrenderCard.name + OPTIONS[5] + BURNING_AMOUNT_1 + OPTIONS[6]);
     this.imageEventText.setDialogOption(OPTIONS[2] + REWARD_CARD.name + OPTIONS[5] + BURNING_AMOUNT_2 + OPTIONS[6]);
@@ -64,21 +64,12 @@ public class HeatWaveEvent extends AbstractImageEvent {
     switch (state) {
       case WAITING:
         switch (buttonPressed) {
-
           case 0:
-            if (hasPotion) {
-              losePotionOption();
-            } else {
-              loseGearOption();
-            }
+            losePotionOption();
             break;
 
           case 1:
-            if (hasPotion) {
-              loseGearOption();
-            } else {
-              cardRewardOption();
-            }
+            loseGearOption();
             break;
 
           case 2:
@@ -89,13 +80,13 @@ public class HeatWaveEvent extends AbstractImageEvent {
             break;
         }
         this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[7]);
+        this.imageEventText.setDialogOption(OPTIONS[8]);
         this.state = SimpletonEventHelper.EventState.LEAVING;
         AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
         break;
       case LEAVING:
         this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[7]);
+        this.imageEventText.setDialogOption(OPTIONS[8]);
         openMap();
         break;
     }
@@ -111,15 +102,13 @@ public class HeatWaveEvent extends AbstractImageEvent {
     CardCrawlGame.sound.play("APPEAR");
     AbstractDungeon.effectList.add(new PurgeCardEffect(this.surrenderCard));
     AbstractDungeon.player.masterDeck.removeCard(this.surrenderCard);
-    AbstractDungeon.getCurrRoom().spawnRelicAndObtain(Settings.WIDTH * 0.28F, Settings.HEIGHT / 2.0F,
-       new HeatStroke(BURNING_AMOUNT_1));
+    SimpletonEventHelper.receiveRelic(new HeatStroke(BURNING_AMOUNT_1));
   }
 
   private void cardRewardOption() {
     CardCrawlGame.sound.play("ATTACK_FIRE");
     SimpletonEventHelper.gainCard(REWARD_CARD);
-    AbstractDungeon.getCurrRoom().spawnRelicAndObtain(Settings.WIDTH * 0.28F, Settings.HEIGHT / 2.0F,
-        new HeatStroke(BURNING_AMOUNT_2));
+    SimpletonEventHelper.receiveRelic(new HeatStroke(BURNING_AMOUNT_2));
   }
 
   static {

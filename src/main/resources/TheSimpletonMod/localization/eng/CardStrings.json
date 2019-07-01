@@ -43,7 +43,7 @@
   },
 
   "TheSimpletonMod:BumperCrop": {
-    "NAME": "BumperCrop",
+    "NAME": "Bumper Crop",
     "DESCRIPTION": "Gain !B! Block. NL Harvest !M! of your newest Crop",
     "EXTENDED_DESCRIPTION" : [
       ".",

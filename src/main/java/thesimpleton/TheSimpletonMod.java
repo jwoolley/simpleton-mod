@@ -35,6 +35,7 @@ import org.apache.logging.log4j.Logger;
 import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
+import thesimpleton.cards.curse.Frostbite;
 import thesimpleton.cards.curse.Nettles;
 import thesimpleton.cards.power.*;
 import thesimpleton.cards.power.crop.*;
@@ -488,6 +489,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new VolatileFumes());
 
         // Curse(6)
+        cards.add(new Frostbite());
         cards.add(new Nettles());
         return cards;
     }

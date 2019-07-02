@@ -72,6 +72,15 @@
     "DESCRIPTION": "Depletions are playable status cards that reduce your Energy and Draw next turn."
   },
 
+  "TheSimpletonMod:Numbed": {
+    "PROPER_NAME": "Numb",
+    "NAMES": [
+      "numb", "numbed"
+    ],
+    "DESCRIPTION": "Temporarily increases the cost of a random card in hand when a card is played."
+  },
+
+
   "TheSimpletonMod:GnawberryKeyword": {
     "PROPER_NAME": "Gnawberry",
     "NAMES": [

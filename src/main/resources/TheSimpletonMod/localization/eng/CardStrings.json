@@ -221,6 +221,11 @@
     "DESCRIPTION": "Whenever this card is drawn, Apply !M! Thorns to a random enemy."
   },
 
+  "TheSimpletonMod:Frostbite": {
+    "NAME": "Frostbite",
+    "DESCRIPTION": "At the end of your turn, gain !M! Numb."
+  },
+
   "TheSimpletonMod:OnionBloom": {
     "NAME": "Onion Bloom",
     "DESCRIPTION": "Innate. NL Plant !M! Onion. NL  Draw a card. NL Discard a card. NL Exhaust.",

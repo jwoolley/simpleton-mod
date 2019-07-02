@@ -3,16 +3,14 @@ package thesimpleton.events;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
-import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.curse.Nettles;
+import thesimpleton.cards.curse.Frostbite;
 import thesimpleton.cards.power.crop.Mushrooms;
 import thesimpleton.events.SimpletonEventHelper.EventState;
 
@@ -27,11 +25,12 @@ public class BorealisEvent extends AbstractImageEvent
   private static final String[] OPTIONS;
 
   private static final AbstractCard REWARD_CARD = new Mushrooms();
-  private static final AbstractCard CURSE_CARD = new Nettles();
+  private static final AbstractCard CURSE_CARD = new Frostbite();
   private static final int HP_COST = 10;
   private static final int NUM_CARDS_UPGRADED = 2;
 
   private final AbstractCard surrenderCard;
+  private final long rumbleSoundId;
 
   private EventState state;
 
@@ -44,7 +43,7 @@ public class BorealisEvent extends AbstractImageEvent
     this.imageEventText.setDialogOption(OPTIONS[2] + CURSE_CARD.name + OPTIONS[6] + REWARD_CARD.name + OPTIONS[7]);
 
     this.state = EventState.WAITING;
-    CardCrawlGame.sound.play("GRADUAL_RUMBLE_1");
+    rumbleSoundId = CardCrawlGame.sound.play("GRADUAL_RUMBLE_1");
   }
 
   @Override
@@ -82,6 +81,7 @@ public class BorealisEvent extends AbstractImageEvent
         this.imageEventText.clearAllDialogs();
         this.imageEventText.setDialogOption(OPTIONS[8]);
         openMap();
+        CardCrawlGame.sound.stop("GRADUAL_RUMBLE_1");
         break;
     }
   }

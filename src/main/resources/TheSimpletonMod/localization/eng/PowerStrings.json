@@ -56,7 +56,14 @@
     ]
   },
 
-
+  "TheSimpletonMod:DrawDownPower": {
+    "NAME": "Draw Down",
+    "DESCRIPTIONS": [
+      "Draw #b",
+      " less card next turn.",
+      " less cards next turn."
+    ]
+  },
 
   "TheSimpletonMod:NextTurnWeakPower": {
     "NAME": "Weak Next Turn",
@@ -66,14 +73,14 @@
     ]
   },
 
-  "TheSimpletonMod:DrawDownPower": {
-    "NAME": "Draw Down",
+  "TheSimpletonMod:NumbPower": {
+    "NAME": "Numb",
     "DESCRIPTIONS": [
-      "Draw #b",
-      " less card next turn.",
-      " less cards next turn."
+      "Whenever you play a card this turn, increase the cost of another random card in your hand by #b",
+      " for this turn."
     ]
   },
+
 
   "TheSimpletonMod:PhotosynthesisPower": {
     "NAME": "Photosynthesis",

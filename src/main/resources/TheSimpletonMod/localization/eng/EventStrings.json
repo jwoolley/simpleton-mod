@@ -5,7 +5,7 @@
       "A vast #gghostly #gglow stretches across the night sky. You find yourself in absolute stillness. The silence is haunting. NL NL As you gaze upon the expanse of lights, you notice a low and pervasive #phumming. You suppose it's been there all along. NL NL You're suddenly feeling very afraid."
     ],
     "OPTIONS": [
-      "[Cover Your Ears] #rLose #r",
+      "[Cover Your Ears] #rLose ",
       "[Cover Your Eyes] #rLose #r",
       "[Surrender Yourself] #rBecome #rCursed #r– #r",
       ". #gReceive #ga #gCommon #gRelic.",
@@ -16,6 +16,7 @@
       "Leave."
     ]
   },
+
   "TheSimpletonMod:EarlyThawEvent": {
     "NAME": "Early Thaw",
     "DESCRIPTIONS": [
@@ -31,6 +32,21 @@
       "Leave."
     ]
   },
+
+  "TheSimpletonMod:FirefliesEvent": {
+    "NAME": "Fireflies",
+    "DESCRIPTIONS": [
+      "You step out into a clearing, where tiny #yglowing #ybeetles dance lazily in the summer air. You're filled with a pleasant contentment. NL NL You contemplate just sitting in the grass. Or you might try to catch a bug for yourself."
+    ],
+    "OPTIONS": [
+      "[Relax] #gReceive #ga #gPotion: ",
+      "[Chase] #gReceive ",
+      ".",
+      ". #r50%: #rBecome #rCursed #r– #r",
+      "Leave."
+    ]
+  },
+
   "TheSimpletonMod:HeatWaveEvent": {
     "NAME": "Heat Wave",
     "DESCRIPTIONS": [

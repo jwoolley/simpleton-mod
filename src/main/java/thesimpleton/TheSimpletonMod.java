@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
+import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -45,10 +46,7 @@ import thesimpleton.crops.AbstractCrop;
 import thesimpleton.crops.Crop;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
-import thesimpleton.events.BorealisEvent;
-import thesimpleton.events.EarlyThawEvent;
-import thesimpleton.events.HeatWaveEvent;
-import thesimpleton.events.ReaptideEvent;
+import thesimpleton.events.*;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.relics.*;
 import thesimpleton.savedata.CardPoolCustomSavable;
@@ -127,6 +125,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         CUSTOM_SAVABLES.seasonCustomSavable.reset();
         seasonScreen.reset();
         SEASONAL_CROP_CARDS.clear();
+        seasonCurseMap.clear();
     }
 //
 //    @Override
@@ -330,11 +329,12 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                 );
 
         // TODO: determine events based on season
-        BaseMod.addEvent(BorealisEvent.ID, BorealisEvent.class, Exordium.ID);
         BaseMod.addEvent(EarlyThawEvent.ID, EarlyThawEvent.class, Exordium.ID);
-        BaseMod.addEvent(HeatWaveEvent.ID, HeatWaveEvent.class, Exordium.ID);
+        BaseMod.addEvent(FirefliesEvent.ID, FirefliesEvent.class, Exordium.ID);
         BaseMod.addEvent(ReaptideEvent.ID, ReaptideEvent.class, Exordium.ID);
 
+        BaseMod.addEvent(BorealisEvent.ID, BorealisEvent.class, TheCity.ID);
+        BaseMod.addEvent(HeatWaveEvent.ID, HeatWaveEvent.class, TheCity.ID);
 
         BaseMod.registerModBadge(
                 badgeTexture, "The Hayseed", "jwoolley",
@@ -362,6 +362,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_GradualBuzz1.ogg"));
         reflectedMap.put("LOW_RUMBLE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_LowRumble1.ogg"));
+        reflectedMap.put("MAGIC_CHIMES_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_MagicChimes1.ogg"));
     }
 
     private void registerCustomSaveKeys() {
@@ -550,11 +552,12 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         seasonInfo = chooseSeason();
 
         List<AbstractCropPowerCard> seasonalCropCards = chooseSeasonalCropCards(seasonInfo);
-
         setSeasonalCropCards(seasonalCropCards);
         if (seasonIndicator != null) {
             seasonIndicator.reset();
         }
+
+        getSeasonalCurseCards(seasonInfo.getSeason());
 
         CUSTOM_SAVABLES.seasonCustomSavable.reset();
     }
@@ -689,6 +692,34 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         logger.debug("getSeasonalCropCards called: " + SEASONAL_CROP_CARDS.stream()
             .distinct().map(c -> c.name).collect(Collectors.joining(", ")));
         return Collections.unmodifiableList(SEASONAL_CROP_CARDS.stream().distinct().collect(Collectors.toList()));
+    }
+
+    private static Map<Season, List<AbstractCard>> seasonCurseMap = new HashMap<>();
+
+    private static void initializeSeasonCurses() {
+        seasonCurseMap.clear();
+        seasonCurseMap.put(Season.AUTUMN, Collections.unmodifiableList(Arrays.asList(new Nettles())));
+        seasonCurseMap.put(Season.WINTER, Collections.unmodifiableList(Arrays.asList(new Frostbite())));
+        seasonCurseMap.put(Season.SPRING, Collections.unmodifiableList(Arrays.asList(new Nettles())));
+        seasonCurseMap.put(Season.SUMMER, Collections.unmodifiableList(Arrays.asList(new Nettles())));
+    }
+
+    public static List<AbstractCard> getSeasonalCurseCards() {
+        if (!isSeasonInitialized()) {
+            return Collections.emptyList();
+        }
+        return getSeasonalCurseCards(getSeasonInfo().getSeason());
+    }
+
+
+    public static List<AbstractCard> getSeasonalCurseCards(Season season) {
+        logger.debug("getSeasonalCurseCards called for season " + season.name + ": " + SEASONAL_CROP_CARDS.stream()
+            .distinct().map(c -> c.name).collect(Collectors.joining(", ")));
+
+        if (seasonCurseMap.isEmpty()) {
+            initializeSeasonCurses();
+        }
+        return seasonCurseMap.get(season);
     }
 
     @Override

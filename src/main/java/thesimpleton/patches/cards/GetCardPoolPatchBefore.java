@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.dungeons.TheCity;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
@@ -41,6 +42,7 @@ public class GetCardPoolPatchBefore {
 
       if (TheSimpletonMod.isSeasonInitialized()) {
         tmpPool.addAll(TheSimpletonMod.getSeasonalCropCards());
+        tmpPool.addAll(TheSimpletonMod.getSeasonalCurseCards());
       } else {
         logger.debug("GetCardPoolPatchBefore :: Didn't add any seasonal crop cards to pool; season not initialized. Calling static method TheSimpletonMod.setSeasonalCropCards");
         TheSimpletonMod.setSeasonalCropCards();

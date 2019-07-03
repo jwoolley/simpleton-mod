@@ -56,7 +56,8 @@ public class HeatWaveEvent extends AbstractImageEvent {
 
     this.state = SimpletonEventHelper.EventState.WAITING;
 
-    CardCrawlGame.sound.play("LOW_RUMBLE_1");
+    long soundId = CardCrawlGame.sound.play("LOW_RUMBLE_1");
+    CardCrawlGame.sound.fadeOut("LOW_RUMBLE_1", soundId);
   }
 
   @Override

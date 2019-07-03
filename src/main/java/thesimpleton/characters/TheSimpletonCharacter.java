@@ -328,10 +328,23 @@ public class TheSimpletonCharacter extends CustomPlayer {
         ArrayList<AbstractCard> finalCardPool = new ArrayList<>();
         finalCardPool.addAll(nonCropCards);
 
-        finalCardPool.addAll(seasonalCropCards.stream()
-            .distinct()
-            .filter(c -> seasonalCropCards.stream().noneMatch(c2 -> c2.cardID == c.cardID))
-            .collect(Collectors.toList()));
+        if (seasonalCropCards.size() > 0) {
+            finalCardPool.addAll(seasonalCropCards.stream()
+                .distinct()
+                .filter(c -> seasonalCropCards.stream().noneMatch(c2 -> c2.cardID == c.cardID))
+                .collect(Collectors.toList()));
+        }
+        List<AbstractCard> seasonalCurseCards = TheSimpletonMod.getSeasonalCurseCards();
+
+        TheSimpletonMod.logger.debug("??????????? SimpletonMod.getCardPool adding seasonal curse cards to card pool:"
+            + seasonalCurseCards.stream().map(c -> c.name).collect(Collectors.joining(", ")));
+
+        if (seasonalCurseCards.size() > 0) {
+            finalCardPool.addAll(seasonalCurseCards.stream()
+                .distinct()
+                .filter(c -> seasonalCurseCards.stream().noneMatch(c2 -> c2.cardID == c.cardID))
+                .collect(Collectors.toList()));
+        }
 
         return finalCardPool;
     }

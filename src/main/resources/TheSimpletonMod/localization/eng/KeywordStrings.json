@@ -72,15 +72,6 @@
     "DESCRIPTION": "Depletions are playable status cards that reduce your Energy and Draw next turn."
   },
 
-  "TheSimpletonMod:Numbed": {
-    "PROPER_NAME": "Numb",
-    "NAMES": [
-      "numb", "numbed"
-    ],
-    "DESCRIPTION": "Temporarily increases the cost of a random card in hand when a card is played."
-  },
-
-
   "TheSimpletonMod:GnawberryKeyword": {
     "PROPER_NAME": "Gnawberry",
     "NAMES": [
@@ -129,6 +120,13 @@
     "DESCRIPTION": "#yCrop. Applies Weak to a random enemy when harvested."
   },
 
+  "TheSimpletonMod:Numbed": {
+    "PROPER_NAME": "Numb",
+    "NAMES": [
+      "numb", "numbed"
+    ],
+    "DESCRIPTION": "Temporarily increases the cost of a random card in hand when a card is played."
+  },
 
   "TheSimpletonMod:PlantKeyword": {
     "PROPER_NAME": "Plant",
@@ -154,6 +152,14 @@
       "plot", "plots"
     ],
     "DESCRIPTION": "#ySlot for planting Crops. Your Plots determine how many different Crops you can have at one time."
+  },
+
+  "TheSimpletonMod::SlowKeyword": {
+    "NAME": "Slow",
+    "NAMES": [
+      "slow"
+    ],
+    "DESCRIPTION": "Whenever you play a card, you receive #b10% more damage from #yAttacks until your next turn."
   },
 
   "TheSimpletonMod:SpinachKeyword": {

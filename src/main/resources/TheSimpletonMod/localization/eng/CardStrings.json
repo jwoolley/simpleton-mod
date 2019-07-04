@@ -221,9 +221,14 @@
     "DESCRIPTION": "Whenever this card is drawn, Apply !M! Thorns to a random enemy."
   },
 
-  "TheSimpletonMod:Frostbite": {
+  "TheSimpletonMod:Frostbite_OLD": {
     "NAME": "Frostbite",
     "DESCRIPTION": "At the end of your turn, gain !M! Numb."
+  },
+
+  "TheSimpletonMod:Frostbite": {
+    "NAME": "Frostbite",
+    "DESCRIPTION": "Whenever this card is drawn, gain Slow for this turn."
   },
 
   "TheSimpletonMod:OnionBloom": {

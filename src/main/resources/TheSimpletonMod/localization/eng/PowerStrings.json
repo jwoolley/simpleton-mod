@@ -65,6 +65,13 @@
     ]
   },
 
+  "TheSimpletonMod:LoseSlowPower": {
+    "NAME": "Lose Slow",
+    "DESCRIPTIONS": [
+      "At the start of your turn, lose #ySlow."
+    ]
+  },
+
   "TheSimpletonMod:NextTurnWeakPower": {
     "NAME": "Weak Next Turn",
     "DESCRIPTIONS": [
@@ -80,7 +87,6 @@
       " for this turn."
     ]
   },
-
 
   "TheSimpletonMod:PhotosynthesisPower": {
     "NAME": "Photosynthesis",

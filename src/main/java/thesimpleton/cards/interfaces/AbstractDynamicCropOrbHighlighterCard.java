@@ -16,7 +16,8 @@ public abstract class AbstractDynamicCropOrbHighlighterCard extends AbstractDyna
   @Override
   public void hover() {
     super.hover();
-    if (AbstractDungeon.isPlayerInDungeon() && AbstractCropOrb.playerHasAnyCropOrbs() && !CropOrbHelper.hasHighlightedOrb()) {
+    if (AbstractDungeon.player != null && AbstractDungeon.isPlayerInDungeon()
+        && AbstractCropOrb.playerHasAnyCropOrbs() && !CropOrbHelper.hasHighlightedOrb()) {
       CropOrbHelper.setHighlightedOrb(this.findCropOrb());
     }
   }

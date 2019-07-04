@@ -2,15 +2,16 @@ package thesimpleton.cards.curse;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.SlowPower;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.powers.NumbPower;
+import thesimpleton.powers.LoseSlowPower;
 
 public class Frostbite extends CustomCard {
   public static final String ID = TheSimpletonMod.makeID("Frostbite");
@@ -24,24 +25,30 @@ public class Frostbite extends CustomCard {
   private static final CardTarget TARGET = CardTarget.NONE;
 
   private static final int COST = -2;
-  private static final int NUMB_AMOUNT = 1;
 
   public Frostbite() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.CURSE, RARITY, TARGET);
-    this.baseMagicNumber = this.magicNumber = NUMB_AMOUNT;
   }
 
-  public void use(AbstractPlayer p, AbstractMonster m) {
-    if (this.dontTriggerOnUseCard) {
-      AbstractDungeon.actionManager.addToTop(
+  public void triggerWhenDrawn() {
+    AbstractDungeon.actionManager.addToBottom(
+        new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
+            new SlowPower(AbstractDungeon.player, 0), 0));
+
+    super.triggerWhenDrawn();
+      AbstractDungeon.actionManager.addToBottom(
           new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
-              new NumbPower(AbstractDungeon.player , NUMB_AMOUNT), NUMB_AMOUNT));
-    }
+              new LoseSlowPower(AbstractDungeon.player), 1));
   }
 
-  public void triggerOnEndOfTurnForPlayingCard() {
-    this.dontTriggerOnUseCard = true;
-    AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
+
+  // I guess this is how you do it
+  public void use(AbstractPlayer p, AbstractMonster m) {
+    if (p.hasRelic("Blue Candle")) {
+      this.useBlueCandle(p);
+    } else {
+      AbstractDungeon.actionManager.addToBottom(new UseCardAction(this));
+    }
   }
 
   public AbstractCard makeCopy() { return new Frostbite(); }

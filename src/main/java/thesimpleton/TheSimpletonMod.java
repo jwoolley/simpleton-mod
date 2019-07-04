@@ -251,6 +251,17 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         }
     }
 
+    class SimpletonLogger {
+        final Logger logger;
+        public SimpletonLogger(Logger logger) {
+            this.logger = logger;
+        }
+
+        public void debug(String msg) {
+            logger.info(msg);
+        }
+    }
+
     public static final Logger logger = LogManager.getLogger(TheSimpletonMod.class.getName());
 
     public TheSimpletonMod() {
@@ -582,7 +593,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     private SeasonInfo chooseSeason() {
-        switch (UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass)) {
+            switch (UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass)) {
             case 0:
                 return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_0);
             case 1:
@@ -745,6 +756,12 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receivePostCreateStartingDeck(AbstractPlayer.PlayerClass playerClass, CardGroup group) {
+        logger.info("receivePostCreateStartingDeck UnlockTracker.getUnlockLevel(): " + UnlockTracker.getUnlockLevel(TheSimpletonCharEnum.THE_SIMPLETON));
+        logger.info("receivePostCreateStartingDeck UnlockTracker.getCurrentProgress(): " + UnlockTracker.getCurrentProgress(TheSimpletonCharEnum.THE_SIMPLETON));
+        logger.info("receivePostCreateStartingDeck UnlockTracker.getCurrentScoreCost(): " + UnlockTracker.getCurrentScoreCost(TheSimpletonCharEnum.THE_SIMPLETON));
+        logger.info("receivePostCreateStartingDeck UnlockTracker.getCurrentScoreTotal(): " + UnlockTracker.getCurrentScoreTotal(TheSimpletonCharEnum.THE_SIMPLETON));
+        logger.info("receivePostCreateStartingDeck UnlockTracker.getCompletionPercentage(): " + UnlockTracker.getCompletionPercentage());
+
         if (isPlayingAsSimpleton()) {
             logger.debug("TheSimpletonMod.receivePostCreateStartingDeck receivePostCreateStartingDeck called");
 

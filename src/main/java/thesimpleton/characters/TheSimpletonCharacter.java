@@ -336,7 +336,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
         }
         List<AbstractCard> seasonalCurseCards = TheSimpletonMod.getSeasonalCurseCards();
 
-        TheSimpletonMod.logger.debug("??????????? SimpletonMod.getCardPool adding seasonal curse cards to card pool:"
+        TheSimpletonMod.logger.info("??????????? SimpletonMod.getCardPool adding seasonal curse cards to card pool:"
             + seasonalCurseCards.stream().map(c -> c.name).collect(Collectors.joining(", ")));
 
         if (seasonalCurseCards.size() > 0) {

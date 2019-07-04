@@ -36,7 +36,7 @@ public class LoseSlowPower extends AbstractTheSimpletonPower {
 
   public void atStartOfTurn() {
       this.flash();
-      AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, SlowPower.POWER_ID));
+      AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, SlowPower.POWER_ID));
       AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
   }
 

@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 // Nettles adds a thorns to a single random enemy when drawn
-public class Nettles extends CustomCard {
+public class Nettles extends CustomCard implements SeasonalCurse {
     public static final String ID = "TheSimpletonMod:Nettles";
     private static final CardStrings cardStrings;
     public static final String NAME;

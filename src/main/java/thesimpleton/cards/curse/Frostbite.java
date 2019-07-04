@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.powers.SlowPower;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.powers.LoseSlowPower;
 
-public class Frostbite extends CustomCard {
+public class Frostbite extends CustomCard implements SeasonalCurse {
   public static final String ID = TheSimpletonMod.makeID("Frostbite");
   private static final CardStrings cardStrings;
   public static final String NAME;

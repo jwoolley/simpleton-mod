@@ -180,6 +180,13 @@
     "DESCRIPTION": "Draw a card for each different type of Crop you have."
   },
 
+  "TheSimpletonMod:Gnats": {
+    "NAME": "Gnats",
+    "DESCRIPTION": "Unplayable. NL You cannot play 0-cost cards this turn.",
+    "EXTENDED_DESCRIPTION" : ["I can't play #r0-cost cards this turn."]
+  },
+
+
   "TheSimpletonMod:Gnawberry": {
     "NAME": "Gnawberry",
     "DESCRIPTION": "Deal !D! Damage. NL Heal !M! HP. NL Exhaust."
@@ -218,17 +225,12 @@
 
   "TheSimpletonMod:Nettles": {
     "NAME": "Nettles",
-    "DESCRIPTION": "Whenever this card is drawn, Apply !M! Thorns to a random enemy."
-  },
-
-  "TheSimpletonMod:Frostbite_OLD": {
-    "NAME": "Frostbite",
-    "DESCRIPTION": "At the end of your turn, gain !M! Numb."
+    "DESCRIPTION": "Unplayable. NL Whenever this card is drawn, Apply !M! Thorns to a random enemy."
   },
 
   "TheSimpletonMod:Frostbite": {
     "NAME": "Frostbite",
-    "DESCRIPTION": "Whenever this card is drawn, gain Slow for this turn."
+    "DESCRIPTION": "Unplayable. NL Whenever this card is drawn, gain Slow for this turn."
   },
 
   "TheSimpletonMod:OnionBloom": {

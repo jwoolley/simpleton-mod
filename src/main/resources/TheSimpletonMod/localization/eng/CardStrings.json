@@ -344,6 +344,16 @@
     ]
   },
 
+  "TheSimpletonMod:Spoilage": {
+    "NAME": "Spoilage",
+    "DESCRIPTION": "Unplayable. NL At the end of your turn,",
+    "EXTENDED_DESCRIPTION" : [
+      " a random playable card",
+      " random playable cards",
+      " in your hand cost !M! more until played."
+    ]
+  },
+
   "TheSimpletonMod:SpudMissile": {
     "NAME": "Spud",
     "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Exhaust."

@@ -39,10 +39,7 @@ import org.apache.logging.log4j.core.config.Configurator;
 import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
-import thesimpleton.cards.curse.Frostbite;
-import thesimpleton.cards.curse.Gnats;
-import thesimpleton.cards.curse.Nettles;
-import thesimpleton.cards.curse.SimpletonCurse;
+import thesimpleton.cards.curse.*;
 import thesimpleton.cards.power.*;
 import thesimpleton.cards.power.crop.*;
 import thesimpleton.cards.skill.*;
@@ -485,6 +482,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        cards.add(new Frostbite());
 //        cards.add(new Gnats());
 //        cards.add(new Nettles());
+        cards.add(new Spoilage());
         return cards;
     }
 
@@ -804,6 +802,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     private static void initializeSeasonCurses() {
         seasonCurseMap.clear();
+//        seasonCurseMap.put(Season.AUTUMN, Collections.unmodifiableList(Arrays.asList(new Spoilage())));
         seasonCurseMap.put(Season.AUTUMN, Collections.unmodifiableList(Arrays.asList(new Nettles())));
         seasonCurseMap.put(Season.WINTER, Collections.unmodifiableList(Arrays.asList(new Frostbite())));
         seasonCurseMap.put(Season.SPRING, Collections.unmodifiableList(Arrays.asList(new Nettles())));

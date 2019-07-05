@@ -379,6 +379,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_FallMeadow1.ogg"));
         reflectedMap.put("GRADUAL_RUMBLE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_GradualBuzz1.ogg"));
+        reflectedMap.put("HOOTING_BIRD_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_HootingBird1.ogg"));
         reflectedMap.put("LOW_RUMBLE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_LowRumble1.ogg"));
         reflectedMap.put("MAGIC_CHIMES_1",
@@ -482,7 +484,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        cards.add(new Frostbite());
 //        cards.add(new Gnats());
 //        cards.add(new Nettles());
-        cards.add(new Spoilage());
+//        cards.add(new Spoilage());
         return cards;
     }
 
@@ -512,6 +514,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new Gnats());
         cards.add(new Frostbite());
         cards.add(new Nettles());
+        cards.add(new Spoilage());
 
         return cards;
     }
@@ -803,7 +806,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     private static void initializeSeasonCurses() {
         seasonCurseMap.clear();
 //        seasonCurseMap.put(Season.AUTUMN, Collections.unmodifiableList(Arrays.asList(new Spoilage())));
-        seasonCurseMap.put(Season.AUTUMN, Collections.unmodifiableList(Arrays.asList(new Nettles())));
+        seasonCurseMap.put(Season.AUTUMN, Collections.unmodifiableList(Arrays.asList(new Spoilage())));
         seasonCurseMap.put(Season.WINTER, Collections.unmodifiableList(Arrays.asList(new Frostbite())));
         seasonCurseMap.put(Season.SPRING, Collections.unmodifiableList(Arrays.asList(new Nettles())));
         seasonCurseMap.put(Season.SUMMER, Collections.unmodifiableList(Arrays.asList(new Gnats())));

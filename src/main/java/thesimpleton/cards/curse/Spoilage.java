@@ -1,16 +1,14 @@
 package thesimpleton.cards.curse;
 
 import basemod.abstracts.CustomCard;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.SetDontTriggerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 import thesimpleton.TheSimpletonMod;
 
 public class Spoilage extends CustomCard implements SeasonalCurse {
@@ -25,46 +23,68 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
   private static final CardRarity RARITY = CardRarity.CURSE;
   private static final CardTarget TARGET = CardTarget.NONE;
 
-  private static final int NUM_CARDS = 2;
-  private static final int COST_INCREASE = 2;
+  private static final int CARD_THRESHOLD = 3;
 
   private static final int COST = -2;
 
   public Spoilage() {
     super(ID, NAME,
-        TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(NUM_CARDS), TYPE, CardColor.CURSE, RARITY,
+        TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE, CardColor.CURSE, RARITY,
         TARGET);
 
-    this.baseMagicNumber = this.magicNumber = COST_INCREASE;
+    this.baseMagicNumber = this.magicNumber = CARD_THRESHOLD;
+  }
+
+  public void triggerOnOtherCardPlayed(AbstractCard c) {
+    if (AbstractDungeon.player.cardsPlayedThisTurn >= this.magicNumber) {
+      if (!this.retain) {
+        this.retain = true;
+        this.retain = true;
+        this.flash(Color.CHARTREUSE);
+        CardCrawlGame.sound.play("POWER_POISON");
+        updateDescription(true);
+      }
+    }
+  }
+
+  @Override
+  public void triggerOnGainEnergy(int e, boolean b) {
+    TheSimpletonMod.logger.info("Spoilage::triggerOnGainEnergy called");
+    updateDescription(false);
   }
 
 
-  public void use(AbstractPlayer p, AbstractMonster m) {
-    if (this.dontTriggerOnUseCard) {
-      AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
-          new VulnerablePower(AbstractDungeon.player, 1, true), 1));
-    }
+  @Override
+  public void triggerOnEndOfTurnForPlayingCard() {
+    TheSimpletonMod.logger.info("Spoilage::triggerOnEndOfTurnForPlayingCard called");
+    updateDescription(false);
+  }
+
+//  public void triggerOnEndOfPlayerTurn() {
+//    TheSimpletonMod.logger.info("Spoilage::triggerOnEndOfPlayerTurn called");
+////  this.tri
+//    updateDescription(false);
+//  }
+
+//  public void use(AbstractPlayer p, AbstractMonster m) {
+//
+//  }
+
+  public void use(AbstractPlayer p, AbstractMonster m) {  }
+
+  protected void updateDescription(boolean willBeRetained) {
+    this.rawDescription = getDescription(willBeRetained);
+    this.initializeDescription();
   }
 
   public void triggerWhenDrawn() {
     AbstractDungeon.actionManager.addToBottom(new SetDontTriggerAction(this, false));
   }
 
-  public void triggerOnEndOfTurnForPlayingCard() {
-    this.dontTriggerOnUseCard = true;
-    AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
-  }
-
   public AbstractCard makeCopy() { return new Spoilage(); }
 
-  public String getDescription() {
-    return getDescription(this.magicNumber);
-  }
-
-  public static String getDescription(int numStacks) {
-    return DESCRIPTION
-        + (numStacks == 1 ? EXTENDED_DESCRIPTION[0] : + numStacks + EXTENDED_DESCRIPTION[1])
-        + EXTENDED_DESCRIPTION[2];
+  public static String getDescription(boolean willBeRetained) {
+    return DESCRIPTION + (willBeRetained ? EXTENDED_DESCRIPTION[0] : "");
   }
 
   public void upgrade() {}

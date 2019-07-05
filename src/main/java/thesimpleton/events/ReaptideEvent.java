@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.curse.Spoilage;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Corn;
 import thesimpleton.cards.power.crop.Potatoes;
@@ -26,15 +27,18 @@ public class ReaptideEvent extends AbstractImageEvent
   private static final String[] DESCRIPTIONS;
   private static final String[] OPTIONS;
 
-  private static final AbstractCard CURSE_CARD = new Doubt();
   private static final int MIN_GOLD_COST = 40;
   private static final int MAX_GOLD_COST = 75;
 
+  private static final AbstractCard CURSE_DOUBT = new Doubt();
+  private static final AbstractCard CURSE_SPOILAGE = new Spoilage();
+  private static final AbstractRelic GOURD_CHARM = new GourdCharm();
+  private static final AbstractRelic ONION_BELT = new OnionBelt();
+
+  private final AbstractCard curseCard;
   private final AbstractCropPowerCard commonCropCard;
   private final AbstractCropPowerCard uncommonCropCard;
   private final AbstractRelic relicReward;
-  private final AbstractRelic GOURD_CHARM = new GourdCharm();
-  private final AbstractRelic ONION_BELT = new OnionBelt();
   private final int goldCost;
 
   private boolean receivesCurse;
@@ -68,6 +72,8 @@ public class ReaptideEvent extends AbstractImageEvent
       relicReward = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.COMMON);
     }
 
+    curseCard = AbstractDungeon.miscRng.randomBoolean(0.25F) ? CURSE_DOUBT : CURSE_SPOILAGE;
+
     this.imageEventText.setDialogOption(OPTIONS[0] + commonCropCard.name + OPTIONS[3]);
 
     if (goldCost > 0) {
@@ -76,10 +82,10 @@ public class ReaptideEvent extends AbstractImageEvent
       this.imageEventText.setDialogOption(OPTIONS[8] + MIN_GOLD_COST + OPTIONS[5], true);
     }
 
-    this.imageEventText.setDialogOption(OPTIONS[2] + relicReward.name + OPTIONS[7] + CURSE_CARD.name + OPTIONS[3]);
+    this.imageEventText.setDialogOption(OPTIONS[2] + relicReward.name + OPTIONS[7] + curseCard.name + OPTIONS[3]);
 
     this.state = SimpletonEventHelper.EventState.WAITING;
-    CardCrawlGame.sound.play("FALL_MEADOW_1");
+    CardCrawlGame.sound.play("HOOTING_BIRD_1");
   }
 
   @Override
@@ -101,8 +107,12 @@ public class ReaptideEvent extends AbstractImageEvent
             SimpletonEventHelper.receiveRelic(relicReward);
             receivesCurse = AbstractDungeon.miscRng.randomBoolean(0.5F);
             if (receivesCurse) {
-              CardCrawlGame.sound.play("HEART_BEAT");
-              SimpletonEventHelper.gainCard(CURSE_CARD);
+              if (curseCard.cardID == CURSE_DOUBT.cardID) {
+                CardCrawlGame.sound.play("HEART_BEAT");
+              } else {
+                CardCrawlGame.sound.play("RAGE");
+              }
+              SimpletonEventHelper.gainCard(curseCard);
             }
           default:
             break;

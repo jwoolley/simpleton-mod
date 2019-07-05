@@ -346,12 +346,8 @@
 
   "TheSimpletonMod:Spoilage": {
     "NAME": "Spoilage",
-    "DESCRIPTION": "Unplayable. NL At the end of your turn,",
-    "EXTENDED_DESCRIPTION" : [
-      " a random playable card",
-      " random playable cards",
-      " in your hand cost !M! more until played."
-    ]
+    "DESCRIPTION": "Unplayable. NL If you have played !M! or more cards this turn, Retain this card.",
+    "EXTENDED_DESCRIPTION" : [ " NL (Retains this turn)."]
   },
 
   "TheSimpletonMod:SpudMissile": {

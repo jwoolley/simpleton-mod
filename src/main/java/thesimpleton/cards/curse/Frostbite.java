@@ -31,12 +31,13 @@ public class Frostbite extends CustomCard implements SeasonalCurse {
   }
 
   public void triggerWhenDrawn() {
+    super.triggerWhenDrawn();
+
     AbstractDungeon.actionManager.addToBottom(
         new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
             new SlowPower(AbstractDungeon.player, 0), 0));
 
-    super.triggerWhenDrawn();
-      AbstractDungeon.actionManager.addToBottom(
+     AbstractDungeon.actionManager.addToBottom(
           new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
               new LoseSlowPower(AbstractDungeon.player), 1));
   }

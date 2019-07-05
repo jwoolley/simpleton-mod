@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
@@ -31,14 +32,17 @@ import com.megacrit.cardcrawl.relics.PaperCrane;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.AbstractUnlock;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
 import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
 import thesimpleton.cards.curse.Frostbite;
 import thesimpleton.cards.curse.Gnats;
 import thesimpleton.cards.curse.Nettles;
+import thesimpleton.cards.curse.SimpletonCurse;
 import thesimpleton.cards.power.*;
 import thesimpleton.cards.power.crop.*;
 import thesimpleton.cards.skill.*;
@@ -97,7 +101,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
-        logger.debug("TheSimpletonMod::receivePostBattle isSeasonInitialized:"
+        logger.info("TheSimpletonMod::receivePostBattle isSeasonInitialized:"
             + isSeasonInitialized() + "; isDebug: " + Settings.isDebug);
 
         if (AbstractDungeon.player.hasRelic(HeatStroke.ID)) {
@@ -122,6 +126,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receivePostDeath() {
+        logger.info("$@$@$@$@$@$@$@$@$@$ receivePostDeath: setting seasonInfo to NULL");
         seasonInfo = null;
         CUSTOM_SAVABLES.seasonCustomSavable.reset();
         seasonScreen.reset();
@@ -131,20 +136,24 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //
 //    @Override
 //    public void receivePostEnergyRecharge() {
-//        logger.debug("TheSimpletonMod::receivePostEnergyRecharge : resetting hasHarvestedThisTurn");
+//        logger.info("TheSimpletonMod::receivePostEnergyRecharge : resetting hasHarvestedThisTurn");
 //        AbstractCrop.resetHasHarvestedThisTurn();
 //    }
 
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-        logger.debug("TheSimpletonMod::receiveOnBattleStart : resetting hasHarvestedThisTurn");
+        logger.info("TheSimpletonMod::receiveOnBattleStart : resetting hasHarvestedThisTurn");
         AbstractCrop.resetHasHarvestedThisTurn();
+
+        logger.info("TheSimpletonMod::receiveOnBattleStart: curse card pool cards: "
+            + AbstractDungeon.curseCardPool.group.stream()
+            .map(c -> c.name).collect(Collectors.joining(", ")));
     }
 
     public static void onBeforeStartOfTurnOrbs() {
-        logger.debug("TheSimpletonMod::onBeforeStartOfTurnOrbs : resetting hasHarvestedThisTurn");
+        logger.info("TheSimpletonMod::onBeforeStartOfTurnOrbs : resetting hasHarvestedThisTurn");
 
-        logger.debug(">>>>>>>>>> DEBUG <<<<<<<<<< TheSimpletonMod::onBeforeStartOfTurnOrbs unlockLevel: " + UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass));
+        logger.info(">>>>>>>>>> DEBUG <<<<<<<<<< TheSimpletonMod::onBeforeStartOfTurnOrbs unlockLevel: " + UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass));
 
 
         AbstractCrop.resetHasHarvestedThisTurn();
@@ -162,13 +171,13 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receiveStartAct() {
-        logger.debug("TheSimpletonMod::receiveStartAct receiveStartAct called ===========================>>>>>>>");
-        logger.debug("TheSimpletonMod::receiveStartAct Doing nothing though.");
+        logger.info("TheSimpletonMod::receiveStartAct receiveStartAct called ===========================>>>>>>>");
+        logger.info("TheSimpletonMod::receiveStartAct Doing nothing though.");
     }
 
     @Override
     public void receivePostDungeonInitialize() {
-        logger.debug("TheSimpletonMod::receivePostDungeonInitialize receivePostDungeonInitialize called ===========================>>>>>>>");
+        logger.info("TheSimpletonMod::receivePostDungeonInitialize receivePostDungeonInitialize called ===========================>>>>>>>");
 //        initializeSeason();
         seasonScreen.reset();
     }
@@ -247,25 +256,26 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         }
 
         public boolean isCurrentTheme(TheSimpletonCharEnum.Theme theme) {
-            logger.debug("ThemeState::isCurrentTheme called for theme: " + theme + "; isCurrentTheme: " + currentTheme.equals(theme));
+            logger.info("ThemeState::isCurrentTheme called for theme: " + theme + "; isCurrentTheme: " + currentTheme.equals(theme));
             return this.getCurrentTheme().map(cur -> cur.equals(theme)).orElse(false);
-        }
-    }
-
-    class SimpletonLogger {
-        final Logger logger;
-        public SimpletonLogger(Logger logger) {
-            this.logger = logger;
-        }
-
-        public void debug(String msg) {
-            logger.info(msg);
         }
     }
 
     public static final Logger logger = LogManager.getLogger(TheSimpletonMod.class.getName());
 
     public TheSimpletonMod() {
+        logger.info("Logger class: " + logger.getClass().getCanonicalName());
+
+        if (logger instanceof org.apache.logging.log4j.core.Logger && Loader.DEBUG) {
+            logger.info("Setting log level to: " + Level.DEBUG);
+
+            ((org.apache.logging.log4j.core.Logger)logger).setLevel(Level.DEBUG);
+            Configurator.setRootLevel(Level.DEBUG);
+            logger.debug("Show me the debug logs!");
+        } else {
+            logger.info("Unable to set log level. Loader.DEBUG: " + Loader.DEBUG);
+        }
+
         BaseMod.subscribe(this);
 
         BaseMod.addColor(AbstractCardEnum.THE_SIMPLETON_BLUE,
@@ -311,7 +321,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receivePostInitialize() {
-        logger.debug("TheSimpletonMod::receivePostInitialize called ===========================>>>>>>>");
+        logger.info("TheSimpletonMod::receivePostInitialize called ===========================>>>>>>>");
 
         TheSimpletonMod.isGameInitialized = true;
 
@@ -327,7 +337,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         Arrays.stream(TheSimpletonCharEnum.Theme.values())
                 .filter(theme -> theme != TheSimpletonCharEnum.Theme.BASE_THEME)
                 .forEach(theme -> {
-                    logger.debug("Adding theme: " + theme);
+                    logger.info("Adding theme: " + theme);
                     modPanel.addUIElement(new ModLabeledToggleButton(
                         CardCrawlGame.languagePack.getUIString(theme.toString()).TEXT[0],
                         350.0f, 650.0f - 50.f * theme.ordinal(), Settings.CREAM_COLOR,
@@ -384,43 +394,12 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receiveStartGame() {
-        logger.debug("TheSimpletonMod::receiveStartGame called ===========================>>>>>>>");
+        logger.info("TheSimpletonMod::receiveStartGame called ===========================>>>>>>>");
+        initializeSeasonInfoIfNeeded();
         isGameInitialized = true;
 
-        Season savedSeason = CUSTOM_SAVABLES.seasonCustomSavable.getSeason();
-        List<Crop> savedCrops = CUSTOM_SAVABLES.seasonCropsCustomSavable.getCropsInSeason();
-
-        if (!savedCrops.isEmpty()) {
-            List<AbstractCropPowerCard> cropCards = savedCrops.stream()
-                .map(c -> c.getCropInfo().powerCard).filter(Objects::nonNull).collect(Collectors.toList());
-
-            SEASONAL_CROP_CARDS.clear();
-            SEASONAL_CROP_CARDS.addAll(cropCards);
-
-            logger.debug(this.getClass().getSimpleName() + "::receiveStartGame | Loaded in-season crops from save:"
-                + savedCrops.stream().map(c -> c.name()).collect(Collectors.joining(", ")));
-            logger.debug(this.getClass().getSimpleName() + "::receiveStartGame | Setting in-season crop cards:"
-                + cropCards.stream().map(c -> c.name).collect(Collectors.joining(", ")));
-        } else {
-            logger.debug(this.getClass().getSimpleName() + "::receiveStartGame | empty crop list from savable."
-                + savedCrops.stream().map(c -> c.name()).collect(Collectors.joining(", ")));
-        }
-
-        Season season;
-        if (savedSeason != null) {
-            logger.debug("TheSimpletonMod::receiveStartGame applying season from save");
-            seasonInfo = new SeasonInfo(savedSeason, savedCrops);
-            season = savedSeason;
-        } else if (isSeasonInitialized()) {
-            logger.debug("TheSimpletonMod::receiveStartGame applying season from seasonInfo (game start)");
-            season = seasonInfo.getSeason();
-        } else {
-            logger.debug("TheSimpletonMod::receiveStartGame applying random season");
-            season = Season.randomSeason();
-        }
-
         //TODO: initialize SeasonInfo on load from save
-        seasonIndicator = SeasonIndicator.getIndicator(season);
+        seasonIndicator = SeasonIndicator.getIndicator(getSeason());
     }
 
 
@@ -529,11 +508,21 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         return cards;
     }
 
+    public static List<AbstractCard> getSeasonalCurseCardList() {
+        List<AbstractCard> cards = new ArrayList<>();
+
+        cards.add(new Gnats());
+        cards.add(new Frostbite());
+        cards.add(new Nettles());
+
+        return cards;
+    }
+
     @Override
     public void receiveEditCards() {
         //  initializeSeason(); // TODO: NOT SURE IF THIS NEEDS TO BE IN THIS HOOK OR CAN BE ELSEWHERE
 
-        logger.debug("TheSimpletonMod::receiveEditCards called ===========================>>>>>>>");
+        logger.info("TheSimpletonMod::receiveEditCards called ===========================>>>>>>>");
 
         for(AbstractCard card : getBaseCardList()) {
             BaseMod.addCard(card);
@@ -547,7 +536,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     private static SeasonInfo seasonInfo;
 
     public static boolean isSeasonInitialized() {
-        logger.debug("@@@@@DEBUG@@@@@ TheSimpletonMod::isSeasonInitialized : " + (seasonInfo != null));
+        logger.info("@@@@@DEBUG@@@@@ TheSimpletonMod::isSeasonInitialized : " + (seasonInfo != null));
         return seasonInfo != null;
     }
 
@@ -559,8 +548,50 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        seasonInfo = new SeasonInfo(CUSTOM_SAVABLES.seasonCustomSavable.getSeason(), SeasonInfo.RANDOM_CROP_SET_BY_RARE_CROP_RARITY);
 //    }
 
+    // When loading a saved game, this need to be called after all custom saves are loaded (since it needs all
+    // SeasonInfo data), but before card pools initialized. So the getCardPool before hook will call this before it
+    // needs the SeasonInfo.
+    //
+    // For new games, SeasonInfo should be intantiated by now, so leave it alone.
+    public static void initializeSeasonInfoIfNeeded() {
+        logger.info("initializeSeasonInfoIfNeeded called");
+        if (!isSeasonInitialized()) {
+            Season savedSeason = CUSTOM_SAVABLES.seasonCustomSavable.getSeason();
+            List<Crop> savedCrops = CUSTOM_SAVABLES.seasonCropsCustomSavable.getCropsInSeason();
+
+            if (!savedCrops.isEmpty()) {
+                List<AbstractCropPowerCard> cropCards = savedCrops.stream()
+                    .map(c -> c.getCropInfo().powerCard).filter(Objects::nonNull).collect(Collectors.toList());
+
+                SEASONAL_CROP_CARDS.clear();
+                SEASONAL_CROP_CARDS.addAll(cropCards);
+
+                logger.info("initializeSeasonInfoIfNeeded | Loaded in-season crops from save:"
+                    + savedCrops.stream().map(c -> c.name()).collect(Collectors.joining(", ")));
+                logger.info("initializeSeasonInfoIfNeeded | Setting in-season crop cards:"
+                    + cropCards.stream().map(c -> c.name).collect(Collectors.joining(", ")));
+            } else {
+                logger.info("initializeSeasonInfoIfNeeded | empty crop list from savable."
+                    + savedCrops.stream().map(c -> c.name()).collect(Collectors.joining(", ")));
+            }
+
+            Season season;
+            if (savedSeason != null) {
+                logger.info("TheSimpletonMod::receiveStartGame applying season from save");
+                seasonInfo = new SeasonInfo(savedSeason, savedCrops);
+                season = savedSeason;
+            } else if (isSeasonInitialized()) {
+                logger.info("TheSimpletonMod::receiveStartGame applying season from seasonInfo (game start)");
+                season = seasonInfo.getSeason();
+            } else {
+                logger.info("TheSimpletonMod::receiveStartGame applying random season");
+                season = Season.randomSeason();
+            }
+        }
+    }
+
     private void initializeSeason() {
-        logger.debug("@@@@@DEBUG@@@@@ TheSimpletonMod::initializeSeason Initializing Season ...");
+        logger.info("@@@@@DEBUG@@@@@ TheSimpletonMod::initializeSeason Initializing Season ...");
 
         seasonInfo = chooseSeason();
 
@@ -576,7 +607,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     public static void setSeasonalCropCards() {
-        logger.debug("@@@@@DEBUG@@@@@ setSeasonalCropCards Inferring from card pool..");
+        logger.info("@@@@@DEBUG@@@@@ setSeasonalCropCards Inferring from card pool..");
         setSeasonalCropCards(TheSimpletonMod.getCurrentCardPool().stream()
             .filter(c -> c instanceof AbstractCropPowerCard)
             .map(c -> (AbstractCropPowerCard) c)
@@ -585,8 +616,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
 
     public static void setSeasonalCropCards(List<AbstractCropPowerCard> cards) {
-        logger.debug("@@@@@DEBUG@@@@@ setSeasonalCropCards Generating season info ...");
-        logger.debug("@@@@@DEBUG@@@@@ setSeasonalCropCards adding cards: " + cards.stream()
+        logger.info("@@@@@DEBUG@@@@@ setSeasonalCropCards Generating season info ...");
+        logger.info("@@@@@DEBUG@@@@@ setSeasonalCropCards adding cards: " + cards.stream()
             .filter(c -> c instanceof  AbstractCropPowerCard).map(c -> c.name)
             .collect(Collectors.joining(", ")));
 
@@ -610,8 +641,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     private List<AbstractCropPowerCard> chooseSeasonalCropCards(SeasonInfo seasonInfo) {
-        logger.debug("@@@@@DEBUG@@@@@ Generating season info ...");
-        logger.debug("SeasonInfo | "
+        logger.info("@@@@@DEBUG@@@@@ Generating season info ...");
+        logger.info("SeasonInfo | "
             + "season: " + seasonInfo.getSeason()
             + " cropsInSeason: "
             + seasonInfo.getCropsInSeason().stream().map(c -> c.getName()).collect(Collectors.joining(", "))
@@ -627,13 +658,18 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cardPool.addAll(AbstractDungeon.commonCardPool.group);
         cardPool.addAll(AbstractDungeon.uncommonCardPool.group);
         cardPool.addAll(AbstractDungeon.rareCardPool.group);
+        cardPool.addAll(AbstractDungeon.curseCardPool.group.stream()
+            .filter(c -> c instanceof SimpletonCurse).collect(Collectors.toList()));
+
         return Collections.unmodifiableList(cardPool);
     }
 
     public static void addToCardPool(AbstractCard card) {
+        logger.info("Attempting to add card to pool:" + card.name);
+
         switch (card.rarity) {
             case COMMON:
-                logger.debug("Adding common crop power to pool:" + card.name);
+                logger.info("Adding common card to pool:" + card.name);
                 // TODO: check for and don't add duplicates
                 if (AbstractDungeon.commonCardPool.group.stream().noneMatch(c -> c.cardID == card.cardID)) {
                     AbstractDungeon.commonCardPool.group.add(card);
@@ -642,19 +678,32 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             case UNCOMMON:
                 if (AbstractDungeon.uncommonCardPool.group.stream().noneMatch(c -> c.cardID == card.cardID)) {
                     AbstractDungeon.uncommonCardPool.group.add(card);
-                    logger.debug("Adding uncommon crop power to pool:" + card.name);
+                    logger.info("Adding uncommon card to pool:" + card.name);
                 }
                 break;
             case RARE:
                 if (AbstractDungeon.rareCardPool.group.stream().noneMatch(c -> c.cardID == card.cardID)) {
                     AbstractDungeon.rareCardPool.group.add(card);
-                    logger.debug("Adding rare crop power to pool:" + card.name);
+                    logger.info("Adding rare card to pool:" + card.name);
                 }
                 break;
+
+            case CURSE:
+                if (AbstractDungeon.curseCardPool.group.stream().noneMatch(c -> c.cardID == card.cardID)) {
+                    AbstractDungeon.curseCardPool.group.add(card);
+                    logger.info("Adding curse card to pool:" + card.name);
+                }
+                break;
+
             default:
                 logger.warn("Can't add card " + card.name + " to card pool: " + card.rarity + " is not a supported rarity");
                 break;
         }
+    }
+
+    public static void removeUnseasonalCardsFromPool() {
+        removeUnusedCropPowerCardsFromPool();
+        removeUnusedSeasonalCurseCardsFromPool();
     }
 
     public static void removeUnusedCropPowerCardsFromPool() {
@@ -664,35 +713,79 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             .filter(c -> !seasonalCrops.stream().anyMatch(c2 -> c.cardID == c2.cardID))
             .collect(Collectors.toList());
 
-        logger.debug("removeUnusedCropPowerCardsFromPool called. Complete List: " + getCropCardList().stream().map(c -> c.name).collect(Collectors.joining(", ")));
-        logger.debug("removeUnusedCropPowerCardsFromPool called. Seasonal Crops: " + getSeasonalCropCards().stream().map(c -> c.name).collect(Collectors.joining(", ")));
-        logger.debug("removeUnusedCropPowerCardsFromPool called. Unseasonal Crops: " + cardsToRemove.stream().map(c -> c.name).collect(Collectors.joining(", ")));
+        logger.info("removeUnusedCropPowerCardsFromPool called. Complete List: " + getCropCardList().stream().map(c -> c.name).collect(Collectors.joining(", ")));
+        logger.info("removeUnusedCropPowerCardsFromPool called. Seasonal Crops: " + getSeasonalCropCards().stream().map(c -> c.name).collect(Collectors.joining(", ")));
+        logger.info("removeUnusedCropPowerCardsFromPool called. Unseasonal Crops: " + cardsToRemove.stream().map(c -> c.name).collect(Collectors.joining(", ")));
 
         TheSimpletonMod.removeCropPowerCardsFromPool(cardsToRemove);
+    }
+
+    public static void removeUnusedSeasonalCurseCardsFromPool() {
+        if (!isSeasonInitialized()) {
+            logger.info("removeUnusedSeasonalCurseCardsFromPool : season not initialized. Not removing any cards.");
+        }
+
+        List<AbstractCard> seasonalCurses = seasonCurseMap.get(getSeason());
+
+        List<AbstractCard> cardsToRemove = getSeasonalCurseCardList().stream()
+            .filter(c -> !seasonalCurses.stream().anyMatch(c2 -> c.cardID == c2.cardID))
+            .collect(Collectors.toList());
+
+        logger.info("removeUnusedSeasonalCurseCardsFromPool called. Complete List: " + getSeasonalCurseCardList().stream().map(c -> c.name).collect(Collectors.joining(", ")));
+        logger.info("removeUnusedSeasonalCurseCardsFromPool called. Seasonal Curses: " + getSeasonalCropCards().stream().map(c -> c.name).collect(Collectors.joining(", ")));
+        logger.info("removeUnusedSeasonalCurseCardsFromPool called. Removing unseasonal Curses: " + cardsToRemove.stream().map(c -> c.name).collect(Collectors.joining(", ")));
+
+        TheSimpletonMod.removeCardsFromPool(cardsToRemove);
     }
 
     public static SeasonInfo getSeasonInfo() {
         return seasonInfo;
     }
 
-    private static void removeCropPowerCardsFromPool(List<AbstractCropPowerCard> cardsToRemove) {
-        logger.debug("removeCropPowerCardsFromPool called ===========================>>>>>>> # of cards: " + cardsToRemove.size());
+    private static void removeCardsFromPool(List<AbstractCard> cardsToRemove) {
+        logger.info("removeCardsFromPool called ===========================>>>>>>> # of cards: " + cardsToRemove.size());
 
-
-
-        for (AbstractCropPowerCard card : cardsToRemove) {
+        for (AbstractCard card : cardsToRemove) {
             switch (card.rarity) {
                 case COMMON:
-                    logger.debug("Removing common crop power from pool:" + card.name);
+                    logger.info("Removing common card from pool:" + card.name);
                     AbstractDungeon.commonCardPool.group.removeIf(c -> c.cardID == card.cardID);
                     break;
                 case UNCOMMON:
                     AbstractDungeon.uncommonCardPool.group.removeIf(c -> c.cardID == card.cardID);
-                    logger.debug("Removing uncommon crop power from pool:" + card.name);
+                    logger.info("Removing uncommon card from pool:" + card.name);
                     break;
                 case RARE:
                     AbstractDungeon.rareCardPool.group.removeIf(c -> c.cardID == card.cardID);
-                    logger.debug("Removing rare crop power from pool:" + card.name);
+                    logger.info("Removing rare card from pool:" + card.name);
+                    break;
+                case CURSE:
+                    logger.info("Removing curse card from pool:" + card.name);
+                    AbstractDungeon.curseCardPool.group.removeIf(c -> c.cardID == card.cardID);
+                    break;
+                default:
+                    logger.warn("Can't remove card " + card.name + " from card pool: " + card.rarity + " is not a supported rarity");
+                    break;
+            }
+        }
+    }
+
+    private static void removeCropPowerCardsFromPool(List<AbstractCropPowerCard> cardsToRemove) {
+        logger.info("removeCropPowerCardsFromPool called ===========================>>>>>>> # of cards: " + cardsToRemove.size());
+
+        for (AbstractCropPowerCard card : cardsToRemove) {
+            switch (card.rarity) {
+                case COMMON:
+                    logger.info("Removing common crop power from pool:" + card.name);
+                    AbstractDungeon.commonCardPool.group.removeIf(c -> c.cardID == card.cardID);
+                    break;
+                case UNCOMMON:
+                    AbstractDungeon.uncommonCardPool.group.removeIf(c -> c.cardID == card.cardID);
+                    logger.info("Removing uncommon crop power from pool:" + card.name);
+                    break;
+                case RARE:
+                    AbstractDungeon.rareCardPool.group.removeIf(c -> c.cardID == card.cardID);
+                    logger.info("Removing rare crop power from pool:" + card.name);
                     break;
                 default:
                     logger.warn("Can't remove card " + card.name + " from card pool: " + card.rarity + " is not a supported rarity");
@@ -702,7 +795,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     public static List<AbstractCropPowerCard> getSeasonalCropCards() {
-        logger.debug("getSeasonalCropCards called: " + SEASONAL_CROP_CARDS.stream()
+        logger.info("getSeasonalCropCards called: " + SEASONAL_CROP_CARDS.stream()
             .distinct().map(c -> c.name).collect(Collectors.joining(", ")));
         return Collections.unmodifiableList(SEASONAL_CROP_CARDS.stream().distinct().collect(Collectors.toList()));
     }
@@ -719,6 +812,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     public static List<AbstractCard> getSeasonalCurseCards() {
         if (!isSeasonInitialized()) {
+            logger.info("getSeasonalCurseCards: season not initialized.");
             return Collections.emptyList();
         }
         return getSeasonalCurseCards(getSeasonInfo().getSeason());
@@ -726,18 +820,20 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
 
     public static List<AbstractCard> getSeasonalCurseCards(Season season) {
-        logger.debug("getSeasonalCurseCards called for season " + season.name + ": " + SEASONAL_CROP_CARDS.stream()
-            .distinct().map(c -> c.name).collect(Collectors.joining(", ")));
-
         if (seasonCurseMap.isEmpty()) {
+            logger.info("getSeasonalCurseCards initializing curse map.");
             initializeSeasonCurses();
         }
+
+        logger.info("getSeasonalCurseCards called for season. curses: " + seasonCurseMap.get(season).stream()
+            .distinct().map(c -> c.name).collect(Collectors.joining(", ")));
+
         return seasonCurseMap.get(season);
     }
 
     @Override
     public void receiveEditRelics() {
-        logger.debug("TheSimpletonMod::receiveEditRelics called ===========================>>>>>>>");
+        logger.info("TheSimpletonMod::receiveEditRelics called ===========================>>>>>>>");
 
         BaseMod.addRelicToCustomPool(new SpudOfTheInnocent(), AbstractCardEnum.THE_SIMPLETON_BLUE);
 
@@ -765,18 +861,22 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         logger.info("receivePostCreateStartingDeck UnlockTracker.getCompletionPercentage(): " + UnlockTracker.getCompletionPercentage());
 
         if (isPlayingAsSimpleton()) {
-            logger.debug("TheSimpletonMod.receivePostCreateStartingDeck receivePostCreateStartingDeck called");
+            logger.info("TheSimpletonMod.receivePostCreateStartingDeck receivePostCreateStartingDeck called");
 
             if (playerClass != TheSimpletonCharEnum.THE_SIMPLETON) {
                 return;
             }
-            logger.debug("TheSimpletonMod.receivePostCreateStartingDeck initializing Season");
+            logger.info("TheSimpletonMod.receivePostCreateStartingDeck initializing Season");
 
             initializeSeason();
 
-            logger.debug("TheSimpletonMod.receivePostCreateStartingDeck adding seasonal cards to card pool");
+            logger.info("TheSimpletonMod.receivePostCreateStartingDeck adding seasonal cards to card pool");
 
             for (AbstractCropPowerCard card : getSeasonalCropCards()) {
+                addToCardPool(card);
+            }
+
+            for (AbstractCard card : getSeasonalCurseCards()) {
                 addToCardPool(card);
             }
 
@@ -827,10 +927,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     public static void handleUseCard(AbstractCard card, UseCardAction action) {
-        logger.debug("TheSimpletonMod.handleUseCard called for card: " + card.name);
+        logger.info("TheSimpletonMod.handleUseCard called for card: " + card.name);
 
         AbstractCrop.getActiveCrops().forEach(crop -> {
-            logger.debug("TheSimpletonMod.handleUseCard triggering: " + crop.getName() + " for " + card.name);
+            logger.info("TheSimpletonMod.handleUseCard triggering: " + crop.getName() + " for " + card.name);
             crop.onUseCard(card, action);
         });
     }
@@ -880,7 +980,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         newlyShuffledCards.stream()
             .filter(c -> c instanceof ShuffleTriggeredCard)
             .forEach(c -> {
-                logger.debug("handleEmptyDrawShuffleTriggeredCardsAfter :: Triggering willBeShuffledTrigger for " + c.name);
+                logger.info("handleEmptyDrawShuffleTriggeredCardsAfter :: Triggering willBeShuffledTrigger for " + c.name);
                 ((ShuffleTriggeredCard) c).willBeShuffledTrigger();
             });
     }
@@ -895,7 +995,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         newlyShuffledCards.stream()
             .filter(c -> c instanceof ShuffleTriggeredCard)
             .forEach(c -> {
-                logger.debug("handleOtherShuffleTriggeredCardsAfter :: Triggering willBeShuffledTrigger for " + c.name);
+                logger.info("handleOtherShuffleTriggeredCardsAfter :: Triggering willBeShuffledTrigger for " + c.name);
                 ((ShuffleTriggeredCard) c).willBeShuffledTrigger();
             });
     }
@@ -984,15 +1084,15 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     };
 
     public static Texture loadTexture(String path) {
-        logger.debug("TheSimpletonMod::loadTexture loading texture: " + path);
+        logger.info("TheSimpletonMod::loadTexture loading texture: " + path);
 
         HashMap<String, Texture> imgMap = getImgMap();
         if (!imgMap.containsKey(path)) {
             Texture img = ImageMaster.loadImage(path);
-            logger.debug("TheSimpletonMod::adding texture to map: " + img);
+            logger.info("TheSimpletonMod::adding texture to map: " + img);
             imgMap.put(path, img);
         } else {
-            logger.debug("TheSimpletonMod::loadTexture already in imgMap: " + path);
+            logger.info("TheSimpletonMod::loadTexture already in imgMap: " + path);
 
         }
         return imgMap.get(path);

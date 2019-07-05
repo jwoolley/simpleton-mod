@@ -17,7 +17,7 @@ import thesimpleton.TheSimpletonMod;
 public class MathHelperFadeLerpSnapBefore {
 //  public static void Prefix (float startX, float targetX) {
 //    if (TheSimpletonMod.seasonScreen.isOpen()) {
-//      TheSimpletonMod.logger.debug("MathHelperFadeLerpSnapReplace season screen is open. skipping Lerp.");
+//      TheSimpletonMod.logger.info("MathHelperFadeLerpSnapReplace season screen is open. skipping Lerp.");
 //      SpireReturn.Return(targetX);
 //    }
 //  }

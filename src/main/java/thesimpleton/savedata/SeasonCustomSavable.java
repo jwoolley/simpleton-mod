@@ -13,7 +13,7 @@ public class SeasonCustomSavable implements CustomSavable<String> {
   final Logger logger = TheSimpletonMod.logger;
   private Season season;
   public SeasonCustomSavable() {
-    logger.debug( this.getClass().getSimpleName() + " instantiated");
+    logger.info( this.getClass().getSimpleName() + " instantiated");
   }
 
   @Override
@@ -22,7 +22,7 @@ public class SeasonCustomSavable implements CustomSavable<String> {
       reset();
       registerSaveId();
       Season season = TheSimpletonMod.getSeason();
-      logger.debug(getLogPrefix("onSave") + " called. season: " + season);
+      logger.info(getLogPrefix("onSave") + " called. season: " + season);
       return season != null ? season.uiName : Season.UNKNOWN.uiName;
     }
     return Season.UNKNOWN.uiName;
@@ -38,7 +38,7 @@ public class SeasonCustomSavable implements CustomSavable<String> {
   public void onLoad(String id) {
     if (AbstractDungeon.player.chosenClass == TheSimpletonCharEnum.THE_SIMPLETON) {
 
-      logger.debug(this.getClass().getSimpleName() + "::onLoad called");
+      logger.info(this.getClass().getSimpleName() + "::onLoad called");
 
       switch (id) {
         case Season.WINTER_UI_NAME:
@@ -58,7 +58,7 @@ public class SeasonCustomSavable implements CustomSavable<String> {
           break;
       }
 
-      logger.debug(this.getClass().getSimpleName() + "::onLoad retrieved season from save: " + (this.season == null ? Season.UNKNOWN : this.season.name)
+      logger.info(this.getClass().getSimpleName() + "::onLoad retrieved season from save: " + (this.season == null ? Season.UNKNOWN : this.season.name)
           + "(saved value: " + id + ")");
     }
   }
@@ -72,8 +72,8 @@ public class SeasonCustomSavable implements CustomSavable<String> {
   }
 
   private void registerSaveId() {
-    logger.debug( this.getClass().getSimpleName() + "::registerSaveId");
-    logger.debug( this.getClass().getSimpleName() + "::registerSaveId registering customSaveKey: " + getCustomSaveKey());
+    logger.info( this.getClass().getSimpleName() + "::registerSaveId");
+    logger.info( this.getClass().getSimpleName() + "::registerSaveId registering customSaveKey: " + getCustomSaveKey());
     BaseMod.addSaveField(this.getCustomSaveKey(), this);
   }
 

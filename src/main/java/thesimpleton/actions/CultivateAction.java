@@ -47,10 +47,10 @@ public class CultivateAction extends AbstractGameAction {
     Logger logger = TheSimpletonMod.logger;
     if (this.duration != ACTION_DURATION) {
       AbstractDungeon.actionManager.addToBottom(new WaitAction(0.1F));
-      logger.debug("CultivateAction.update :: second tick");
+      logger.info("CultivateAction.update :: second tick");
       if (this.hasHarvested) {
         for(AbstractCropOrb cropOrb : cropCounts.keySet()) {
-          logger.debug("CultivateAction.update :: stacking " + cropOrb.name + " for 1");
+          logger.info("CultivateAction.update :: stacking " + cropOrb.name + " for 1");
           AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(cropOrb, this.amount, true));
         }
       }
@@ -60,16 +60,16 @@ public class CultivateAction extends AbstractGameAction {
     }
 
     if (!this.firstTickFinished) {
-      logger.debug("PruningAction.update :: first tick");
+      logger.info("PruningAction.update :: first tick");
 
       if (AbstractCropOrb.playerHasAnyCropOrbs()) {
         List<AbstractCropOrb> cropOrbs = AbstractCropOrb.getActiveCropOrbs();
 
         for(AbstractCropOrb cropOrb : cropOrbs) {
           final int stacks = cropOrb.passiveAmount < numStacksToHarvest ? cropOrb.passiveAmount : numStacksToHarvest;
-//          logger.debug("CultivateAction.update :: player has " + cropOrb.getAmount() + " stacks of " + cropOrb.name);
-          logger.debug("CultivateAction.update :: numStacksToHarvest: " + numStacksToHarvest);
-          logger.debug("CultivateAction.update :: harvesting " + stacks + " stacks of " + cropOrb.name);
+//          logger.info("CultivateAction.update :: player has " + cropOrb.getAmount() + " stacks of " + cropOrb.name);
+          logger.info("CultivateAction.update :: numStacksToHarvest: " + numStacksToHarvest);
+          logger.info("CultivateAction.update :: harvesting " + stacks + " stacks of " + cropOrb.name);
           cropCounts.put(cropOrb.getCrop().getCropOrb(), stacks);
 
           AbstractDungeon.actionManager.addToTop(new HarvestCropAction(cropOrb, stacks,true));

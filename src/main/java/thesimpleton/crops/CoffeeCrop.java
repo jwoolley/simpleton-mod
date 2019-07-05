@@ -13,7 +13,7 @@ public class CoffeeCrop extends AbstractCrop {
 
   public CoffeeCrop() {
     super(CROP_ENUM);
-    logger.debug("MAKIN' COFFEE (instantiating Coffee).");
+    logger.info("MAKIN' COFFEE (instantiating Coffee).");
   }
 
   protected int harvestAction(int harvestAmount) {

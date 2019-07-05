@@ -15,12 +15,12 @@ public class ReadyButton extends CustomButton {
   public ReadyButton(float x, float y, float scale, String label, ReadyButtonPanel panel) {
     super(x, y, scale, BUTTON_IMG, label);
     this.panel = panel;
-    logger.debug("ReadyButton instantiated");
+    logger.info("ReadyButton instantiated");
   }
 
   @Override
   public void onClick() {
-    logger.debug("ReadyButton.onClick Called");
+    logger.info("ReadyButton.onClick Called");
     panel.onReadyClicked();
   }
 }

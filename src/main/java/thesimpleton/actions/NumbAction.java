@@ -35,7 +35,7 @@ public class NumbAction extends AbstractGameAction {
   }
 
   public void update() {
-    TheSimpletonMod.logger.debug("TheSimpletonMod:NumbAction: update called");
+    TheSimpletonMod.logger.info("TheSimpletonMod:NumbAction: update called");
 
     if (this.duration == ACTION_DURATION) {
       if (!this.p.hand.isEmpty()) {
@@ -54,7 +54,7 @@ public class NumbAction extends AbstractGameAction {
   }
 
   private void updateRandomCardCostForTurn(List<AbstractCard> increasableCards) {
-    TheSimpletonMod.logger.debug("TheSimpletonMod:NumbAction: updateRandomCardCostForTurn called");
+    TheSimpletonMod.logger.info("TheSimpletonMod:NumbAction: updateRandomCardCostForTurn called");
     AbstractCard card = increasableCards.get(AbstractDungeon.cardRng.random(increasableCards.size() - 1));
     card.costForTurn += this.amount;
     card.isCostModifiedForTurn = true;

@@ -95,7 +95,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   public SeasonScreen() {
 
-    logger.debug("SeasonScreen::constructor Settings.scale: "
+    logger.info("SeasonScreen::constructor Settings.scale: "
         + Settings.scale + ", Settings.HEIGHT: " + Settings.HEIGHT + ", SCALE_X: " + SettingsHelper.getScaleX() +", SettingsHelper.getScaleY(): " + SettingsHelper.getScaleY());
 
     hb = new Hitbox(width * SettingsHelper.getScaleX(), height * SettingsHelper.getScaleY());
@@ -123,7 +123,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
   }
 
   public void open() {
-    logger.debug("SeasonScreen::open called");
+    logger.info("SeasonScreen::open called");
     AbstractDungeon.isScreenUp = true;
 
     if (AbstractDungeon.overlayMenu != null) {
@@ -158,7 +158,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
   }
 
   public void close() {
-    logger.debug("SeasonScreen::close called");
+    logger.info("SeasonScreen::close called");
 
     if (showCancelButtonOnClose) {
       AbstractDungeon.overlayMenu.cancelButton.show(cancelButtonText);
@@ -169,7 +169,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
   }
 
   public void dismiss() {
-    logger.debug("SeasonScreen::dismiss called");
+    logger.info("SeasonScreen::dismiss called");
     this.wasDismissed = true;
     show = false;
   }
@@ -219,7 +219,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
       return;
     }
 //
-//    logger.debug("SeasonScreen::render "
+//    logger.info("SeasonScreen::render "
 //        + " Settings.WIDTH: "  + Settings.WIDTH
 //        + " Settings.HEIGHT: "  + Settings.HEIGHT
 //        + " Settings.isSixteenByTen: " + Settings.isSixteenByTen

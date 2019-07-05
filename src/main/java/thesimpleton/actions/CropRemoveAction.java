@@ -16,7 +16,7 @@ public class CropRemoveAction extends AbstractGameAction {
   private final boolean secondApplication = false;
 
   public CropRemoveAction(AbstractCropOrb cropOrb) {
-//    TheSimpletonMod.logger.debug("============> CropRemoveAction::constructor =====");
+//    TheSimpletonMod.logger.info("============> CropRemoveAction::constructor =====");
 
     this.duration = ACTION_DURATION;
     this.actionType = ACTION_TYPE;
@@ -24,7 +24,7 @@ public class CropRemoveAction extends AbstractGameAction {
   }
 
   public void update() {
-//    TheSimpletonMod.logger.debug("============> CropRemoveAction::update =====");
+//    TheSimpletonMod.logger.info("============> CropRemoveAction::update =====");
 
     Logger logger = TheSimpletonMod.logger;
 
@@ -33,7 +33,7 @@ public class CropRemoveAction extends AbstractGameAction {
         SimpletonUtil.getPlayer().removeOrb(this.cropOrb);
         cropOrb.update();
     } else {
-//      logger.debug("CropRemoveAction::update : Player doesn't have " + cropOrb.name + " <======================================================");
+//      logger.info("CropRemoveAction::update : Player doesn't have " + cropOrb.name + " <======================================================");
     }
     this.isDone = true;
     tickDuration();

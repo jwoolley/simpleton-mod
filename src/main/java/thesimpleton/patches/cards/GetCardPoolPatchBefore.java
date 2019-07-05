@@ -27,11 +27,10 @@ public class GetCardPoolPatchBefore {
     final Logger logger = TheSimpletonMod.logger;
     List<AbstractCard> saveCardPool = TheSimpletonMod.getSaveCardPool();
     if (!saveCardPool.isEmpty()) {
-
-      logger.debug("GetCardPoolPatchBefore :: Card pool for " + AbstractDungeon.player.chosenClass + " is about to be replaced.");
-      logger.debug("GetCardPoolPatchBefore :: Original tmpPool: " + tmpPool.toString());
-      logger.debug("GetCardPoolPatchBefore :: Cards to replace with: " + saveCardPool.toString());
-      TheSimpletonMod.logger.debug("GetCardPoolPatchBefore::getSaveCardPool using save data");
+      logger.info("GetCardPoolPatchBefore :: Card pool for " + AbstractDungeon.player.chosenClass + " is about to be replaced.");
+      logger.info("GetCardPoolPatchBefore :: Original tmpPool: " + tmpPool.toString());
+      logger.info("GetCardPoolPatchBefore :: Cards to replace with: " + saveCardPool.toString());
+      TheSimpletonMod.logger.info("GetCardPoolPatchBefore::getSaveCardPool using save data");
 
       tmpPool.clear();
       tmpPool.addAll(saveCardPool);
@@ -41,23 +40,32 @@ public class GetCardPoolPatchBefore {
 //      TheSimpletonMod.setSeasonalCropCards();
 
       if (TheSimpletonMod.isSeasonInitialized()) {
-        tmpPool.addAll(TheSimpletonMod.getSeasonalCropCards());
-        tmpPool.addAll(TheSimpletonMod.getSeasonalCurseCards());
+        // NEW GAME CASE
       } else {
-        logger.debug("GetCardPoolPatchBefore :: Didn't add any seasonal crop cards to pool; season not initialized. Calling static method TheSimpletonMod.setSeasonalCropCards");
-        TheSimpletonMod.setSeasonalCropCards();
-      }
+        // LOAD-FROM-SAVE CASE
+        // SeasonInfo isn't instantiated yet, but it's needed by getSeasonalCurseCards
+        // We should have the save data we need by now for SeasonInfo though, so create it just in time
+        // (getSeasonalCropCards doesn't need it because it's using data that's set by the custom save onLoad call.)
+        // (this inconsistent weirdness is from the fact that we can't guarantee the order of custom save loads)
 
-      logger.debug("GetCardPoolPatchBefore :: Saved card pool contains: " + tmpPool.size() + " cards.");
-      logger.debug("GetCardPoolPatchBefore :: cards: " + tmpPool.toString());
+        TheSimpletonMod.initializeSeasonInfoIfNeeded();
+        logger.info("GetCardPoolPatchBefore :: Didn't add any seasonal crop cards to pool; season not initialized. Calling static method TheSimpletonMod.setSeasonalCropCards");
+        TheSimpletonMod.setSeasonalCropCards(tmpPool
+            .stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> (AbstractCropPowerCard)c).collect(Collectors.toList()));
+      }
+      tmpPool.addAll(TheSimpletonMod.getSeasonalCropCards());
+      tmpPool.addAll(TheSimpletonMod.getSeasonalCurseCards());
+
+      logger.info("GetCardPoolPatchBefore :: Saved card pool contains: " + tmpPool.size() + " cards.");
+      logger.info("GetCardPoolPatchBefore :: cards: " + tmpPool.toString());
 
       // TODO: this does not belong here
-      logger.debug("GetCardPoolPatchBefore :: disabling season screen");
+      logger.info("GetCardPoolPatchBefore :: disabling season screen");
       TheSimpletonMod.seasonScreen.dismiss();
 
       return SpireReturn.Return(tmpPool);
     } else {
-      logger.debug("GetCardPoolPatchBefore :: saveCardPool is empty");
+      logger.info("GetCardPoolPatchBefore :: saveCardPool is empty");
     }
 
     return SpireReturn.Continue();

@@ -41,7 +41,7 @@ public class CoffeeCropOrb extends AbstractCropOrb {
 
   @Override
   public void playChannelSFX() {
-    TheSimpletonMod.logger.debug(" ============================================= ADD playChannelSFX for " + this.name + " =============================================");
+    TheSimpletonMod.logger.info(" ============================================= ADD playChannelSFX for " + this.name + " =============================================");
   }
 
   private static String getDescription() {

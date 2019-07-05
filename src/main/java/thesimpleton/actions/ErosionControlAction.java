@@ -52,7 +52,7 @@ public class ErosionControlAction extends AbstractGameAction {
       AbstractDungeon.actionManager.addToBottom(new VFXAction(p, effect, 0.2F));
 
       AbstractDungeon.actionManager.addToBottom(new WaitAction(0.1F));
-      logger.debug("ErosionControlAction.update :: second tick. Applying " + this.amount + " Intangible");
+      logger.info("ErosionControlAction.update :: second tick. Applying " + this.amount + " Intangible");
           AbstractDungeon.actionManager.addToBottom(
               new ApplyPowerAction(p, p, new IntangiblePlayerPower(p, this.amount), this.amount));
       this.tickDuration();
@@ -60,13 +60,13 @@ public class ErosionControlAction extends AbstractGameAction {
     }
 
     if (!this.firstTickFinished) {
-      logger.debug("ErosionControlAction.update :: first tick");
+      logger.info("ErosionControlAction.update :: first tick");
 
       if (AbstractCropOrb.playerHasAnyCropOrbs()) {
         List<AbstractCropOrb> cropOrbs = AbstractCropOrb.getActiveCropOrbs();
 
         for(AbstractCropOrb cropOrb : cropOrbs) {
-          logger.debug("ErosionControlAction.update :: harvesting all of " + cropOrb.name);
+          logger.info("ErosionControlAction.update :: harvesting all of " + cropOrb.name);
 
           AbstractDungeon.actionManager.addToTop(new HarvestCropAction(cropOrb, 1,isFromCard, true));
         }

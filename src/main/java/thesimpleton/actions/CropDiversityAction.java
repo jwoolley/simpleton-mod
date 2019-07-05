@@ -21,18 +21,18 @@ public class CropDiversityAction extends AbstractGameAction {
   private AbstractGameAction.ActionType ACTION_TYPE = ActionType.CARD_MANIPULATION;
 
   public CropDiversityAction(int numPowers) {
-    TheSimpletonMod.logger.debug("CropDiversityAction: constructing with numPowers: " + numPowers);
+    TheSimpletonMod.logger.info("CropDiversityAction: constructing with numPowers: " + numPowers);
 
     this.p = AbstractDungeon.player;
     setValues(this.p,  this.p, numPowers);
 
-    TheSimpletonMod.logger.debug("CropDiversityAction: constructor setValues. this.amount: " + this.amount);
+    TheSimpletonMod.logger.info("CropDiversityAction: constructor setValues. this.amount: " + this.amount);
 
     this.actionType = ACTION_TYPE;
     this.amount = numPowers;
     this.duration = Settings.ACTION_DUR_MED;
 
-    TheSimpletonMod.logger.debug("CropDiversityAction: constructed. this.amount: " + this.amount);
+    TheSimpletonMod.logger.info("CropDiversityAction: constructed. this.amount: " + this.amount);
 
   }
 
@@ -48,7 +48,7 @@ public class CropDiversityAction extends AbstractGameAction {
           AbstractDungeon.actionManager.addToTop(new MakeTempCardInHandAction(c, 1));
         }
 
-        TheSimpletonMod.logger.debug("CropDiversityAction::update [4] CardPool | commons:"
+        TheSimpletonMod.logger.info("CropDiversityAction::update [4] CardPool | commons:"
             + AbstractDungeon.commonCardPool.size() + "; uncommon: "
             + AbstractDungeon.uncommonCardPool.size() +  "; rare: "
             + AbstractDungeon.rareCardPool.size());
@@ -56,7 +56,7 @@ public class CropDiversityAction extends AbstractGameAction {
         allCardPoolDebug.addAll(AbstractDungeon.commonCardPool.group);
         allCardPoolDebug.addAll(AbstractDungeon.uncommonCardPool.group);
         allCardPoolDebug.addAll(AbstractDungeon.rareCardPool.group);
-        TheSimpletonMod.logger.debug("CropDiversityAction::update [4] CardPool | CROPS:"
+        TheSimpletonMod.logger.info("CropDiversityAction::update [4] CardPool | CROPS:"
             + allCardPoolDebug.stream().filter(c -> c instanceof  AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
 
 
@@ -64,7 +64,7 @@ public class CropDiversityAction extends AbstractGameAction {
         AbstractDungeon.gridSelectScreen.selectedCards.clear();
         this.p.hand.refreshHandLayout();
 
-        TheSimpletonMod.logger.debug("CropDiversityAction::update [5] CardPool | commons:"
+        TheSimpletonMod.logger.info("CropDiversityAction::update [5] CardPool | commons:"
             + AbstractDungeon.commonCardPool.size() + "; uncommon: "
             + AbstractDungeon.uncommonCardPool.size() + "; rare:"
             + AbstractDungeon.rareCardPool.size());
@@ -72,7 +72,7 @@ public class CropDiversityAction extends AbstractGameAction {
         allCardPoolDebug.addAll(AbstractDungeon.commonCardPool.group);
         allCardPoolDebug.addAll(AbstractDungeon.uncommonCardPool.group);
         allCardPoolDebug.addAll(AbstractDungeon.rareCardPool.group);
-        TheSimpletonMod.logger.debug("CropDiversityAction::update [5] CardPool | CROPS:"
+        TheSimpletonMod.logger.info("CropDiversityAction::update [5] CardPool | CROPS:"
             + allCardPoolDebug.stream().filter(c -> c instanceof  AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
 
 
@@ -86,7 +86,7 @@ public class CropDiversityAction extends AbstractGameAction {
 
 
 
-    TheSimpletonMod.logger.debug("CropDiversityAction::update [0] CardPool | commons:"
+    TheSimpletonMod.logger.info("CropDiversityAction::update [0] CardPool | commons:"
         + AbstractDungeon.commonCardPool.size() + "; uncommon: "
         + AbstractDungeon.uncommonCardPool.size() + "; rare: "
         + AbstractDungeon.rareCardPool.size());
@@ -94,7 +94,7 @@ public class CropDiversityAction extends AbstractGameAction {
     allCardPoolDebug.addAll(AbstractDungeon.commonCardPool.group);
     allCardPoolDebug.addAll(AbstractDungeon.uncommonCardPool.group);
     allCardPoolDebug.addAll(AbstractDungeon.rareCardPool.group);
-    TheSimpletonMod.logger.debug("CropDiversityAction::update [0] CardPool | CROPS:"
+    TheSimpletonMod.logger.info("CropDiversityAction::update [0] CardPool | CROPS:"
             + allCardPoolDebug.stream().filter(c -> c instanceof  AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
 
 
@@ -102,7 +102,7 @@ public class CropDiversityAction extends AbstractGameAction {
 
     List<AbstractCropPowerCard> cards = AbstractCropPowerCard.getRandomCropPowerCards(this.amount, true);
 
-    TheSimpletonMod.logger.debug("CropDiversityAction::update [1] CardPool | commons:"
+    TheSimpletonMod.logger.info("CropDiversityAction::update [1] CardPool | commons:"
         + AbstractDungeon.commonCardPool.size() + "; uncommon: "
         + AbstractDungeon.uncommonCardPool.size() + "; rare: "
         + AbstractDungeon.rareCardPool.size());
@@ -110,7 +110,7 @@ public class CropDiversityAction extends AbstractGameAction {
     allCardPoolDebug.addAll(AbstractDungeon.commonCardPool.group);
     allCardPoolDebug.addAll(AbstractDungeon.uncommonCardPool.group);
     allCardPoolDebug.addAll(AbstractDungeon.rareCardPool.group);
-    TheSimpletonMod.logger.debug("CropDiversityAction::update [1] CardPool | CROPS:"
+    TheSimpletonMod.logger.info("CropDiversityAction::update [1] CardPool | CROPS:"
         + allCardPoolDebug.stream().filter(c -> c instanceof  AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
 
 
@@ -118,7 +118,7 @@ public class CropDiversityAction extends AbstractGameAction {
       cardGroup.addToRandomSpot(c2);
     }
 
-    TheSimpletonMod.logger.debug("CropDiversityAction::update [2] CardPool | commons:"
+    TheSimpletonMod.logger.info("CropDiversityAction::update [2] CardPool | commons:"
         + AbstractDungeon.commonCardPool.size() + "; uncommon: "
         + AbstractDungeon.uncommonCardPool.size() +  "; rare: "
         + AbstractDungeon.rareCardPool.size());
@@ -126,7 +126,7 @@ public class CropDiversityAction extends AbstractGameAction {
     allCardPoolDebug.addAll(AbstractDungeon.commonCardPool.group);
     allCardPoolDebug.addAll(AbstractDungeon.uncommonCardPool.group);
     allCardPoolDebug.addAll(AbstractDungeon.rareCardPool.group);
-    TheSimpletonMod.logger.debug("CropDiversityAction::update [2] CardPool | CROPS:"
+    TheSimpletonMod.logger.info("CropDiversityAction::update [2] CardPool | CROPS:"
         + allCardPoolDebug.stream().filter(c -> c instanceof  AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
 
 
@@ -146,7 +146,7 @@ public class CropDiversityAction extends AbstractGameAction {
     // TODO: move to localized strings
     AbstractDungeon.gridSelectScreen.open(cardGroup, 1, "Select a card.", false);
 
-    TheSimpletonMod.logger.debug("CropDiversityAction::update [3] CardPool | commons:"
+    TheSimpletonMod.logger.info("CropDiversityAction::update [3] CardPool | commons:"
         + AbstractDungeon.commonCardPool.size() + "; uncommon: "
         + AbstractDungeon.uncommonCardPool.size() +  "; rare: "
         + AbstractDungeon.rareCardPool.size());
@@ -154,7 +154,7 @@ public class CropDiversityAction extends AbstractGameAction {
     allCardPoolDebug.addAll(AbstractDungeon.commonCardPool.group);
     allCardPoolDebug.addAll(AbstractDungeon.uncommonCardPool.group);
     allCardPoolDebug.addAll(AbstractDungeon.rareCardPool.group);
-    TheSimpletonMod.logger.debug("CropDiversityAction::update [3] CardPool | CROPS:"
+    TheSimpletonMod.logger.info("CropDiversityAction::update [3] CardPool | CROPS:"
         + allCardPoolDebug.stream().filter(c -> c instanceof  AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
 
 

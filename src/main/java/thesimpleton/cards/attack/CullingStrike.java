@@ -94,7 +94,7 @@ public class CullingStrike extends AbstractDynamicTextCard {
 
   @Override
   public void triggerWhenDrawn() {
-    TheSimpletonMod.logger.debug("CullingStrike drawn. HAS HARVESTED: " + SimpletonUtil.hasHarvestedThisTurn());
+    TheSimpletonMod.logger.info("CullingStrike drawn. HAS HARVESTED: " + SimpletonUtil.hasHarvestedThisTurn());
   }
 
   static {

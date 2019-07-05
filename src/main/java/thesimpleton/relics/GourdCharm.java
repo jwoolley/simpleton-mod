@@ -58,7 +58,7 @@ public class GourdCharm extends CustomRelic {
   //TODO: move this to potato power class
   public static void addSquashStack(int amount) {
     Logger logger = TheSimpletonMod.logger;
-    logger.debug("GourdCharm: Adding squash stack");
+    logger.info("GourdCharm: Adding squash stack");
     final AbstractPlayer p = AbstractDungeon.player;
 
     AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new SquashCropOrb(amount),false));

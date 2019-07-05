@@ -57,7 +57,7 @@ public class OnionBelt extends CustomRelic {
 
   public static void addOnionStack(int amount) {
     Logger logger = TheSimpletonMod.logger;
-    logger.debug("OnionBelt: Adding onion stack");
+    logger.info("OnionBelt: Adding onion stack");
     final AbstractPlayer p = AbstractDungeon.player;
 
     AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new OnionCropOrb(amount),false));

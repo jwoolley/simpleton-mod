@@ -63,7 +63,7 @@ SpudOfTheMartyr extends CustomRelic {
     //TODO: move this to potato power class
     public static void addPotatoStack(int amount) {
         Logger logger = TheSimpletonMod.logger;
-        logger.debug("SpudOfTheMartyr: Adding potato stack");
+        logger.info("SpudOfTheMartyr: Adding potato stack");
         final AbstractPlayer p = AbstractDungeon.player;
 
         AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(amount), false));

@@ -18,7 +18,7 @@ public class MathHelperFadeLerpSnapReplace {
 //  public static void Postfix (float startX, float targetX) {
 //
 //    if (TheSimpletonMod.seasonScreen.isOpen()) {
-//       TheSimpletonMod.logger.debug("MathHelperFadeLerpSnapReplace season screen is open. skipping Lerp.");
+//       TheSimpletonMod.logger.info("MathHelperFadeLerpSnapReplace season screen is open. skipping Lerp.");
 //    }
 //
 //    if (startX != targetX) {
@@ -30,7 +30,7 @@ public class MathHelperFadeLerpSnapReplace {
 ////    return startX;
 //
 ////    if ( && startX != targetX) {
-////      TheSimpletonMod.logger.debug("MathHelperFadeLerpSnapBefore triggered for map. returning");
+////      TheSimpletonMod.logger.info("MathHelperFadeLerpSnapBefore triggered for map. returning");
 ////      return;
 ////    }
 //  }

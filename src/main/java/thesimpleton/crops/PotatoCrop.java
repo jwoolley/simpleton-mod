@@ -15,11 +15,11 @@ public class PotatoCrop extends AbstractCrop {
 
   public PotatoCrop() {
     super(CROP_ENUM);
-    logger.debug("MAKIN' POTATOES (instantiating PotatoCrop). CROP_EMUM: " + CROP_ENUM);
+    logger.info("MAKIN' POTATOES (instantiating PotatoCrop). CROP_EMUM: " + CROP_ENUM);
   }
 
   protected int harvestAction(int harvestAmount) {
-    logger.debug("PotatoCrop::harvestAction harvestAmount:" + harvestAmount);
+    logger.info("PotatoCrop::harvestAction harvestAmount:" + harvestAmount);
     if (harvestAmount > 0) {
       if (SimpletonUtil.getPlayer().hasRelic(HotPotato.ID)) {
         SimpletonUtil.getPlayer().getRelic(HotPotato.ID).flash();

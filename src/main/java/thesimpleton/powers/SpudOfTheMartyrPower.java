@@ -21,7 +21,7 @@ public class SpudOfTheMartyrPower extends AbstractTheSimpletonPower {
   public SpudOfTheMartyrPower(AbstractCreature owner, int amount, SpudOfTheMartyr relic) {
     super(IMG);
 
-    logger.debug("Instantiating SpudOfTheMartyrPower");
+    logger.info("Instantiating SpudOfTheMartyrPower");
 
     this.owner = owner;
     this.amount = amount;
@@ -41,12 +41,12 @@ public class SpudOfTheMartyrPower extends AbstractTheSimpletonPower {
 
   @Override
   public int onAttacked(DamageInfo info, int damageAmount) {
-    logger.debug("SpudOfTheMartyrPower.onAttacked damage: " + damageAmount);
-    logger.debug("SpudOfTheMartyrPower.onAttacked damageType: " + info.type.name());
+    logger.info("SpudOfTheMartyrPower.onAttacked damage: " + damageAmount);
+    logger.info("SpudOfTheMartyrPower.onAttacked damageType: " + info.type.name());
 
     if ((info.type != DamageInfo.DamageType.THORNS) && (info.type != DamageInfo.DamageType.HP_LOSS) && damageAmount > 0)
     {
-      logger.debug("SpudOfTheMartyrPower.onAttacked took normal damage");
+      logger.info("SpudOfTheMartyrPower.onAttacked took normal damage");
       this.relic.flash();
       SpudOfTheMartyr.addPotatoStack(CROP_AMOUNT);
     }

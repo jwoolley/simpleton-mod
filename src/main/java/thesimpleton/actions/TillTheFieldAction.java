@@ -32,7 +32,7 @@ public class TillTheFieldAction extends AbstractGameAction {
   public void update() {
     Logger logger = TheSimpletonMod.logger;
 
-    logger.debug("TillTheFieldAction.update called");
+    logger.info("TillTheFieldAction.update called");
     if (this.duration != ACTION_DURATION) {
       AbstractPlayer player = SimpletonUtil.getPlayer();
 

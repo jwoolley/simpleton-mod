@@ -70,7 +70,7 @@ public class SimpletonUtil {
     public static List<AbstractOrb> getActiveOrbs() {
         Logger logger = TheSimpletonMod.logger;
 
-        logger.debug("SimpletonUtil::getActiveOrbs player has orbs: " + AbstractDungeon.player.orbs.stream().map(orb -> orb.ID).collect(Collectors.joining(", ")));
+        logger.info("SimpletonUtil::getActiveOrbs player has orbs: " + AbstractDungeon.player.orbs.stream().map(orb -> orb.ID).collect(Collectors.joining(", ")));
         return AbstractDungeon.player.orbs.stream().filter(orb -> orb.ID != null && orb.ID != EmptyOrbSlot.ORB_ID).collect(Collectors.toList());
     }
 

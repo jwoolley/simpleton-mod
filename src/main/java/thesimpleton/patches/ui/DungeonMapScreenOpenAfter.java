@@ -24,9 +24,9 @@ public class DungeonMapScreenOpenAfter {
 //    }
 //
 //    if (counter == 0) {
-//      TheSimpletonMod.logger.debug(msg);
+//      TheSimpletonMod.logger.info(msg);
 //    }
-      TheSimpletonMod.logger.debug(msg);
+      TheSimpletonMod.logger.info(msg);
   }
 
   public static void Postfix (DungeonMapScreen __instance, boolean doScrollingAnimation) {

@@ -42,25 +42,25 @@ public class FanTheFlamesAction extends AbstractGameAction {
   public void update() {
     Logger logger = TheSimpletonMod.logger;
 
-    logger.debug("FanTheFlames.update :: ACTION_DURATION: " + ACTION_DURATION);
-    logger.debug("FanTheFlames.update :: called with duration: " + this.duration);
+    logger.info("FanTheFlames.update :: ACTION_DURATION: " + ACTION_DURATION);
+    logger.info("FanTheFlames.update :: called with duration: " + this.duration);
 
      if (tickedOnce && this.duration <= ACTION_DURATION) {
-      logger.debug("FanTheFlames.update :: second tick");
+      logger.info("FanTheFlames.update :: second tick");
 
       additionalBurningCounts.entrySet()
         .forEach(entry ->  {
           final int additionalBurning = entry.getValue();
           if (additionalBurning > 0) {
-           logger.debug("FanTheFlames.update :: target has " + this.additionalBurningCounts + " burning. applying " + this.additionalBurningCounts + " additional burning");
+           logger.info("FanTheFlames.update :: target has " + this.additionalBurningCounts + " burning. applying " + this.additionalBurningCounts + " additional burning");
            AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(entry.getKey(), this.source, additionalBurning));
           } else {
-            logger.debug("FanTheFlames.update :: target still does not have burning for some reason");
+            logger.info("FanTheFlames.update :: target still does not have burning for some reason");
           }
         });
       this.isDone = true;
      } else if (!this.tickedOnce) {
-        logger.debug("FanTheFlames.update :: first tick");
+        logger.info("FanTheFlames.update :: first tick");
 
        List<AbstractMonster> targetList = this.targetAll ? AbstractDungeon.getCurrRoom().monsters.monsters : Arrays.asList((AbstractMonster) this.target);
 
@@ -73,7 +73,7 @@ public class FanTheFlamesAction extends AbstractGameAction {
 
          this.additionalBurningCounts.put(monster, additionalBurning);
          AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(monster, this.source, this.amount));
-         logger.debug("FanTheFlames.update :: will apply " + this.additionalBurningCounts + " additional burning on second tick");
+         logger.info("FanTheFlames.update :: will apply " + this.additionalBurningCounts + " additional burning on second tick");
        }
       this.tickedOnce = true;
     }

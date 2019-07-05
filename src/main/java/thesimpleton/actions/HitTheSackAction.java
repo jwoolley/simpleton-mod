@@ -53,26 +53,26 @@ public class HitTheSackAction  extends AbstractGameAction
     this.numDamageReps = numDamageReps;
     this.numPotatoReps = numPotatoReps;
 
-    TheSimpletonMod.logger.debug("HitTheSackAction: energyOnUse: " + energyOnUse + "; upgraded: " + upgraded);
+    TheSimpletonMod.logger.info("HitTheSackAction: energyOnUse: " + energyOnUse + "; upgraded: " + upgraded);
   }
 
   @Override
   public void update() {
     if (isFirstRep) {
-      TheSimpletonMod.logger.debug("HitTheSackAction:: update firstRep numDamageReps");
+      TheSimpletonMod.logger.info("HitTheSackAction:: update firstRep numDamageReps");
 
       this.numDamageReps = EnergyPanel.totalCount;
 
-      TheSimpletonMod.logger.debug("HitTheSackAction:: update firstRep numDamageReps (1): " + this.numDamageReps);
+      TheSimpletonMod.logger.info("HitTheSackAction:: update firstRep numDamageReps (1): " + this.numDamageReps);
 
 
       if (this.energyOnUse != -1) {
         this.numDamageReps = this.energyOnUse;
-        TheSimpletonMod.logger.debug("HitTheSackAction:: update firstRep numDamageReps (2): " + this.numDamageReps);
+        TheSimpletonMod.logger.info("HitTheSackAction:: update firstRep numDamageReps (2): " + this.numDamageReps);
       }
       if (this.upgraded) {
         this.numDamageReps++;
-        TheSimpletonMod.logger.debug("HitTheSackAction:: update firstRep numDamageReps (3): " + this.numDamageReps);
+        TheSimpletonMod.logger.info("HitTheSackAction:: update firstRep numDamageReps (3): " + this.numDamageReps);
       }
       if (this.p.hasRelic("Chemical X")) {
         this.numDamageReps += 2;
@@ -80,7 +80,7 @@ public class HitTheSackAction  extends AbstractGameAction
 
       }
 
-      TheSimpletonMod.logger.debug("HitTheSackAction:: update firstRep numDamageReps (4): " + this.numDamageReps);
+      TheSimpletonMod.logger.info("HitTheSackAction:: update firstRep numDamageReps (4): " + this.numDamageReps);
 
       this.numPotatoReps = numDamageReps;
     }

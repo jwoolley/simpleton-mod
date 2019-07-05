@@ -53,7 +53,7 @@ public class NumbPower extends AbstractTheSimpletonPower
 
   @Override
   public void onUseCard(AbstractCard card, UseCardAction action) {
-    logger.debug("TheSimpletonMod:NumbPower: onUseCard called");
+    logger.info("TheSimpletonMod:NumbPower: onUseCard called");
     AbstractDungeon.actionManager.addToBottom(new NumbAction(COST_INCREASE, this));
   }
 

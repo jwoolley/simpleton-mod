@@ -9,39 +9,37 @@
     <name>TheHayseed</name>
     <description>Now *I'm* attempting to make a mod!</description>
     <properties>
-        <steam-sts-directory>D:/Program Files (x86)/Steam/steamapps/common/SlayTheSpire</steam-sts-directory>
         <steam-sts-mods-directory>${steam-sts-directory}/mods</steam-sts-mods-directory>
         <steam-sts-publish-directory>${steam-sts-directory}/thehayseed/content</steam-sts-publish-directory>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.megacrit.cardcrawl</groupId>
             <artifactId>slaythespire</artifactId>
-            <version>016</version>
+            <version>015</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/desktop-1.0.jar</systemPath>
+            <systemPath>${sts-libs-directory}/desktop-1.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>basemod</groupId>
             <artifactId>basemod</artifactId>
-            <version>5.14.0</version>
+            <version>5.15.0</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/BaseMod.jar</systemPath>
+            <systemPath>${sts-libs-directory}/BaseMod.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl</groupId>
             <artifactId>ModTheSpire</artifactId>
-            <version>3.6.3</version>
+            <version>3.11.0</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/ModTheSpire.jar</systemPath>
+            <systemPath>${sts-libs-directory}/ModTheSpire.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl.mod</groupId>
             <artifactId>StSLib</artifactId>
-            <version>1.10.0</version>
+            <version>1.17.1</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/StSLib.jar</systemPath>
+            <systemPath>${sts-libs-directory}/StSLib.jar</systemPath>
         </dependency>
     </dependencies>
 
@@ -66,7 +64,7 @@
                         <phase>package</phase>
                         <configuration>
                             <target>
-                                <copy file="target/TheHayseed.jar" tofile="../lib/TheHayseed.jar"/>
+                                <copy file="target/TheHayseed.jar" tofile="${sts-libs-directory}/TheHayseed.jar"/>
                                 <copy file="target/TheHayseed.jar" tofile="${steam-sts-mods-directory}/TheHayseed.jar"/>
                                 <copy file="target/TheHayseed.jar" tofile="${steam-sts-publish-directory}/TheHayseed.jar"/>
                             </target>

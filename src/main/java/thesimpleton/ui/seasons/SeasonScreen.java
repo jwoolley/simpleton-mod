@@ -129,7 +129,9 @@ public class SeasonScreen implements ReadyButtonPanel  {
     if (AbstractDungeon.overlayMenu != null) {
       CancelButton cancelButton = AbstractDungeon.overlayMenu.cancelButton;
       showCancelButtonOnClose = cancelButton.isHidden;
-      cancelButtonText = cancelButton.buttonText;
+
+      // TODO: localize this (or fix it properly)
+      cancelButtonText = (cancelButton.buttonText != null && cancelButton.buttonText.length() > 0 && !cancelButton.buttonText.equals("NOT_SET")) ? cancelButton.buttonText : "Return";
 
       if (!SHOULD_SHOW_CANCEL_BUTTON && !cancelButton.isHidden) {
         cancelButton.hide();

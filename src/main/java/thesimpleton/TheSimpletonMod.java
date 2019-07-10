@@ -54,10 +54,10 @@ import thesimpleton.relics.*;
 import thesimpleton.savedata.CardPoolCustomSavable;
 import thesimpleton.savedata.SeasonCropsCustomSavable;
 import thesimpleton.savedata.SeasonCustomSavable;
-import thesimpleton.seasons.RandomSeasonCropSetDefinition;
+import thesimpleton.seasons.cropsetdefinitions.RandomSeasonCropSetDefinition;
 import thesimpleton.seasons.Season;
 import thesimpleton.seasons.SeasonInfo;
-import thesimpleton.seasons.UnlockableSeasonCropSetDefinition;
+import thesimpleton.seasons.cropsetdefinitions.UnlockableSeasonCropSetDefinition;
 import thesimpleton.ui.seasons.SeasonIndicator;
 import thesimpleton.ui.seasons.SeasonScreen;
 

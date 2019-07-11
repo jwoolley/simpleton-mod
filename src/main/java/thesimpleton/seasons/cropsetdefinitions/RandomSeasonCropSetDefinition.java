@@ -1,7 +1,9 @@
-package thesimpleton.seasons;
+package thesimpleton.seasons.cropsetdefinitions;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import thesimpleton.crops.Crop;
+import thesimpleton.seasons.CropsInSeasonStrategy;
+import thesimpleton.seasons.Season;
 
 import java.util.ArrayList;
 import java.util.List;

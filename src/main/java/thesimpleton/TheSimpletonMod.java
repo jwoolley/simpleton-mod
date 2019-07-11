@@ -36,6 +36,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
@@ -54,6 +55,7 @@ import thesimpleton.relics.*;
 import thesimpleton.savedata.CardPoolCustomSavable;
 import thesimpleton.savedata.SeasonCropsCustomSavable;
 import thesimpleton.savedata.SeasonCustomSavable;
+import thesimpleton.seasons.cropsetdefinitions.RandomPartialUnlockCropSetTemplate;
 import thesimpleton.seasons.cropsetdefinitions.RandomSeasonCropSetDefinition;
 import thesimpleton.seasons.Season;
 import thesimpleton.seasons.SeasonInfo;
@@ -275,6 +277,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         } else {
             logger.info("Unable to set log level. Loader.DEBUG: " + Loader.DEBUG);
         }
+
+//        SimpletonUtil.initialize();
 
         BaseMod.subscribe(this);
 
@@ -635,40 +639,51 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     private SeasonInfo chooseSeason() {
         final boolean isFirstRunAtCurrentUnlockLevel = unlockLevelChanged();
+        final int unlockLevel = UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass);
 
-        logger.info("====================||||||||||============ chooseSeason: Unlock level"
-            + (isFirstRunAtCurrentUnlockLevel ? " CHANGED FROM LAST RUN FROM " + ConfigData.unlockLevelLastRun + " to "
-                + UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass)
-            : " unchanged from last run: " +  UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass)));
+        logger.info("==========|||||==========|||||============ chooseSeason: Unlock level"
+            + (isFirstRunAtCurrentUnlockLevel ?
+                " CHANGED FROM LAST RUN FROM " + ConfigData.unlockLevelLastRun + " to " + unlockLevel
+                : " unchanged from last run: " +  UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass)));
 
         ConfigData.unlockLevelLastRun = UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass);
 
         switch (UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass)) {
         case 0:
+            logger.info("chooseSeason: Choosing predefined season for unlock level: " + unlockLevel);
             return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_0);
         case 1:
             if (isFirstRunAtCurrentUnlockLevel) {
+                logger.info("chooseSeason: Choosing predefined season for unlock level: " + unlockLevel);
                 return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_1);
             } else {
-                // TODO: UPDATE TO SET RANDOM SEASON (LIMITED TO UNLOCKED RARE CROPS @ LEVEL 1)
-                return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_1);
+                logger.info("chooseSeason: Choosing partial randomized season for unlock level: " + unlockLevel);
+                return new SeasonInfo(
+                        RandomPartialUnlockCropSetTemplate.PARTIAL_UNLOCK_CROP_SET_1.getRandomCropSetDefinition());
             }
         case 2:
             if (isFirstRunAtCurrentUnlockLevel) {
+                logger.info("chooseSeason: Choosing predefined season for unlock level: " + unlockLevel);
                 return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_2);
             } else {
-                // TODO: UPDATE TO SET RANDOM SEASON (LIMITED TO UNLOCKED RARE CROPS @ LEVEL 2)
-                return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_2);
+                logger.info("chooseSeason: Choosing partial randomized season for unlock level: " + unlockLevel);
+                return new SeasonInfo(
+                        RandomPartialUnlockCropSetTemplate.PARTIAL_UNLOCK_CROP_SET_2.getRandomCropSetDefinition());
             }
         case 3:
             if (isFirstRunAtCurrentUnlockLevel) {
+                logger.info("chooseSeason: Choosing predefined season for unlock level: " + unlockLevel);
                 return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_3);
             }  else {
-                // TODO: UPDATE TO SET RANDOM SEASON (LIMITED TO UNLOCKED RARE CROPS @ LEVEL 3)
-                return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_3);
+                logger.info("chooseSeason: Choosing fully randomized season for unlock level: " + unlockLevel);
+                return new SeasonInfo(Season.randomSeason(),
+                        RandomSeasonCropSetDefinition.RANDOM_CROP_SET_BY_RARE_CROP_RARITY);
             }
         default:
-            return new SeasonInfo(Season.randomSeason(), RandomSeasonCropSetDefinition.RANDOM_CROP_SET_BY_RARE_CROP_RARITY);
+            logger.info("chooseSeason: Choosing fully randomized season for unlock level post unlock level 3."
+            + " Current unlock level: " + unlockLevel);
+            return new SeasonInfo(Season.randomSeason(),
+                    RandomSeasonCropSetDefinition.RANDOM_CROP_SET_BY_RARE_CROP_RARITY);
         }
     }
 

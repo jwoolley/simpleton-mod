@@ -49,7 +49,7 @@ public class ApplyBurningAction extends AbstractGameAction {
           new ApplyPowerAction(
               this.target, this.source, new BurningPower(this.target, this.source, this.amount), this.amount));
 
-      AbstractPlayer player = SimpletonUtil.getPlayer();
+      AbstractPlayer player = AbstractDungeon.player;
       if (player.hasRelic(GasCan.ID) && !this.isSecondaryApplication) {
         List<AbstractMonster> otherMonsters = AbstractDungeon.getMonsters().monsters.stream()
             .filter(m -> m != this.target && !m.isDeadOrEscaped()).collect(Collectors.toList());

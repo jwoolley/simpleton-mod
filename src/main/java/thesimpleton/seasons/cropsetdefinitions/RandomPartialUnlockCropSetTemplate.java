@@ -1,6 +1,8 @@
 package thesimpleton.seasons.cropsetdefinitions;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import org.apache.logging.log4j.Logger;
+import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.Crop;
 import thesimpleton.seasons.Season;
 
@@ -30,46 +32,115 @@ public class RandomPartialUnlockCropSetTemplate {
     public RandomPartialUnlockCropSetTemplate(Season season, List<Crop> crops,
                                               List<RandomPartialUnlockCropSetTemplate> otherTemplates) {
 
+        Logger logger = TheSimpletonMod.logger;
+        logger.info(this.getClass().getSimpleName()
+                + "::RandomPartialUnlockCropSetTemplate constructor called. season: " + season + "; number of otherTemplates" + otherTemplates.size());
         this.season = season;
 
-        commonCrops = crops.stream().filter(c -> c.getCropInfo().rarity == AbstractCard.CardRarity.BASIC)
+        this.commonCrops = crops.stream().filter(c -> c.getCropInfo().rarity == AbstractCard.CardRarity.BASIC)
                 .collect(Collectors.toList());
-        uncommonCrops = crops.stream().filter(c -> c.getCropInfo().rarity == AbstractCard.CardRarity.COMMON)
+        this.uncommonCrops = crops.stream().filter(c -> c.getCropInfo().rarity == AbstractCard.CardRarity.COMMON)
                 .collect(Collectors.toList());
-        rareCrops = crops.stream().filter(c -> c.getCropInfo().rarity == AbstractCard.CardRarity.UNCOMMON)
+        this.rareCrops = crops.stream().filter(c -> c.getCropInfo().rarity == AbstractCard.CardRarity.UNCOMMON)
                 .collect(Collectors.toList());
 
-        if (commonCrops.size() == 0) {
-            throw new IllegalStateException("Unable to initialize " + this.getClass().getSimpleName()
-                    + ": no common crops");
-        }
-        if (uncommonCrops.size() == 0) {
-            throw new IllegalStateException("Unable to initialize " + this.getClass().getSimpleName()
-                    + ": no uncommon crops");
-        }
-        if (rareCrops.size() == 0) {
+//        if (commonCrops.size() == 0) {
+//            throw new IllegalStateException("Unable to initialize " + this.getClass().getSimpleName()
+//                    + ": no common crops");
+//        }
+//        if (uncommonCrops.size() == 0) {
+//            throw new IllegalStateException("Unable to initialize " + this.getClass().getSimpleName()
+//                    + ": no uncommon crops");
+//        }
+        if (this.rareCrops.size() == 0) {
             throw new IllegalStateException("Unable to initialize " + this.getClass().getSimpleName()
                     + ": no rare crops");
         }
 
         this.eligibleTemplates = new ArrayList<>();
-        eligibleTemplates.add(this);
+        this.eligibleTemplates.add(this);
 
         for (RandomPartialUnlockCropSetTemplate template : otherTemplates) {
-            commonCrops.addAll(template.commonCrops);
-            uncommonCrops.addAll(template.uncommonCrops);
-            eligibleTemplates.add(template);
+            logger.info(this.getClass().getSimpleName()
+                    + "::RandomPartialUnlockCropSetTemplate integrating otherTemplate with season: " + template.season);
+
+            logger.info(this.getClass().getSimpleName()
+                    + "::RandomPartialUnlockCropSetTemplate integrating otherTemplate: adding: " + template.commonCrops.size() + " common crops");
+
+            logger.info(this.getClass().getSimpleName()
+                    + "::RandomPartialUnlockCropSetTemplate integrating otherTemplate: adding: " + template.uncommonCrops.size() + " uncommon crops");
+
+            this.commonCrops.addAll(template.commonCrops);
+            this.uncommonCrops.addAll(template.uncommonCrops);
+            this.eligibleTemplates.add(template);
         }
+
+        logger.info(this.getClass().getSimpleName()
+                + "::RandomPartialUnlockCropSetTemplate integrating otherTemplate. total eligible templates: "
+                + this.eligibleTemplates.size());
     }
     // TODO: initialize SeasonInfo using this
     public RandomPartialUnlockCropSetDefinition getRandomCropSetDefinition() {
+//        Logger logger = TheSimpletonMod.logger;
+//        logger.info(this.getClass().getSimpleName() + "::getRandomCropSetDefinition called");
+//
+//        logger.info(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selecting template from "
+//                + this.eligibleTemplates.size() + " eligibleTemplates");
+//
+//
+//
+//        logger.info(this.getClass().getSimpleName() + "::getRandomCropSetDefinition eligible templates by season: "
+//            + this.eligibleTemplates.stream().map(c -> c.season.name).collect(Collectors.joining(", ")));
+//
+//
+//        logger.info(this.getClass().getSimpleName()
+//                        + "::getRandomCropSetDefinition RANDOM.nextInt(this.eligibleTemplates.size()): "
+//                        + RANDOM.nextInt(this.eligibleTemplates.size()));
+//
+//        logger.info(this.getClass().getSimpleName()
+//                + "::getRandomCropSetDefinition RANDOM.nextInt(this.eligibleTemplates.size()): "
+//                + RANDOM.nextInt(this.eligibleTemplates.size()));
+//
+//        logger.info(this.getClass().getSimpleName()
+//                + "::getRandomCropSetDefinition RANDOM.nextInt(this.eligibleTemplates.size()): "
+//                + RANDOM.nextInt(this.eligibleTemplates.size()));
+//
+//        logger.info(this.getClass().getSimpleName()
+//                + "::getRandomCropSetDefinition RANDOM.nextInt(this.eligibleTemplates.size()): "
+//                + RANDOM.nextInt(this.eligibleTemplates.size()));
+//
+//        logger.info(this.getClass().getSimpleName()
+//                + "::getRandomCropSetDefinition RANDOM.nextInt(this.eligibleTemplates.size()): "
+//                + RANDOM.nextInt(this.eligibleTemplates.size()));
+
         RandomPartialUnlockCropSetTemplate selectedTemplate =
-                this.eligibleTemplates.get(RANDOM.nextInt(this.eligibleTemplates.size() -1));
+        this.eligibleTemplates.get(RANDOM.nextInt(this.eligibleTemplates.size()));
+//
+//
+//        logger.info(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selected template with season:"
+//            + selectedTemplate.season);
+//
+//        logger.info(this.getClass().getSimpleName() + "::getRandomCropSetDefinition commonCrops: " +
+//                this.commonCrops.stream().map(c -> c.name()).collect(Collectors.joining(", ")));
+//
+//        logger.info(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selecting common from "
+//                + this.commonCrops.size() + " common crops");
+//
+//        logger.info(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selecting uncommon from "
+//                + this.uncommonCrops.size() + " uncommon crops");
+//
+//        logger.info(this.getClass().getSimpleName() + "::getRandomCropSetDefinition uncommonCrops: " +
+//                this.uncommonCrops.stream().map(c -> c.name()).collect(Collectors.joining(", ")));
+//
+//
+//        logger.info(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selecting rare from "
+//                + selectedTemplate.rareCrops.size() + " rare crops");
 
         List<Crop> cropSet = new ArrayList<>();
+        cropSet.add(this.commonCrops.get(RANDOM.nextInt(this.commonCrops.size())));
+        cropSet.add(this.uncommonCrops.get(RANDOM.nextInt(this.uncommonCrops.size())));
         cropSet.add(selectedTemplate.rareCrops.get(0));
-        cropSet.add(selectedTemplate.commonCrops.get(RANDOM.nextInt(selectedTemplate.commonCrops.size() -1)));
-        cropSet.add(selectedTemplate.uncommonCrops.get(RANDOM.nextInt(selectedTemplate.uncommonCrops.size() -1)));
+
         return new RandomPartialUnlockCropSetDefinition(selectedTemplate.season, cropSet);
     }
 
@@ -85,7 +156,6 @@ public class RandomPartialUnlockCropSetTemplate {
             UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_1.getSeason(),
             UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_1.getAllCrops(),
             Arrays.asList(PARTIAL_UNLOCK_CROP_SET_0));
-
 
         PARTIAL_UNLOCK_CROP_SET_2 = new RandomPartialUnlockCropSetTemplate(
             UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_2.getSeason(),

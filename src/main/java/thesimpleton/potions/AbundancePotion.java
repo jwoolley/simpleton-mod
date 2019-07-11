@@ -42,7 +42,7 @@ public class AbundancePotion extends CustomPotion {
   }
 
   public void use(AbstractCreature target) {
-    AbstractPlayer player = SimpletonUtil.getPlayer();
+    AbstractPlayer player = AbstractDungeon.player;
     final int potency = this.getPotency();
     AbstractDungeon.actionManager.addToBottom(
         new ApplyPowerAction(player,player, new AbundancePower(player, player, potency), potency));

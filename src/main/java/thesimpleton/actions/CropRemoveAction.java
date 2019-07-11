@@ -2,9 +2,11 @@ package thesimpleton.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
+import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.orbs.AbstractCropOrb;
 
 
@@ -30,7 +32,7 @@ public class CropRemoveAction extends AbstractGameAction {
 
     AbstractCropOrb cropOrb = AbstractCropOrb.getCropOrb(this.cropOrb);
     if (cropOrb != null) {
-        SimpletonUtil.getPlayer().removeOrb(this.cropOrb);
+      ((TheSimpletonCharacter)AbstractDungeon.player).removeOrb(this.cropOrb);
         cropOrb.update();
     } else {
 //      logger.info("CropRemoveAction::update : Player doesn't have " + cropOrb.name + " <======================================================");

@@ -20,7 +20,7 @@ public class OnionCrop extends AbstractCrop {
   }
 
   protected int harvestAction(int harvestAmount) {
-    AbstractPlayer player = SimpletonUtil.getPlayer();
+    AbstractPlayer player = AbstractDungeon.player;
     if (harvestAmount > 0) {
       for (int i = 0; i < harvestAmount; i++) {
         AbstractMonster m = SimpletonUtil.getRandomMonster();

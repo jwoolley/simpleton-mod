@@ -228,7 +228,7 @@ abstract public class AbstractCrop {
   }
 
   protected static TheSimpletonCharacter getPlayer() {
-    return SimpletonUtil.getPlayer();
+    return (TheSimpletonCharacter)AbstractDungeon.player;
   }
 
   public static boolean playerHasAnyActiveCropOrbs() {

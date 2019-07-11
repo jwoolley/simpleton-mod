@@ -34,7 +34,7 @@ public class TillTheFieldAction extends AbstractGameAction {
 
     logger.info("TillTheFieldAction.update called");
     if (this.duration != ACTION_DURATION) {
-      AbstractPlayer player = SimpletonUtil.getPlayer();
+      AbstractPlayer player = AbstractDungeon.player;
 
       if (AbstractCropOrb.playerHasAnyCropOrbs()) {
         final AbstractCropOrb newestCropOrb = AbstractCropOrb.getNewestCropOrb();

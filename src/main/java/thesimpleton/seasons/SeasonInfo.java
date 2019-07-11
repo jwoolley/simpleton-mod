@@ -25,8 +25,8 @@ public class SeasonInfo {
     this(season, seasonCropSetDefinition.getCropsInSeasonStrategy().getCropSet(season));
   }
 
-  public SeasonInfo(Season season, SingleCropSetDefinition singleCropSetDefinition) {
-    this(season, singleCropSetDefinition.getCropSet());
+  public SeasonInfo(SingleCropSetDefinition singleCropSetDefinition) {
+    this(singleCropSetDefinition.getSeason(), singleCropSetDefinition.getCropSet());
   }
 
   public SeasonInfo(Season season, CropsInSeasonStrategy strategy) {

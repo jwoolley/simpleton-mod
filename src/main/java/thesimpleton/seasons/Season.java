@@ -28,13 +28,13 @@ public enum Season {
   }
 
   public static Season randomSeason() {
-    final int numSeasons = SEASONS.size() - 1;
-    final int randomIndex = RANDOM.nextInt(numSeasons);
+    final List<Season> realSeasons =  SEASONS.stream().filter(s -> s != UNKNOWN).collect(Collectors.toList());
+    final int randomIndex = RANDOM.nextInt(realSeasons.size());
 
-    TheSimpletonMod.logger.info("Season::randomSeason numSeasons: " + numSeasons + "; randomIndex: " + randomIndex);
+    TheSimpletonMod.logger.info("Season::randomSeason numSeasons: " + realSeasons.size() + "; randomIndex: " + randomIndex);
 
     return SEASONS.stream()
-        .filter(s -> s != UNKNOWN).collect(Collectors.toList()).get(RANDOM.nextInt(SEASONS.size() - 1)); }
+        .filter(s -> s != UNKNOWN).collect(Collectors.toList()).get(randomIndex); }
 
   private static final List<Season> SEASONS = Collections.unmodifiableList(Arrays.asList(values()));
   private static final Random RANDOM = new Random();

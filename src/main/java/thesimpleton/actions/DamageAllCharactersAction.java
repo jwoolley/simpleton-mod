@@ -36,7 +36,7 @@ public class DamageAllCharactersAction
 
   public void update() {
     boolean playedMusic;
-    AbstractPlayer player = SimpletonUtil.getPlayer();
+    AbstractPlayer player = AbstractDungeon.player;
     if (this.firstFrame) {
       playedMusic = false;
       int temp = AbstractDungeon.getCurrRoom().monsters.monsters.size();

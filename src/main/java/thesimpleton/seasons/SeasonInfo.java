@@ -1,14 +1,13 @@
 package thesimpleton.seasons;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.Crop;
+import thesimpleton.seasons.cropsetdefinitions.SeasonCropSetDefinition;
+import thesimpleton.seasons.cropsetdefinitions.SingleCropSetDefinition;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.BiPredicate;
-import java.util.stream.Collectors;
 
 public class SeasonInfo {
   private List<Crop> cropsInSeason = new ArrayList<>();
@@ -24,6 +23,10 @@ public class SeasonInfo {
 
   public SeasonInfo(Season season, SeasonCropSetDefinition seasonCropSetDefinition) {
     this(season, seasonCropSetDefinition.getCropsInSeasonStrategy().getCropSet(season));
+  }
+
+  public SeasonInfo(SingleCropSetDefinition singleCropSetDefinition) {
+    this(singleCropSetDefinition.getSeason(), singleCropSetDefinition.getCropSet());
   }
 
   public SeasonInfo(Season season, CropsInSeasonStrategy strategy) {

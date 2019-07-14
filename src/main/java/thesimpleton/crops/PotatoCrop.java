@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Potatoes;
+import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.orbs.PotatoCropOrb;
 import thesimpleton.relics.HotPotato;
 
@@ -21,8 +22,8 @@ public class PotatoCrop extends AbstractCrop {
   protected int harvestAction(int harvestAmount) {
     logger.info("PotatoCrop::harvestAction harvestAmount:" + harvestAmount);
     if (harvestAmount > 0) {
-      if (SimpletonUtil.getPlayer().hasRelic(HotPotato.ID)) {
-        SimpletonUtil.getPlayer().getRelic(HotPotato.ID).flash();
+      if (((TheSimpletonCharacter)AbstractDungeon.player).hasRelic(HotPotato.ID)) {
+        ((TheSimpletonCharacter)AbstractDungeon.player).getRelic(HotPotato.ID).flash();
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(SimpletonUtil.FLAMING_SPUD, harvestAmount));
       } else {
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(SimpletonUtil.SPUD_MISSILE, harvestAmount));

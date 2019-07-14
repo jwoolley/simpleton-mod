@@ -3,6 +3,7 @@ package thesimpleton.actions;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
@@ -22,7 +23,7 @@ public class ApplyCropAction extends ApplyPowerAction {
   }
 
   public static int calculateCropStacks(int amount, boolean isFromCard) {
-    AbstractPlayer player = SimpletonUtil.getPlayer();
+    AbstractPlayer player =   AbstractDungeon.player;
 
     Logger logger = TheSimpletonMod.logger;
 

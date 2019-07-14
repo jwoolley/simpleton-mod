@@ -8,6 +8,7 @@ import thesimpleton.seasons.SeasonalEvents;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @SpirePatch(
     clz = AbstractDungeon.class,
@@ -25,6 +26,12 @@ public class AbstractDungeonPatch {
         TheSimpletonMod.logger.info("AbstractDungeonPatch after called");
 
         List<String> eventsToRemove = new ArrayList<>();
+
+        TheSimpletonMod.logger.info("AbstractDungeonPatch::after | in-season  events: "
+                +  TheSimpletonMod.getSeasonalEventIds().stream().map(c -> c).collect(Collectors.joining(", ")));
+
+        TheSimpletonMod.logger.info("AbstractDungeonPatch::after | all seasonal events: "
+                +  SeasonalEvents.getAllSeasonalEventIds().stream().collect(Collectors.joining(", ")));
 
         TheSimpletonMod.logger.info("AbstractDungeonPatch:::after removing events not in season: "
                 + TheSimpletonMod.getSeason());

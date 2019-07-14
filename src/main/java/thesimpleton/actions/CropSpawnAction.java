@@ -111,7 +111,7 @@ public class CropSpawnAction extends AbstractGameAction {
     }
 
     public static int calculateCropStacks(int amount, boolean isFromCard) {
-        AbstractPlayer player = SimpletonUtil.getPlayer();
+        AbstractPlayer player = AbstractDungeon.player;
 
         Logger logger = TheSimpletonMod.logger;
 

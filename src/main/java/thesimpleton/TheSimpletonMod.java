@@ -93,6 +93,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     private static final List<AbstractCropPowerCard> SEASONAL_CROP_CARDS = new ArrayList<>();
     private static final  List<AbstractCard> cardPoolFromSave = new ArrayList<>();
 
+
+
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
         logger.info("TheSimpletonMod::receivePostBattle isSeasonInitialized:"
@@ -126,6 +128,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         seasonScreen.reset();
         SEASONAL_CROP_CARDS.clear();
         seasonCurseMap.clear();
+        saveConfigData(true);
     }
 //
 //    @Override
@@ -177,7 +180,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     @Override
-        public void receiveSetUnlocks() {
+    public void receiveSetUnlocks() {
         BaseMod.addUnlockBundle(new CustomUnlockBundle(
             AbstractUnlock.UnlockType.CARD,
             "TheSimpletonMod:Squash",
@@ -339,7 +342,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                         label -> {},
                         button -> {
                             currentTheme.update(theme, button.enabled);
-                            saveConfigData();
+                            saveConfigData(false);
                         })
                     );}
                 );
@@ -635,18 +638,47 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         SEASONAL_CROP_CARDS.addAll(cards);
     }
 
+
+    private static boolean unlockLevelChanged() {
+       return UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass) > ConfigData.unlockLevelLastRun;
+    }
+
     private static SeasonInfo chooseSeason() {
-            switch (UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass)) {
-            case 0:
-                return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_0);
-            case 1:
+        final boolean isFirstRunAtCurrentUnlockLevel = unlockLevelChanged();
+
+        logger.info("====================||||||||||============ chooseSeason: Unlock level"
+            + (isFirstRunAtCurrentUnlockLevel ? " CHANGED FROM LAST RUN FROM " + ConfigData.unlockLevelLastRun + " to "
+                + UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass)
+            : " unchanged from last run: " +  UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass)));
+
+        ConfigData.unlockLevelLastRun = UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass);
+
+        switch (UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass)) {
+        case 0:
+            return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_0);
+        case 1:
+            if (isFirstRunAtCurrentUnlockLevel) {
                 return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_1);
-            case 2:
+            } else {
+                // TODO: UPDATE TO SET RANDOM SEASON (LIMITED TO UNLOCKED RARE CROPS @ LEVEL 1)
+                return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_1);
+            }
+        case 2:
+            if (isFirstRunAtCurrentUnlockLevel) {
                 return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_2);
-            case 3:
+            } else {
+                // TODO: UPDATE TO SET RANDOM SEASON (LIMITED TO UNLOCKED RARE CROPS @ LEVEL 2)
+                return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_2);
+            }
+        case 3:
+            if (isFirstRunAtCurrentUnlockLevel) {
                 return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_3);
-            default:
-                return new SeasonInfo(Season.randomSeason(), RandomSeasonCropSetDefinition.RANDOM_CROP_SET_BY_RARE_CROP_RARITY);
+            }  else {
+                // TODO: UPDATE TO SET RANDOM SEASON (LIMITED TO UNLOCKED RARE CROPS @ LEVEL 3)
+                return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_3);
+            }
+        default:
+            return new SeasonInfo(Season.randomSeason(), RandomSeasonCropSetDefinition.RANDOM_CROP_SET_BY_RARE_CROP_RARITY);
         }
     }
 
@@ -1015,24 +1047,53 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         return list.stream().map(c -> c.name).collect(Collectors.joining(", "));
     }
 
+
+    static class ConfigData {
+        public static int unlockLevelLastRun = 0;
+    }
+
     private void loadConfigData() {
         try {
             SpireConfig config = new SpireConfig(MOD_NAME, CONFIG_NAME, theSimpletonProperties);
             config.load();
             Arrays.stream(TheSimpletonCharEnum.Theme.values())
                     .forEach(theme -> currentTheme.update(theme, config.getBool(theme.toString())));
+
+            ConfigData.unlockLevelLastRun = config.getInt(ConfigKeys.UNLOCK_LEVEL_LAST_RUN);
+
+            logger.info("loadConfigData :: read config value from save unlockLevelLastRun: " + ConfigData.unlockLevelLastRun);
         } catch (Exception e) {
             e.printStackTrace();
-            saveConfigData();
+            saveConfigData(false);
         }
     }
 
-    private void saveConfigData() {
+    // TODO: move to config initialize helper method, if possible
+    static {
+        theSimpletonProperties.setProperty(ConfigKeys.UNLOCK_LEVEL_LAST_RUN, "0");
+    }
+
+    static class ConfigKeys {
+        public static final String UNLOCK_LEVEL_LAST_RUN = "UnlockLevelLastRun";
+    }
+
+    private void saveConfigData(boolean updateLastUnlockLevel) {
         try {
             SpireConfig config = new SpireConfig(MOD_NAME, CONFIG_NAME, theSimpletonProperties);
+
             Arrays.stream(TheSimpletonCharEnum.Theme.values())
                     .forEach(theme -> config.setBool(theme.toString(), false));
             currentTheme.getCurrentTheme().ifPresent(theme -> config.setBool(theme.toString(), true));
+
+//            config.setInt(ConfigKeys.UNLOCK_LEVEL_LAST_RUN,
+//                updateLastUnlockLevel ?
+//                    UnlockTracker.getUnlockLevel(TheSimpletonCharEnum.THE_SIMPLETON) : ConfigData.unlockLevelLastRun);
+
+            config.setInt(ConfigKeys.UNLOCK_LEVEL_LAST_RUN, ConfigData.unlockLevelLastRun);
+
+            logger.info("saveConfigData :: setting config value unlockLevelLastRun: "
+                + ConfigData.unlockLevelLastRun + " (uploadLastUnlockLevel" + updateLastUnlockLevel + ")");
+
             config.save();
         } catch (Exception e) {
             e.printStackTrace();

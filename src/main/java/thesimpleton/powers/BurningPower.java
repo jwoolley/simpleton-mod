@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import thesimpleton.TheSimpletonMod;
 
 
 public class BurningPower extends AbstractTheSimpletonPower {
@@ -41,11 +42,12 @@ public class BurningPower extends AbstractTheSimpletonPower {
 
   @Override
   public void atEndOfTurn(boolean isPlayer) {
-    activateBurning(this.amount);
+    TheSimpletonMod.logger.info(this.getClass().getSimpleName() + "::atEndOfTurn : called");
   }
 
   @Override
   public void atEndOfRound() {
+    activateBurning(this.amount);
     AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
   }
 
@@ -53,7 +55,7 @@ public class BurningPower extends AbstractTheSimpletonPower {
     DamageInfo burningDamageInfo = new DamageInfo(this.source, numStacks, DamageInfo.DamageType.THORNS);
       this.flash();
       DamageAction action = new DamageAction(this.owner, burningDamageInfo, AbstractGameAction.AttackEffect.FIRE);
-      AbstractDungeon.actionManager.addToTop(action);
+      AbstractDungeon.actionManager.addToBottom(action);
     }
 
   static {

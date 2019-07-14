@@ -54,10 +54,7 @@ import thesimpleton.relics.*;
 import thesimpleton.savedata.CardPoolCustomSavable;
 import thesimpleton.savedata.SeasonCropsCustomSavable;
 import thesimpleton.savedata.SeasonCustomSavable;
-import thesimpleton.seasons.RandomSeasonCropSetDefinition;
-import thesimpleton.seasons.Season;
-import thesimpleton.seasons.SeasonInfo;
-import thesimpleton.seasons.UnlockableSeasonCropSetDefinition;
+import thesimpleton.seasons.*;
 import thesimpleton.ui.seasons.SeasonIndicator;
 import thesimpleton.ui.seasons.SeasonScreen;
 
@@ -348,12 +345,14 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                 );
 
         // TODO: determine events based on season
+        // TODO: intialize these programatically from SeasonalEvents
         BaseMod.addEvent(EarlyThawEvent.ID, EarlyThawEvent.class, Exordium.ID);
         BaseMod.addEvent(FirefliesEvent.ID, FirefliesEvent.class, Exordium.ID);
         BaseMod.addEvent(ReaptideEvent.ID, ReaptideEvent.class, Exordium.ID);
 
         BaseMod.addEvent(BorealisEvent.ID, BorealisEvent.class, TheCity.ID);
         BaseMod.addEvent(HeatWaveEvent.ID, HeatWaveEvent.class, TheCity.ID);
+
 
         BaseMod.registerModBadge(
                 badgeTexture, "The Hayseed", "jwoolley",
@@ -386,6 +385,15 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         reflectedMap.put("MAGIC_CHIMES_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_MagicChimes1.ogg"));
     }
+
+    public static List<String> getSeasonalEventIds() {
+        SeasonalEvents seasonalEvents = SeasonalEvents.getSeasonalEvents(getSeason());
+        List<String> ids = new ArrayList<>();
+        ids.addAll(seasonalEvents.cityEvents);
+        return ids;
+    }
+
+
 
     private void registerCustomSaveKeys() {
 
@@ -553,7 +561,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     // SeasonInfo data), but before card pools initialized. So the getCardPool before hook will call this before it
     // needs the SeasonInfo.
     //
-    // For new games, SeasonInfo should be intantiated by now, so leave it alone.
+    // For new games, SeasonInfo should be instantiated by now, so leave it alone.
     public static void initializeSeasonInfoIfNeeded() {
         logger.info("initializeSeasonInfoIfNeeded called");
         if (!isSeasonInitialized()) {
@@ -580,13 +588,14 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             if (savedSeason != null) {
                 logger.info("TheSimpletonMod::receiveStartGame applying season from save");
                 seasonInfo = new SeasonInfo(savedSeason, savedCrops);
-                season = savedSeason;
+                // season = seasonInfo.getSeason();
             } else if (isSeasonInitialized()) {
-                logger.info("TheSimpletonMod::receiveStartGame applying season from seasonInfo (game start)");
-                season = seasonInfo.getSeason();
+                logger.info("TheSimpletonMod::receiveStartGame applying season from seasonInfo (game start) "
+                    + " (currently this does nothing");
+                // season = seasonInfo.getSeason();
             } else {
-                logger.info("TheSimpletonMod::receiveStartGame applying random season");
-                season = Season.randomSeason();
+                logger.info("TheSimpletonMod::receiveStartGame choosing season");
+                seasonInfo = chooseSeason();
             }
         }
     }
@@ -626,7 +635,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         SEASONAL_CROP_CARDS.addAll(cards);
     }
 
-    private SeasonInfo chooseSeason() {
+    private static SeasonInfo chooseSeason() {
             switch (UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass)) {
             case 0:
                 return new SeasonInfo(UnlockableSeasonCropSetDefinition.UNLOCK_CROP_SET_0);

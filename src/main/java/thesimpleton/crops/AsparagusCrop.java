@@ -17,7 +17,7 @@ public class AsparagusCrop extends AbstractCrop {
   }
 
   protected int harvestAction(int harvestAmount) {
-    AbstractPlayer player = SimpletonUtil.getPlayer();
+    AbstractPlayer player = AbstractDungeon.player;
     if (harvestAmount > 0) {
       AbstractDungeon.actionManager.addToTop(
           new ApplyPowerAction(player, player,

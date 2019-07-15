@@ -52,7 +52,7 @@ public class CashCrop extends CustomRelic {
       cropsHarvestedThisCombat.add(crop);
       this.flash();
 
-      AbstractPlayer player = SimpletonUtil.getPlayer();
+      AbstractPlayer player = AbstractDungeon.player;
       player.gainGold(GOLD_PER_TRIGGER);
       for (int i = 0; i < 5; i++) {
         AbstractDungeon.effectList.add(new GainPennyEffect(player, player.hb.cX, player.hb.cY, player.hb.cX, player.hb.cY, true));

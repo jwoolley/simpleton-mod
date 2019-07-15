@@ -21,7 +21,7 @@ public class SpinachCrop extends AbstractCrop {
 
   @Override
   protected int harvestAction(int harvestAmount) {
-    AbstractPlayer player = SimpletonUtil.getPlayer();
+    AbstractPlayer player = AbstractDungeon.player;
 
     if (harvestAmount > 0) {
       AbstractDungeon.actionManager.addToTop(

@@ -14,7 +14,7 @@ public class SquashCrop extends AbstractCrop {
   }
 
   protected int harvestAction(int harvestAmount) {
-    AbstractPlayer player = SimpletonUtil.getPlayer();
+    AbstractPlayer player = AbstractDungeon.player;
     if (harvestAmount > 0) {
       for(int i = 0; i < harvestAmount; i++) {
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(player, player, BLOCK_PER_STACK, true));

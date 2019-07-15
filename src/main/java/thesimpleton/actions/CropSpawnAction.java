@@ -115,7 +115,7 @@ public class CropSpawnAction extends AbstractGameAction {
 
         Logger logger = TheSimpletonMod.logger;
 
-//        logger.info("ApplyCropAction:calculateCropStacks");
+        logger.info("ApplyCropAction:calculateCropStacks");
 
         int adjustedAmount = amount;
         if (player.hasPower(AbundancePower.POWER_ID) && isFromCard) {

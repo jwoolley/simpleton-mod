@@ -1,17 +1,20 @@
-package thesimpleton.seasons;
+package thesimpleton.seasons.cropsetdefinitions;
 
 import thesimpleton.crops.Crop;
+import thesimpleton.seasons.CropsInSeasonStrategy;
+import thesimpleton.seasons.Season;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 
 public class UnlockableSeasonCropSetDefinition implements SeasonCropSetDefinition {
-  public static SeasonCropSetDefinition UNLOCK_CROP_SET_0;
-  public static SeasonCropSetDefinition UNLOCK_CROP_SET_1;
-  public static SeasonCropSetDefinition UNLOCK_CROP_SET_2;
-  public static SeasonCropSetDefinition UNLOCK_CROP_SET_3;
+  public static UnlockableSeasonCropSetDefinition UNLOCK_CROP_SET_0;
+  public static UnlockableSeasonCropSetDefinition UNLOCK_CROP_SET_1;
+  public static UnlockableSeasonCropSetDefinition UNLOCK_CROP_SET_2;
+  public static UnlockableSeasonCropSetDefinition UNLOCK_CROP_SET_3;
 
   private final Season season;
   private final List<Crop> crops = new ArrayList<>();
@@ -29,6 +32,10 @@ public class UnlockableSeasonCropSetDefinition implements SeasonCropSetDefinitio
   public CropsInSeasonStrategy getCropsInSeasonStrategy() {
     return new CropsInSeasonStrategy(this.crops.stream()
         .map(c -> (BiPredicate<Season, Crop>) (s, c2) -> c2 == c).collect(Collectors.toList()));
+  }
+
+  public List<Crop> getAllCrops() {
+    return Collections.unmodifiableList(this.crops);
   }
 
   static {

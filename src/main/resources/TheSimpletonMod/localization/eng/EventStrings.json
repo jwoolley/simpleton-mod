@@ -77,8 +77,26 @@
       ".",
       ". #rLose #r",
       " #rGold.",
-      ". #rGain #r",
       ". #r50%: #rBecome #rCursed #r– #r",
+      "[Locked] Requires: At Least ",
+      "Leave."
+    ]
+  },
+
+  "TheSimpletonMod:SnowedInEvent": {
+    "NAME": "Snowed In",
+    "DESCRIPTIONS": [
+      "With a howl, the wind brings another blast of #bsnow. It's been like this for weeks now. NL NL It's no longer safe to travel. In fact, it's probably best if you just stayed inside. NL NL You've got enough food stored to last until the full moon, maybe longer. It should be enough—if you don't panic."
+    ],
+    "OPTIONS": [
+      "[Ration] #gReceive #g",
+      "[Ransack] #gReceive ",
+      "[Dig Out] #gGain ",
+      ". #rLose #r",
+      " #rGold.",
+      " #rHP.",
+      ". #r50%: #rBecome #rCursed #r– #r",
+      ".",
       "[Locked] Requires: At Least ",
       "Leave."
     ]

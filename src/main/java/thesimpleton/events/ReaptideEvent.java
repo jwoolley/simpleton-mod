@@ -27,8 +27,8 @@ public class ReaptideEvent extends AbstractImageEvent
   private static final String[] DESCRIPTIONS;
   private static final String[] OPTIONS;
 
-  private static final int MIN_GOLD_COST = 40;
-  private static final int MAX_GOLD_COST = 75;
+  private static final int MIN_GOLD_COST = 25;
+  private static final int MAX_GOLD_COST = 55;
 
   private static final AbstractCard CURSE_DOUBT = new Doubt();
   private static final AbstractCard CURSE_SPOILAGE = new Spoilage();
@@ -48,19 +48,12 @@ public class ReaptideEvent extends AbstractImageEvent
   public ReaptideEvent() {
     super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getResourcePath(IMG_PATH));
 
-    commonCropCard = TheSimpletonMod.getSeasonalCropCards()
-        .stream().filter(c -> c.rarity == AbstractCard.CardRarity.COMMON)
-        .findFirst()
-        .orElse(new Potatoes());
+    commonCropCard = SimpletonEventHelper.getSeasonalCropPowerCard(AbstractCard.CardRarity.COMMON, new Potatoes());
     commonCropCard.upgrade();
 
-    uncommonCropCard = TheSimpletonMod.getSeasonalCropCards()
-        .stream().filter(c -> c.rarity == AbstractCard.CardRarity.UNCOMMON)
-        .findFirst()
-        .orElse(new Corn());
-    // TODO: Handle case where no upgradable cards
+    uncommonCropCard = SimpletonEventHelper.getSeasonalCropPowerCard(AbstractCard.CardRarity.UNCOMMON, new Corn());
 
-    goldCost = getGoldCost();
+    goldCost = SimpletonEventHelper.getGoldCost(MIN_GOLD_COST, MAX_GOLD_COST);
 
     if (TheSimpletonMod.getSeasonInfo().isInSeason(Crop.SQUASH) && GOURD_CHARM.canSpawn()
         && !AbstractDungeon.player.hasRelic(GourdCharm.ID)) {
@@ -79,10 +72,10 @@ public class ReaptideEvent extends AbstractImageEvent
     if (goldCost > 0) {
       this.imageEventText.setDialogOption(OPTIONS[1] + uncommonCropCard.name + OPTIONS[4] + goldCost + OPTIONS[5]);
     } else {
-      this.imageEventText.setDialogOption(OPTIONS[8] + MIN_GOLD_COST + OPTIONS[5], true);
+      this.imageEventText.setDialogOption(OPTIONS[7] + MIN_GOLD_COST + OPTIONS[5], true);
     }
 
-    this.imageEventText.setDialogOption(OPTIONS[2] + relicReward.name + OPTIONS[7] + curseCard.name + OPTIONS[3]);
+    this.imageEventText.setDialogOption(OPTIONS[2] + relicReward.name + OPTIONS[6] + curseCard.name + OPTIONS[3]);
 
     this.state = SimpletonEventHelper.EventState.WAITING;
     CardCrawlGame.sound.play("HOOTING_BIRD_1");
@@ -119,26 +112,18 @@ public class ReaptideEvent extends AbstractImageEvent
         }
         // TOOD: handle 50% curse outcome with corresponding screens
         this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[9]);
+        this.imageEventText.setDialogOption(OPTIONS[8]);
         this.state = SimpletonEventHelper.EventState.LEAVING;
         AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
         break;
       case LEAVING:
         this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[9]);
+        this.imageEventText.setDialogOption(OPTIONS[8]);
         openMap();
         break;
     }
   }
 
-  private int getGoldCost()  {
-    if (AbstractDungeon.player.gold < MIN_GOLD_COST) {
-      return 0;
-    } else if (AbstractDungeon.player.gold > MAX_GOLD_COST) {
-      return AbstractDungeon.miscRng.random(MIN_GOLD_COST, MAX_GOLD_COST);
-    }
-    return AbstractDungeon.miscRng.random(MIN_GOLD_COST, AbstractDungeon.player.gold);
-  }
 
   static {
     eventStrings = CardCrawlGame.languagePack.getEventString(ID);

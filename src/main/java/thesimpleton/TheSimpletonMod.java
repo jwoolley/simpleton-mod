@@ -357,10 +357,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         // TODO: determine events based on season
         // TODO: intialize these programatically from SeasonalEvents
+        BaseMod.addEvent(ReaptideEvent.ID, ReaptideEvent.class, Exordium.ID);
+        BaseMod.addEvent(SnowedInEvent.ID, SnowedInEvent.class, Exordium.ID);
         BaseMod.addEvent(EarlyThawEvent.ID, EarlyThawEvent.class, Exordium.ID);
         BaseMod.addEvent(FirefliesEvent.ID, FirefliesEvent.class, Exordium.ID);
-        BaseMod.addEvent(ReaptideEvent.ID, ReaptideEvent.class, Exordium.ID);
-
         BaseMod.addEvent(BorealisEvent.ID, BorealisEvent.class, TheCity.ID);
         BaseMod.addEvent(HeatWaveEvent.ID, HeatWaveEvent.class, TheCity.ID);
 

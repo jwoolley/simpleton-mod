@@ -74,7 +74,7 @@ public class SeasonalEvents {
                 Arrays.asList(ReaptideEvent.ID), Collections.emptyList(), Collections.emptyList());
 
         WINTER_EVENTS = new SeasonalEvents(
-                Collections.emptyList(), Arrays.asList(BorealisEvent.ID), Collections.emptyList());
+                Arrays.asList(SnowedInEvent.ID), Arrays.asList(BorealisEvent.ID), Collections.emptyList());
 
         SPRING_EVENTS = new SeasonalEvents(
                 Arrays.asList(EarlyThawEvent.ID), Collections.emptyList(), Collections.emptyList());
@@ -87,19 +87,16 @@ public class SeasonalEvents {
         allExordiumSeasonalEvents.addAll(WINTER_EVENTS.exordiumEvents);
         allExordiumSeasonalEvents.addAll(SPRING_EVENTS.exordiumEvents);
         allExordiumSeasonalEvents.addAll(SUMMER_EVENTS.exordiumEvents);
-
         List<String> allCitySeasonalEvents = new ArrayList<>();
         allCitySeasonalEvents.addAll(AUTUMN_EVENTS.cityEvents);
         allCitySeasonalEvents.addAll(WINTER_EVENTS.cityEvents);
         allCitySeasonalEvents.addAll(SPRING_EVENTS.cityEvents);
         allCitySeasonalEvents.addAll(SUMMER_EVENTS.cityEvents);
-
         List<String> allBeyondSeasonalEvents = new ArrayList<>();
         allBeyondSeasonalEvents.addAll(AUTUMN_EVENTS.beyondEvents);
         allBeyondSeasonalEvents.addAll(WINTER_EVENTS.beyondEvents);
         allBeyondSeasonalEvents.addAll(SPRING_EVENTS.beyondEvents);
         allBeyondSeasonalEvents.addAll(SUMMER_EVENTS.beyondEvents);
-
         List<String> allGlobalSeasonalEvents = new ArrayList<>();
         allGlobalSeasonalEvents.addAll(AUTUMN_EVENTS.globalEvents);
         allGlobalSeasonalEvents.addAll(WINTER_EVENTS.globalEvents);

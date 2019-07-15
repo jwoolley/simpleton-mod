@@ -38,10 +38,13 @@ public class RandomPartialUnlockCropSetTemplate {
         this.season = season;
 
         this.commonCrops = crops.stream().filter(c -> c.getCropInfo().rarity == AbstractCard.CardRarity.BASIC)
+                .distinct()
                 .collect(Collectors.toList());
         this.uncommonCrops = crops.stream().filter(c -> c.getCropInfo().rarity == AbstractCard.CardRarity.COMMON)
+                .distinct()
                 .collect(Collectors.toList());
         this.rareCrops = crops.stream().filter(c -> c.getCropInfo().rarity == AbstractCard.CardRarity.UNCOMMON)
+                .distinct()
                 .collect(Collectors.toList());
 
 //        if (commonCrops.size() == 0) {
@@ -81,7 +84,7 @@ public class RandomPartialUnlockCropSetTemplate {
     }
     // TODO: initialize SeasonInfo using this
     public RandomPartialUnlockCropSetDefinition getRandomCropSetDefinition() {
-//        Logger logger = TheSimpletonMod.logger;
+        Logger logger = TheSimpletonMod.logger;
 //        logger.info(this.getClass().getSimpleName() + "::getRandomCropSetDefinition called");
 //
 //        logger.info(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selecting template from "
@@ -113,12 +116,12 @@ public class RandomPartialUnlockCropSetTemplate {
 //                + "::getRandomCropSetDefinition RANDOM.nextInt(this.eligibleTemplates.size()): "
 //                + RANDOM.nextInt(this.eligibleTemplates.size()));
 
-        RandomPartialUnlockCropSetTemplate selectedTemplate =
-        this.eligibleTemplates.get(RANDOM.nextInt(this.eligibleTemplates.size()));
-//
-//
+        final int seasonIndex = RANDOM.nextInt(this.eligibleTemplates.size());
+
+        RandomPartialUnlockCropSetTemplate selectedTemplate = this.eligibleTemplates.get(seasonIndex);
+
 //        logger.info(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selected template with season:"
-//            + selectedTemplate.season);
+//            + selectedTemplate.season + " using index: " + seasonIndex);
 //
 //        logger.info(this.getClass().getSimpleName() + "::getRandomCropSetDefinition commonCrops: " +
 //                this.commonCrops.stream().map(c -> c.name()).collect(Collectors.joining(", ")));

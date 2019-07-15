@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +25,19 @@ public class SimpletonEventHelper {
 
   public static String getUiPath(String id) {
     return "events/" + id + ".png";
+  }
+
+  public static int getIntInRange(int min, int max)  {
+    return AbstractDungeon.miscRng.random(min, max);
+  }
+
+  public static int getGoldCost(int minCost, int maxCost)  {
+    if (AbstractDungeon.player.gold < minCost) {
+      return 0;
+    } else if (AbstractDungeon.player.gold > maxCost) {
+      return AbstractDungeon.miscRng.random(minCost, maxCost);
+    }
+    return AbstractDungeon.miscRng.random(minCost, AbstractDungeon.player.gold);
   }
 
   public static AbstractCard  getRandomNonCurseCardFromDeck() {
@@ -72,6 +87,16 @@ public class SimpletonEventHelper {
     Collections.shuffle(upgradeableCards, new java.util.Random(AbstractDungeon.miscRng.randomLong()));
     return upgradeableCards.subList(0, numCards);
   }
+
+  public static AbstractCropPowerCard getSeasonalCropPowerCard(AbstractCard.CardRarity rarity,
+                                                               AbstractCropPowerCard defaultCard) {
+    return TheSimpletonMod.getSeasonalCropCards()
+            .stream().filter(c -> c.rarity == rarity)
+            .findFirst()
+            .orElse(defaultCard);
+  }
+
+  // TODO: Handle case where no upgradable cards
 
 
   public static void upgradeCard(AbstractCard card) {

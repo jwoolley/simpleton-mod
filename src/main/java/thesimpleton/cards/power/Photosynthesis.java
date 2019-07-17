@@ -24,8 +24,8 @@ public class Photosynthesis extends CustomCard {
   private static final CardRarity RARITY = CardRarity.RARE;
   private static final CardTarget TARGET = CardTarget.SELF;
 
-  private static final int COST = 2;
-  private static final int UPGRADED_COST = 1;
+  private static final int COST = 1;
+  private static final int UPGRADED_COST = 0;
 
   public Photosynthesis() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);

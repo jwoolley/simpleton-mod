@@ -27,7 +27,10 @@
   "TheSimpletonMod:BiorefinementPower": {
     "NAME": "Biorefinement",
     "DESCRIPTIONS": [
-      "The first time you play card with Harvest each turn, gain 1 #yEnergy."
+      "The first time ",
+      "The first #b",
+      " times ",
+      "you play card with Harvest each turn, reduce the cost of a random card in your hand by #b1 this combat."
     ]
   },
 

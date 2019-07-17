@@ -26,17 +26,17 @@ public class Biorefinement extends CustomCard {
 
   private static final int COST = 2;
   private static final int UPGRADED_COST = 1;
-  private static final int AMOUNT = 1;
 
   public Biorefinement() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
-    this.baseMagicNumber = this.magicNumber = AMOUNT;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
+    TheSimpletonMod.logger.info("TheSimpletonMod:Biorefinement: use called");
+
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(p, p, new BiorefinementPower(p, this.magicNumber), this.magicNumber));
+        new ApplyPowerAction(p, p, new BiorefinementPower(1), 1));
   }
 
   @Override

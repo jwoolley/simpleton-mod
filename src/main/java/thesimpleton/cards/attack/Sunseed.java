@@ -19,6 +19,7 @@ public class Sunseed extends CustomCard {
   public static final String ID = "TheSimpletonMod:Sunseed";
   public static final String NAME;
   public static final String DESCRIPTION;
+  public static final String UPGRADE_DESCRIPTION;
   public static final String IMG_PATH = "cards/sunseed.png";
 
   private static final CardStrings cardStrings;
@@ -29,12 +30,13 @@ public class Sunseed extends CustomCard {
 
   private static final int COST = 0;
   private static final int DAMAGE = 3;
-  private static final int DAMAGE_UPGRADE_AMOUNT = 2;
+//  private static final int DAMAGE_UPGRADE_AMOUNT = 2;
   private static final int ENERGY_AMOUNT = 1;
 
 
   public Sunseed() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE,  AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE,
+            AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
     this.baseMagicNumber = this.magicNumber = ENERGY_AMOUNT;
     this.exhaust = true;
@@ -52,7 +54,9 @@ public class Sunseed extends CustomCard {
 
   @Override
   public void triggerWhenDrawn() {
-    AbstractDungeon.actionManager.addToTop(new MakeTempCardInHandAction(makeStatEquivalentCopy()));
+    if (AbstractDungeon.player.discardPile.group.isEmpty()) {
+      AbstractDungeon.actionManager.addToTop(new MakeTempCardInHandAction(makeStatEquivalentCopy()));
+    }
   }
 
 
@@ -65,7 +69,9 @@ public class Sunseed extends CustomCard {
   public void upgrade() {
     if (!this.upgraded) {
       this.upgradeName();
-      this.upgradeDamage(DAMAGE_UPGRADE_AMOUNT);
+      this.isInnate = true;
+      this.rawDescription = UPGRADE_DESCRIPTION;
+      initializeDescription();//      this.upgradeDamage(DAMAGE_UPGRADE_AMOUNT);
     }
   }
 
@@ -73,5 +79,6 @@ public class Sunseed extends CustomCard {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
+    UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
   }
 }

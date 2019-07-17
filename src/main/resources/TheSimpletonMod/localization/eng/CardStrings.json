@@ -363,7 +363,8 @@
 
   "TheSimpletonMod:Sunseed": {
     "NAME": "Sunseed",
-    "DESCRIPTION": "When this is shuffled into your draw pile, shuffle in a second copy. NL Deal !D! damage. NL Gain [E]. NL Exhaust."
+    "DESCRIPTION": "When drawn, copy this card if your discard is empty. NL Deal !D! damage and gain [E]. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Innate. When drawn, copy this card if your discard is empty. NL Deal !D! damage and gain [E]. NL Exhaust."
   },
 
 

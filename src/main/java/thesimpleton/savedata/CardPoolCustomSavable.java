@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.SimpletonCardHelper;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 
 import javax.smartcardio.Card;
@@ -33,7 +34,7 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
 
     logger.info(getLogPrefix("onSave") + " called");
 
-    List<AbstractCard> currentCardPool = TheSimpletonMod.getCurrentCardPool();
+    List<AbstractCard> currentCardPool = SimpletonCardHelper.getCurrentCardPool();
 
     final List<String> idList = currentCardPool.stream().map(c -> c.cardID).collect(Collectors.toList());
 

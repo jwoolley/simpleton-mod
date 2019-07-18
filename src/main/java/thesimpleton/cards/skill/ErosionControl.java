@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.ErosionControlAction;
+import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
 
 public class ErosionControl extends CustomCard {
@@ -31,6 +32,7 @@ public class ErosionControl extends CustomCard {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = INTANGIBLE_AMOUNT;
     this.exhaust = true;
+    this.tags.add(TheSimpletonCardTags.HARVEST);
   }
 
   @Override

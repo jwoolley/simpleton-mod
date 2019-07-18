@@ -1,7 +1,10 @@
 package thesimpleton.cards.interfaces;
 
 import basemod.abstracts.CustomCard;
+import com.megacrit.cardcrawl.core.Settings;
+import thesimpleton.cards.SimpletonCardHelper;
 import thesimpleton.cards.SimpletonUtil;
+import thesimpleton.ui.SettingsHelper;
 
 abstract public class AbstractDynamicTextCard extends CustomCard {
   public AbstractDynamicTextCard(String id, String name, String imgUrl, int cost,
@@ -13,15 +16,18 @@ abstract public class AbstractDynamicTextCard extends CustomCard {
 
   @Override
   public void hover() {
-    updateDescription(SimpletonUtil.isPlayerInCombat());
-//    super.hover();
+
+    if (SimpletonCardHelper.isCardInHand(this)) {
+      updateDescription(SimpletonUtil.isPlayerInCombat());
+    }
+    super.hover();
   }
 
   @Override
   public void unhover() {
-    updateDescription(false);
     super.unhover();
     super.untip();
+    updateDescription(false);
   }
 
   abstract protected void updateDescription(boolean extendedDescription);

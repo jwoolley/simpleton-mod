@@ -209,6 +209,15 @@
     "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Exhaust."
   },
 
+  "TheSimpletonMod:Innovate": {
+    "NAME": "Innovate",
+    "DESCRIPTION": "Add a random card with Harvest to your hand. It costs ",
+    "EXTENDED_DESCRIPTION": [
+      "Add !M! random cards with Harvest to your hand. They cost ",
+      " this turn."
+    ]
+  },
+
   "TheSimpletonMod:LandGrant": {
     "NAME": "Land Grant",
     "DESCRIPTION": "Gain !M! Plot.",

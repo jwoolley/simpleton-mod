@@ -36,6 +36,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
+import thesimpleton.cards.SimpletonCardHelper;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.ShuffleTriggeredCard;
@@ -477,6 +478,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new FanTheFlames());
         cards.add(new Ferment());
         cards.add(new GoToMarket());
+        cards.add(new Innovate());
         cards.add(new Mulch());
         cards.add(new OnionBloom());
         cards.add(new SeedCoat());
@@ -632,7 +634,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     public static void setSeasonalCropCards() {
         logger.info("@@@@@DEBUG@@@@@ setSeasonalCropCards Inferring from card pool..");
-        setSeasonalCropCards(TheSimpletonMod.getCurrentCardPool().stream()
+        setSeasonalCropCards(SimpletonCardHelper.getCurrentCardPool().stream()
             .filter(c -> c instanceof AbstractCropPowerCard)
             .map(c -> (AbstractCropPowerCard) c)
             .collect(Collectors.toList()));
@@ -715,17 +717,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         return seasonInfo.getCropsInSeason().stream()
             .map(crop -> crop.getCropInfo().powerCard)
             .collect(Collectors.toList());
-    }
-
-    public static List<AbstractCard> getCurrentCardPool() {
-        List<AbstractCard> cardPool = new ArrayList<>();
-        cardPool.addAll(AbstractDungeon.commonCardPool.group);
-        cardPool.addAll(AbstractDungeon.uncommonCardPool.group);
-        cardPool.addAll(AbstractDungeon.rareCardPool.group);
-        cardPool.addAll(AbstractDungeon.curseCardPool.group.stream()
-            .filter(c -> c instanceof SimpletonCurse).collect(Collectors.toList()));
-
-        return Collections.unmodifiableList(cardPool);
     }
 
     public static void addToCardPool(AbstractCard card) {

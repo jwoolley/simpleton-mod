@@ -11,6 +11,7 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.actions.HarvestCropAction;
 import thesimpleton.cards.SimpletonUtil;
+import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.interfaces.AbstractDynamicCropOrbHighlighterCard;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.AbstractCropOrb;
@@ -40,6 +41,7 @@ public class BumperCrop extends AbstractDynamicCropOrbHighlighterCard {
         TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
     this.baseMagicNumber = this.magicNumber = HARVEST_AMOUNT;
+    this.tags.add(TheSimpletonCardTags.HARVEST);
   }
 
   @Override

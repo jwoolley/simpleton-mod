@@ -33,7 +33,9 @@
 
   "TheSimpletonMod:Biorefinement": {
     "NAME": "Biorefinement",
-    "DESCRIPTION": "Whenever you play a Harvest card for the first time each turn, reduce the cost of a random card in your hand by 1 this combat."
+    "DESCRIPTION": "When you play a card with Harvest for the first time each turn, reduce the cost of a random card in your hand by 1 this combat.",
+    "DESCRIPTION": "The first time each turn that you play a card with Harvest, reduce the cost of a random card in your hand by 1 this combat."
+
   },
 
   "TheSimpletonMod:BirdFeeder": {

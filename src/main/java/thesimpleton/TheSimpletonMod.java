@@ -1074,7 +1074,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
             ConfigData.unlockLevelLastRun = config.getInt(ConfigKeys.UNLOCK_LEVEL_LAST_RUN);
 
-            logger.info("loadConfigData :: read config value from save unlockLevelLastRun: " + ConfigData.unlockLevelLastRun);
+            logger.info("loadConfigData :: read config value from save: unlockLevelLastRun: " + ConfigData.unlockLevelLastRun);
         } catch (Exception e) {
             e.printStackTrace();
             saveConfigData(false);
@@ -1102,10 +1102,14 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //                updateLastUnlockLevel ?
 //                    UnlockTracker.getUnlockLevel(TheSimpletonCharEnum.THE_SIMPLETON) : ConfigData.unlockLevelLastRun);
 
-            config.setInt(ConfigKeys.UNLOCK_LEVEL_LAST_RUN, ConfigData.unlockLevelLastRun);
+            if (updateLastUnlockLevel) {
+                config.setInt(ConfigKeys.UNLOCK_LEVEL_LAST_RUN, UnlockTracker.getUnlockLevel(TheSimpletonCharEnum.THE_SIMPLETON));
+            } else {
+                config.setInt(ConfigKeys.UNLOCK_LEVEL_LAST_RUN, ConfigData.unlockLevelLastRun);
+            }
 
             logger.info("saveConfigData :: setting config value unlockLevelLastRun: "
-                + ConfigData.unlockLevelLastRun + " (uploadLastUnlockLevel" + updateLastUnlockLevel + ")");
+                + ConfigData.unlockLevelLastRun + " (uploadLastUnlockLevel: " + updateLastUnlockLevel + ")");
 
             config.save();
         } catch (Exception e) {

@@ -1,6 +1,7 @@
 package thesimpleton.patches.ui;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import thesimpleton.TheSimpletonMod;
 
@@ -28,6 +29,24 @@ public class DungeonMapScreenOpenAfter {
 //    }
       TheSimpletonMod.logger.info(msg);
   }
+
+//  public static SpireReturn Prefix (DungeonMapScreen __instance, boolean doScrollingAnimation) {
+//    if (TheSimpletonMod.isPlayingAsSimpleton()) {
+//      log("DungeonMapScreenOpenBefore invoked pre trigger.");
+//
+//      log("DungeonMapScreenOpenBefore seasonScreen.isOpen: "
+//          + TheSimpletonMod.seasonScreen.isOpen()
+//          + " seasonScreen.wasDismissed: "
+//          + TheSimpletonMod.seasonScreen.wasDismissed());
+//
+//      if (!TheSimpletonMod.seasonScreen.isOpen() && !TheSimpletonMod.seasonScreen.wasDismissed()) {
+//        return SpireReturn.Return(null);
+//      } else {
+//        log("DungeonMapScreenOpenBefore season screen  not open, continuing");
+//      }
+//    }
+//    return SpireReturn.Continue();
+//  }
 
   public static void Postfix (DungeonMapScreen __instance, boolean doScrollingAnimation) {
     if (TheSimpletonMod.isPlayingAsSimpleton()) {

@@ -45,14 +45,18 @@ abstract public class CustomButton extends Button {
   public void update() {
     super.update();
     if (this.pressed) {
+      logger.info("CustomButton::update: calling handleClick: button was pressed");
       handleClick();
     }
   }
 
   void handleClick() {
     if (!this.isDisabled) {
+      logger.info("CustomButton::handleClick: Handling click: button is enabled");
       this.onClick();
       this.pressed = false;
+    } else {
+      logger.info("CustomButton::handleClick: Not handling click: button is disabled");
     }
   }
 
@@ -88,8 +92,10 @@ abstract public class CustomButton extends Button {
     this.disable();
   }
 
+  public boolean induceHover = false;
+
   public void render(SpriteBatch sb) {
-    if (this.hb.hovered) {
+    if (this.hb.hovered || this.induceHover) {
       sb.setColor(this.activeColor);
     } else {
       sb.setColor(this.inactiveColor);

@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.ui.buttons.CancelButton;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -131,9 +133,15 @@ public class SeasonScreen implements ReadyButtonPanel  {
       showCancelButtonOnClose = cancelButton.isHidden;
 
       // TODO: localize this (or fix it properly)
-      cancelButtonText = (cancelButton.buttonText != null && cancelButton.buttonText.length() > 0 && !cancelButton.buttonText.equals("NOT_SET")) ? cancelButton.buttonText : "Return";
+      cancelButtonText =
+          (cancelButton.buttonText != null
+            && cancelButton.buttonText.length() > 0
+            && !cancelButton.buttonText.equals("NOT_SET")) ?
+              cancelButton.buttonText : "Return";
 
       if (!SHOULD_SHOW_CANCEL_BUTTON && !cancelButton.isHidden) {
+        logger.info("SeasonScreen::open hiding cancel button");
+
         cancelButton.hide();
         showCancelButtonOnClose = true;
       }
@@ -163,15 +171,19 @@ public class SeasonScreen implements ReadyButtonPanel  {
     logger.info("SeasonScreen::close called");
 
     if (showCancelButtonOnClose) {
+      logger.info("SeasonScreen::close showing cancel button (showCancelButtonOnClose == true)");
+
       AbstractDungeon.overlayMenu.cancelButton.show(cancelButtonText);
     }
-    AbstractDungeon.dungeonMapScreen.open(true);
+    AbstractDungeon.dungeonMapScreen.open(false);
 
     this.dismiss();
   }
 
   public void dismiss() {
     logger.info("SeasonScreen::dismiss called");
+    logger.info("SeasonScreen::dismiss setting wasDismissed to true");
+
     this.wasDismissed = true;
     show = false;
   }
@@ -185,6 +197,15 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
     for (AbstractCard card : inSeasonCropCards) {
       card.hb.update();
+    }
+
+    if (Settings.isControllerMode && AbstractDungeon.topPanel.potionUi.isHidden && !AbstractDungeon.topPanel.selectPotionMode) {
+      getReadyButton().induceHover = true;
+      if (InputHelper.justClickedLeft || CInputActionSet.select.isJustPressed()) {
+        getReadyButton().pressed = true;
+      }
+    } else {
+      getReadyButton().induceHover = false;
     }
 
     getReadyButton().update();
@@ -304,10 +325,11 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   @Override
   public void onReadyClicked() {
+    logger.info("SeasonScreen::onReadyClicked called");
     getReadyButton().disable();
     getReadyButton().hide();
+    logger.info("SeasonScreen::onReadyClicked setting wasDismissed to true");
     wasDismissed = true;
     this.close();
-
   }
 }

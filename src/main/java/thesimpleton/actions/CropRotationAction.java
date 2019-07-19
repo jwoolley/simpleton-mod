@@ -65,14 +65,19 @@ public class CropRotationAction extends AbstractGameAction {
     Collections.shuffle(activePowers);
 
     List<AbstractCropOrb> activeOrbs = AbstractCropOrb.getActiveCropOrbs();
-    Collections.shuffle(activeOrbs);
+    AbstractCropOrb randomOrb = null;
 
-    AbstractCropOrb randomOrb = activeOrbs.get(0);
+    if (!activeOrbs.isEmpty()) {
+      Collections.shuffle(activeOrbs);
+      randomOrb = activeOrbs.get(0);
+    }
 
-    if (!this.secondTick && randomOrb != null) {
-      AbstractDungeon.actionManager.addToTop(new HarvestCropAction(randomOrb,  numCropsToHarvest,true, true));
-    } else {
-      AbstractDungeon.actionManager.addToBottom(new SFXAction("CARD_SELECT"));
+    if (!this.secondTick) {
+      if (randomOrb != null) {
+        AbstractDungeon.actionManager.addToTop(new HarvestCropAction(randomOrb, numCropsToHarvest, true, true));
+      } else {
+        AbstractDungeon.actionManager.addToBottom(new SFXAction("CARD_SELECT"));
+      }
     }
     this.secondTick = true;
 

@@ -55,11 +55,11 @@ public class Innovate extends CustomCard {
       Collections.shuffle(cardPool);
       AbstractCard cardToAdd = cardPool.get(0).makeCopy();
 
-      cardToAdd.costForTurn = REDUCED_COST;
-      if (this.upgradeCostForTurnOnly) {
+        cardToAdd.costForTurn = REDUCED_COST;
         cardToAdd.isCostModifiedForTurn = true;
-      } else {
-        cardToAdd.updateCost(REDUCED_COST);
+
+      if (!this.upgradeCostForTurnOnly) {
+        cardToAdd.cost = REDUCED_COST;
         cardToAdd.isCostModified = true;
       }
 

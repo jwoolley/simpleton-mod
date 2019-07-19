@@ -8,18 +8,13 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonCardHelper;
-import thesimpleton.cards.TheSimpletonCardTags;
-import thesimpleton.cards.power.crop.AbstractCropPowerCard;
-import thesimpleton.cards.status.Depletion;
 import thesimpleton.enums.AbstractCardEnum;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Innovate extends CustomCard {
   public static final String ID = "TheSimpletonMod:Innovate";
@@ -37,14 +32,17 @@ public class Innovate extends CustomCard {
   private static final CardTarget TARGET = CardTarget.SELF;
 
   private static final int COST = 1;
-  private static final int CARD_AMOUNT = 1;
-  private static final int UPGRADE_CARD_AMOUNT = 1;
-  private static final int COST_FOR_TURN = 0;
+  private static final int REDUCED_COST = 0;
+  private static final int CARDS_ADDED = 1;
+
+  private boolean upgradeCostForTurnOnly;
 
   public Innovate() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(CARD_AMOUNT, COST_FOR_TURN),
-        TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
-    this.baseMagicNumber = this.magicNumber = CARD_AMOUNT;
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST,
+        getDescription(REDUCED_COST, true),  TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY,
+        TARGET);
+    this.baseMagicNumber = this.magicNumber = REDUCED_COST;
+    this.upgradeCostForTurnOnly = true;
   }
 
   @Override
@@ -53,10 +51,18 @@ public class Innovate extends CustomCard {
     List<AbstractCard> cardPool = SimpletonCardHelper.getHarvestCards();
 
     List<AbstractCard> cardsToAdd = new ArrayList<>();
-    for (int i = 0; i < this.magicNumber; i++) {
+    for (int i = 0; i < this.CARDS_ADDED; i++) {
       Collections.shuffle(cardPool);
       AbstractCard cardToAdd = cardPool.get(0).makeCopy();
-      cardToAdd.costForTurn = COST_FOR_TURN;
+
+      cardToAdd.costForTurn = REDUCED_COST;
+      if (this.upgradeCostForTurnOnly) {
+        cardToAdd.isCostModifiedForTurn = true;
+      } else {
+        cardToAdd.updateCost(REDUCED_COST);
+        cardToAdd.isCostModified = true;
+      }
+
       cardsToAdd.add(cardToAdd);
     }
 
@@ -74,14 +80,14 @@ public class Innovate extends CustomCard {
   public void upgrade() {
     if (!this.upgraded) {
       this.upgradeName();
-      this.upgradeMagicNumber(UPGRADE_CARD_AMOUNT);
-      this.rawDescription = getDescription(this.magicNumber, COST_FOR_TURN);
+      this.upgradeCostForTurnOnly = false;
+      this.rawDescription = getDescription(this.magicNumber, this.upgradeCostForTurnOnly);
       this.initializeDescription();
     }
   }
 
-  private static String getDescription(int cardAmount, int costForTurn) {
-    return (cardAmount == 1 ? DESCRIPTION : EXTENDED_DESCRIPTION[0]) + costForTurn + EXTENDED_DESCRIPTION[1];
+  private static String getDescription(int costForTurn, boolean upgradeCostForTurnOnly) {
+    return DESCRIPTION + (upgradeCostForTurnOnly ? EXTENDED_DESCRIPTION[0] : EXTENDED_DESCRIPTION[1]);
   }
 
   static {

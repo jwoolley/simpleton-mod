@@ -211,10 +211,10 @@
 
   "TheSimpletonMod:Innovate": {
     "NAME": "Innovate",
-    "DESCRIPTION": "Add a random card with Harvest to your hand. It costs ",
+    "DESCRIPTION": "Add a random card with Harvest to your hand. It costs !M!",
     "EXTENDED_DESCRIPTION": [
-      "Add !M! random cards with Harvest to your hand. They cost ",
-      " this turn."
+      " this turn.",
+      " this combat."
     ]
   },
 

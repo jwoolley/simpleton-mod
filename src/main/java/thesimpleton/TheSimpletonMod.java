@@ -37,7 +37,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
 import thesimpleton.cards.SimpletonCardHelper;
-import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.ShuffleTriggeredCard;
 import thesimpleton.cards.attack.*;
@@ -494,7 +493,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new StockTheCellar());
         cards.add(new Surplus());
         cards.add(new Swelter());
-        cards.add(new TillTheField());
+        cards.add(new Germinate());
         cards.add(new ToughenUp());
         cards.add(new VineRipen());
 

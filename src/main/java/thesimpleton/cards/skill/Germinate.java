@@ -7,17 +7,17 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.actions.TillTheFieldAction;
+import thesimpleton.actions.GerminateAction;
 import thesimpleton.cards.interfaces.AbstractDynamicCropOrbHighlighterCard;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.AbstractCropOrb;
 
-public class TillTheField extends AbstractDynamicCropOrbHighlighterCard {
-  public static final String ID = "TheSimpletonMod:TillTheField";
+public class Germinate extends AbstractDynamicCropOrbHighlighterCard {
+  public static final String ID = "TheSimpletonMod:Germinate";
   public static final String NAME;
   public static final String DESCRIPTION;
   public static final String[] EXTENDED_DESCRIPTION;
-  public static final String IMG_PATH = "cards/tillthefield.png";
+  public static final String IMG_PATH = "cards/germinate.png";
 
   private static final CardStrings cardStrings;
 
@@ -32,7 +32,7 @@ public class TillTheField extends AbstractDynamicCropOrbHighlighterCard {
   private static final int BLOCK_UPGRADE_AMOUNT = 4;
 
 
-  public TillTheField() {
+  public Germinate() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = CROP_AMOUNT;
     this.baseBlock = this.block = BLOCK_AMOUNT;
@@ -40,12 +40,12 @@ public class TillTheField extends AbstractDynamicCropOrbHighlighterCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new TillTheFieldAction(this.magicNumber, this.block));
+    AbstractDungeon.actionManager.addToBottom(new GerminateAction(this.magicNumber, this.block));
   }
 
   @Override
   public AbstractCard makeCopy() {
-    return new TillTheField();
+    return new Germinate();
   }
 
   public void updateDescription(boolean extendedDescription) {

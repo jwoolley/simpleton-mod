@@ -32,7 +32,7 @@ public class DoubleBarrel extends CustomCard {
   private static final AttackEffect attackEffect = ATTACK_EFFECT;
   private static final int COST = 1;
   private static final int DAMAGE = 6;
-  private static final int DAMAGE_UPGRADE = 2;
+  private static final int DAMAGE_UPGRADE = 3;
   private static final int ENERGY_AMOUNT = 1;
 
   public DoubleBarrel() {

@@ -27,9 +27,9 @@ public class SaltTheEarth extends CustomCard {
   private static final AbstractCard.CardTarget TARGET = CardTarget.ALL_ENEMY;
 
   private static final int COST = 2;
-  private static final int DAMAGE = 22;
+  private static final int DAMAGE = 24;
   private static final int DAMAGE_UPGRADE = 8;
-  private static final int STATUS_COPIES = 3;
+  private static final int STATUS_COPIES = 2;
 
   public SaltTheEarth() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);

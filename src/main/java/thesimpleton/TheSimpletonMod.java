@@ -382,6 +382,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_ImpactFire1.ogg"));
         reflectedMap.put("ATTACK_FIRE_IMPACT_2",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_ImpactFire2.ogg"));
+        reflectedMap.put("ATTACK_SCIMITAR_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_AttackScimitar1.ogg"));
         reflectedMap.put("ATTACK_SCYTHE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_AttackScythe1.ogg"));
         reflectedMap.put("BIRD_TWEET_1",
@@ -449,17 +451,18 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         // Attack (11)
         cards.add(new Barnstorm());
         cards.add(new BuzzBomb());
+        cards.add(new CloseScrape());
         cards.add(new CullingStrike());
         cards.add(new DoubleBarrel());
         cards.add(new Fertilaser());
         cards.add(new FlashPasteurize());
         cards.add(new HitTheSack());
+        cards.add(new KeenEdge());
         cards.add(new PestManagement());
         cards.add(new Rake());
         cards.add(new RootDown());
         cards.add(new SaltTheEarth());
         cards.add(new SlashAndBurn());
-        cards.add(new CloseScrape());
         cards.add(new SaladShooter());
         cards.add(new Sunseed());
         cards.add(new Sunchoke());

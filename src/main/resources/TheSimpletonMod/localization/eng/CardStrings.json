@@ -220,6 +220,13 @@
     ]
   },
 
+  "TheSimpletonMod:KeenEdge": {
+    "NAME": "Keen Edge",
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Increase this card's damage by !M! and its cost by ",
+    "UPGRADE_DESCRIPTION" :  "Deal !D! damage. NL Increase this card's damage by !M! and its cost by ",
+    "EXTENDED_DESCRIPTION": [ " this combat." ]
+  },
+
   "TheSimpletonMod:LandGrant": {
     "NAME": "Land Grant",
     "DESCRIPTION": "Gain !M! Plot.",

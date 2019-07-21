@@ -3,6 +3,7 @@ package thesimpleton.cards.attack;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -14,6 +15,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.ModifyCostAction;
 import thesimpleton.enums.AbstractCardEnum;
 
 public class KeenEdge extends CustomCard {
@@ -27,7 +29,7 @@ public class KeenEdge extends CustomCard {
   private static final CardStrings cardStrings;
 
   private static final CardType TYPE = CardType.ATTACK;
-  private static final CardRarity RARITY = CardRarity.COMMON;
+  private static final CardRarity RARITY = CardRarity.UNCOMMON;
   private static final CardTarget TARGET = CardTarget.ENEMY;
 
   private static final int COST = 1;
@@ -44,7 +46,6 @@ public class KeenEdge extends CustomCard {
   }
 
   public void use(AbstractPlayer p, AbstractMonster m) {
-
     AbstractGameEffect effect = new FlashAtkImgEffect(m.hb.cX, m.hb.cY,
         AbstractGameAction.AttackEffect.SLASH_DIAGONAL, true);
     AbstractDungeon.effectList.add(effect);
@@ -57,8 +58,8 @@ public class KeenEdge extends CustomCard {
   }
 
   private void updateOnUse() {
-    this.upgradeDamage(DAMAGE_INCREASE);
-    updateCost(COST_INCREASE);
+    AbstractDungeon.actionManager.addToBottom(new ModifyDamageAction(this.uuid, this.magicNumber));
+    AbstractDungeon.actionManager.addToBottom(new ModifyCostAction(this, COST_INCREASE));
   }
 
   @Override

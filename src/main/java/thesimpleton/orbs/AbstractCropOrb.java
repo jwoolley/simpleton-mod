@@ -31,10 +31,10 @@ public abstract class AbstractCropOrb extends CustomOrb {
   private final static String[] GENERIC_DESCRIPTION;
   private final static OrbStrings orbStrings;
 
-  private final static Color MATURE_CROP_HALO_COLOR = Color.WHITE;
+  private final static Color MATURE_CROP_HALO_COLOR = Color.WHITE.cpy();
 //  private final static Color MATURE_CROP_HALO_COLOR = new Color(237.0F, 254.0F, 53.0F, 0.2F); //Color.YELLOW;
 
-  private final static Color CROP_STACK_COUNT_FONT_COLOR = Color.WHITE;
+  private final static Color CROP_STACK_COUNT_FONT_COLOR = Color.WHITE.cpy();
   private final static Color MATURE_CROP_STACK_COUNT_FONT_COLOR = Color.YELLOW; // new Color(250.0F, 255.0F, 190.0F, 1.0F); //Color.YELLOW;
   private static final float TOOLTIP_X_OFFSET = 80.0F;
   private static final float TOOLTIP_Y_OFFSET = -48.0F;

@@ -46,7 +46,7 @@ public class BuzzBombImpactEffect extends WeightyImpactEffect {
     } else if (this.duration < 0.2F) {
       if (!this.shakeAndFlash) {
         this.shakeAndFlash = true;
-        AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.WHITE));
+        AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.WHITE.cpy()));
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.HIGH, ScreenShake.ShakeDur.MED, true);
         for (int i = 0; i < 5; i++) {
           AbstractDungeon.effectsQueue.add(new DamageImpactCurvyEffect(this._x + img.packedWidth / 2.0F, this._y + img.packedWidth / 2.0F));

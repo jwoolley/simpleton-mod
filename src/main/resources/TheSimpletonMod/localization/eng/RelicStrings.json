@@ -34,7 +34,7 @@
   },
 
   "TheSimpletonMod:TheHarvester": {
-    "NAME": "The Harvester",
+    "NAME": "Trusty Sickle",
     "FLAVOR": "Its purpose is clear-cut.",
     "DESCRIPTIONS": [
       "Whenever you #yPlant a #yCrop, if you then have more stacks than its #rMaturity level, #gHarvest all excess stacks."
@@ -128,7 +128,7 @@
 
 
   "TheSimpletonMod:WoodChipper": {
-    "NAME": "Wood Chipper",
+    "NAME": "Weed Puller",
     "FLAVOR": "Suitable for plant matter ONLY.",
     "DESCRIPTIONS": [
       "At the start of each combat, choose up to #b",

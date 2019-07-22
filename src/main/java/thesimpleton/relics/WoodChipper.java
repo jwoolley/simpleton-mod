@@ -18,7 +18,7 @@ public class WoodChipper extends CustomRelic {
   private static final RelicTier TIER = RelicTier.COMMON;
   private static final LandingSound SOUND = LandingSound.SOLID;
 
-  private static final int MAX_NUM_CARDS = 3;
+  private static final int MAX_NUM_CARDS = 2;
   private boolean activated = false;
 
   public WoodChipper() {

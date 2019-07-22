@@ -107,7 +107,7 @@ abstract public class CustomButton extends Button {
         0, 0,
         width, height,
         false, false);
-    sb.setColor(Color.WHITE);
+    sb.setColor(Color.WHITE.cpy());
     this.hb.render(sb);
   }
 

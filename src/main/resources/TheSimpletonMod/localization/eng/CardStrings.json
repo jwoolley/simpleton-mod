@@ -405,9 +405,9 @@
 
   "TheSimpletonMod:TakeHeart": {
     "NAME": "Take Heart",
-    "DESCRIPTION": "Gain !B! Block. Heal !M! HP. NL Plant ",
+    "DESCRIPTION": "Gain !B! Block. NL Heal !M! HP. NL Plant ",
     "EXTENDED_DESCRIPTION" : [
-      " Artichokes. NL Do this again if your HP at 50% or less. NL Exhaust."
+      " Artichokes. NL Do this again if your HP is at 50% or less. NL Exhaust."
     ]
   },
 

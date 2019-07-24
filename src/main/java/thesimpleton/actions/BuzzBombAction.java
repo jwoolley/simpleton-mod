@@ -56,10 +56,8 @@ public class BuzzBombAction extends AbstractGameAction {
 
     this.duration -= Gdx.graphics.getDeltaTime();
 
-    if (this.duration < 0.0F)
-    {
-      if (this.target.currentHealth > 0)
-      {
+    if (this.duration < 0.0F) {
+      if (this.target.currentHealth > 0) {
         this.info.base = baseDamage;
 
         if (numRepetitions > 0) {

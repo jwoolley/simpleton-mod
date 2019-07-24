@@ -3,7 +3,7 @@
 
     <groupId>thesimpleton</groupId>
     <artifactId>thesimpleton</artifactId>
-    <version>v1.0.0</version>
+    <version>v0.0.5</version>
     <packaging>jar</packaging>
 
     <name>TheHayseed</name>

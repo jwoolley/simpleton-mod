@@ -403,6 +403,14 @@
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Each Weak enemy that takes damage also gains !M! Burning."
   },
 
+  "TheSimpletonMod:TakeHeart": {
+    "NAME": "Take Heart",
+    "DESCRIPTION": "Gain !B! Block. Heal !M! HP. NL Plant ",
+    "EXTENDED_DESCRIPTION" : [
+      " Artichokes. NL Do this again if your HP at 50% or less. NL Exhaust."
+    ]
+  },
+
   "TheSimpletonMod:Thresh": {
     "NAME": "Thresh",
     "DESCRIPTION": "Deal !D! damage. NL Costs [E] less for each time you Harvest this turn."

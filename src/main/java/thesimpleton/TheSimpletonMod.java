@@ -267,6 +267,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     public static final Logger logger = LogManager.getLogger(TheSimpletonMod.class.getName());
 
     public TheSimpletonMod() {
+        logger.info("Instantiating TheSimpletonMod.");
+
         logger.info("Logger class: " + logger.getClass().getCanonicalName());
 
         if (logger instanceof org.apache.logging.log4j.core.Logger && Loader.DEBUG) {
@@ -494,6 +496,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new Surplus());
         cards.add(new Swelter());
         cards.add(new Germinate());
+        cards.add(new TakeHeart());
         cards.add(new ToughenUp());
         cards.add(new VineRipen());
 

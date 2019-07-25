@@ -14,8 +14,11 @@ import java.util.List;
 public class CoffeeCropOrb extends AbstractCropOrb {
   public static final Crop CROP_ENUM = Crop.COFFEE;
   public static final String ORB_ID = "TheSimpletonMod:CoffeeCropOrb";
-  public static final String IMG_PATH = "plantcoffee";
-  public static final String HALO_IMG_PATH = "orbcoffee_halo";
+//  public static final String IMG_PATH = "plantcoffee";
+//  public static final String HALO_IMG_PATH = "orbcoffee_halo";
+
+  public static final String IMG_PATH = "plantsunflower";
+  public static final String HALO_IMG_PATH = "orbsunflower_halo";
 
   private static final OrbStrings orbStrings;
   public static final String NAME;

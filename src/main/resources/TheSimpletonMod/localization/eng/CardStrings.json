@@ -57,7 +57,7 @@
 
   "TheSimpletonMod:BuzzBomb": {
     "NAME": "Buzz Bomb",
-    "DESCRIPTION": "Deal !D! damage to a random enemy !M! times. NL Plant 1 Coffee for each enemy killed this way."
+    "DESCRIPTION": "Deal !D! damage to a random enemy !M! times. NL Plant 1 Sunflower for each enemy killed this way."
   },
 
   "TheSimpletonMod:CloseScrape": {
@@ -464,8 +464,9 @@
   },
 
   "TheSimpletonMod:Coffee": {
-    "NAME": "Coffee",
-    "DESCRIPTION": "Plant !M! Coffee."
+    "NAME": "Sunflowers",
+    "DESCRIPTION": "Plant !M! ",
+    "EXTENDED_DESCRIPTION": ["Sunflower.", "Sunflowers."]
   },
 
   "TheSimpletonMod:Corn": {

@@ -194,12 +194,12 @@
     "DESCRIPTION": "#yCrop. Yields Gnawberry attack cards when harvested that also heal a small amount of HP."
   },
 
-  "TheSimpletonMod:StunKeyword": {
-    "PROPER_NAME": "Stun",
+  "TheSimpletonMod:SunflowerKeyword": {
+    "PROPER_NAME": "Sunflowers",
     "NAMES": [
-      "stun"
+      "sunflower", "sunflowers"
     ],
-    "DESCRIPTION": "Cannot do anything."
+    "DESCRIPTION": "#yCrop. Gain energy when harvested."
   },
 
   "TheSimpletonMod:TurnipKeyword": {

@@ -11,15 +11,19 @@ import thesimpleton.TheSimpletonMod;
 )
 public class DungeonMapScreenUpdate {
   public static SpireReturn Prefix (DungeonMapScreen __instance) {
-    if (TheSimpletonMod.seasonScreen.isOpen()) {
-      return SpireReturn.Return(null);
+    if (TheSimpletonMod.isPlayingAsSimpleton()) {
+      if (TheSimpletonMod.seasonScreen.isOpen()) {
+        return SpireReturn.Return(null);
+      }
     }
     return SpireReturn.Continue();
   }
 
   public static void Postfix (DungeonMapScreen __instance) {
-    if (TheSimpletonMod.seasonScreen.isOpen()) {
-      TheSimpletonMod.seasonScreen.update();
+    if (TheSimpletonMod.isPlayingAsSimpleton()) {
+      if (TheSimpletonMod.seasonScreen.isOpen()) {
+        TheSimpletonMod.seasonScreen.update();
+      }
     }
   }
 }

@@ -15,9 +15,11 @@ import thesimpleton.TheSimpletonMod;
 )
 public class DungeonMapScreenRenderAfter {
   public static void Postfix (DungeonMapScreen __instance, SpriteBatch __spriteBatch) {
-    if (TheSimpletonMod.seasonScreen.isOpen()) {
-      __spriteBatch.setColor(Color.WHITE.cpy());
-      TheSimpletonMod.seasonScreen.render(__spriteBatch);
+    if (TheSimpletonMod.isPlayingAsSimpleton()) {
+      if (TheSimpletonMod.seasonScreen.isOpen()) {
+        __spriteBatch.setColor(Color.WHITE.cpy());
+        TheSimpletonMod.seasonScreen.render(__spriteBatch);
+      }
     }
   }
 }

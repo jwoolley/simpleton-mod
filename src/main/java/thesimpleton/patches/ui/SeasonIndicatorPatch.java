@@ -24,8 +24,10 @@ public class SeasonIndicatorPatch {
   public static class SeasonIndicatorUpdatePatch {
     @SpirePrefixPatch
     public static void Prefix(EnergyPanel __instance) {
-      if (SeasonIndicator.shouldRender()) {
-        TheSimpletonMod.seasonIndicator.update();
+      if (TheSimpletonMod.isPlayingAsSimpleton()) {
+        if (SeasonIndicator.shouldRender()) {
+          TheSimpletonMod.seasonIndicator.update();
+        }
       }
     }
   }
@@ -35,8 +37,10 @@ public class SeasonIndicatorPatch {
   public static class SeasonIndicatorRenderPatch {
     @SpirePostfixPatch
     public static void Postfix(EnergyPanel __instance, SpriteBatch sb) {
-      if (SeasonIndicator.shouldRender()) {
-        TheSimpletonMod.seasonIndicator.render(sb);
+      if (TheSimpletonMod.isPlayingAsSimpleton()) {
+        if (SeasonIndicator.shouldRender()) {
+          TheSimpletonMod.seasonIndicator.render(sb);
+        }
       }
     }
   }
@@ -46,8 +50,10 @@ public class SeasonIndicatorPatch {
   public static class SeasonIndicatorRenderMapPatch {
     @SpirePostfixPatch
     public static void Postfix(CancelButton __instance, SpriteBatch sb) {
-      if (SeasonIndicator.shouldRender()) {
-        TheSimpletonMod.seasonIndicator.render(sb);
+      if (TheSimpletonMod.isPlayingAsSimpleton()) {
+        if (SeasonIndicator.shouldRender()) {
+          TheSimpletonMod.seasonIndicator.render(sb);
+        }
       }
     }
   }

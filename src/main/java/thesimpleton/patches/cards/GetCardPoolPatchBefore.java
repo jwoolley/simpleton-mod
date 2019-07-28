@@ -24,7 +24,11 @@ import java.util.stream.Collectors;
 public class GetCardPoolPatchBefore {
   @SpirePrefixPatch
   public static SpireReturn<ArrayList<AbstractCard>> Prefix(CustomPlayer __instance, ArrayList<AbstractCard> tmpPool) {
-    final Logger logger = TheSimpletonMod.logger;
+    if (!TheSimpletonMod.isPlayingAsSimpleton()) {
+      return SpireReturn.Continue();
+    }
+
+      final Logger logger = TheSimpletonMod.logger;
     List<AbstractCard> saveCardPool = TheSimpletonMod.getSaveCardPool();
     if (!saveCardPool.isEmpty()) {
       logger.info("GetCardPoolPatchBefore :: Card pool for " + AbstractDungeon.player.chosenClass + " is about to be replaced.");

@@ -17,6 +17,8 @@ import thesimpleton.TheSimpletonMod;
 
 public class UseCardActionPatchAfter {
   public static void Postfix (UseCardAction __instance, AbstractCard card, AbstractCreature target) {
-    TheSimpletonMod.handleUseCard(card, __instance);
+    if (!TheSimpletonMod.isPlayingAsSimpleton()) {
+      TheSimpletonMod.handleUseCard(card, __instance);
+    }
   }
 }

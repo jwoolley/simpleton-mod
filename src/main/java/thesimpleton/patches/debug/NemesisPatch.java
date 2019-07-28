@@ -12,6 +12,8 @@ import thesimpleton.TheSimpletonMod;
 
 public class NemesisPatch {
 //  public static void Postfix (Nemesis __instance) {
+//     if (!TheSimpletonMod.isPlayingAsSimpleton()) {
 //    TheSimpletonMod.logger.info("NemesisPatch::Nemesis::takeTurn after patch called");
+// }
 //  }
 }

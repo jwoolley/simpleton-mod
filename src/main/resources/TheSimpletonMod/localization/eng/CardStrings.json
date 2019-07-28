@@ -375,7 +375,7 @@
 
   "TheSimpletonMod:StockTheCellar": {
     "NAME": "Stock the Cellar",
-    "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Each time this is card shuffled into your draw pile, increase its Block by !M! for this combat."
+    "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Each time this card is shuffled into your draw pile, increase its Block by !M! for this combat."
   },
 
 

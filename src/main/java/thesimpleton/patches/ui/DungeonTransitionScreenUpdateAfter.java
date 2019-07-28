@@ -12,6 +12,7 @@ import thesimpleton.TheSimpletonMod;
 
 public class DungeonTransitionScreenUpdateAfter {
   public static void Postfix (DungeonTransitionScreen __instance) {
+    if (TheSimpletonMod.isPlayingAsSimpleton()) { }
 
   }
 }

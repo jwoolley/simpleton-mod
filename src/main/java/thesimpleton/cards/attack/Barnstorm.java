@@ -25,7 +25,7 @@ public class Barnstorm extends CustomCard {
   private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
 
   private static final int COST = 3;
-  private static final int DAMAGE = 4;
+  private static final int DAMAGE = 5;
 
   private boolean damageAllEnemies;
 

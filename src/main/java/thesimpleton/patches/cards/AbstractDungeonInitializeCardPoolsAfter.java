@@ -10,10 +10,12 @@ import thesimpleton.TheSimpletonMod;
   )
   public class AbstractDungeonInitializeCardPoolsAfter {
     public static void Postfix (AbstractDungeon __instance) {
-      TheSimpletonMod.logger.info("AbstractDungeonInitializeCardPoolsAfter called");
-      if (TheSimpletonMod.isSeasonInitialized()) {
-        TheSimpletonMod.logger.info("AbstractDungeonInitializeCardPoolsAfter removing cards from pool");
-        TheSimpletonMod.removeUnseasonalCardsFromPool();
+      if (TheSimpletonMod.isPlayingAsSimpleton()) {
+        TheSimpletonMod.logger.info("AbstractDungeonInitializeCardPoolsAfter called");
+        if (TheSimpletonMod.isSeasonInitialized()) {
+          TheSimpletonMod.logger.info("AbstractDungeonInitializeCardPoolsAfter removing cards from pool");
+          TheSimpletonMod.removeUnseasonalCardsFromPool();
+        }
       }
     }
 }

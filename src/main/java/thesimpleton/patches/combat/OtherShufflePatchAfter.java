@@ -10,6 +10,8 @@ import thesimpleton.TheSimpletonMod;
 )
 public class OtherShufflePatchAfter {
   public static void Postfix (ShuffleAction __instance) {
-    TheSimpletonMod.handleOtherShuffleAfter();
+    if (!TheSimpletonMod.isPlayingAsSimpleton()) {
+      TheSimpletonMod.handleOtherShuffleAfter();
+    }
   }
 }

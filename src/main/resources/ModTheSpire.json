@@ -2,9 +2,10 @@
   "modid": "thehayseed",
   "name": "The Hayseed",
   "author_list": ["jwoolley"],
-  "description": "An extremely simple character with a head like a pinewood block.",
-  "version": "0.0.5",
+  "description": "An simple farmer with a head like a pinewood block.",
+  "version": "0.9.0",
   "sts_version": "07-17-2019",
   "mts_version": "3.8.3",
-  "dependencies": ["basemod", "stslib"]
+  "dependencies": ["basemod", "stslib"],
+  "credits": "Thanks to: \n\nSpleen — for amazing relic art. \n\nHarryWardp, Basilisk, Greuben, CannonballFun, and Toddells — for invaluable playtesting and feedback."
 }

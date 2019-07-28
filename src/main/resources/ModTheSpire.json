@@ -7,5 +7,5 @@
   "sts_version": "07-17-2019",
   "mts_version": "3.8.3",
   "dependencies": ["basemod", "stslib"],
-  "credits": "Thanks to: \n\nSpleen — for amazing relic art. \n\nHarryWardp, Basilisk, Greuben, CannonballFun, and Toddells — for invaluable playtesting and feedback."
+  "credits": "Thanks to: \n\nSpleen — for amazing relic art. \n\nsolderist.park — whose Cursed mod source code I used to get started (use Default Mod!)\n\nHarryWardp, Basilisk, Greuben, CannonballFun, and Toddells — for invaluable playtesting and feedback."
 }

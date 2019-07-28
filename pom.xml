@@ -10,7 +10,8 @@
     <description>Now *I'm* attempting to make a mod!</description>
     <properties>
         <steam-sts-mods-directory>${steam-sts-directory}/mods</steam-sts-mods-directory>
-        <steam-sts-publish-directory>${steam-sts-directory}/thehayseed/content</steam-sts-publish-directory>
+        <steam-sts-publish-directory>${steam-sts-directory}/thehayseed/</steam-sts-publish-directory>
+        <steam-sts-publish-content-directory>${steam-sts-publish-directory}/content</steam-sts-publish-content-directory>
     </properties>
     <dependencies>
         <dependency>
@@ -66,7 +67,8 @@
                             <target>
                                 <copy file="target/TheHayseed.jar" tofile="${sts-libs-directory}/TheHayseed.jar"/>
                                 <copy file="target/TheHayseed.jar" tofile="${steam-sts-mods-directory}/TheHayseed.jar"/>
-                                <copy file="target/TheHayseed.jar" tofile="${steam-sts-publish-directory}/TheHayseed.jar"/>
+                                <copy file="target/TheHayseed.jar" tofile="${steam-sts-publish-content-directory}/TheHayseed.jar"/>
+                                <copy file="steamworkshop/config.json" tofile="${steam-sts-publish-directory}/config.json"/>
                             </target>
                         </configuration>
                         <goals>

@@ -152,8 +152,8 @@
 
   "TheSimpletonMod:Ferment": {
     "NAME": "Ferment",
-    "DESCRIPTION": "Shuffle 2 cards from your hand into your draw pile. NL Gain !M! Energy.",
-    "UPGRADE_DESCRIPTION": "Shuffle 2 cards from your hand into your draw pile, then draw a card. NL Gain !M! Energy."
+    "DESCRIPTION": "Shuffle 2 cards from your hand into your draw pile. NL Gain [E] [E].",
+    "UPGRADE_DESCRIPTION": "Shuffle 2 cards from your hand into your draw pile, then draw a card. NL Gain [E] [E]."
   },
 
   "TheSimpletonMod:Fertilaser": {

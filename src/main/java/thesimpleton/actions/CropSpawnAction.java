@@ -18,6 +18,7 @@ public class CropSpawnAction extends AbstractGameAction {
     private static final float ACTION_DURATION = Settings.ACTION_DUR_XFAST;
     private final boolean isFromCard;
     private final int amount;
+    private final int rawAmount;
     private AbstractCropOrb cropOrb;
 
     private boolean secondTick = false;
@@ -36,6 +37,7 @@ public class CropSpawnAction extends AbstractGameAction {
         this.actionType = ACTION_TYPE;
         this.isFromCard = isFromCard;
         this.amount = calculateCropStacks(rawAmount, this.isFromCard);
+        this.rawAmount = rawAmount;
         this.cropOrb = cropOrb;
 
         Logger logger = TheSimpletonMod.logger;
@@ -87,7 +89,7 @@ public class CropSpawnAction extends AbstractGameAction {
 
                     if (SimpletonUtil.getActiveOrbs().size() >= AbstractDungeon.player.maxOrbs) {
 //                        logger.info("CropSpawnAction::update player has no free orb slots. Queueing CropOrbCycleAction with " + this.cropOrb.name + " for " + this.cropOrb.passiveAmount + " stacks");
-                        AbstractDungeon.actionManager.addToBottom(new CropOrbCycleAction(this.cropOrb, this.amount, this.isFromCard));
+                        AbstractDungeon.actionManager.addToBottom(new CropOrbCycleAction(this.cropOrb, this.rawAmount, this.isFromCard));
                     }  else {
 //                        logger.info("CropSpawnAction::update player has " +  (AbstractDungeon.player.maxOrbs - SimpletonUtil.getActiveOrbs().size()) + " free orb slots");
 //                        logger.info("CropSpawnAction::update # of " + this.cropOrb.name + " before: " + this.cropOrb.passiveAmount);
@@ -111,20 +113,31 @@ public class CropSpawnAction extends AbstractGameAction {
     }
 
     public static int calculateCropStacks(int amount, boolean isFromCard) {
+        return calculateCropStacks(amount, isFromCard, true);
+    }
+
+    public static int calculateCropStacks(int amount, boolean isFromCard, boolean isPlantingCrop) {
         AbstractPlayer player = AbstractDungeon.player;
 
         Logger logger = TheSimpletonMod.logger;
 
-        logger.info("ApplyCropAction:calculateCropStacks");
+        logger.info("ApplyCropAction::calculateCropStacks | amount: " + amount + " isFromCard: " + isFromCard + " isPlantingCrop: " + isPlantingCrop);
+
 
         int adjustedAmount = amount;
-        if (player.hasPower(AbundancePower.POWER_ID) && isFromCard) {
+        if (isPlantingCrop && player.hasPower(AbundancePower.POWER_ID) && isFromCard) {
             AbstractPower power = player.getPower(AbundancePower.POWER_ID);
             if (power.amount > 0) {
                 power.flashWithoutSound();
                 adjustedAmount += power.amount;
             }
+
+            logger.info("ApplyCropAction::calculateCropStacks | adjusting amount by abundance value: " + power.amount);
+
         }
+
+        logger.info("ApplyCropAction::calculateCropStacks | adjustedAmount: " + adjustedAmount);
+
         return adjustedAmount;
     }
 }

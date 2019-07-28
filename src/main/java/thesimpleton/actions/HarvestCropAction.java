@@ -34,7 +34,7 @@ public class HarvestCropAction extends AbstractGameAction {
     this.actionType = ACTION_TYPE;
     this.isFromCard = isFromCard;
     this.harvestAll = harvestAll;
-    this.amount = CropSpawnAction.calculateCropStacks(rawAmount, this.isFromCard);
+    this.amount = CropSpawnAction.calculateCropStacks(rawAmount, this.isFromCard, false);
     this.cropOrb = cropOrb;
 
     Logger logger = TheSimpletonMod.logger;

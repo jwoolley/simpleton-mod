@@ -32,11 +32,11 @@ public class CropOrbCycleAction extends AbstractGameAction {
     this.duration = ACTION_DURATION;
     this.actionType = ACTION_TYPE;
     this.isFromCard = isFromCard;
-    this.amount = CropSpawnAction.calculateCropStacks(rawAmount, this.isFromCard);
+    this.amount = rawAmount;
     this.cropOrb = cropOrb;
 
     Logger logger = TheSimpletonMod.logger;
-//    logger.info("CropOrbCycleAction() constructor: " + cropOrb.getClass().getSimpleName() + "; rawAmount: " + rawAmount + " calculated amount: " + this.amount + " cropOrb.amount (current count): " + cropOrb.getAmount() + " cropOrb.passiveAmount " + cropOrb.passiveAmount);
+    logger.info("CropOrbCycleAction() constructor: " + cropOrb.getClass().getSimpleName() + "; rawAmount: " + rawAmount + " calculated amount: " + this.amount + " cropOrb.amount (current count): " + cropOrb.getAmount() + " cropOrb.passiveAmount " + cropOrb.passiveAmount);
   }
 
   public void update() {
@@ -51,7 +51,7 @@ public class CropOrbCycleAction extends AbstractGameAction {
 
     if (secondTick) {
       if (this.duration != ACTION_DURATION) {
-//        logger.info("CropOrbCycleAction::update spawning orb " + this.cropOrb.name + " for " + this.cropOrb.passiveAmount);
+        logger.info("CropOrbCycleAction::update spawning orb " + this.cropOrb.name + " for " + this.amount);
 
         AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(this.cropOrb, this.amount, this.isFromCard));
       }

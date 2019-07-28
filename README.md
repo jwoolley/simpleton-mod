@@ -13,7 +13,7 @@ The Hayseed offers N new cards, M new character-specific relics, and P new potio
 ### Hick with a Stick
 Uses his pitchfork to poke enemies ... and scoop hay.
 ### Bib Overalls
-His overalls and straw hat protect for the bugs, slime, and cosmic rays.
+His overalls and straw hat protect from bugs, slime, and cosmic rays.
 
 ## Known Issues
 - The Hayseed is under development.

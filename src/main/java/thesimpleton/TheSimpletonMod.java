@@ -367,7 +367,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addEvent(BorealisEvent.ID, BorealisEvent.class, TheCity.ID);
         BaseMod.addEvent(HeatWaveEvent.ID, HeatWaveEvent.class, TheCity.ID);
 
-
         BaseMod.registerModBadge(
                 badgeTexture, "The Hayseed", "jwoolley",
                 "Adds a new creature to the game - The Hayseed", modPanel);

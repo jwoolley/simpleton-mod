@@ -10,7 +10,7 @@ import thesimpleton.TheSimpletonMod;
 )
 public class EmptyDrawPileShufflePatchAfter {
   public static void Postfix (EmptyDeckShuffleAction __instance) {
-    if (!TheSimpletonMod.isPlayingAsSimpleton()) {
+    if (TheSimpletonMod.isPlayingAsSimpleton()) {
       TheSimpletonMod.handleEmptyDrawShuffleAfter();
     }
   }

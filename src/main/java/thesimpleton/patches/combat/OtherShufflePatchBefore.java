@@ -16,7 +16,7 @@ import thesimpleton.TheSimpletonMod;
 )
 public class OtherShufflePatchBefore {
   public static void Prefix (ShuffleAction __instance) {
-    if (!TheSimpletonMod.isPlayingAsSimpleton()) {
+    if (TheSimpletonMod.isPlayingAsSimpleton()) {
       TheSimpletonMod.handleOtherShuffleBefore();
     }
   }

@@ -16,7 +16,7 @@ import thesimpleton.TheSimpletonMod;
 
 public class DungeonMapRenderAfter {
   public static void Postfix (DungeonMap __instance, SpriteBatch __spriteBatch) {
-//     if (!TheSimpletonMod.isPlayingAsSimpleton()) {
+//     if (TheSimpletonMod.isPlayingAsSimpleton()) {
 
 //    if (TheSimpletonMod.seasonScreen.isOpen()) {
 //      TheSimpletonMod.seasonScreen.render(__spriteBatch);

@@ -22,21 +22,17 @@ import java.util.stream.Collectors;
 )
 
 public class AbstractDungeonPatch {
-    public static void Postfix (AbstractDungeon __instance, String name, String levelId, AbstractPlayer p, ArrayList<String> newSpecialOneTimeEventList) {
-        if (!TheSimpletonMod.isPlayingAsSimpleton()) {
-
-            TheSimpletonMod.logger.info("AbstractDungeonPatch after called");
-
-            List<String> eventsToRemove = new ArrayList<>();
+    public static void Postfix (AbstractDungeon __instance, String name, String levelId, AbstractPlayer p, ArrayList<String> newSpecialOneTimeEventList) {         TheSimpletonMod.logger.info("AbstractDungeonPatch after called");
+        List<String> eventsToRemove = new ArrayList<>();
+        if (TheSimpletonMod.isPlayingAsSimpleton()) {
+            TheSimpletonMod.logger.info("AbstractDungeonPatch:::after removing events not in season: "
+                + TheSimpletonMod.getSeason());
 
             TheSimpletonMod.logger.info("AbstractDungeonPatch::after | in-season  events: "
                 + TheSimpletonMod.getSeasonalEventIds().stream().map(c -> c).collect(Collectors.joining(", ")));
 
             TheSimpletonMod.logger.info("AbstractDungeonPatch::after | all seasonal events: "
                 + SeasonalEvents.getAllSeasonalEventIds().stream().collect(Collectors.joining(", ")));
-
-            TheSimpletonMod.logger.info("AbstractDungeonPatch:::after removing events not in season: "
-                + TheSimpletonMod.getSeason());
 
             AbstractDungeon.eventList.stream()
                 .filter(e -> SeasonalEvents.getAllSeasonalEventIds().stream().anyMatch(id -> e.equals(id)))
@@ -45,9 +41,19 @@ public class AbstractDungeonPatch {
                     TheSimpletonMod.logger.info("AbstractDungeonPatch marking custom event for removal: " + e);
                     eventsToRemove.add(e);
                 });
-
-            TheSimpletonMod.logger.info("AbstractDungeonPatch removing " + eventsToRemove.size() + " custom events");
-            AbstractDungeon.eventList.removeAll(eventsToRemove);
+        } else {
+            TheSimpletonMod.logger.info("AbstractDungeonPatch:: unsupported class; removing all custom events.");
+            AbstractDungeon.eventList.stream()
+                .filter(e -> SeasonalEvents.getAllSeasonalEventIds().stream().anyMatch(id -> e.equals(id)))
+                .forEach(e -> {
+                    TheSimpletonMod.logger.info("AbstractDungeonPatch marking custom event for removal: " + e);
+                    eventsToRemove.add(e);
+                });
         }
+        TheSimpletonMod.logger.info("AbstractDungeonPatch removing " + eventsToRemove.size() + " custom events");
+        AbstractDungeon.eventList.removeAll(eventsToRemove);
+
+        TheSimpletonMod.logger.info("AbstractDungeonPatch::after | remaining events: "
+            +  AbstractDungeon.eventList.stream().collect(Collectors.joining(", ")));
     }
 }

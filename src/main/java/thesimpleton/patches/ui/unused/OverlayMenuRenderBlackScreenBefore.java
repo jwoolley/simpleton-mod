@@ -15,7 +15,7 @@ import thesimpleton.TheSimpletonMod;
 
 public class OverlayMenuRenderBlackScreenBefore {
   public static void Prefix (OverlayMenu __instance, SpriteBatch __spriteBatch) {
-//     if (!TheSimpletonMod.isPlayingAsSimpleton()) {
+//     if (TheSimpletonMod.isPlayingAsSimpleton()) {
 
 //    if (TheSimpletonMod.seasonScreen.isOpen()) {
 //      TheSimpletonMod.logger.info("OverlayMenuRenderBlackScreenBefore:: Hiding black screen");

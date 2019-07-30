@@ -16,7 +16,7 @@ import thesimpleton.TheSimpletonMod;
 )
 public class MathHelperFadeLerpSnapReplace {
 //  public static void Postfix (float startX, float targetX) {
-    //     if (!TheSimpletonMod.isPlayingAsSimpleton()) {
+    //     if (TheSimpletonMod.isPlayingAsSimpleton()) {
 
 //    if (TheSimpletonMod.seasonScreen.isOpen()) {
 //       TheSimpletonMod.logger.info("MathHelperFadeLerpSnapReplace season screen is open. skipping Lerp.");

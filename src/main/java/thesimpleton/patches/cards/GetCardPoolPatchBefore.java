@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class GetCardPoolPatchBefore {
   @SpirePrefixPatch
   public static SpireReturn<ArrayList<AbstractCard>> Prefix(CustomPlayer __instance, ArrayList<AbstractCard> tmpPool) {
-    if (TheSimpletonMod.isPlayingAsSimpleton()) {
+    if (!TheSimpletonMod.isPlayingAsSimpleton()) {
       return SpireReturn.Continue();
     }
 

@@ -19,18 +19,24 @@ public class ApplyBurningAction extends AbstractGameAction {
   private static float ACTION_DURATION = Settings.ACTION_DUR_XFAST;
 
   private final boolean isSecondaryApplication;
+  private final boolean useFastMode;
 
   public ApplyBurningAction(AbstractCreature target, AbstractCreature source, int amount) {
     this(target, source, amount, false);
   }
 
   public ApplyBurningAction(AbstractCreature target, AbstractCreature source, int amount, boolean isSecondaryApplication) {
+    this(target, source, amount, isSecondaryApplication, false);
+  }
+
+  public ApplyBurningAction(AbstractCreature target, AbstractCreature source, int amount, boolean isSecondaryApplication, boolean useFastMode) {
     this.target = target;
     this.source = source;
     this.amount = amount;
     this.duration = ACTION_DURATION;
     this.startDuration = ACTION_DURATION;
     this.isSecondaryApplication = isSecondaryApplication;
+    this.useFastMode = useFastMode;
   }
 
   @Override
@@ -46,7 +52,8 @@ public class ApplyBurningAction extends AbstractGameAction {
       logger.info("ApplyBurningAction.update :: Applying  " +  this.amount + " Burning" );
       AbstractDungeon.actionManager.addToBottom(
           new ApplyPowerAction(
-              this.target, this.source, new BurningPower(this.target, this.source, this.amount), this.amount));
+              this.target, this.source, new BurningPower(this.target, this.source, this.amount), this.amount,
+              this.useFastMode));
 
       AbstractPlayer player = AbstractDungeon.player;
       if (player.hasRelic(GasCan.ID) && !this.isSecondaryApplication) {

@@ -54,7 +54,8 @@ public class SunchokeAction extends AbstractGameAction {
 
     damagedMonsters.stream().forEach(m -> {
       AbstractDungeon.actionManager.addToBottom(
-          new ApplyPowerAction(m, source, new BurningPower(m, this.source, this.amount), this.amount));
+          new ApplyBurningAction(m, this.source, this.amount, false, true));
+
 
       if ((!m.isDying) && (m.currentHealth > 0) && (!m.isEscaping)) {
         AbstractDungeon.effectList.add(new FlashAtkImgEffect(

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import thesimpleton.actions.ApplyBurningAction;
 
 public class VolatileFumesPower extends AbstractTheSimpletonPower  {
   public static final String POWER_ID = "TheSimpletonMod:VolatileFumesPower";
@@ -39,8 +40,7 @@ public class VolatileFumesPower extends AbstractTheSimpletonPower  {
   {
     if (target.hasPower(WeakPower.POWER_ID) && (target != this.owner) && (info.type == DamageInfo.DamageType.NORMAL)) {
       flashWithoutSound();
-      AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(
-          target, this.owner, new BurningPower(target, this.owner, this.amount), this.amount, true));
+      AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(target, this.source, this.amount));
     }
   }
 

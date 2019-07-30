@@ -17,7 +17,7 @@ public class OnionBelt extends CustomRelic {
   public static final String IMG_PATH_LARGE = "relics/onionbelt_large.png";
   public static final String OUTLINE_IMG_PATH = "relics/onionbelt_outline.png";
 
-  private static final RelicTier TIER = RelicTier.UNCOMMON;
+  private static final RelicTier TIER = RelicTier.SHOP;
   private static final LandingSound SOUND = LandingSound.HEAVY;
 
   private static final int CROP_AMOUNT = 2;

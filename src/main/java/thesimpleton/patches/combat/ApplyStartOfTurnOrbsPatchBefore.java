@@ -11,7 +11,7 @@ import thesimpleton.TheSimpletonMod;
 
 public class ApplyStartOfTurnOrbsPatchBefore {
   public static void Prefix (AbstractPlayer __instance) {
-    if (!TheSimpletonMod.isPlayingAsSimpleton()) {
+    if (TheSimpletonMod.isPlayingAsSimpleton()) {
       TheSimpletonMod.onBeforeStartOfTurnOrbs();
     }
   }

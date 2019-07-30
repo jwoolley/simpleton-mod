@@ -153,6 +153,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             .map(c -> c.name).collect(Collectors.joining(", ")));
     }
 
+
     public static void onBeforeStartOfTurnOrbs() {
         logger.info("TheSimpletonMod::onBeforeStartOfTurnOrbs : resetting hasHarvestedThisTurn");
 

@@ -19,6 +19,7 @@ public class CoffeeCropOrb extends AbstractCropOrb {
 
   public static final String IMG_PATH = "plantsunflower";
   public static final String HALO_IMG_PATH = "orbsunflower_halo";
+  public static final String TARGET_HALO_IMG_PATH = "orbsunflower_target_halo";
 
   private static final OrbStrings orbStrings;
   public static final String NAME;
@@ -30,7 +31,7 @@ public class CoffeeCropOrb extends AbstractCropOrb {
 
   public CoffeeCropOrb(int amount) {
     super(CROP_ENUM, ORB_ID, NAME, amount, Crop.COFFEE.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
-        IMG_PATH, HALO_IMG_PATH);
+        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH);
   }
 
   @Override

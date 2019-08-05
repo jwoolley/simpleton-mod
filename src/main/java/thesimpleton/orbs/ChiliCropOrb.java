@@ -25,6 +25,7 @@ public class ChiliCropOrb extends AbstractCropOrb {
   public static final String ORB_ID = "TheSimpletonMod:ChiliCropOrb";
   public static final String IMG_PATH = "plantchili";
   public static final String HALO_IMG_PATH = "orbchili_halo";
+  public static final String TARGET_HALO_IMG_PATH = "orbchili_target_halo";
   public static final List<String> KEYWORD_LIST = Arrays.asList("TheSimpletonMod:BurningKeyword");
 
 
@@ -38,7 +39,7 @@ public class ChiliCropOrb extends AbstractCropOrb {
 
   public ChiliCropOrb(int amount) {
     super(CROP_ENUM, ORB_ID, NAME, amount, Crop.CHILIS.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
-        IMG_PATH, HALO_IMG_PATH);
+        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH);
   }
 
   @Override

@@ -17,6 +17,7 @@ public class SpinachCropOrb extends AbstractCropOrb {
   public static final String ORB_ID = "TheSimpletonMod:SpinachCropOrb";
   public static final String IMG_PATH = "plantspinach";
   public static final String HALO_IMG_PATH = "orbspinach_halo";
+  public static final String TARGET_HALO_IMG_PATH = "orbspinach_target_halo";
   public static final List<Keyword> BASEGAME_KEYWORDS = Arrays.asList(GameDictionary.STRENGTH);
 
   private static final OrbStrings orbStrings;
@@ -29,7 +30,7 @@ public class SpinachCropOrb extends AbstractCropOrb {
 
   public SpinachCropOrb(int amount) {
     super(CROP_ENUM, ORB_ID, NAME, amount, Crop.SPINACH.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
-        IMG_PATH, HALO_IMG_PATH);
+        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH);
   }
 
   @Override

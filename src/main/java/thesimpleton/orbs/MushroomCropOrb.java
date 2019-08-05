@@ -12,6 +12,7 @@ public class MushroomCropOrb extends AbstractCropOrb {
   public static final String ORB_ID = "TheSimpletonMod:MushroomCropOrb";
   public static final String IMG_PATH = "plantmushroom";
   public static final String HALO_IMG_PATH = "orbmushroom_halo";
+  public static final String TARGET_HALO_IMG_PATH = "orbmushroom_target_halo";
   private static final OrbStrings orbStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
@@ -22,7 +23,7 @@ public class MushroomCropOrb extends AbstractCropOrb {
 
   public MushroomCropOrb(int amount) {
     super(CROP_ENUM, ORB_ID, NAME, amount, Crop.MUSHROOMS.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
-        IMG_PATH, HALO_IMG_PATH);
+        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH);
   }
 
   @Override

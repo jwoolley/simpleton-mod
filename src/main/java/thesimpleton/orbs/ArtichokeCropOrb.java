@@ -17,6 +17,8 @@ public class ArtichokeCropOrb extends AbstractCropOrb {
   public static final String ORB_ID = "TheSimpletonMod:ArtichokeCropOrb";
   public static final String IMG_PATH = "plantartichoke";
   public static final String HALO_IMG_PATH = "orbartichoke_halo";
+  public static final String TARGET_HALO_IMG_PATH = "orbartichoke_target_halo";
+
   public static final List<Keyword> BASEGAME_KEYWORDS = Arrays.asList(GameDictionary.THORNS);
 
   private static final OrbStrings orbStrings;
@@ -29,7 +31,7 @@ public class ArtichokeCropOrb extends AbstractCropOrb {
 
   public ArtichokeCropOrb(int amount) {
     super(CROP_ENUM, ORB_ID, NAME, amount, Crop.ARTICHOKES.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
-        IMG_PATH, HALO_IMG_PATH);
+        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH);
   }
 
   @Override

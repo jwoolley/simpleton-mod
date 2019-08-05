@@ -42,15 +42,22 @@ public abstract class AbstractCropOrb extends CustomOrb {
   private final Crop crop;
 
   private Texture haloImage;
+  private Texture targetHaloImage;
   private String haloImageFilename;
+  private String targetHaloImageFilename;
 
   // TODO: separate CropOrbType (which has e.g. harvest info and description data) from CropOrb (which has stack count)
 
   public AbstractCropOrb(Crop crop, String ID, String NAME, int amount, int maturityThreshold, String description, String imgPath, String haloImgFilename) {
+    this(crop, ID, NAME, amount, maturityThreshold, description, imgPath, haloImgFilename, "orbpotato_target_halo");
+  }
+
+  public AbstractCropOrb(Crop crop, String ID, String NAME, int amount, int maturityThreshold, String description, String imgPath, String haloImgFilename, String targetHaloImgFilename) {
     super(ID, NAME, amount, maturityThreshold, description, "", TheSimpletonMod.getResourcePath(getUiPath(imgPath)));
     this.crop = crop;
     this.basePassiveAmount = this.passiveAmount = amount;
     this.haloImageFilename = haloImgFilename;
+    this.targetHaloImageFilename = targetHaloImgFilename;
   }
 
   private Texture getHaloImage() {
@@ -59,6 +66,14 @@ public abstract class AbstractCropOrb extends CustomOrb {
     }
     return haloImage;
   }
+
+  private Texture getTargetHaloImage() {
+    if (this.targetHaloImage == null) {
+      targetHaloImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getResourcePath(getUiPath(targetHaloImageFilename)));
+    }
+    return targetHaloImage;
+  }
+
 
   abstract public AbstractCropOrb makeCopy(int amount);
 
@@ -252,7 +267,9 @@ public abstract class AbstractCropOrb extends CustomOrb {
     Color highlightFilterColor = Color.GOLD;
     if (CropOrbHelper.hasHighlightedOrb()) {
       if (CropOrbHelper.getHighlightedOrb().name == this.name) {
-        this.c = highlightFilterColor;
+//        this.c = highlightFilterColor;
+        sb.draw(this.getTargetHaloImage(), this.cX - 48.0F + this.bobEffect.y / 4.0F, this.cY - 48.0F + this.bobEffect.y / 4.0F, 48.0F, 48.0F, 96.0F, 96.0F, this.scale, this.scale, 0.0F, 0, 0, 96, 96, false, false);
+
       }
     } else {
       this.c = filterColor;

@@ -14,6 +14,7 @@ public class StrawberryCropOrb extends AbstractCropOrb {
   public static final String ORB_ID = "TheSimpletonMod:StrawberryCropOrb";
   public static final String IMG_PATH = "plantstrawberry";
   public static final String HALO_IMG_PATH = "orbstrawberry_halo";
+  public static final String TARGET_HALO_IMG_PATH = "orbstrawberry_target_halo";
   public static final List<String> KEYWORD_LIST = Arrays.asList("TheSimpletonMod:GnawberryKeyword");
 
   private static final OrbStrings orbStrings;
@@ -26,7 +27,7 @@ public class StrawberryCropOrb extends AbstractCropOrb {
 
   public StrawberryCropOrb(int amount) {
     super(CROP_ENUM, ORB_ID, NAME, amount, Crop.STRAWBERRIES.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
-        IMG_PATH, HALO_IMG_PATH);
+        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH);
   }
 
   @Override

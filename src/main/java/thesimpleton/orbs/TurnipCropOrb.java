@@ -12,6 +12,8 @@ public class TurnipCropOrb extends AbstractCropOrb {
   public static final String ORB_ID = "TheSimpletonMod:TurnipCropOrb";
   public static final String IMG_PATH = "plantturnip";
   public static final String HALO_IMG_PATH = "orbturnip_halo";
+  public static final String TARGET_HALO_IMG_PATH = "orbturnip_target_halo";
+
   private static final OrbStrings orbStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
@@ -22,7 +24,7 @@ public class TurnipCropOrb extends AbstractCropOrb {
 
   public TurnipCropOrb(int amount) {
     super(CROP_ENUM, ORB_ID, NAME, amount, Crop.TURNIPS.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
-        IMG_PATH, HALO_IMG_PATH);
+        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH);
   }
 
   @Override

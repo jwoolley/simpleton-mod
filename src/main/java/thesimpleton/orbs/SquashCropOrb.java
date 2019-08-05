@@ -17,6 +17,7 @@ public class SquashCropOrb extends AbstractCropOrb {
   public static final String ORB_ID = "TheSimpletonMod:SquashCropOrb";
   public static final String IMG_PATH = "plantsquash";
   public static final String HALO_IMG_PATH = "orbsquash_halo";
+  public static final String TARGET_HALO_IMG_PATH = "orbsquash_target_halo";
   public static final List<Keyword> BASEGAME_KEYWORDS = Arrays.asList(GameDictionary.BLOCK);
 
   private static final OrbStrings orbStrings;
@@ -29,7 +30,7 @@ public class SquashCropOrb extends AbstractCropOrb {
 
   public SquashCropOrb(int amount) {
     super(CROP_ENUM, ORB_ID, NAME, amount, Crop.SQUASH.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
-        IMG_PATH, HALO_IMG_PATH);
+        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH);
   }
 
   @Override

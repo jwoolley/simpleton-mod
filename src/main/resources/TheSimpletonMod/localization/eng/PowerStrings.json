@@ -42,6 +42,20 @@
     ]
   },
 
+  "TheSimpletonMod:CrackOfDawnPower": {
+    "NAME": "Crack of Dawn",
+    "DESCRIPTIONS": [
+      "In #b",
+      " turn",
+      " turns",
+      ", deal #b",
+      " damage to ALL enemies, #yPlant #b",
+      " #yCorn, and gain",
+      " [E]",
+      " ."
+    ]
+  },
+
   "TheSimpletonMod:DeenergizedPower": {
     "NAME": "De-energized",
     "DESCRIPTIONS": [

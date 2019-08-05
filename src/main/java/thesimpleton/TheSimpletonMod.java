@@ -503,6 +503,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         // Power (6)
         cards.add(new BirdFeeder());
         cards.add(new Biorefinement());
+        cards.add(new CrackOfDawn());
         cards.add(new Fecundity());
         cards.add(new LandGrant());
         cards.add(new Photosynthesis());

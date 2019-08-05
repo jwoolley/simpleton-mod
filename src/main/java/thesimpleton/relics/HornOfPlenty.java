@@ -16,7 +16,7 @@ public class HornOfPlenty extends CustomRelic {
   public static final String IMG_PATH_LARGE = "relics/hornofplenty_large.png";
   public static final String OUTLINE_IMG_PATH = "relics/hornofplenty_outline.png";
 
-  private static final RelicTier TIER = RelicTier.UNCOMMON;
+  private static final RelicTier TIER = RelicTier.RARE;
   private static final LandingSound SOUND = LandingSound.MAGICAL;
 
   private static final int ABUNDANCE_AMOUNT = 1;

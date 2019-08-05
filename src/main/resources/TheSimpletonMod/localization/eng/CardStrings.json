@@ -76,6 +76,17 @@
     "DESCRIPTION": "Apply !M! Burning. NL Exhaust if the enemy didn't already have Burning."
   },
 
+  "TheSimpletonMod:CrackOfDawn": {
+    "NAME": "Crack of Dawn",
+    "DESCRIPTION": "In !M! turns, deal !D! damage to ALL enemies, Plant ",
+    "EXTENDED_DESCRIPTION" : [
+      " Corn, and gain",
+      " [E]",
+      " ."
+    ]
+  },
+
+
   "TheSimpletonMod:CropDiversity": {
     "NAME": "Crop Diversity",
     "DESCRIPTION": "Add 1 of !M! random Crop Power cards to your hand. It costs 0 this turn. NL Exhaust."

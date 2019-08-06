@@ -17,7 +17,8 @@ public class GourdCharm extends CustomRelic {
   public static final String IMG_PATH_LARGE = "relics/gourdcharm_large.png";
   public static final String OUTLINE_IMG_PATH = "relics/gourdcharm_outline.png";
 
-  private static final RelicTier TIER = RelicTier.SHOP;
+  //  private static final RelicTier TIER = RelicTier.SHOP;
+  private static final RelicTier TIER = RelicTier.BOSS;
   private static final LandingSound SOUND = LandingSound.HEAVY;
 
   private static final int CROP_AMOUNT = 2;

@@ -15,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.ApplyBurningAction;
+import thesimpleton.actions.CrackOfDawnAction;
 import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.crops.Crop;
 import thesimpleton.orbs.CornCropOrb;
@@ -69,7 +70,8 @@ public class CrackOfDawnPower extends AbstractTheSimpletonPower  {
   }
 
   @Override
-  public void atStartOfTurnPostDraw() {
+//  public void atStartOfTurnPostDraw() {
+    public void atStartOfTurn() {
     if (this.amount <= 1) {
       AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
       logger.debug("CrackOfDawnPower::atStartOfTurnPostDraw resolving power effect");
@@ -84,15 +86,9 @@ public class CrackOfDawnPower extends AbstractTheSimpletonPower  {
 
     logger.debug("CrackOfDawnPower::resolvePowerEffect called");
 
-    DamageInfo info =  new DamageInfo(this.owner, this.damageAmount, DamageInfo.DamageType.NORMAL);
-
-    AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(this.owner, DamageInfo.createDamageMatrix(info.base),
-        DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE, true));
-
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new CornCropOrb(this.plantAmount), true));
-
-    AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(this.energyAmount));
-
+    AbstractDungeon.actionManager.addToBottom(
+        new CrackOfDawnAction(this.owner, new CornCropOrb(this.plantAmount), this.damageAmount, this.plantAmount,
+            this.energyAmount));
   }
 
   @Override

@@ -29,7 +29,7 @@ import thesimpleton.orbs.CornCropOrb;
 
 public class CrackOfDawnAction extends AbstractGameAction {
   private static final Color PALE_YELLOW = new Color(1.0F, 1.0F, .75F, 1.0F);
-  private static float ACTION_DURATION = Settings.ACTION_DUR_MED;
+  private static float ACTION_DURATION = Settings.ACTION_DUR_FAST;
   private final AbstractCreature owner;
   private final AbstractCropOrb cropOrb;
   private final int damageAmount;

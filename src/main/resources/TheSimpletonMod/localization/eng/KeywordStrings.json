@@ -154,7 +154,7 @@
     "DESCRIPTION": "#ySlot for planting Crops. Your Plots determine how many different Crops you can have at one time."
   },
 
-  "TheSimpletonMod::SlowKeyword": {
+  "TheSimpletonMod:SlowKeyword": {
     "NAME": "Slow",
     "NAMES": [
       "slow"

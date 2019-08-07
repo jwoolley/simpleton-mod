@@ -30,7 +30,7 @@ public class FlamingSpud extends CustomCard {
   private static final int COST = 0;
   private static final int DAMAGE = 5;
   private static final int UPGRADE_DAMAGE_AMOUNT = 3;
-  private static final int BURNING_AMOUNT = 5;
+  private static final int BURNING_AMOUNT = 3;
   private static final int UPGRADE_BURNING_AMOUNT = 3;
 
   public FlamingSpud() {

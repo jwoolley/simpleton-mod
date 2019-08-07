@@ -1161,7 +1161,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         keywords = gson.fromJson(keywordStrings, typeToken);
         keywords.forEach((k, v) -> {
-            BaseMod.addKeyword(MOD_NAME, v.PROPER_NAME, v.NAMES, v.DESCRIPTION);
+            BaseMod.addKeyword(v.PROPER_NAME, v.NAMES, v.DESCRIPTION);
         });
     }
 

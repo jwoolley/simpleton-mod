@@ -3,6 +3,6 @@
   "title": "The Hayseed",
   "description": "",
   "visibility": "public",
-  "changeNote": "Hayseed is live! More content to come...\n\nFixed over-counting of Abundance stacks in some scenarios.",
+  "changeNote": "",
   "tags": ["Character", "English"]
 }

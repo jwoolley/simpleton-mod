@@ -11,5 +11,19 @@
     "DESCRIPTIONS": [
       "Gain additional #yCrop stacks from cards."
     ]
+  },
+
+  "TheSimpletonMod:InfernoPotion": {
+    "NAME": "Inferno Potion",
+    "DESCRIPTIONS": [
+      "Apply #b",
+      " #yBurning to ALL enemies."
+    ]
+  },
+  "TheSimpletonMod:InfernoPotionKeyword": {
+    "NAME": "Burning",
+    "DESCRIPTIONS": [
+      "Burning creatures take damage at the end of their turn, then lose Burning."
+    ]
   }
 }

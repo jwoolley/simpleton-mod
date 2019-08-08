@@ -51,6 +51,7 @@ import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.events.*;
 import thesimpleton.potions.AbundancePotion;
+import thesimpleton.potions.InfernoPotion;
 import thesimpleton.relics.*;
 import thesimpleton.savedata.CardPoolCustomSavable;
 import thesimpleton.savedata.SeasonCropsCustomSavable;
@@ -374,6 +375,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addPotion(
             AbundancePotion.class, AbundancePotion.BASE_COLOR, AbundancePotion.HYBRID_COLOR,
                 AbundancePotion.SPOTS_COLOR, AbundancePotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
+
+        BaseMod.addPotion(
+            InfernoPotion.class, InfernoPotion.BASE_COLOR, InfernoPotion.HYBRID_COLOR,
+            InfernoPotion.SPOTS_COLOR, InfernoPotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
 
         HashMap<String, Sfx> reflectedMap = getSoundsMap();
 

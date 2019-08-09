@@ -48,10 +48,6 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
   // TODO: separate CropOrbType (which has e.g. harvest info and description data) from CropOrb (which has stack count)
 
-  public AbstractCropOrb(Crop crop, String ID, String NAME, int amount, int maturityThreshold, String description, String imgPath, String haloImgFilename) {
-    this(crop, ID, NAME, amount, maturityThreshold, description, imgPath, haloImgFilename, "orbpotato_target_halo");
-  }
-
   public AbstractCropOrb(Crop crop, String ID, String NAME, int amount, int maturityThreshold, String description, String imgPath, String haloImgFilename, String targetHaloImgFilename) {
     super(ID, NAME, amount, maturityThreshold, description, "", TheSimpletonMod.getResourcePath(getUiPath(imgPath)));
     this.crop = crop;
@@ -234,7 +230,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
     getCrop().atStartOfTurn();
   }
 
-  private static String getUiPath(String id) {
+  protected static String getUiPath(String id) {
     return "orbs/" + id + ".png";
   }
 

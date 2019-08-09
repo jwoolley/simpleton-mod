@@ -31,6 +31,7 @@ import thesimpleton.cards.skill.Rototilling;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.orbs.AbstractCropOrb;
+import thesimpleton.orbs.SimpletonEmptyOrbSlot;
 import thesimpleton.relics.NightSoil;
 import thesimpleton.relics.SpudOfTheInnocent;
 import thesimpleton.relics.TheHarvester;
@@ -293,7 +294,9 @@ public class TheSimpletonCharacter extends CustomPlayer {
 
                 final int index = this.orbs.indexOf(targetOrb);
 
-                AbstractOrb orbSlot = new EmptyOrbSlot(((AbstractOrb) this.orbs.get(index)).cX, ((AbstractOrb) this.orbs.get(index)).cY);
+                AbstractOrb orbSlot = new SimpletonEmptyOrbSlot((this.orbs.get(index)).cX, (this.orbs.get(index)).cY);
+
+//                AbstractOrb orbSlot = new EmptyOrbSlot(((AbstractOrb) this.orbs.get(index)).cX, ((AbstractOrb) this.orbs.get(index)).cY);
                 for (int i = index + 1; i < this.orbs.size(); i++) {
                     Collections.swap(this.orbs, i, i - 1);
                 }

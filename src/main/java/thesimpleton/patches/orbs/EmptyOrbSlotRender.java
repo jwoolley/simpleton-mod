@@ -1,5 +1,6 @@
 package thesimpleton.patches.orbs;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
@@ -21,13 +22,9 @@ import thesimpleton.orbs.CustomEmptyOrbSlot;
 
 public class EmptyOrbSlotRender {
   public static SpireReturn Prefix (EmptyOrbSlot __instance, SpriteBatch __spriteBatch) {
-
-    TheSimpletonMod.logger.info("EmptyOrbSlotRenderPatch: called");
-    TheSimpletonMod.logger.info("EmptyOrbSlotRenderPatch: orb slot class: " + __instance.getClass().getSimpleName());
-
     if (__instance instanceof CustomEmptyOrbSlot) {
+       __spriteBatch.setColor(Color.WHITE.cpy());
        CustomEmptyOrbSlot orbSlot = (CustomEmptyOrbSlot) __instance;
-        TheSimpletonMod.logger.info("EmptyOrbSlotRenderPatch: using custom sprites for " + __instance.getClass().getSimpleName());
         BobEffect bobEffect = new BobEffect(3.0F * Settings.scale, 3.0F);
            TheSimpletonMod.seasonScreen.render(__spriteBatch);
 

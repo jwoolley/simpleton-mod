@@ -269,7 +269,6 @@ public abstract class AbstractCropOrb extends CustomOrb {
       if (CropOrbHelper.getHighlightedOrb().name == this.name) {
 //        this.c = highlightFilterColor;
         sb.draw(this.getTargetHaloImage(), this.cX - 48.0F + this.bobEffect.y / 4.0F, this.cY - 48.0F + this.bobEffect.y / 4.0F, 48.0F, 48.0F, 96.0F, 96.0F, this.scale, this.scale, 0.0F, 0, 0, 96, 96, false, false);
-
       }
     } else {
       this.c = filterColor;

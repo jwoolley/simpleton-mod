@@ -50,6 +50,7 @@ import thesimpleton.crops.Crop;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.events.*;
+import thesimpleton.orbs.utilities.CropOrbHelper;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.potions.KindlingPotion;
 import thesimpleton.relics.*;
@@ -152,6 +153,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         logger.info("TheSimpletonMod::receiveOnBattleStart: curse card pool cards: "
             + AbstractDungeon.curseCardPool.group.stream()
             .map(c -> c.name).collect(Collectors.joining(", ")));
+
+        CropOrbHelper.clearHighlightedOrb();
     }
 
 

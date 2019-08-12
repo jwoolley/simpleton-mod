@@ -409,6 +409,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_MagicChimes1.ogg"));
         reflectedMap.put("ROOSTER_CROW_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_RoosterCrow1.ogg"));
+        reflectedMap.put("WIND_HOWL_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_WindHowl1.ogg"));
     }
 
     public static List<String> getSeasonalEventIds() {

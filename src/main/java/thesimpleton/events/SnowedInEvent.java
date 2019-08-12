@@ -91,7 +91,7 @@ public class SnowedInEvent extends AbstractImageEvent
     this.state = SimpletonEventHelper.EventState.WAITING;
 
     // TODO: replace with howling wind sound
-    CardCrawlGame.sound.play("BIRD_TWEET_1");
+    CardCrawlGame.sound.play("WIND_HOWL_1");
   }
 
   @Override

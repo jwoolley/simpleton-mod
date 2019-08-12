@@ -74,7 +74,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
         super(name, TheSimpletonCharEnum.THE_SIMPLETON, orbTextures, getResourcePath("char/orb/vfx.png"), null, (String) null);
 
         this.initializeClass(CHAR_IMAGE, SHOULDER_2, SHOULDER_1, CORPSE, getLoadout(),
-                4.0F, -6.0F, 250.0F, 380.0F,
+                0.0F, -6.0F, 250.0F, 380.0F,
                 new EnergyManager(ENERGY_PER_TURN));
 
         initializeOrbSlotLocations();

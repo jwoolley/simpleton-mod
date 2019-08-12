@@ -74,7 +74,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
         super(name, TheSimpletonCharEnum.THE_SIMPLETON, orbTextures, getResourcePath("char/orb/vfx.png"), null, (String) null);
 
         this.initializeClass(CHAR_IMAGE, SHOULDER_2, SHOULDER_1, CORPSE, getLoadout(),
-                8.0F, -4.0F, 340.0F, 380.0F,
+                4.0F, -6.0F, 250.0F, 380.0F,
                 new EnergyManager(ENERGY_PER_TURN));
 
         initializeOrbSlotLocations();
@@ -247,10 +247,10 @@ public class TheSimpletonCharacter extends CustomPlayer {
     private static float xSpaceBetweenSlots = 90 * Settings.scale;
     private static float xSpaceBottomAlternatingOffset = 0 * Settings.scale;
 
-    private static float yStartOffset = AbstractDungeon.floorY + (100 * Settings.scale);
+    private static float yStartOffset = AbstractDungeon.floorY + (60 * Settings.scale);
 
-    private static float ySpaceBottomAlternatingOffset = -100 * Settings.scale;
-    private static float ySpaceAlternatingOffset = -50 * Settings.scale;
+    private static float ySpaceBottomAlternatingOffset = -60 * Settings.scale;
+    private static float ySpaceAlternatingOffset = -40 * Settings.scale;
 
     public void initializeOrbSlotLocations() {
         orbPositionsX[0] = xStartOffset + (xSpaceBetweenSlots * 1);

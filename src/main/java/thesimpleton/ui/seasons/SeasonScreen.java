@@ -41,12 +41,13 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   private UIStrings uiStrings;
 
-  //  private static final float CARD_OFFSET_X = -16.0F;
-  private final static float SEASON_DESCRIPTION_PREAMBLE_Y = 1024;
-  private final static float SEASON_DESCRIPTION_NAME_Y = 972;
+  private static final float CARD_GROUP_OFFSET_X = 18.F;
+  private static final float CARD_GROUP_OFFSET_Y = 0.0F;
   private static final float CARD_OFFSET_X = -30.0F;
-  private static final float CROP_TEXT_OFFSET_X = -4.0F;
+  private static final float CROP_TEXT_OFFSET_X = 16.0F;
 
+  private final static float SEASON_DESCRIPTION_PREAMBLE_Y = 952;
+  private final static float SEASON_DESCRIPTION_NAME_Y = 895;
 
   private ReadyButton readyButton;
 
@@ -63,8 +64,8 @@ public class SeasonScreen implements ReadyButtonPanel  {
   private final boolean SHOULD_SHOW_CANCEL_BUTTON = false;
   private boolean showCancelButtonOnClose = false;
   private String cancelButtonText = "";
-  private static final float CROPS_IN_SEASON_TEXT_Y = 787.0F;
-  private static final float CROP_CARDS_Y = 575.0F;
+  private static final float CROPS_IN_SEASON_TEXT_Y = 744.0F;
+  private static final float CROP_CARDS_Y = 485.0F;
 
   private static final TintEffect textEffect = new TintEffect();
 
@@ -151,7 +152,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
     if (seasonalCropCards != null && !seasonalCropCards.isEmpty()) {
       inSeasonCropCards.addAll(TheSimpletonMod.getSeasonalCropCards());
-      positionCards(Settings.WIDTH / 2.0f, CROP_CARDS_Y * SettingsHelper.getScaleY());
+      positionCards((Settings.WIDTH + CARD_GROUP_OFFSET_X)/ 2.0f, (CROP_CARDS_Y + CARD_GROUP_OFFSET_Y) * SettingsHelper.getScaleY());
       generateCardHitboxes(inSeasonCropCards.stream().map(c -> (AbstractCard)c).collect(Collectors.toList()));
 
       show = true;
@@ -229,7 +230,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
   private ReadyButton makeReadyButton() {
     // TODO: scale this appropriately
     final float READY_BUTTON_X = 806 * SettingsHelper.getScaleX();
-    final float READY_BUTTON_Y = 216 * SettingsHelper.getScaleY();
+    final float READY_BUTTON_Y = 146 * SettingsHelper.getScaleY();
 
     final String READY_BUTTON_IMG = getUiText()[2];
     return new ReadyButton(READY_BUTTON_X, READY_BUTTON_Y, SettingsHelper.getScaleY(), READY_BUTTON_IMG, this);
@@ -258,19 +259,23 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
     getReadyButton().render(sb);
 
-
-    final TintEffect seasonNameTextEffect = new TintEffect();
-    seasonNameTextEffect.changeColor(new Color(1.0F, 0.87F, 0.0F, 1.0F));
+    final TintEffect seasonLeadInTextEffect = new TintEffect();
+    seasonLeadInTextEffect.changeColor(new Color(1.0F, 0.87F, 0.0F, 1.0F));
 
     FontHelper.renderFontCentered(sb, FontHelper.losePowerFont, uiText[0], (Settings.WIDTH / 2.0F),
-        SEASON_DESCRIPTION_PREAMBLE_Y * SettingsHelper.getScaleY(), seasonNameTextEffect.color, SettingsHelper.getScaleY());
+        SEASON_DESCRIPTION_PREAMBLE_Y * SettingsHelper.getScaleY(), seasonLeadInTextEffect.color, SettingsHelper.getScaleY());
+
+    final TintEffect seasonNameTextEffect = new TintEffect();
+
+    seasonNameTextEffect.changeColor(new Color(0.5F, 0.3F, 0.0F, 1.0F));
+
 
     FontHelper.renderFontCentered(sb, FontHelper.bannerNameFont, TheSimpletonMod.getSeason().name, (Settings.WIDTH / 2.0F),
         SEASON_DESCRIPTION_NAME_Y * SettingsHelper.getScaleY(), seasonNameTextEffect.color, SettingsHelper.getScaleY());
-    FontHelper.renderFontCentered(sb, FontHelper.bannerNameFont,  TheSimpletonMod.getSeason().name, (Settings.WIDTH / 2.0F),
+    FontHelper.renderFontCentered(sb, FontHelper.bannerNameFont, TheSimpletonMod.getSeason().name, (Settings.WIDTH / 2.0F),
         SEASON_DESCRIPTION_NAME_Y * SettingsHelper.getScaleY(), seasonNameTextEffect.color, SettingsHelper.getScaleY());
-
-//    FontHelper.SCP_cardEnergyFont.setColor();
+    FontHelper.renderFontCentered(sb, FontHelper.bannerNameFont, TheSimpletonMod.getSeason().name, (Settings.WIDTH / 2.0F),
+        SEASON_DESCRIPTION_NAME_Y * SettingsHelper.getScaleY(), seasonNameTextEffect.color, SettingsHelper.getScaleY());
 
     textEffect.changeColor(new Color(0.9F, 0.9F, 0.9F, 1.0F));
 
@@ -301,9 +306,9 @@ public class SeasonScreen implements ReadyButtonPanel  {
   private void positionCards(float x, float y) {
     // TODO: animation — currentx for all starts at x; approaches target x on each tick (fans out)
 
-    inSeasonCropCards.get(0).target_x = Settings.WIDTH / 2.0f - AbstractCard.IMG_WIDTH - CARD_OFFSET_X;
-    inSeasonCropCards.get(1).target_x = Settings.WIDTH / 2.0f;
-    inSeasonCropCards.get(2).target_x = Settings.WIDTH / 2.0f + AbstractCard.IMG_WIDTH + CARD_OFFSET_X;
+    inSeasonCropCards.get(0).target_x = (Settings.WIDTH  + CARD_GROUP_OFFSET_X) / 2.0f - AbstractCard.IMG_WIDTH - CARD_OFFSET_X;
+    inSeasonCropCards.get(1).target_x = (Settings.WIDTH  + CARD_GROUP_OFFSET_X) / 2.0f;
+    inSeasonCropCards.get(2).target_x = (Settings.WIDTH  + CARD_GROUP_OFFSET_X) / 2.0f + AbstractCard.IMG_WIDTH + CARD_OFFSET_X;
     inSeasonCropCards.get(0).target_y = y;
     inSeasonCropCards.get(1).target_y = y;
     inSeasonCropCards.get(2).target_y = y;

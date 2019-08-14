@@ -25,9 +25,9 @@ public class Sunchoke extends CustomCard {
 
   private static final int COST = 1;
   private static final int DAMAGE = 7;
-  private static final int DAMAGE_UPGRADE = 2;
+  private static final int DAMAGE_UPGRADE = 4;
   private static final int BURNING_AMOUNT = 7;
-  private static final int BURNING_AMOUNT_UPGRADE = 2;
+  private static final int BURNING_AMOUNT_UPGRADE = 4;
 
   public Sunchoke() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);

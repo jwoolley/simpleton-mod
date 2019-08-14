@@ -8,7 +8,7 @@ import thesimpleton.actions.ApplyBurningAction;
 
 public class ChilisCrop extends  AbstractCrop {
   public static final Crop CROP_ENUM = Crop.CHILIS;
-  public static int DAMAGE_PER_STACK = 3;
+  public static int DAMAGE_PER_STACK = 4;
 
   private int damagePerStack;
 

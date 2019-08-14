@@ -185,7 +185,7 @@
 
   "TheSimpletonMod:GiantTurnip": {
     "NAME": "Turnip",
-    "DESCRIPTION": "Deal !D! damage. NL Add a Turnips to your hand. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage to ALL Enemies. NL Add a Turnips to your discard pile. NL Exhaust."
   },
 
   "TheSimpletonMod:GoToMarket": {

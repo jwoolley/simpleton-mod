@@ -207,6 +207,6 @@
     "NAMES": [
       "turnip", "turnips"
     ],
-    "DESCRIPTION": "#yCrop. Yields an attack card when harvested that scales with number of stacks and adds a Turnips card to your hand."
+    "DESCRIPTION": "#yCrop. Yields an attack card when harvested which deals scaling damage to all enemies and adds a Turnips card to your discard pile."
   }
 }

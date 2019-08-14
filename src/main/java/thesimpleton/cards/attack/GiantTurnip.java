@@ -2,8 +2,14 @@ package thesimpleton.cards.attack;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.actions.defect.ChannelAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -11,7 +17,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.Plasma;
+import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.Turnips;
 
@@ -26,7 +35,7 @@ public class GiantTurnip extends CustomCard {
 
   private static final CardType TYPE = CardType.ATTACK;
   private static final CardRarity RARITY = CardRarity.COMMON;
-  private static final CardTarget TARGET = CardTarget.ENEMY;
+  private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
 
   private static final int COST = 0;
   private static final int DAMAGE = 3;
@@ -46,10 +55,19 @@ public class GiantTurnip extends CustomCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    final int totalDamage = this.damage;
-    AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, totalDamage, this.damageTypeForTurn),
-          AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Turnips(), 1));
+
+    for (AbstractMonster monster : SimpletonUtil.getMonsters()) {
+      AbstractDungeon.actionManager.addToBottom(new VFXAction(new WeightyImpactEffect(monster.hb.cX, monster.hb.cY)));
+    }
+
+    AbstractDungeon.actionManager.addToBottom(new WaitAction(0.5F));
+
+    AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn,
+        AbstractGameAction.AttackEffect.NONE));
+
+    AbstractDungeon.actionManager.addToBottom(new SFXAction("BLUNT_FAST"));
+
+    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new Turnips(), 1));
   }
 
   @Override

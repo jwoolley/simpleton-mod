@@ -39,6 +39,7 @@ import thesimpleton.utilities.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.zip.Adler32;
 
 import static thesimpleton.TheSimpletonMod.getResourcePath;
 
@@ -54,7 +55,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
     private static final CharacterStrings charStrings;
     public static final String NAME;
     public static final String DESCRIPTION;
-    private CropUtil cropUtil;
+    private static CropUtil cropUtil;
 
     public static final String[] orbTextures = {
             getResourcePath("char/orb/layer1.png"),
@@ -208,7 +209,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
 //    }
 
 
-    public CropUtil getCropUtil() {
+    public static CropUtil getCropUtil() {
         if (cropUtil == null) {
             cropUtil = new CropUtil();
         }
@@ -276,37 +277,72 @@ public class TheSimpletonCharacter extends CustomPlayer {
         orbPositionsY[9] = yStartOffset + ySpaceBottomAlternatingOffset;
     }
 
-    public void removeOrb(AbstractOrb orb) {
-        if ((!this.orbs.isEmpty()) && this.orbs.stream().anyMatch(o -> o.ID == orb.ID)) {
+    public static void removeOrb(AbstractOrb orb) {
+        AbstractPlayer player = AbstractDungeon.player;
+        if ((!player.orbs.isEmpty()) && player.orbs.stream().anyMatch(o -> o.ID == orb.ID)) {
 
-            for (int i = 0; i < this.orbs.size(); i++) {
-                AbstractOrb o = this.orbs.get(i);
-                TheSimpletonMod.logger.info("TheSimpletonCharacter.removeOrb :: orbs[" + i + "]: " + o.name + "; amount: " + o.passiveAmount);
+            for (int i = 0; i < player.orbs.size(); i++) {
+                AbstractOrb o = player.orbs.get(i);
+//                TheSimpletonMod.logger.info("TheSimpletonCharacter.removeOrb :: orbs[" + i + "]: " + o.name + "; amount: " + o.passiveAmount);
             }
 
-            Optional<AbstractOrb> orbOptional  = this.orbs.stream().filter(o -> {
-                TheSimpletonMod.logger.info("TheSimpletonCharacter.removeOrb :: finding : " + orb.name + ". next orb:" + o.name);
+            Optional<AbstractOrb> orbOptional  = player.orbs.stream().filter(o -> {
+//                TheSimpletonMod.logger.info("TheSimpletonCharacter.removeOrb :: finding : " + orb.name + ". next orb:" + o.name);
                 return o instanceof AbstractCropOrb && o.ID == orb.ID;
             }).findFirst();
 
             if (orbOptional.isPresent()) {
                 final AbstractCropOrb targetOrb = (AbstractCropOrb) orbOptional.get();
 
-                final int index = this.orbs.indexOf(targetOrb);
+                final int index = player.orbs.indexOf(targetOrb);
 
-                AbstractOrb orbSlot = new SimpletonEmptyOrbSlot((this.orbs.get(index)).cX, (this.orbs.get(index)).cY);
+                AbstractOrb orbSlot = TheSimpletonMod.isPlayingAsSimpleton() ?
+                    new SimpletonEmptyOrbSlot((player.orbs.get(index)).cX, (player.orbs.get(index)).cY) :
+                    new EmptyOrbSlot((player.orbs.get(index)).cX, (player.orbs.get(index)).cY);
 
 //                AbstractOrb orbSlot = new EmptyOrbSlot(((AbstractOrb) this.orbs.get(index)).cX, ((AbstractOrb) this.orbs.get(index)).cY);
-                for (int i = index + 1; i < this.orbs.size(); i++) {
-                    Collections.swap(this.orbs, i, i - 1);
+                for (int i = index + 1; i < player.orbs.size(); i++) {
+                    Collections.swap(player.orbs, i, i - 1);
                 }
-                this.orbs.set(this.orbs.size() - 1, orbSlot);
-                for (int i = 0; i < this.orbs.size(); i++) {
-                    ((AbstractOrb) this.orbs.get(i)).setSlot(i, this.maxOrbs);
+                player.orbs.set(player.orbs.size() - 1, orbSlot);
+                for (int i = 0; i < player.orbs.size(); i++) {
+                    ((AbstractOrb) player.orbs.get(i)).setSlot(i, player.maxOrbs);
                 }
             }
         }
     }
+
+//    public void removeOrb(AbstractOrb orb) {
+//        if ((!this.orbs.isEmpty()) && this.orbs.stream().anyMatch(o -> o.ID == orb.ID)) {
+//
+//            for (int i = 0; i < this.orbs.size(); i++) {
+//                AbstractOrb o = this.orbs.get(i);
+//                TheSimpletonMod.logger.info("TheSimpletonCharacter.removeOrb :: orbs[" + i + "]: " + o.name + "; amount: " + o.passiveAmount);
+//            }
+//
+//            Optional<AbstractOrb> orbOptional  = this.orbs.stream().filter(o -> {
+//                TheSimpletonMod.logger.info("TheSimpletonCharacter.removeOrb :: finding : " + orb.name + ". next orb:" + o.name);
+//                return o instanceof AbstractCropOrb && o.ID == orb.ID;
+//            }).findFirst();
+//
+//            if (orbOptional.isPresent()) {
+//                final AbstractCropOrb targetOrb = (AbstractCropOrb) orbOptional.get();
+//
+//                final int index = this.orbs.indexOf(targetOrb);
+//
+//                AbstractOrb orbSlot = new SimpletonEmptyOrbSlot((this.orbs.get(index)).cX, (this.orbs.get(index)).cY);
+//
+////                AbstractOrb orbSlot = new EmptyOrbSlot(((AbstractOrb) this.orbs.get(index)).cX, ((AbstractOrb) this.orbs.get(index)).cY);
+//                for (int i = index + 1; i < this.orbs.size(); i++) {
+//                    Collections.swap(this.orbs, i, i - 1);
+//                }
+//                this.orbs.set(this.orbs.size() - 1, orbSlot);
+//                for (int i = 0; i < this.orbs.size(); i++) {
+//                    ((AbstractOrb) this.orbs.get(i)).setSlot(i, this.maxOrbs);
+//                }
+//            }
+//        }
+//    }
 
     @Override
     public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool) {

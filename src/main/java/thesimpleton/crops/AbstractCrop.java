@@ -227,8 +227,8 @@ abstract public class AbstractCrop {
     return this.powerCard != null;
   }
 
-  protected static TheSimpletonCharacter getPlayer() {
-    return (TheSimpletonCharacter)AbstractDungeon.player;
+  protected static AbstractPlayer getPlayer() {
+    return AbstractDungeon.player;
   }
 
   public static boolean playerHasAnyActiveCropOrbs() {
@@ -236,12 +236,14 @@ abstract public class AbstractCrop {
   }
 
   public static AbstractCropOrb getOldestCropOrb() {
-    logger.info("Oldest crop orb per CropUtil: " + (getPlayer().getCropUtil().playerHasAnyCrops() ?AbstractCropOrb.getOldestCropOrb().name : "None"));
+    logger.info("Oldest crop orb per CropUtil: " +
+        (TheSimpletonCharacter.getCropUtil().playerHasAnyCrops() ? AbstractCropOrb.getOldestCropOrb().name : "None"));
     return AbstractCropOrb.getOldestCropOrb();
   }
 
   public static AbstractCropOrb getNewestCropOrb() {
-    logger.info("Newest crop orb per CropUtil: " + (getPlayer().getCropUtil().playerHasAnyCrops() ? AbstractCropOrb.getNewestCropOrb().name : "None"));
+    logger.info("Newest crop orb per CropUtil: "
+        + (TheSimpletonCharacter.getCropUtil().playerHasAnyCrops() ? AbstractCropOrb.getNewestCropOrb().name : "None"));
     return AbstractCropOrb.getNewestCropOrb();
   }
 

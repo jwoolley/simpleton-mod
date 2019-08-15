@@ -18,7 +18,7 @@ public class ChilisCrop extends  AbstractCrop {
   }
 
   protected int harvestAction(int harvestAmount) {
-    logger.info("ChilisCrop::harvestAction");
+    logger.debug("ChilisCrop::harvestAction");
     final int damageAmount = harvestAmount * this.damagePerStack;
 
     if (harvestAmount > 0) {

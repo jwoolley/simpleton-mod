@@ -31,7 +31,7 @@ public class GerminateAction extends AbstractGameAction {
   public void update() {
     Logger logger = TheSimpletonMod.logger;
 
-    logger.info("GerminateAction.update called");
+    logger.debug("GerminateAction.update called");
     if (this.duration != ACTION_DURATION) {
       AbstractPlayer player = AbstractDungeon.player;
 

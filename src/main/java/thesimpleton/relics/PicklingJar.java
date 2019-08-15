@@ -88,10 +88,10 @@ public class PicklingJar extends CustomRelic implements CustomBottleRelic, Custo
       flash();
       AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
 
-      logger.info("PicklingJar.onShuffle: Copying card: " + card);
+      logger.debug("PicklingJar.onShuffle: Copying card: " + card);
 
       AbstractCard cardCopy = card.makeCopy();
-      logger.info("PicklingJar.onShuffle: Card copy: " + card);
+      logger.debug("PicklingJar.onShuffle: Card copy: " + card);
 
       if (this.isCardUpgraded) {
         cardCopy.upgrade();
@@ -99,7 +99,7 @@ public class PicklingJar extends CustomRelic implements CustomBottleRelic, Custo
       if (cardCopy.cost > 0) {
         cardCopy.setCostForTurn(COST_FOR_TURN);
       }
-      logger.info("PicklingJar.onShuffle: Card copy 2: " + card);
+      logger.debug("PicklingJar.onShuffle: Card copy 2: " + card);
 
       AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(cardCopy));
     }
@@ -114,17 +114,17 @@ public class PicklingJar extends CustomRelic implements CustomBottleRelic, Custo
             cardId.split(SERIALIZABLE_UPGRADED_PREFIX)[1] : cardId;
 
     Logger logger = TheSimpletonMod.logger;
-    logger.info("PicklingJar.onLoad: cardId: " + cardId);
-    logger.info("PicklingJar.onLoad: unpackedCardId: " + unpackedCardId);
+    logger.debug("PicklingJar.onLoad: cardId: " + cardId);
+    logger.debug("PicklingJar.onLoad: unpackedCardId: " + unpackedCardId);
 
 
     for(AbstractCard card : cards) {
       if (card.cardID.equals(unpackedCardId)) {
-        logger.info("PicklingJar.onLoad: matched card: " + card.cardID);
+        logger.debug("PicklingJar.onLoad: matched card: " + card.cardID);
 
         this.card = card;
         if (cardId.length() > unpackedCardId.length()) {
-          logger.info("PicklingJar.onLoad: upgraded card");
+          logger.debug("PicklingJar.onLoad: upgraded card");
           card.upgrade();
           this.isCardUpgraded = true;
         }

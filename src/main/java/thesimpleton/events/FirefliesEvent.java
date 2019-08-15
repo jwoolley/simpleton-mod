@@ -85,7 +85,7 @@ public class FirefliesEvent extends AbstractImageEvent
           case 1:
             final boolean receiveCurse = AbstractDungeon.miscRng.randomBoolean();
             if (receiveCurse) {
-              TheSimpletonMod.logger.info("TheSimpletonMod::FirefliesEvent receiving curse");
+              TheSimpletonMod.logger.debug("TheSimpletonMod::FirefliesEvent receiving curse");
               if (curseIsInjury) {
                 CardCrawlGame.sound.play("VO_GREMLINDOPEY_2C");
               }

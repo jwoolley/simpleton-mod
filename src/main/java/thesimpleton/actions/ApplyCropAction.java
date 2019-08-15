@@ -27,7 +27,7 @@ public class ApplyCropAction extends ApplyPowerAction {
 
     Logger logger = TheSimpletonMod.logger;
 
-    logger.info("ApplyCropAction:calculateCropStacks");
+    logger.debug("ApplyCropAction:calculateCropStacks");
 
     int adjustedAmount = amount;
     if (player.hasPower(AbundancePower.POWER_ID) && isFromCard) {

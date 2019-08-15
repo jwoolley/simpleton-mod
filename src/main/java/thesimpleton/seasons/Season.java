@@ -31,7 +31,7 @@ public enum Season {
     final List<Season> realSeasons =  SEASONS.stream().filter(s -> s != UNKNOWN).collect(Collectors.toList());
     final int randomIndex = RANDOM.nextInt(realSeasons.size());
 
-    TheSimpletonMod.logger.info("Season::randomSeason numSeasons: " + realSeasons.size() + "; randomIndex: " + randomIndex);
+    TheSimpletonMod.logger.debug("Season::randomSeason numSeasons: " + realSeasons.size() + "; randomIndex: " + randomIndex);
 
     return SEASONS.stream()
         .filter(s -> s != UNKNOWN).collect(Collectors.toList()).get(randomIndex); }

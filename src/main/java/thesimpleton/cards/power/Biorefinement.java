@@ -33,7 +33,7 @@ public class Biorefinement extends CustomCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    TheSimpletonMod.logger.info("TheSimpletonMod:Biorefinement: use called");
+    TheSimpletonMod.logger.debug("TheSimpletonMod:Biorefinement: use called");
 
     AbstractDungeon.actionManager.addToBottom(
         new ApplyPowerAction(p, p, new BiorefinementPower(1), 1));

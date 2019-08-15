@@ -12,7 +12,7 @@ public class CornCrop extends AbstractCrop {
 
   public CornCrop() {
     super(CROP_ENUM);
-    logger.info("MAKIN' CORN (instantiating Corn).");
+    logger.debug("MAKIN' CORN (instantiating Corn).");
   }
 
   protected int harvestAction(int harvestAmount) {

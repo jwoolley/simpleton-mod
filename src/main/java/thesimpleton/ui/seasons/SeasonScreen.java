@@ -98,7 +98,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   public SeasonScreen() {
 
-    logger.info("SeasonScreen::constructor Settings.scale: "
+    logger.debug("SeasonScreen::constructor Settings.scale: "
         + Settings.scale + ", Settings.HEIGHT: " + Settings.HEIGHT + ", SCALE_X: " + SettingsHelper.getScaleX() +", SettingsHelper.getScaleY(): " + SettingsHelper.getScaleY());
 
     hb = new Hitbox(width * SettingsHelper.getScaleX(), height * SettingsHelper.getScaleY());
@@ -126,7 +126,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
   }
 
   public void open() {
-    logger.info("SeasonScreen::open called");
+    logger.debug("SeasonScreen::open called");
     AbstractDungeon.isScreenUp = true;
 
     if (AbstractDungeon.overlayMenu != null) {
@@ -141,7 +141,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
               cancelButton.buttonText : "Return";
 
       if (!SHOULD_SHOW_CANCEL_BUTTON && !cancelButton.isHidden) {
-        logger.info("SeasonScreen::open hiding cancel button");
+        logger.debug("SeasonScreen::open hiding cancel button");
 
         cancelButton.hide();
         showCancelButtonOnClose = true;
@@ -169,10 +169,10 @@ public class SeasonScreen implements ReadyButtonPanel  {
   }
 
   public void close() {
-    logger.info("SeasonScreen::close called");
+    logger.debug("SeasonScreen::close called");
 
     if (showCancelButtonOnClose) {
-      logger.info("SeasonScreen::close showing cancel button (showCancelButtonOnClose == true)");
+      logger.debug("SeasonScreen::close showing cancel button (showCancelButtonOnClose == true)");
 
       AbstractDungeon.overlayMenu.cancelButton.show(cancelButtonText);
     }
@@ -182,8 +182,8 @@ public class SeasonScreen implements ReadyButtonPanel  {
   }
 
   public void dismiss() {
-    logger.info("SeasonScreen::dismiss called");
-    logger.info("SeasonScreen::dismiss setting wasDismissed to true");
+    logger.debug("SeasonScreen::dismiss called");
+    logger.debug("SeasonScreen::dismiss setting wasDismissed to true");
 
     this.wasDismissed = true;
     show = false;
@@ -243,7 +243,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
       return;
     }
 //
-//    logger.info("SeasonScreen::render "
+//    logger.debug("SeasonScreen::render "
 //        + " Settings.WIDTH: "  + Settings.WIDTH
 //        + " Settings.HEIGHT: "  + Settings.HEIGHT
 //        + " Settings.isSixteenByTen: " + Settings.isSixteenByTen
@@ -330,10 +330,10 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   @Override
   public void onReadyClicked() {
-    logger.info("SeasonScreen::onReadyClicked called");
+    logger.debug("SeasonScreen::onReadyClicked called");
     getReadyButton().disable();
     getReadyButton().hide();
-    logger.info("SeasonScreen::onReadyClicked setting wasDismissed to true");
+    logger.debug("SeasonScreen::onReadyClicked setting wasDismissed to true");
     wasDismissed = true;
     this.close();
   }

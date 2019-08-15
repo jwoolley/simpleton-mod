@@ -37,7 +37,7 @@ public class CornCropOrb extends AbstractCropOrb {
 
   @Override
   public void playChannelSFX() {
-    TheSimpletonMod.logger.info(" ============================================= ADD playChannelSFX for " + this.name + " =============================================");
+    TheSimpletonMod.logger.debug(" ============================================= ADD playChannelSFX for " + this.name + " =============================================");
   }
 
   private static String getDescription() {

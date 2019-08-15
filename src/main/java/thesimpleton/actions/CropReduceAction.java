@@ -18,7 +18,7 @@ public class CropReduceAction extends AbstractGameAction {
 
   public CropReduceAction(AbstractCropOrb cropOrb, int amount) {
 
-    TheSimpletonMod.logger.info("============> CropReduceAction::constructor =====");
+    TheSimpletonMod.logger.debug("============> CropReduceAction::constructor =====");
     this.duration = ACTION_DURATION;
     this.actionType = ACTION_TYPE;
     this.cropOrb = cropOrb;
@@ -27,24 +27,24 @@ public class CropReduceAction extends AbstractGameAction {
 
   public void update() {
     Logger logger = TheSimpletonMod.logger;
-//    logger.info("============> CropReduceAction::update =====");
+//    logger.debug("============> CropReduceAction::update =====");
     AbstractCropOrb orb = AbstractCropOrb.getCropOrb(this.cropOrb);
     if (orb != null) {
       if (orb.passiveAmount > amount) {
-//        logger.info("============> CropReduceAction::reducing " + this.cropOrb.name + " by " + this.amount + " from " + cropOrb.passiveAmount + " =====");
+//        logger.debug("============> CropReduceAction::reducing " + this.cropOrb.name + " by " + this.amount + " from " + cropOrb.passiveAmount + " =====");
         cropOrb.passiveAmount -= this.amount;
         cropOrb.update();
       } else if (orb.passiveAmount == amount) {
-//        TheSimpletonMod.logger.info("============> CropReduceAction::update queueing CropRemoveAction =====");
+//        TheSimpletonMod.logger.debug("============> CropReduceAction::update queueing CropRemoveAction =====");
 
         AbstractDungeon.actionManager.addToTop(new CropRemoveAction(this.cropOrb));
       } else {
-//        logger.info("CropReduceAction::update : Player has less " + cropOrb.name
+//        logger.debug("CropReduceAction::update : Player has less " + cropOrb.name
 //            + " than requested reduce amount." + " Actual " + orb.getAmount() + " Requested: "  + amount
 //            + " <======================================================");
       }
     } else {
-//      logger.info("CropReduceAction::update : Player doesn't have " + cropOrb.name
+//      logger.debug("CropReduceAction::update : Player doesn't have " + cropOrb.name
 //          + " <======================================================");
     }
     this.isDone = true;

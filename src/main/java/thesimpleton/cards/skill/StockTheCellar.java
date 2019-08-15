@@ -62,9 +62,9 @@ public class StockTheCellar extends CustomCard implements ShuffleTriggeredCard  
   public void willBeShuffledTrigger() {
 //    this.flash(Color.BLUE);
 //    upgradeBlock(this.magicNumber);
-//    TheSimpletonMod.logger.info(this.name + " upgraded block:" + this.block);
+//    TheSimpletonMod.logger.debug(this.name + " upgraded block:" + this.block);
     AbstractDungeon.actionManager.addToBottom(new ModifyBlockAction(this.uuid, this.magicNumber));
-    TheSimpletonMod.logger.info(this.name + " upgraded block:" + this.block);
+    TheSimpletonMod.logger.debug(this.name + " upgraded block:" + this.block);
 
   }
 

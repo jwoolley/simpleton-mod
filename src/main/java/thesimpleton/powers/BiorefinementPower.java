@@ -29,7 +29,7 @@ public class BiorefinementPower extends AbstractTheSimpletonPower {
   public BiorefinementPower(int amount) {
     super(IMG);
 
-    TheSimpletonMod.logger.info("TheSimpletonMod:BiorefinementPower: constructor called");
+    TheSimpletonMod.logger.debug("TheSimpletonMod:BiorefinementPower: constructor called");
 
     this.amount = amount;
     this.owner = AbstractDungeon.player;
@@ -50,7 +50,7 @@ public class BiorefinementPower extends AbstractTheSimpletonPower {
 
   @Override
   public void onUseCard(AbstractCard card, UseCardAction action) {
-    TheSimpletonMod.logger.info("TheSimpletonMod:BiorefinementPower: onUseCard called");
+    TheSimpletonMod.logger.debug("TheSimpletonMod:BiorefinementPower: onUseCard called");
 
     if (timesTriggeredThisTurn < this.amount && card.hasTag(TheSimpletonCardTags.HARVEST)) {
       if (!AbstractDungeon.player.hand.group.isEmpty()) {
@@ -70,7 +70,7 @@ public class BiorefinementPower extends AbstractTheSimpletonPower {
   }
 
   private void discountRandomCardCostForTurn(List<AbstractCard> decreasableCards) {
-    TheSimpletonMod.logger.info("TheSimpletonMod:BiorefinementPower: discountRandomCardCostForTurn called");
+    TheSimpletonMod.logger.debug("TheSimpletonMod:BiorefinementPower: discountRandomCardCostForTurn called");
     AbstractCard card = decreasableCards.get(AbstractDungeon.cardRng.random(decreasableCards.size() - 1));
     card.costForTurn -= this.DISCOUNT_AMOUNT;
     card.cost -= this.DISCOUNT_AMOUNT;

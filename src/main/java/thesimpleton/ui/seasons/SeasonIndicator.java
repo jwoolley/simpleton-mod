@@ -112,14 +112,14 @@ public class SeasonIndicator {
 
   private void handleClick() {
     if (IS_CLICKABLE && InputHelper.justClickedLeft) {
-      TheSimpletonMod.logger.info("SeasonIndicator::update handling click");
+      TheSimpletonMod.logger.debug("SeasonIndicator::update handling click");
 
       if (TheSimpletonMod.seasonScreen.isOpen()) {
-        TheSimpletonMod.logger.info("SeasonIndicator::update season screen is open. closing screen");
+        TheSimpletonMod.logger.debug("SeasonIndicator::update season screen is open. closing screen");
 
         TheSimpletonMod.seasonScreen.close();
       } else {
-        TheSimpletonMod.logger.info("SeasonIndicator::update season screen is closed. opening screen");
+        TheSimpletonMod.logger.debug("SeasonIndicator::update season screen is closed. opening screen");
         TheSimpletonMod.seasonScreen.resetDismissed();
         TheSimpletonMod.seasonScreen.open();
       }

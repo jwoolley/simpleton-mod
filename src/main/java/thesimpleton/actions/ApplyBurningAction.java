@@ -44,12 +44,12 @@ public class ApplyBurningAction extends AbstractGameAction {
 
     Logger logger = TheSimpletonMod.logger;
 
-    logger.info("ApplyBurningAction.update :: ACTION_DURATION: " + ACTION_DURATION);
-    logger.info("ApplyBurningAction.update :: duration: " + this.duration);
+    logger.debug("ApplyBurningAction.update :: ACTION_DURATION: " + ACTION_DURATION);
+    logger.debug("ApplyBurningAction.update :: duration: " + this.duration);
 
     if (this.duration == this.startDuration) {
 
-      logger.info("ApplyBurningAction.update :: Applying  " +  this.amount + " Burning" );
+      logger.debug("ApplyBurningAction.update :: Applying  " +  this.amount + " Burning" );
       AbstractDungeon.actionManager.addToBottom(
           new ApplyPowerAction(
               this.target, this.source, new BurningPower(this.target, this.source, this.amount), this.amount,

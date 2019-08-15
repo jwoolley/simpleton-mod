@@ -282,11 +282,11 @@ public class TheSimpletonCharacter extends CustomPlayer {
 
             for (int i = 0; i < player.orbs.size(); i++) {
                 AbstractOrb o = player.orbs.get(i);
-//                TheSimpletonMod.logger.info("TheSimpletonCharacter.removeOrb :: orbs[" + i + "]: " + o.name + "; amount: " + o.passiveAmount);
+//                TheSimpletonMod.logger.debug("TheSimpletonCharacter.removeOrb :: orbs[" + i + "]: " + o.name + "; amount: " + o.passiveAmount);
             }
 
             Optional<AbstractOrb> orbOptional  = player.orbs.stream().filter(o -> {
-//                TheSimpletonMod.logger.info("TheSimpletonCharacter.removeOrb :: finding : " + orb.name + ". next orb:" + o.name);
+//                TheSimpletonMod.logger.debug("TheSimpletonCharacter.removeOrb :: finding : " + orb.name + ". next orb:" + o.name);
                 return o instanceof AbstractCropOrb && o.ID == orb.ID;
             }).findFirst();
 
@@ -311,54 +311,22 @@ public class TheSimpletonCharacter extends CustomPlayer {
         }
     }
 
-//    public void removeOrb(AbstractOrb orb) {
-//        if ((!this.orbs.isEmpty()) && this.orbs.stream().anyMatch(o -> o.ID == orb.ID)) {
-//
-//            for (int i = 0; i < this.orbs.size(); i++) {
-//                AbstractOrb o = this.orbs.get(i);
-//                TheSimpletonMod.logger.info("TheSimpletonCharacter.removeOrb :: orbs[" + i + "]: " + o.name + "; amount: " + o.passiveAmount);
-//            }
-//
-//            Optional<AbstractOrb> orbOptional  = this.orbs.stream().filter(o -> {
-//                TheSimpletonMod.logger.info("TheSimpletonCharacter.removeOrb :: finding : " + orb.name + ". next orb:" + o.name);
-//                return o instanceof AbstractCropOrb && o.ID == orb.ID;
-//            }).findFirst();
-//
-//            if (orbOptional.isPresent()) {
-//                final AbstractCropOrb targetOrb = (AbstractCropOrb) orbOptional.get();
-//
-//                final int index = this.orbs.indexOf(targetOrb);
-//
-//                AbstractOrb orbSlot = new SimpletonEmptyOrbSlot((this.orbs.get(index)).cX, (this.orbs.get(index)).cY);
-//
-////                AbstractOrb orbSlot = new EmptyOrbSlot(((AbstractOrb) this.orbs.get(index)).cX, ((AbstractOrb) this.orbs.get(index)).cY);
-//                for (int i = index + 1; i < this.orbs.size(); i++) {
-//                    Collections.swap(this.orbs, i, i - 1);
-//                }
-//                this.orbs.set(this.orbs.size() - 1, orbSlot);
-//                for (int i = 0; i < this.orbs.size(); i++) {
-//                    ((AbstractOrb) this.orbs.get(i)).setSlot(i, this.maxOrbs);
-//                }
-//            }
-//        }
-//    }
-
     @Override
     public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool) {
         ArrayList<AbstractCard> cardPool = super.getCardPool(tmpPool);
 
-        TheSimpletonMod.logger.info("????????????????????????? TheSimpletonMod.getCardPool called. Stack: " + Arrays.stream(Thread.currentThread().getStackTrace()).limit(3).map(t -> t.getMethodName() + ":"  + t.getLineNumber()).collect(Collectors.joining(", ")));
-
-        TheSimpletonMod.logger.info("????????????????????????? TheSimpletonMod.getCardPool tmpPool crop cards:"
-            + tmpPool.stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
-
-        TheSimpletonMod.logger.info("????????????????????????? TheSimpletonMod.getCardPool cardPool crop cards:"
-            + cardPool.stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
+//        TheSimpletonMod.logger.debug("????????????????????????? TheSimpletonMod.getCardPool called. Stack: " + Arrays.stream(Thread.currentThread().getStackTrace()).limit(3).map(t -> t.getMethodName() + ":"  + t.getLineNumber()).collect(Collectors.joining(", ")));
+//
+//        TheSimpletonMod.logger.debug("????????????????????????? TheSimpletonMod.getCardPool tmpPool crop cards:"
+//            + tmpPool.stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
+//
+//        TheSimpletonMod.logger.debug("????????????????????????? TheSimpletonMod.getCardPool cardPool crop cards:"
+//            + cardPool.stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
 
         List<AbstractCard> nonCropCards = cardPool.stream().filter(c -> !(c instanceof AbstractCropPowerCard)).collect(Collectors.toList());
-
-        TheSimpletonMod.logger.info("????????????????????????? TheSimpletonMod.getCardPool cardPool non-crop cards:"
-            + nonCropCards.stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
+//
+//        TheSimpletonMod.logger.debug("????????????????????????? TheSimpletonMod.getCardPool cardPool non-crop cards:"
+//            + nonCropCards.stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> c.name).collect(Collectors.joining(", ")));
 
         List<AbstractCropPowerCard> seasonalCropCards = TheSimpletonMod.getSeasonalCropCards();
         ArrayList<AbstractCard> finalCardPool = new ArrayList<>();
@@ -371,8 +339,8 @@ public class TheSimpletonCharacter extends CustomPlayer {
         }
         List<AbstractCard> seasonalCurseCards = TheSimpletonMod.getSeasonalCurseCards();
 
-        TheSimpletonMod.logger.info("??????????? SimpletonMod.getCardPool adding seasonal curse cards to card pool:"
-            + seasonalCurseCards.stream().map(c -> c.name).collect(Collectors.joining(", ")));
+//        TheSimpletonMod.logger.debug("??????????? SimpletonMod.getCardPool adding seasonal curse cards to card pool:"
+//            + seasonalCurseCards.stream().map(c -> c.name).collect(Collectors.joining(", ")));
 
         if (seasonalCurseCards.size() > 0) {
             finalCardPool.addAll(seasonalCurseCards.stream()

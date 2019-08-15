@@ -92,7 +92,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
   }
 
   public boolean isMature(boolean thisIsActiveOrb) {
-//    TheSimpletonMod.logger.info("AbstractCropOrb::isMature amount: " + this.getAmount() + " maturityThreshold: " + getCrop().getMaturityThreshold());
+//    TheSimpletonMod.logger.debug("AbstractCropOrb::isMature amount: " + this.getAmount() + " maturityThreshold: " + getCrop().getMaturityThreshold());
     if (thisIsActiveOrb) {
       return this.passiveAmount >= this.getCrop().getMaturityThreshold();
     } else {
@@ -132,7 +132,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
   }
 
   public static boolean hasCropOrb(String orbId) {
-//    TheSimpletonMod.logger.info("AbstractCropOrb::hasCropOrb : Player has orbs:"
+//    TheSimpletonMod.logger.debug("AbstractCropOrb::hasCropOrb : Player has orbs:"
 //        + AbstractDungeon.player.orbs.stream().map(orb -> orb.name).collect(Collectors.joining(", ")));
 
     Optional<AbstractOrb> cropOrb = AbstractDungeon.player.orbs.stream()
@@ -199,16 +199,16 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
   public static AbstractCropOrb getCropOrb(String orbId) {
 
-//    TheSimpletonMod.logger.info("AbstractCropOrb::getCropOrb : getting crop orb: " + orbId);
+//    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : getting crop orb: " + orbId);
 //
-//    TheSimpletonMod.logger.info("AbstractCropOrb::getCropOrb : Player has orbs:"
+//    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : Player has orbs:"
 //        + AbstractDungeon.player.orbs.stream().map(orb -> orb.name).collect(Collectors.joining(", ")));
 //
-//    TheSimpletonMod.logger.info("AbstractCropOrb::getCropOrb : Player has active orbs:"
+//    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : Player has active orbs:"
 //        + AbstractDungeon.player.orbs.stream()
 //            .filter(orb -> orb.passiveAmount > 0).map(orb -> orb.name).collect(Collectors.joining(", ")));
 //
-//    TheSimpletonMod.logger.info("AbstractCropOrb::getCropOrb : Player active orb counts:"
+//    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : Player active orb counts:"
 //        + AbstractDungeon.player.orbs.stream()
 //        .filter(orb -> orb.passiveAmount > 0).map(orb -> orb.name + ": " + orb.passiveAmount).collect(Collectors.joining(", ")));
 
@@ -220,7 +220,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
       return null;
     }
 
-    TheSimpletonMod.logger.info("AbstractCropOrb::getCropOrb : returning orb " + ((AbstractCropOrb)cropOrb.get()).name  + " with " + cropOrb.get().passiveAmount + " passive stacks");
+//    TheSimpletonMod.logger.debug("AbstractCropOrb::getCropOrb : returning orb " + ((AbstractCropOrb)cropOrb.get()).name  + " with " + cropOrb.get().passiveAmount + " passive stacks");
 
     return (AbstractCropOrb)cropOrb.get();
   }

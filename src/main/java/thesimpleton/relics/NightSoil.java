@@ -40,13 +40,13 @@ public class NightSoil extends CustomRelic {
   @Override
   public void onShuffle() {
     Logger logger = TheSimpletonMod.logger;
-//    logger.info("NightSoil::onShuffle");
+//    logger.debug("NightSoil::onShuffle");
 
       List<AbstractCropOrb> eligibleCropOrbs = AbstractCrop.getActiveCropOrbs().stream()
           .filter(orb -> !orb.isMature(true))
           .collect(Collectors.toList());
 
-//    logger.info("NightSoil::onShuffle found " + eligibleCropOrbs.size() + " eligible crops");
+//    logger.debug("NightSoil::onShuffle found " + eligibleCropOrbs.size() + " eligible crops");
 
     if (!eligibleCropOrbs.isEmpty()) {
       AbstractDungeon.effectList.add(new DelayedRelicFlashEffect(this, RELIC_FLASH_DELAY));

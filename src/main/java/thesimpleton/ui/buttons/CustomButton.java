@@ -45,18 +45,18 @@ abstract public class CustomButton extends Button {
   public void update() {
     super.update();
     if (this.pressed) {
-      logger.info("CustomButton::update: calling handleClick: button was pressed");
+      logger.debug("CustomButton::update: calling handleClick: button was pressed");
       handleClick();
     }
   }
 
   void handleClick() {
     if (!this.isDisabled) {
-      logger.info("CustomButton::handleClick: Handling click: button is enabled");
+      logger.debug("CustomButton::handleClick: Handling click: button is enabled");
       this.onClick();
       this.pressed = false;
     } else {
-      logger.info("CustomButton::handleClick: Not handling click: button is disabled");
+      logger.debug("CustomButton::handleClick: Not handling click: button is disabled");
     }
   }
 

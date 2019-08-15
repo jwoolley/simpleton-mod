@@ -21,21 +21,21 @@ public class DelayedRelicFlashEffect extends AbstractGameEffect {
 
   @Override
   public void update() {
-//    TheSimpletonMod.logger.info("DelayedRelicFlashAction::update duration: " + this.duration + "; startingDuration: " + this.startingDuration +  "; triggerTime: " + this.triggerTime);
+//    TheSimpletonMod.logger.debug("DelayedRelicFlashAction::update duration: " + this.duration + "; startingDuration: " + this.startingDuration +  "; triggerTime: " + this.triggerTime);
 
     this.duration -= Gdx.graphics.getDeltaTime();
 
-//    TheSimpletonMod.logger.info("DelayedRelicFlashAction::update duration after tick: " + this.duration);
+//    TheSimpletonMod.logger.debug("DelayedRelicFlashAction::update duration after tick: " + this.duration);
 
     if (this.duration <= triggerTime && !this.hasTriggered) {
       relic.flash();
       this.hasTriggered = true;
       this.isDone = true;
-//      TheSimpletonMod.logger.info("DelayedRelicFlashAction::update triggered and done");
+//      TheSimpletonMod.logger.debug("DelayedRelicFlashAction::update triggered and done");
 
     } else if (duration < 0.0F) {
       this.isDone = true;
-//      TheSimpletonMod.logger.info("DelayedRelicFlashAction::update not triggered but done");
+//      TheSimpletonMod.logger.debug("DelayedRelicFlashAction::update not triggered but done");
     }
   }
 

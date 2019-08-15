@@ -35,16 +35,16 @@ public class SunchokeAction extends AbstractGameAction {
   public void update() {
     Logger logger = TheSimpletonMod.logger;
     List<AbstractMonster> monsters = SimpletonUtil.getMonsters();
-    logger.info("SunchokeAction.update :: total monsters: " + monsters.size());
+    logger.debug("SunchokeAction.update :: total monsters: " + monsters.size());
 
     final List<AbstractMonster> weakMonsters = SimpletonUtil.getMonsters().stream()
         .filter(m -> m.hasPower(WeakPower.POWER_ID))
         .collect(Collectors.toList());
 
-    logger.info("SunchokeAction.update :: weak monsters: " + weakMonsters.size());
+    logger.debug("SunchokeAction.update :: weak monsters: " + weakMonsters.size());
 
     final List<AbstractMonster> damagedMonsters = getDamagedMonsters(weakMonsters);
-    logger.info("SunchokeAction.update :: damaged monsters: " + damagedMonsters.size());
+    logger.debug("SunchokeAction.update :: damaged monsters: " + damagedMonsters.size());
 
     AbstractDungeon.actionManager.addToBottom(
         new DamageAllEnemiesAction(this.source, this.attackDamage, this.damageType,
@@ -74,10 +74,10 @@ public class SunchokeAction extends AbstractGameAction {
     for (int i = 0; i < monsters.size(); i++) {
       AbstractMonster m = monsters.get(i);
 
-      logger.info("SunchokeAction.getDamagedMonsters :: currentBlock: " + m.currentBlock + " attackDamage: " + attackDamage[i]);
+      logger.debug("SunchokeAction.getDamagedMonsters :: currentBlock: " + m.currentBlock + " attackDamage: " + attackDamage[i]);
 
       if (m.currentBlock < attackDamage[i]) {
-        logger.info("SunchokeAction.getDamagedMonsters :: added to damagedMonsters");
+        logger.debug("SunchokeAction.getDamagedMonsters :: added to damagedMonsters");
 
         damagedMonsters.add(m);
       }

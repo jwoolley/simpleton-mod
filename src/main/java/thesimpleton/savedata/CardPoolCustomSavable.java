@@ -23,7 +23,7 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
   final Logger logger = TheSimpletonMod.logger;
 
   public CardPoolCustomSavable() {
-    logger.info( this.getClass().getSimpleName() + " instantiated");
+    logger.debug( this.getClass().getSimpleName() + " instantiated");
   }
 
   @Override
@@ -32,17 +32,17 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
 
     registerSaveId();
 
-    logger.info(getLogPrefix("onSave") + " called");
+    logger.debug(getLogPrefix("onSave") + " called");
 
     List<AbstractCard> currentCardPool = SimpletonCardHelper.getCurrentCardPool();
 
     final List<String> idList = currentCardPool.stream().map(c -> c.cardID).collect(Collectors.toList());
 
-    logger.info(getLogPrefix("onSave") + " Saving card pool. Cards:");
-    int index = 0;
-    for(AbstractCard card : currentCardPool) {
-      logger.info(index++ + ") " + card.name + " [cardId: " + card.cardID + "]");
-    }
+//    logger.debug(getLogPrefix("onSave") + " Saving card pool. Cards:");
+//    int index = 0;
+//    for(AbstractCard card : currentCardPool) {
+//      logger.debug(index++ + ") " + card.name + " [cardId: " + card.cardID + "]");
+//    }
 
     for (AbstractCropPowerCard c : TheSimpletonMod.getSeasonalCropCards()) {
       if (idList.contains(c.cardID)) {
@@ -67,27 +67,27 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
     if (ids != null && !ids.isEmpty()) {
 
       int cardIndex = 0;
-      logger.info(getLogPrefix("onLoad") + " Loading cards for card pool from save:");
+      logger.debug(getLogPrefix("onLoad") + " Loading cards for card pool from save:");
       for (String id : ids) {
         // if card exists in the CardLibrary (BaseMod.addsCard() has been called, I think)
         if (CardLibrary.isACard(id)) {
           AbstractCard card = CardLibrary.getCard(id);
           this.cardpool.add(card);
-          logger.info(cardIndex++ + ") " + card.name + " [cardId: " + card.cardID + "]");
+          logger.debug(cardIndex++ + ") " + card.name + " [cardId: " + card.cardID + "]");
         } else {
           logger.warn(cardIndex++ + ") NOT IN CARD LIBRARY [cardId: " + id + "]");
         }
       }
 
       if (!TheSimpletonMod.getSaveCardPool().isEmpty()) {
-        logger.info( getLogPrefix("onLoad") + " Card pool loaded from save with " + ids.size() + " cards. Initializing");
+        logger.debug( getLogPrefix("onLoad") + " Card pool loaded from save with " + ids.size() + " cards. Initializing");
         if (CardCrawlGame.dungeon != null) {
           CardCrawlGame.dungeon.initializeCardPools();
         } else {
-          logger.info(getLogPrefix("onLoad") + " dungeon is not yet initialized. Trusting it will happen eventually.");
+          logger.debug(getLogPrefix("onLoad") + " dungeon is not yet initialized. Trusting it will happen eventually.");
         }
       } else {
-        logger.info(getLogPrefix("onLoad") + " no save data found");
+        logger.debug(getLogPrefix("onLoad") + " no save data found");
       }
     }
   }
@@ -97,8 +97,8 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
   }
 
   private void registerSaveId() {
-    logger.info( this.getClass().getSimpleName() + "::registerSaveId");
-      logger.info( this.getClass().getSimpleName() + "::registerSaveId registering customSaveKey: " + getCustomSaveKey());
+    logger.debug( this.getClass().getSimpleName() + "::registerSaveId");
+      logger.debug( this.getClass().getSimpleName() + "::registerSaveId registering customSaveKey: " + getCustomSaveKey());
       BaseMod.addSaveField(this.getCustomSaveKey(), this);
   }
 }

@@ -38,7 +38,7 @@ public class CrackOfDawn extends CustomCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    TheSimpletonMod.logger.info("TheSimpletonMod:CrackOfDawn: use called");
+    TheSimpletonMod.logger.debug("TheSimpletonMod:CrackOfDawn: use called");
 
     AbstractDungeon.actionManager.addToBottom(
         new ApplyPowerAction(p, p, new CrackOfDawnPower(AbstractDungeon.player, TURNS_TO_WAIT)));

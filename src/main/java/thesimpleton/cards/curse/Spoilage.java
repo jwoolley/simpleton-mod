@@ -49,19 +49,19 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
 
   @Override
   public void triggerOnGainEnergy(int e, boolean b) {
-    TheSimpletonMod.logger.info("Spoilage::triggerOnGainEnergy called");
+    TheSimpletonMod.logger.debug("Spoilage::triggerOnGainEnergy called");
     updateDescription(false);
   }
 
 
   @Override
   public void triggerOnEndOfTurnForPlayingCard() {
-    TheSimpletonMod.logger.info("Spoilage::triggerOnEndOfTurnForPlayingCard called");
+    TheSimpletonMod.logger.debug("Spoilage::triggerOnEndOfTurnForPlayingCard called");
     updateDescription(false);
   }
 
 //  public void triggerOnEndOfPlayerTurn() {
-//    TheSimpletonMod.logger.info("Spoilage::triggerOnEndOfPlayerTurn called");
+//    TheSimpletonMod.logger.debug("Spoilage::triggerOnEndOfPlayerTurn called");
 ////  this.tri
 //    updateDescription(false);
 //  }

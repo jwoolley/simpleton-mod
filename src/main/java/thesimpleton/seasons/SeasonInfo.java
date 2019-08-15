@@ -49,7 +49,7 @@ public class SeasonInfo {
   public Crop getRandomCropInSeason() {
     List<Crop> crops = new ArrayList<>(this.cropsInSeason);
     Collections.shuffle(crops);
-    TheSimpletonMod.logger.info("Returning random in-season crop: " + crops.get(0).getName());
+    TheSimpletonMod.logger.debug("Returning random in-season crop: " + crops.get(0).getName());
     return crops.get(0);
   }
 

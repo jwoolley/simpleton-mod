@@ -36,7 +36,7 @@ public class VineRipen extends CustomCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new SquashCropOrb(this.magicNumber),true));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new SquashCropOrb(), this.magicNumber, true));
     AbstractDungeon.actionManager.addToBottom(new VineRipenThresholdAction());
   }
 

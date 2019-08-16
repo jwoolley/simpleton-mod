@@ -19,7 +19,7 @@ public class RootDownAction extends AbstractGameAction {
     if (AbstractCropOrb.isMature(Crop.TURNIPS)) {
      AbstractCropOrb.getCropOrb(Crop.TURNIPS).getCrop().harvest(true, 1);
     } else {
-      AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new TurnipCropOrb(this.amount),true));
+      AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new TurnipCropOrb(), this.amount, true));
     }
 
     this.isDone = true;

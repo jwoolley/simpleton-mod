@@ -27,9 +27,9 @@
 
   "TheSimpletonMod:GourdCharm": {
     "NAME": "Gourd Charm",
-    "FLAVOR": "Crafted specifically for adventurers who prefer Hard Mode.",
+    "FLAVOR": "Crafted specially for adventurers who prefer Hard Mode.",
     "DESCRIPTIONS": [
-      "Replaces #gSpud #gof #gthe #gInnocent. At the start of each combat, #yPlant #b2 #ySquash."
+      "Replaces #gSpud #gof #gthe #gInnocent. At the start of your turn, if you have no crops, #yPlant #b2 #ySquash."
     ]
   },
 
@@ -72,7 +72,7 @@
     "NAME": "Onion Belt",
     "FLAVOR": "Once wielded by the Elders, now largely out of style.",
     "DESCRIPTIONS": [
-      "Replaces #gSpud #gof #gthe #gInnocent. At the start of each combat, #yPlant #b2 #yOnions."
+      "Replaces #gSpud #gof #gthe #gInnocent. At the start of your turn, if you have no crops, #yPlant #b2 #yOnions."
     ]
   },
 
@@ -112,7 +112,7 @@
     "NAME": "Spud of the Innocent",
     "FLAVOR": "Salvation for the thin-skinned.",
     "DESCRIPTIONS": [
-      "At the start of each combat, #yPlant #b",
+      "At the start of your turn, if you have no crops, #yPlant #b",
       " #yPotatoes."
     ]
   },

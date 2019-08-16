@@ -36,7 +36,7 @@ public class Potatoes extends AbstractCropPowerCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(this.magicNumber), true));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(), this.magicNumber, true));
   }
 
   @Override

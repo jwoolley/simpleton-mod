@@ -34,7 +34,6 @@ public class ReapAndSow extends CustomCard {
   private static final int PLANT_AMOUNT = 1;
   private static final int UPGRADE_PLANT_AMOUNT = 1;
 
-
   public ReapAndSow() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
@@ -48,7 +47,7 @@ public class ReapAndSow extends CustomCard {
         new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn,
             AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
 
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(this.magicNumber), true));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(), this.magicNumber, true));
 
     AbstractDungeon.actionManager.addToBottom(
         new ReapAndSowThresholdAction(false)); // disabling upgrade Cultivate for now

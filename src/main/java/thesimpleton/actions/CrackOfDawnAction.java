@@ -84,7 +84,7 @@ public class CrackOfDawnAction extends AbstractGameAction {
         DamageInfo info =  new DamageInfo(this.owner, this.damageAmount, DamageInfo.DamageType.NORMAL);
         AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(this.owner, DamageInfo.createDamageMatrix(info.base),
             DamageInfo.DamageType.NORMAL, AttackEffect.SLASH_VERTICAL, true));
-        AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new CornCropOrb(this.plantAmount), true));
+        AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new CornCropOrb(), this.plantAmount, true));
         AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(this.energyAmount));
         this.isDone = true;
       }

@@ -50,7 +50,8 @@ public class OnionBloom extends CustomCard {
       AbstractDungeon.actionManager.addToBottom(new DiscardAction(p, p, DISCARD_AMOUNT, false));
     }
 
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new OnionCropOrb(this.magicNumber), true));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new OnionCropOrb(this.magicNumber), this.magicNumber,
+        true));
   }
 
   @Override

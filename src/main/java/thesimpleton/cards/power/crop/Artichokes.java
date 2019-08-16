@@ -37,7 +37,7 @@ public class Artichokes extends AbstractCropPowerCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new ArtichokeCropOrb(this.magicNumber),true));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new ArtichokeCropOrb(),this.magicNumber, true));
   }
 
   @Override

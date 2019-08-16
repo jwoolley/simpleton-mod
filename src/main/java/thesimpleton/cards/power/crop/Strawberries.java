@@ -37,7 +37,7 @@ public class Strawberries extends AbstractCropPowerCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new StrawberryCropOrb(this.magicNumber),true));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new StrawberryCropOrb(), this.magicNumber, true));
   }
 
   @Override

@@ -110,7 +110,7 @@ public class HitTheSackAction  extends AbstractGameAction
           this.p.energy.use(EnergyPanel.totalCount);
         }
       } else if (numPotatoReps > 0) {
-        AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(SPUDS_PER_TICK),true));
+        AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(), SPUDS_PER_TICK, true));
         numPotatoReps--;
       }
       AbstractDungeon.actionManager.addToBottom(

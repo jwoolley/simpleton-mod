@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropSpawnAction;
+import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.orbs.PotatoCropOrb;
 
 public class SpudOfTheInnocent extends CustomRelic {
@@ -33,11 +34,20 @@ public class SpudOfTheInnocent extends CustomRelic {
   }
 
   @Override
-  public void atBattleStart() {
-    final AbstractPlayer p = AbstractDungeon.player;
-    this.flash();
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(CROP_AMOUNT), false));
+  public void atTurnStart() {
+    if (!AbstractCropOrb.playerHasAnyCropOrbs()) {
+      this.flash();
+      AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(), CROP_AMOUNT, false));
+    }
   }
+
+
+//  @Override
+//  public void atBattleStart() {
+//    final AbstractPlayer p = AbstractDungeon.player;
+//    this.flash();
+//    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(CROP_AMOUNT), false));
+//  }
 
   @Override
   public AbstractRelic makeCopy() {

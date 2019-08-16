@@ -23,11 +23,6 @@ public class CropSpawnAction extends AbstractGameAction {
 
     private boolean secondTick = false;
 
-    // TODO: increment existing cropOrb instead if (?) it
-    public CropSpawnAction(AbstractCropOrb cropOrb, boolean isFromCard) {
-        this(cropOrb, -1, isFromCard);
-    }
-
     public CropSpawnAction(AbstractCropOrb cropOrb, int stacks, boolean isFromCard) {
 //        TheSimpletonMod.logger.debug("============> CropSpawnAction::constructor =====");
 

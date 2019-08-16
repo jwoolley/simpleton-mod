@@ -36,7 +36,8 @@ public class Onions extends AbstractCropPowerCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new OnionCropOrb(this.magicNumber),true));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new OnionCropOrb(), this.magicNumber,
+        true));
   }
 
   @Override

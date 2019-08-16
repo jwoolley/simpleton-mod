@@ -20,15 +20,17 @@ import thesimpleton.orbs.CoffeeCropOrb;
 
 public class BuzzBombAction extends AbstractGameAction {
   private static float ACTION_DURATION = Settings.ACTION_DUR_XFAST;
+
   private final AbstractPlayer player;
   private final int baseDamage;
+  private final int numStacksPerKill;
+  private final DamageInfo info;
 
   private int numRepetitions;
-  private final DamageInfo info;
 
   private Logger logger;
 
-  public BuzzBombAction(AbstractPlayer player, AbstractCreature target, int baseDamage, int numRepetitions) {
+  public BuzzBombAction(AbstractPlayer player, AbstractCreature target, int baseDamage, int numRepetitions, int numStacksPerKill) {
     this.logger = TheSimpletonMod.logger;
     this.actionType = AbstractGameAction.ActionType.DAMAGE;
     this.attackEffect = AbstractGameAction.AttackEffect.SLASH_VERTICAL;
@@ -39,6 +41,7 @@ public class BuzzBombAction extends AbstractGameAction {
     this.baseDamage = baseDamage;
     this.target = target;
     this.numRepetitions = numRepetitions;
+    this.numStacksPerKill = numStacksPerKill;
 
     this.info = new DamageInfo(this.player, this.baseDamage, DamageInfo.DamageType.NORMAL);
   }
@@ -79,7 +82,7 @@ public class BuzzBombAction extends AbstractGameAction {
 
         this.info.applyPowers(this.info.owner, this.target);
         AbstractDungeon.actionManager.addToBottom(
-            new BuzzBombDamageAndPlantAction(this.source, this.target, this.info));
+            new BuzzBombDamageAndPlantAction(this.source, this.target, this.info, this.numStacksPerKill));
 //
 //        this.target.damage(this.info);
 //
@@ -97,7 +100,7 @@ public class BuzzBombAction extends AbstractGameAction {
         AbstractDungeon.actionManager.addToBottom(new BuzzBombAction(
             this.player,
             AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng),
-            this.baseDamage , this.numRepetitions));
+            this.baseDamage , this.numRepetitions, this.numStacksPerKill));
       }
       this.isDone = true;
     }

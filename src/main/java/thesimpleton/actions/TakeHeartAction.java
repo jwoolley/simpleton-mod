@@ -76,7 +76,7 @@ public class TakeHeartAction extends AbstractGameAction {
 
       AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this.target, this.target, blockAmount));
       AbstractDungeon.actionManager.addToBottom(new HealAction(this.target, this.target, healAmount));
-      AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new ArtichokeCropOrb(plantAmount),true));
+      AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new ArtichokeCropOrb(), plantAmount,true));
 
       if ((this.numRepetitions > 0) && (!AbstractDungeon.getMonsters().areMonstersBasicallyDead())) {
         AbstractDungeon.actionManager.addToBottom(new TakeHeartAction(

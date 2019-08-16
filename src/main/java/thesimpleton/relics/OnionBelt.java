@@ -9,7 +9,9 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropSpawnAction;
+import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.orbs.OnionCropOrb;
+import thesimpleton.orbs.PotatoCropOrb;
 
 public class OnionBelt extends CustomRelic {
   public static final String ID = "TheSimpletonMod:OnionBelt";
@@ -39,11 +41,19 @@ public class OnionBelt extends CustomRelic {
   }
 
   @Override
-  public void atBattleStart() {
-    final AbstractPlayer player = AbstractDungeon.player;
-    this.flash();
-    addOnionStack(CROP_AMOUNT);
+  public void atTurnStart() {
+    if (!AbstractCropOrb.playerHasAnyCropOrbs()) {
+      this.flash();
+      addOnionStack(CROP_AMOUNT);
+    }
   }
+
+//  @Override
+//  public void atBattleStart() {
+//    final AbstractPlayer player = AbstractDungeon.player;
+//    this.flash();
+//    addOnionStack(CROP_AMOUNT);
+//  }
 
   @Override
 
@@ -62,7 +72,7 @@ public class OnionBelt extends CustomRelic {
     logger.debug("OnionBelt: Adding onion stack");
     final AbstractPlayer p = AbstractDungeon.player;
 
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new OnionCropOrb(amount),false));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new OnionCropOrb() , amount, false));
   }
 
 

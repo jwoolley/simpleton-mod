@@ -12,12 +12,14 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.BuzzBombAction;
+import thesimpleton.crops.Crop;
 import thesimpleton.enums.AbstractCardEnum;
 
 public class BuzzBomb extends CustomCard {
   public static final String ID = "TheSimpletonMod:BuzzBomb";
   public static final String NAME;
   public static final String DESCRIPTION;
+  public static final String EXTENDED_DESCRIPTION[];
   public static final String IMG_PATH = "cards/buzzbomb.png";
 
   private static final CardStrings cardStrings;
@@ -30,9 +32,11 @@ public class BuzzBomb extends CustomCard {
   private static final int DAMAGE = 12;
   private static final int NUM_ATTACKS = 2;
   private static final int UPGRADE_NUM_ATTACKS_AMOUNT = 1;
+  private static final int STACKS_PER_KILL = 2;
 
   public BuzzBomb() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(), TYPE,
+        AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
     this.baseMagicNumber = this.magicNumber = NUM_ATTACKS;
   }
@@ -46,7 +50,7 @@ public class BuzzBomb extends CustomCard {
 
     AbstractDungeon.actionManager.addToBottom(new BuzzBombAction(
         p, AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng),
-        this.damage, this.magicNumber));
+        this.damage, this.magicNumber, STACKS_PER_KILL));
   }
 
   @Override
@@ -62,9 +66,15 @@ public class BuzzBomb extends CustomCard {
     }
   }
 
+  public static String getDescription() {
+    return DESCRIPTION + STACKS_PER_KILL + Crop.COFFEE.getName() +
+        ((STACKS_PER_KILL == 1) ? "" : "s") + EXTENDED_DESCRIPTION[0];
+  }
+
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
+    EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
   }
 }

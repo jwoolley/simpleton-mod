@@ -19,10 +19,13 @@ public class BuzzBombDamageAndPlantAction extends AbstractGameAction {
   private static final float ACTION_DURATION = Settings.ACTION_DUR_FAST;
   private final DamageInfo damageInfo;
 
-  public BuzzBombDamageAndPlantAction(AbstractCreature source, AbstractCreature target, DamageInfo damageInfo) {
+  public BuzzBombDamageAndPlantAction(AbstractCreature source, AbstractCreature target, DamageInfo damageInfo,
+                                      int numStacksPerKill) {
     this.source = source;
     this.target = target;
     this.damageInfo = damageInfo;
+    this.amount = numStacksPerKill;
+
   }
 
   @Override
@@ -31,7 +34,8 @@ public class BuzzBombDamageAndPlantAction extends AbstractGameAction {
       this.target.damage(this.damageInfo);
 
       if ((((AbstractMonster) this.target).isDying) || (this.target.currentHealth <= 0)) {
-        AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new CoffeeCropOrb(1), true));
+        AbstractDungeon.actionManager.addToBottom(
+            new CropSpawnAction(new CoffeeCropOrb(), this.amount,true));
       }
 
       this.isDone = true;

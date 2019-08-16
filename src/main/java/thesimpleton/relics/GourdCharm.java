@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropSpawnAction;
+import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.orbs.SquashCropOrb;
 
 public class GourdCharm extends CustomRelic {
@@ -38,11 +39,19 @@ public class GourdCharm extends CustomRelic {
   }
 
   @Override
-  public void atBattleStart() {
-    final AbstractPlayer player = AbstractDungeon.player;
-    this.flash();
-    addSquashStack(CROP_AMOUNT);
+  public void atTurnStart() {
+    if (!AbstractCropOrb.playerHasAnyCropOrbs()) {
+      this.flash();
+      addSquashStack(CROP_AMOUNT);
+    }
   }
+
+//  @Override
+//  public void atBattleStart() {
+//    final AbstractPlayer player = AbstractDungeon.player;
+//    this.flash();
+//    addSquashStack(CROP_AMOUNT);
+//  }
 
   @Override
 
@@ -62,7 +71,7 @@ public class GourdCharm extends CustomRelic {
     logger.debug("GourdCharm: Adding squash stack");
     final AbstractPlayer p = AbstractDungeon.player;
 
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new SquashCropOrb(amount),false));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new SquashCropOrb(), amount,false));
   }
 
 

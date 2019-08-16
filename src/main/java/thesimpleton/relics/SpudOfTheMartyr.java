@@ -66,7 +66,7 @@ SpudOfTheMartyr extends CustomRelic {
         logger.debug("SpudOfTheMartyr: Adding potato stack");
         final AbstractPlayer p = AbstractDungeon.player;
 
-        AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(amount), false));
+        AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(), amount, false));
     }
 
     @Override

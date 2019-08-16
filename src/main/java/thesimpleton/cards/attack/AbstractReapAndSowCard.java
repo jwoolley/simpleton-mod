@@ -17,16 +17,13 @@ import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.AbstractCropOrb;
 
 public abstract class AbstractReapAndSowCard extends CustomCard {
-  public static final String ID = "TheSimpletonMod:ReapAndSow";
-  public static final String NAME;
+  public static final String ID = "TheSimpletonMod:AbstractReapAndSowCard";
   public static final String DESCRIPTION;
   public static final String[] EXTENDED_DESCRIPTION;
-  public static final String IMG_PATH = "cards/reapandsow.png";
 
   private static final CardStrings cardStrings;
 
   private static final AbstractCard.CardType TYPE = CardType.ATTACK;
-  private static final AbstractCard.CardRarity RARITY = CardRarity.BASIC;
   private static final AbstractCard.CardTarget TARGET = CardTarget.ALL_ENEMY;
 
   protected static final int COST = 1;
@@ -37,20 +34,21 @@ public abstract class AbstractReapAndSowCard extends CustomCard {
 
   private final int upgradeDamage;
   private final int upgradePlantAmount;
-  private final Crop cropToPlant;
+  private final AbstractCropOrb cropOrbToPlant;
   private final AttackEffect attackEffect;
 
-  public AbstractReapAndSowCard(String id, String name, String imgPath, int cost, Crop cropToPlant,
+  public AbstractReapAndSowCard(String id, String name, String imgPath, int cost, CardRarity rarity,
+                                AbstractCropOrb cropOrbToPlant,
                                 AttackEffect attackEffect, int damage, int upgradeDamage,
                                 int plantAmount, int upgradePlantAmount) {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), cost, getDescription(cropToPlant), TYPE,
-        AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(id, name, TheSimpletonMod.getResourcePath(imgPath), cost, getDescription(cropOrbToPlant),
+        TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, rarity, TARGET);
 
     this.baseDamage = this.damage = damage;
     this.baseMagicNumber = this.magicNumber = plantAmount;
     this.upgradeDamage = upgradeDamage;
     this.upgradePlantAmount = upgradePlantAmount;
-    this.cropToPlant = cropToPlant;
+    this.cropOrbToPlant = cropOrbToPlant;
     this.attackEffect = attackEffect;
     this.isMultiDamage = true;
   }
@@ -60,8 +58,7 @@ public abstract class AbstractReapAndSowCard extends CustomCard {
     AbstractDungeon.actionManager.addToBottom(
         new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, attackEffect));
 
-    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(AbstractCropOrb.getCropOrb(this.cropToPlant),
-        getPlantAmount(), true));
+    AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(this.cropOrbToPlant, this.magicNumber, true));
 
     AbstractDungeon.actionManager.addToBottom(
         new ReapAndSowThresholdAction(false)); // disabling upgrade Cultivate for now
@@ -73,21 +70,19 @@ public abstract class AbstractReapAndSowCard extends CustomCard {
       upgradeName();
       upgradeDamage(this.upgradeDamage);
       upgradeMagicNumber(this.upgradePlantAmount);
-        this.rawDescription = getDescription(this.cropToPlant);
+        this.rawDescription = getDescription(this.cropOrbToPlant);
         initializeDescription();
     }
   }
 
-  abstract protected int getPlantAmount();
   public abstract AbstractCard makeCopy();
 
-  public static String getDescription(Crop crop) {
-    return DESCRIPTION + crop.getName() + EXTENDED_DESCRIPTION[0];
+  public static String getDescription(AbstractCropOrb crop) {
+    return DESCRIPTION + crop.name + EXTENDED_DESCRIPTION[0];
   }
 
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
     EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
   }

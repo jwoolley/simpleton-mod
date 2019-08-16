@@ -481,6 +481,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new Sunchoke());
         cards.add(new Thresh());
 
+        cards.add(new ReekAndSow());
+        cards.add(new ReapAndSquash());
+
+
         // Skill (20)
         cards.add(new Aerate());
         cards.add(new BumperCrop());

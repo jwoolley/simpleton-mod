@@ -53,8 +53,14 @@ public abstract class AbstractReapAndSowCard extends CustomCard {
     this.isMultiDamage = true;
   }
 
+  protected void applyAttackEffect() {
+
+  }
+
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
+    applyAttackEffect();
+
     AbstractDungeon.actionManager.addToBottom(
         new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, attackEffect));
 

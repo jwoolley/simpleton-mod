@@ -22,7 +22,7 @@ public class ReapAndSow extends AbstractReapAndSowCard {
   private static final AttackEffect ATTACK_EFFECT = AbstractGameAction.AttackEffect.SLASH_HORIZONTAL;
 
   public ReapAndSow() {
-    super(ID, NAME, IMG_PATH, AbstractReapAndSowCard.COST, RARITY, CROP_ORB, ATTACK_EFFECT,
+    super(ID, NAME, DESCRIPTION, IMG_PATH, AbstractReapAndSowCard.COST, RARITY, CROP_ORB, ATTACK_EFFECT,
         AbstractReapAndSowCard.DAMAGE, AbstractReapAndSowCard.ATTACK_UPGRADE_BONUS,
         AbstractReapAndSowCard.PLANT_AMOUNT, AbstractReapAndSowCard.UPGRADE_PLANT_AMOUNT);
 

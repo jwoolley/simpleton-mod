@@ -4,6 +4,7 @@ import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -37,11 +38,11 @@ public abstract class AbstractReapAndSowCard extends CustomCard {
   private final AbstractCropOrb cropOrbToPlant;
   private final AttackEffect attackEffect;
 
-  public AbstractReapAndSowCard(String id, String name, String imgPath, int cost, CardRarity rarity,
+  public AbstractReapAndSowCard(String id, String name, String description, String imgPath, int cost, CardRarity rarity,
                                 AbstractCropOrb cropOrbToPlant,
                                 AttackEffect attackEffect, int damage, int upgradeDamage,
                                 int plantAmount, int upgradePlantAmount) {
-    super(id, name, TheSimpletonMod.getResourcePath(imgPath), cost, getDescription(cropOrbToPlant),
+    super(id, name, TheSimpletonMod.getResourcePath(imgPath), cost, description,
         TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, rarity, TARGET);
 
     this.baseDamage = this.damage = damage;
@@ -53,8 +54,10 @@ public abstract class AbstractReapAndSowCard extends CustomCard {
     this.isMultiDamage = true;
   }
 
-  protected void applyAttackEffect() {
+  protected void applyAttackEffect() {  }
 
+  protected int getDamage() {
+    return this.damage;
   }
 
   @Override
@@ -62,7 +65,7 @@ public abstract class AbstractReapAndSowCard extends CustomCard {
     applyAttackEffect();
 
     AbstractDungeon.actionManager.addToBottom(
-        new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, attackEffect));
+        new DamageAllEnemiesAction(p, DamageInfo.createDamageMatrix(this.damage), this.damageTypeForTurn, attackEffect));
 
     AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(this.cropOrbToPlant, this.magicNumber, true));
 
@@ -76,16 +79,16 @@ public abstract class AbstractReapAndSowCard extends CustomCard {
       upgradeName();
       upgradeDamage(this.upgradeDamage);
       upgradeMagicNumber(this.upgradePlantAmount);
-        this.rawDescription = getDescription(this.cropOrbToPlant);
-        initializeDescription();
+      this.rawDescription = getUpdatedDescription();
+      initializeDescription();
     }
   }
 
-  public abstract AbstractCard makeCopy();
-
-  public static String getDescription(AbstractCropOrb crop) {
-    return DESCRIPTION + crop.name + EXTENDED_DESCRIPTION[0];
+  public String getUpdatedDescription() {
+    return this.rawDescription;
   }
+
+  public abstract AbstractCard makeCopy();
 
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);

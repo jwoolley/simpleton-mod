@@ -2,25 +2,16 @@ package thesimpleton.actions;
 
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
-import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.crops.AbstractCrop;
-import thesimpleton.orbs.AbstractCropOrb;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import thesimpleton.effects.utils.VFXActionTemplate;
 
 public class SaladShooterAction extends AbstractGameAction {
   private static float ACTION_DURATION = Settings.ACTION_DUR_XFAST;
@@ -29,13 +20,15 @@ public class SaladShooterAction extends AbstractGameAction {
 
   private int numRepetitions;
   private final DamageInfo info;
+  private final VFXActionTemplate vfxTemplate;
+  private final SFXAction sfxAction;
 
   private Logger logger;
 
-  public SaladShooterAction(AbstractPlayer player, AbstractCreature target, int baseDamage, int numRepetitions) {
+  public SaladShooterAction(AbstractPlayer player, AbstractCreature target, int baseDamage, int numRepetitions,
+                            VFXActionTemplate vfxTemplate, SFXAction sfxAction) {
     this.logger = TheSimpletonMod.logger;
     this.actionType = ActionType.DAMAGE;
-    this.attackEffect = AttackEffect.SLASH_VERTICAL;
     this.damageType = DamageInfo.DamageType.NORMAL;
     this.duration = ACTION_DURATION;
 
@@ -43,6 +36,9 @@ public class SaladShooterAction extends AbstractGameAction {
     this.baseDamage = baseDamage;
     this.target = target;
     this.numRepetitions = numRepetitions;
+
+    this.vfxTemplate = vfxTemplate;
+    this.sfxAction = sfxAction;
 
     this.info = new DamageInfo(this.player, this.baseDamage, DamageInfo.DamageType.NORMAL);
   }
@@ -72,10 +68,9 @@ public class SaladShooterAction extends AbstractGameAction {
 
         this.info.applyPowers(this.info.owner, this.target);
 
-        AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_FIRE", 0.025f));
+        AbstractDungeon.actionManager.addToBottom(this.sfxAction);
 
-          AbstractDungeon.actionManager.addToBottom(
-              new VFXAction(player, new ThrowDaggerEffect(target.hb.cX, target.hb.y), 0.1F));
+          AbstractDungeon.actionManager.addToBottom(this.vfxTemplate.getAction(target.hb.x, target.hb.y));
           AbstractDungeon.actionManager.addToBottom(
               new DamageAction(target, new DamageInfo(this.player, this.info.base), AttackEffect.NONE));
         }
@@ -84,7 +79,7 @@ public class SaladShooterAction extends AbstractGameAction {
         AbstractDungeon.actionManager.addToBottom(new SaladShooterAction(
             this.player,
             AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng),
-            this.baseDamage , this.numRepetitions));
+            this.baseDamage , this.numRepetitions, this.vfxTemplate, this.sfxAction));
       }
       this.isDone = true;
     }

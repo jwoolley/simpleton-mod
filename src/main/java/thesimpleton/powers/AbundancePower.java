@@ -1,8 +1,11 @@
 package thesimpleton.powers;
 
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import thesimpleton.TheSimpletonMod;
 
 
 public class AbundancePower extends AbstractTheSimpletonPower {
@@ -26,6 +29,26 @@ public class AbundancePower extends AbstractTheSimpletonPower {
     this.type = POWER_TYPE;
 
     updateDescription();
+  }
+
+  @Override
+  public void reducePower(int amount) {
+    super.reducePower(amount);
+
+    TheSimpletonMod.logger.debug("AbundancePower::reducePower amount (post superclass call): " + this.amount);
+
+    if (this.amount == 0) {
+      AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+    }
+  }
+
+  public void onRemove() {
+    TheSimpletonMod.logger.debug("AbundancePower::onRemove called");
+  }
+
+  public void stackPower(int amount) {
+    super.stackPower(amount);
+    TheSimpletonMod.logger.debug("AbundancePower::stackPower called. amount: " + amount);
   }
 
   @Override

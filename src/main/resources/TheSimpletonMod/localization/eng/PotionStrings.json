@@ -1,11 +1,13 @@
 {
   "TheSimpletonMod:AbundancePotion": {
-  "NAME": "Abundance Potion",
-  "DESCRIPTIONS": [
-    "Gain #b",
-    " #yAbundance."
-  ]
-},
+    "NAME": "Bloom Potion",
+    "DESCRIPTIONS": [
+      "Gain #b",
+      " #yAbundance. NL At the end of your turn, lose #b",
+      " #yAbundance."
+    ]
+  },
+
   "TheSimpletonMod:AbundancePotionKeyword": {
     "NAME": "Abundance",
     "DESCRIPTIONS": [

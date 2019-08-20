@@ -54,8 +54,8 @@
     "NAME": "Horn Of Plenty",
     "FLAVOR": "More than adequate.",
     "DESCRIPTIONS": [
-      "At the start of each combat, gain #b",
-      " #yAbundance."
+      "At the start of each combat, add a random in-season #yCrop Power card to your hand. Then gain #b",
+      " #yAbundance which lasts until end of turn."
     ]
   },
 

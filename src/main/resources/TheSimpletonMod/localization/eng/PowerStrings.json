@@ -82,6 +82,14 @@
     ]
   },
 
+  "TheSimpletonMod:LoseAbundancePower": {
+    "NAME": "Abundance Down",
+    "DESCRIPTIONS": [
+      "At the end of this turn, lose #b",
+      " #yAbundance."
+    ]
+  },
+
   "TheSimpletonMod:LoseSlowPower": {
     "NAME": "Lose Slow",
     "DESCRIPTIONS": [

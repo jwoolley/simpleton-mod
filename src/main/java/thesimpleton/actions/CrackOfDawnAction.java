@@ -81,7 +81,7 @@ public class CrackOfDawnAction extends AbstractGameAction {
       } else if (actionCounter < 20) {
         AbstractDungeon.effectsQueue.add(new RoomTintEffect(PALE_YELLOW, 0.99F));
         AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.WHITE.cpy(), false));
-        DamageInfo info =  new DamageInfo(this.owner, this.damageAmount, DamageInfo.DamageType.NORMAL);
+        DamageInfo info =  new DamageInfo(this.owner, this.damageAmount, DamageInfo.DamageType.THORNS);
         AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(this.owner, DamageInfo.createDamageMatrix(info.base),
             DamageInfo.DamageType.NORMAL, AttackEffect.SLASH_VERTICAL, true));
         AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new CornCropOrb(), this.plantAmount, true));

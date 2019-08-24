@@ -19,7 +19,7 @@ public class HayseedVictoryVegetablesEffect extends AbstractGameEffect {
     final private float gravity = -320.0f;  // Gravity (negative is down)
     final private float spinPower = 160f;
     final private float growthFactor = 4f;
-    final private float horizontalMovement = 600f;
+    final private float horizontalMovement = 450f;
     final private float verticalMovement = gravity * -2;
     final private float screenBorder = 300;
     private float duration;

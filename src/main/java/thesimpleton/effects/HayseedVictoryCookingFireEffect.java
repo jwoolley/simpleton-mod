@@ -50,7 +50,7 @@ public class HayseedVictoryCookingFireEffect extends AbstractGameEffect {
     public void update() {
         this.x += this.vX * Gdx.graphics.getDeltaTime();
         this.y += this.vY * Gdx.graphics.getDeltaTime();
-        this.color.a = Interpolation.pow3Out.apply(0.0F, 0.8F, this.duration / this.startingDuration);
+        this.color.a = Interpolation.pow3Out.apply(0.0F, 0.6F, this.duration / this.startingDuration);
         this.duration -= Gdx.graphics.getDeltaTime();
         this.scale += Gdx.graphics.getDeltaTime();
         if (this.duration < 0.0F) {

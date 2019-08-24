@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -17,14 +16,13 @@ import java.util.stream.Collectors;
 public class HayseedVictoryVegetablesEffect extends AbstractGameEffect {
 
     // Settings
-    private float dY = -80.0f;  // Gravity (negative is down)
-    private float spinPower = 80f;
-    private float growthFactor = 5f;
-    private float horizontalMovement = 40f;
-    private float verticalMovement = 120f;
-    private float fadeInSpeed = 4.0f;
-    private float minDuration = 6f;
-    private float maxDuration = 8f;
+    final private float gravity = -320.0f;  // Gravity (negative is down)
+    final private float spinPower = 160f;
+    final private float growthFactor = 4f;
+    final private float horizontalMovement = 600f;
+    final private float verticalMovement = gravity * -2;
+    final private float screenBorder = 300;
+    private float duration;
 
     private float x;
     private float y;
@@ -32,6 +30,7 @@ public class HayseedVictoryVegetablesEffect extends AbstractGameEffect {
     private float vY;
     private float rotation;
     private float spin;
+    private float growth;
     private static List<Texture> textures;
     private Texture texture;
 
@@ -62,8 +61,8 @@ public class HayseedVictoryVegetablesEffect extends AbstractGameEffect {
         // Pick a random texture
         this.texture = textures.get(MathUtils.random(0, textures.size() - 1));
 
-        // Random duration
-        this.duration = MathUtils.random(minDuration, maxDuration);
+        // duration
+        this.duration = 8f;
         this.startingDuration = this.duration;
 
         this.renderBehind = true;
@@ -73,17 +72,23 @@ public class HayseedVictoryVegetablesEffect extends AbstractGameEffect {
         this.spin = MathUtils.random(-spinPower, spinPower);
 
         // Location
-        this.x = MathUtils.random(-100.0F, 1870.0F) * Settings.scale - (float) this.texture.getWidth() / 2.0F;
+        boolean lefty = MathUtils.randomBoolean();
+        if (lefty) {
+            this.x = -screenBorder * Settings.scale - (float) this.texture.getWidth() / 2.0F;
+            this.vX = MathUtils.random(horizontalMovement / 3, horizontalMovement) * Settings.scale;
+        } else {
+            this.x = (1870 + screenBorder) * Settings.scale - (float) this.texture.getWidth() / 2.0F;
+            this.vX = MathUtils.random(-horizontalMovement, -horizontalMovement / 3) * Settings.scale;
+        }
         float h = MathUtils.random(0.15F, 0.9F);
         this.y = (float)Settings.HEIGHT * h;
-        this.vX = MathUtils.random(-horizontalMovement, horizontalMovement) * Settings.scale;
-        this.vY = MathUtils.random(0, verticalMovement) * Settings.scale;
+        this.vY = MathUtils.random(verticalMovement / 2F, verticalMovement) * Settings.scale;
 
-        // color
+        // plain old regular colors
         this.color = new Color(1, 1, 1, 1F);
 
-        // scale
-        this.scale = h * MathUtils.random(1.5F, growthFactor) * Settings.scale;
+        // how big are the taters
+        this.scale = MathUtils.random(0.8f, growthFactor) * Settings.scale;
     }
 
     @Override
@@ -109,21 +114,17 @@ public class HayseedVictoryVegetablesEffect extends AbstractGameEffect {
 
     @Override
     public void update() {
+        // Timing
         final float dt = Gdx.graphics.getDeltaTime();
+        this.duration -= dt;
+
         this.y += this.vY * dt;
         this.x += this.vX * dt;
-        this.vY += this.dY * dt;
+        this.vY += this.gravity * dt;
         this.rotation += this.spin * dt;
-        if (this.duration > this.startingDuration / 2.0F) {
-            this.color.a = Interpolation.fade.apply(0.9F, 0.0F, (this.duration - this.startingDuration / 2.0F) / (this.startingDuration / 2.0F));
-        } else {
-            this.color.a = Interpolation.fade.apply(0.0F, 0.9F, this.duration / (this.startingDuration / fadeInSpeed));
-        }
+    }
 
-        this.duration -= Gdx.graphics.getDeltaTime();
-        if (this.duration < 0.0F) {
-            this.isDone = true;
-        }
-
+    private float clamp(float a, float min, float max) {
+        return Math.max(Math.min(a, max), min);
     }
 }

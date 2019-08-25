@@ -5,12 +5,13 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
+import thesimpleton.ui.SettingsHelper;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -61,14 +62,29 @@ public class SimpletonEventHelper {
   }
 
   public static void gainCard(AbstractCard card) {
-    AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(card.makeStatEquivalentCopy(),
-        Settings.WIDTH / 2.0F - AbstractCard.IMG_WIDTH / 2.0F * Settings.scale, Settings.HEIGHT / 2.0F));
+    gainCard(card, (Settings.WIDTH) / 2.0F * SettingsHelper.getScaleX(),
+        Settings.HEIGHT / 2.0F * SettingsHelper.getScaleY());
+  }
+
+
+  public static void gainCard(AbstractCard card, float cardX, float cardY) {
+    AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(card.makeStatEquivalentCopy(), cardX, cardY));
+  }
+
+  public static void loseCard(AbstractCard card) {
+    AbstractDungeon.effectsQueue.add(new PurgeCardEffect(card));
+    AbstractDungeon.player.masterDeck.removeCard(card);
+  }
+
+  public static void loseCard(AbstractCard card, float cardX, float cardY) {
+    AbstractDungeon.effectsQueue.add(new PurgeCardEffect(card, cardX, cardY));
+    AbstractDungeon.player.masterDeck.removeCard(card);
   }
 
   public static void gainCards(AbstractCard card1, AbstractCard card2) {
-    AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(card1.makeStatEquivalentCopy(),
+    AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(card1.makeStatEquivalentCopy(),
         Settings.WIDTH / 2.0F - AbstractCard.IMG_WIDTH / 2.0F - 20.0F * Settings.scale, Settings.HEIGHT / 2.0F));
-    AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(card2.makeStatEquivalentCopy(),
+    AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(card2.makeStatEquivalentCopy(),
         Settings.WIDTH / 2.0F + AbstractCard.IMG_WIDTH / 2.0F + 20.0F * Settings.scale, Settings.HEIGHT / 2.0F));
   }
 

@@ -19,6 +19,7 @@ import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.crops.AbstractCrop;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class SimpletonUtil {
@@ -80,5 +81,20 @@ public class SimpletonUtil {
 
     public static int getNumTimesHarvestedThisTurn() {
         return AbstractCrop.getNumTimesHarvestedThisTurn();
+    }
+
+    public static boolean playerHasCard(AbstractCard card) {
+        return AbstractDungeon.player.masterDeck.group.stream().anyMatch(c -> c.cardID == card.cardID);
+    }
+
+    public static AbstractCard getCardFromPlayerMasterDeck(String cardID) {
+        Optional<AbstractCard> card =
+            AbstractDungeon.player.masterDeck.group.stream().filter(c -> c.cardID == cardID).findFirst();
+
+        if (!card.isPresent()) {
+            return null;
+        }
+
+        return card.get();
     }
 }

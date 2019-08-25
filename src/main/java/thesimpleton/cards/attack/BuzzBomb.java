@@ -67,8 +67,7 @@ public class BuzzBomb extends CustomCard {
   }
 
   public static String getDescription() {
-    return DESCRIPTION + STACKS_PER_KILL + Crop.COFFEE.getName() +
-        ((STACKS_PER_KILL == 1) ? "" : "s") + EXTENDED_DESCRIPTION[0];
+    return DESCRIPTION + STACKS_PER_KILL + " " + Crop.getCropOrb(Crop.COFFEE).name + EXTENDED_DESCRIPTION[0];
   }
 
   static {

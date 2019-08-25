@@ -1,15 +1,13 @@
 package thesimpleton.cards.attack;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
-import thesimpleton.actions.CropSpawnAction;
-import thesimpleton.crops.Crop;
 import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.orbs.SquashCropOrb;
 
@@ -25,8 +23,9 @@ public class ReapAndSquash extends AbstractReapAndSowCard {
   private static final AbstractCard.CardRarity RARITY = CardRarity.BASIC;
   private static  final AbstractCropOrb CROP_ORB = new SquashCropOrb();
   private static final AttackEffect ATTACK_EFFECT = AttackEffect.NONE;
-  private static final int BASE_DAMAGE = 2;
-  private static final int DAMAGE_PER_STACK = 2;
+
+  private static final int BLOCK_AMOUNT = 4;
+  private static final int UPDGRADE_BLOCK_AMOUNT = 2;
 
 
   public ReapAndSquash() {
@@ -37,25 +36,27 @@ public class ReapAndSquash extends AbstractReapAndSowCard {
     this.baseDamage = this.damage = DAMAGE;
     this.baseMagicNumber = this.magicNumber = PLANT_AMOUNT;
     this.isMultiDamage = true;
+    this.baseBlock = this.block = BLOCK_AMOUNT;
   }
 
   @Override
   protected void applyAttackEffect() {
+    AbstractPlayer player = AbstractDungeon.player;
     AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_SPLAT_1"));
-    AbstractDungeon.actionManager.addToBottom(new VFXAction(AbstractDungeon.player, new CleaveEffect(), 0.1F));
-  }
-
-  @Override
-  protected int getDamage() {
-    final int numSquash = AbstractCropOrb.hasCropOrb(Crop.SQUASH)
-        ? AbstractCropOrb.getCropOrb(Crop.SQUASH).passiveAmount: 0;
-
-    return BASE_DAMAGE + DAMAGE_PER_STACK * numSquash;
+    AbstractDungeon.actionManager.addToBottom(new GainBlockAction(player, player, this.block));
   }
 
   @Override
   public AbstractCard makeCopy() {
     return new ReapAndSquash();
+  }
+
+  @Override
+  public void upgrade() {
+    if (!this.upgraded) {
+      this.upgradeBlock(UPDGRADE_BLOCK_AMOUNT);
+    }
+    super.upgrade();
   }
 
   static {

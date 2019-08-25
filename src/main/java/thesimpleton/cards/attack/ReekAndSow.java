@@ -15,9 +15,10 @@ public class ReekAndSow extends AbstractReapAndSowCard {
   public static final String DESCRIPTION;
   public static final String EXTENDED_DESCRIPTION[];
   public static final String IMG_PATH = "cards/reekandsow.png";
-  private static final int DAMAGE = 3;
+  private static final int DAMAGE = 4;
   private static final int PLANT_AMOUNT = 2;
-  private static final int BURNING_AMOUNT = 3;
+  private static final int BURNING_AMOUNT = 4;
+  private static final int UPGRADE_BURNING_AMOUNT = 2;
 
   private static final CardStrings cardStrings;
 
@@ -25,28 +26,51 @@ public class ReekAndSow extends AbstractReapAndSowCard {
   private static  final AbstractCropOrb CROP_ORB = new OnionCropOrb();
   private static final AttackEffect ATTACK_EFFECT = AttackEffect.POISON;
 
+  private int burningAmount;
+
   public ReekAndSow() {
-    super(ID, NAME, getDescription(), IMG_PATH, AbstractReapAndSowCard.COST, RARITY, CROP_ORB, ATTACK_EFFECT,
+    super(ID, NAME, getDescription(BURNING_AMOUNT), IMG_PATH, AbstractReapAndSowCard.COST, RARITY, CROP_ORB, ATTACK_EFFECT,
         DAMAGE, AbstractReapAndSowCard.ATTACK_UPGRADE_BONUS,
         PLANT_AMOUNT, AbstractReapAndSowCard.UPGRADE_PLANT_AMOUNT);
 
     this.baseDamage = this.damage = DAMAGE;
     this.baseMagicNumber = this.magicNumber = PLANT_AMOUNT;
     this.isMultiDamage = true;
+
+    this.burningAmount = BURNING_AMOUNT;
   }
 
   @Override
   protected void applyAttackEffect() {
-    AbstractDungeon.actionManager.addToTop(new BurnAllEnemiesAction(BURNING_AMOUNT));
+    AbstractDungeon.actionManager.addToTop(new BurnAllEnemiesAction(this.getBurningAmount()));
   }
 
-  private static String getDescription() {
-    return DESCRIPTION + BURNING_AMOUNT + EXTENDED_DESCRIPTION[0];
+  private static String getDescription(int burningAmount) {
+    return DESCRIPTION + burningAmount + EXTENDED_DESCRIPTION[0];
+  }
+
+  public String getUpdatedDescription() {
+    return getDescription(this.getBurningAmount());
+  }
+
+  public int getBurningAmount() {
+    return this.burningAmount;
+  }
+
+  public void upgradeBurningAmount(int upgradeAmount) {
+    this.burningAmount += upgradeAmount;
   }
 
   @Override
   public AbstractCard makeCopy() {
     return new ReekAndSow();
+  }
+
+  public void upgrade() {
+    if (!this.upgraded) {
+      upgradeBurningAmount(UPGRADE_BURNING_AMOUNT);
+    }
+    super.upgrade();
   }
 
   static {

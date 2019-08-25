@@ -314,14 +314,12 @@
 
   "TheSimpletonMod:ReapAndSquash": {
     "NAME": "Reap and Squash",
-    "OLD_DESCRIPTION": "Deal damage to ALL enemies equal to !D! plus twice your Squash. NL Plant !M! Squash, then add a Cultivate to your discard pile if you have any Mature Crops.",
-    "DESCRIPTION": "Deal !D! damage to a random enemy ",
-    "EXTENDED_DESCRIPTION": [" times. NL Plant !M! Squash, then add a Cultivate to your discard pile if you have any Mature Crops."]
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. Gain !B! Block. NL Plant !M! Squash, then add a Cultivate to your discard pile if you have any Mature Crops."
   },
 
   "TheSimpletonMod:ReekAndSow": {
     "NAME": "Reek and Sow",
-    "DESCRIPTION": "Deal !D! and apply ",
+    "DESCRIPTION": "Deal !D! damage and apply ",
     "EXTENDED_DESCRIPTION": [" Burning to ALL enemies. NL Plant !M! Onions, then add a Cultivate to your discard pile if you have any Mature Crops."]
   },
 

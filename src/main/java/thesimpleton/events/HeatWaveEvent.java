@@ -52,7 +52,8 @@ public class HeatWaveEvent extends AbstractImageEvent {
       this.imageEventText.setDialogOption(OPTIONS[7], true);
     }
     this.imageEventText.setDialogOption(OPTIONS[1] + surrenderCard.name + OPTIONS[5] + BURNING_AMOUNT_1 + OPTIONS[6]);
-    this.imageEventText.setDialogOption(OPTIONS[2] + REWARD_CARD.name + OPTIONS[5] + BURNING_AMOUNT_2 + OPTIONS[6]);
+    this.imageEventText.setDialogOption(OPTIONS[2] + REWARD_CARD.name + OPTIONS[5] + BURNING_AMOUNT_2 + OPTIONS[6],
+        REWARD_CARD);
 
     this.state = SimpletonEventHelper.EventState.WAITING;
 

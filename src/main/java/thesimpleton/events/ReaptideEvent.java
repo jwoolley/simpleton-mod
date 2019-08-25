@@ -67,15 +67,18 @@ public class ReaptideEvent extends AbstractImageEvent
 
     curseCard = AbstractDungeon.miscRng.randomBoolean(0.25F) ? CURSE_DOUBT : CURSE_SPOILAGE;
 
-    this.imageEventText.setDialogOption(OPTIONS[0] + commonCropCard.name + OPTIONS[3]);
+    this.imageEventText.setDialogOption(OPTIONS[0] + commonCropCard.name + OPTIONS[3], commonCropCard);
 
     if (goldCost > 0) {
-      this.imageEventText.setDialogOption(OPTIONS[1] + uncommonCropCard.name + OPTIONS[4] + goldCost + OPTIONS[5]);
+      this.imageEventText.setDialogOption(OPTIONS[1] + uncommonCropCard.name + OPTIONS[4] + goldCost + OPTIONS[5],
+          uncommonCropCard);
     } else {
-      this.imageEventText.setDialogOption(OPTIONS[7] + MIN_GOLD_COST + OPTIONS[5], true);
+      this.imageEventText.setDialogOption(OPTIONS[7] + MIN_GOLD_COST + OPTIONS[5], true,
+          uncommonCropCard);
     }
 
-    this.imageEventText.setDialogOption(OPTIONS[2] + relicReward.name + OPTIONS[6] + curseCard.name + OPTIONS[3]);
+    this.imageEventText.setDialogOption(OPTIONS[2] + relicReward.name + OPTIONS[6] + curseCard.name + OPTIONS[3],
+        curseCard, relicReward);
 
     this.state = SimpletonEventHelper.EventState.WAITING;
     CardCrawlGame.sound.play("HOOTING_BIRD_1");

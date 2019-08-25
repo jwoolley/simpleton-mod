@@ -40,7 +40,7 @@ public class BorealisEvent extends AbstractImageEvent
     surrenderCard = SimpletonEventHelper.getRandomNonCurseCardFromDeck();
     this.imageEventText.setDialogOption(OPTIONS[0] + surrenderCard + OPTIONS[3]);
     this.imageEventText.setDialogOption(OPTIONS[1] + HP_COST + OPTIONS[4] + NUM_CARDS_UPGRADED + OPTIONS[5]);
-    this.imageEventText.setDialogOption(OPTIONS[2] + CURSE_CARD.name + OPTIONS[6] + REWARD_CARD.name + OPTIONS[7]);
+    this.imageEventText.setDialogOption(OPTIONS[2] + CURSE_CARD.name + OPTIONS[6], CURSE_CARD);
 
     this.state = EventState.WAITING;
     rumbleSoundId = CardCrawlGame.sound.play("GRADUAL_RUMBLE_1");
@@ -73,13 +73,13 @@ public class BorealisEvent extends AbstractImageEvent
             break;
         }
         this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[8]);
+        this.imageEventText.setDialogOption(OPTIONS[7]);
         this.state = EventState.LEAVING;
         AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
         break;
       case LEAVING:
         this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[8]);
+        this.imageEventText.setDialogOption(OPTIONS[7]);
         openMap();
         CardCrawlGame.sound.stop("GRADUAL_RUMBLE_1");
         break;

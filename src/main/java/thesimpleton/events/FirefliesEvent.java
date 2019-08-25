@@ -65,7 +65,8 @@ public class FirefliesEvent extends AbstractImageEvent
     curseIsInjury = false;
 
     this.imageEventText.setDialogOption(OPTIONS[0] + potionReward.name + OPTIONS[2]);
-    this.imageEventText.setDialogOption(OPTIONS[1] + relicReward.name + OPTIONS[3] + curseCard.name + OPTIONS[2]);
+    this.imageEventText.setDialogOption(OPTIONS[1] + relicReward.name + OPTIONS[3] + curseCard.name + OPTIONS[2],
+        curseCard, relicReward);
 
   this.state = SimpletonEventHelper.EventState.WAITING;
     CardCrawlGame.sound.play("MAGIC_CHIMES_1");

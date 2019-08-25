@@ -78,15 +78,17 @@ public class SnowedInEvent extends AbstractImageEvent
 
     if (goldCost > 0) {
         this.imageEventText.setDialogOption(OPTIONS[0] + NUM_REWARD_CARDS_1 + " " + CARD_REWARD.name + OPTIONS[3]
-          + goldCost + OPTIONS[4]);
+          + goldCost + OPTIONS[4], CARD_REWARD);
     } else {
-      this.imageEventText.setDialogOption(OPTIONS[8] + MIN_GOLD_COST + OPTIONS[4], true);
+      this.imageEventText.setDialogOption(OPTIONS[8] + MIN_GOLD_COST + OPTIONS[4], true,
+          CARD_REWARD);
     }
 
     this.imageEventText.setDialogOption(OPTIONS[1] + NUM_REWARD_CARDS_2 + " " + cropCardReward.name + OPTIONS[3]
-        + hpCost + OPTIONS[5]);
+        + hpCost + OPTIONS[5], cropCardReward);
 
-    this.imageEventText.setDialogOption(OPTIONS[2] + relicReward.name + OPTIONS[6] + CURSE_CARD.name + OPTIONS[7]);
+    this.imageEventText.setDialogOption(OPTIONS[2] + relicReward.name + OPTIONS[6] + CURSE_CARD.name + OPTIONS[7],
+        CURSE_CARD, relicReward);
 
     this.state = SimpletonEventHelper.EventState.WAITING;
 

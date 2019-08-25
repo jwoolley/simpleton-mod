@@ -35,7 +35,7 @@ public class EarlyThawEvent extends AbstractImageEvent
     // TODO: Handle case where no upgradable cards
 
     this.imageEventText.setDialogOption(OPTIONS[0] + upgradableCard + OPTIONS[2] + HEAL_AMOUNT + OPTIONS[3]);
-    this.imageEventText.setDialogOption(OPTIONS[1] + CURSE_CARD + OPTIONS[4] + REWARD_CARD + OPTIONS[5]);
+    this.imageEventText.setDialogOption(OPTIONS[1] + CURSE_CARD + OPTIONS[4] + REWARD_CARD + OPTIONS[5], CURSE_CARD);
 
     this.state = EventState.WAITING;
     CardCrawlGame.sound.play("BIRD_TWEET_1");

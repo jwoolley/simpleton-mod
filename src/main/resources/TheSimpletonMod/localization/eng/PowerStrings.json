@@ -116,7 +116,7 @@
   "TheSimpletonMod:PhotosynthesisPower": {
     "NAME": "Photosynthesis",
     "DESCRIPTIONS": [
-      "At the end of your turn, spend all your unused #yEnergy and #yPlant that many random #yCrops."
+      "At the end of your turn, spend all your unused #yEnergy and #yPlant that many random in-season #yCrops."
     ]
   },
 

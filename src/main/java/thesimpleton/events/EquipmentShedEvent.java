@@ -70,13 +70,13 @@ public class EquipmentShedEvent extends AbstractImageEvent
         * (AbstractDungeon.ascensionLevel >= 15 ? HP_DAMAGE_PERCENT_A15 : HP_DAMAGE_PERCENT));
 
     this.imageEventText.setDialogOption(
+        OPTIONS[2] + MAX_HP_INCREASE_AMOUNT + OPTIONS[6] + CURSE_CARD.name + OPTIONS[7],
+        CURSE_CARD);
+
+    this.imageEventText.setDialogOption(
         (playerHasReapAndSow ? (OPTIONS[0] + cardToReplace.name + OPTIONS[3]) : OPTIONS[1])
         +  replacementCard.name + OPTIONS[4] + this.damage + OPTIONS[5],
         replacementCard);
-
-    this.imageEventText.setDialogOption(
-        OPTIONS[2] + MAX_HP_INCREASE_AMOUNT + OPTIONS[6] + CURSE_CARD.name + OPTIONS[7],
-        CURSE_CARD);
 
     this.state = EventState.WAITING;
     CardCrawlGame.sound.play("EVENT_NLOTH");
@@ -86,9 +86,15 @@ public class EquipmentShedEvent extends AbstractImageEvent
   protected void buttonEffect(int buttonPressed) {
     switch (state) {
       case WAITING:
+
+
         switch (buttonPressed) {
           case 0:
+            AbstractDungeon.player.increaseMaxHp(MAX_HP_INCREASE_AMOUNT, true);
+            SimpletonEventHelper.gainCard(CURSE_CARD);
+            break;
 
+          case 1:
             AbstractDungeon.player.damage(new DamageInfo(AbstractDungeon.player, this.damage));
             CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
             AbstractDungeon.actionManager.addToBottom(new VFXAction(
@@ -109,12 +115,6 @@ public class EquipmentShedEvent extends AbstractImageEvent
               SimpletonEventHelper.gainCard(replacementCard);
             }
 
-            break;
-
-          case 1:
-            AbstractDungeon.player.increaseMaxHp(MAX_HP_INCREASE_AMOUNT, true);
-
-            SimpletonEventHelper.gainCard(CURSE_CARD);
             break;
 
           default:

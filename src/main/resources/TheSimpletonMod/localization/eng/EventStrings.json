@@ -35,7 +35,7 @@
   "TheSimpletonMod:EquipmentShedEvent": {
     "NAME": "Derelict Shed",
     "DESCRIPTIONS": [
-      "You happen upon a disused shelter. NL NL A workbench covered in rusty tools stands in front. Sacks filled with rotted seed are strewn about. NL NL Not much appears to be of value, but you might be able to put some of the tools to use."
+      "You happen upon a disused shelter. NL NL A workbench covered in rusty tools stands in front. Sacks filled with rotted feed are strewn about. NL NL Not much appears to be of value, but you may be able to salvage some of the food. NL NL Or you could try to put some of the tools to use."
     ],
     "OPTIONS": [
       "[Tinker] #rLose ",

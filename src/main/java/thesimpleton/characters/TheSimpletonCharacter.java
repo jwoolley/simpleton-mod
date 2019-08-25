@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
@@ -20,6 +19,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.attack.Haymaker;
 import thesimpleton.cards.attack.PestManagement;
@@ -28,6 +28,8 @@ import thesimpleton.cards.attack.Strike_TheSimpleton;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.skill.Defend_TheSimpleton;
 import thesimpleton.cards.skill.Rototilling;
+import thesimpleton.effects.HayseedVictoryCookingFireEffect;
+import thesimpleton.effects.HayseedVictoryVegetablesEffect;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.orbs.AbstractCropOrb;
@@ -228,6 +230,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
         return com.megacrit.cardcrawl.events.city.Vampires.DESCRIPTIONS[5];
     }
 
+    // When you defeat the heart, this happens
     @Override
     public List<CutscenePanel> getCutscenePanels() {
         List<CutscenePanel> panels = new ArrayList();
@@ -235,6 +238,13 @@ public class TheSimpletonCharacter extends CustomPlayer {
         panels.add(new CutscenePanel(getResourcePath("scenes/thesimpleton2.png")));
         panels.add(new CutscenePanel(getResourcePath("scenes/thesimpleton3.png")));
         return panels;
+    }
+
+    // Sweet victory effects go here
+    @Override
+    public void updateVictoryVfx(ArrayList<AbstractGameEffect> effects) {
+        effects.add(new HayseedVictoryVegetablesEffect());
+        effects.add(new HayseedVictoryCookingFireEffect());
     }
 
     // ORB LOGIC

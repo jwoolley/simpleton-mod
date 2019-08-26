@@ -12,6 +12,7 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.ui.SettingsHelper;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -112,9 +113,41 @@ public class SimpletonEventHelper {
             .orElse(defaultCard);
   }
 
+
+  private static AbstractCard getRandomCardFromPool(AbstractCard.CardRarity rarity) {
+    final AbstractCard attackCard = AbstractDungeon.getCardFromPool(rarity, AbstractCard.CardType.ATTACK, true);
+
+    final AbstractCard skillCard = AbstractDungeon.getCardFromPool(rarity, AbstractCard.CardType.SKILL, true);
+
+    final AbstractCard powerCard = AbstractDungeon.getCardFromPool(rarity, AbstractCard.CardType.POWER, true);
+
+    final List<AbstractCard> rareCards =  new ArrayList<>();
+    if (attackCard != null) {
+      rareCards.add(attackCard);
+    }
+    if (skillCard != null) {
+      rareCards.add(skillCard);
+    }
+    if (powerCard != null) {
+      rareCards.add(powerCard);
+    }
+    Collections.shuffle(rareCards);
+    return rareCards.get(0);
+  }
+
+  public static AbstractCard getRandomCommonCardFromPool() {
+    return getRandomCardFromPool(AbstractCard.CardRarity.COMMON);
+  }
+
+  public static AbstractCard getRandomUncommonCardFromPool() {
+    return getRandomCardFromPool(AbstractCard.CardRarity.UNCOMMON);
+  }
+
+  public static AbstractCard getRandomRareCardFromPool() {
+    return getRandomCardFromPool(AbstractCard.CardRarity.RARE);
+  }
+
   // TODO: Handle case where no upgradable cards
-
-
   public static void upgradeCard(AbstractCard card) {
     upgradeCards(Arrays.asList(card));
   }

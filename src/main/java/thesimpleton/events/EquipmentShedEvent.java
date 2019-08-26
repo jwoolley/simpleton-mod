@@ -60,9 +60,11 @@ public class EquipmentShedEvent extends AbstractImageEvent
 
     final SeasonInfo seasonInfo = TheSimpletonMod.getSeasonInfo();
 
-    replacementCard = seasonInfo.isInSeason(Crop.SQUASH) ?
-        SQUASH_REPLACEMENT_CARD
-        : (seasonInfo.isInSeason(Crop.ONIONS) ? ONION_REPLACEMENT_CARD : POTATO_REPLACEMENT_CARD);
+    replacementCard =  (!TheSimpletonMod.isPlayingAsSimpleton() ? SimpletonEventHelper.getRandomUncommonCardFromPool()
+        : (seasonInfo.isInSeason(Crop.SQUASH) ? SQUASH_REPLACEMENT_CARD
+        : (seasonInfo.isInSeason(Crop.ONIONS) ? ONION_REPLACEMENT_CARD
+        : POTATO_REPLACEMENT_CARD)));
+
     playerHasReapAndSow = SimpletonUtil.playerHasCard(CARD_TO_REPLACE);
     cardToReplace =  playerHasReapAndSow ? SimpletonUtil.getCardFromPlayerMasterDeck(CARD_TO_REPLACE.cardID) : null;
 

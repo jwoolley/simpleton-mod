@@ -255,7 +255,7 @@
 
   "TheSimpletonMod:Nettles": {
     "NAME": "Nettles",
-    "DESCRIPTION": "Unplayable. NL Whenever this card is drawn, Apply !M! Thorns to a random enemy."
+    "DESCRIPTION": "Unplayable. NL At the end of your turn, apply !M! Thorns to a random enemy."
   },
 
   "TheSimpletonMod:Frostbite": {

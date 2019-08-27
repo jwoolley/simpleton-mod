@@ -1,6 +1,7 @@
 package thesimpleton.cards.curse;
 
 import basemod.abstracts.CustomCard;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -38,21 +39,23 @@ public class Nettles extends CustomCard implements SeasonalCurse {
         this.baseMagicNumber = this.magicNumber = THORNS_DAMAGE;
     }
 
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
+    @Override
+    public void triggerOnEndOfPlayerTurn() {
         final List<AbstractCreature> monsters = AbstractDungeon.getMonsters().monsters.stream()
                 .filter(mo -> !mo.isDeadOrEscaped())
                 .collect(Collectors.toList());
 
-        final AbstractCreature monster = monsters.get(AbstractDungeon.miscRng.random(0, monsters.size() - 1));
+        if (monsters.size() > 0) {
+            this.superFlash(Color.SCARLET.cpy());
 
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, monster, new ThornsPower(monster, magicNumber), magicNumber));
+            final AbstractCreature monster = monsters.get(AbstractDungeon.miscRng.random(0, monsters.size() - 1));
+            AbstractDungeon.actionManager.addToBottom(
+                new ApplyPowerAction(monster, monster, new ThornsPower(monster, magicNumber), magicNumber));
+        }
 
         // No idea if every curse needs this
-        if ((AbstractDungeon.player.hasPower("Evolve")) && (!AbstractDungeon.player.hasPower("No Draw")))
-        {
+        if ((AbstractDungeon.player.hasPower("Evolve"))
+            && (!AbstractDungeon.player.hasPower("No Draw"))) {
             AbstractDungeon.player.getPower("Evolve").flash();
             AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player,
                     AbstractDungeon.player.getPower("Evolve").amount));

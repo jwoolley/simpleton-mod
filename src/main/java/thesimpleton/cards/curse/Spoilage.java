@@ -27,6 +27,8 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
 
   private static final int COST = -2;
 
+  boolean willTrigger = false;
+
   public Spoilage() {
     super(ID, NAME,
         TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE, CardColor.CURSE, RARITY,
@@ -37,9 +39,8 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
 
   public void triggerOnOtherCardPlayed(AbstractCard c) {
     if (AbstractDungeon.player.cardsPlayedThisTurn >= this.magicNumber) {
-      if (!this.retain) {
-        this.retain = true;
-        this.retain = true;
+      if (!this.willTrigger) {
+        this.willTrigger = true;
         this.flash(Color.CHARTREUSE);
         CardCrawlGame.sound.play("POWER_POISON");
         updateDescription(true);
@@ -56,19 +57,18 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
 
   @Override
   public void triggerOnEndOfTurnForPlayingCard() {
-    TheSimpletonMod.logger.debug("Spoilage::triggerOnEndOfTurnForPlayingCard called");
-    updateDescription(false);
+
   }
 
-//  public void triggerOnEndOfPlayerTurn() {
-//    TheSimpletonMod.logger.debug("Spoilage::triggerOnEndOfPlayerTurn called");
-////  this.tri
-//    updateDescription(false);
-//  }
+  public void triggerOnEndOfPlayerTurn() {
+    TheSimpletonMod.logger.debug("Spoilage::triggerOnEndOfTurnForPlayingCard called");
 
-//  public void use(AbstractPlayer p, AbstractMonster m) {
-//
-//  }
+    if (this.willTrigger) {
+      AbstractDungeon.player.hand.moveToDeck(this, false);
+      this.willTrigger = false;
+      updateDescription(false);
+    }
+  }
 
   public void use(AbstractPlayer p, AbstractMonster m) {  }
 

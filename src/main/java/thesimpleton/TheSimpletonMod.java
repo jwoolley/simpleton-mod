@@ -532,10 +532,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new VolatileFumes());
 
         // Curse(6)
-//        cards.add(new Frostbite());
-//        cards.add(new Gnats());
-//        cards.add(new Nettles());
-//        cards.add(new Spoilage());
+        cards.add(new Frostbite());
+        cards.add(new Gnats());
+        cards.add(new Nettles());
+        cards.add(new Spoilage());
         return cards;
     }
 
@@ -654,7 +654,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             seasonIndicator.reset();
         }
 
-        getSeasonalCurseCards(seasonInfo.getSeason());
+//        getSeasonalCurseCards(seasonInfo.getSeason());
 
         CUSTOM_SAVABLES.seasonCustomSavable.reset();
     }
@@ -785,7 +785,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     public static void removeUnseasonalCardsFromPool() {
         removeUnusedCropPowerCardsFromPool();
-        removeUnusedSeasonalCurseCardsFromPool();
+//        removeUnusedSeasonalCurseCardsFromPool();
     }
 
     public static void removeUnusedCropPowerCardsFromPool() {
@@ -959,9 +959,9 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                 addToCardPool(card);
             }
 
-            for (AbstractCard card : getSeasonalCurseCards()) {
-                addToCardPool(card);
-            }
+//            for (AbstractCard card : getSeasonalCurseCards()) {
+//                addToCardPool(card);
+//            }
 
             TheSimpletonMod.removeUnusedCropPowerCardsFromPool();
 

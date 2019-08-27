@@ -28,28 +28,13 @@ public class Frostbite extends CustomCard implements SeasonalCurse {
   private static final CardRarity RARITY = CardRarity.CURSE;
   private static final CardTarget TARGET = CardTarget.NONE;
 
-
   private static final int COST_INCREASE_AMOUNT = 1;
-
 
   private static final int COST = -2;
 
   public Frostbite() {
     super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.CURSE, RARITY, TARGET);
   }
-
-//  public void triggerWhenDrawn() {
-//    super.triggerWhenDrawn();
-//
-//    AbstractDungeon.actionManager.addToBottom(
-//        new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
-//            new SlowPower(AbstractDungeon.player, 0), 0));
-//
-//     AbstractDungeon.actionManager.addToBottom(
-//          new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
-//              new LoseSlowPower(AbstractDungeon.player), 1));
-//  }
-
 
   @Override
   public void triggerOnOtherCardPlayed(AbstractCard card) {
@@ -76,6 +61,7 @@ public class Frostbite extends CustomCard implements SeasonalCurse {
     card.isCostModifiedForTurn = true;
 
     // TODO: reimplement as an action & wait a tick between power flash and card flash
+    CardCrawlGame.sound.play("ICE_CLINK_1");
     this.flash(Color.SKY.cpy());
     card.superFlash(Color.SKY.cpy());
   }

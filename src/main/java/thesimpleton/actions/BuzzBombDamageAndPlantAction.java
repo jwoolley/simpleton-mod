@@ -25,7 +25,6 @@ public class BuzzBombDamageAndPlantAction extends AbstractGameAction {
     this.target = target;
     this.damageInfo = damageInfo;
     this.amount = numStacksPerKill;
-
   }
 
   @Override

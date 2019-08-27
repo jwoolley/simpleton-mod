@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.BuzzBombAction;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.crops.Crop;
 import thesimpleton.enums.AbstractCardEnum;
 
@@ -48,9 +49,9 @@ public class BuzzBomb extends CustomCard {
       AbstractDungeon.actionManager.addToBottom(new WaitAction(0.5F));
     }
 
-    AbstractDungeon.actionManager.addToBottom(new BuzzBombAction(
-        p, AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng),
-        this.damage, this.magicNumber, STACKS_PER_KILL));
+    AbstractDungeon.actionManager.addToBottom(new BuzzBombAction(p, SimpletonUtil.getRandomMonster(), this.damage,
+        this.magicNumber, STACKS_PER_KILL));
+
   }
 
   @Override

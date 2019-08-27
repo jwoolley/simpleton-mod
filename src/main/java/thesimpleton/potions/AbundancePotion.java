@@ -28,8 +28,8 @@ public class AbundancePotion extends CustomPotion {
 //  public static final Color HYBRID_COLOR = Color.CLEAR;
 //  public static final Color SPOTS_COLOR = Color.RED;
 
-  public static final Color BASE_COLOR = Color.GREEN;
-  public static final Color HYBRID_COLOR = Color.LIME;
+  public static final Color BASE_COLOR = Color.GREEN.cpy();
+  public static final Color HYBRID_COLOR = Color.LIME.cpy();
   public static final Color SPOTS_COLOR =  new Color(.4F, 1.0F, .425F, 1.0F);
 
   public AbundancePotion() {

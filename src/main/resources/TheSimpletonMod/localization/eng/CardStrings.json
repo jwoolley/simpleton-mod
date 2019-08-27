@@ -260,7 +260,7 @@
 
   "TheSimpletonMod:Frostbite": {
     "NAME": "Frostbite",
-    "DESCRIPTION": "Unplayable. NL Whenever this card is drawn, gain Slow for this turn."
+    "DESCRIPTION": "Unplayable. NL Whenever you play a card, increase the cost of a random card in your hand by 1 this turn."
   },
 
   "TheSimpletonMod:OnionBloom": {

@@ -29,10 +29,7 @@ public class BuzzBombAction extends AbstractGameAction {
 
   private int numRepetitions;
 
-  private Logger logger;
-
   public BuzzBombAction(AbstractPlayer player, AbstractCreature target, int baseDamage, int numRepetitions, int numStacksPerKill) {
-    this.logger = TheSimpletonMod.logger;
     this.actionType = AbstractGameAction.ActionType.DAMAGE;
     this.attackEffect = AbstractGameAction.AttackEffect.SLASH_VERTICAL;
     this.damageType = DamageInfo.DamageType.NORMAL;
@@ -49,11 +46,6 @@ public class BuzzBombAction extends AbstractGameAction {
 
   @Override
   public void update() {
-
-    Logger logger = TheSimpletonMod.logger;
-
-    logger.info("BuzzBombAction::update called. duration: " + this.duration + "; numRepetitions: " + numRepetitions);
-
     if (this.target == null) {
       this.isDone = true;
       return;
@@ -66,19 +58,11 @@ public class BuzzBombAction extends AbstractGameAction {
     this.duration -= Gdx.graphics.getDeltaTime();
 
     if (this.duration < 0.0F) {
-      logger.info("BuzzBombAction::update : times's up!");
-
-
       if (this.target.currentHealth > 0) {
         this.info.base = baseDamage;
 
-        logger.info("BuzzBombAction::update : target is alive");
-
-
         if (numRepetitions > 0) {
           numRepetitions--;
-
-          logger.info("BuzzBombAction::update : queueing Impact Effect");
 
           AbstractDungeon.actionManager.addToBottom(
               new VFXAction(new BuzzBombImpactEffect(target.hb.x, target.hb.cY, numRepetitions == 0)));
@@ -87,20 +71,14 @@ public class BuzzBombAction extends AbstractGameAction {
             AbstractDungeon.actionManager.addToBottom(new WaitAction(0.25F));
           }
 
-          logger.info("BuzzBombAction::update : queueing SFX");
-
           AbstractDungeon.actionManager.addToBottom(
               new SFXAction(numRepetitions > 0 ? "ATTACK_FIRE_IMPACT_1" : "ATTACK_FIRE_IMPACT_2"));
-
-          logger.info("BuzzBombAction::update : applying attack and plant action");
 
           this.info.applyPowers(this.info.owner, this.target);
           AbstractDungeon.actionManager.addToBottom(
               new BuzzBombDamageAndPlantAction(this.source, this.target, this.info, this.numStacksPerKill));
 
           if ((this.numRepetitions > 0) && (!AbstractDungeon.getMonsters().areMonstersBasicallyDead())) {
-            logger.info("BuzzBombAction::update : queueing subsequent BuzzBombAction with numRepetitions " + numRepetitions);
-
             AbstractDungeon.actionManager.addToBottom(new BuzzBombAction(this.player, SimpletonUtil.getRandomMonster(),
                 this.baseDamage , this.numRepetitions, this.numStacksPerKill));
           }

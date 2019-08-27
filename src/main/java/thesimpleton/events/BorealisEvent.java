@@ -66,7 +66,12 @@ public class BorealisEvent extends AbstractImageEvent
 
           case 2:
             CardCrawlGame.sound.play("EVENT_ANCIENT");
-            SimpletonEventHelper.gainCards(CURSE_CARD, REWARD_CARD);
+            final boolean receiveCurse = AbstractDungeon.miscRng.randomBoolean();
+            if (receiveCurse) {
+              SimpletonEventHelper.gainCards(CURSE_CARD, REWARD_CARD);
+            } else {
+              SimpletonEventHelper.gainCard(REWARD_CARD);
+            }
             break;
 
           default:

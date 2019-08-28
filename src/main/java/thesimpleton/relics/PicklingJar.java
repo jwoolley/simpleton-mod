@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.SimpletonUtil;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -69,8 +70,7 @@ public class PicklingJar extends CustomRelic implements CustomBottleRelic, Custo
     for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
         tmp.addToTop(c);
     }
-    AbstractDungeon.gridSelectScreen.open(tmp, 1, DESCRIPTIONS[2] + name + ".",
-        false, false, false, false);
+    SimpletonUtil.openCenterGridSelectScreenUncancelable(tmp, 1, DESCRIPTIONS[2] + name + ".");
   }
 
   @Override
@@ -160,6 +160,7 @@ public class PicklingJar extends CustomRelic implements CustomBottleRelic, Custo
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
       initializeTips();
+      SimpletonUtil.centerGridSelectScreenFinished();
     }
   }
 

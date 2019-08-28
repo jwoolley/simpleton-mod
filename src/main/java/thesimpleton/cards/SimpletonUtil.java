@@ -1,6 +1,7 @@
 package thesimpleton.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -17,6 +18,8 @@ import thesimpleton.cards.skill.unused.Husk;
 import thesimpleton.cards.skill.unused.RootOut;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.crops.AbstractCrop;
+import thesimpleton.patches.ui.CenterGridCardSelectScreen;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -39,8 +42,8 @@ public class SimpletonUtil {
 
     public static AbstractMonster getRandomMonster() {
         List<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters.stream()
-                .filter(m -> !m.isDeadOrEscaped())
-                .collect(Collectors.toList());
+            .filter(m -> !m.isDeadOrEscaped())
+            .collect(Collectors.toList());
 
         Collections.shuffle(monsters);
         if (monsters.size() == 0) {
@@ -58,10 +61,17 @@ public class SimpletonUtil {
 
     public static AbstractCreature getDummyCreature() {
         return (new AbstractMonster("Dummy", "Dummy", 1, 0.0F, 0.0F, 1.0F, 1.0F, null) {
-            public void damage(DamageInfo di) {}
-            public void render(com.badlogic.gdx.graphics.g2d.SpriteBatch spriteBatch) {}
-            protected void getMove(int i) {}
-            public void takeTurn() {}
+            public void damage(DamageInfo di) {
+            }
+
+            public void render(com.badlogic.gdx.graphics.g2d.SpriteBatch spriteBatch) {
+            }
+
+            protected void getMove(int i) {
+            }
+
+            public void takeTurn() {
+            }
         });
     }
 
@@ -96,5 +106,25 @@ public class SimpletonUtil {
         }
 
         return card.get();
+    }
+
+    public static void openCenterGridSelectScreenUncancelable(CardGroup cardGroup, int numCards, String tipMessage) {
+        CenterGridCardSelectScreen.centerGridSelect = true;
+        AbstractDungeon.gridSelectScreen.open(cardGroup, 1, tipMessage,
+            false, false, false, false);
+    }
+
+    public static void openCenterGridSelectScreenForUpToNumCards(CardGroup cardGroup, int maxCards, String tipMessage) {
+        CenterGridCardSelectScreen.centerGridSelect = true;
+        AbstractDungeon.gridSelectScreen.open(cardGroup, maxCards, true, tipMessage);
+    }
+
+    public static void openCenterGridSelectScreen(CardGroup cardGroup, int numCards, String tipMessage, boolean forUpgrade) {
+        CenterGridCardSelectScreen.centerGridSelect = true;
+        AbstractDungeon.gridSelectScreen.open(cardGroup,numCards, tipMessage ,forUpgrade);
+    }
+
+    public static void centerGridSelectScreenFinished() {
+        CenterGridCardSelectScreen.centerGridSelect = false;
     }
 }

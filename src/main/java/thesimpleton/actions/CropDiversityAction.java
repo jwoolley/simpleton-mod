@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 
 import java.util.ArrayList;
@@ -79,6 +80,7 @@ public class CropDiversityAction extends AbstractGameAction {
 
 
         this.tickDuration();
+        SimpletonUtil.centerGridSelectScreenFinished();
         this.isDone = true;
         return;
       }
@@ -144,7 +146,8 @@ public class CropDiversityAction extends AbstractGameAction {
       return;
     }
     // TODO: move to localized strings
-    AbstractDungeon.gridSelectScreen.open(cardGroup, 1, "Select a card.", false);
+
+    SimpletonUtil.openCenterGridSelectScreen(cardGroup, 1, "Select a card.", false);
 
     TheSimpletonMod.logger.debug("CropDiversityAction::update [3] CardPool | commons:"
         + AbstractDungeon.commonCardPool.size() + "; uncommon: "

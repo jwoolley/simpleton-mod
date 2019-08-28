@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.DiscardGlowEffect;
 import thesimpleton.cards.ShuffleTriggeredCard;
+import thesimpleton.cards.SimpletonUtil;
 
 public class ChooseAndAddDiscardCardsToDeckAction extends AbstractGameAction {
   private AbstractPlayer p;
@@ -53,13 +54,15 @@ public class ChooseAndAddDiscardCardsToDeckAction extends AbstractGameAction {
           AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }
         this.tickDuration();
+        SimpletonUtil.centerGridSelectScreenFinished();
         this.isDone = true;
         return;
       }
 
       CardGroup discardPile = this.p.discardPile;
       // TODO: move this text to localized strings
-      AbstractDungeon.gridSelectScreen.open(discardPile,this.amount,true,"Select up to "+ this.amount +" cards.");
+      SimpletonUtil.openCenterGridSelectScreenForUpToNumCards(discardPile, this.amount,
+          "Select up to "+ this.amount +" cards.");
       this.tickDuration();
     }
 }

@@ -154,14 +154,6 @@
     "DESCRIPTION": "#ySlot for planting Crops. Your Plots determine how many different Crops you can have at one time."
   },
 
-  "TheSimpletonMod:SlowKeyword": {
-    "NAME": "Slow",
-    "NAMES": [
-      "slow"
-    ],
-    "DESCRIPTION": "Whenever you play a card, you receive #b10% more damage from #yAttacks until your next turn."
-  },
-
   "TheSimpletonMod:SpinachKeyword": {
     "PROPER_NAME": "Spinach",
     "NAMES": [

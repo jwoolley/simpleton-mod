@@ -39,11 +39,11 @@ public class DrawDownPower extends AbstractTheSimpletonPower
     if (this.amount >= MAX_STACKS) {
       this.amount = MAX_STACKS;
     }
+    updateDescription();
   }
 
-  public void updateDescription()
-  {
-    this.description = (DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]);
+  public void updateDescription() {
+    this.description = (DESCRIPTIONS[0] + this.amount + ((this.amount == 1) ? DESCRIPTIONS[1] : DESCRIPTIONS[2]));
   }
 
   @Override

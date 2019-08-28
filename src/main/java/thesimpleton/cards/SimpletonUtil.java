@@ -20,6 +20,7 @@ import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.crops.AbstractCrop;
 import thesimpleton.patches.ui.CenterGridCardSelectScreen;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -107,6 +108,38 @@ public class SimpletonUtil {
 
         return card.get();
     }
+
+    public static AbstractCard getRandomCardFromPool(AbstractCard.CardType cardType,
+                                                     AbstractCard.CardRarity rarity) {
+        List<AbstractCard> cards = getCardsFromPool(cardType, rarity);
+
+        if (cards.size() == 0) {
+            return null;
+        }
+        Collections.shuffle(cards);
+        return cards.get(0);
+    }
+
+    public static List<AbstractCard> getCardsFromPool(AbstractCard.CardType cardType,
+                                                           AbstractCard.CardRarity rarity) {
+        ArrayList<AbstractCard> cardsOfRarity = null;
+        switch (rarity) {
+            case COMMON:
+                cardsOfRarity = AbstractDungeon.commonCardPool.group;
+                break;
+            case UNCOMMON:
+                cardsOfRarity = AbstractDungeon.uncommonCardPool.group;
+                break;
+            case RARE:
+                cardsOfRarity = AbstractDungeon.rareCardPool.group;
+                break;
+            default:
+                throw new IllegalArgumentException("Card type not supported: " + cardType);
+        }
+
+        return cardsOfRarity.stream().filter(c -> c.type == cardType).collect(Collectors.toList());
+    }
+
 
     public static void openCenterGridSelectScreenUncancelable(CardGroup cardGroup, int numCards, String tipMessage) {
         CenterGridCardSelectScreen.centerGridSelect = true;

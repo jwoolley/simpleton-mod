@@ -62,15 +62,7 @@ public class CrackOfDawnPower extends AbstractTheSimpletonPower  {
         StringUtils.repeat(DESCRIPTIONS[6], this.energyAmount) + DESCRIPTIONS[7];
   }
 
-  public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-    if (target.hasPower(WeakPower.POWER_ID) && (target != this.owner) && (info.type == DamageInfo.DamageType.NORMAL)) {
-      flashWithoutSound();
-      AbstractDungeon.actionManager.addToBottom(new ApplyBurningAction(target, this.source, this.amount));
-    }
-  }
-
   @Override
-//  public void atStartOfTurnPostDraw() {
     public void atStartOfTurn() {
     if (this.amount <= 1) {
       AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));

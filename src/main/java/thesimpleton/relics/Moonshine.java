@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -25,7 +26,7 @@ public class Moonshine extends CustomRelic {
   private static final RelicTier TIER = RelicTier.UNCOMMON;
   private static final LandingSound SOUND = LandingSound.CLINK;
 
-  private static final int TRIGGER_TURN = 5;
+  private static final int TRIGGER_TURN = 3;
   private static final int STRENGTH_AMOUNT = 5;
   private static final int DRAW_AMOUNT = 1;
 
@@ -66,6 +67,8 @@ public class Moonshine extends CustomRelic {
       if (!wasConfused) {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(player, player, new SoberUpPower(player)));
       }
+
+      AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(1));
 
       AbstractDungeon.actionManager.addToBottom(new DrawCardAction(player, DRAW_AMOUNT));
     }

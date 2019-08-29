@@ -400,8 +400,12 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_AttackSplat1.ogg"));
         reflectedMap.put("BIRD_TWEET_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_BirdTweet1.ogg"));
+        reflectedMap.put("DRINK_BOTTLE_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_DrinkBottle1.ogg"));
         reflectedMap.put("FALL_MEADOW_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_FallMeadow1.ogg"));
+        reflectedMap.put("GIBBERISH_ANGRY_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_GibberishAngry1.ogg"));
         reflectedMap.put("GRADUAL_RUMBLE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_GradualBuzz1.ogg"));
         reflectedMap.put("HOOTING_BIRD_1",
@@ -926,6 +930,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addRelicToCustomPool(new TheHarvester(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new HornOfPlenty(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new HotPotato(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new Moonshine(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new OnionBelt(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new PicklingJar(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new PlanterBox(), AbstractCardEnum.THE_SIMPLETON_BLUE);

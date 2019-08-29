@@ -68,6 +68,20 @@
   },
 
 
+  "TheSimpletonMod:Moonshine": {
+    "NAME": "Moonshine",
+    "FLAVOR": ".",
+    "DESCRIPTIONS": [
+      "At the start of turn #b",
+      ", gain #b",
+      " #yStrength and #yConfusion until end of turn and draw",
+      " an extra card.",
+      " #b",
+      " extra cards.",
+      "@#&$%*?!!@"
+    ]
+  },
+
   "TheSimpletonMod:OnionBelt": {
     "NAME": "Onion Belt",
     "FLAVOR": "Once wielded by the Elders, now largely out of style.",

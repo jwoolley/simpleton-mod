@@ -72,13 +72,14 @@
     "NAME": "Jug of Moonshine",
     "FLAVOR": "A carefully-guarded family recipe, the distillation process has claimed its share of casualties.",
     "DESCRIPTIONS": [
-      "At the start of turn #b",
+      "On turn #b",
       ", gain #b",
-      " #yStrength and become #yConfused until end of turn, then gain [E].",
-      " #yStrength and become #yConfused until end of turn, then gain [E] and draw",
+      " temporary #yStrength and gain [E].",
+      " temporary #yStrength, then gain [E] and draw",
       " an extra card.",
       " #b",
       " extra cards.",
+      " NL Randomize the cost of cards drawn that turn.",
       "@#&$%*?!!@"
     ]
   },

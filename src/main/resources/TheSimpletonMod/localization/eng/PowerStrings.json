@@ -82,6 +82,13 @@
     ]
   },
 
+  "TheSimpletonMod:IntoxicatedPower": {
+    "NAME": "Intoxicated",
+    "DESCRIPTIONS": [
+      "Whenever you draw a card, randomize its cost this turn."
+    ]
+  },
+
   "TheSimpletonMod:LoseAbundancePower": {
     "NAME": "Abundance Down",
     "DESCRIPTIONS": [
@@ -132,7 +139,7 @@
   "TheSimpletonMod:SoberUpPower": {
     "NAME": "Sober Up",
     "DESCRIPTIONS": [
-      "At the end of this turn, lose #yConfusion."
+      "At the end of this turn, lose #yIntoxicated."
     ]
   },
 

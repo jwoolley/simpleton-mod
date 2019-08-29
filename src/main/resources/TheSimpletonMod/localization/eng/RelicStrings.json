@@ -74,7 +74,8 @@
     "DESCRIPTIONS": [
       "At the start of turn #b",
       ", gain #b",
-      " #yStrength and #yConfusion until end of turn and draw",
+      " #yStrength and become #yConfused until end of turn.",
+      " #yStrength and become #yConfused until end of turn, then draw",
       " an extra card.",
       " #b",
       " extra cards.",

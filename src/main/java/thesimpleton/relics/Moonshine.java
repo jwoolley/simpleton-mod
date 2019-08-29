@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -51,7 +50,7 @@ public class Moonshine extends CustomRelic {
       AbstractDungeon.actionManager.addToBottom(new SFXAction("DRINK_BOTTLE_1"));
       AbstractDungeon.actionManager.addToBottom(new SFXAction("GIBBERISH_ANGRY_1"));
       AbstractDungeon.actionManager.addToBottom(
-          new TalkAction(true, DESCRIPTIONS[6], 1.0F, 2.0F));
+          new TalkAction(true, DESCRIPTIONS[7], 1.0F, 2.0F));
 
       AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(player, player,
           new StrengthPower(player, STRENGTH_AMOUNT), STRENGTH_AMOUNT));
@@ -87,8 +86,10 @@ public class Moonshine extends CustomRelic {
 
   @Override
   public String getUpdatedDescription() {
-    return this.DESCRIPTIONS[0] + TRIGGER_TURN + this.DESCRIPTIONS[1] + STRENGTH_AMOUNT + this.DESCRIPTIONS[2]
-        + (DRAW_AMOUNT == 1 ? this.DESCRIPTIONS[3] : this.DESCRIPTIONS[4] + DRAW_AMOUNT + this.DESCRIPTIONS[5]);
+    return this.DESCRIPTIONS[0] + TRIGGER_TURN + this.DESCRIPTIONS[1] + STRENGTH_AMOUNT
+        + (DRAW_AMOUNT == 0 ? this.DESCRIPTIONS[2]
+          : this.DESCRIPTIONS[3]
+            + (DRAW_AMOUNT == 1 ? this.DESCRIPTIONS[4] : this.DESCRIPTIONS[5] + DRAW_AMOUNT + this.DESCRIPTIONS[6]));
   }
 
   @Override

@@ -1,6 +1,7 @@
 package thesimpleton.cards.attack;
 
 import basemod.abstracts.CustomCard;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -45,8 +46,7 @@ public class Fertilaser extends CustomCard {
   //STS_SFX_DefectBeam_v1.ogg
     AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_DEFECT_BEAM"));
 
-    AbstractGameEffect effect = new MindblastEffect(
-        m.hb.cX, m.hb.cY, false);
+    AbstractGameEffect effect = new MindblastEffect(p.hb.cX, p.hb.cY, false);
     AbstractDungeon.actionManager.addToBottom(new VFXAction(p, effect, 0.2F));
     AbstractDungeon.actionManager.addToBottom(
         new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),

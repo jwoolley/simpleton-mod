@@ -17,6 +17,14 @@
     ]
   },
 
+  "TheSimpletonMod:GardenGlove": {
+    "NAME": "Garden Glove",
+    "FLAVOR": "Sometimes you need to get into the dirt.",
+    "DESCRIPTIONS": [
+      "At the end of your turn, if you have exactly one #yPower card in hand, retain it."
+    ]
+  },
+
   "TheSimpletonMod:GasCan": {
     "NAME": "Gas Can",
     "FLAVOR": "What can expand to fill any container?",

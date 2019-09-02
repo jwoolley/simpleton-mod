@@ -11,7 +11,7 @@
       ". #gReceive #ga #gCommon #gRelic.",
       " #rHP. #gUpgrade #g",
       " #grandom #gcards.",
-      "Leave."
+      "[Leave]"
     ]
   },
 
@@ -27,7 +27,7 @@
       " #gHP.",
       ". #gReceive ",
       ".",
-      "Leave."
+      "[Leave]"
     ]
   },
 
@@ -45,7 +45,7 @@
       " #rHP.",
       ". #rBecome #rCursed #r– #r",
       ".",
-      "Leave."
+      "[Leave]"
     ]
   },
 
@@ -60,7 +60,7 @@
       "[Chase] #gReceive ",
       ".",
       ". #r50%: #rBecome #rCursed #r– #r",
-      "Leave."
+      "[Leave]"
     ]
   },
 
@@ -78,7 +78,7 @@
       ". #rGain #r",
       " #rBurning next combat.",
       "[Locked] Requires a Potion.",
-      "Leave."
+      "[Leave]"
     ]
   },
 
@@ -96,7 +96,7 @@
       " #rGold.",
       ". #r50%: #rBecome #rCursed #r– #r",
       "[Locked] Requires: At Least ",
-      "Leave."
+      "[Leave]"
     ]
   },
 
@@ -115,7 +115,7 @@
       ". #r50%: #rBecome #rCursed #r– #r",
       ".",
       "[Locked] Requires: At Least ",
-      "Leave."
+      "[Leave]"
     ]
   }
 }

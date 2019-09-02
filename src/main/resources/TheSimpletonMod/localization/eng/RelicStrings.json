@@ -18,7 +18,7 @@
   },
 
   "TheSimpletonMod:GardenGlove": {
-    "NAME": "Garden Glove",
+    "NAME": "Gardening Glove",
     "FLAVOR": "Sometimes you need to get into the dirt.",
     "DESCRIPTIONS": [
       "At the end of your turn, if you have exactly one #yPower card in hand, retain it."

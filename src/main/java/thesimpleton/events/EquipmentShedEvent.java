@@ -80,6 +80,8 @@ public class EquipmentShedEvent extends AbstractImageEvent
         +  replacementCard.name + OPTIONS[4] + this.damage + OPTIONS[5],
         replacementCard);
 
+    this.imageEventText.setDialogOption(OPTIONS[8]);
+
     this.state = EventState.WAITING;
     CardCrawlGame.sound.play("EVENT_NLOTH");
   }
@@ -88,8 +90,6 @@ public class EquipmentShedEvent extends AbstractImageEvent
   protected void buttonEffect(int buttonPressed) {
     switch (state) {
       case WAITING:
-
-
         switch (buttonPressed) {
           case 0:
             AbstractDungeon.player.increaseMaxHp(MAX_HP_INCREASE_AMOUNT, true);
@@ -119,6 +119,10 @@ public class EquipmentShedEvent extends AbstractImageEvent
 
             break;
 
+          case 2:
+            leaveEvent();
+            break;
+
           default:
             break;
         }
@@ -128,11 +132,15 @@ public class EquipmentShedEvent extends AbstractImageEvent
         AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
         break;
       case LEAVING:
-        this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[8]);
-        openMap();
+        leaveEvent();
         break;
     }
+  }
+
+  private void leaveEvent() {
+    this.imageEventText.clearAllDialogs();
+    this.imageEventText.setDialogOption(OPTIONS[8]);
+    openMap();
   }
 
   static {

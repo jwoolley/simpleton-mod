@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
@@ -28,6 +29,10 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.monsters.beyond.Exploder;
+import com.megacrit.cardcrawl.monsters.city.Byrd;
 import com.megacrit.cardcrawl.relics.PaperCrane;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.AbstractUnlock;
@@ -50,6 +55,8 @@ import thesimpleton.crops.Crop;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.events.*;
+import thesimpleton.monsters.Scarecrow;
+import thesimpleton.monsters.ScarecrowByrd;
 import thesimpleton.orbs.utilities.CropOrbHelper;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.potions.KindlingPotion;
@@ -383,6 +390,13 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addPotion(
             KindlingPotion.class, KindlingPotion.BASE_COLOR, KindlingPotion.HYBRID_COLOR,
             KindlingPotion.SPOTS_COLOR, KindlingPotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
+
+        BaseMod.addMonster(Scarecrow.ID, "Scarecrow", () -> new MonsterGroup(new AbstractMonster[] {
+            new ScarecrowByrd(-565.0F, MathUtils.random(70.0f, 75.0f)),
+            new ScarecrowByrd(-295.0F, MathUtils.random(90.0f, 95.0f)),
+            new ScarecrowByrd(-24.0F, MathUtils.random(75.0f, 80.0f)),
+            new Scarecrow(270.0F, -5.0F)
+        }));
 
         HashMap<String, Sfx> reflectedMap = getSoundsMap();
 
@@ -1172,6 +1186,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.loadCustomStringsFile(PotionStrings.class, l10nPath + language + "/PotionStrings.json");
         BaseMod.loadCustomStringsFile(OrbStrings.class, l10nPath + language + "/OrbStrings.json");
         BaseMod.loadCustomStringsFile(EventStrings.class, l10nPath + language + "/EventStrings.json");
+        BaseMod.loadCustomStringsFile(MonsterStrings.class, l10nPath + language + "/MonsterStrings.json");
+
 
     }
 

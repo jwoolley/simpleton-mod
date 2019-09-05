@@ -1,0 +1,11 @@
+{
+  "TheSimpletonMod:ScarecrowMonster": {
+    "NAME" : "Strawman",
+    "MOVES": [
+      "Hem and Haw"
+    ],
+    "DIALOG": [
+      "~...~"
+    ]
+  }
+}

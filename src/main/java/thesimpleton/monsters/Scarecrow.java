@@ -55,6 +55,7 @@ public class Scarecrow extends AbstractMonster {
 
   private int healAmount;
   private int numTimesHealed = 0;
+  private boolean healedLastTurn = false;
 
   public Scarecrow(float x, float y) {
     super(NAME, ID, 25, HB_X, HB_Y, HB_W, HB_H, TheSimpletonMod.getResourcePath(IMG_PATH), x, y);
@@ -92,25 +93,31 @@ public class Scarecrow extends AbstractMonster {
 
   @Override
   public void takeTurn() {
+    boolean healedThisTurn = false;
     switch (this.nextMove) {
       case 1:
         AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[0], 0.5F, 2.0F));
+        healedLastTurn = false;
         break;
       case 2:
         this.flashIntent();
-        if (!MonsterUtil.getDamagedMonsters().isEmpty()) {
-          MonsterUtil.allOtherMonsters(this).forEach(m -> AbstractDungeon.actionManager.addToBottom(
-              new HealAction(m, this, this.healAmount)));
+        if (MonsterUtil.allOtherMonsters(this).stream().anyMatch(m -> m.isBloodied)) {
 
-          // increase healing amount after each N heals
-          numTimesHealed++;
-          if (numTimesHealed % NUM_HEALS_PER_INCREASE == 0) {
-            this.healAmount += this.healAmountDelta;
+          if (!this.healedLastTurn) {
+            MonsterUtil.allOtherMonsters(this).forEach(m -> AbstractDungeon.actionManager.addToBottom(
+                new HealAction(m, this, this.healAmount)));
+
+            healedThisTurn = true;
+            // increase healing amount after each N heals
+            numTimesHealed++;
+            if (numTimesHealed % NUM_HEALS_PER_INCREASE == 0) {
+              this.healAmount += this.healAmountDelta;
+            }
+          } else {
+            MonsterUtil.allOtherMonsters(this).stream()
+                .forEach(m -> AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m , this,
+                    new ThornsPower(m, THORNS_AMOUNT), THORNS_AMOUNT)));
           }
-        } else if (MonsterUtil.allOtherMonsters(this).stream().anyMatch(m -> m.isBloodied)) {
-          MonsterUtil.allOtherMonsters(this).stream()
-              .forEach(m -> AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m , this,
-                new ThornsPower(m, THORNS_AMOUNT), THORNS_AMOUNT)));
         } else if (MonsterUtil.getLivingMonsters().stream()
             .anyMatch(m -> !m.hasPower(ArtifactPower.POWER_ID))) {
           MonsterUtil.getLivingMonsters().stream()
@@ -133,8 +140,12 @@ public class Scarecrow extends AbstractMonster {
           AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this,
               new WeakPower(AbstractDungeon.player, WEAK_AMOUNT, true), WEAK_AMOUNT));
         }
+        healedLastTurn = false;
         break;
     }
+
+    this.healedLastTurn = healedThisTurn;
+
     AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
   }
 

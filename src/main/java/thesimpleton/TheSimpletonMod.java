@@ -392,9 +392,9 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             KindlingPotion.SPOTS_COLOR, KindlingPotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
 
         BaseMod.addMonster(Scarecrow.ID, "Scarecrow", () -> new MonsterGroup(new AbstractMonster[] {
-            new ScarecrowByrd(-565.0F, MathUtils.random(70.0f, 75.0f)),
-            new ScarecrowByrd(-295.0F, MathUtils.random(90.0f, 95.0f)),
-            new ScarecrowByrd(-24.0F, MathUtils.random(75.0f, 80.0f)),
+            new ScarecrowByrd(-565.0F, MathUtils.random(25.0f, 70.0f)),
+            new ScarecrowByrd(-295.0F, MathUtils.random(25.0f, 70.0f)),
+            new ScarecrowByrd(-24.0F, MathUtils.random(25.0f, 70.0f)),
             new Scarecrow(270.0F, -5.0F)
         }));
 

@@ -1,5 +1,7 @@
 package thesimpleton.monsters;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.city.Byrd;
@@ -10,8 +12,8 @@ public class ScarecrowByrd extends Byrd {
   private static final String FLYING_ATLAS_PATH = TheSimpletonMod.getResourcePath("monsters/crow/flying.atlas");
   private static final String GROUNDED_ATLAS_PATH = TheSimpletonMod.getResourcePath("monsters/crow/grounded.atlas");
 
-  private static final int INCREASED_HP = 5;
-  private static final int A_18_INCREASED_HP = 15;
+  private static final int INCREASED_HP = 16;
+  private static final int A_18_INCREASED_HP = 32;
 
   public ScarecrowByrd(float x, float y) {
     super(x, y);
@@ -21,7 +23,16 @@ public class ScarecrowByrd extends Byrd {
     } else {
       setHp(this.maxHealth + INCREASED_HP, this.maxHealth + INCREASED_HP);
     }
+
+    this.tint.color = Color.NAVY.cpy();
   }
+
+
+  public void render(SpriteBatch sb) {
+    super.render(sb);
+
+  }
+
 
 //  @Override
 //  public void loadAnimation(String atlasPath, String jsonPath, float scale) {

@@ -41,19 +41,20 @@ public class Scarecrow extends AbstractMonster {
   private static final int A_18_HEAL_AMOUNT = 8;
   private static final int A_18_HEAL_AMOUNT_DELTA = 4;
 
+  private static final int THORNS_AMOUNT = 3;
   private static final int ARTIFACT_AMOUNT = 1;
+  private static final int A_18_ARTIFACT_AMOUNT = 2;
   private static final int FRAIL_AMOUNT = 2;
   private static final int WEAK_AMOUNT = 2;
-
   private static final int FLEX_AMOUNT = 2;
+  private static final int NUM_HEALS_PER_INCREASE = 2;
 
   private final int regenAmount;
-  private final int healAmount;
   private final int healAmountDelta;
+  private final int artifactAmount;
 
-  private boolean lastDebuffWeak;
-  private AbstractMonster lastMonsterHealed;
-  private AbstractMonster lastMonsterBuffed;
+  private int healAmount;
+  private int numTimesHealed = 0;
 
   public Scarecrow(float x, float y) {
     super(NAME, ID, 25, HB_X, HB_Y, HB_W, HB_H, TheSimpletonMod.getResourcePath(IMG_PATH), x, y);
@@ -65,27 +66,28 @@ public class Scarecrow extends AbstractMonster {
       this.setHp(HP_MIN, HP_MAX);
     }
 
-
     if (AbstractDungeon.ascensionLevel >= 18) {
       this.regenAmount = A_18_REGEN_AMOUNT;
       this.healAmount = A_18_HEAL_AMOUNT;
       this.healAmountDelta = A_18_HEAL_AMOUNT_DELTA;
+
+      artifactAmount = A_18_ARTIFACT_AMOUNT;
     } else {
       this.regenAmount = REGEN_AMOUNT;
       this.healAmount = HEAL_AMOUNT;
       this.healAmountDelta = HEAL_AMOUNT_DELTA;
+      artifactAmount = ARTIFACT_AMOUNT;
     }
-
-    lastMonsterHealed = null;
-    lastDebuffWeak = AbstractDungeon.aiRng.randomBoolean();
   }
 
   public void usePreBattleAction() {
     // TODO: apply flammable power
-//
-//    AbstractDungeon.actionManager.addToBottom(
-//        new ApplyPowerAction(this, this,
-//            new RegenerateMonsterPower(this, this.regenAmount), this.regenAmount));
+
+    AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[0], 0.5F, 2.0F));
+
+    AbstractDungeon.actionManager.addToBottom(
+        new ApplyPowerAction(this, this,
+            new ArtifactPower(this, this.artifactAmount), this.artifactAmount));
   }
 
   @Override
@@ -96,35 +98,41 @@ public class Scarecrow extends AbstractMonster {
         break;
       case 2:
         this.flashIntent();
-
         if (!MonsterUtil.getDamagedMonsters().isEmpty()) {
           MonsterUtil.allOtherMonsters(this).forEach(m -> AbstractDungeon.actionManager.addToBottom(
               new HealAction(m, this, this.healAmount)));
-        } else if (MonsterUtil.allOtherMonsters(this).stream()
-            .anyMatch(m -> !m.hasPower(ArtifactPower.POWER_ID))) {
+
+          // increase healing amount after each N heals
+          numTimesHealed++;
+          if (numTimesHealed % NUM_HEALS_PER_INCREASE == 0) {
+            this.healAmount += this.healAmountDelta;
+          }
+        } else if (MonsterUtil.allOtherMonsters(this).stream().anyMatch(m -> m.isBloodied)) {
           MonsterUtil.allOtherMonsters(this).stream()
+              .forEach(m -> AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m , this,
+                new ThornsPower(m, THORNS_AMOUNT), THORNS_AMOUNT)));
+        } else if (MonsterUtil.getLivingMonsters().stream()
+            .anyMatch(m -> !m.hasPower(ArtifactPower.POWER_ID))) {
+          MonsterUtil.getLivingMonsters().stream()
               .filter(m -> !m.hasPower(ArtifactPower.POWER_ID))
               .forEach(m -> AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m , this,
-                  new ArtifactPower(lastMonsterBuffed, ARTIFACT_AMOUNT), ARTIFACT_AMOUNT)));
+                  new ArtifactPower(m, ARTIFACT_AMOUNT), ARTIFACT_AMOUNT)));
         } else {
           MonsterUtil.allOtherMonsters(this).forEach(m -> {
             AbstractDungeon.actionManager.addToBottom(
                 new ApplyPowerAction(m,this, new StrengthPower(m, FLEX_AMOUNT), FLEX_AMOUNT));
-            AbstractDungeon.actionManager.addToBottom(
-                new ApplyPowerAction(m,this, new LoseStrengthPower(m, FLEX_AMOUNT), FLEX_AMOUNT));
           });
         }
-
         break;
       case 3:
         this.flashIntent();
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this,
-            new FrailPower(AbstractDungeon.player, FRAIL_AMOUNT, true), FRAIL_AMOUNT));
-        break;
-      case 4:
-        this.flashIntent();
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this,
-            new WeakPower(AbstractDungeon.player, WEAK_AMOUNT, true), WEAK_AMOUNT));
+        if (AbstractDungeon.aiRng.randomBoolean()) {
+          AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this,
+              new FrailPower(AbstractDungeon.player, FRAIL_AMOUNT, true), FRAIL_AMOUNT));
+        } else {
+          AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this,
+              new WeakPower(AbstractDungeon.player, WEAK_AMOUNT, true), WEAK_AMOUNT));
+        }
         break;
     }
     AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
@@ -155,14 +163,8 @@ public class Scarecrow extends AbstractMonster {
     if (!moveHistory.isEmpty() && !lastMove((byte) 2)) {
       logger.info("Scarecrow::getMove next move: HEAL/BUFF");
       this.setMove((byte) 2, Intent.BUFF);
-    } else if (!lastMove((byte) 3) && !lastMove((byte) 4)) {
-      logger.info("Scarecrow::getMove last move FRAIL? " + lastMove((byte) 3) + " ; last move WEAK? "
-        + lastMove((byte) 4));
-      this.setMove((byte) (this.lastDebuffWeak ? 3 : 4), Intent.DEBUFF);
-
-      logger.info("Scarecrow::getMove next move: " + (this.lastDebuffWeak ? "FRAIL" : "WEAK"));
-
-      this.lastDebuffWeak = !this.lastDebuffWeak;
+    } else if (!lastMove((byte) 3)) {
+      this.setMove((byte) 3, Intent.DEBUFF);
     } else {
       logger.info("Scarecrow::getMove next move: TALK");
       // TODO: do something scary

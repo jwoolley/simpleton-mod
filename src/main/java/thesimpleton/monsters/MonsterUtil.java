@@ -12,6 +12,11 @@ public class MonsterUtil {
     return allOtherMonsters(monster).stream().filter(m -> !m.isDead && !m.isDying).count() == 0;
   }
 
+  public static List<AbstractMonster> getLivingMonsters() {
+    return AbstractDungeon.getMonsters().monsters.stream()
+        .filter(m -> !m.isDying && !m.isEscaping).collect(Collectors.toList());
+  }
+
   public static List<AbstractMonster> allOtherMonsters(AbstractMonster exceptMonster) {
     return AbstractDungeon.getMonsters().monsters.stream().filter(m -> m != exceptMonster).collect(Collectors.toList());
   }

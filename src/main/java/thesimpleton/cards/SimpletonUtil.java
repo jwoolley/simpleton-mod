@@ -160,4 +160,6 @@ public class SimpletonUtil {
     public static void centerGridSelectScreenFinished() {
         CenterGridCardSelectScreen.centerGridSelect = false;
     }
+
+    public static boolean playerHasStartingOrbs() { return AbstractDungeon.player.masterMaxOrbs > 0; }
 }

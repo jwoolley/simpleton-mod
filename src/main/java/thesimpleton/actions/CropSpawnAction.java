@@ -44,7 +44,7 @@ public class CropSpawnAction extends AbstractGameAction {
 
         Logger logger = TheSimpletonMod.logger;
 
-        if (!secondTick && AbstractDungeon.player.maxOrbs <= 0) {
+        if (!secondTick && AbstractDungeon.player.maxOrbs <= 0 && !SimpletonUtil.playerHasStartingOrbs()) {
             AbstractDungeon.player.increaseMaxOrbSlots(1, true);
         }
 

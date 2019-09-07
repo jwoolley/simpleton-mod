@@ -47,7 +47,7 @@ public class CropRotationAction extends AbstractGameAction {
       if (this.secondTick) {
         AbstractDungeon.actionManager.addToTop(new WaitAction(0.1F));
 
-        final AbstractCropPowerCard randomCropPowerCard = ((TheSimpletonCharacter)AbstractDungeon.player).getCropUtil().getRandomCropCardInSeason();
+        final AbstractCropPowerCard randomCropPowerCard = TheSimpletonCharacter.getCropUtil().getRandomCropCardInSeason();
         if (this.reduceCost) {
           randomCropPowerCard.modifyCostForTurn(-1);
         }

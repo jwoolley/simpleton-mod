@@ -22,6 +22,10 @@ public class CropUtil {
 
   public AbstractCropPowerCard getRandomCropCardInSeason() {
     List<AbstractCropPowerCard> seasonalCrops = new ArrayList<>(TheSimpletonMod.getSeasonalCropCards());
+
+    if (seasonalCrops.isEmpty()) {
+      return AbstractCropPowerCard.getRandomCropPowerCard(false);
+    }
     Collections.shuffle(seasonalCrops);
     return seasonalCrops.get(0);
   }

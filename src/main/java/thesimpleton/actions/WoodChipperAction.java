@@ -44,7 +44,6 @@ public class WoodChipperAction extends AbstractGameAction {
     }
 
     if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
-
       if (!AbstractDungeon.handCardSelectScreen.selectedCards.group.isEmpty()) {
         AbstractDungeon.actionManager.addToTop(new DrawCardAction(this.p, AbstractDungeon.handCardSelectScreen.selectedCards.group
             .size()));

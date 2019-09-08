@@ -50,7 +50,7 @@ public class Gnawberry extends CustomCard {
   public void use(AbstractPlayer p, AbstractMonster m) {
     if (m != null) {
       AbstractDungeon.actionManager.addToBottom(new VFXAction(
-          new BiteEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, Color.SCARLET), 0.1F));
+          new BiteEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.1F));
     }
 
     AbstractDungeon.actionManager.addToBottom(

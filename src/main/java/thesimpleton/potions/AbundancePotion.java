@@ -24,10 +24,6 @@ public class AbundancePotion extends CustomPotion {
   public static final PotionColor POTION_COLOR = PotionColor.POISON;
   public static final int POTENCY = 2;
 
-//  public static final Color BASE_COLOR = Color.GOLD;
-//  public static final Color HYBRID_COLOR = Color.CLEAR;
-//  public static final Color SPOTS_COLOR = Color.RED;
-
   public static final Color BASE_COLOR = Color.GREEN.cpy();
   public static final Color HYBRID_COLOR = Color.LIME.cpy();
   public static final Color SPOTS_COLOR =  new Color(.4F, 1.0F, .425F, 1.0F);

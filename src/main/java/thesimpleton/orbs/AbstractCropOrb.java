@@ -266,7 +266,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
       this.c = CROP_STACK_COUNT_FONT_COLOR;
     }
 
-    Color highlightFilterColor = Color.GOLD;
+    Color highlightFilterColor = Color.GOLD.cpy();
     if (CropOrbHelper.hasHighlightedOrb()) {
       if (CropOrbHelper.getHighlightedOrb().name == this.name) {
 //        this.c = highlightFilterColor;

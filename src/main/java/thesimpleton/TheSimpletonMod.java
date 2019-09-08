@@ -343,9 +343,9 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         UIStrings descriptionString = CardCrawlGame.languagePack.getUIString("TheSimpletonMod:ThemeDescription");
         modPanel.addUIElement(
-                new ModLabel(descriptionString.TEXT[0], 350.0f, 750.0f, Color.GOLD, modPanel, label -> {}));
+                new ModLabel(descriptionString.TEXT[0], 350.0f, 750.0f, Color.GOLD.cpy(), modPanel, label -> {}));
         modPanel.addUIElement(
-                new ModLabel(descriptionString.TEXT[1], 350.0f, 700.0f, Color.LIME, modPanel, label -> {}));
+                new ModLabel(descriptionString.TEXT[1], 350.0f, 700.0f, Color.LIME.cpy(), modPanel, label -> {}));
 
         Arrays.stream(TheSimpletonCharEnum.Theme.values())
                 .filter(theme -> theme != TheSimpletonCharEnum.Theme.BASE_THEME)

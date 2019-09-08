@@ -42,7 +42,8 @@ public class HaymakerSplashAction extends AbstractGameAction {
       );
 
       AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect));
-      AbstractDungeon.effectList.add(new DamageImpactCurvyEffect(this.target.hb.cX, this.target.hb.cY, Color.GOLDENROD, false));
+      AbstractDungeon.effectList.add(
+          new DamageImpactCurvyEffect(this.target.hb.cX, this.target.hb.cY, Color.GOLDENROD.cpy(), false));
 
       SimpletonUtil.getMonsters().forEach(m -> this.applyVulnerablePower(p, m, this.vulnerableAmount));
 

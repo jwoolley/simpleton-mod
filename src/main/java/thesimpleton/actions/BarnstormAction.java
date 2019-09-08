@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
@@ -34,7 +35,7 @@ public class BarnstormAction extends AbstractGameAction {
 
   private Logger logger;
 
-  public BarnstormAction(AbstractPlayer player, AbstractCreature target, int baseDamage, boolean damageAllEnemies) {
+  public BarnstormAction(AbstractPlayer player, AbstractMonster target, int baseDamage, boolean damageAllEnemies) {
     this(player, target, baseDamage, getCropCounts(player), new HashMap<>());
   }
 
@@ -109,8 +110,26 @@ public class BarnstormAction extends AbstractGameAction {
 
         AbstractDungeon.actionManager.addToBottom(
             new VFXAction(player, new LightningEffect(target.hb.cX, target.hb.y), 0.1F));
-        AbstractDungeon.actionManager.addToBottom(
-            new DamageAction(target, new DamageInfo(this.player, this.info.base), AttackEffect.NONE));
+
+//        AbstractDungeon.actionManager.addToBottom(
+//            new DamageAction(target, new DamageInfo(this.player, this.info.base), AttackEffect.NONE));
+
+
+        AbstractMonster monsterTarget = (AbstractMonster)this.target;
+        monsterTarget.damage(new DamageInfo(this.player, this.info.base));
+
+
+        if (monsterTarget.lastDamageTaken > 0) {
+          logger.info("BarnstormAction::update damaging target: " + target.id);
+          if (damagedEnemies.containsKey(monsterTarget)) {
+            logger.info("BarnstormAction::update target previously damaged. incrementing damaged count: "
+                + damagedEnemies.get(monsterTarget) + 1);
+            damagedEnemies.put(monsterTarget, damagedEnemies.get(monsterTarget).intValue() + 1);
+          } else {
+            logger.info("BarnstormAction::update target not previously damaged. adding entry.");
+            damagedEnemies.put(monsterTarget, 1);
+          }
+        }
       }
       if ((this.cropStacks.size() > 0) && (!AbstractDungeon.getMonsters().areMonstersBasicallyDead())) {
         AbstractDungeon.actionManager.addToBottom(new BarnstormAction(
@@ -118,8 +137,18 @@ public class BarnstormAction extends AbstractGameAction {
             AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng),
             this.baseDamage,
             this.cropStacks, this.damagedEnemies));
+      } else {
+        applyPostDamageStuns();
       }
       this.isDone = true;
+    }
+  }
+
+  private void applyPostDamageStuns() {
+    logger.info("BarnstormAction::applyPostDamageStuns called. Final tally:");
+
+    for (Map.Entry<AbstractMonster, Integer> e : this.damagedEnemies.entrySet()) {
+      logger.info("\t" + e.getKey() + ": " + e.getValue());
     }
   }
 }

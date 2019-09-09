@@ -24,25 +24,24 @@ public class Barnstorm extends CustomCard {
   private static final CardRarity RARITY = CardRarity.RARE;
   private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
 
-  private static final int COST = 3;
+  private static final int COST = 4;
+  private static final int UPGRADED_COST = 3;
   private static final int DAMAGE = 5;
-
-  private boolean damageAllEnemies;
+  private static final int STUN_THRESHOLD = 5;
 
   public Barnstorm() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE,
+        AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
-    this.damageAllEnemies = false;
-    this.exhaust = true;
+    this.baseMagicNumber = this.magicNumber = STUN_THRESHOLD;
+//    this.exhaust = true;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(new BarnstormAction(
-        p,
-        AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng),
-        this.damage,
-        this.damageAllEnemies));
+        p, AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng),
+        this.damage, this.magicNumber));
   }
 
   @Override
@@ -54,9 +53,7 @@ public class Barnstorm extends CustomCard {
   public void upgrade() {
     if (!this.upgraded) {
       this.upgradeName();
-      this.damageAllEnemies = true;
-      this.rawDescription = UPGRADE_DESCRIPTION;
-      initializeDescription();
+      this.upgradeBaseCost(UPGRADED_COST);
     }
   }
 

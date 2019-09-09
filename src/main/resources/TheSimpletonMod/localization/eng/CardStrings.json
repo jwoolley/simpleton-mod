@@ -27,8 +27,7 @@
 
   "TheSimpletonMod:Barnstorm": {
     "NAME": "Barnstorm",
-    "DESCRIPTION": "Deal !D! damage to a random enemy for each Crop stack you have. NL Mature Crops deal double damage. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies for each Crop stack you have. NL Mature Crops deal double damage.  NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage to a random enemy for each Crop stack you have. NL Enemies damaged !M! or more times this way become Stunned for 1 turn."
   },
 
   "TheSimpletonMod:Biorefinement": {

@@ -26,7 +26,7 @@ public class Barnstorm extends CustomCard {
 
   private static final int COST = 4;
   private static final int UPGRADED_COST = 3;
-  private static final int DAMAGE = 5;
+  private static final int DAMAGE = 7;
   private static final int STUN_THRESHOLD = 5;
 
   public Barnstorm() {

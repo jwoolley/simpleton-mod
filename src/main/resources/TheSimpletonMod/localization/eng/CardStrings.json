@@ -27,7 +27,7 @@
 
   "TheSimpletonMod:Barnstorm": {
     "NAME": "Barnstorm",
-    "DESCRIPTION": "Deal !D! damage to a random enemy for each Crop stack you have. NL Enemies damaged !M! or more times this way become Stunned for 1 turn."
+    "DESCRIPTION": "Deal !D! damage to a random enemy for each Crop stack you have. NL Stun each enemy damaged !M! or more times this way."
   },
 
   "TheSimpletonMod:Biorefinement": {

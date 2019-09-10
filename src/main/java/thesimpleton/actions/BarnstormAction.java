@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -19,6 +19,7 @@ import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.AbstractCrop;
 import thesimpleton.orbs.AbstractCropOrb;
+import thesimpleton.ui.SettingsHelper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,13 +27,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class BarnstormAction extends AbstractGameAction {
-  private static float ACTION_DURATION = Settings.ACTION_DUR_XFAST;
+  private static float ACTION_DURATION = Settings.ACTION_DUR_FASTER;
 
   private final AbstractPlayer player;
   private final int baseDamage;
   private final int stunThreshold;
-  private final  boolean isFirstTick;
-  private boolean isSubsequentTick;
+  private boolean isFirstTick;
+  private boolean isSecondTick;
+
 
   private final List<CropCount> cropStacks;
   private final Map<AbstractMonster, Integer> damagedEnemies;
@@ -42,6 +44,14 @@ public class BarnstormAction extends AbstractGameAction {
 
   public BarnstormAction(AbstractPlayer player, AbstractMonster target, int baseDamage, int stunThreshold) {
     this(player, target, baseDamage, stunThreshold, true, getCropCounts(player), new HashMap<>());
+
+    logger.info("BarnstormAction::constructor called. Durations:");
+    logger.info("\t\t Settings.ACTION_DUR_XFAST:"  +Settings.ACTION_DUR_XFAST);
+    logger.info("\t\t Settings.ACTION_DUR_FASTER:"  +Settings.ACTION_DUR_FASTER);
+    logger.info("\t\t Settings.ACTION_DUR_FAST:"  +Settings.ACTION_DUR_FAST);
+    logger.info("\t\t Settings.ACTION_DUR_MED:"  +Settings.ACTION_DUR_MED);
+    logger.info("\t\t Settings.ACTION_DUR_LONG:"  +Settings.ACTION_DUR_LONG);
+    logger.info("\t\t Settings.ACTION_DUR_XLONG:"  +Settings.ACTION_DUR_XLONG);
   }
 
   static List<CropCount> getCropCounts(AbstractPlayer player) {
@@ -79,15 +89,17 @@ public class BarnstormAction extends AbstractGameAction {
     this.damagedEnemies = damagedEnemies;
     this.stunThreshold = stunThreshold;
     this.isFirstTick = isFirstTick;
-    this.isSubsequentTick = !isFirstTick;
+    this.isSecondTick = true;
 
-    if (isFirstTick && this.target != null || !cropStacks.isEmpty()) {
+    if (target != null && this.target.currentHealth > 0) {
       makeLightningEffect();
     }
   }
 
   @Override
   public void update() {
+    logger.info("BarnstormAction::update called. this.duration: " + this.duration);
+
     if (this.target == null || cropStacks.isEmpty()) {
       this.isDone = true;
       return;
@@ -102,70 +114,73 @@ public class BarnstormAction extends AbstractGameAction {
 
     this.duration -= Gdx.graphics.getDeltaTime();
 
-    if (this.duration < 0.0F) {
-      if (this.isFirstTick && !this.isSubsequentTick) {
-        makeLightningEffect();
-        this.isSubsequentTick = true;
-      } else if (this.target.currentHealth > 0) {
-          CropCount cropCount = cropStacks.get(0);
-          this.info.base = baseDamage;
+    if (this.target.currentHealth > 0) {
+      AbstractMonster monsterTarget = (AbstractMonster) this.target;
 
-          if (cropCount.amount > 1) {
-            cropCount.amount--;
-          } else {
-            cropStacks.remove(cropCount);
-          }
-
-
-          if (!isFirstTick) {
-            makeLightningEffect();
-            AbstractDungeon.actionManager.addToBottom(new WaitAction(0.4F));
-          }
-
-          AbstractMonster monsterTarget = (AbstractMonster)this.target;
-
-        this.info.applyPowers(this.info.owner, this.target);
-        monsterTarget.damage(new DamageInfo(this.player, this.info.base));
-
-  //        AbstractDungeon.actionManager.addToBottom(
-  //            new DamageAction(monsterTarget, new DamageInfo(this.player, this.info.base), AttackEffect.NONE));
-
-
-          logger.info("BarnstormAction::update damaging target: " + target.id + "; lastDamageTaken: " +
-              monsterTarget.lastDamageTaken);
-
-          if (monsterTarget.lastDamageTaken > 0) {
-            final int numTimesDamaged =  damagedEnemies.containsKey(monsterTarget) ?
-                damagedEnemies.get(monsterTarget) + 1 : 1;
-
-            if (damagedEnemies.containsKey(monsterTarget)) {
-              logger.info("BarnstormAction::update target previously damaged. incrementing damaged count: "
-                  + numTimesDamaged);
-
-              damagedEnemies.put(monsterTarget, numTimesDamaged);
-
-  //            if (numTimesDamaged >= STUN_THRESHOLD && !monsterTarget.isDeadOrEscaped()) {
-  //              monsterTarget.tint = new TintEffect();
-  //              monsterTarget.tint.color = Color..cpy();
-  //              monsterTarget.tint.changeColor(Color.WHITE.cpy());
-  //              monsterTarget.tintFadeOutCalled = false;
-  //            }
-            } else {
-              logger.info("BarnstormAction::update target not previously damaged. adding entry.");
-              damagedEnemies.put(monsterTarget, 1);
-            }
-          }
-        if ((this.cropStacks.size() > 0) && (!AbstractDungeon.getMonsters().areMonstersBasicallyDead())) {
-          AbstractDungeon.actionManager.addToBottom(new BarnstormAction(
-              this.player,
-              AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng),
-              this.baseDamage, this.stunThreshold, false,
-              this.cropStacks, this.damagedEnemies));
-        } else {
-          applyPostDamageStuns();
+      if (this.duration < Settings.ACTION_DUR_FASTER) {
+        if (this.isFirstTick) {
+          logger.info("BarnstormAction::update lightning tick. this.duration: " + this.duration);
+//          makeLightningEffect();
+          this.isFirstTick = false;
+          this.isSecondTick = true;
         }
-        this.isDone = true;
+        if (this.duration < Settings.ACTION_DUR_XFAST) {
+          if (this.isSecondTick) {
+            logger.info("BarnstormAction::update damage tick. this.duration: " + this.duration);
+
+            this.info.applyPowers(this.info.owner, this.target);
+            monsterTarget.damage(new DamageInfo(this.player, this.info.base));
+            this.isSecondTick = false;
+          } else if (this.duration < 0.0F) {
+            logger.info("BarnstormAction::update retrigger/calulate damage tick. this.duration: " + this.duration);
+
+            CropCount cropCount = cropStacks.get(0);
+            this.info.base = baseDamage;
+
+            if (cropCount.amount > 1) {
+              cropCount.amount--;
+            } else {
+              cropStacks.remove(cropCount);
+            }
+
+            logger.info("BarnstormAction::update damaging target: " + target.id + "; lastDamageTaken: " +
+                monsterTarget.lastDamageTaken);
+
+            if (monsterTarget.lastDamageTaken > 0) {
+              final int numTimesDamaged = damagedEnemies.containsKey(monsterTarget) ?
+                  damagedEnemies.get(monsterTarget) + 1 : 1;
+
+              if (damagedEnemies.containsKey(monsterTarget)) {
+                logger.info("BarnstormAction::update target previously damaged. incrementing damaged count: "
+                    + numTimesDamaged);
+
+                damagedEnemies.put(monsterTarget, numTimesDamaged);
+              } else {
+                logger.info("BarnstormAction::update target not previously damaged. adding entry.");
+                damagedEnemies.put(monsterTarget, 1);
+              }
+            }
+            queueNewBarnstormTick();
+            this.isDone = true;
+          }
+        }
       }
+    }
+    else {
+      queueNewBarnstormTick();
+      this.isDone = true;
+    }
+  }
+
+  private void queueNewBarnstormTick() {
+    if ((this.cropStacks.size() > 0) && (!AbstractDungeon.getMonsters().areMonstersBasicallyDead())) {
+      AbstractDungeon.actionManager.addToBottom(new BarnstormAction(
+          this.player,
+          AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng),
+          this.baseDamage, this.stunThreshold, true,
+          this.cropStacks, this.damagedEnemies));
+    } else {
+      applyPostDamageStuns();
     }
   }
 

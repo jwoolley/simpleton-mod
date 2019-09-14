@@ -3,21 +3,14 @@ package thesimpleton.actions;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
-import org.apache.logging.log4j.Logger;
-import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.effects.BuzzBombImpactEffect;
-import thesimpleton.orbs.CoffeeCropOrb;
 
 public class BuzzBombAction extends AbstractGameAction {
   private static float ACTION_DURATION = Settings.ACTION_DUR_FAST;
@@ -67,9 +60,9 @@ public class BuzzBombAction extends AbstractGameAction {
           AbstractDungeon.actionManager.addToBottom(
               new VFXAction(new BuzzBombImpactEffect(target.hb.x, target.hb.cY, numRepetitions == 0)));
 
-          if (!Settings.FAST_MODE) {
-            AbstractDungeon.actionManager.addToBottom(new WaitAction(0.25F));
-          }
+//          if (!Settings.FAST_MODE) {
+//            AbstractDungeon.actionManager.addToBottom(new WaitAction(0.25F));
+//          }
 
           AbstractDungeon.actionManager.addToBottom(
               new SFXAction(numRepetitions > 0 ? "ATTACK_FIRE_IMPACT_1" : "ATTACK_FIRE_IMPACT_2"));
@@ -77,14 +70,13 @@ public class BuzzBombAction extends AbstractGameAction {
           this.info.applyPowers(this.info.owner, this.target);
           AbstractDungeon.actionManager.addToBottom(
               new BuzzBombDamageAndPlantAction(this.source, this.target, this.info, this.numStacksPerKill));
-
-          if ((this.numRepetitions > 0) && (!AbstractDungeon.getMonsters().areMonstersBasicallyDead())) {
-            AbstractDungeon.actionManager.addToBottom(new BuzzBombAction(this.player, SimpletonUtil.getRandomMonster(),
-                this.baseDamage , this.numRepetitions, this.numStacksPerKill));
-          }
         }
-        this.isDone = true;
       }
+      if ((this.numRepetitions > 0) && (!AbstractDungeon.getMonsters().areMonstersBasicallyDead())) {
+        AbstractDungeon.actionManager.addToBottom(new BuzzBombAction(this.player, SimpletonUtil.getRandomMonster(),
+            this.baseDamage , this.numRepetitions, this.numStacksPerKill));
+      }
+      this.isDone = true;
     }
   }
 }

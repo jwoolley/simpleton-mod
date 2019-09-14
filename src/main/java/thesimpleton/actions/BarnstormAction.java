@@ -121,15 +121,7 @@ public class BarnstormAction extends AbstractGameAction {
         if (monsterTarget.lastDamageTaken > 0) {
           final int numTimesDamaged = damagedEnemies.containsKey(monsterTarget) ?
               damagedEnemies.get(monsterTarget) + 1 : 1;
-
-          if (damagedEnemies.containsKey(monsterTarget)) {
-            // logger.info("BarnstormAction::update target previously damaged. incrementing damaged count: " + numTimesDamaged);
-
             damagedEnemies.put(monsterTarget, numTimesDamaged);
-          } else {
-            // logger.info("BarnstormAction::update target not previously damaged. adding entry.");
-            damagedEnemies.put(monsterTarget, 1);
-          }
         }
         queueNewBarnstormTick();
         this.isDone = true;

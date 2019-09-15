@@ -91,7 +91,7 @@
 
   "TheSimpletonMod:EnableEventsForAllCharactersButton": {
     "TEXT": [
-      "Enable some events for all characters (Requires restart)"
+      "Enable events for all characters (Requires restart)"
     ]
   },
 

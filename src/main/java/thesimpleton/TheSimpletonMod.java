@@ -375,6 +375,12 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         final UIStrings allCharactersCursesUiStrings
             = CardCrawlGame.languagePack.getUIString("TheSimpletonMod:EnableCursesForAllCharactersButton");
 
+        final UIStrings allCharactersEventsUiStrings
+            = CardCrawlGame.languagePack.getUIString("TheSimpletonMod:EnableEventsForAllCharactersButton");
+
+        final UIStrings allCharactersPotionsUiStrings
+            = CardCrawlGame.languagePack.getUIString("TheSimpletonMod:EnablePotionsForAllCharactersButton");
+
         final UIStrings allCharactersRelicsUiStrings
             = CardCrawlGame.languagePack.getUIString("TheSimpletonMod:EnableRelicsForAllCharactersButton");
 
@@ -384,7 +390,19 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
                 saveConfigData(false);
             });
 
-        createModPanelToggleButton(modPanel,  allCharactersRelicsUiStrings.TEXT[0], 1,
+        createModPanelToggleButton(modPanel,  allCharactersEventsUiStrings.TEXT[0], 1,
+            ConfigData.enableEventsForAllCharacters, (button) -> {
+                ConfigData.enableEventsForAllCharacters = button.enabled;
+                saveConfigData(false);
+            });
+
+        createModPanelToggleButton(modPanel,  allCharactersPotionsUiStrings.TEXT[0], 2,
+            ConfigData.enablePotionsForAllCharacters, (button) -> {
+                ConfigData.enablePotionsForAllCharacters = button.enabled;
+                saveConfigData(false);
+            });
+
+        createModPanelToggleButton(modPanel,  allCharactersRelicsUiStrings.TEXT[0], 3,
             ConfigData.enableRelicsForAllCharacters, (button) -> {
             ConfigData.enableRelicsForAllCharacters = button.enabled;
             saveConfigData(false);
@@ -411,25 +429,37 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     private void registerEvents() {
-        BaseMod.addEvent(EquipmentShedEvent.ID, EquipmentShedEvent.class, Exordium.ID);
-
-        // TODO: intialize these programatically from SeasonalEvents
-        BaseMod.addEvent(ReaptideEvent.ID, ReaptideEvent.class, Exordium.ID);
-        BaseMod.addEvent(SnowedInEvent.ID, SnowedInEvent.class, Exordium.ID);
-        BaseMod.addEvent(EarlyThawEvent.ID, EarlyThawEvent.class, Exordium.ID);
-        BaseMod.addEvent(FirefliesEvent.ID, FirefliesEvent.class, Exordium.ID);
-        BaseMod.addEvent(BorealisEvent.ID, BorealisEvent.class, TheCity.ID);
-        BaseMod.addEvent(HeatWaveEvent.ID, HeatWaveEvent.class, TheCity.ID);
+        if (ConfigData.enableEventsForAllCharacters) {
+            BaseMod.addEvent(EquipmentShedEvent.ID, EquipmentShedEvent.class, Exordium.ID);
+            // TODO: intialize these programatically from SeasonalEvents
+            BaseMod.addEvent(ReaptideEvent.ID, ReaptideEvent.class, Exordium.ID);
+            BaseMod.addEvent(SnowedInEvent.ID, SnowedInEvent.class, Exordium.ID);
+            BaseMod.addEvent(EarlyThawEvent.ID, EarlyThawEvent.class, Exordium.ID);
+            BaseMod.addEvent(FirefliesEvent.ID, FirefliesEvent.class, Exordium.ID);
+            BaseMod.addEvent(BorealisEvent.ID, BorealisEvent.class, TheCity.ID);
+            BaseMod.addEvent(HeatWaveEvent.ID, HeatWaveEvent.class, TheCity.ID);
+        }
     }
 
     private void registerPotions() {
-        BaseMod.addPotion(
-            AbundancePotion.class, AbundancePotion.BASE_COLOR, AbundancePotion.HYBRID_COLOR,
-            AbundancePotion.SPOTS_COLOR, AbundancePotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
-
-        BaseMod.addPotion(
-            KindlingPotion.class, KindlingPotion.BASE_COLOR, KindlingPotion.HYBRID_COLOR,
-            KindlingPotion.SPOTS_COLOR, KindlingPotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
+        logger.info("TheSimpletonMod:registerPotions called");
+        if (ConfigData.enablePotionsForAllCharacters) {
+            logger.info("TheSimpletonMod:registerPotions adding potions for all classes");
+            BaseMod.addPotion(
+                AbundancePotion.class, AbundancePotion.BASE_COLOR, AbundancePotion.HYBRID_COLOR,
+                AbundancePotion.SPOTS_COLOR, AbundancePotion.POTION_ID);
+            BaseMod.addPotion(
+                KindlingPotion.class, KindlingPotion.BASE_COLOR, KindlingPotion.HYBRID_COLOR,
+                KindlingPotion.SPOTS_COLOR, KindlingPotion.POTION_ID);
+        } else {
+            logger.info("TheSimpletonMod:registerPotions adding potions for hayseed");
+            BaseMod.addPotion(
+                AbundancePotion.class, AbundancePotion.BASE_COLOR, AbundancePotion.HYBRID_COLOR,
+                AbundancePotion.SPOTS_COLOR, AbundancePotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
+            BaseMod.addPotion(
+                KindlingPotion.class, KindlingPotion.BASE_COLOR, KindlingPotion.HYBRID_COLOR,
+                KindlingPotion.SPOTS_COLOR, KindlingPotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
+        }
     }
 
     private void registerSfx() {
@@ -479,7 +509,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         TheSimpletonMod.isGameInitialized = true;
 
-
         registerModPanel();
         registerEvents();
         registerPotions();
@@ -495,8 +524,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         ids.addAll(seasonalEvents.globalEvents);
         return ids;
     }
-
-
 
     private void registerCustomSaveKeys() {
 

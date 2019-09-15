@@ -24,17 +24,15 @@ public class NightSoil extends CustomRelic {
 
   private static final float RELIC_FLASH_DELAY = 0.2F;
 
-  private final int cropAmount;
-
   public NightSoil() {
     super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
         new Texture(TheSimpletonMod.getResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
     this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_LARGE));
-    this.cropAmount = AbstractCropOrb.STACK_AMOUNT_ON_SHUFFLE;
   }
 
   @Override
   public String getUpdatedDescription() {
+    final int cropAmount = AbstractCropOrb.STACK_AMOUNT_ON_SHUFFLE;
     return this.DESCRIPTIONS[0] + cropAmount + (cropAmount == 1 ? this.DESCRIPTIONS[1] : this.DESCRIPTIONS[2]);
   }
 
@@ -45,9 +43,7 @@ public class NightSoil extends CustomRelic {
           .collect(Collectors.toList());
 
     if (!eligibleCropOrbs.isEmpty()) {
-//      this.flash();
       AbstractDungeon.effectList.add(new DelayedRelicFlashEffect(this, RELIC_FLASH_DELAY));
-
       // moved into AbstractCrop
       // eligibleCropOrbs.forEach(orb -> AbstractCrop.stackOrb(orb, CROP_AMOUNT, false));
     }

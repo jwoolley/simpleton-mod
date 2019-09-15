@@ -454,9 +454,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         } else {
             logger.info("TheSimpletonMod:registerPotions adding potions for hayseed");
             BaseMod.addPotion(
-                AbundancePotion.class, AbundancePotion.BASE_COLOR, AbundancePotion.HYBRID_COLOR,
-                AbundancePotion.SPOTS_COLOR, AbundancePotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
-            BaseMod.addPotion(
                 KindlingPotion.class, KindlingPotion.BASE_COLOR, KindlingPotion.HYBRID_COLOR,
                 KindlingPotion.SPOTS_COLOR, KindlingPotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
         }

@@ -76,6 +76,37 @@
       "'Tis the season!"
     ]
   },
+
+  "TheSimpletonMod:EnableContentForAllCharactersButton": {
+    "TEXT": [
+      "Enable some events, potions, and relics for all characters (Requires restart)"
+    ]
+  },
+
+  "TheSimpletonMod:EnableCursesForAllCharactersButton": {
+    "TEXT": [
+      "Enable curses for all characters (Requires restart)"
+    ]
+  },
+
+  "TheSimpletonMod:EnableEventsForAllCharactersButton": {
+    "TEXT": [
+      "Enable some events for all characters (Requires restart)"
+    ]
+  },
+
+  "TheSimpletonMod:EnablePotionsForAllCharactersButton": {
+    "TEXT": [
+      "Enable some potions for all characters (Requires restart)"
+    ]
+  },
+
+  "TheSimpletonMod:EnableRelicsForAllCharactersButton": {
+    "TEXT": [
+      "Enable some relics for all characters (Requires restart)"
+    ]
+  },
+
   "TheSimpletonMod:ChooseAndAddHandCardsToDeckAction": {
     "TEXT": [
       "be shuffled into your draw pile."

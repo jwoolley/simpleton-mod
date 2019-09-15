@@ -3,6 +3,7 @@ package thesimpleton.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import org.omg.PortableInterceptor.ACTIVE;
+import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.curse.SimpletonCurse;
 import thesimpleton.cards.skill.Cultivate;
 
@@ -21,8 +22,11 @@ public class SimpletonCardHelper {
     cardPool.addAll(AbstractDungeon.commonCardPool.group);
     cardPool.addAll(AbstractDungeon.uncommonCardPool.group);
     cardPool.addAll(AbstractDungeon.rareCardPool.group);
-    cardPool.addAll(AbstractDungeon.curseCardPool.group.stream()
-        .filter(c -> c instanceof SimpletonCurse).collect(Collectors.toList()));
+
+    if (TheSimpletonMod.isPlayingAsSimpleton() || TheSimpletonMod.ConfigData.enableCursesForAllCharacters) {
+      cardPool.addAll(AbstractDungeon.curseCardPool.group.stream()
+          .filter(c -> c instanceof SimpletonCurse).collect(Collectors.toList()));
+    }
 
     return Collections.unmodifiableList(cardPool);
   }
@@ -36,7 +40,6 @@ public class SimpletonCardHelper {
           .collect(Collectors.toList()));
       harvestCards.add(new Cultivate());
     }
-
 
     return new ArrayList<>(harvestCards);
   }

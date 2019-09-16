@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.curse.Gnats;
 
-public class FirefliesEvent extends AbstractImageEvent
+public class FirefliesEvent extends CustomSimpletonEvent
 {
   public static final String ID = TheSimpletonMod.makeID("FirefliesEvent");
 
@@ -59,8 +59,6 @@ public class FirefliesEvent extends AbstractImageEvent
       relicReward = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.COMMON);
     }
 
-//    curseIsInjury = AbstractDungeon.miscRng.randomBoolean(0.5F);
-//    curseCard = curseIsInjury ? CURSE_INJURY : CURSE_CLUMSY;
     curseCard = CURSE_GNATS;
     curseIsInjury = false;
 

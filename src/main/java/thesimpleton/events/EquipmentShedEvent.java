@@ -28,7 +28,7 @@ import thesimpleton.events.SimpletonEventHelper.EventState;
 import thesimpleton.seasons.SeasonInfo;
 import thesimpleton.ui.SettingsHelper;
 
-public class EquipmentShedEvent extends AbstractImageEvent
+public class EquipmentShedEvent extends CustomSimpletonEvent
 {
   public static final String ID = TheSimpletonMod.makeID("EquipmentShedEvent");
 

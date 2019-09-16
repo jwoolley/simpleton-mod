@@ -17,8 +17,7 @@ import thesimpleton.crops.Crop;
 import thesimpleton.relics.GourdCharm;
 import thesimpleton.relics.OnionBelt;
 
-public class ReaptideEvent extends AbstractImageEvent
-{
+public class ReaptideEvent extends CustomSimpletonEvent implements CustomSimpletonOnlyEvent {
   public static final String ID = TheSimpletonMod.makeID("ReaptideEvent");
 
   private static final String IMG_PATH = SimpletonEventHelper.getUiPath("reaptide1");

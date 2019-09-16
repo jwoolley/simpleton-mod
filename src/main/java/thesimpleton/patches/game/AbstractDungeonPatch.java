@@ -42,6 +42,8 @@ public class AbstractDungeonPatch {
                     eventsToRemove.add(e);
                 });
         } else if (!TheSimpletonMod.ConfigData.enableEventsForAllCharacters) {
+            TheSimpletonMod.logger.debug("AbstractDungeonPatch:: event config toggle disabled; removing hayseed-specific custom events.");
+
             TheSimpletonMod.logger.debug("AbstractDungeonPatch:: unsupported class; removing all custom events.");
             AbstractDungeon.eventList.stream()
                 .filter(e -> SeasonalEvents.getAllSeasonalEventIds().stream().anyMatch(id -> e.equals(id)))
@@ -50,7 +52,15 @@ public class AbstractDungeonPatch {
                     eventsToRemove.add(e);
                 });
         } else {
-            TheSimpletonMod.logger.debug("AbstractDungeonPatch:: event config toggle enabled; enabling all custom events.");
+            TheSimpletonMod.logger.debug("AbstractDungeonPatch:: event config toggle enabled; removing hayseed-specific custom events.");
+
+            TheSimpletonMod.logger.debug("AbstractDungeonPatch:: unsupported class; removing all custom events.");
+            AbstractDungeon.eventList.stream()
+                .filter(e -> SeasonalEvents.getAllSeasonalEventIds().stream().anyMatch(id -> e.equals(id)))
+                .forEach(e -> {
+                    TheSimpletonMod.logger.debug("AbstractDungeonPatch marking custom event for removal: " + e);
+                    eventsToRemove.add(e);
+                });
         }
         TheSimpletonMod.logger.debug("AbstractDungeonPatch removing " + eventsToRemove.size() + " custom events");
         AbstractDungeon.eventList.removeAll(eventsToRemove);

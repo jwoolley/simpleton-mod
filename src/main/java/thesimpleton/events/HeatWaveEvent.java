@@ -3,7 +3,6 @@ package thesimpleton.events;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -12,7 +11,7 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.skill.ControlledBurn;
 import thesimpleton.relics.HeatStroke;
 
-public class HeatWaveEvent extends AbstractImageEvent {
+public class HeatWaveEvent extends CustomSimpletonEvent implements CustomSimpletonOnlyEvent {
   public static final String ID = TheSimpletonMod.makeID("HeatWaveEvent");
 
   private static final String IMG_PATH = SimpletonEventHelper.getUiPath("heatwave1");

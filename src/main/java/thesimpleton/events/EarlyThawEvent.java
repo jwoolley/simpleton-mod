@@ -11,7 +11,7 @@ import thesimpleton.cards.curse.Nettles;
 import thesimpleton.cards.power.crop.Strawberries;
 import thesimpleton.events.SimpletonEventHelper.EventState;
 
-public class EarlyThawEvent extends AbstractImageEvent
+public class EarlyThawEvent extends CustomSimpletonEvent implements CustomSimpletonOnlyEvent
 {
   public static final String ID = TheSimpletonMod.makeID("EarlyThawEvent");
 

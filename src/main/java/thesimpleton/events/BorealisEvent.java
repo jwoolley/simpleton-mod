@@ -2,11 +2,8 @@ package thesimpleton.events;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.colorless.Apotheosis;
-import com.megacrit.cardcrawl.cards.colorless.HandOfGreed;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -14,12 +11,9 @@ import com.megacrit.cardcrawl.relics.PrismaticShard;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.SimpletonUtil;
-import thesimpleton.cards.curse.Frostbite;
-import thesimpleton.cards.power.crop.Mushrooms;
 import thesimpleton.events.SimpletonEventHelper.EventState;
 
-public class BorealisEvent extends AbstractImageEvent
+public class BorealisEvent extends CustomSimpletonEvent
 {
   public static final String ID = TheSimpletonMod.makeID("BorealisEvent");
 

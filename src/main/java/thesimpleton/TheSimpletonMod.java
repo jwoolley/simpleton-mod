@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheCity;
+import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -152,14 +153,20 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
+        logger.info("TheSimpletonMod::receiveOnBattleStart | eventList: "
+            + AbstractDungeon.eventList.stream().map(c -> c).collect(Collectors.joining(", ")));
+
+
         logger.debug("TheSimpletonMod::receiveOnBattleStart : resetting hasHarvestedThisTurn");
         AbstractCrop.resetHasHarvestedThisTurn();
 
-        logger.debug("TheSimpletonMod::receiveOnBattleStart: curse card pool cards: "
+        logger.info("TheSimpletonMod::receiveOnBattleStart: curse card pool cards: "
             + AbstractDungeon.curseCardPool.group.stream()
             .map(c -> c.name).collect(Collectors.joining(", ")));
 
         CropOrbHelper.clearHighlightedOrb();
+
+
     }
 
 
@@ -429,16 +436,16 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     private void registerEvents() {
-        if (ConfigData.enableEventsForAllCharacters) {
-            BaseMod.addEvent(EquipmentShedEvent.ID, EquipmentShedEvent.class, Exordium.ID);
-            // TODO: intialize these programatically from SeasonalEvents
-            BaseMod.addEvent(ReaptideEvent.ID, ReaptideEvent.class, Exordium.ID);
-            BaseMod.addEvent(SnowedInEvent.ID, SnowedInEvent.class, Exordium.ID);
-            BaseMod.addEvent(EarlyThawEvent.ID, EarlyThawEvent.class, Exordium.ID);
-            BaseMod.addEvent(FirefliesEvent.ID, FirefliesEvent.class, Exordium.ID);
-            BaseMod.addEvent(BorealisEvent.ID, BorealisEvent.class, TheCity.ID);
-            BaseMod.addEvent(HeatWaveEvent.ID, HeatWaveEvent.class, TheCity.ID);
-        }
+        logger.info("TheSimpletonMod:registerEvents called");
+
+        BaseMod.addEvent(EquipmentShedEvent.ID, EquipmentShedEvent.class, Exordium.ID);
+        // TODO: intialize these programatically from SeasonalEvents
+        BaseMod.addEvent(ReaptideEvent.ID, ReaptideEvent.class, Exordium.ID);
+        BaseMod.addEvent(SnowedInEvent.ID, SnowedInEvent.class, Exordium.ID);
+        BaseMod.addEvent(EarlyThawEvent.ID, EarlyThawEvent.class, Exordium.ID);
+        BaseMod.addEvent(FirefliesEvent.ID, FirefliesEvent.class, Exordium.ID);
+        BaseMod.addEvent(BorealisEvent.ID, BorealisEvent.class, TheCity.ID);
+        BaseMod.addEvent(HeatWaveEvent.ID, HeatWaveEvent.class, TheCity.ID);
     }
 
     private void registerPotions() {
@@ -446,13 +453,13 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         if (ConfigData.enablePotionsForAllCharacters) {
             logger.info("TheSimpletonMod:registerPotions adding potions for all classes");
             BaseMod.addPotion(
-                AbundancePotion.class, AbundancePotion.BASE_COLOR, AbundancePotion.HYBRID_COLOR,
-                AbundancePotion.SPOTS_COLOR, AbundancePotion.POTION_ID);
-            BaseMod.addPotion(
                 KindlingPotion.class, KindlingPotion.BASE_COLOR, KindlingPotion.HYBRID_COLOR,
                 KindlingPotion.SPOTS_COLOR, KindlingPotion.POTION_ID);
         } else {
             logger.info("TheSimpletonMod:registerPotions adding potions for hayseed");
+            BaseMod.addPotion(
+                AbundancePotion.class, AbundancePotion.BASE_COLOR, AbundancePotion.HYBRID_COLOR,
+                AbundancePotion.SPOTS_COLOR, AbundancePotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
             BaseMod.addPotion(
                 KindlingPotion.class, KindlingPotion.BASE_COLOR, KindlingPotion.HYBRID_COLOR,
                 KindlingPotion.SPOTS_COLOR, KindlingPotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
@@ -624,12 +631,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new VolatileFumes());
 
         // Curse(6)
-        if (TheSimpletonMod.isPlayingAsSimpleton() || ConfigData.enableCursesForAllCharacters) {
-            cards.add(new Frostbite());
-            cards.add(new Gnats());
-            cards.add(new Nettles());
-            cards.add(new Spoilage());
-        }
+        cards.addAll(getCustomCurseCardList());
+
         return cards;
     }
 
@@ -654,6 +657,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     public static List<AbstractCard> getSeasonalCurseCardList() {
+        return getCustomCurseCardList();
+    }
+
+    public static List<AbstractCard> getCustomCurseCardList() {
         List<AbstractCard> cards = new ArrayList<>();
 
         cards.add(new Gnats());
@@ -880,6 +887,13 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     public static void removeUnseasonalCardsFromPool() {
         removeUnusedCropPowerCardsFromPool();
 //        removeUnusedSeasonalCurseCardsFromPool();
+    }
+
+    public static void removeCustomCurseCardsFromPool() {
+        logger.debug("removeUnusedSeasonalCurseCardsFromPool called. Removing all Curses: "
+            + (getCustomCurseCardList().stream().map(c -> c.name).collect(Collectors.joining(", "))));
+
+        TheSimpletonMod.removeCardsFromPool(getCustomCurseCardList());
     }
 
     public static void removeUnusedCropPowerCardsFromPool() {

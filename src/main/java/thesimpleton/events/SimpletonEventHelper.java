@@ -207,7 +207,29 @@ public class SimpletonEventHelper {
     }
   }
 
+  public static final List<String> SIMPLETON_EVENT_IDS;
+  public static final List<String> SIMPLETON_ONLY_EVENT_IDS;
+
   public static void receiveRelic(AbstractRelic relic) {
     AbstractDungeon.getCurrRoom().spawnRelicAndObtain(Settings.WIDTH * 0.28F, Settings.HEIGHT / 2.0F, relic);
+  }
+
+  static {
+    SIMPLETON_EVENT_IDS = Arrays.asList(
+        BorealisEvent.ID,
+        EarlyThawEvent.ID,
+        EquipmentShedEvent.ID,
+        HeatWaveEvent.ID,
+        FirefliesEvent.ID,
+        ReaptideEvent.ID,
+        SnowedInEvent.ID
+    );
+
+    SIMPLETON_ONLY_EVENT_IDS = Arrays.asList(
+        EarlyThawEvent.ID,
+        HeatWaveEvent.ID,
+        ReaptideEvent.ID,
+        SnowedInEvent.ID
+    );
   }
 }

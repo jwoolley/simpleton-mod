@@ -1,12 +1,9 @@
 package thesimpleton.events;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.curses.Clumsy;
-import com.megacrit.cardcrawl.cards.curses.Injury;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
@@ -31,8 +28,6 @@ public class FirefliesEvent extends CustomSimpletonEvent
   private final AbstractRelic DEFAULT_REWARD_RELIC = new BottledTornado();
   private final AbstractRelic SECOND_REWARD_RELIC = new BottledLightning();
   private final AbstractRelic FALLBACK_REWARD_RELIC = new Lantern();
-  private static final AbstractCard CURSE_CLUMSY = new Clumsy();
-  private static final AbstractCard CURSE_INJURY = new Injury();
   private static final AbstractCard CURSE_GNATS = new Gnats();
 
   private final AbstractRelic relicReward;

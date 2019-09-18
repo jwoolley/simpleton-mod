@@ -16,6 +16,9 @@ import thesimpleton.TheSimpletonMod;
           TheSimpletonMod.logger.debug("AbstractDungeonInitializeCardPoolsAfter removing cards from pool");
           TheSimpletonMod.removeUnseasonalCardsFromPool();
         }
+      } else if (!TheSimpletonMod.ConfigData.enableCursesForAllCharacters) {
+        // remove custom curses if config is disabled
+        TheSimpletonMod.removeCustomCurseCardsFromPool();
       }
     }
 }

@@ -30,9 +30,13 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
   public List<String> onSave() {
     this.cardpool.clear();
 
+    if (!TheSimpletonMod.isPlayingAsSimpleton()) {
+      return new ArrayList<>();
+    }
+
     registerSaveId();
 
-    logger.debug(getLogPrefix("onSave") + " called");
+    logger.info(getLogPrefix("onSave") + " called");
 
     List<AbstractCard> currentCardPool = SimpletonCardHelper.getCurrentCardPool();
 
@@ -64,30 +68,30 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
 
   @Override
   public void onLoad(List<String> ids) {
-    if (ids != null && !ids.isEmpty()) {
+    if (TheSimpletonMod.isPlayingAsSimpleton() && ids != null && !ids.isEmpty()) {
 
       int cardIndex = 0;
-      logger.debug(getLogPrefix("onLoad") + " Loading cards for card pool from save:");
+      logger.info(getLogPrefix("onLoad") + " Loading cards for card pool from save:");
       for (String id : ids) {
         // if card exists in the CardLibrary (BaseMod.addsCard() has been called, I think)
         if (CardLibrary.isACard(id)) {
           AbstractCard card = CardLibrary.getCard(id);
           this.cardpool.add(card);
-          logger.debug(cardIndex++ + ") " + card.name + " [cardId: " + card.cardID + "]");
+          logger.info(cardIndex++ + ") " + card.name + " [cardId: " + card.cardID + "]");
         } else {
-          logger.warn(cardIndex++ + ") NOT IN CARD LIBRARY [cardId: " + id + "]");
+          logger.info(cardIndex++ + ") NOT IN CARD LIBRARY [cardId: " + id + "]");
         }
       }
 
       if (!TheSimpletonMod.getSaveCardPool().isEmpty()) {
-        logger.debug( getLogPrefix("onLoad") + " Card pool loaded from save with " + ids.size() + " cards. Initializing");
+        logger.info( getLogPrefix("onLoad") + " Card pool loaded from save with " + ids.size() + " cards. Initializing");
         if (CardCrawlGame.dungeon != null) {
           CardCrawlGame.dungeon.initializeCardPools();
         } else {
-          logger.debug(getLogPrefix("onLoad") + " dungeon is not yet initialized. Trusting it will happen eventually.");
+          logger.info(getLogPrefix("onLoad") + " dungeon is not yet initialized. Trusting it will happen eventually.");
         }
       } else {
-        logger.debug(getLogPrefix("onLoad") + " no save data found");
+        logger.info(getLogPrefix("onLoad") + " no save data found");
       }
     }
   }

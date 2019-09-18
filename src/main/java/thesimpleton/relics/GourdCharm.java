@@ -46,15 +46,7 @@ public class GourdCharm extends CustomRelic {
     }
   }
 
-//  @Override
-//  public void atBattleStart() {
-//    final AbstractPlayer player = AbstractDungeon.player;
-//    this.flash();
-//    addSquashStack(CROP_AMOUNT);
-//  }
-
   @Override
-
   public AbstractRelic makeCopy() {
     return new GourdCharm();
   }
@@ -64,7 +56,6 @@ public class GourdCharm extends CustomRelic {
     return AbstractDungeon.player.hasRelic(SpudOfTheInnocent.ID);
   }
 
-
   //TODO: move this to potato power class
   public static void addSquashStack(int amount) {
     Logger logger = TheSimpletonMod.logger;
@@ -72,27 +63,5 @@ public class GourdCharm extends CustomRelic {
     final AbstractPlayer p = AbstractDungeon.player;
 
     AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new SquashCropOrb(), amount,false));
-  }
-
-
-  @Override
-  public void obtain() {
-    this.instantObtain();
-  }
-
-  @Override
-  public void instantObtain() {
-    this.flash();
-    if (AbstractDungeon.player.hasRelic(SpudOfTheInnocent.ID)) {
-      for (int i = 0; i < AbstractDungeon.player.relics.size(); i++) {
-        if (AbstractDungeon.player.relics.get(i).relicId.equals(SpudOfTheInnocent.ID)) {
-          this.instantObtain(AbstractDungeon.player, i, true);
-          this.onEquip();
-          this.relicTip();
-        }
-      }
-    } else {
-      super.instantObtain();
-    }
   }
 }

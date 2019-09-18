@@ -48,15 +48,7 @@ public class OnionBelt extends CustomRelic {
     }
   }
 
-//  @Override
-//  public void atBattleStart() {
-//    final AbstractPlayer player = AbstractDungeon.player;
-//    this.flash();
-//    addOnionStack(CROP_AMOUNT);
-//  }
-
   @Override
-
   public AbstractRelic makeCopy() {
     return new OnionBelt();
   }
@@ -73,27 +65,5 @@ public class OnionBelt extends CustomRelic {
     final AbstractPlayer p = AbstractDungeon.player;
 
     AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new OnionCropOrb() , amount, false));
-  }
-
-
-  @Override
-  public void obtain() {
-    this.instantObtain();
-  }
-
-  @Override
-  public void instantObtain() {
-    this.flash();
-    if (AbstractDungeon.player.hasRelic(SpudOfTheInnocent.ID)) {
-      for (int i = 0; i < AbstractDungeon.player.relics.size(); i++) {
-        if (AbstractDungeon.player.relics.get(i).relicId.equals(SpudOfTheInnocent.ID)) {
-          this.instantObtain(AbstractDungeon.player, i, true);
-          this.onEquip();
-          this.relicTip();
-        }
-      }
-    } else {
-      super.instantObtain();
-    }
   }
 }

@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.EventStrings;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.curse.Nettles;
@@ -25,13 +26,17 @@ public class EarlyThawEvent extends CustomSimpletonEvent implements CustomSimple
   private static final int HEAL_AMOUNT = 10;
   private final AbstractCard upgradableCard;
 
+  private final AbstractRelic relicReward;
+
   private EventState state;
 
   public EarlyThawEvent() {
     super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getResourcePath(IMG_PATH));
-
+    REWARD_CARD.upgrade();
     upgradableCard = SimpletonEventHelper.getRandomUpgradeableCard();
     // TODO: Handle case where no upgradable cards
+
+    relicReward = null;
 
     this.imageEventText.setDialogOption(OPTIONS[0] + upgradableCard + OPTIONS[2] + HEAL_AMOUNT + OPTIONS[3]);
     this.imageEventText.setDialogOption(OPTIONS[1] + CURSE_CARD + OPTIONS[4] + REWARD_CARD + OPTIONS[5], CURSE_CARD);
@@ -52,7 +57,13 @@ public class EarlyThawEvent extends CustomSimpletonEvent implements CustomSimple
             break;
 
           case 1:
-            SimpletonEventHelper.gainCards(CURSE_CARD, REWARD_CARD);
+            final boolean receiveCurse = AbstractDungeon.miscRng.randomBoolean();
+            if (receiveCurse) {
+              CardCrawlGame.sound.play("OUCH_1");
+              SimpletonEventHelper.gainCards(CURSE_CARD, REWARD_CARD);
+            } else {
+              SimpletonEventHelper.gainCard(REWARD_CARD);
+            }
             break;
 
           default:

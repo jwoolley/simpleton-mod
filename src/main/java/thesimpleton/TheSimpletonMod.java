@@ -61,6 +61,7 @@ import thesimpleton.events.*;
 import thesimpleton.orbs.utilities.CropOrbHelper;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.potions.KindlingPotion;
+import thesimpleton.potions.MoonshinePotion;
 import thesimpleton.relics.*;
 import thesimpleton.savedata.CardPoolCustomSavable;
 import thesimpleton.savedata.SeasonCropsCustomSavable;
@@ -470,15 +471,21 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             BaseMod.addPotion(
                 KindlingPotion.class, KindlingPotion.BASE_COLOR, KindlingPotion.HYBRID_COLOR,
                 KindlingPotion.SPOTS_COLOR, KindlingPotion.POTION_ID);
+            BaseMod.addPotion(
+                MoonshinePotion.class, MoonshinePotion.BASE_COLOR, MoonshinePotion.HYBRID_COLOR,
+                MoonshinePotion.SPOTS_COLOR, MoonshinePotion.POTION_ID);
         } else {
             logger.info("TheSimpletonMod:registerPotions adding potions for hayseed");
             BaseMod.addPotion(
-                AbundancePotion.class, AbundancePotion.BASE_COLOR, AbundancePotion.HYBRID_COLOR,
-                AbundancePotion.SPOTS_COLOR, AbundancePotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
-            BaseMod.addPotion(
                 KindlingPotion.class, KindlingPotion.BASE_COLOR, KindlingPotion.HYBRID_COLOR,
                 KindlingPotion.SPOTS_COLOR, KindlingPotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
+            BaseMod.addPotion(
+                MoonshinePotion.class, MoonshinePotion.BASE_COLOR, MoonshinePotion.HYBRID_COLOR,
+                MoonshinePotion.SPOTS_COLOR, MoonshinePotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
         }
+        BaseMod.addPotion(
+            AbundancePotion.class, AbundancePotion.BASE_COLOR, AbundancePotion.HYBRID_COLOR,
+            AbundancePotion.SPOTS_COLOR, AbundancePotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
     }
 
     private void registerSfx() {

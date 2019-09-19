@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.ui.SettingsHelper;
 
@@ -212,6 +213,7 @@ public class SimpletonEventHelper {
 
   public static void receiveRelic(AbstractRelic relic) {
     AbstractDungeon.getCurrRoom().spawnRelicAndObtain(Settings.WIDTH * 0.28F, Settings.HEIGHT / 2.0F, relic);
+    SimpletonUtil.removeRelicFromPool(relic);
   }
 
   static {
@@ -226,7 +228,6 @@ public class SimpletonEventHelper {
     );
 
     SIMPLETON_ONLY_EVENT_IDS = Arrays.asList(
-        EarlyThawEvent.ID,
         HeatWaveEvent.ID,
         ReaptideEvent.ID,
         SnowedInEvent.ID

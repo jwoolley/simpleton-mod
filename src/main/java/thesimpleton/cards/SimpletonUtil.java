@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
@@ -140,6 +141,35 @@ public class SimpletonUtil {
         return cardsOfRarity.stream().filter(c -> c.type == cardType).collect(Collectors.toList());
     }
 
+    public static void removeRelicFromPool(AbstractRelic relic) {
+        final AbstractRelic.RelicTier rarity = relic.tier;
+
+        ArrayList<String> relicPool = new ArrayList<>();
+
+        switch (rarity) {
+            case COMMON:
+                relicPool = AbstractDungeon.commonRelicPool;
+                break;
+            case UNCOMMON:
+                relicPool = AbstractDungeon.uncommonRelicPool;
+                break;
+            case RARE:
+                relicPool = AbstractDungeon.rareRelicPool;
+                break;
+            case SHOP:
+                relicPool = AbstractDungeon.shopRelicPool;
+                break;
+            case BOSS:
+                relicPool = AbstractDungeon.bossRelicPool;
+                break;
+            default:
+                break;
+        }
+
+        if (relicPool.stream().anyMatch(id -> id.equals(relic.relicId))) {
+            relicPool.remove(relic.relicId);
+        }
+    }
 
     public static void openCenterGridSelectScreenUncancelable(CardGroup cardGroup, int numCards, String tipMessage) {
         CenterGridCardSelectScreen.centerGridSelect = true;

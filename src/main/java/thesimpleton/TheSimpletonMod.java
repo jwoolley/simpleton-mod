@@ -31,7 +31,9 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.relics.Kunai;
 import com.megacrit.cardcrawl.relics.PaperCrane;
+import com.megacrit.cardcrawl.relics.Shuriken;
 import com.megacrit.cardcrawl.relics.WristBlade;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.AbstractUnlock;
@@ -44,6 +46,7 @@ import sun.security.krb5.Config;
 import thesimpleton.cards.SimpletonCardHelper;
 import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.ShuffleTriggeredCard;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.attack.*;
 import thesimpleton.cards.curse.*;
 import thesimpleton.cards.power.*;
@@ -154,8 +157,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         logger.info("TheSimpletonMod::receiveOnBattleStart | eventList: "
-            + AbstractDungeon.eventList.stream().map(c -> c).collect(Collectors.joining(", ")));
-
+            + String.join(", ", AbstractDungeon.eventList));
 
         logger.debug("TheSimpletonMod::receiveOnBattleStart : resetting hasHarvestedThisTurn");
         AbstractCrop.resetHasHarvestedThisTurn();
@@ -168,7 +170,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
 
     }
-
 
     public static void onBeforeStartOfTurnOrbs() {
         logger.debug("TheSimpletonMod::onBeforeStartOfTurnOrbs : resetting hasHarvestedThisTurn");
@@ -200,6 +201,20 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         logger.debug("TheSimpletonMod::receivePostDungeonInitialize receivePostDungeonInitialize called ===========================>>>>>>>");
 //        initializeSeason();
         seasonScreen.reset();
+
+        if (isPlayingAsSimpleton()) {
+            shiftRelicTiers();
+        }
+    }
+
+    private void shiftRelicTiers() {
+        final List<String> rareRelicPool = AbstractDungeon.rareRelicPool;
+
+        SimpletonUtil.removeRelicFromPool(new Kunai());
+        rareRelicPool.add(AbstractDungeon.miscRng.random(0, rareRelicPool.size()), Kunai.ID);
+
+        SimpletonUtil.removeRelicFromPool(new Shuriken());
+        rareRelicPool.add(AbstractDungeon.miscRng.random(0, rareRelicPool.size()), Shuriken.ID);
     }
 
     @Override

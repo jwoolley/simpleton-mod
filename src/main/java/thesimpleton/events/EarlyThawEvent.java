@@ -26,6 +26,7 @@ public class EarlyThawEvent extends CustomSimpletonEvent
   private static final String NAME;
   private static final String[] DESCRIPTIONS;
   private static final String[] OPTIONS;
+  private static final int CURSE_CHANCE_PERCENTAGE = 33;
 
   private static final AbstractCard CURSE_CARD = new Nettles();
   private final AbstractCard REWARD_CARD = new Strawberries();
@@ -70,8 +71,8 @@ public class EarlyThawEvent extends CustomSimpletonEvent
     this.imageEventText.setDialogOption(OPTIONS[0] + upgradableCard + OPTIONS[2] + HEAL_AMOUNT + OPTIONS[3],
         upgradedExampleCard);
 
-    this.imageEventText.setDialogOption(OPTIONS[1] + CURSE_CARD + OPTIONS[4]
-        + (relicReward == null ? REWARD_CARD : relicReward) + OPTIONS[5], CURSE_CARD, relicReward);
+    this.imageEventText.setDialogOption(OPTIONS[1] + CURSE_CHANCE_PERCENTAGE + OPTIONS[4] + CURSE_CARD + OPTIONS[5]
+        + (relicReward == null ? REWARD_CARD : relicReward) + OPTIONS[6], CURSE_CARD, relicReward);
 
     this.state = EventState.WAITING;
     CardCrawlGame.sound.play("BIRD_TWEET_1");
@@ -89,7 +90,8 @@ public class EarlyThawEvent extends CustomSimpletonEvent
             break;
 
           case 1:
-            final boolean receiveCurse = AbstractDungeon.miscRng.randomBoolean();
+            final boolean receiveCurse = AbstractDungeon.miscRng.randomBoolean(CURSE_CHANCE_PERCENTAGE / 100.0F);
+
             if (receiveCurse) {
               CardCrawlGame.sound.play("OUCH_1");
 
@@ -112,13 +114,13 @@ public class EarlyThawEvent extends CustomSimpletonEvent
             break;
         }
         this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[6]);
+        this.imageEventText.setDialogOption(OPTIONS[7]);
         this.state = EventState.LEAVING;
         AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
         break;
       case LEAVING:
         this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[6]);
+        this.imageEventText.setDialogOption(OPTIONS[7]);
         openMap();
         break;
     }

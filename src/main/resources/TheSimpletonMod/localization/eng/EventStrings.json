@@ -22,9 +22,10 @@
     ],
     "OPTIONS": [
       "[Enjoy the Breeze] #gUpgrade ",
-      "[Start Planting] #r50%: #rBecome #rCursed #r– #r",
+      "[Start Planting] #r",
       ". #gHeal #g",
       " #gHP.",
+      "%: #rBecome #rCursed #r– #r",
       ". #gReceive ",
       ".",
       "[Leave]"

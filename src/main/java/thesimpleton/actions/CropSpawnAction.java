@@ -11,6 +11,7 @@ import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.crops.AbstractCrop;
 import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.powers.AbundancePower;
+import thesimpleton.relics.Honeycomb;
 
 
 public class CropSpawnAction extends AbstractGameAction {
@@ -50,6 +51,12 @@ public class CropSpawnAction extends AbstractGameAction {
 
         if (secondTick) {
             if (this.duration != ACTION_DURATION) {
+
+                if (AbstractDungeon.player.hasRelic(Honeycomb.ID)) {
+                    final Honeycomb honeycomb = (Honeycomb) AbstractDungeon.player.getRelic(Honeycomb.ID);
+                    honeycomb.onPlantCrop(this.cropOrb.getCrop().enumValue);
+                }
+
                 AbstractCropOrb cropOrb = AbstractCropOrb.getCropOrb(this.cropOrb);
                 if (cropOrb != null) {
                     int newAmount = cropOrb.passiveAmount;

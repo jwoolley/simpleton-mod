@@ -384,17 +384,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //                );}
 //            );
 
-
-//        ModLabeledToggleButton enableContentForAllButton = new ModLabeledToggleButton(allCharactersButtonText.TEXT[0],
-//            350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont,
-//            ConfigData.enableCursesForAllCharacters, modPanel, (label) -> {
-//        }, (button) -> {
-//            ConfigData.enableContentForAllCharacters = button.enabled;
-//            saveConfigData(false);
-//        });
-//
-//        modPanel.addUIElement(enableContentForAllButton);
-
         final UIStrings allCharactersCursesUiStrings
             = CardCrawlGame.languagePack.getUIString("TheSimpletonMod:EnableCursesForAllCharactersButton");
 
@@ -491,6 +480,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     private void registerSfx() {
         HashMap<String, Sfx> reflectedMap = getSoundsMap();
 
+        reflectedMap.put("ATTACK_BEE_BUZZ_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_BeeBuzz1.ogg"));
         reflectedMap.put("ATTACK_BUZZ_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_Buzz1.ogg"));
         reflectedMap.put("ATTACK_FIRE_IMPACT_1",
@@ -1050,6 +1041,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     public void receiveEditRelics() {
         logger.debug("TheSimpletonMod::receiveEditRelics called ===========================>>>>>>>");
 
+        // shared relics
+
         if (ConfigData.enableRelicsForAllCharacters) {
             BaseMod.addRelic(new GardenGlove(), RelicType.SHARED);
             BaseMod.addRelic(new Moonshine(), RelicType.SHARED);
@@ -1067,9 +1060,12 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addRelicToCustomPool(new TheHarvester(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new NightSoil(), AbstractCardEnum.THE_SIMPLETON_BLUE);
 
+        // hayseed-only relics
+
         BaseMod.addRelicToCustomPool(new CashCrop(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new GasCan(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new GourdCharm(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new Honeycomb(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new HornOfPlenty(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new HotPotato(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new OnionBelt(), AbstractCardEnum.THE_SIMPLETON_BLUE);

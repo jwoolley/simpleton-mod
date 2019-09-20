@@ -58,6 +58,15 @@
     ]
   },
 
+  "TheSimpletonMod:Honeycomb": {
+    "NAME": "Honeycomb",
+    "FLAVOR": "It may sting a little.",
+    "DESCRIPTIONS": [
+      "Whenever you #yPlant a #yCrop, deal #b",
+      " damage to a random enemy."
+    ]
+  },
+
   "TheSimpletonMod:HornOfPlenty": {
     "NAME": "Horn Of Plenty",
     "FLAVOR": "More than adequate.",

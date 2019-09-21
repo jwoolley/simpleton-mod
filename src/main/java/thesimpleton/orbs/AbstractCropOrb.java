@@ -39,12 +39,16 @@ public abstract class AbstractCropOrb extends CustomOrb {
   private static final float TOOLTIP_X_OFFSET = 80.0F;
   private static final float TOOLTIP_Y_OFFSET = -48.0F;
 
+  public static final int STACK_AMOUNT_ON_SHUFFLE = 1;
+
   private final Crop crop;
 
   private Texture haloImage;
   private Texture targetHaloImage;
   private String haloImageFilename;
   private String targetHaloImageFilename;
+
+  private final int stackAmountOnShuffle;
 
   // TODO: separate CropOrbType (which has e.g. harvest info and description data) from CropOrb (which has stack count)
 
@@ -54,6 +58,8 @@ public abstract class AbstractCropOrb extends CustomOrb {
     this.basePassiveAmount = this.passiveAmount = amount;
     this.haloImageFilename = haloImgFilename;
     this.targetHaloImageFilename = targetHaloImgFilename;
+
+    this.stackAmountOnShuffle = STACK_AMOUNT_ON_SHUFFLE;
   }
 
   private Texture getHaloImage() {
@@ -260,7 +266,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
       this.c = CROP_STACK_COUNT_FONT_COLOR;
     }
 
-    Color highlightFilterColor = Color.GOLD;
+    Color highlightFilterColor = Color.GOLD.cpy();
     if (CropOrbHelper.hasHighlightedOrb()) {
       if (CropOrbHelper.getHighlightedOrb().name == this.name) {
 //        this.c = highlightFilterColor;
@@ -318,8 +324,6 @@ public abstract class AbstractCropOrb extends CustomOrb {
       return keywordPowerTips;
   }
 
-
-
   private Map<String, String> getKeywords() {
     Map<String, String> keywords = getCustomKeywords().stream()
         .map(k -> TheSimpletonMod.getKeyword(k))
@@ -334,6 +338,12 @@ public abstract class AbstractCropOrb extends CustomOrb {
     keywords.put(maturityKeyword.PROPER_NAME, maturityKeyword.DESCRIPTION);
 
     return keywords;
+  }
+
+  public void onShuffle() {
+    if (!this.isMature(true)) {
+      AbstractCrop.stackOrb(this, this.stackAmountOnShuffle, false);
+    }
   }
 
   static {

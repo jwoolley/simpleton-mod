@@ -164,7 +164,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
 
     @Override
     public BitmapFont getEnergyNumFont() {
-        return FontHelper.energyNumFontGreen;
+        return FontHelper.energyNumFontRed;
     }
 
     @Override
@@ -195,7 +195,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
 
     @Override
     public Color getSlashAttackColor() {
-         return Color.TEAL;
+         return Color.TEAL.cpy();
     }
 
     //    @Override

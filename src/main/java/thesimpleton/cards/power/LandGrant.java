@@ -27,7 +27,7 @@ public class LandGrant extends CustomCard {
   private static final CardRarity RARITY = CardRarity.RARE;
   private static final CardTarget TARGET = CardTarget.SELF;
 
-  private static final int COST = 1;
+  private static final int COST = 0;
   private static final int PLOT_INCREASE_AMOUNT = 1;
   private static final int PLOT_INCREASE_UPGRADE_AMOUNT = 1;
 

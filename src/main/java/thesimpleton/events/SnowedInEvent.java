@@ -15,7 +15,7 @@ import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.power.crop.Potatoes;
 import thesimpleton.cards.skill.StockTheCellar;
 
-public class SnowedInEvent extends AbstractImageEvent
+public class SnowedInEvent extends CustomSimpletonEvent implements CustomSimpletonOnlyEvent
 {
   public static final String ID = TheSimpletonMod.makeID("SnowedInEvent");
 

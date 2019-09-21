@@ -28,9 +28,9 @@ public class KindlingPotion extends CustomPotion {
   public static final PotionColor POTION_COLOR = PotionColor.POISON;
   public static final int POTENCY = 15;
 
-  public static final Color BASE_COLOR = Color.SCARLET;
-  public static final Color HYBRID_COLOR = Color.RED;
-  public static final Color SPOTS_COLOR = Color.CLEAR;
+  public static final Color BASE_COLOR = Color.SCARLET.cpy();
+  public static final Color HYBRID_COLOR = Color.RED.cpy();
+  public static final Color SPOTS_COLOR = Color.CLEAR.cpy();
 
   public KindlingPotion() {
     super(NAME, POTION_ID, PotionRarity.UNCOMMON, POTION_SHAPE, POTION_COLOR);

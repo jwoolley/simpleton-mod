@@ -13,7 +13,7 @@ public class HarvestCropSoundEffect extends PlasmaOrbActivateEffect {
 
   public HarvestCropSoundEffect(float x, float y) {
     super(x, y);
-    this.color = Color.BROWN;
+    this.color = Color.BROWN.cpy();
     this.startingDuration = EFFECT_DURATION;
     this.duration = this.startingDuration;
   }

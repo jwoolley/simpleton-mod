@@ -41,7 +41,7 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
     if (AbstractDungeon.player.cardsPlayedThisTurn >= this.magicNumber) {
       if (!this.willTrigger) {
         this.willTrigger = true;
-        this.flash(Color.CHARTREUSE);
+        this.flash(Color.CHARTREUSE.cpy());
         CardCrawlGame.sound.play("POWER_POISON");
         updateDescription(true);
       }

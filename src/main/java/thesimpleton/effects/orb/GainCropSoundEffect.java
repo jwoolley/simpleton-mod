@@ -15,7 +15,7 @@ public class GainCropSoundEffect extends AbstractGameEffect {
   public GainCropSoundEffect(float x, float y) {
     this.x = x;
     this.y = y;
-    this.color = Color.BROWN;
+    this.color = Color.BROWN.cpy();
     this.startingDuration = EFFECT_DURATION;
     this.duration = this.startingDuration;
   }

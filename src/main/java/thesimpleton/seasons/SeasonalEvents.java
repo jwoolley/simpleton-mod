@@ -1,9 +1,5 @@
 package thesimpleton.seasons;
 
-import basemod.BaseMod;
-import com.megacrit.cardcrawl.dungeons.Exordium;
-import com.megacrit.cardcrawl.dungeons.TheCity;
-import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import thesimpleton.events.*;
 
 import java.util.ArrayList;

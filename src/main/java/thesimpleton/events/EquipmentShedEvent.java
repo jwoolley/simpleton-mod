@@ -8,27 +8,23 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.combat.ScrapeEffect;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.actions.cards.GainCardAction;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.attack.ReapAndSow;
 import thesimpleton.cards.attack.ReapAndSquash;
 import thesimpleton.cards.attack.ReekAndSow;
-import thesimpleton.cards.curse.Nettles;
 import thesimpleton.cards.curse.Spoilage;
-import thesimpleton.cards.power.crop.Strawberries;
 import thesimpleton.cards.skill.Surplus;
 import thesimpleton.crops.Crop;
 import thesimpleton.events.SimpletonEventHelper.EventState;
 import thesimpleton.seasons.SeasonInfo;
 import thesimpleton.ui.SettingsHelper;
 
-public class EquipmentShedEvent extends AbstractImageEvent
+public class EquipmentShedEvent extends CustomSimpletonEvent
 {
   public static final String ID = TheSimpletonMod.makeID("EquipmentShedEvent");
 
@@ -44,9 +40,9 @@ public class EquipmentShedEvent extends AbstractImageEvent
   private final AbstractCard ONION_REPLACEMENT_CARD = new ReekAndSow();
   private final AbstractCard CARD_TO_REPLACE = new ReapAndSow();
 
-  private static final float HP_DAMAGE_PERCENT = 0.1F;
+  private static final float HP_DAMAGE_PERCENT = 0.12F;
   private static final float HP_DAMAGE_PERCENT_A15 = 0.2F;
-  private static final int MAX_HP_INCREASE_AMOUNT = 5;
+  private static final int MAX_HP_INCREASE_AMOUNT = 10;
 
   private final AbstractCard replacementCard;
   private final AbstractCard cardToReplace;
@@ -60,13 +56,15 @@ public class EquipmentShedEvent extends AbstractImageEvent
 
     final SeasonInfo seasonInfo = TheSimpletonMod.getSeasonInfo();
 
-    replacementCard =  (!TheSimpletonMod.isPlayingAsSimpleton() ? SimpletonEventHelper.getRandomUncommonCardFromPool()
+    replacementCard =  (!TheSimpletonMod.isPlayingAsSimpleton() ? SimpletonEventHelper.getRandomRareCardFromPool()
         : (seasonInfo.isInSeason(Crop.SQUASH) ? SQUASH_REPLACEMENT_CARD
         : (seasonInfo.isInSeason(Crop.ONIONS) ? ONION_REPLACEMENT_CARD
         : POTATO_REPLACEMENT_CARD)));
 
     playerHasReapAndSow = SimpletonUtil.playerHasCard(CARD_TO_REPLACE);
-    cardToReplace =  playerHasReapAndSow ? SimpletonUtil.getCardFromPlayerMasterDeck(CARD_TO_REPLACE.cardID) : null;
+    cardToReplace =  playerHasReapAndSow ? SimpletonUtil.getCardFromPlayerMasterDeck(CARD_TO_REPLACE.cardID)
+        : SimpletonEventHelper.getRandomCardFromDeck(
+            c -> c.rarity != AbstractCard.CardRarity.RARE && c.type != AbstractCard.CardType.CURSE);
 
     this.damage = MathUtils.round(AbstractDungeon.player.maxHealth
         * (AbstractDungeon.ascensionLevel >= 15 ? HP_DAMAGE_PERCENT_A15 : HP_DAMAGE_PERCENT));
@@ -76,7 +74,7 @@ public class EquipmentShedEvent extends AbstractImageEvent
         CURSE_CARD);
 
     this.imageEventText.setDialogOption(
-        (playerHasReapAndSow ? (OPTIONS[0] + cardToReplace.name + OPTIONS[3]) : OPTIONS[1])
+        (cardToReplace != null ? (OPTIONS[0] + cardToReplace.name + OPTIONS[3]) : OPTIONS[1])
         +  replacementCard.name + OPTIONS[4] + this.damage + OPTIONS[5],
         replacementCard);
 
@@ -104,7 +102,7 @@ public class EquipmentShedEvent extends AbstractImageEvent
             CardCrawlGame.sound.play("ATTACK_IRON_3");
 
 
-            if (playerHasReapAndSow) {
+            if (cardToReplace != null) {
               SimpletonEventHelper.loseCard(cardToReplace, Settings.WIDTH * SettingsHelper.getScaleX(),
                   Settings.HEIGHT * SettingsHelper.getScaleY());
 

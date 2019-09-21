@@ -1,11 +1,16 @@
 package thesimpleton;
 
-import basemod.*;
+import basemod.BaseMod;
+import basemod.ModLabeledToggleButton;
+import basemod.ModPanel;
+import basemod.ReflectionHacks;
 import basemod.abstracts.CustomUnlockBundle;
+import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
@@ -31,9 +36,10 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.monsters.beyond.Exploder;
-import com.megacrit.cardcrawl.monsters.city.Byrd;
+import com.megacrit.cardcrawl.relics.Kunai;
 import com.megacrit.cardcrawl.relics.PaperCrane;
+import com.megacrit.cardcrawl.relics.Shuriken;
+import com.megacrit.cardcrawl.relics.WristBlade;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.AbstractUnlock;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -41,11 +47,15 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
-import thesimpleton.cards.SimpletonCardHelper;
 import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.ShuffleTriggeredCard;
+import thesimpleton.cards.SimpletonCardHelper;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.attack.*;
-import thesimpleton.cards.curse.*;
+import thesimpleton.cards.curse.Frostbite;
+import thesimpleton.cards.curse.Gnats;
+import thesimpleton.cards.curse.Nettles;
+import thesimpleton.cards.curse.Spoilage;
 import thesimpleton.cards.power.*;
 import thesimpleton.cards.power.crop.*;
 import thesimpleton.cards.skill.*;
@@ -60,15 +70,16 @@ import thesimpleton.monsters.ScarecrowByrd;
 import thesimpleton.orbs.utilities.CropOrbHelper;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.potions.KindlingPotion;
+import thesimpleton.potions.MoonshinePotion;
 import thesimpleton.relics.*;
 import thesimpleton.savedata.CardPoolCustomSavable;
 import thesimpleton.savedata.SeasonCropsCustomSavable;
 import thesimpleton.savedata.SeasonCustomSavable;
-import thesimpleton.seasons.*;
-import thesimpleton.seasons.cropsetdefinitions.RandomPartialUnlockCropSetTemplate;
-import thesimpleton.seasons.cropsetdefinitions.RandomSeasonCropSetDefinition;
 import thesimpleton.seasons.Season;
 import thesimpleton.seasons.SeasonInfo;
+import thesimpleton.seasons.SeasonalEvents;
+import thesimpleton.seasons.cropsetdefinitions.RandomPartialUnlockCropSetTemplate;
+import thesimpleton.seasons.cropsetdefinitions.RandomSeasonCropSetDefinition;
 import thesimpleton.seasons.cropsetdefinitions.UnlockableSeasonCropSetDefinition;
 import thesimpleton.ui.seasons.SeasonIndicator;
 import thesimpleton.ui.seasons.SeasonScreen;
@@ -77,7 +88,6 @@ import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
-
 
 @SpireInitializer
 public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber,
@@ -99,6 +109,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     private static final String MOD_NAME = "TheSimpleton";
     private static final String CONFIG_NAME = "TheSimpletonConfig";
+    private static final String ALL_CHARACTERS_CONFIG = "ALL_CHARACTERS_CONFIG";
 
     public static TheSimpletonCharacter theSimpletonCharacter;
     private static Properties theSimpletonProperties = new Properties();
@@ -154,16 +165,20 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
+        logger.info("TheSimpletonMod::receiveOnBattleStart | eventList: "
+            + String.join(", ", AbstractDungeon.eventList));
+
         logger.debug("TheSimpletonMod::receiveOnBattleStart : resetting hasHarvestedThisTurn");
         AbstractCrop.resetHasHarvestedThisTurn();
 
-        logger.debug("TheSimpletonMod::receiveOnBattleStart: curse card pool cards: "
+        logger.info("TheSimpletonMod::receiveOnBattleStart: curse card pool cards: "
             + AbstractDungeon.curseCardPool.group.stream()
             .map(c -> c.name).collect(Collectors.joining(", ")));
 
         CropOrbHelper.clearHighlightedOrb();
-    }
 
+
+    }
 
     public static void onBeforeStartOfTurnOrbs() {
         logger.debug("TheSimpletonMod::onBeforeStartOfTurnOrbs : resetting hasHarvestedThisTurn");
@@ -195,6 +210,20 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         logger.debug("TheSimpletonMod::receivePostDungeonInitialize receivePostDungeonInitialize called ===========================>>>>>>>");
 //        initializeSeason();
         seasonScreen.reset();
+
+        if (isPlayingAsSimpleton()) {
+            shiftRelicTiers();
+        }
+    }
+
+    private void shiftRelicTiers() {
+        final List<String> rareRelicPool = AbstractDungeon.rareRelicPool;
+
+        SimpletonUtil.removeRelicFromPool(new Kunai());
+        rareRelicPool.add(AbstractDungeon.miscRng.random(0, rareRelicPool.size()), Kunai.ID);
+
+        SimpletonUtil.removeRelicFromPool(new Shuriken());
+        rareRelicPool.add(AbstractDungeon.miscRng.random(0, rareRelicPool.size()), Shuriken.ID);
     }
 
     @Override
@@ -338,39 +367,91 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         return isGameInitialized;
     }
 
-    @Override
-    public void receivePostInitialize() {
-        logger.debug("TheSimpletonMod::receivePostInitialize called ===========================>>>>>>>");
-
-        TheSimpletonMod.isGameInitialized = true;
-
+    private void registerModPanel() {
         Texture badgeTexture = new Texture(getResourcePath("badge.png"));
         ModPanel modPanel = new ModPanel();
 
-        UIStrings descriptionString = CardCrawlGame.languagePack.getUIString("TheSimpletonMod:ThemeDescription");
-        modPanel.addUIElement(
-                new ModLabel(descriptionString.TEXT[0], 350.0f, 750.0f, Color.GOLD, modPanel, label -> {}));
-        modPanel.addUIElement(
-                new ModLabel(descriptionString.TEXT[1], 350.0f, 700.0f, Color.LIME, modPanel, label -> {}));
+//        UIStrings descriptionString = CardCrawlGame.languagePack.getUIString("TheSimpletonMod:ThemeDescription");
+//        modPanel.addUIElement(
+//            new ModLabel(descriptionString.TEXT[0], 350.0f, 750.0f, Color.GOLD.cpy(), modPanel, label -> {}));
+//        modPanel.addUIElement(
+//            new ModLabel(descriptionString.TEXT[1], 350.0f, 700.0f, Color.LIME.cpy(), modPanel, label -> {}));
+//        Arrays.stream(TheSimpletonCharEnum.Theme.values())
+//            .filter(theme -> theme != TheSimpletonCharEnum.Theme.BASE_THEME)
+//            .forEach(theme -> {
+//                logger.debug("Adding theme: " + theme);
+//                modPanel.addUIElement(new ModLabeledToggleButton(
+//                    CardCrawlGame.languagePack.getUIString(theme.toString()).TEXT[0],
+//                    350.0f, 650.0f - 50.f * theme.ordinal(), Settings.CREAM_COLOR,
+//                    FontHelper.charDescFont, currentTheme.isCurrentTheme(theme), modPanel,
+//                    label -> {},
+//                    button -> {
+//                        currentTheme.update(theme, button.enabled);
+//                        saveConfigData(false);
+//                    })
+//                );}
+//            );
 
-        Arrays.stream(TheSimpletonCharEnum.Theme.values())
-                .filter(theme -> theme != TheSimpletonCharEnum.Theme.BASE_THEME)
-                .forEach(theme -> {
-                    logger.debug("Adding theme: " + theme);
-                    modPanel.addUIElement(new ModLabeledToggleButton(
-                        CardCrawlGame.languagePack.getUIString(theme.toString()).TEXT[0],
-                        350.0f, 650.0f - 50.f * theme.ordinal(), Settings.CREAM_COLOR,
-                        FontHelper.charDescFont, currentTheme.isCurrentTheme(theme), modPanel,
-                        label -> {},
-                        button -> {
-                            currentTheme.update(theme, button.enabled);
-                            saveConfigData(false);
-                        })
-                    );}
-                );
+        final UIStrings allCharactersCursesUiStrings
+            = CardCrawlGame.languagePack.getUIString("TheSimpletonMod:EnableCursesForAllCharactersButton");
+
+        final UIStrings allCharactersEventsUiStrings
+            = CardCrawlGame.languagePack.getUIString("TheSimpletonMod:EnableEventsForAllCharactersButton");
+
+        final UIStrings allCharactersPotionsUiStrings
+            = CardCrawlGame.languagePack.getUIString("TheSimpletonMod:EnablePotionsForAllCharactersButton");
+
+        final UIStrings allCharactersRelicsUiStrings
+            = CardCrawlGame.languagePack.getUIString("TheSimpletonMod:EnableRelicsForAllCharactersButton");
+
+        createModPanelToggleButton(modPanel,  allCharactersCursesUiStrings.TEXT[0], 0,
+            ConfigData.enableCursesForAllCharacters, (button) -> {
+                ConfigData.enableCursesForAllCharacters = button.enabled;
+                saveConfigData(false);
+            });
+
+        createModPanelToggleButton(modPanel,  allCharactersEventsUiStrings.TEXT[0], 1,
+            ConfigData.enableEventsForAllCharacters, (button) -> {
+                ConfigData.enableEventsForAllCharacters = button.enabled;
+                saveConfigData(false);
+            });
+
+        createModPanelToggleButton(modPanel,  allCharactersPotionsUiStrings.TEXT[0], 2,
+            ConfigData.enablePotionsForAllCharacters, (button) -> {
+                ConfigData.enablePotionsForAllCharacters = button.enabled;
+                saveConfigData(false);
+            });
+
+        createModPanelToggleButton(modPanel,  allCharactersRelicsUiStrings.TEXT[0], 3,
+            ConfigData.enableRelicsForAllCharacters, (button) -> {
+            ConfigData.enableRelicsForAllCharacters = button.enabled;
+            saveConfigData(false);
+        });
+
+        BaseMod.registerModBadge(
+            badgeTexture, "The Hayseed", "jwoolley",
+            "Adds a new creature to the game - The Hayseed", modPanel);
+    }
+
+    private void createModPanelToggleButton(ModPanel modPanel, String label, int optionIndex,
+        boolean enabledByDefault, java.util.function.Consumer<basemod.ModToggleButton> onToggle) {
+
+        final BitmapFont labelFont =  FontHelper.charDescFont;
+        final float X_POS = 350.0f;
+        final float Y_POS = 800.0f;
+        final float Y_POS_OFFSET = FontHelper.charDescFont.getLineHeight() * 1.1f;
+
+        ModLabeledToggleButton toggleButton = new ModLabeledToggleButton(label,
+            X_POS, Y_POS - (Y_POS_OFFSET * optionIndex), Settings.CREAM_COLOR, labelFont, enabledByDefault,
+            modPanel, _label -> {}, onToggle);
+
+        modPanel.addUIElement(toggleButton);
+    }
+
+    private void registerEvents() {
+        logger.info("TheSimpletonMod:registerEvents called");
 
         BaseMod.addEvent(EquipmentShedEvent.ID, EquipmentShedEvent.class, Exordium.ID);
-
         // TODO: intialize these programatically from SeasonalEvents
         BaseMod.addEvent(ReaptideEvent.ID, ReaptideEvent.class, Exordium.ID);
         BaseMod.addEvent(SnowedInEvent.ID, SnowedInEvent.class, Exordium.ID);
@@ -378,28 +459,37 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addEvent(FirefliesEvent.ID, FirefliesEvent.class, Exordium.ID);
         BaseMod.addEvent(BorealisEvent.ID, BorealisEvent.class, TheCity.ID);
         BaseMod.addEvent(HeatWaveEvent.ID, HeatWaveEvent.class, TheCity.ID);
+    }
 
-        BaseMod.registerModBadge(
-                badgeTexture, "The Hayseed", "jwoolley",
-                "Adds a new creature to the game - The Hayseed", modPanel);
-
+    private void registerPotions() {
+        logger.info("TheSimpletonMod:registerPotions called");
+        if (ConfigData.enablePotionsForAllCharacters) {
+            logger.info("TheSimpletonMod:registerPotions adding potions for all classes");
+            BaseMod.addPotion(
+                KindlingPotion.class, KindlingPotion.BASE_COLOR, KindlingPotion.HYBRID_COLOR,
+                KindlingPotion.SPOTS_COLOR, KindlingPotion.POTION_ID);
+            BaseMod.addPotion(
+                MoonshinePotion.class, MoonshinePotion.BASE_COLOR, MoonshinePotion.HYBRID_COLOR,
+                MoonshinePotion.SPOTS_COLOR, MoonshinePotion.POTION_ID);
+        } else {
+            logger.info("TheSimpletonMod:registerPotions adding potions for hayseed");
+            BaseMod.addPotion(
+                KindlingPotion.class, KindlingPotion.BASE_COLOR, KindlingPotion.HYBRID_COLOR,
+                KindlingPotion.SPOTS_COLOR, KindlingPotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
+            BaseMod.addPotion(
+                MoonshinePotion.class, MoonshinePotion.BASE_COLOR, MoonshinePotion.HYBRID_COLOR,
+                MoonshinePotion.SPOTS_COLOR, MoonshinePotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
+        }
         BaseMod.addPotion(
             AbundancePotion.class, AbundancePotion.BASE_COLOR, AbundancePotion.HYBRID_COLOR,
-                AbundancePotion.SPOTS_COLOR, AbundancePotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
+            AbundancePotion.SPOTS_COLOR, AbundancePotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
+    }
 
-        BaseMod.addPotion(
-            KindlingPotion.class, KindlingPotion.BASE_COLOR, KindlingPotion.HYBRID_COLOR,
-            KindlingPotion.SPOTS_COLOR, KindlingPotion.POTION_ID, TheSimpletonCharEnum.THE_SIMPLETON);
-
-        BaseMod.addMonster(Scarecrow.ID, "Scarecrow", () -> new MonsterGroup(new AbstractMonster[] {
-            new ScarecrowByrd(-565.0F, MathUtils.random(25.0f, 70.0f)),
-            new ScarecrowByrd(-295.0F, MathUtils.random(25.0f, 70.0f)),
-            new ScarecrowByrd(-24.0F, MathUtils.random(25.0f, 70.0f)),
-            new Scarecrow(270.0F, -5.0F)
-        }));
-
+    private void registerSfx() {
         HashMap<String, Sfx> reflectedMap = getSoundsMap();
 
+        reflectedMap.put("ATTACK_BEE_BUZZ_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_BeeBuzz1.ogg"));
         reflectedMap.put("ATTACK_BUZZ_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_Buzz1.ogg"));
         reflectedMap.put("ATTACK_FIRE_IMPACT_1",
@@ -430,12 +520,36 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_LowRumble1.ogg"));
         reflectedMap.put("MAGIC_CHIMES_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_MagicChimes1.ogg"));
+        reflectedMap.put("OUCH_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_Ouch1.ogg"));
         reflectedMap.put("ROOSTER_CROW_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_RoosterCrow1.ogg"));
         reflectedMap.put("SIMPLE_CRUNCH_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_SimpleCrunch1.ogg"));
         reflectedMap.put("WIND_HOWL_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_WindHowl1.ogg"));
+    }
+
+    private void registerMonsters() {
+        BaseMod.addMonster(Scarecrow.ID, "Scarecrow", () -> new MonsterGroup(new AbstractMonster[] {
+            new ScarecrowByrd(-565.0F, MathUtils.random(25.0f, 70.0f)),
+            new ScarecrowByrd(-295.0F, MathUtils.random(25.0f, 70.0f)),
+            new ScarecrowByrd(-24.0F, MathUtils.random(25.0f, 70.0f)),
+            new Scarecrow(270.0F, -5.0F)
+        }));
+    }
+
+    @Override
+    public void receivePostInitialize() {
+        logger.debug("TheSimpletonMod::receivePostInitialize called ===========================>>>>>>>");
+
+        TheSimpletonMod.isGameInitialized = true;
+
+        registerModPanel();
+        registerEvents();
+        registerPotions();
+        registerSfx();
+        registerMonsters();
     }
 
     public static List<String> getSeasonalEventIds() {
@@ -447,8 +561,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         ids.addAll(seasonalEvents.globalEvents);
         return ids;
     }
-
-
 
     private void registerCustomSaveKeys() {
 
@@ -552,10 +664,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new VolatileFumes());
 
         // Curse(6)
-        cards.add(new Frostbite());
-        cards.add(new Gnats());
-        cards.add(new Nettles());
-        cards.add(new Spoilage());
+        cards.addAll(getCustomCurseCardList());
+
         return cards;
     }
 
@@ -580,6 +690,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     public static List<AbstractCard> getSeasonalCurseCardList() {
+        return getCustomCurseCardList();
+    }
+
+    public static List<AbstractCard> getCustomCurseCardList() {
         List<AbstractCard> cards = new ArrayList<>();
 
         cards.add(new Gnats());
@@ -808,6 +922,13 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        removeUnusedSeasonalCurseCardsFromPool();
     }
 
+    public static void removeCustomCurseCardsFromPool() {
+        logger.debug("removeUnusedSeasonalCurseCardsFromPool called. Removing all Curses: "
+            + (getCustomCurseCardList().stream().map(c -> c.name).collect(Collectors.joining(", "))));
+
+        TheSimpletonMod.removeCardsFromPool(getCustomCurseCardList());
+    }
+
     public static void removeUnusedCropPowerCardsFromPool() {
         List<AbstractCropPowerCard> seasonalCrops = getSeasonalCropCards();
 
@@ -821,24 +942,24 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         TheSimpletonMod.removeCropPowerCardsFromPool(cardsToRemove);
     }
-
-    public static void removeUnusedSeasonalCurseCardsFromPool() {
-        if (!isSeasonInitialized()) {
-            logger.debug("removeUnusedSeasonalCurseCardsFromPool : season not initialized. Not removing any cards.");
-        }
-
-        List<AbstractCard> seasonalCurses = seasonCurseMap.get(getSeason());
-
-        List<AbstractCard> cardsToRemove = getSeasonalCurseCardList().stream()
-            .filter(c -> !seasonalCurses.stream().anyMatch(c2 -> c.cardID == c2.cardID))
-            .collect(Collectors.toList());
-
-        logger.debug("removeUnusedSeasonalCurseCardsFromPool called. Complete List: " + getSeasonalCurseCardList().stream().map(c -> c.name).collect(Collectors.joining(", ")));
-        logger.debug("removeUnusedSeasonalCurseCardsFromPool called. Seasonal Curses: " + getSeasonalCropCards().stream().map(c -> c.name).collect(Collectors.joining(", ")));
-        logger.debug("removeUnusedSeasonalCurseCardsFromPool called. Removing unseasonal Curses: " + cardsToRemove.stream().map(c -> c.name).collect(Collectors.joining(", ")));
-
-        TheSimpletonMod.removeCardsFromPool(cardsToRemove);
-    }
+//
+//    public static void removeUnusedSeasonalCurseCardsFromPool() {
+//        if (!isSeasonInitialized()) {
+//            logger.debug("removeUnusedSeasonalCurseCardsFromPool : season not initialized. Not removing any cards.");
+//        }
+//
+//        List<AbstractCard> seasonalCurses = seasonCurseMap.get(getSeason());
+//
+//        List<AbstractCard> cardsToRemove = getSeasonalCurseCardList().stream()
+//            .filter(c -> !seasonalCurses.stream().anyMatch(c2 -> c.cardID == c2.cardID))
+//            .collect(Collectors.toList());
+//
+//        logger.debug("removeUnusedSeasonalCurseCardsFromPool called. Complete List: " + getSeasonalCurseCardList().stream().map(c -> c.name).collect(Collectors.joining(", ")));
+//        logger.debug("removeUnusedSeasonalCurseCardsFromPool called. Seasonal Curses: " + getSeasonalCropCards().stream().map(c -> c.name).collect(Collectors.joining(", ")));
+//        logger.debug("removeUnusedSeasonalCurseCardsFromPool called. Removing unseasonal Curses: " + cardsToRemove.stream().map(c -> c.name).collect(Collectors.joining(", ")));
+//
+//        TheSimpletonMod.removeCardsFromPool(cardsToRemove);
+//    }
 
     public static SeasonInfo getSeasonInfo() {
         return seasonInfo;
@@ -938,23 +1059,38 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     public void receiveEditRelics() {
         logger.debug("TheSimpletonMod::receiveEditRelics called ===========================>>>>>>>");
 
+        // shared relics
+
+        if (ConfigData.enableRelicsForAllCharacters) {
+            BaseMod.addRelic(new GardenGlove(), RelicType.SHARED);
+            BaseMod.addRelic(new Moonshine(), RelicType.SHARED);
+            BaseMod.addRelic(new PicklingJar(), RelicType.SHARED);
+            BaseMod.addRelic(new WoodChipper(), RelicType.SHARED);
+        } else {
+            BaseMod.addRelicToCustomPool(new GardenGlove(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+            BaseMod.addRelicToCustomPool(new Moonshine(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+            BaseMod.addRelicToCustomPool(new PicklingJar(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+            BaseMod.addRelicToCustomPool(new WoodChipper(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        }
+
+        // starter relics
         BaseMod.addRelicToCustomPool(new SpudOfTheInnocent(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new TheHarvester(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new NightSoil(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+
+        // hayseed-only relics
 
         BaseMod.addRelicToCustomPool(new CashCrop(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new GardenGlove(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new GasCan(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new GourdCharm(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new TheHarvester(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new Honeycomb(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new HornOfPlenty(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new HotPotato(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new Moonshine(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new OnionBelt(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new PicklingJar(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new PlanterBox(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new NightSoil(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new SpudOfTheMartyr(), AbstractCardEnum.THE_SIMPLETON_BLUE);
-        BaseMod.addRelicToCustomPool(new WoodChipper(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new PaperCrane(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new WristBlade(), AbstractCardEnum.THE_SIMPLETON_BLUE);
     }
 
     @Override
@@ -1110,20 +1246,48 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
 
-    static class ConfigData {
+    public static class ConfigData {
         public static int unlockLevelLastRun = 0;
+        public static boolean enableCursesForAllCharacters = false;
+        public static boolean enableEventsForAllCharacters = false;
+        public static boolean enablePotionsForAllCharacters = false;
+        public static boolean enableRelicsForAllCharacters = false;
+    }
+
+    public static class ConfigKeys {
+        public static final String UNLOCK_LEVEL_LAST_RUN = "UnlockLevelLastRun";
+        public static final String ENABLE_CURSES_FOR_ALL_CHARACTERS = "EnableCursesForAllCharacters";
+        public static final String ENABLE_EVENTS_FOR_ALL_CHARACTERS = "EnableEventsForAllCharacters";
+        public static final String ENABLE_POTIONS_FOR_ALL_CHARACTERS = "EnablePotionsForAllCharacters";
+        public static final String ENABLE_RELICS_FOR_ALL_CHARACTERS = "EnableRelicsForAllCharacters";
     }
 
     private void loadConfigData() {
         try {
             SpireConfig config = new SpireConfig(MOD_NAME, CONFIG_NAME, theSimpletonProperties);
             config.load();
-            Arrays.stream(TheSimpletonCharEnum.Theme.values())
-                    .forEach(theme -> currentTheme.update(theme, config.getBool(theme.toString())));
 
-            ConfigData.unlockLevelLastRun = config.getInt(ConfigKeys.UNLOCK_LEVEL_LAST_RUN);
+//            Arrays.stream(TheSimpletonCharEnum.Theme.values())
+//                    .forEach(theme -> currentTheme.update(theme, config.getBool(theme.toString())));
 
-            logger.debug("loadConfigData :: read config value from save: unlockLevelLastRun: " + ConfigData.unlockLevelLastRun);
+            if (config.has(ConfigKeys.UNLOCK_LEVEL_LAST_RUN)) {
+                ConfigData.unlockLevelLastRun = config.getInt(ConfigKeys.UNLOCK_LEVEL_LAST_RUN);
+                logger.debug("loadConfigData :: read config value from save: unlockLevelLastRun: " + ConfigData.unlockLevelLastRun);
+            }
+
+            // checking these separately so they can be added/removed safely
+            if (config.has(ConfigKeys.ENABLE_CURSES_FOR_ALL_CHARACTERS)) {
+                ConfigData.enableCursesForAllCharacters = config.getBool(ConfigKeys.ENABLE_CURSES_FOR_ALL_CHARACTERS);
+            }
+            if (config.has(ConfigKeys.ENABLE_EVENTS_FOR_ALL_CHARACTERS)) {
+                ConfigData.enableEventsForAllCharacters = config.getBool(ConfigKeys.ENABLE_EVENTS_FOR_ALL_CHARACTERS);
+            }
+            if (config.has(ConfigKeys.ENABLE_POTIONS_FOR_ALL_CHARACTERS)) {
+                ConfigData.enablePotionsForAllCharacters = config.getBool(ConfigKeys.ENABLE_POTIONS_FOR_ALL_CHARACTERS);
+            }
+            if (config.has(ConfigKeys.ENABLE_RELICS_FOR_ALL_CHARACTERS)) {
+                ConfigData.enableRelicsForAllCharacters = config.getBool(ConfigKeys.ENABLE_RELICS_FOR_ALL_CHARACTERS);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             saveConfigData(false);
@@ -1135,17 +1299,15 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         theSimpletonProperties.setProperty(ConfigKeys.UNLOCK_LEVEL_LAST_RUN, "0");
     }
 
-    static class ConfigKeys {
-        public static final String UNLOCK_LEVEL_LAST_RUN = "UnlockLevelLastRun";
-    }
+
 
     private void saveConfigData(boolean updateLastUnlockLevel) {
         try {
             SpireConfig config = new SpireConfig(MOD_NAME, CONFIG_NAME, theSimpletonProperties);
 
-            Arrays.stream(TheSimpletonCharEnum.Theme.values())
-                    .forEach(theme -> config.setBool(theme.toString(), false));
-            currentTheme.getCurrentTheme().ifPresent(theme -> config.setBool(theme.toString(), true));
+//            Arrays.stream(TheSimpletonCharEnum.Theme.values())
+//                    .forEach(theme -> config.setBool(theme.toString(), false));
+//            currentTheme.getCurrentTheme().ifPresent(theme -> config.setBool(theme.toString(), true));
 
 //            config.setInt(ConfigKeys.UNLOCK_LEVEL_LAST_RUN,
 //                updateLastUnlockLevel ?
@@ -1160,6 +1322,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             logger.debug("saveConfigData :: setting config value unlockLevelLastRun: "
                 + ConfigData.unlockLevelLastRun + " (uploadLastUnlockLevel: " + updateLastUnlockLevel + ")");
 
+            config.setBool(ConfigKeys.ENABLE_CURSES_FOR_ALL_CHARACTERS, ConfigData.enableCursesForAllCharacters);
+            config.setBool(ConfigKeys.ENABLE_EVENTS_FOR_ALL_CHARACTERS, ConfigData.enableEventsForAllCharacters);
+            config.setBool(ConfigKeys.ENABLE_POTIONS_FOR_ALL_CHARACTERS, ConfigData.enablePotionsForAllCharacters);
+            config.setBool(ConfigKeys.ENABLE_RELICS_FOR_ALL_CHARACTERS, ConfigData.enableRelicsForAllCharacters);
             config.save();
         } catch (Exception e) {
             e.printStackTrace();

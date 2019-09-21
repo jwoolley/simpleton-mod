@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.curses.Doubt;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -17,8 +16,7 @@ import thesimpleton.crops.Crop;
 import thesimpleton.relics.GourdCharm;
 import thesimpleton.relics.OnionBelt;
 
-public class ReaptideEvent extends AbstractImageEvent
-{
+public class ReaptideEvent extends CustomSimpletonEvent implements CustomSimpletonOnlyEvent {
   public static final String ID = TheSimpletonMod.makeID("ReaptideEvent");
 
   private static final String IMG_PATH = SimpletonEventHelper.getUiPath("reaptide1");

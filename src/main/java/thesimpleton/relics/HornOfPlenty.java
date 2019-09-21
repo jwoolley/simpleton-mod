@@ -39,7 +39,7 @@ public class HornOfPlenty extends CustomRelic {
 //    AbstractDungeon.actionManager.addToBottom(
 //        new ApplyPowerAction(p, p, new AbundancePower(p, p, ABUNDANCE_AMOUNT), ABUNDANCE_AMOUNT));
 
-    final AbstractCropPowerCard randomCropPowerCard = ((TheSimpletonCharacter)AbstractDungeon.player).getCropUtil().getRandomCropCardInSeason();
+    final AbstractCropPowerCard randomCropPowerCard = TheSimpletonCharacter.getCropUtil().getRandomCropCardInSeason();
     AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(randomCropPowerCard, 1));
 
     AbstractDungeon.actionManager.addToTop(new WaitAction(0.1F));

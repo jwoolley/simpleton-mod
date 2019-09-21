@@ -10,7 +10,19 @@ import thesimpleton.TheSimpletonMod;
 public class ScarecrowByrd extends Byrd {
 
   private static final String FLYING_ATLAS_PATH = TheSimpletonMod.getResourcePath("monsters/crow/flying.atlas");
+  private static final String FLYING_JSON_PATH = TheSimpletonMod.getResourcePath("monsters/crow/flying.json");
+
   private static final String GROUNDED_ATLAS_PATH = TheSimpletonMod.getResourcePath("monsters/crow/grounded.atlas");
+  private static final String GROUNDED_JSON_PATH = TheSimpletonMod.getResourcePath("monsters/crow/grounded.json");
+
+
+  private static final String IDLE_ANIMATION_KEY = "idle_flap";
+
+  // TODO: use private field access from MTS instead
+  // https://cdn.discordapp.com/attachments/398373038732738570/625057908563902464/unknown.png
+  private static final int WIDTH = 240;
+  private static final int HEIGHT = 180;
+
 
   private static final int INCREASED_HP = 16;
   private static final int A_18_INCREASED_HP = 32;
@@ -25,6 +37,9 @@ public class ScarecrowByrd extends Byrd {
     }
 
     this.tint.color = Color.NAVY.cpy();
+
+    TheSimpletonMod.customizeAnimation(this, FLYING_ATLAS_PATH, FLYING_JSON_PATH, WIDTH, HEIGHT,
+        IDLE_ANIMATION_KEY);
   }
 
 

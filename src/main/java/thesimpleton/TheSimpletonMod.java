@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.esotericsoftware.spine.AnimationState;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
@@ -25,6 +26,7 @@ import com.megacrit.cardcrawl.audio.SoundMaster;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -32,10 +34,12 @@ import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.monsters.city.Byrd;
 import com.megacrit.cardcrawl.relics.Kunai;
 import com.megacrit.cardcrawl.relics.PaperCrane;
 import com.megacrit.cardcrawl.relics.Shuriken;
@@ -84,6 +88,8 @@ import thesimpleton.seasons.cropsetdefinitions.UnlockableSeasonCropSetDefinition
 import thesimpleton.ui.seasons.SeasonIndicator;
 import thesimpleton.ui.seasons.SeasonScreen;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -531,12 +537,52 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     private void registerMonsters() {
+//        BaseMod.addMonster(Scarecrow.ID, "Scarecrow", () -> new MonsterGroup(new AbstractMonster[] {
+//            new ScarecrowByrd(-565.0F, MathUtils.random(25.0f, 70.0f)),
+//            new ScarecrowByrd(-295.0F, MathUtils.random(25.0f, 70.0f)),
+//            new ScarecrowByrd(-24.0F, MathUtils.random(25.0f, 70.0f)),
+//            new Scarecrow(270.0F, -5.0F)
+//        }));
+
         BaseMod.addMonster(Scarecrow.ID, "Scarecrow", () -> new MonsterGroup(new AbstractMonster[] {
-            new ScarecrowByrd(-565.0F, MathUtils.random(25.0f, 70.0f)),
-            new ScarecrowByrd(-295.0F, MathUtils.random(25.0f, 70.0f)),
-            new ScarecrowByrd(-24.0F, MathUtils.random(25.0f, 70.0f)),
+            new Byrd(-565.0F, MathUtils.random(25.0f, 70.0f)),
+            new Byrd(-295.0F, MathUtils.random(25.0f, 70.0f)),
+            new Byrd(-24.0F, MathUtils.random(25.0f, 70.0f)),
             new Scarecrow(270.0F, -5.0F)
         }));
+    }
+
+    public static void customizeAnimation(AbstractMonster monster, String atlasPath, String jsonPath, int imageWidth,
+                                          int imageHeight) {
+        customizeAnimation(monster, atlasPath, jsonPath, imageWidth, imageHeight, "Idle");
+    }
+
+    public static void customizeAnimation(AbstractMonster monster, String atlasPath, String jsonPath, int imageWidth,
+                                          int imageHeight, String idleAnimationKey) {
+        try {
+            Method loadAnimationMethod =
+                AbstractCreature.class.getDeclaredMethod("loadAnimation",String.class, String.class, float.class);
+            loadAnimationMethod.setAccessible(true);
+            loadAnimationMethod.invoke(monster,atlasPath, jsonPath, 1.0F);
+            AnimationState.TrackEntry e = monster.state.setAnimation(0, idleAnimationKey, true);
+            e.setTime(e.getEndTime() * MathUtils.random());
+            e.setTimeScale(MathUtils.random(0.7F, 1.0F));
+            float hb_w = imageWidth * Settings.scale;
+            float hb_h = imageHeight * Settings.scale;
+            monster.hb_w = hb_w;
+            monster.hb_h = hb_h;
+            Hitbox hb = monster.hb;
+            hb.width = hb_w;
+            hb.height = hb_h;
+            hb.cX = hb.x + hb.width / 2.0F;
+            hb.cY = hb.y + hb.height / 2.0F;
+            Method refreshHbLoc = AbstractCreature.class.getDeclaredMethod("refreshHitboxLocation");
+            refreshHbLoc.setAccessible(true);
+            refreshHbLoc.invoke(monster);
+            monster.refreshIntentHbLocation();
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

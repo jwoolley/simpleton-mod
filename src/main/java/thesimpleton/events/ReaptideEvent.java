@@ -32,7 +32,7 @@ public class ReaptideEvent extends CustomSimpletonEvent implements CustomSimplet
   private static final AbstractCard CURSE_SPOILAGE = new Spoilage();
   private static final AbstractRelic GOURD_CHARM = new GourdCharm();
   private static final AbstractRelic ONION_BELT = new OnionBelt();
-  private static final int BOSS_RELIC_CURSE_CHANCE_PERCENTAGE = 50;
+  private static final int BOSS_RELIC_CURSE_CHANCE_PERCENTAGE = 100;
   private static final int CURSE_CHANCE_PERCENTAGE = 33;
 
   private final AbstractCard curseCard;
@@ -51,6 +51,7 @@ public class ReaptideEvent extends CustomSimpletonEvent implements CustomSimplet
     commonCropCard.upgrade();
 
     uncommonCropCard = SimpletonEventHelper.getSeasonalCropPowerCard(AbstractCard.CardRarity.UNCOMMON, new Corn());
+    uncommonCropCard.upgrade();
 
     goldCost = SimpletonEventHelper.getGoldCost(MIN_GOLD_COST, MAX_GOLD_COST);
 
@@ -77,12 +78,14 @@ public class ReaptideEvent extends CustomSimpletonEvent implements CustomSimplet
       this.imageEventText.setDialogOption(OPTIONS[1] + uncommonCropCard.name + OPTIONS[4] + goldCost + OPTIONS[5],
           uncommonCropCard);
     } else {
-      this.imageEventText.setDialogOption(OPTIONS[8] + MIN_GOLD_COST + OPTIONS[5], true,
+      this.imageEventText.setDialogOption(OPTIONS[9] + MIN_GOLD_COST + OPTIONS[5], true,
           uncommonCropCard);
     }
 
-    this.imageEventText.setDialogOption(OPTIONS[2] + relicReward.name + OPTIONS[6] + curseChancePercentage
-        + OPTIONS[7] + curseCard.name + OPTIONS[3], curseCard, relicReward);
+    this.imageEventText.setDialogOption(
+        OPTIONS[2] + relicReward.name
+        + (this.curseChancePercentage < 100 ? OPTIONS[6] + curseChancePercentage + OPTIONS[7] : OPTIONS[3])
+        + OPTIONS[8] + curseCard.name + OPTIONS[3], curseCard, relicReward);
 
     this.state = SimpletonEventHelper.EventState.WAITING;
     CardCrawlGame.sound.play("HOOTING_BIRD_1");
@@ -119,13 +122,13 @@ public class ReaptideEvent extends CustomSimpletonEvent implements CustomSimplet
         }
         // TODO: handle curse outcome with corresponding screens
         this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[9]);
+        this.imageEventText.setDialogOption(OPTIONS[10]);
         this.state = SimpletonEventHelper.EventState.LEAVING;
         AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
         break;
       case LEAVING:
         this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[9]);
+        this.imageEventText.setDialogOption(OPTIONS[10]);
         openMap();
         break;
     }

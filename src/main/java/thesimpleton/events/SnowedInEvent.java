@@ -66,9 +66,7 @@ public class SnowedInEvent extends CustomSimpletonEvent implements CustomSimplet
     hpCost = SimpletonEventHelper.getIntInRange(MIN_DAMAGE_AMOUNT, MAX_DAMAGE_AMOUNT);
     cropCardReward = SimpletonEventHelper.getSeasonalCropPowerCard(AbstractCard.CardRarity.COMMON, new Potatoes());
 
-    // TODO: determine why this is sometimes upgraded (it may be read from save pool) so this hack isn't needed
-    cropCardReward.upgraded = false;
-    cropCardReward.initializeDescription();
+    cropCardReward.upgrade();
 
     if (RELIC_REWARD.canSpawn() && !AbstractDungeon.player.hasRelic(RELIC_REWARD.relicId)) {
       relicReward = RELIC_REWARD;

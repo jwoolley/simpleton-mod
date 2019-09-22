@@ -95,13 +95,14 @@
     ],
     "OPTIONS": [
       "[Be Practical] #gReceive #g",
-      "[Be Indulgent] #gReceive ",
+      "[Be Indulgent] #gReceive #g",
       "[Be Superstitious] #gGain ",
       ".",
       ". #rLose #r",
       " #rGold.",
       ". #r",
-      "%: #rBecome #rCursed #r– #r",
+      "%:",
+      " #rBecome #rCursed #r– #r",
       "[Locked] Requires: At Least ",
       "[Leave]"
     ]

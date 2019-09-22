@@ -60,7 +60,8 @@
       "[Relax] #gReceive #ga #gPotion: ",
       "[Chase] #gReceive ",
       ".",
-      ". #r50%: #rBecome #rCursed #r– #r",
+      ". #r",
+      "%: #rBecome #rCursed #r– #r",
       "[Leave]"
     ]
   },

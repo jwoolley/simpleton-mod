@@ -29,6 +29,7 @@ public class FirefliesEvent extends CustomSimpletonEvent
   private final AbstractRelic SECOND_REWARD_RELIC = new BottledLightning();
   private final AbstractRelic FALLBACK_REWARD_RELIC = new Lantern();
   private static final AbstractCard CURSE_GNATS = new Gnats();
+  private static final int CURSE_CHANCE_PERCENTAGE = 33;
 
   private final AbstractRelic relicReward;
   private final AbstractPotion potionReward;
@@ -58,7 +59,8 @@ public class FirefliesEvent extends CustomSimpletonEvent
     curseIsInjury = false;
 
     this.imageEventText.setDialogOption(OPTIONS[0] + potionReward.name + OPTIONS[2]);
-    this.imageEventText.setDialogOption(OPTIONS[1] + relicReward.name + OPTIONS[3] + curseCard.name + OPTIONS[2],
+    this.imageEventText.setDialogOption(OPTIONS[1] + relicReward.name + OPTIONS[3] + CURSE_CHANCE_PERCENTAGE
+            + OPTIONS[4] + curseCard.name + OPTIONS[2],
         curseCard, relicReward);
 
   this.state = SimpletonEventHelper.EventState.WAITING;
@@ -77,7 +79,7 @@ public class FirefliesEvent extends CustomSimpletonEvent
             break;
 
           case 1:
-            final boolean receiveCurse = AbstractDungeon.miscRng.randomBoolean();
+            final boolean receiveCurse = AbstractDungeon.miscRng.randomBoolean(CURSE_CHANCE_PERCENTAGE / 100.0F);
             if (receiveCurse) {
               TheSimpletonMod.logger.debug("TheSimpletonMod::FirefliesEvent receiving curse");
               if (curseIsInjury) {
@@ -93,13 +95,13 @@ public class FirefliesEvent extends CustomSimpletonEvent
             break;
         }
         this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[4]);
+        this.imageEventText.setDialogOption(OPTIONS[5]);
         this.state = SimpletonEventHelper.EventState.LEAVING;
         AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
         break;
       case LEAVING:
         this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[4]);
+        this.imageEventText.setDialogOption(OPTIONS[5]);
         openMap();
         break;
     }

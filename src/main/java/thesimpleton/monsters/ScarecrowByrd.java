@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.*;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -154,9 +153,9 @@ public class ScarecrowByrd extends Byrd {
   public void takeTurn() {
     if (this.nextMove == 7) {
       AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new Harried(),
-          HARRIED_AMOUNT, true, false));
+          HARRIED_AMOUNT, true, true));
       AbstractDungeon.actionManager.addToBottom(
-          new ScreenFlashDebuffEffectAction(Color.VIOLET.cpy(), "POWER_ENTANGLED", Settings.ACTION_DUR_FAST));
+          new ScreenFlashDebuffEffectAction(Color.VIOLET.cpy(), "POWER_ENTANGLED", Settings.ACTION_DUR_XFAST));
       AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     } else {
       super.takeTurn();

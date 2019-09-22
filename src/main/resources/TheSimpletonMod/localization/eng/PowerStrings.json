@@ -135,6 +135,12 @@
     ]
   },
 
+  "TheSimpletonMod:SkittishPower": {
+    "NAME": "Skittish",
+    "DESCRIPTIONS": [
+      "This monster is unwilling to fight alone."
+    ]
+  },
 
   "TheSimpletonMod:SoberUpPower": {
     "NAME": "Sober Up",

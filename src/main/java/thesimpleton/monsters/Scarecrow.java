@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.powers.SkittishPower;
 
 public class Scarecrow extends AbstractMonster {
   public static final String ID = TheSimpletonMod.makeID("ScarecrowMonster");
@@ -81,14 +82,22 @@ public class Scarecrow extends AbstractMonster {
     }
   }
 
+  @Override
   public void usePreBattleAction() {
     // TODO: apply flammable power
+    TheSimpletonMod.logger.info("Scarecrow::usePreBattleAction called");
+//    AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[0], 0.5F, 2.0F));
+//
+//    AbstractDungeon.actionManager.addToBottom(
+//        new ApplyPowerAction(this, this,
+//            new ArtifactPower(this, this.artifactAmount), this.artifactAmount));
 
-    AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[0], 0.5F, 2.0F));
 
     AbstractDungeon.actionManager.addToBottom(
-        new ApplyPowerAction(this, this,
-            new ArtifactPower(this, this.artifactAmount), this.artifactAmount));
+        new ApplyPowerAction(this, this, new SkittishPower(this)));
+
+//    AbstractDungeon.actionManager.addToBottom(
+//        new ApplyPowerAction(this, this, new MinionPower(this)));
   }
 
   @Override
@@ -100,8 +109,10 @@ public class Scarecrow extends AbstractMonster {
         healedLastTurn = false;
         break;
       case 2:
+
         this.flashIntent();
-        if (MonsterUtil.allOtherMonsters(this).stream().anyMatch(m -> m.isBloodied)) {
+
+        if (MonsterUtil.allOtherMonsters(this).stream().anyMatch(m -> m.currentHealth <= m.maxHealth / 2.0f)) {
           if (!this.healedLastTurn) {
             MonsterUtil.allOtherMonsters(this).forEach(m -> AbstractDungeon.actionManager.addToBottom(
                 new HealAction(m, this, this.healAmount)));

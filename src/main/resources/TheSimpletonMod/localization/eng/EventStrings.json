@@ -40,12 +40,16 @@
     "OPTIONS": [
       "[Tinker] #rLose ",
       "[Tinker] #gReceive ",
-      "[Rummage] #gMax #gHP #g+",
+      "[Rummage]",
+      "[Rummage More]",
+      " #gMax #gHP #g+",
       ". #gReceive ",
       ". #rLose #r",
       " #rHP.",
-      ". #rBecome #rCursed #r– #r",
       ".",
+      " #r",
+      "%",
+      " #rBecome #rCursed #r– #r",
       "[Leave]"
     ]
   },
@@ -60,7 +64,8 @@
       "[Relax] #gReceive #ga #gPotion: ",
       "[Chase] #gReceive ",
       ".",
-      ". #r50%: #rBecome #rCursed #r– #r",
+      ". #r",
+      "%: #rBecome #rCursed #r– #r",
       "[Leave]"
     ]
   },
@@ -90,12 +95,14 @@
     ],
     "OPTIONS": [
       "[Be Practical] #gReceive #g",
-      "[Be Indulgent] #gReceive ",
+      "[Be Indulgent] #gReceive #g",
       "[Be Superstitious] #gGain ",
       ".",
       ". #rLose #r",
       " #rGold.",
-      ". #r50%: #rBecome #rCursed #r– #r",
+      ". #r",
+      "%:",
+      " #rBecome #rCursed #r– #r",
       "[Locked] Requires: At Least ",
       "[Leave]"
     ]

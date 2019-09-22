@@ -537,19 +537,19 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     private void registerMonsters() {
-//        BaseMod.addMonster(Scarecrow.ID, "Scarecrow", () -> new MonsterGroup(new AbstractMonster[] {
-//            new ScarecrowByrd(-565.0F, MathUtils.random(25.0f, 70.0f)),
-//            new ScarecrowByrd(-295.0F, MathUtils.random(25.0f, 70.0f)),
-//            new ScarecrowByrd(-24.0F, MathUtils.random(25.0f, 70.0f)),
-//            new Scarecrow(270.0F, -5.0F)
-//        }));
-
         BaseMod.addMonster(Scarecrow.ID, "Scarecrow", () -> new MonsterGroup(new AbstractMonster[] {
-            new Byrd(-565.0F, MathUtils.random(25.0f, 70.0f)),
-            new Byrd(-295.0F, MathUtils.random(25.0f, 70.0f)),
-            new Byrd(-24.0F, MathUtils.random(25.0f, 70.0f)),
+            new ScarecrowByrd(-565.0F, MathUtils.random(25.0f, 70.0f)),
+            new ScarecrowByrd(-295.0F, MathUtils.random(25.0f, 70.0f)),
+            new ScarecrowByrd(-24.0F, MathUtils.random(25.0f, 70.0f)),
             new Scarecrow(270.0F, -5.0F)
         }));
+
+//        BaseMod.addMonster(Scarecrow.ID, "Scarecrow", () -> new MonsterGroup(new AbstractMonster[] {
+//            new Byrd(-565.0F, MathUtils.random(25.0f, 70.0f)),
+//            new Byrd(-295.0F, MathUtils.random(25.0f, 70.0f)),
+//            new Byrd(-24.0F, MathUtils.random(25.0f, 70.0f)),
+//            new Scarecrow(270.0F, -5.0F)
+//        }));
     }
 
     public static void customizeAnimation(AbstractMonster monster, String atlasPath, String jsonPath, int imageWidth,

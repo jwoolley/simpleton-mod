@@ -205,6 +205,11 @@
     "DESCRIPTION": "Deal !D! Damage. NL Heal !M! HP. NL Exhaust."
   },
 
+  "TheSimpletonMod:Harried": {
+    "NAME": "Harried",
+    "DESCRIPTION": "Unplayable. NL Ethereal. NL Whenever this card is drawn, take !M! damage."
+  },
+
   "TheSimpletonMod:Haymaker": {
     "NAME": "Haymaker",
     "DESCRIPTION": "Deal !D! damage. NL Heal !M! HP. NL Apply ",

@@ -24,10 +24,10 @@ public class Scarecrow extends AbstractMonster {
   public static final String[] MOVES = monsterStrings.MOVES;
   public static final String IMG_PATH = "monsters/scarecrow.png";
 
-  private static final int HP_MIN = 90;
-  private static final int HP_MAX = 100;
-  private static final int A_8_HP_MIN = 140;
-  private static final int A_8_HP_MAX = 155;
+  private static final int HP_MIN = 60;
+  private static final int HP_MAX = 75;
+  private static final int A_8_HP_MIN = 85;
+  private static final int A_8_HP_MAX = 100;
   private static final float HB_X = 0.0F;
   private static final float HB_Y = 0.0F;
   private static final float HB_W = 280.0F;
@@ -102,7 +102,6 @@ public class Scarecrow extends AbstractMonster {
       case 2:
         this.flashIntent();
         if (MonsterUtil.allOtherMonsters(this).stream().anyMatch(m -> m.isBloodied)) {
-
           if (!this.healedLastTurn) {
             MonsterUtil.allOtherMonsters(this).forEach(m -> AbstractDungeon.actionManager.addToBottom(
                 new HealAction(m, this, this.healAmount)));

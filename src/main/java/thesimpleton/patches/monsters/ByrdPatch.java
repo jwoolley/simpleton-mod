@@ -20,7 +20,8 @@ public class ByrdPatch
 
 
   public static void Postfix(Byrd __instance, float x, float y) {
-    TheSimpletonMod.logger.info("ByrdPatch: Postfix called");
-    TheSimpletonMod.customizeAnimation(__instance, FLYING_ATLAS_PATH, FLYING_JSON_PATH, WIDTH, HEIGHT,
-        IDLE_ANIMATION_KEY);  }
+//    TheSimpletonMod.logger.info("ByrdPatch: Postfix called");
+//    TheSimpletonMod.customizeAnimation(__instance, FLYING_ATLAS_PATH, FLYING_JSON_PATH, WIDTH, HEIGHT,
+//        IDLE_ANIMATION_KEY);
+  }
 }

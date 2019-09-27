@@ -120,6 +120,7 @@ public class ReaptideEvent extends CustomSimpletonEvent implements CustomSimplet
           default:
             break;
         }
+
         // TODO: handle curse outcome with corresponding screens
         this.imageEventText.clearAllDialogs();
         this.imageEventText.setDialogOption(OPTIONS[10]);

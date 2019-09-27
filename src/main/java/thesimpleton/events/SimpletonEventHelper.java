@@ -221,6 +221,7 @@ public class SimpletonEventHelper {
         BorealisEvent.ID,
         EarlyThawEvent.ID,
         EquipmentShedEvent.ID,
+        GophersEvent.ID,
         HeatWaveEvent.ID,
         FirefliesEvent.ID,
         ReaptideEvent.ID,

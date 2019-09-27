@@ -73,7 +73,7 @@ public class SeasonalEvents {
                 Arrays.asList(SnowedInEvent.ID), Arrays.asList(BorealisEvent.ID), Collections.emptyList());
 
         SPRING_EVENTS = new SeasonalEvents(
-                Arrays.asList(EarlyThawEvent.ID), Collections.emptyList(), Collections.emptyList());
+                Arrays.asList(EarlyThawEvent.ID),  Arrays.asList(GophersEvent.ID), Collections.emptyList());
 
         SUMMER_EVENTS = new SeasonalEvents(
                 Arrays.asList(FirefliesEvent.ID), Arrays.asList(HeatWaveEvent.ID), Collections.emptyList());

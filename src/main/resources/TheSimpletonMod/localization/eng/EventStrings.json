@@ -70,6 +70,42 @@
     ]
   },
 
+
+  "TheSimpletonMod:GophersEvent": {
+    "NAME": "Gophers!",
+    "DESCRIPTIONS": [
+      "Your vegetable patch is infested with #ygophers! Salvage what you can without getting #rbitten."
+    ],
+    "OPTIONS": [
+      "",
+      "#g",
+      "#r",
+      "%: ",
+      "#rBitten #r– #rLose #r",
+      " #rHP.",
+      "#gUpgrade #g",
+      "a #gRandom #gCard. ",
+      " #gRandom #gCards. ",
+      "#gGain #g",
+      " #gMax #gHP. ",
+      "#gReceive #g",
+      "a #gRandom Common #gor Uncommon #gRelic. ",
+      " #gRandom Common #gor Uncommon #gRelics. ",
+      "#gReceive #g",
+      " #gGold. ",
+      "#gReceive #g",
+      "a #gRandom #gUpgraded #gRare #gCard. ",
+      " #gRandom #gUpgraded #gRare #gCards. ",
+      "#gReceive ",
+      " and ",
+      "#gGain #g",
+      "a #gPotion. ",
+      " #gPotions. ",
+      "[EATEN BY GOPHERS!]",
+      "[Leave]"
+    ]
+  },
+
   "TheSimpletonMod:HeatWaveEvent": {
     "NAME": "Heat Wave",
     "DESCRIPTIONS": [

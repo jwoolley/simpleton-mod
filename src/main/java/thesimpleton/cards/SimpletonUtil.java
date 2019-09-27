@@ -193,4 +193,8 @@ public class SimpletonUtil {
     }
 
     public static boolean playerHasStartingOrbs() { return AbstractDungeon.player.masterMaxOrbs > 0; }
+
+    public static String tagString(String stringToTag, String tag) {
+        return tag + stringToTag.replaceAll("(\\s)", "$1" + tag);
+    }
 }

@@ -3,7 +3,10 @@ package thesimpleton.events;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
@@ -102,7 +105,6 @@ public class SimpletonEventHelper {
         Settings.WIDTH / 2.0F + AbstractCard.IMG_WIDTH + 20.0F * Settings.scale, Settings.HEIGHT / 2.0F));
   }
 
-
   public static AbstractCard getRandomUpgradeableCard() {
     return getRandomUpgradableCards(1).get(0);
   }
@@ -115,7 +117,7 @@ public class SimpletonEventHelper {
     List <AbstractCard> upgradeableCards = AbstractDungeon.player.masterDeck.group.stream()
         .filter(c ->  c.canUpgrade() && predicate.test(c)).collect(Collectors.toList());
     Collections.shuffle(upgradeableCards, new java.util.Random(AbstractDungeon.miscRng.randomLong()));
-    return upgradeableCards.subList(0, numCards);
+    return upgradeableCards.subList(0, Math.min(numCards, upgradeableCards.size()));
   }
 
   public static AbstractCropPowerCard getSeasonalCropPowerCard(AbstractCard.CardRarity rarity,
@@ -214,6 +216,15 @@ public class SimpletonEventHelper {
   public static void receiveRelic(AbstractRelic relic) {
     AbstractDungeon.getCurrRoom().spawnRelicAndObtain(Settings.WIDTH * 0.28F, Settings.HEIGHT / 2.0F, relic);
     SimpletonUtil.removeRelicFromPool(relic);
+  }
+
+  public static void receivePotionRewards(int numPotions) {
+    AbstractDungeon.getCurrRoom().rewards.clear();
+    for (int i = 0; i < numPotions; i++) {
+      AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(PotionHelper.getRandomPotion()));
+    }
+    AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
+    AbstractDungeon.combatRewardScreen.open();
   }
 
   static {

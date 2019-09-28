@@ -102,7 +102,11 @@
       "a #gPotion. ",
       " #gPotions. ",
       "[GONE!]",
-      "[Leave]"
+      "[Leave]",
+      "You manage to #grecover some of your yield. But the gophers have #yeaten some, too. And they're getting more aggressive. NL NL Risk it, and save some more—or leave it to the pests, and count your blessings.",
+      "You've rescued some more of the yield, and the gophers have kept eating. They've grown very testy now. NL NL If you claim the rest, you'll risk a nasty bite.",
+      "#rYEEOUCH! NL NL Sharp teeth perforate your hand. The blood begins to flow, but you expect it to stop before long. NL NL At least you managed to salvage part of the garden.",
+      "You've managed to clean out the patch without injury. The gophers should be moving on now, and you can begin to replant."
     ]
   },
 

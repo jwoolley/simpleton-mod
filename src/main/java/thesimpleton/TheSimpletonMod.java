@@ -503,7 +503,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_FallMeadow1.ogg"));
         reflectedMap.put("GIBBERISH_ANGRY_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_GibberishAngry1.ogg"));
-        reflectedMap.put("GOPHER_LAUGH",
+        reflectedMap.put("GOPHER_LAUGH_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_GopherLaugh1.ogg"));
         reflectedMap.put("GRADUAL_RUMBLE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_GradualBuzz1.ogg"));

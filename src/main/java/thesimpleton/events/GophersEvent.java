@@ -76,9 +76,9 @@ public class GophersEvent extends CustomSimpletonEvent {
         TheSimpletonMod.logger.info("GophersEvent::buttonEffect remaining availableOptions before: "
             + availableOptions.stream().map(i -> i.toString()).collect(Collectors.joining(", ")));
 
-
-        availableOptions.remove(buttonPressed);
-        chosenOptions.add(buttonPressed);
+        final int selectedReward = availableOptions.get(buttonPressed);
+        availableOptions.remove(selectedReward);
+        chosenOptions.add(selectedReward);
 
         boolean bitten = AbstractDungeon.miscRng.randomBoolean(FAIL_CHANCE_PERCENTAGES[this.rewardCounter - 1] / 100.f);
 
@@ -91,7 +91,6 @@ public class GophersEvent extends CustomSimpletonEvent {
           AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
           if (bitten) {
             TheSimpletonMod.logger.info("GophersEvent::buttonEffect BITTEN");
-
             this.imageEventText.updateBodyText(OPTIONS[28]);
             this.imageEventText.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_BITTEN));
             CardCrawlGame.sound.play("OUCH_1");
@@ -128,7 +127,8 @@ public class GophersEvent extends CustomSimpletonEvent {
         TheSimpletonMod.logger.info("GophersEvent::buttonEffect remaining availableOptions: "
             + availableOptions.stream().map(i -> i.toString()).collect(Collectors.joining(", ")));
 
-        switch (buttonPressed) {
+        // TODO: keep rewards in an array (using lambdas?) and trigger the nth reward
+        switch (selectedReward) {
           case 0:
             break;
 
@@ -213,9 +213,10 @@ public class GophersEvent extends CustomSimpletonEvent {
 
       if (availableOptions.contains(1)) {
         if (rewardMultiplier == 1) {
-          this.imageEventText.updateDialogOption(1, OPTIONS[0] + OPTIONS[6] + OPTIONS[7] + loseDesc);
+          this.imageEventText.updateDialogOption(nextSlot, OPTIONS[0] + OPTIONS[6] + OPTIONS[7] + loseDesc);
         } else {
-          this.imageEventText.updateDialogOption(1, OPTIONS[0] + OPTIONS[9] + rewardMultiplier + MAX_HP_PER_TIER + OPTIONS[10] + loseDesc);
+          this.imageEventText.updateDialogOption(nextSlot
+              , OPTIONS[0] + OPTIONS[9] + rewardMultiplier + MAX_HP_PER_TIER + OPTIONS[10] + loseDesc);
         }
         nextSlot++;
       }

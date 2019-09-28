@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class GophersEvent extends CustomSimpletonEvent {
   public static final String ID = TheSimpletonMod.makeID("GophersEvent");
 
-  private static final String IMG_PATH = SimpletonEventHelper.getUiPath("gophers1");
+  private static final String IMG_PATH_STEP_1 = SimpletonEventHelper.getUiPath("gophers1");
   private static final String IMG_PATH_STEP_2 = SimpletonEventHelper.getUiPath("gophers2");
   private static final String IMG_PATH_STEP_3 = SimpletonEventHelper.getUiPath("gophers3");
   private static final String IMG_PATH_BITTEN = SimpletonEventHelper.getUiPath("gophers4");
@@ -26,7 +26,7 @@ public class GophersEvent extends CustomSimpletonEvent {
   private static final String NAME;
   private static final String[] DESCRIPTIONS;
   private static final String[] OPTIONS;
-  private final List<Integer> availableOptions = new ArrayList<>();
+  private final List<Integer> availableOptions = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4));
   private final List<Integer> chosenOptions = new ArrayList<>();
   private final List<Integer> disabledOptions = new ArrayList<>();
 
@@ -52,7 +52,7 @@ public class GophersEvent extends CustomSimpletonEvent {
   private final int goldBonus;
 
   public GophersEvent() {
-    super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getResourcePath(IMG_PATH));
+    super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getResourcePath(IMG_PATH_STEP_1));
     // TODO: Handle case where no upgradable cards, etc.
 
     // TODO: UPDATE TEXT/IMAGE AFTER EATEN BY GOPHER (SUCCESS)
@@ -93,7 +93,7 @@ public class GophersEvent extends CustomSimpletonEvent {
             TheSimpletonMod.logger.info("GophersEvent::buttonEffect BITTEN");
 
             this.imageEventText.updateBodyText(OPTIONS[28]);
-            this.imageEventText.loadImage(IMG_PATH_BITTEN);
+            this.imageEventText.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_BITTEN));
             CardCrawlGame.sound.play("OUCH_1");
             this.screen = CurScreen.BITTEN;
           } else {
@@ -106,19 +106,19 @@ public class GophersEvent extends CustomSimpletonEvent {
           TheSimpletonMod.logger.info("GophersEvent::buttonEffect NOT_BITTEN. UPDATING DIALOG OPTIONS");
           rewardCounter++;
           updateDialogOptions();
-          if (this.rewardCounter == 1) {
-            this.imageEventText.loadImage(IMG_PATH_STEP_2);
+          if (this.rewardCounter == 2) {
+            this.imageEventText.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_STEP_2));
             this.imageEventText.updateBodyText(OPTIONS[26]);
             this.screen = CurScreen.CHOSE_1;
           } else {
-            this.imageEventText.loadImage(IMG_PATH_STEP_3);
+            this.imageEventText.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_STEP_3));
             this.imageEventText.updateBodyText(OPTIONS[27]);
             this.screen = CurScreen.CHOSE_2;
           }
-          final int removedOption = AbstractDungeon.eventRng.random(availableOptions.size() - 1);
-          availableOptions.remove(removedOption);
-          disabledOptions.add(removedOption);
-          TheSimpletonMod.logger.info("GophersEvent::buttonEffect removing option" + removedOption);
+          final int disabledOption = AbstractDungeon.eventRng.random(availableOptions.size() - 1);
+          availableOptions.remove(disabledOption);
+          disabledOptions.add(disabledOption);
+          TheSimpletonMod.logger.info("GophersEvent::buttonEffect removed option" + disabledOption);
         }
 
         TheSimpletonMod.logger.info("GophersEvent::buttonEffect remaining chosenOptions: "
@@ -182,6 +182,12 @@ public class GophersEvent extends CustomSimpletonEvent {
     TheSimpletonMod.logger.info("GophersEvent::updateDialogOptions availableOptions: "
         + availableOptions.stream().map(i -> i.toString()).collect(Collectors.joining(", ")));
 
+    TheSimpletonMod.logger.info("GophersEvent::updateDialogOptions chosenOptions: "
+        + chosenOptions.stream().map(i -> i.toString()).collect(Collectors.joining(", ")));
+
+    TheSimpletonMod.logger.info("GophersEvent::disabledOptions disabledOptions: "
+        + availableOptions.stream().map(i -> i.toString()).collect(Collectors.joining(", ")));
+
     if (this.rewardCounter == 1) {
       this.imageEventText.setDialogOption(OPTIONS[0] + OPTIONS[6] + OPTIONS[7] + loseDesc);
       this.imageEventText.setDialogOption(OPTIONS[0] + OPTIONS[9] + (rewardMultiplier + MAX_HP_PER_TIER) + OPTIONS[10] + loseDesc);
@@ -203,45 +209,52 @@ public class GophersEvent extends CustomSimpletonEvent {
 //        this.imageEventText.updateDialogOption(0, OPTIONS[0] + OPTIONS[6] + this.rewardCounter + OPTIONS[8] + loseDesc);
 //      }
 
+      int nextSlot = 1;
+
       if (availableOptions.contains(1)) {
         if (rewardMultiplier == 1) {
           this.imageEventText.updateDialogOption(1, OPTIONS[0] + OPTIONS[6] + OPTIONS[7] + loseDesc);
         } else {
           this.imageEventText.updateDialogOption(1, OPTIONS[0] + OPTIONS[9] + rewardMultiplier + MAX_HP_PER_TIER + OPTIONS[10] + loseDesc);
         }
+        nextSlot++;
       }
 
       if (availableOptions.contains(2)) {
         if (rewardMultiplier == 1) {
-          this.imageEventText.updateDialogOption(2,OPTIONS[0] + OPTIONS[9] + (rewardMultiplier + MAX_HP_PER_TIER) + OPTIONS[10] + loseDesc);
+          this.imageEventText.updateDialogOption(nextSlot,OPTIONS[0] + OPTIONS[9] + (rewardMultiplier + MAX_HP_PER_TIER) + OPTIONS[10] + loseDesc);
         } else {
-          this.imageEventText.updateDialogOption(2, OPTIONS[0] + OPTIONS[11] + rewardMultiplier + OPTIONS[13] + loseDesc);
+          this.imageEventText.updateDialogOption(nextSlot, OPTIONS[0] + OPTIONS[11] + rewardMultiplier + OPTIONS[13] + loseDesc);
         }
+        nextSlot++;
       }
 
       if (availableOptions.contains(3)) {
         if (rewardMultiplier == 1) {
-          this.imageEventText.updateDialogOption(3,OPTIONS[0] + OPTIONS[14] + (rewardMultiplier + goldBonus) + OPTIONS[15] + loseDesc);
+          this.imageEventText.updateDialogOption(nextSlot,OPTIONS[0] + OPTIONS[14] + (rewardMultiplier + goldBonus) + OPTIONS[15] + loseDesc);
         } else {
-          this.imageEventText.updateDialogOption(3, OPTIONS[0] + OPTIONS[14] + rewardMultiplier + goldBonus + OPTIONS[15] + loseDesc);
+          this.imageEventText.updateDialogOption(nextSlot, OPTIONS[0] + OPTIONS[14] + rewardMultiplier + goldBonus + OPTIONS[15] + loseDesc);
         }
+        nextSlot++;
       }
 
       if (availableOptions.contains(4)) {
         if (rewardMultiplier == 1) {
-          this.imageEventText.updateDialogOption(4,OPTIONS[0] + OPTIONS[16] + OPTIONS[17] + loseDesc);
+          this.imageEventText.updateDialogOption(nextSlot,OPTIONS[0] + OPTIONS[16] + OPTIONS[17] + loseDesc);
         } else {
-          this.imageEventText.updateDialogOption(4, OPTIONS[0] + OPTIONS[16] + rewardMultiplier + OPTIONS[18] + loseDesc);
+          this.imageEventText.updateDialogOption(nextSlot, OPTIONS[0] + OPTIONS[16] + rewardMultiplier + OPTIONS[18] + loseDesc);
         }
+        nextSlot++;
       }
 
       if (availableOptions.contains(5)) {
         if (POTIONS_PER_TIER * rewardMultiplier == 1) {
-          this.imageEventText.updateDialogOption(5,OPTIONS[0] + OPTIONS[21] + OPTIONS[22] + loseDesc);
+          this.imageEventText.updateDialogOption(nextSlot,OPTIONS[0] + OPTIONS[21] + OPTIONS[22] + loseDesc);
         } else {
-          this.imageEventText.updateDialogOption(5, OPTIONS[0] + OPTIONS[21]
+          this.imageEventText.updateDialogOption(nextSlot, OPTIONS[0] + OPTIONS[21]
               + POTIONS_PER_TIER * rewardMultiplier + OPTIONS[23] + loseDesc);
         }
+        nextSlot++;
       }
     }
   }

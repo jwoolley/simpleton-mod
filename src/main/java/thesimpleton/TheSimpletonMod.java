@@ -449,6 +449,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addEvent(SnowedInEvent.ID, SnowedInEvent.class, Exordium.ID);
         BaseMod.addEvent(EarlyThawEvent.ID, EarlyThawEvent.class, Exordium.ID);
         BaseMod.addEvent(FirefliesEvent.ID, FirefliesEvent.class, Exordium.ID);
+        BaseMod.addEvent(HarvestMoonEvent.ID, HarvestMoonEvent.class, TheCity.ID);
         BaseMod.addEvent(BorealisEvent.ID, BorealisEvent.class, TheCity.ID);
         BaseMod.addEvent(GophersEvent.ID, GophersEvent.class, TheCity.ID);
         BaseMod.addEvent(HeatWaveEvent.ID, HeatWaveEvent.class, TheCity.ID);
@@ -499,6 +500,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_BirdTweet1.ogg"));
         reflectedMap.put("CHOMP_SHORT_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_ChompShort1.ogg"));
+        reflectedMap.put("CRICKETS_CHIRP_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_Crickets1.ogg"));
         reflectedMap.put("DRINK_BOTTLE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_DrinkBottle1.ogg"));
         reflectedMap.put("FALL_MEADOW_1",

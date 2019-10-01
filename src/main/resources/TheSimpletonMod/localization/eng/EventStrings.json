@@ -102,6 +102,20 @@
     ]
   },
 
+  "TheSimpletonMod:HarvestMoonEvent": {
+    "NAME": "Harvest Moon",
+    "DESCRIPTIONS": [
+      "It's a clear night, crisp and cool. The moon looms in the autumn sky, large and bright. An omen. NL NL This could prove to be the #yharvest of a lifetime, if you hang up your weapon and work the field."
+    ],
+    "OPTIONS": [
+      "[Swords] #gUpgrade #gall Strikes.",
+      "[Plows] #gRemove #gall Strikes. #gReceive #g",
+      " #grandom #gcrop #gpowers. #rLose #r",
+      " #rMax #rHP.",
+      "[Leave]"
+    ]
+  },
+
   "TheSimpletonMod:HeatWaveEvent": {
     "NAME": "Heat Wave",
     "DESCRIPTIONS": [

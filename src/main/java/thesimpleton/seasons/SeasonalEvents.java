@@ -67,7 +67,7 @@ public class SeasonalEvents {
 
     static {
         AUTUMN_EVENTS = new SeasonalEvents(
-                Arrays.asList(ReaptideEvent.ID), Collections.emptyList(), Collections.emptyList());
+                Arrays.asList(ReaptideEvent.ID), Arrays.asList(HarvestMoonEvent.ID), Collections.emptyList());
 
         WINTER_EVENTS = new SeasonalEvents(
                 Arrays.asList(SnowedInEvent.ID), Arrays.asList(BorealisEvent.ID), Collections.emptyList());

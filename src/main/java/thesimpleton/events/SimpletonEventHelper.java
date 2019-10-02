@@ -105,6 +105,21 @@ public class SimpletonEventHelper {
         Settings.WIDTH / 2.0F + AbstractCard.IMG_WIDTH + 20.0F * Settings.scale, Settings.HEIGHT / 2.0F));
   }
 
+  public static void gainCards(AbstractCard card1, AbstractCard card2, AbstractCard card3, AbstractCard card4) {
+    AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(card1.makeStatEquivalentCopy(),
+        Settings.WIDTH / 2.0F - (1.5F * AbstractCard.IMG_WIDTH + 64.0F) * Settings.scale, Settings.HEIGHT / 2.0F));
+
+    AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(card2.makeStatEquivalentCopy(),
+        Settings.WIDTH / 2.0F - (AbstractCard.IMG_WIDTH / 2.0F + 20.0F) * Settings.scale, Settings.HEIGHT / 2.0F));
+
+    AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(card3.makeStatEquivalentCopy(),
+        Settings.WIDTH / 2.0F + (AbstractCard.IMG_WIDTH / 2.0F + 20.0F) * Settings.scale, Settings.HEIGHT / 2.0F));
+
+    AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(card4.makeStatEquivalentCopy(),
+        Settings.WIDTH / 2.0F + (1.5F * AbstractCard.IMG_WIDTH + 64.0F) * Settings.scale, Settings.HEIGHT / 2.0F));
+  }
+
+
   public static AbstractCard getRandomUpgradeableCard() {
     return getRandomUpgradableCards(1).get(0);
   }

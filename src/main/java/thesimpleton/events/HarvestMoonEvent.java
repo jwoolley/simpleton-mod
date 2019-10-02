@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.effects.cards.AddManyCardsToDeckEffect;
 import thesimpleton.cards.attack.Strike_TheSimpleton;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.events.SimpletonEventHelper.EventState;
@@ -75,15 +76,21 @@ public class HarvestMoonEvent extends CustomSimpletonEvent implements CustomSimp
     AbstractDungeon.player.masterDeck.group.removeAll(strikes);
 
     for (AbstractCropPowerCard card : cropCards) {
-      if (AbstractDungeon.relicRng.randomBoolean()) {
+      if (AbstractDungeon.cardRng.randomBoolean()) {
         card.upgrade();
       }
 
       // TODO: show all cards gained (4 cards, twice). Use an action
 
-      SimpletonEventHelper.gainCard(card);
+//      SimpletonEventHelper.gainCard(card);
     }
 
+//    SimpletonEventHelper.gainCards(cropCards.get(0), cropCards.get(1), cropCards.get(2), cropCards.get(3));
+
+    AbstractDungeon.effectsQueue.add(new AddManyCardsToDeckEffect(
+        cropCards.get(0), cropCards.get(1), cropCards.get(2), cropCards.get(3),
+        cropCards.get(4), cropCards.get(5), cropCards.get(6), cropCards.get(7)
+    ));
   }
 
   public List<AbstractCard> getStrikes() {

@@ -350,9 +350,14 @@
 
   "TheSimpletonMod:SaladShooter": {
     "NAME": "Salad Shooter",
-    "DESCRIPTION": "Deal !D! damage to a random enemy. NL Repeat for each time you've Harvested this turn."
+    "DESCRIPTION": "Deal !D! damage to a random enemy. NL Repeat for each time you've Harvested this turn",
+    "EXTENDED_DESCRIPTION": [
+      ".",
+      " (",
+      " time total)",
+      " times total)"
+    ]
   },
-
 
   "TheSimpletonMod:SaltTheEarth": {
     "NAME": "Salt the Earth",

@@ -14,16 +14,18 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.BarnstormAction;
 import thesimpleton.actions.SaladShooterAction;
 import thesimpleton.cards.SimpletonUtil;
+import thesimpleton.cards.interfaces.AbstractDynamicTextCard;
 import thesimpleton.effects.utils.VFXActionTemplate;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.AbstractCropOrb;
 
 // TODO: make into AbstractDynamicTextCard (include count)
 
-public class SaladShooter extends CustomCard {
+public class SaladShooter extends AbstractDynamicTextCard {
   public static final String ID = "TheSimpletonMod:SaladShooter";
   public static final String NAME;
   public static final String DESCRIPTION;
+  public static final String[] EXTENDED_DESCRIPTION;
   public static final String UPGRADE_DESCRIPTION;
   public static final String IMG_PATH = "cards/saladshooter.png";
 
@@ -38,7 +40,9 @@ public class SaladShooter extends CustomCard {
   private static final int UPGRADE_DAMAGE_AMOUNT = 1;
 
   public SaladShooter() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE,
+        AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+
     this.baseDamage = this.damage = DAMAGE;
   }
 
@@ -74,10 +78,32 @@ public class SaladShooter extends CustomCard {
     }
   }
 
+  private static String getDescription(boolean extendedDescription) {
+    String description = DESCRIPTION;
+
+    final int numTriggers = SimpletonUtil.getNumTimesHarvestedThisTurn() + 1;
+
+    if (extendedDescription) {
+      description += EXTENDED_DESCRIPTION[1] +
+          numTriggers + (numTriggers == 1 ? EXTENDED_DESCRIPTION[2] : EXTENDED_DESCRIPTION[3]);
+    }
+
+    description += EXTENDED_DESCRIPTION[0];
+
+    return description;
+  }
+
+  @Override
+  protected void updateDescription(boolean extendedDescription) {
+    this.rawDescription = getDescription(extendedDescription);
+    this.initializeDescription();
+  }
+
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
+    EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
     UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
   }
 }

@@ -91,12 +91,7 @@ public class CullingStrike extends AbstractDynamicTextCard {
     this.rawDescription = getDescription(extendedDescription);
     this.initializeDescription();
   }
-
-  @Override
-  public void triggerWhenDrawn() {
-    TheSimpletonMod.logger.debug("CullingStrike drawn. HAS HARVESTED: " + SimpletonUtil.hasHarvestedThisTurn());
-  }
-
+  
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;

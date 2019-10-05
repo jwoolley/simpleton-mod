@@ -97,6 +97,13 @@
     "DESCRIPTION": [
       "#gHarvest: Convert ALL stacks into an attack card that deals increased damage to all enemies for each stack harvested and adds a #yTurnips card to your discard pile."
     ]
+  },
+
+  "TheSimpletonMod:ParasiteFruitOrb": {
+    "NAME": "Mysterious Fungus",
+    "DESCRIPTION": [
+      "This bizarre organism seems to have planted itself. Does it appear to be... #ygrowing?"
+    ]
   }
 }
 

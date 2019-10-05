@@ -1,6 +1,9 @@
 package thesimpleton;
 
-import basemod.*;
+import basemod.BaseMod;
+import basemod.ModLabeledToggleButton;
+import basemod.ModPanel;
+import basemod.ReflectionHacks;
 import basemod.abstracts.CustomUnlockBundle;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
@@ -26,7 +29,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheCity;
-import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -42,13 +44,15 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
-import sun.security.krb5.Config;
-import thesimpleton.cards.SimpletonCardHelper;
 import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.ShuffleTriggeredCard;
+import thesimpleton.cards.SimpletonCardHelper;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.attack.*;
-import thesimpleton.cards.curse.*;
+import thesimpleton.cards.curse.Frostbite;
+import thesimpleton.cards.curse.Gnats;
+import thesimpleton.cards.curse.Nettles;
+import thesimpleton.cards.curse.Spoilage;
 import thesimpleton.cards.power.*;
 import thesimpleton.cards.power.crop.*;
 import thesimpleton.cards.skill.*;
@@ -66,11 +70,11 @@ import thesimpleton.relics.*;
 import thesimpleton.savedata.CardPoolCustomSavable;
 import thesimpleton.savedata.SeasonCropsCustomSavable;
 import thesimpleton.savedata.SeasonCustomSavable;
-import thesimpleton.seasons.*;
-import thesimpleton.seasons.cropsetdefinitions.RandomPartialUnlockCropSetTemplate;
-import thesimpleton.seasons.cropsetdefinitions.RandomSeasonCropSetDefinition;
 import thesimpleton.seasons.Season;
 import thesimpleton.seasons.SeasonInfo;
+import thesimpleton.seasons.SeasonalEvents;
+import thesimpleton.seasons.cropsetdefinitions.RandomPartialUnlockCropSetTemplate;
+import thesimpleton.seasons.cropsetdefinitions.RandomSeasonCropSetDefinition;
 import thesimpleton.seasons.cropsetdefinitions.UnlockableSeasonCropSetDefinition;
 import thesimpleton.ui.seasons.SeasonIndicator;
 import thesimpleton.ui.seasons.SeasonScreen;
@@ -1054,11 +1058,14 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         // shared relics
 
         if (ConfigData.enableRelicsForAllCharacters) {
+            BaseMod.addRelic(new AlienArtifact(), RelicType.SHARED);
+            BaseMod.addRelic(new GardenGlove(), RelicType.SHARED);
             BaseMod.addRelic(new GardenGlove(), RelicType.SHARED);
             BaseMod.addRelic(new Moonshine(), RelicType.SHARED);
             BaseMod.addRelic(new PicklingJar(), RelicType.SHARED);
             BaseMod.addRelic(new WoodChipper(), RelicType.SHARED);
         } else {
+            BaseMod.addRelicToCustomPool(new AlienArtifact(), AbstractCardEnum.THE_SIMPLETON_BLUE);
             BaseMod.addRelicToCustomPool(new GardenGlove(), AbstractCardEnum.THE_SIMPLETON_BLUE);
             BaseMod.addRelicToCustomPool(new Moonshine(), AbstractCardEnum.THE_SIMPLETON_BLUE);
             BaseMod.addRelicToCustomPool(new PicklingJar(), AbstractCardEnum.THE_SIMPLETON_BLUE);
@@ -1071,7 +1078,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addRelicToCustomPool(new NightSoil(), AbstractCardEnum.THE_SIMPLETON_BLUE);
 
         // hayseed-only relics
-
         BaseMod.addRelicToCustomPool(new CashCrop(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new GasCan(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new GourdCharm(), AbstractCardEnum.THE_SIMPLETON_BLUE);

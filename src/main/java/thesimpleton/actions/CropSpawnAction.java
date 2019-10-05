@@ -91,7 +91,7 @@ public class CropSpawnAction extends AbstractGameAction {
 
                 if (SimpletonUtil.getActiveOrbs().size() >= AbstractDungeon.player.maxOrbs) {
 //                        logger.debug("CropSpawnAction::update player has no free orb slots. Queueing CropOrbCycleAction with " + this.cropOrb.name + " for " + this.cropOrb.passiveAmount + " stacks");
-                    AbstractDungeon.actionManager.addToBottom(new CropOrbCycleAction(this.cropOrb, this.rawAmount, this.isFromCard));
+                    AbstractDungeon.actionManager.addToBottom(new OrbCycleAction(this.cropOrb, this.rawAmount, this.isFromCard));
                 }  else {
 //                        logger.debug("CropSpawnAction::update player has " +  (AbstractDungeon.player.maxOrbs - SimpletonUtil.getActiveOrbs().size()) + " free orb slots");
 //                        logger.debug("CropSpawnAction::update # of " + this.cropOrb.name + " before: " + this.cropOrb.passiveAmount);

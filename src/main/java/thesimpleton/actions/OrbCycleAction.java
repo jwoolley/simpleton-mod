@@ -4,39 +4,40 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.orbs.AbstractCropOrb;
 
 
-public class CropOrbCycleAction extends AbstractGameAction {
+public class OrbCycleAction extends AbstractGameAction {
   private static final ActionType ACTION_TYPE = ActionType.SPECIAL;
   private static final float ACTION_DURATION = Settings.ACTION_DUR_FAST;
   private final boolean isFromCard;
   private final int amount;
-  private AbstractCropOrb cropOrb;
+  private AbstractOrb orb;
 
   private boolean secondTick = false;
 
   // TODO: increment existing cropOrb instead if (?) it
-  public CropOrbCycleAction(AbstractCropOrb cropOrb, boolean isFromCard) {
-    this(cropOrb, -1, isFromCard);
+  public OrbCycleAction(AbstractOrb orb, boolean isFromCard) {
+    this(orb, -1, isFromCard);
   }
 
-  public CropOrbCycleAction(AbstractCropOrb cropOrb, int stacks, boolean isFromCard) {
+  public OrbCycleAction(AbstractOrb orb, int stacks, boolean isFromCard) {
     TheSimpletonMod.logger.debug("============> CropOrbCycleAction::constructor =====");
 
-    final int rawAmount = stacks >= 0 ? stacks : cropOrb.passiveAmount;
+    final int rawAmount = stacks >= 0 ? stacks : orb.passiveAmount;
 
     this.duration = ACTION_DURATION;
     this.actionType = ACTION_TYPE;
     this.isFromCard = isFromCard;
     this.amount = rawAmount;
-    this.cropOrb = cropOrb;
+    this.orb = orb;
 
     Logger logger = TheSimpletonMod.logger;
-    logger.debug("CropOrbCycleAction() constructor: " + cropOrb.getClass().getSimpleName() + "; rawAmount: " + rawAmount + " calculated amount: " + this.amount + " cropOrb.amount (current count): " + cropOrb.getAmount() + " cropOrb.passiveAmount " + cropOrb.passiveAmount);
+    logger.debug("CropOrbCycleAction() constructor: " + orb.getClass().getSimpleName() + "; rawAmount: " + rawAmount + " calculated amount: " + this.amount + " orb.passiveAmount " + orb.passiveAmount);
   }
 
   public void update() {
@@ -51,9 +52,13 @@ public class CropOrbCycleAction extends AbstractGameAction {
 
     if (secondTick) {
       if (this.duration != ACTION_DURATION) {
-        logger.debug("CropOrbCycleAction::update spawning orb " + this.cropOrb.name + " for " + this.amount);
+        logger.debug("CropOrbCycleAction::update spawning orb " + this.orb.name + " for " + this.amount);
 
-        AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(this.cropOrb, this.amount, this.isFromCard));
+        if (orb instanceof AbstractCropOrb) {
+          AbstractDungeon.actionManager.addToBottom(new CropSpawnAction((AbstractCropOrb) this.orb, this.amount, this.isFromCard));
+        } else {
+          AbstractDungeon.actionManager.addToBottom(new thesimpleton.actions.OrbSpawnAction(this.orb, this.amount, this.isFromCard));
+        }
       }
       this.isDone = true;
       return;

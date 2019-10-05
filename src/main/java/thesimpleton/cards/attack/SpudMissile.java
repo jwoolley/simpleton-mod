@@ -18,7 +18,7 @@ public class SpudMissile extends CustomCard {
   public static final String ID = "TheSimpletonMod:SpudMissile";
   public static final String NAME;
   public static final String DESCRIPTION;
-//  public static final String IMG_PATH = "cards/spudmissile.png";
+//  public static final String IMG_NAME = "cards/spudmissile.png";
   public static final String IMG_PATH = "cards/spud.png";
 
   private static final CardStrings cardStrings;

@@ -53,7 +53,8 @@ public abstract class AbstractCropOrb extends CustomOrb {
   // TODO: separate CropOrbType (which has e.g. harvest info and description data) from CropOrb (which has stack count)
 
   public AbstractCropOrb(Crop crop, String ID, String NAME, int amount, int maturityThreshold, String description, String imgPath, String haloImgFilename, String targetHaloImgFilename) {
-    super(ID, NAME, amount, maturityThreshold, description, "", TheSimpletonMod.getResourcePath(getUiPath(imgPath)));
+    super(ID, NAME, amount, maturityThreshold, description, "",
+        TheSimpletonMod.getResourcePath(SimpletonOrbHelper.getUiPath(imgPath)));
     this.crop = crop;
     this.basePassiveAmount = this.passiveAmount = amount;
     this.haloImageFilename = haloImgFilename;
@@ -64,14 +65,16 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
   private Texture getHaloImage() {
     if (this.haloImage == null) {
-      haloImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getResourcePath(getUiPath(haloImageFilename)));
+      haloImage = TheSimpletonMod.loadTexture(
+          TheSimpletonMod.getResourcePath(SimpletonOrbHelper.getUiPath(haloImageFilename)));
     }
     return haloImage;
   }
 
   private Texture getTargetHaloImage() {
     if (this.targetHaloImage == null) {
-      targetHaloImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getResourcePath(getUiPath(targetHaloImageFilename)));
+      targetHaloImage = TheSimpletonMod.loadTexture(
+          TheSimpletonMod.getResourcePath(SimpletonOrbHelper.getUiPath(targetHaloImageFilename)));
     }
     return targetHaloImage;
   }
@@ -234,10 +237,6 @@ public abstract class AbstractCropOrb extends CustomOrb {
   @Override
   public void onStartOfTurn() {
     getCrop().atStartOfTurn();
-  }
-
-  protected static String getUiPath(String id) {
-    return "orbs/" + id + ".png";
   }
 
   @Override

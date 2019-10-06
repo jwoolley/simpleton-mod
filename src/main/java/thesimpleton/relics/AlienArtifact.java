@@ -2,7 +2,9 @@ package thesimpleton.relics;
 
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -29,8 +31,10 @@ public class AlienArtifact extends CustomRelic {
 
   @Override
   public void  atBattleStartPreDraw() {
+    this.flash();
+    CardCrawlGame.sound.play("SWOOSH_SCIFI_1");
     AbstractDungeon.actionManager.addToBottom(
-        new OrbSpawnAction(new ParasiteFruitOrb(1), 1, false));
+        new OrbSpawnAction(new ParasiteFruitOrb(1), -1, false));
   }
 
   @Override
@@ -46,5 +50,4 @@ public class AlienArtifact extends CustomRelic {
   public AbstractRelic makeCopy() {
     return new AlienArtifact();
   }
-
 }

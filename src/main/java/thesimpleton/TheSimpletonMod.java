@@ -532,6 +532,10 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_RoosterCrow1.ogg"));
         reflectedMap.put("SIMPLE_CRUNCH_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_SimpleCrunch1.ogg"));
+        reflectedMap.put("SQUELCH_SLIMY_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_SquelchSlimy1.ogg"));
+        reflectedMap.put("SWOOSH_SCIFI_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_SwooshSciFi1.ogg"));
         reflectedMap.put("WIND_HOWL_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_WindHowl1.ogg"));
     }

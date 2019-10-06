@@ -4,7 +4,10 @@ import basemod.abstracts.CustomOrb;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.TipHelper;
@@ -19,9 +22,16 @@ import java.util.stream.Collectors;
 
 public class ParasiteFruitOrb extends CustomOrb {
   public static final String ORB_ID = "TheSimpletonMod:ParasiteFruitOrb";
-  public static final String IMG_NAME = "alienfruit";
-  public static final String HALO_IMG_NAME = "alienfruit_halo";
-  public static final String TARGET_HALO_IMG_NAME = "alienfruit_target_halo";
+
+  public static final String IMG_PATH_PREFIX = "alienfruit/alienfruit";
+  public static final String STARTING_IMG_PATH = "alienfruit/alienfruit1";
+
+  public static Texture[] ORB_STAGE_IMAGES;
+
+  private static final int NUM_STAGES = 5;
+
+  public static final String HALO_IMG_PATH = "alienfruit/alienfruit_halo";
+  public static final String TARGET_HALO_IMG_PATH = "alienfruit/alienfruit_target_halo";
   private static final String ORB_DESCRIPTION_ID = "TheSimpletonMod:ParasiteFruitOrb";
   private static final OrbStrings orbStrings;
   public static final String[] DESCRIPTIONS;
@@ -36,22 +46,35 @@ public class ParasiteFruitOrb extends CustomOrb {
   private static final float TOOLTIP_X_OFFSET = 80.0F;
   private static final float TOOLTIP_Y_OFFSET = -48.0F;
 
-  private static final int THRESHHOLD_AMOUNT = 5;
-
-
   private Texture haloImage;
   private Texture targetHaloImage;
   private String haloImageFilename;
   private String targetHaloImageFilename;
+  private int growthStage = 1;
+  private boolean updatePowerTips = true;
 
   // TODO: separate CropOrbType (which has e.g. harvest info and description data) from CropOrb (which has stack count)
 
   public ParasiteFruitOrb(int amount) {
-    super(ORB_ID, NAME, amount, THRESHHOLD_AMOUNT, DESCRIPTIONS[0], "",
-        TheSimpletonMod.getResourcePath(SimpletonOrbHelper.getUiPath(IMG_NAME)));
+    super(ORB_ID, NAME, amount, NUM_STAGES, getDescription(1), "",
+        TheSimpletonMod.getResourcePath(SimpletonOrbHelper.getUiPath(STARTING_IMG_PATH)));
     this.basePassiveAmount = this.passiveAmount = amount;
-    this.haloImageFilename = HALO_IMG_NAME;
-    this.targetHaloImageFilename = TARGET_HALO_IMG_NAME;
+    this.haloImageFilename = HALO_IMG_PATH;
+    this.targetHaloImageFilename = TARGET_HALO_IMG_PATH;
+
+    initializeOrbStageImages();
+
+    this.hideEvokeValues();
+  }
+
+  private void initializeOrbStageImages() {
+    if (ORB_STAGE_IMAGES == null) {
+      ORB_STAGE_IMAGES  = new Texture[5];
+      for (int i = 0; i < NUM_STAGES; i++) {
+        ORB_STAGE_IMAGES[i]= ImageMaster.loadImage(
+            TheSimpletonMod.getResourcePath(SimpletonOrbHelper.getUiPath(IMG_PATH_PREFIX + (i + 1))));
+      }
+    }
   }
 
   private Texture getHaloImage() {
@@ -75,6 +98,7 @@ public class ParasiteFruitOrb extends CustomOrb {
 
   @Override
   public void onEvoke() {
+    TheSimpletonMod.logger.info("ParasiteFruitOrb::onEvoke called");
 //    this.getCrop().harvestAll();
   }
 
@@ -189,7 +213,26 @@ public class ParasiteFruitOrb extends CustomOrb {
 
   @Override
   public void onStartOfTurn() {
-//    getCrop().atStartOfTurn();
+    TheSimpletonMod.logger.info("ParasiteFruitOrb::onStartOfTurn called");
+    incrementStage();
+    TheSimpletonMod.logger.info("ParasiteFruitOrb::onStartOfTurn new growthStage: " + this.growthStage);
+  }
+
+  private void incrementStage() {
+    if (this.growthStage >= 1 && this.growthStage < NUM_STAGES) {
+      TheSimpletonMod.logger.info("ParasiteFruitOrb::incrementStage triggered. growthStage: " + this.growthStage);
+      this.growthStage++;
+      TheSimpletonMod.logger.info("ParasiteFruitOrb::incrementStage new growthStage: " + this.growthStage);
+      this.img = ORB_STAGE_IMAGES[this.growthStage - 1];
+      AbstractDungeon.actionManager.addToBottom(new SFXAction("SQUELCH_SLIMY_1"));
+      updateDescription();
+
+      if (this.growthStage == NUM_STAGES) {
+        this.updatePowerTips = true;
+      }
+    } else {
+      TheSimpletonMod.logger.info("ParasiteFruitOrb::incrementStage did not trigger. growthStage: " + this.growthStage + "; threshold: " + NUM_STAGES);
+    }
   }
 
   @Override
@@ -264,15 +307,16 @@ public class ParasiteFruitOrb extends CustomOrb {
   private ArrayList<PowerTip> keywordPowerTips;
 
   private ArrayList<PowerTip> getPowerTips() {
-    if (keywordPowerTips == null) {
+    if (this.updatePowerTips) {
       keywordPowerTips = new ArrayList<>();
 
       // main tooltip
-      keywordPowerTips.add(new PowerTip(this.name, this.description));
+      keywordPowerTips.add(new PowerTip(this.name, getDescription(this.growthStage)));
       // crop keyword tooltips
       for (Map.Entry<String,String> entry : getKeywords().entrySet()) {
         keywordPowerTips.add(new PowerTip(TipHelper.capitalize(entry.getKey()), entry.getValue()));
       }
+      this.updatePowerTips = false;
     }
     return keywordPowerTips;
   }
@@ -295,6 +339,29 @@ public class ParasiteFruitOrb extends CustomOrb {
 //      AbstractCrop.stackOrb(this, this.stackAmountOnShuffle, false);
 //    }
 //  }
+
+  private static String getDescription(int growthStage) {
+    if (growthStage < NUM_STAGES) {
+      return DESCRIPTIONS[0];
+    } else {
+      return DESCRIPTIONS[1];
+    }
+  }
+
+  @Override
+  public void updateDescription() {
+    this.description = getDescription(this.growthStage);
+    TheSimpletonMod.logger.info("ParasiteFruitOrb::updateDescription new Description. growthStage: " + this.growthStage + "; threshold: " + NUM_STAGES);
+  }
+
+  // TODO: special evoke text?
+  @Override
+  protected void renderText(SpriteBatch sb) {
+    if (this.showEvokeValue) {
+
+    }
+  }
+
 
   static {
     orbStrings = CardCrawlGame.languagePack.getOrbString(ORB_DESCRIPTION_ID);

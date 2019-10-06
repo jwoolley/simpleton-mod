@@ -32,7 +32,7 @@ public class OrbSpawnAction extends AbstractGameAction {
   }
 
   public void update() {
-    TheSimpletonMod.logger.debug("OrbSpawnAction::update duration: " + this.duration);
+    TheSimpletonMod.logger.info("OrbSpawnAction::update duration: " + this.duration);
 
     Logger logger = TheSimpletonMod.logger;
 
@@ -41,16 +41,17 @@ public class OrbSpawnAction extends AbstractGameAction {
     }
 
     if (SimpletonUtil.getActiveOrbs().size() >= AbstractDungeon.player.maxOrbs) {
-      logger.debug("OrbSpawnAction::update player has no free orb slots. Queueing CropOrbCycleAction with " + this.orb.name + " for " + this.orb.passiveAmount + " stacks");
+      logger.info("OrbSpawnAction::update player has no free orb slots. Queueing CropOrbCycleAction with " + this.orb.name + " for " + this.orb.passiveAmount + " stacks");
       AbstractDungeon.actionManager.addToBottom(new OrbCycleAction(this.orb, this.amount, this.isFromCard));
     }  else {
       this.orb.passiveAmount = this.amount;
 
-      logger.debug("OrbSpawnAction::update # of " + this.orb.name + " passiveAmount after (1): " + this.orb.passiveAmount + "; this.amount: " + this.amount);
+      logger.info("OrbSpawnAction::update # of " + this.orb.name + " passiveAmount after (1): " + this.orb.passiveAmount + "; this.amount: " + this.amount);
 
       AbstractOrb newOrb = this.orb.makeCopy();
       AbstractDungeon.player.channelOrb(newOrb);
       newOrb.update();
+      this.isDone = true;
     }
 
     tickDuration();
@@ -65,7 +66,7 @@ public class OrbSpawnAction extends AbstractGameAction {
 
     Logger logger = TheSimpletonMod.logger;
 
-    logger.debug("ApplyCropAction::calculateCropStacks | amount: " + amount + " isFromCard: " + isFromCard + " isPlantingCrop: " + isPlantingCrop);
+    logger.info("ApplyCropAction::calculateCropStacks | amount: " + amount + " isFromCard: " + isFromCard + " isPlantingCrop: " + isPlantingCrop);
 
 
     int adjustedAmount = amount;
@@ -76,7 +77,7 @@ public class OrbSpawnAction extends AbstractGameAction {
         adjustedAmount += power.amount;
       }
 
-      logger.debug("ApplyCropAction::calculateCropStacks | adjusting amount by abundance value: " + power.amount);
+      logger.info("ApplyCropAction::calculateCropStacks | adjusting amount by abundance value: " + power.amount);
 
     }
 

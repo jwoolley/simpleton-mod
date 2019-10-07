@@ -2,6 +2,8 @@ package thesimpleton.relics;
 
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
+import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -22,6 +24,8 @@ public class AlienArtifact extends CustomRelic {
   private static final RelicTier TIER = RelicTier.SPECIAL;
   private static final LandingSound SOUND = LandingSound.SOLID;
 
+  private boolean firstTurn = true;
+
 
   public AlienArtifact() {
     super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
@@ -31,11 +35,28 @@ public class AlienArtifact extends CustomRelic {
 
   @Override
   public void  atBattleStartPreDraw() {
-    this.flash();
+//    this.flash();
+//    CardCrawlGame.sound.play("SWOOSH_SCIFI_1");
+//    AbstractDungeon.actionManager.addToBottom(
+//        new OrbSpawnAction(new ParasiteFruitOrb(1), -1, false));
+
     CardCrawlGame.sound.play("SWOOSH_SCIFI_1");
+    AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+    AbstractDungeon.actionManager.addToBottom(new IncreaseMaxOrbAction(1));
     AbstractDungeon.actionManager.addToBottom(
         new OrbSpawnAction(new ParasiteFruitOrb(1), -1, false));
+
+}
+
+  @Override
+  public void atTurnStart() {
+//    if (this.firstTurn) {
+//      this.flash();
+//
+//      this.firstTurn = false;
+//    }
   }
+
 
   @Override
   public String getUpdatedDescription() {

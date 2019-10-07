@@ -4,7 +4,10 @@ import basemod.abstracts.CustomOrb;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -15,12 +18,13 @@ import com.megacrit.cardcrawl.localization.Keyword;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.status.VirulentFungus;
 import thesimpleton.ui.SettingsHelper;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ParasiteFruitOrb extends CustomOrb {
+public class ParasiteFruitOrb extends CustomOrb implements UnevokableOrb {
   public static final String ORB_ID = "TheSimpletonMod:ParasiteFruitOrb";
 
   public static final String IMG_PATH_PREFIX = "alienfruit/alienfruit";
@@ -39,12 +43,17 @@ public class ParasiteFruitOrb extends CustomOrb {
 
   private final static Color MATURE_CROP_HALO_COLOR = Color.WHITE.cpy();
 
+  private boolean firstTrigger = true;
 //  private final static Color MATURE_CROP_HALO_COLOR = new Color(237.0F, 254.0F, 53.0F, 0.2F); //Color.YELLOW;
 //  private final static Color CROP_STACK_COUNT_FONT_COLOR = Color.WHITE.cpy();
 //  private final static Color MATURE_CROP_STACK_COUNT_FONT_COLOR = Color.YELLOW; // new Color(250.0F, 255.0F, 190.0F, 1.0F); //Color.YELLOW;
 
   private static final float TOOLTIP_X_OFFSET = 80.0F;
   private static final float TOOLTIP_Y_OFFSET = -48.0F;
+
+  private static final int MAX_CARDS_PER_TRIGGER = 2;
+
+  private static final int HEAL_AMOUNT = 1;
 
   private Texture haloImage;
   private Texture targetHaloImage;
@@ -53,10 +62,10 @@ public class ParasiteFruitOrb extends CustomOrb {
   private int growthStage = 1;
   private boolean updatePowerTips = true;
 
-  // TODO: separate CropOrbType (which has e.g. harvest info and description data) from CropOrb (which has stack count)
+  // TODO: PREVENT THIS FROM BEING EVOKED
 
   public ParasiteFruitOrb(int amount) {
-    super(ORB_ID, NAME, amount, NUM_STAGES, getDescription(1), "",
+    super(ORB_ID, NAME, amount, NUM_STAGES, getDescription(false), "",
         TheSimpletonMod.getResourcePath(SimpletonOrbHelper.getUiPath(STARTING_IMG_PATH)));
     this.basePassiveAmount = this.passiveAmount = amount;
     this.haloImageFilename = HALO_IMG_PATH;
@@ -213,25 +222,56 @@ public class ParasiteFruitOrb extends CustomOrb {
 
   @Override
   public void onStartOfTurn() {
-    TheSimpletonMod.logger.info("ParasiteFruitOrb::onStartOfTurn called");
+//    incrementStage();
+//
+//    if (this.hasEvolved()) {
+//      AbstractDungeon.actionManager.addToBottom(
+//          new MakeTempCardInDrawPileAction(
+//              new VirulentFungus(), MAX_CARDS_PER_TRIGGER, true, true));
+//    }
+  }
+
+  @Override
+  public void onEndOfTurn() {
+    AbstractPlayer player = AbstractDungeon.player;
+
     incrementStage();
-    TheSimpletonMod.logger.info("ParasiteFruitOrb::onStartOfTurn new growthStage: " + this.growthStage);
+
+    if (this.hasEvolved()) {
+      if (this.growthStage == NUM_STAGES) {
+        AbstractDungeon.actionManager.addToBottom(new SFXAction("MONSTER_SLIME_ATTACK"));
+      } else {
+        AbstractDungeon.actionManager.addToBottom(new SFXAction("SQUELCH_SLIMY_2"));
+      }
+
+      AbstractDungeon.actionManager.addToBottom(
+          new MakeTempCardInDrawPileAction(
+              new VirulentFungus(), AbstractDungeon.miscRng.random(1,MAX_CARDS_PER_TRIGGER), true, true));
+    } else {
+      AbstractDungeon.actionManager.addToBottom(new SFXAction("SQUELCH_SLIMY_1"));
+
+      if (player.currentHealth < player.maxHealth) {
+        AbstractDungeon.actionManager.addToBottom(new HealAction(player, player, HEAL_AMOUNT));
+      } else {
+
+      }
+    }
+  }
+
+  private boolean hasEvolved() {
+    return this.growthStage >= NUM_STAGES;
   }
 
   private void incrementStage() {
     if (this.growthStage >= 1 && this.growthStage < NUM_STAGES) {
-      TheSimpletonMod.logger.info("ParasiteFruitOrb::incrementStage triggered. growthStage: " + this.growthStage);
       this.growthStage++;
-      TheSimpletonMod.logger.info("ParasiteFruitOrb::incrementStage new growthStage: " + this.growthStage);
       this.img = ORB_STAGE_IMAGES[this.growthStage - 1];
-      AbstractDungeon.actionManager.addToBottom(new SFXAction("SQUELCH_SLIMY_1"));
+//      AbstractDungeon.actionManager.addToBottom(new SFXAction("SQUELCH_SLIMY_1"));
       updateDescription();
 
       if (this.growthStage == NUM_STAGES) {
         this.updatePowerTips = true;
       }
-    } else {
-      TheSimpletonMod.logger.info("ParasiteFruitOrb::incrementStage did not trigger. growthStage: " + this.growthStage + "; threshold: " + NUM_STAGES);
     }
   }
 
@@ -311,7 +351,7 @@ public class ParasiteFruitOrb extends CustomOrb {
       keywordPowerTips = new ArrayList<>();
 
       // main tooltip
-      keywordPowerTips.add(new PowerTip(this.name, getDescription(this.growthStage)));
+      keywordPowerTips.add(new PowerTip(this.name, getDescription(this.hasEvolved())));
       // crop keyword tooltips
       for (Map.Entry<String,String> entry : getKeywords().entrySet()) {
         keywordPowerTips.add(new PowerTip(TipHelper.capitalize(entry.getKey()), entry.getValue()));
@@ -340,8 +380,8 @@ public class ParasiteFruitOrb extends CustomOrb {
 //    }
 //  }
 
-  private static String getDescription(int growthStage) {
-    if (growthStage < NUM_STAGES) {
+  private static String getDescription(boolean hasEvolved) {
+    if (!hasEvolved) {
       return DESCRIPTIONS[0];
     } else {
       return DESCRIPTIONS[1];
@@ -350,16 +390,16 @@ public class ParasiteFruitOrb extends CustomOrb {
 
   @Override
   public void updateDescription() {
-    this.description = getDescription(this.growthStage);
+    this.description = getDescription(this.hasEvolved());
     TheSimpletonMod.logger.info("ParasiteFruitOrb::updateDescription new Description. growthStage: " + this.growthStage + "; threshold: " + NUM_STAGES);
   }
 
   // TODO: special evoke text?
   @Override
   protected void renderText(SpriteBatch sb) {
-    if (this.showEvokeValue) {
-
-    }
+//    if (this.showEvokeValue) {
+//
+//    }
   }
 
 

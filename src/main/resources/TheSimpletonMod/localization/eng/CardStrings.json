@@ -474,6 +474,14 @@
     "DESCRIPTION": "Plant !M! Squash. NL If Squash is Mature, Block is not removed at the start of your next turn."
   },
 
+  "TheSimpletonMod:VirulentFungus": {
+    "NAME": "Virulent Fungus",
+    "DESCRIPTION": "Exhaust. NL When this is drawn, gain ",
+    "EXTENDED_DESCRIPTION" : [
+      " Plated Armor and apply !M! Poison to ALL enemies. NL"
+    ]
+  },
+
   "TheSimpletonMod:VolatileFumes": {
     "NAME": "Volatile Fumes",
     "DESCRIPTION": "Whenever you attack an enemy with Weak, apply !M! Burning."

@@ -56,6 +56,7 @@ import thesimpleton.cards.curse.Spoilage;
 import thesimpleton.cards.power.*;
 import thesimpleton.cards.power.crop.*;
 import thesimpleton.cards.skill.*;
+import thesimpleton.cards.status.VirulentFungus;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.crops.AbstractCrop;
 import thesimpleton.crops.Crop;
@@ -534,6 +535,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_SimpleCrunch1.ogg"));
         reflectedMap.put("SQUELCH_SLIMY_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_SquelchSlimy1.ogg"));
+        reflectedMap.put("SQUELCH_SLIMY_2",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_SquelchSlimy2.ogg"));
         reflectedMap.put("SWOOSH_SCIFI_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_SwooshSciFi1.ogg"));
         reflectedMap.put("WIND_HOWL_1",
@@ -665,6 +668,9 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         // Curse(6)
         cards.addAll(getCustomCurseCardList());
+
+        // Status (1)
+        cards.add(new VirulentFungus());
 
         return cards;
     }

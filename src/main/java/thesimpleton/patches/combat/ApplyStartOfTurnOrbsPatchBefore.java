@@ -14,5 +14,8 @@ public class ApplyStartOfTurnOrbsPatchBefore {
     if (TheSimpletonMod.isPlayingAsSimpleton()) {
       TheSimpletonMod.onBeforeStartOfTurnOrbs();
     }
+
+
+
   }
 }

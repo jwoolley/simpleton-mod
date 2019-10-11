@@ -244,6 +244,7 @@ public class SimpletonEventHelper {
 
   static {
     SIMPLETON_EVENT_IDS = Arrays.asList(
+        AbductionEvent.ID,
         BorealisEvent.ID,
         EarlyThawEvent.ID,
         EquipmentShedEvent.ID,
@@ -256,6 +257,7 @@ public class SimpletonEventHelper {
     );
 
     SIMPLETON_ONLY_EVENT_IDS = Arrays.asList(
+        AbductionEvent.ID,
         HarvestMoonEvent.ID,
         HeatWaveEvent.ID,
         ReaptideEvent.ID,

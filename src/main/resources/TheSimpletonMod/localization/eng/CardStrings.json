@@ -183,6 +183,12 @@
     "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL characters. NL Remove all of your Debuffs. NL Gain !B! Block. NL Exhaust."
   },
 
+  "TheSimpletonMod:GammaBlast": {
+    "NAME": "Gamma Blast",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Plant !M! more of each Crop."
+  },
+
+
   "TheSimpletonMod:GiantTurnip": {
     "NAME": "Turnip",
     "DESCRIPTION": "Deal !D! damage to ALL Enemies. NL Add a Turnips to your discard pile. NL Exhaust."

@@ -24,6 +24,11 @@ import thesimpleton.ui.SettingsHelper;
 import java.util.*;
 import java.util.stream.Collectors;
 
+// TODO: reduce number of ticks until evolved (to 3? or 4)
+
+// TODO: 'sentient' behaviors; e.g. different @ max health
+//        trigger "extraction" over certain plated armor amount or enemies' poison level amount
+
 public class ParasiteFruitOrb extends CustomOrb implements UnevokableOrb {
   public static final String ORB_ID = "TheSimpletonMod:ParasiteFruitOrb";
 

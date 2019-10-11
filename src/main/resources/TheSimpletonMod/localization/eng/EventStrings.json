@@ -1,4 +1,21 @@
 {
+  "TheSimpletonMod:AbductionEvent": {
+    "NAME": "Abduction!",
+    "DESCRIPTIONS": [
+      "Your field is bathed in a sickly green light as a strange silvery #bcraft descends upon you. NL NL #yVisitors, it appears, from elsewhere. You're not sure if they mean any harm.",
+      "The craft shines its light on you, and you find yourself being pulled slowly and inexorably toward the sky. Unable to fight it, you let yourself go. The light is intense, blinding you as you're pulled into the belly of the ship. Then you lose consciousness. NL NL You awake back at home, but something is ... different, now.",
+      "You find some hay bales to duck behind. The ship floats silently toward the barn, then is suddenly hurtling skyward. NL NL You notice that it's taking a specimen with it. But the visitors seem to have left you something for your trouble."
+    ],
+    "OPTIONS": [
+      "[Approach] #gObtain #ga #gSpecial #gRelic.",
+      "[Hide] #rLose #r",
+      "[Locked] Requires ",
+      " #rGold.",
+      " #gGain #ga #gSpecial #gAttack #gCard.",
+      "[Leave]"
+    ]
+  },
+
   "TheSimpletonMod:BorealisEvent": {
     "NAME": "Borealis",
     "DESCRIPTIONS": [

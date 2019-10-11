@@ -28,6 +28,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
+import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -457,7 +458,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addEvent(HarvestMoonEvent.ID, HarvestMoonEvent.class, TheCity.ID);
         BaseMod.addEvent(BorealisEvent.ID, BorealisEvent.class, TheCity.ID);
         BaseMod.addEvent(GophersEvent.ID, GophersEvent.class, TheCity.ID);
-        BaseMod.addEvent(HeatWaveEvent.ID, HeatWaveEvent.class, TheCity.ID);
+        BaseMod.addEvent(AbductionEvent.ID, AbductionEvent.class, TheCity.ID);
+        BaseMod.addEvent(HeatWaveEvent.ID, HeatWaveEvent.class, TheBeyond.ID);
     }
 
     private void registerPotions() {
@@ -505,10 +507,14 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_BirdTweet1.ogg"));
         reflectedMap.put("CHOMP_SHORT_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_ChompShort1.ogg"));
+        reflectedMap.put("COW_MOO_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_CowMoo1.ogg"));
         reflectedMap.put("CRICKETS_CHIRP_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_Crickets1.ogg"));
         reflectedMap.put("DRINK_BOTTLE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_DrinkBottle1.ogg"));
+        reflectedMap.put("ENERGY_BLAST_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_EnergyBlast1.ogg"));
         reflectedMap.put("FALL_MEADOW_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_FallMeadow1.ogg"));
         reflectedMap.put("GIBBERISH_ANGRY_1",
@@ -531,6 +537,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_PopShort1.ogg"));
         reflectedMap.put("ROOSTER_CROW_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_RoosterCrow1.ogg"));
+        reflectedMap.put("SCIFI_MUSIC_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_SciFiMusicShort1.ogg"));
         reflectedMap.put("SIMPLE_CRUNCH_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_SimpleCrunch1.ogg"));
         reflectedMap.put("SQUELCH_SLIMY_1",
@@ -539,6 +547,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_SquelchSlimy2.ogg"));
         reflectedMap.put("SWOOSH_SCIFI_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_SwooshSciFi1.ogg"));
+        reflectedMap.put("TRACTOR_BEAM_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_TractorBeam1.ogg"));
         reflectedMap.put("WIND_HOWL_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_WindHowl1.ogg"));
     }

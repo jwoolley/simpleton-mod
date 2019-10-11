@@ -21,6 +21,8 @@ public class OrbSpawnAction extends AbstractGameAction {
   private boolean secondTick = false;
 
   public OrbSpawnAction(AbstractOrb orb, int stacks, boolean isFromCard) {
+    TheSimpletonMod.logger.info("OrbSpawnAction::constructor called");
+
     final int rawAmount = stacks >= 0 ? stacks : orb.passiveAmount;
     this.duration = ACTION_DURATION;
     this.actionType = ACTION_TYPE;
@@ -55,35 +57,6 @@ public class OrbSpawnAction extends AbstractGameAction {
     }
 
     tickDuration();
-  }
-
-  public static int calculateCropStacks(int amount, boolean isFromCard) {
-    return calculateCropStacks(amount, isFromCard, true);
-  }
-
-  public static int calculateCropStacks(int amount, boolean isFromCard, boolean isPlantingCrop) {
-    AbstractPlayer player = AbstractDungeon.player;
-
-    Logger logger = TheSimpletonMod.logger;
-
-    logger.info("ApplyCropAction::calculateCropStacks | amount: " + amount + " isFromCard: " + isFromCard + " isPlantingCrop: " + isPlantingCrop);
-
-
-    int adjustedAmount = amount;
-    if (isPlantingCrop && player.hasPower(AbundancePower.POWER_ID) && isFromCard) {
-      AbstractPower power = player.getPower(AbundancePower.POWER_ID);
-      if (power.amount > 0) {
-        power.flashWithoutSound();
-        adjustedAmount += power.amount;
-      }
-
-      logger.info("ApplyCropAction::calculateCropStacks | adjusting amount by abundance value: " + power.amount);
-
-    }
-
-    logger.debug("ApplyCropAction::calculateCropStacks | adjustedAmount: " + adjustedAmount);
-
-    return adjustedAmount;
   }
 }
 

@@ -4,12 +4,10 @@ import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.OrbSpawnAction;
@@ -35,17 +33,10 @@ public class AlienArtifact extends CustomRelic {
 
   @Override
   public void  atBattleStartPreDraw() {
-//    this.flash();
-//    CardCrawlGame.sound.play("SWOOSH_SCIFI_1");
-//    AbstractDungeon.actionManager.addToBottom(
-//        new OrbSpawnAction(new ParasiteFruitOrb(1), -1, false));
-
+    this.flash();
     CardCrawlGame.sound.play("SWOOSH_SCIFI_1");
     AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-    AbstractDungeon.actionManager.addToBottom(new IncreaseMaxOrbAction(1));
-    AbstractDungeon.actionManager.addToBottom(
-        new OrbSpawnAction(new ParasiteFruitOrb(1), -1, false));
-
+    ParasiteFruitOrb.plantFruitAndAddSlot(1);
 }
 
   @Override

@@ -48,6 +48,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
     public static final Color CARD_RENDER_COLOR = new Color(0.1F, 0.4F, 0.9F, 1.0F);
 
     public static final int ENERGY_PER_TURN = 3;
+    public static final int MAX_ORB_SLOTS = 10;
     public static final String SHOULDER_2 = getResourcePath("char/shoulder2.png"); // campfire pose
     public static final String SHOULDER_1 = getResourcePath("char/shoulder.png"); // another campfire pose
     public static final String CORPSE = getResourcePath("char/corpse.png");

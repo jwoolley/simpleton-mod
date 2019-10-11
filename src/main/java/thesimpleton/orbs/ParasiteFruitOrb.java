@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -18,7 +19,9 @@ import com.megacrit.cardcrawl.localization.Keyword;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.OrbSpawnAction;
 import thesimpleton.cards.status.VirulentFungus;
+import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.ui.SettingsHelper;
 
 import java.util.*;
@@ -245,6 +248,8 @@ public class ParasiteFruitOrb extends CustomOrb implements UnevokableOrb {
     if (this.hasEvolved()) {
       if (this.growthStage == NUM_STAGES) {
         AbstractDungeon.actionManager.addToBottom(new SFXAction("MONSTER_SLIME_ATTACK"));
+        plantFruitAndAddSlot(1);
+        this.updatePowerTips = true;
       } else {
         AbstractDungeon.actionManager.addToBottom(new SFXAction("SQUELCH_SLIMY_2"));
       }
@@ -263,20 +268,20 @@ public class ParasiteFruitOrb extends CustomOrb implements UnevokableOrb {
     }
   }
 
+
+  private boolean evolvedPreviousTurn = false;
   private boolean hasEvolved() {
     return this.growthStage >= NUM_STAGES;
   }
 
   private void incrementStage() {
-    if (this.growthStage >= 1 && this.growthStage < NUM_STAGES) {
+    if (!this.hasEvolved()) {
       this.growthStage++;
       this.img = ORB_STAGE_IMAGES[this.growthStage - 1];
 //      AbstractDungeon.actionManager.addToBottom(new SFXAction("SQUELCH_SLIMY_1"));
       updateDescription();
+    } else if (!evolvedPreviousTurn) {
 
-      if (this.growthStage == NUM_STAGES) {
-        this.updatePowerTips = true;
-      }
     }
   }
 
@@ -289,37 +294,9 @@ public class ParasiteFruitOrb extends CustomOrb implements UnevokableOrb {
   public void render(SpriteBatch sb) {
     super.render(sb);
 
-//    Color filterColor = MATURE_CROP_HALO_COLOR;
-//    Color textColor = MATURE_CROP_STACK_COUNT_FONT_COLOR;
-//
-//    if (this.isMature(true)) {
-//      // TODO: when stacks > maturity level, replace with flash image + add sound effect for those few frames
-//      //      final Color overplantFilterColor = Color.LIME;
-//      //      final Color overplantTextColor = Color.LIME;
-//      //      if (this.getAmount() >  this.getCrop().getMaturityThreshold()) {
-//      //        filterColor = overplantFilterColor;
-//      //        textColor = overplantTextColor;
-//      //      }
-//
-//      // TODO: Highlight targeted crop on dynamic card hover (e.g. Aerate) with different-colored halo
-//
-//      sb.draw(this.getHaloImage(), this.cX - 48.0F + this.bobEffect.y / 4.0F, this.cY - 48.0F + this.bobEffect.y / 4.0F, 48.0F, 48.0F, 96.0F, 96.0F, this.scale, this.scale, 0.0F, 0, 0, 96, 96, false, false);
-//      this.c = textColor;
-//      renderText(sb);
-//      this.c = filterColor;
-//    } else {
-//      this.c = CROP_STACK_COUNT_FONT_COLOR;
-//    }
-//
-//    Color highlightFilterColor = Color.GOLD.cpy();
-//    if (CropOrbHelper.hasHighlightedOrb()) {
-//      if (CropOrbHelper.getHighlightedOrb().name == this.name) {
-////        this.c = highlightFilterColor;
-//        sb.draw(this.getTargetHaloImage(), this.cX - 48.0F + this.bobEffect.y / 4.0F, this.cY - 48.0F + this.bobEffect.y / 4.0F, 48.0F, 48.0F, 96.0F, 96.0F, this.scale, this.scale, 0.0F, 0, 0, 96, 96, false, false);
-//      }
-//    } else {
-//      this.c = filterColor;
-//    }
+    if (this.hasEvolved()) {
+      sb.draw(this.getHaloImage(), this.cX - 48.0F + this.bobEffect.y / 4.0F, this.cY - 48.0F + this.bobEffect.y / 4.0F, 48.0F, 48.0F, 96.0F, 96.0F, this.scale, this.scale, 0.0F, 0, 0, 96, 96, false, false);
+    }
   }
 
   @Override
@@ -384,6 +361,14 @@ public class ParasiteFruitOrb extends CustomOrb implements UnevokableOrb {
 //      AbstractCrop.stackOrb(this, this.stackAmountOnShuffle, false);
 //    }
 //  }
+
+  public static void plantFruitAndAddSlot(int amount) {
+    if (AbstractDungeon.player.maxOrbs < TheSimpletonCharacter.MAX_ORB_SLOTS) {
+      AbstractDungeon.actionManager.addToBottom(new IncreaseMaxOrbAction(1));
+    }
+    AbstractDungeon.actionManager.addToBottom(
+        new OrbSpawnAction(new ParasiteFruitOrb(amount), -1, false));
+  }
 
   private static String getDescription(boolean hasEvolved) {
     if (!hasEvolved) {

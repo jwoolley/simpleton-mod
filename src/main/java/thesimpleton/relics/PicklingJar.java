@@ -36,7 +36,6 @@ public class PicklingJar extends CustomRelic implements CustomBottleRelic, Custo
   private static final int NUM_SHUFFLES = 3;
   private static final int COST_FOR_TURN = 0;
 
-
   //TODO: support multiple upgrades (and store # of upgrades in serialized id)
   private static final String SERIALIZABLE_UPGRADED_PREFIX = "UPGRADED__";
 

@@ -505,6 +505,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_AttackSplat1.ogg"));
         reflectedMap.put("BIRD_TWEET_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_BirdTweet1.ogg"));
+        reflectedMap.put("CHARGE_LASER_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_ChargeLaser1.ogg"));
         reflectedMap.put("CHOMP_SHORT_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_ChompShort1.ogg"));
         reflectedMap.put("COW_MOO_1",
@@ -527,6 +529,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_HootingBird1.ogg"));
         reflectedMap.put("ICE_CLINK_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_IceClink1.ogg"));
+        reflectedMap.put("LASER_BEAM_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_LaserBeam1.ogg"));
         reflectedMap.put("LOW_RUMBLE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_LowRumble1.ogg"));
         reflectedMap.put("MAGIC_CHIMES_1",
@@ -1083,12 +1087,14 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             BaseMod.addRelic(new GardenGlove(), RelicType.SHARED);
             BaseMod.addRelic(new Moonshine(), RelicType.SHARED);
             BaseMod.addRelic(new PicklingJar(), RelicType.SHARED);
+            BaseMod.addRelic(new Raygun(), RelicType.SHARED);
             BaseMod.addRelic(new WoodChipper(), RelicType.SHARED);
         } else {
             BaseMod.addRelicToCustomPool(new AlienArtifact(), AbstractCardEnum.THE_SIMPLETON_BLUE);
             BaseMod.addRelicToCustomPool(new GardenGlove(), AbstractCardEnum.THE_SIMPLETON_BLUE);
             BaseMod.addRelicToCustomPool(new Moonshine(), AbstractCardEnum.THE_SIMPLETON_BLUE);
             BaseMod.addRelicToCustomPool(new PicklingJar(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+            BaseMod.addRelicToCustomPool(new Raygun(), AbstractCardEnum.THE_SIMPLETON_BLUE);
             BaseMod.addRelicToCustomPool(new WoodChipper(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         }
 

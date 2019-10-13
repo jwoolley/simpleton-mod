@@ -117,6 +117,16 @@
     ]
   },
 
+  "TheSimpletonMod:NightSoil": {
+    "NAME": "Night Soil",
+    "FLAVOR": "It grows on you.",
+    "DESCRIPTIONS": [
+      "Whenever you shuffle your deck, for each of your #yCrops that isn't #rMature, #yPlant #b",
+      " more.",
+      " more."
+    ]
+  },
+
   "TheSimpletonMod:PicklingJar": {
     "NAME": "Pickling Jar",
     "FLAVOR": "Sour, salty, and full of dark magic.",
@@ -139,13 +149,13 @@
     ]
   },
 
-  "TheSimpletonMod:NightSoil": {
-    "NAME": "Night Soil",
-    "FLAVOR": "It grows on you.",
+
+  "TheSimpletonMod:Raygun": {
+    "NAME": "Proton Pistol",
+    "FLAVOR": "Wait. Point. Click. Repeat.",
     "DESCRIPTIONS": [
-      "Whenever you shuffle your deck, for each of your #yCrops that isn't #rMature, #yPlant #b",
-      " more.",
-      " more."
+      "At the end of your turn, Proton Pistol gains #b",
+      " charges for each unspent [E] . If no charges are gained, it loses all charges instead and deals that much damage to ALL enemies."
     ]
   },
 

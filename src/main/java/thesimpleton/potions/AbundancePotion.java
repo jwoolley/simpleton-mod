@@ -57,7 +57,11 @@ public class AbundancePotion extends CustomPotion {
     return new AbundancePotion();
   }
 
+  @Override
   public int getPotency(int ascensionLevel) {
+    if (AbstractDungeon.player.hasRelic("SacredBark")) {
+      return 2 * POTENCY;
+    }
     return POTENCY;
   }
 }

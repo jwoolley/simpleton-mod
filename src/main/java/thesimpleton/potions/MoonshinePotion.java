@@ -27,11 +27,12 @@ public class MoonshinePotion extends CustomPotion {
   public static final String NAME = potionStrings.NAME;
   public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
 
-  public static final PotionSize POTION_SHAPE = PotionSize.JAR;
-  public static final PotionColor POTION_COLOR = PotionColor.NONE;
+  private static final PotionSize POTION_SHAPE = PotionSize.JAR;
+  private static final PotionColor POTION_COLOR = PotionColor.NONE;
 
   private static final int CARD_DRAW_AMOUNT = 5;
   private static final int STRENGTH_AMOUNT = 5;
+  private static final int POTENCY = 1;
 
   public static final Color BASE_COLOR = new Color(1.0F, 1.0F, 1.0F, 0.50F);
   public static final Color HYBRID_COLOR = BASE_COLOR;
@@ -40,7 +41,11 @@ public class MoonshinePotion extends CustomPotion {
   public MoonshinePotion() {
     super(NAME, POTION_ID, PotionRarity.UNCOMMON, POTION_SHAPE, POTION_COLOR);
     this.potency = getPotency();
-    this.description = (DESCRIPTIONS[0] + CARD_DRAW_AMOUNT + DESCRIPTIONS[1] + STRENGTH_AMOUNT + DESCRIPTIONS[2]);
+    this.description = (DESCRIPTIONS[0]
+            + (CARD_DRAW_AMOUNT * this.getPotency())
+            + DESCRIPTIONS[1]
+            + (STRENGTH_AMOUNT * this.getPotency())
+            + DESCRIPTIONS[2]);
     this.isThrown = false;
     this.targetRequired = false;
     this.tips.add(new PowerTip(this.name, this.description));
@@ -63,10 +68,11 @@ public class MoonshinePotion extends CustomPotion {
         new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, AbstractDungeon.player.hand.size(),
             false));
 
+    final int str = STRENGTH_AMOUNT * this.getPotency();
     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(player, player,
-        new StrengthPower(player, STRENGTH_AMOUNT), STRENGTH_AMOUNT));
+        new StrengthPower(player, str), str));
     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(player, player,
-        new LoseStrengthPower(player, STRENGTH_AMOUNT), STRENGTH_AMOUNT));
+        new LoseStrengthPower(player, str), str));
 
     final boolean wasConfused = player.hasPower(ConfusionPower.POWER_ID);
 
@@ -75,12 +81,15 @@ public class MoonshinePotion extends CustomPotion {
       AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(player, player, new SoberUpPower(player)));
     }
 
-    AbstractDungeon.actionManager.addToBottom(new DrawCardAction(player, CARD_DRAW_AMOUNT));
+    AbstractDungeon.actionManager.addToBottom(new DrawCardAction(player, CARD_DRAW_AMOUNT * this.getPotency()));
   }
 
   @Override
-  public int getPotency(int i) {
-    return 0;
+  public int getPotency(int ascensionLevel) {
+    if (AbstractDungeon.player.hasRelic("SacredBark")) {
+      return 2 * POTENCY;
+    }
+    return POTENCY;
   }
 
   public CustomPotion makeCopy() {

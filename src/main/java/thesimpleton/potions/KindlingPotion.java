@@ -64,7 +64,11 @@ public class KindlingPotion extends CustomPotion {
     return new KindlingPotion();
   }
 
+  @Override
   public int getPotency(int ascensionLevel) {
+    if (AbstractDungeon.player.hasRelic("SacredBark")) {
+      return 2 * POTENCY;
+    }
     return POTENCY;
   }
 }

@@ -86,7 +86,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         EditStringsSubscriber, EditKeywordsSubscriber, PostInitializeSubscriber, PostCreateStartingDeckSubscriber,
         PostCreateStartingRelicsSubscriber, PostDungeonInitializeSubscriber, StartActSubscriber, StartGameSubscriber,
         OnStartBattleSubscriber, PostBattleSubscriber, PreRoomRenderSubscriber, PostDeathSubscriber, SetUnlocksSubscriber  {
-    private static final Color CUSTOM_COLOR = CardHelper.getColor(57.0F, 131.0F, 245.0F);
+    private static final Color CUSTOM_COLOR = CardHelper.getColor(57, 131, 245);
 
     private static final String ATTACK_CARD = "512/attack_thesimpleton.png";
     private static final String SKILL_CARD = "512/skill_thesimpleton.png";
@@ -1090,7 +1090,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         logger.debug("receivePostCreateStartingDeck UnlockTracker.getUnlockLevel(): " + UnlockTracker.getUnlockLevel(TheSimpletonCharEnum.THE_SIMPLETON));
         logger.debug("receivePostCreateStartingDeck UnlockTracker.getCurrentProgress(): " + UnlockTracker.getCurrentProgress(TheSimpletonCharEnum.THE_SIMPLETON));
         logger.debug("receivePostCreateStartingDeck UnlockTracker.getCurrentScoreCost(): " + UnlockTracker.getCurrentScoreCost(TheSimpletonCharEnum.THE_SIMPLETON));
-        logger.debug("receivePostCreateStartingDeck UnlockTracker.getCurrentScoreTotal(): " + UnlockTracker.getCurrentScoreTotal(TheSimpletonCharEnum.THE_SIMPLETON));
         logger.debug("receivePostCreateStartingDeck UnlockTracker.getCompletionPercentage(): " + UnlockTracker.getCompletionPercentage());
 
         if (isPlayingAsSimpleton()) {

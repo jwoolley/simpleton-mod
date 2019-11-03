@@ -3,14 +3,17 @@ package thesimpleton.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.orbs.PotatoCropOrb;
+import thesimpleton.powers.PhotosynthesisPower;
 import thesimpleton.powers.SpudOfTheMartyrPower;
 
 public class
@@ -22,8 +25,9 @@ SpudOfTheMartyr extends CustomRelic {
 
     private static final RelicTier TIER = RelicTier.BOSS;
     private static final LandingSound SOUND = LandingSound.HEAVY;
+    private static final int SPUD_AMOUNT = 2;
 
-    private static final int CROP_AMOUNT = 2;
+    private static final Logger logger = TheSimpletonMod.logger;
 
     public SpudOfTheMartyr() {
         super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
@@ -36,51 +40,26 @@ SpudOfTheMartyr extends CustomRelic {
 
     @Override
     public String getUpdatedDescription() {
-        return this.DESCRIPTIONS[0] + CROP_AMOUNT + this.DESCRIPTIONS[1];
+        return this.DESCRIPTIONS[0];
     }
-
-    @Override
-    public void atBattleStart() {
-        final AbstractPlayer player = AbstractDungeon.player;
-        this.flash();
-        AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(player, player,
-            new SpudOfTheMartyrPower(player, -1, this), -1));
-        addPotatoStack(CROP_AMOUNT);
-    }
-
-    @Override
 
     public AbstractRelic makeCopy() {
         return new SpudOfTheMartyr();
     }
 
     @Override
-    public boolean canSpawn() {
-        return AbstractDungeon.player.hasRelic(SpudOfTheInnocent.ID);
-    }
+    public int onAttacked(DamageInfo info, int damageAmount) {
+        logger.info("SpudOfTheMartyr::onAttacked called");
 
-
-    //TODO: move this to potato power class
-    public static void addPotatoStack(int amount) {
-        Logger logger = TheSimpletonMod.logger;
-        logger.debug("SpudOfTheMartyr: Adding potato stack");
-        final AbstractPlayer p = AbstractDungeon.player;
-
-        AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new PotatoCropOrb(), amount, false));
-    }
-
-    @Override
-    public void obtain() {
-        this.flash();
-        if (AbstractDungeon.player.hasRelic(SpudOfTheInnocent.ID)) {
-            for (int i = 0; i < AbstractDungeon.player.relics.size(); i++) {
-                if (AbstractDungeon.player.relics.get(i).relicId.equals(SpudOfTheInnocent.ID)) {
-                    this.instantObtain(AbstractDungeon.player, i, true);
-                    break;
-                }
+        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+            AbstractPlayer player = AbstractDungeon.player;
+            if ((info.type != DamageInfo.DamageType.THORNS) && (info.type != DamageInfo.DamageType.HP_LOSS) && damageAmount > 0) {
+                logger.info("SpudOfTheMartyr::onAttacked took normal damage");
+                this.flash();
+                AbstractDungeon.actionManager.addToBottom(
+                    new ApplyPowerAction(player, player, new SpudOfTheMartyrPower(player, SPUD_AMOUNT, this)));
             }
-        } else {
-            super.obtain();
         }
+        return damageAmount;
     }
 }

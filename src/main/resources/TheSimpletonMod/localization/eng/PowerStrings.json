@@ -144,10 +144,12 @@
   },
 
   "TheSimpletonMod:SpudOfTheMartyrPower": {
-    "NAME": "Martyr's Spud",
+    "NAME": "Martyr's Spuds",
     "DESCRIPTIONS": [
-      " Whenever you take attack damage, Plant #b",
-      " #yPotatoes.\n"
+      "At the start of your turn, add #b",
+      " #ySpud",
+      " #ySpuds",
+      " to your hand."
     ]
   },
 

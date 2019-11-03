@@ -154,8 +154,7 @@
     "NAME": "Spud of the Martyr",
     "FLAVOR": "Roasted for a good cause.",
     "DESCRIPTIONS": [
-      "Replaces #gSpud #gof #gthe #gInnocent. Whenever you take attack damage, and at the start of each combat, #yPlant #b",
-      " #yPotatoes."
+      "Whenever you take attack damage, add two #ySpuds to your hand at the start of your next turn."
     ]
   },
 

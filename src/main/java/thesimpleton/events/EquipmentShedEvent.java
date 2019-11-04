@@ -55,6 +55,8 @@ public class EquipmentShedEvent extends CustomSimpletonEvent
   private int curseChancePercentage;
   private boolean keepRolling = false;
 
+  private String maxHpOptionText;
+
   public EquipmentShedEvent() {
     super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getResourcePath(IMG_PATH));
 
@@ -93,19 +95,24 @@ public class EquipmentShedEvent extends CustomSimpletonEvent
 
     this.curseChancePercentage = CURSE_CHANCE_PERCENTAGES[curseAttempt];
 
-    final String optionText =
-            (curseAttempt == 0 ? OPTIONS[2] : OPTIONS[3])
-            + OPTIONS[4] + MAX_HP_INCREASE_AMOUNT + OPTIONS[8]
-            + (this.curseChancePercentage < 100 ? OPTIONS[9] + this.curseChancePercentage + OPTIONS[10] : "")
-            +  (OPTIONS[11] + CURSE_CARD.name + OPTIONS[8]);
+    maxHpOptionText =
+      (curseAttempt == 0 ? OPTIONS[2] : OPTIONS[3])
+      + OPTIONS[4] + MAX_HP_INCREASE_AMOUNT + OPTIONS[8]
+      + (this.curseChancePercentage < 100 ? OPTIONS[9] + this.curseChancePercentage + OPTIONS[10] : "")
+      +  (OPTIONS[11] + CURSE_CARD.name + OPTIONS[8]);
 
     if (curseAttempt == 0) {
-      this.imageEventText.setDialogOption(optionText, CURSE_CARD);
+      this.imageEventText.setDialogOption(maxHpOptionText, CURSE_CARD);
     } else {
-      this.imageEventText.updateDialogOption(0, optionText,  CURSE_CARD);
+      this.imageEventText.updateDialogOption(0, maxHpOptionText,  CURSE_CARD);
     }
   }
 
+  private void removeReplacementCardOption() {
+    this.imageEventText.clearAllDialogs();
+    this.imageEventText.setDialogOption(maxHpOptionText, CURSE_CARD);
+    this.imageEventText.setDialogOption(OPTIONS[12]);
+  }
 
   @Override
   protected void buttonEffect(int buttonPressed) {
@@ -122,36 +129,41 @@ public class EquipmentShedEvent extends CustomSimpletonEvent
               keepRolling = false;
             } else {
               updateChanceRewardOption();
+              removeReplacementCardOption();
               keepRolling = true;
             }
             break;
+
           case 1:
-            AbstractDungeon.player.damage(new DamageInfo(AbstractDungeon.player, this.damage));
-            CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(
-                new ScrapeEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 0.1F));
-            CardCrawlGame.sound.play("ATTACK_IRON_3");
-
-            if (cardToReplace != null) {
-              SimpletonEventHelper.loseCard(cardToReplace, Settings.WIDTH * SettingsHelper.getScaleX(),
-                  Settings.HEIGHT * SettingsHelper.getScaleY());
-
-              AbstractDungeon.actionManager.addToBottom(new WaitAction(1.5F));
-
-              SimpletonEventHelper.gainCard(replacementCard,
-                  (Settings.WIDTH - 2 * AbstractCard.IMG_WIDTH * 1.1F) / 2.0F * SettingsHelper.getScaleX(),
-                  Settings.HEIGHT / 2.0F * SettingsHelper.getScaleY());
+            if (keepRolling) {
+              leaveEvent();
             } else {
-              SimpletonEventHelper.gainCard(replacementCard);
-            }
+              AbstractDungeon.player.damage(new DamageInfo(AbstractDungeon.player, this.damage));
+              CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
+              AbstractDungeon.actionManager.addToBottom(new VFXAction(
+                  new ScrapeEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 0.1F));
+              CardCrawlGame.sound.play("ATTACK_IRON_3");
 
+              if (cardToReplace != null) {
+                SimpletonEventHelper.loseCard(cardToReplace, Settings.WIDTH * SettingsHelper.getScaleX(),
+                    Settings.HEIGHT * SettingsHelper.getScaleY());
+
+                AbstractDungeon.actionManager.addToBottom(new WaitAction(1.5F));
+
+                SimpletonEventHelper.gainCard(replacementCard,
+                    (Settings.WIDTH - 2 * AbstractCard.IMG_WIDTH * 1.1F) / 2.0F * SettingsHelper.getScaleX(),
+                    Settings.HEIGHT / 2.0F * SettingsHelper.getScaleY());
+              } else {
+                SimpletonEventHelper.gainCard(replacementCard);
+              }
+            }
             break;
 
           case 2:
             leaveEvent();
             break;
 
-          default:
+           default:
             break;
         }
 

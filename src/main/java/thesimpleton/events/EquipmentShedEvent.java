@@ -42,20 +42,16 @@ public class EquipmentShedEvent extends CustomSimpletonEvent
 
   private static final float HP_DAMAGE_PERCENT = 0.12F;
   private static final float HP_DAMAGE_PERCENT_A15 = 0.2F;
-  private static final int MAX_HP_INCREASE_AMOUNT = 5;
+  private static final float MAX_HP_INCREASE_PERCENTAGE = 0.13F;
 
   private final AbstractCard replacementCard;
   private final AbstractCard cardToReplace;
-  private static final int[] CURSE_CHANCE_PERCENTAGES = {33, 66, 100};
 
+  private final int maxHpIncrease;
   private final int damage;
   private EventState state;
 
-  private int curseAttempt = -1;
-  private int curseChancePercentage;
-  private boolean keepRolling = false;
-
-  private String maxHpOptionText;
+  private final int BASE_CURSE_CHANCE_PERCENTAGE = 33;
 
   public EquipmentShedEvent() {
     super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getResourcePath(IMG_PATH));
@@ -75,11 +71,15 @@ public class EquipmentShedEvent extends CustomSimpletonEvent
     this.damage = MathUtils.round(AbstractDungeon.player.maxHealth
         * (AbstractDungeon.ascensionLevel >= 15 ? HP_DAMAGE_PERCENT_A15 : HP_DAMAGE_PERCENT));
 
-    updateChanceRewardOption();
+
+    this.maxHpIncrease = (int)(MAX_HP_INCREASE_PERCENTAGE * AbstractDungeon.player.maxHealth);
+
+    this.imageEventText.setDialogOption(
+        getMaxHpOptionText(OPTIONS[2], maxHpIncrease, BASE_CURSE_CHANCE_PERCENTAGE), CURSE_CARD);
 
     this.imageEventText.setDialogOption(
         (cardToReplace != null ? (OPTIONS[0] + cardToReplace.name + OPTIONS[5]) : OPTIONS[1])
-        +  replacementCard.name + OPTIONS[6] + this.damage + OPTIONS[7],
+            +  replacementCard.name + OPTIONS[6] + this.damage + OPTIONS[7],
         replacementCard);
 
     this.imageEventText.setDialogOption(OPTIONS[12]);
@@ -88,30 +88,10 @@ public class EquipmentShedEvent extends CustomSimpletonEvent
     CardCrawlGame.sound.play("EVENT_NLOTH");
   }
 
-  private void updateChanceRewardOption() {
-    if (curseAttempt < CURSE_CHANCE_PERCENTAGES.length - 1) {
-      curseAttempt++;
-    }
-
-    this.curseChancePercentage = CURSE_CHANCE_PERCENTAGES[curseAttempt];
-
-    maxHpOptionText =
-      (curseAttempt == 0 ? OPTIONS[2] : OPTIONS[3])
-      + OPTIONS[4] + MAX_HP_INCREASE_AMOUNT + OPTIONS[8]
-      + (this.curseChancePercentage < 100 ? OPTIONS[9] + this.curseChancePercentage + OPTIONS[10] : "")
-      +  (OPTIONS[11] + CURSE_CARD.name + OPTIONS[8]);
-
-    if (curseAttempt == 0) {
-      this.imageEventText.setDialogOption(maxHpOptionText, CURSE_CARD);
-    } else {
-      this.imageEventText.updateDialogOption(0, maxHpOptionText,  CURSE_CARD);
-    }
-  }
-
-  private void removeReplacementCardOption() {
-    this.imageEventText.clearAllDialogs();
-    this.imageEventText.setDialogOption(maxHpOptionText, CURSE_CARD);
-    this.imageEventText.setDialogOption(OPTIONS[12]);
+  private String getMaxHpOptionText(String optionPrefixText, int maxHpAmount, int curseChancePercentage) {
+    return optionPrefixText + OPTIONS[4] + maxHpAmount + OPTIONS[8]
+        + (curseChancePercentage < 100 ? OPTIONS[9] + curseChancePercentage + OPTIONS[10] : "")
+        +  (OPTIONS[11] + CURSE_CARD.name + OPTIONS[8]);
   }
 
   @Override
@@ -120,59 +100,47 @@ public class EquipmentShedEvent extends CustomSimpletonEvent
       case WAITING:
         switch (buttonPressed) {
           case 0:
-            AbstractDungeon.player.increaseMaxHp(MAX_HP_INCREASE_AMOUNT, true);
+            AbstractDungeon.player.increaseMaxHp(maxHpIncrease, true);
 
-            final boolean receiveCurse = AbstractDungeon.miscRng.randomBoolean(curseChancePercentage / 100.0F);
+            boolean receiveCurse = AbstractDungeon.miscRng.randomBoolean(BASE_CURSE_CHANCE_PERCENTAGE / 100.0F);
 
             if (receiveCurse) {
+              CardCrawlGame.sound.play("CRUNCH_NEGATIVE_1");
               SimpletonEventHelper.gainCard(CURSE_CARD);
-              keepRolling = false;
-            } else {
-              updateChanceRewardOption();
-              removeReplacementCardOption();
-              keepRolling = true;
             }
             break;
 
           case 1:
-            if (keepRolling) {
-              leaveEvent();
+            AbstractDungeon.player.damage(new DamageInfo(AbstractDungeon.player, this.damage));
+            CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
+            AbstractDungeon.actionManager.addToBottom(new VFXAction(
+                new ScrapeEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 0.1F));
+            CardCrawlGame.sound.play("ATTACK_IRON_3");
+
+            if (cardToReplace != null) {
+              SimpletonEventHelper.loseCard(cardToReplace, Settings.WIDTH * SettingsHelper.getScaleX(),
+                  Settings.HEIGHT * SettingsHelper.getScaleY());
+
+              AbstractDungeon.actionManager.addToBottom(new WaitAction(1.5F));
+
+              SimpletonEventHelper.gainCard(replacementCard,
+                  (Settings.WIDTH - 2 * AbstractCard.IMG_WIDTH * 1.1F) / 2.0F * SettingsHelper.getScaleX(),
+                  Settings.HEIGHT / 2.0F * SettingsHelper.getScaleY());
             } else {
-              AbstractDungeon.player.damage(new DamageInfo(AbstractDungeon.player, this.damage));
-              CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
-              AbstractDungeon.actionManager.addToBottom(new VFXAction(
-                  new ScrapeEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 0.1F));
-              CardCrawlGame.sound.play("ATTACK_IRON_3");
-
-              if (cardToReplace != null) {
-                SimpletonEventHelper.loseCard(cardToReplace, Settings.WIDTH * SettingsHelper.getScaleX(),
-                    Settings.HEIGHT * SettingsHelper.getScaleY());
-
-                AbstractDungeon.actionManager.addToBottom(new WaitAction(1.5F));
-
-                SimpletonEventHelper.gainCard(replacementCard,
-                    (Settings.WIDTH - 2 * AbstractCard.IMG_WIDTH * 1.1F) / 2.0F * SettingsHelper.getScaleX(),
-                    Settings.HEIGHT / 2.0F * SettingsHelper.getScaleY());
-              } else {
-                SimpletonEventHelper.gainCard(replacementCard);
-              }
+              SimpletonEventHelper.gainCard(replacementCard);
             }
             break;
 
           case 2:
+          default:
             leaveEvent();
             break;
-
-           default:
-            break;
         }
 
-        if (!keepRolling) {
-          this.imageEventText.clearAllDialogs();
-          this.imageEventText.setDialogOption(OPTIONS[12]);
-          this.state = EventState.LEAVING;
-          AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
-        }
+        this.imageEventText.clearAllDialogs();
+        this.imageEventText.setDialogOption(OPTIONS[12]);
+        this.state = EventState.LEAVING;
+        AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
         break;
       case LEAVING:
         leaveEvent();

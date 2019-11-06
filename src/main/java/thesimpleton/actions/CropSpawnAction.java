@@ -60,17 +60,12 @@ public class CropSpawnAction extends AbstractGameAction {
                 AbstractCropOrb cropOrb = AbstractCropOrb.getCropOrb(this.cropOrb);
                 if (cropOrb != null) {
                     int newAmount = cropOrb.passiveAmount;
-//                        logger.debug("CropSpawnAction::update secondTick. newAmount: " + newAmount);
 
                     AbstractCrop crop = cropOrb.getCrop();
                     if (newAmount > crop.getMaturityThreshold()) {
                         crop.flash();
-//                            TheSimpletonMod.logger.debug("============> CropSpawnAction::update calling  crop.harvest()=====");
-
                         crop.harvest(false, newAmount - crop.getMaturityThreshold());
                     }
-                } else {
-//                        logger.debug("CropSpawnAction::update secondTick. player does not have expected orb: " + this.cropOrb.name + ". terminating action.");
                 }
                 this.isDone = true;
                 return;

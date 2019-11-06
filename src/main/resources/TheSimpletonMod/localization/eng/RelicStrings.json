@@ -154,7 +154,11 @@
     "NAME": "Spud of the Martyr",
     "FLAVOR": "Roasted for a good cause.",
     "DESCRIPTIONS": [
-      "Whenever you take attack damage, add two #ySpuds to your hand at the start of your next turn."
+      "Every #b",
+      " times you take attack damage, gain #b",
+      " Strength and #b",
+      " Dexterity, and add a ",
+      " to your hand."
     ]
   },
 

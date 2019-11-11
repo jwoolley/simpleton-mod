@@ -126,8 +126,10 @@
     "NAME": "Planter Box",
     "FLAVOR": "Imported soil tends to produce a less twisted harvest.",
     "DESCRIPTIONS": [
-      "Start each combat with #b",
-      " additional #yPlot."
+      "Every #b",
+      " turns, gain #b",
+      " additional #yPlot.",
+      " additional #yPlots."
     ]
   },
 

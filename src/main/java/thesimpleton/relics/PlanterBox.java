@@ -1,6 +1,7 @@
 package thesimpleton.relics;
 
 import basemod.abstracts.CustomRelic;
+import basemod.abstracts.CustomSavable;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
@@ -12,7 +13,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.powers.AbundancePower;
 
-public class PlanterBox extends CustomRelic {
+public class PlanterBox extends CustomRelic implements CustomSavable<Integer> {
   public static final String ID = "TheSimpletonMod:PlanterBox";
   public static final String IMG_PATH = "relics/planterbox.png";
   public static final String IMG_PATH_LARGE = "relics/planterbox_large.png";
@@ -21,6 +22,7 @@ public class PlanterBox extends CustomRelic {
   private static final RelicTier TIER = RelicTier.UNCOMMON;
   private static final LandingSound SOUND = LandingSound.SOLID;
 
+  private static final int TURNS_PER_TRIGGER = 3;
   private static final int PLOT_AMOUNT = 1;
   private boolean firstTurn = true;
 
@@ -42,21 +44,34 @@ public class PlanterBox extends CustomRelic {
 
   @Override
   public void atTurnStart() {
-    if (this.firstTurn) {
+    this.counter++;
+    if (this.counter >= TURNS_PER_TRIGGER) {
       flash();
       AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
       AbstractDungeon.actionManager.addToBottom(new IncreaseMaxOrbAction(getPlotAmount()));
-      this.firstTurn = false;
+      this.counter = 0;
     }
   }
 
   @Override
   public String getUpdatedDescription() {
-    return this.DESCRIPTIONS[0] + getPlotAmount() + this.DESCRIPTIONS[1];
+    final int plotAmount = getPlotAmount();
+    return this.DESCRIPTIONS[0] + TURNS_PER_TRIGGER + DESCRIPTIONS[1]
+        + plotAmount + (plotAmount == 1 ? DESCRIPTIONS[2] : DESCRIPTIONS[3]);
   }
 
   @Override
   public AbstractRelic makeCopy() {
     return new PlanterBox();
+  }
+
+  @Override
+  public Integer onSave() {
+    return this.counter;
+  }
+
+  @Override
+  public void onLoad(Integer counter) {
+    this.counter = counter;
   }
 }

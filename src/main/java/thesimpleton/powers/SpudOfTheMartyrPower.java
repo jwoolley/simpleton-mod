@@ -1,5 +1,6 @@
 package thesimpleton.powers;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -7,6 +8,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.LoseStrengthPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import thesimpleton.crops.PotatoCrop;
 import thesimpleton.relics.SpudOfTheMartyr;
 
@@ -50,16 +53,13 @@ public class SpudOfTheMartyrPower extends AbstractTheSimpletonPower {
 
   @Override
   public void updateDescription() {
-    this.description = DESCRIPTIONS[0] + this.amount + (this.amount == 1 ? DESCRIPTIONS[1] : DESCRIPTIONS[2])
-      + DESCRIPTIONS[3];
+    this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
   }
 
   @Override
-  public void atStartOfTurnPostDraw() {
-    final int numSpuds = this.amount;
-    this.flash();
-    AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
-    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(PotatoCrop.getSpudCard(), numSpuds));
+  public void atStartOfTurn() {
+    final int strAmount = this.amount;
+
   }
 
   static {

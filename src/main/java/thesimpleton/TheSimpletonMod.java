@@ -498,10 +498,14 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_AttackSplat1.ogg"));
         reflectedMap.put("BIRD_TWEET_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_BirdTweet1.ogg"));
+        reflectedMap.put("BLOODY_BLADE_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_BloodyBlade1.ogg"));
         reflectedMap.put("CHOMP_SHORT_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_ChompShort1.ogg"));
         reflectedMap.put("CRICKETS_CHIRP_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_Crickets1.ogg"));
+        reflectedMap.put("CROAK_ECHO_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_CroakEcho1.ogg"));
         reflectedMap.put("CRUNCH_NEGATIVE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_CrunchNegative1.ogg"));
         reflectedMap.put("DRINK_BOTTLE_1",
@@ -514,6 +518,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_GopherLaugh1.ogg"));
         reflectedMap.put("GRADUAL_RUMBLE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_GradualBuzz1.ogg"));
+        reflectedMap.put("GRUNT_VOICES_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_GruntVoices1.ogg"));
         reflectedMap.put("HOOTING_BIRD_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_HootingBird1.ogg"));
         reflectedMap.put("ICE_CLINK_1",
@@ -530,6 +536,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_RoosterCrow1.ogg"));
         reflectedMap.put("SIMPLE_CRUNCH_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_SimpleCrunch1.ogg"));
+        reflectedMap.put("SPLAT_SHORT_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_SplatShort1.ogg"));
         reflectedMap.put("WIND_HOWL_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_WindHowl1.ogg"));
     }

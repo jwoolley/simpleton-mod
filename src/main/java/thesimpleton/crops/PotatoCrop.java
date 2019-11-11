@@ -3,16 +3,16 @@ package thesimpleton.crops;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.relics.HotPotato;
+import thesimpleton.relics.SpudOfTheMartyr;
 
 public class PotatoCrop extends AbstractCrop {
   public static final Crop CROP_ENUM = Crop.POTATOES;
 
-
   public PotatoCrop() {
     super(CROP_ENUM);
-    logger.debug("MAKIN' POTATOES (instantiating PotatoCrop). CROP_EMUM: " + CROP_ENUM);
   }
 
   protected int harvestAction(int harvestAmount) {
@@ -35,5 +35,13 @@ public class PotatoCrop extends AbstractCrop {
     } else {
       return SimpletonUtil.SPUD_MISSILE.makeCopy();
     }
+  }
+
+  public int getMaturityThreshold() {
+//    if (getPlayer().hasRelic(SpudOfTheMartyr.ID)) {
+//      final AbstractRelic relic = getPlayer().getRelic(SpudOfTheMartyr.ID);
+//      return super.getMaturityThreshold() + relic.counter;
+//    }
+    return super.getMaturityThreshold();
   }
 }

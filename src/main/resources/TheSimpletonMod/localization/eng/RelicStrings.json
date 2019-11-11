@@ -154,14 +154,18 @@
     "NAME": "Spud of the Martyr",
     "FLAVOR": "Roasted for a good cause.",
     "DESCRIPTIONS": [
-      "Every #b",
-      " times you take attack damage, gain #b",
-      " Strength and #b",
-      " Dexterity, and add a ",
-      " to your hand."
+      "Whenever you lose HP in combat, gain #b",
+      " temporary #yStrength the following turn."
     ]
   },
 
+  "TheSimpletonMod:Trowel": {
+    "NAME": "Trowel",
+    "FLAVOR": "Roasted for a good cause.",
+    "DESCRIPTIONS": [
+      "Attack damage you receive is reduced by the number of #yPotato stacks you have."
+    ]
+  },
 
   "TheSimpletonMod:WoodChipper": {
     "NAME": "Weed Puller",

@@ -1,26 +1,21 @@
 package thesimpleton.relics;
 
 import basemod.abstracts.CustomRelic;
-import basemod.abstracts.CustomSavable;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.GainStrengthPower;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.power.crop.Potatoes;
+import thesimpleton.cards.SimpletonUtil;
 
-public class
-SpudOfTheMartyr extends CustomRelic implements CustomSavable<Integer> {
+public class SpudOfTheMartyr extends CustomRelic {
     public static final String ID = "TheSimpletonMod:SpudOfTheMartyr";
     public static final String IMG_PATH = "relics/spudofthemartyr.png";
     public static final String IMG_PATH_LARGE = "relics/spudofthemartyr_large.png";
@@ -28,11 +23,9 @@ SpudOfTheMartyr extends CustomRelic implements CustomSavable<Integer> {
 
     private static final RelicTier TIER = RelicTier.UNCOMMON;
     private static final LandingSound SOUND = LandingSound.HEAVY;
-    private static final int TRIGGER_THRESHOLD = 3;
-    private static final int STR_AMOUNT = 1;
-    private static final int DEX_AMOUNT = 1;
 
-    private static final AbstractCard CARD_TO_GAIN = new Potatoes();
+
+    public static final int STR_PER_TRIGGER = 1;
 
     private static final Logger logger = TheSimpletonMod.logger;
 
@@ -40,59 +33,59 @@ SpudOfTheMartyr extends CustomRelic implements CustomSavable<Integer> {
         super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
                 new Texture(TheSimpletonMod.getResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
         this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_LARGE));
-
-        Logger logger = TheSimpletonMod.logger;
-        logger.debug("Instantiating SpudOfTheMartyr");
     }
 
-    @Override
-    public String getUpdatedDescription() {
-        return this.DESCRIPTIONS[0] + TRIGGER_THRESHOLD + DESCRIPTIONS[1] + STR_AMOUNT + DESCRIPTIONS[2]
-            + DEX_AMOUNT + DESCRIPTIONS[3] + CARD_TO_GAIN.name + DESCRIPTIONS[4];
-    }
 
     public AbstractRelic makeCopy() {
         return new SpudOfTheMartyr();
     }
 
-    @Override
-    public int onAttacked(DamageInfo info, int damageAmount) {
-        logger.info("SpudOfTheMartyr::onAttacked called");
+    public String getUpdatedDescription(){
+        return this.DESCRIPTIONS[0] + STR_PER_TRIGGER + DESCRIPTIONS[1];
+    }
 
-        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
-            AbstractPlayer player = AbstractDungeon.player;
-            if ((info.type != DamageInfo.DamageType.THORNS) && (info.type != DamageInfo.DamageType.HP_LOSS) && damageAmount > 0) {
-                logger.info("SpudOfTheMartyr::onAttacked took normal damage");
+    public void onLoseHp(int damageAmount) {
+        if (SimpletonUtil.isPlayerInCombat()) {
+            this.flash();
+            if (this.counter < 0) {
+                this.counter = 1;
+            } else {
                 this.counter++;
-                if (this.counter >= TRIGGER_THRESHOLD) {
-                    this.flash();
-
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(player, player,
-                        new GainStrengthPower(player, STR_AMOUNT), STR_AMOUNT));
-
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(player, player,
-                        new DexterityPower(player, DEX_AMOUNT),DEX_AMOUNT));
-
-                    AbstractDungeon.actionManager.addToBottom(
-                        new MakeTempCardInHandAction(CARD_TO_GAIN.makeStatEquivalentCopy()));
-                    this.counter = 0;
-                }
             }
         }
-        return damageAmount;
     }
 
     @Override
-    public Integer onSave() {
-        return this.counter;
+    public void atBattleStart() {
+        this.counter = -1;
     }
 
     @Override
-    public void onLoad(Integer counter) {
-        this.counter = counter;
+    public void atTurnStart() {
+        AbstractPlayer player = AbstractDungeon.player;
+        if (this.counter > 0) {
+            this.flash();
+            AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_MAGIC_FAST_2"));
+            AbstractDungeon.actionManager.addToBottom(
+                new ApplyPowerAction(player, player, new StrengthPower(player, this.counter)));
+            AbstractDungeon.actionManager.addToBottom(
+                new ApplyPowerAction(player, player, new LoseStrengthPower(player, this.counter)));
+
+            this.counter = -1;
+        }
     }
 
-    static {
-        CARD_TO_GAIN.upgrade();
+    @Override
+    public void onVictory() {
+        this.counter = -1;
+    }
+
+    @Override
+    public void updateDescription(AbstractPlayer.PlayerClass c) {
+        this.description = getUpdatedDescription();
+        super.updateDescription(c);
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        initializeTips();
     }
 }

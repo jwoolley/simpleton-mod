@@ -144,12 +144,10 @@
   },
 
   "TheSimpletonMod:SpudOfTheMartyrPower": {
-    "NAME": "Martyr's Spuds",
+    "NAME": "Martyr's Strength",
     "DESCRIPTIONS": [
-      "At the start of your turn, add #b",
-      " #ySpud",
-      " #ySpuds",
-      " to your hand."
+      "At the start of your turn, gain #b",
+      " temporary #yStrength."
     ]
   },
 

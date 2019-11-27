@@ -75,7 +75,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
     };
     private static final float[] layerSpeeds = new float[]{20.0F, 30.0F, -40.0F, 20.0F, 0.0F};
 
-    private static final String ANIMATION_PATH = "character/hayseed2.scml";
+    private static final String ANIMATION_PATH = "character/hayseed.scml";
     public TheSimpletonCharacter(String name) {
 //        super(name, TheSimpletonCharEnum.THE_SIMPLETON, orbTextures, getImageResourcePath("char/orb/vfx.png"), null, (String) null);
 

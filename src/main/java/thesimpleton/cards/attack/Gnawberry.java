@@ -37,7 +37,7 @@ public class Gnawberry extends CustomCard {
   private static final int UPGRADE_HEAL_AMOUNT = 1;
 
   public Gnawberry() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY,
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY,
         TARGET);
     this.baseDamage = this.damage = DAMAGE;
     this.baseMagicNumber = this.magicNumber = HEAL_AMOUNT;

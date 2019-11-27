@@ -39,7 +39,7 @@ public class FirefliesEvent extends CustomSimpletonEvent
   private SimpletonEventHelper.EventState state;
 
   public FirefliesEvent() {
-    super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getResourcePath(IMG_PATH));
+    super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getImageResourcePath(IMG_PATH));
 
     final AbstractPlayer player = AbstractDungeon.player;
 

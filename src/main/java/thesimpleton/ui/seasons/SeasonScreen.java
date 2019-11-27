@@ -25,9 +25,7 @@ import thesimpleton.ui.SettingsHelper;
 import thesimpleton.ui.buttons.ReadyButton;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 // TODO: see ShopScreen.open for example screen display logic (set game state as well as initialize pieces)
@@ -215,7 +213,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
   private Texture getBackgroundImage() {
     if (backgroundImage == null) {
       backgroundImage = TheSimpletonMod.loadTexture(
-          TheSimpletonMod.getResourcePath(getSeasonImagePath(TheSimpletonMod.getSeason())));
+          TheSimpletonMod.getImageResourcePath(getSeasonImagePath(TheSimpletonMod.getSeason())));
     }
     return backgroundImage;
   }

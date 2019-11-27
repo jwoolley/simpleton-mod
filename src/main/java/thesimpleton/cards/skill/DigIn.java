@@ -30,7 +30,7 @@ public class DigIn extends CustomCard {
   private static final int UPGRADE_BLOCK_AMOUNT = 4;
 
   public DigIn() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
   }
 

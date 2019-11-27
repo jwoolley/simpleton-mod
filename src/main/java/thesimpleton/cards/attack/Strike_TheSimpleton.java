@@ -31,7 +31,7 @@ public class Strike_TheSimpleton extends CustomCard {
     private static final int UPGRADE_BONUS = 3;
 
     public Strike_TheSimpleton() {
-        super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+        super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
 
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(BaseModCardTags.BASIC_STRIKE);

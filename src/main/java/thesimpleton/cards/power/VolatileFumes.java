@@ -29,7 +29,7 @@ public class VolatileFumes extends CustomCard {
   private static final int BURNING_UPGRADE_AMOUNT = 2;
 
   public VolatileFumes() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = BURNING_AMOUNT;
   }
 

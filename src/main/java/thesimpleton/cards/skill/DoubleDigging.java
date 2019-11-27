@@ -30,7 +30,7 @@ public class DoubleDigging extends CustomCard {
   private static final int NUM_POWER_STACKS_UPGRADE_AMOUNT = 1;
 
   public DoubleDigging() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(NUM_POWER_STACKS), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(NUM_POWER_STACKS), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = NUM_POWER_STACKS;
   }
 

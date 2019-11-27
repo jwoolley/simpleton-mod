@@ -31,7 +31,7 @@ public class ResearchGrant extends CustomCard {
   private static final int NUM_CARD_COPIES_UPGRADE = 1;
 
   public ResearchGrant() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
     this.baseMagicNumber = this.magicNumber = NUM_CARD_COPIES;
     this.exhaust = true;

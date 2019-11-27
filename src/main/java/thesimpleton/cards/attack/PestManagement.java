@@ -35,7 +35,7 @@ public class PestManagement extends CustomCard {
   private static final int UPGRADE_AMOUNT = 2;
 
   public PestManagement() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE,  AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE,  AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
     this.baseBlock = this.block = BLOCK;
   }

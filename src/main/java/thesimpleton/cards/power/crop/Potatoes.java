@@ -29,7 +29,7 @@ public class Potatoes extends AbstractCropPowerCard {
   private static final int CROP_STACKS = 3;
 
   public Potatoes() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = CROP_STACKS;
     this.tags.add(TheSimpletonCardTags.CROP_POWER);
   }

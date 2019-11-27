@@ -39,7 +39,7 @@ public class Pruning extends AbstractDynamicCropOrbHighlighterCard implements Ha
   public int numStacksToHarvest;
 
   public Pruning() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST,
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST,
         getDescription(false, NUM_STACKS_TO_HARVEST),
         TYPE,  AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.numStacksToHarvest =  NUM_STACKS_TO_HARVEST;

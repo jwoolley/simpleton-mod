@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.enums.AbstractCardEnum;
 
 public class SeedCoat extends CustomCard {
@@ -34,7 +33,7 @@ public class SeedCoat extends CustomCard {
   private boolean hasBeenPlayed = false;
 
   public SeedCoat() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
     this.baseMagicNumber = this.magicNumber = BLOCK_REDUCTION;
   }

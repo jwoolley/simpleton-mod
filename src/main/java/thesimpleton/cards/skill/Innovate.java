@@ -38,7 +38,7 @@ public class Innovate extends CustomCard {
   private boolean upgradeCostForTurnOnly;
 
   public Innovate() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST,
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST,
         getDescription(REDUCED_COST, true),  TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY,
         TARGET);
     this.baseMagicNumber = this.magicNumber = REDUCED_COST;

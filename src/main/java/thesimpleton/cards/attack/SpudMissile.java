@@ -32,7 +32,7 @@ public class SpudMissile extends CustomCard {
   private static final int UPGRADE_DAMAGE_AMOUNT = 3;
 
   public SpudMissile() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
     this.exhaust = true;
     this.isEthereal = true;

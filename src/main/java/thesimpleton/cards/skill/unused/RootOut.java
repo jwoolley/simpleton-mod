@@ -30,7 +30,7 @@ public class RootOut extends AbstractHarvestCard {
   private static final int VULNERABLE_DURATION_UPGRADE_BONUS = 3;
 
   public RootOut() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, RARITY, TARGET,
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, RARITY, TARGET,
         1, true, false);
     this.baseMagicNumber = this.magicNumber = VULNERABLE_DURATION;
     this.exhaust = true;

@@ -26,7 +26,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheCity;
-import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -42,7 +41,6 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
-import sun.security.krb5.Config;
 import thesimpleton.cards.SimpletonCardHelper;
 import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.ShuffleTriggeredCard;
@@ -320,11 +318,11 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
         BaseMod.addColor(AbstractCardEnum.THE_SIMPLETON_BLUE,
                 CUSTOM_COLOR, CUSTOM_COLOR, CUSTOM_COLOR, CUSTOM_COLOR, CUSTOM_COLOR, CUSTOM_COLOR, CUSTOM_COLOR,
-                getResourcePath(ATTACK_CARD), getResourcePath(SKILL_CARD),
-                getResourcePath(POWER_CARD), getResourcePath(ENERGY_ORB),
-                getResourcePath(ATTACK_CARD_PORTRAIT), getResourcePath(SKILL_CARD_PORTRAIT),
-                getResourcePath(POWER_CARD_PORTRAIT), getResourcePath(ENERGY_ORB_PORTRAIT),
-                getResourcePath(CARD_ENERGY_ORB));
+                getImageResourcePath(ATTACK_CARD), getImageResourcePath(SKILL_CARD),
+                getImageResourcePath(POWER_CARD), getImageResourcePath(ENERGY_ORB),
+                getImageResourcePath(ATTACK_CARD_PORTRAIT), getImageResourcePath(SKILL_CARD_PORTRAIT),
+                getImageResourcePath(POWER_CARD_PORTRAIT), getImageResourcePath(ENERGY_ORB_PORTRAIT),
+                getImageResourcePath(CARD_ENERGY_ORB));
 
         currentTheme = new ThemeState();
 
@@ -345,7 +343,11 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         return "TheSimpletonMod:" + idText;
     }
 
-    public static final String getResourcePath(String resource) {
+    public static final String getAnimationResourcePath(String resource) {
+        return "TheSimpletonMod/animations/" + resource;
+    }
+
+    public static final String getImageResourcePath(String resource) {
         return "TheSimpletonMod/img/" + resource;
     }
 
@@ -360,7 +362,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     private void registerModPanel() {
-        Texture badgeTexture = new Texture(getResourcePath("badge.png"));
+        Texture badgeTexture = new Texture(getImageResourcePath("badge.png"));
         ModPanel modPanel = new ModPanel();
 
 //        UIStrings descriptionString = CardCrawlGame.languagePack.getUIString("TheSimpletonMod:ThemeDescription");
@@ -588,7 +590,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     public void receiveEditCharacters() {
         theSimpletonCharacter = new TheSimpletonCharacter("The Hayseed");
         BaseMod.addCharacter(
-            theSimpletonCharacter, getResourcePath("charSelect/button.png"), getResourcePath("charSelect/portrait.png"),
+            theSimpletonCharacter, getImageResourcePath("charSelect/button.png"), getImageResourcePath("charSelect/portrait.png"),
                 TheSimpletonCharEnum.THE_SIMPLETON);
     }
 

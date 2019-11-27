@@ -6,11 +6,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.ApplyBurningAction;
-import thesimpleton.characters.TheSimpletonCharacter;
 
 public class HeatStroke extends CustomRelic {
   public static final String ID = "TheSimpletonMod:HeatStroke";
@@ -25,9 +23,9 @@ public class HeatStroke extends CustomRelic {
   private final int burningAmount;
 
   public HeatStroke(int burningAmount) {
-    super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
-        new Texture(TheSimpletonMod.getResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
-    this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_LARGE));
+    super(ID, new Texture(TheSimpletonMod.getImageResourcePath(IMG_PATH)),
+        new Texture(TheSimpletonMod.getImageResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
+    this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getImageResourcePath(IMG_PATH_LARGE));
     this.counter = this.burningAmount = burningAmount;
     updateDescription(AbstractDungeon.player.chosenClass);
   }

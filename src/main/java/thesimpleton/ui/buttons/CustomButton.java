@@ -31,7 +31,7 @@ abstract public class CustomButton extends Button {
   }
 
   public CustomButton(final float x, final float y, final float scale, final String buttonId, final String label) {
-    super(x, y, getImg(TheSimpletonMod.getResourcePath(getUiPath(buttonId))));
+    super(x, y, getImg(TheSimpletonMod.getImageResourcePath(getUiPath(buttonId))));
     this.scale = scale;
     this.imgForScale = tempImg;
     tempImg = null;

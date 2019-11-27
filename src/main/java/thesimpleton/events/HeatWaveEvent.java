@@ -32,7 +32,7 @@ public class HeatWaveEvent extends CustomSimpletonEvent implements CustomSimplet
   private SimpletonEventHelper.EventState state;
 
   public HeatWaveEvent() {
-    super(NAME, DESCRIPTIONS[0], TheSimpletonMod.getResourcePath(IMG_PATH));
+    super(NAME, DESCRIPTIONS[0], TheSimpletonMod.getImageResourcePath(IMG_PATH));
 
     surrenderCard = SimpletonEventHelper.getRandomUpgradeableCard();
     REWARD_CARD.upgrade();

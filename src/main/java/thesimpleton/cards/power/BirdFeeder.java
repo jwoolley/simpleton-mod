@@ -34,7 +34,7 @@ public class BirdFeeder extends CustomCard {
   private final int hpPerStack;
 
   public BirdFeeder() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(HP_PER_STACK), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(HP_PER_STACK), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = NUM_STACKS;
     this.hpPerStack = HP_PER_STACK;
   }

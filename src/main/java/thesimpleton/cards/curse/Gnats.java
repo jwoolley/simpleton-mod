@@ -27,7 +27,7 @@ public class Gnats extends CustomCard implements SeasonalCurse {
   private static final int COST = -2;
 
   public Gnats() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCard.CardColor.CURSE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCard.CardColor.CURSE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = THORNS_DAMAGE;
   }
 

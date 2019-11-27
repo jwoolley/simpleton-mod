@@ -31,7 +31,7 @@ public class CrackOfDawn extends CustomCard {
   private static final int TURNS_TO_WAIT = 2;
 
   public CrackOfDawn() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.damage = CrackOfDawnPower.DAMAGE_AMOUNT_PER_STACK;
     this.baseMagicNumber = this.magicNumber = TURNS_TO_WAIT;
   }

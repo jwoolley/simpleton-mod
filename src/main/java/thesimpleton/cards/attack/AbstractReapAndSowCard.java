@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.actions.ReapAndSowThresholdAction;
-import thesimpleton.crops.Crop;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.AbstractCropOrb;
 
@@ -42,7 +41,7 @@ public abstract class AbstractReapAndSowCard extends CustomCard {
                                 AbstractCropOrb cropOrbToPlant,
                                 AttackEffect attackEffect, int damage, int upgradeDamage,
                                 int plantAmount, int upgradePlantAmount) {
-    super(id, name, TheSimpletonMod.getResourcePath(imgPath), cost, description,
+    super(id, name, TheSimpletonMod.getImageResourcePath(imgPath), cost, description,
         TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, rarity, TARGET);
 
     this.baseDamage = this.damage = damage;

@@ -32,7 +32,7 @@ public class FlashPasteurize extends CustomCard {
   private static final int BLOCK = 7;
 
   public FlashPasteurize() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
     this.baseBlock = this.block = BLOCK;
     this.isMultiDamage = true;

@@ -1,6 +1,5 @@
 package thesimpleton.cards.attack;
 
-import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -11,13 +10,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.actions.BarnstormAction;
 import thesimpleton.actions.SaladShooterAction;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.interfaces.AbstractDynamicTextCard;
 import thesimpleton.effects.utils.VFXActionTemplate;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.orbs.AbstractCropOrb;
 
 // TODO: make into AbstractDynamicTextCard (include count)
 
@@ -40,7 +37,7 @@ public class SaladShooter extends AbstractDynamicTextCard {
   private static final int UPGRADE_DAMAGE_AMOUNT = 1;
 
   public SaladShooter() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE,
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(false), TYPE,
         AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
 
     this.baseDamage = this.damage = DAMAGE;

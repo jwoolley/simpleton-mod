@@ -10,7 +10,6 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.enums.AbstractCardEnum;
-import thesimpleton.orbs.MushroomCropOrb;
 import thesimpleton.orbs.StrawberryCropOrb;
 
 public class Strawberries extends AbstractCropPowerCard {
@@ -30,7 +29,7 @@ public class Strawberries extends AbstractCropPowerCard {
   private static final int UPGRADE_CROP_STACKS = 1;
 
   public Strawberries() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = CROP_STACKS;
     this.tags.add(TheSimpletonCardTags.CROP_POWER);
   }

@@ -45,7 +45,7 @@ public class ReaptideEvent extends CustomSimpletonEvent implements CustomSimplet
   private SimpletonEventHelper.EventState state;
 
   public ReaptideEvent() {
-    super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getResourcePath(IMG_PATH));
+    super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getImageResourcePath(IMG_PATH));
 
     commonCropCard = SimpletonEventHelper.getSeasonalCropPowerCard(AbstractCard.CardRarity.COMMON, new Potatoes());
     commonCropCard.upgrade();

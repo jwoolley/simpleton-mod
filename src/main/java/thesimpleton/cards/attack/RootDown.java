@@ -32,7 +32,7 @@ public class RootDown extends CustomCard {
   private static final int PLANT_AMOUNT = 1;
 
   public RootDown() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE,
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE,
         AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.block = DAMAGE;
     this.baseMagicNumber = this.magicNumber = PLANT_AMOUNT;

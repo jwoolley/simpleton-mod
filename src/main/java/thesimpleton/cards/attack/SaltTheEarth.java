@@ -32,7 +32,7 @@ public class SaltTheEarth extends CustomCard {
   private static final int STATUS_COPIES = 2;
 
   public SaltTheEarth() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
     this.baseMagicNumber = this.magicNumber = STATUS_COPIES;
     this.isMultiDamage = true;

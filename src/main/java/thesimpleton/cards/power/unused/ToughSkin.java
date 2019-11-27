@@ -29,7 +29,7 @@ public class ToughSkin extends CustomCard {
   private static final int BLOCK_UPGRADE_AMOUNT = 1;
 
   public ToughSkin() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = BLOCK_AMOUNT;
   }
 

@@ -33,7 +33,7 @@ public class Germinate extends AbstractDynamicCropOrbHighlighterCard {
 
 
   public Germinate() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(false), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = CROP_AMOUNT;
     this.baseBlock = this.block = BLOCK_AMOUNT;
   }

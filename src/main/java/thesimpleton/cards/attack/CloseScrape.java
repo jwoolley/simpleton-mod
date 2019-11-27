@@ -33,7 +33,7 @@ public class CloseScrape extends AbstractDynamicCropOrbHighlighterCard {
     private static final int NUM_CROP_STACKS_TO_PLANT = 1;
 
     public CloseScrape() {
-      super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE,
+      super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(false), TYPE,
           AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
       this.baseDamage = this.damage = DAMAGE;
       this.baseMagicNumber = this.magicNumber = NUM_CROP_STACKS_TO_PLANT;

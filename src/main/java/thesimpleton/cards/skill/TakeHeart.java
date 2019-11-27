@@ -1,14 +1,12 @@
 package thesimpleton.cards.skill;
 
 import basemod.abstracts.CustomCard;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.AdrenalineEffect;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.TakeHeartAction;
 import thesimpleton.enums.AbstractCardEnum;
@@ -36,7 +34,7 @@ public class TakeHeart extends CustomCard {
   private static final int HEALTH_THRESHOLD_PERCENTAGE = 50;
 
   public TakeHeart() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(), TYPE,
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(), TYPE,
         AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
     this.baseMagicNumber = this.magicNumber = HEAL_AMOUNT;

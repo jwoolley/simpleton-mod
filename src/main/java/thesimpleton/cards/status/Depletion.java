@@ -32,7 +32,7 @@ public class Depletion extends CustomCard {
   private static final int DEBUFF_AMOUNT = 1;
 
   public Depletion() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY,
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY,
         TARGET);
     this.baseMagicNumber = this.magicNumber = DEBUFF_AMOUNT;
     this.exhaust = true;

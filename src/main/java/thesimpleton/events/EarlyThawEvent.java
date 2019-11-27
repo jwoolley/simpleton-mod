@@ -46,7 +46,7 @@ public class EarlyThawEvent extends CustomSimpletonEvent
   );
 
   public EarlyThawEvent() {
-    super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getResourcePath(IMG_PATH));
+    super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getImageResourcePath(IMG_PATH));
     REWARD_CARD.upgrade();
     upgradableCard = SimpletonEventHelper.getRandomUpgradeableCard();
 

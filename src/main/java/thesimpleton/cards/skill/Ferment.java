@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.FermentAction;
 import thesimpleton.enums.AbstractCardEnum;
@@ -32,7 +31,7 @@ public class Ferment extends CustomCard {
   private boolean drawCardAfter;
 
   public Ferment() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = ENERGY_AMOUNT;
     this.drawCardAfter = false;
   }

@@ -33,7 +33,7 @@ public class StockTheCellar extends CustomCard implements ShuffleTriggeredCard  
   private static final int BLOCK_PER_SHUFFLE_UPGRADE_AMOUNT = 1;
 
   public StockTheCellar() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK_AMOUNT;
     this.baseMagicNumber = this.magicNumber = BLOCK_PER_SHUFFLE_AMOUNT;
     this.isEthereal = true;

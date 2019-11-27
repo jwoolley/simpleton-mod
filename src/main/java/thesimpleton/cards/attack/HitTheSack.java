@@ -31,7 +31,7 @@ public class HitTheSack extends CustomCard {
   private static final int POTATOES_STACK_AMOUNT = 1;
 
   public HitTheSack() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE_PER_STACK;
     this.baseMagicNumber = this.magicNumber = POTATOES_STACK_AMOUNT;
   }

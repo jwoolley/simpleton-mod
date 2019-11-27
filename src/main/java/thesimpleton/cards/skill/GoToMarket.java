@@ -30,7 +30,7 @@ public class GoToMarket extends CustomCard {
   private static final int CARDS_PER_CROP_TYPE = 1;
 
   public GoToMarket() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = CARDS_PER_CROP_TYPE;
   }
 

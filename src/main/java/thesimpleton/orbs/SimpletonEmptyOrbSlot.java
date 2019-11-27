@@ -19,7 +19,7 @@ public class SimpletonEmptyOrbSlot extends CustomEmptyOrbSlot {
   public Texture getForegroundImage() {
     if (foregroundImage == null) {
       foregroundImage = TheSimpletonMod.loadTexture(
-          TheSimpletonMod.getResourcePath(AbstractCropOrb.getUiPath(FOREGROUND_IMG_PATH)));
+          TheSimpletonMod.getImageResourcePath(AbstractCropOrb.getUiPath(FOREGROUND_IMG_PATH)));
     }
     return foregroundImage;
   }
@@ -28,7 +28,7 @@ public class SimpletonEmptyOrbSlot extends CustomEmptyOrbSlot {
   public Texture getBackgroundImage() {
     if (backgroundImage == null) {
       backgroundImage = TheSimpletonMod.loadTexture(
-          TheSimpletonMod.getResourcePath(AbstractCropOrb.getUiPath(BACKGROUND_IMG_PATH)));
+          TheSimpletonMod.getImageResourcePath(AbstractCropOrb.getUiPath(BACKGROUND_IMG_PATH)));
     }
     return backgroundImage;
   }

@@ -2,7 +2,6 @@ package thesimpleton.cards.curse;
 
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,9 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.SlowPower;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.powers.LoseSlowPower;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,7 +30,7 @@ public class Frostbite extends CustomCard implements SeasonalCurse {
   private static final int COST = -2;
 
   public Frostbite() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.CURSE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.CURSE, RARITY, TARGET);
   }
 
   @Override

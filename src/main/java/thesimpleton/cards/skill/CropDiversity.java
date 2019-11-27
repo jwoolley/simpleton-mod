@@ -28,7 +28,7 @@ public class CropDiversity extends CustomCard {
   private static final int NUM_POWERS_UPGRADE = 1;
 
   public CropDiversity() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.exhaust = true;
     this.baseMagicNumber = this.magicNumber = NUM_POWERS;
   }

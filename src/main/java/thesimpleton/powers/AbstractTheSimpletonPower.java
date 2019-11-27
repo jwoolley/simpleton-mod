@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 
 public class AbstractTheSimpletonPower extends AbstractPower {
-    private static final String BASE_DIR = TheSimpletonMod.getResourcePath("powers/");
+    private static final String BASE_DIR = TheSimpletonMod.getImageResourcePath("powers/");
     protected static final Logger logger = TheSimpletonMod.logger;
 
     public AbstractTheSimpletonPower(String imgName) {

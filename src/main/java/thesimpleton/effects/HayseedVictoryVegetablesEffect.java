@@ -54,7 +54,7 @@ public class HayseedVictoryVegetablesEffect extends AbstractGameEffect {
     public HayseedVictoryVegetablesEffect() {
         if (textures == null) {
             textures = IMG_PATHS.stream()
-                .map(path -> new Texture(TheSimpletonMod.getResourcePath(path)))
+                .map(path -> new Texture(TheSimpletonMod.getImageResourcePath(path)))
                 .collect(Collectors.toList());
         }
 

@@ -36,7 +36,7 @@ public class BorealisEvent extends CustomSimpletonEvent
   private EventState state;
 
   public BorealisEvent() {
-    super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getResourcePath(IMG_PATH));
+    super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getImageResourcePath(IMG_PATH));
     surrenderCard = SimpletonEventHelper.getRandomNonCurseCardFromDeck();
 
     rewardCard1 = CardLibrary.getAnyColorCard(AbstractCard.CardRarity.RARE);

@@ -29,7 +29,7 @@ public class ErosionControl extends CustomCard {
   private static final int INTANGIBLE_UPGRADE_AMOUNT = 1;
 
   public ErosionControl() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = INTANGIBLE_AMOUNT;
     this.exhaust = true;
     this.tags.add(TheSimpletonCardTags.HARVEST);

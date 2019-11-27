@@ -29,7 +29,7 @@ public class CropRotation extends AbstractHarvestCard {
   private static final int NUM_CROPS = 1;
 
   public CropRotation() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH),
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH),
         COST, DESCRIPTION, TYPE, RARITY, TARGET, NUM_CROPS, false, false);
     this.baseMagicNumber = this.magicNumber = NUM_CROPS;
     this.tags.add(TheSimpletonCardTags.HARVEST);

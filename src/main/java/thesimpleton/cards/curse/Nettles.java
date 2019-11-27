@@ -35,7 +35,7 @@ public class Nettles extends CustomCard implements SeasonalCurse {
     private static final int COST = -2;
 
     public Nettles() {
-        super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.CURSE, RARITY, TARGET);
+        super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.CURSE, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = THORNS_DAMAGE;
     }
 

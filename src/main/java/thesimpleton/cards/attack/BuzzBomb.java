@@ -36,7 +36,7 @@ public class BuzzBomb extends CustomCard {
   private static final int STACKS_PER_KILL = 2;
 
   public BuzzBomb() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(), TYPE,
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(), TYPE,
         AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
     this.baseMagicNumber = this.magicNumber = NUM_ATTACKS;

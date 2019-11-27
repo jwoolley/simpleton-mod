@@ -3,15 +3,12 @@ package thesimpleton.relics;
 import basemod.abstracts.CustomRelic;
 import basemod.abstracts.CustomSavable;
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.powers.AbundancePower;
 
 public class PlanterBox extends CustomRelic implements CustomSavable<Integer> {
   public static final String ID = "TheSimpletonMod:PlanterBox";
@@ -27,9 +24,9 @@ public class PlanterBox extends CustomRelic implements CustomSavable<Integer> {
   private boolean firstTurn = true;
 
   public PlanterBox() {
-    super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
-        new Texture(TheSimpletonMod.getResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
-    this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_LARGE));
+    super(ID, new Texture(TheSimpletonMod.getImageResourcePath(IMG_PATH)),
+        new Texture(TheSimpletonMod.getImageResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
+    this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getImageResourcePath(IMG_PATH_LARGE));
   }
 
 

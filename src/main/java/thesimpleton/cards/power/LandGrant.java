@@ -1,8 +1,6 @@
 package thesimpleton.cards.power;
 
 import basemod.abstracts.CustomCard;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -11,7 +9,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.skill.Rototilling;
 import thesimpleton.enums.AbstractCardEnum;
 
 public class LandGrant extends CustomCard {
@@ -32,7 +29,7 @@ public class LandGrant extends CustomCard {
   private static final int PLOT_INCREASE_UPGRADE_AMOUNT = 1;
 
   public LandGrant() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = PLOT_INCREASE_AMOUNT;
   }
 

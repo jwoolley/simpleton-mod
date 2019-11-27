@@ -1,7 +1,6 @@
 package thesimpleton.cards.skill;
 
 import basemod.abstracts.CustomCard;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,10 +9,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.SurplusAction;
-import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.enums.AbstractCardEnum;
-
-import java.util.List;
 
 public class Surplus  extends CustomCard {
   public static final String ID = "TheSimpletonMod:Surplus";
@@ -32,7 +28,7 @@ public class Surplus  extends CustomCard {
   private static final int UPGRADE_CARD_AMOUNT = 1;
 
   public Surplus() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = CARD_AMOUNT;
     this.exhaust = true;
   }

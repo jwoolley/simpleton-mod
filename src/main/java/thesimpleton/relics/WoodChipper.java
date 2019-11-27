@@ -22,9 +22,9 @@ public class WoodChipper extends CustomRelic {
   private boolean activated = false;
 
   public WoodChipper() {
-    super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
-        new Texture(TheSimpletonMod.getResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
-    this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_LARGE));
+    super(ID, new Texture(TheSimpletonMod.getImageResourcePath(IMG_PATH)),
+        new Texture(TheSimpletonMod.getImageResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
+    this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getImageResourcePath(IMG_PATH_LARGE));
   }
 
   @Override

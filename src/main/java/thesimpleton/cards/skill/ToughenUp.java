@@ -33,7 +33,7 @@ public class ToughenUp extends CustomCard {
   private static final int UPGRADE_SQUASH_AMOUNT = 1;
 
   public ToughenUp() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
     this.baseMagicNumber = this.magicNumber = SQUASH_AMOUNT;
   }

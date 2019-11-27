@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.crops.Crop;
 
 import java.util.ArrayList;
@@ -29,9 +28,9 @@ public class CashCrop extends CustomRelic {
   private final List<Crop> cropsHarvestedThisCombat;
 
   public CashCrop() {
-    super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
-        new Texture(TheSimpletonMod.getResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
-    this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_LARGE));
+    super(ID, new Texture(TheSimpletonMod.getImageResourcePath(IMG_PATH)),
+        new Texture(TheSimpletonMod.getImageResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
+    this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getImageResourcePath(IMG_PATH_LARGE));
     cropsHarvestedThisCombat = new ArrayList<>();
   }
 

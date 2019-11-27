@@ -11,7 +11,6 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.orbs.OnionCropOrb;
-import thesimpleton.orbs.PotatoCropOrb;
 
 public class OnionBelt extends CustomRelic {
   public static final String ID = "TheSimpletonMod:OnionBelt";
@@ -27,9 +26,9 @@ public class OnionBelt extends CustomRelic {
   private static final int CROP_AMOUNT = 2;
 
   public OnionBelt() {
-    super(ID, new Texture(TheSimpletonMod.getResourcePath(IMG_PATH)),
-        new Texture(TheSimpletonMod.getResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
-    this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_LARGE));
+    super(ID, new Texture(TheSimpletonMod.getImageResourcePath(IMG_PATH)),
+        new Texture(TheSimpletonMod.getImageResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
+    this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getImageResourcePath(IMG_PATH_LARGE));
 
     Logger logger = TheSimpletonMod.logger;
     logger.debug("Instantiating OnionBelt");

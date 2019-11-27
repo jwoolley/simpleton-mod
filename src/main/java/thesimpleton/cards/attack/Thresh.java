@@ -34,7 +34,7 @@ public class Thresh extends CustomCard implements HarvestTriggeredCard {
   private static final int COST_DECREASE_PER_HARVEST = 1;
 
   public Thresh() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
     this.baseMagicNumber = this.magicNumber = COST_DECREASE_PER_HARVEST;
   }

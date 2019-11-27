@@ -77,7 +77,7 @@ public class SeasonIndicator {
 
   private Texture getIndicatorImage() {
     if (this.indicatorImage == null) {
-      this.indicatorImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getResourcePath(this.imgPath));
+      this.indicatorImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(this.imgPath));
     }
     return this.indicatorImage;
   }

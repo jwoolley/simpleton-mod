@@ -35,7 +35,7 @@ public class Haymaker extends CustomCard {
     private final int vulnerableAmount;
 
     public Haymaker() {
-        super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(VULNERABLE_AMOUNT), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+        super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(VULNERABLE_AMOUNT), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
         this.baseMagicNumber = this.magicNumber = HEAL_AMOUNT;
         this.vulnerableAmount = VULNERABLE_AMOUNT;

@@ -29,7 +29,7 @@ public class SoilSample extends CustomCard {
   private static final int NUM_CARDS_DRAWN = 1;
 
   public SoilSample() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.exhaust = true;
     this.baseMagicNumber = this.magicNumber = NUM_CARDS_CHOSEN;
   }

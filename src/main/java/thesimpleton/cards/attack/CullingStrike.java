@@ -32,7 +32,7 @@ public class CullingStrike extends AbstractDynamicTextCard {
   private static final int UPGRADE_DAMAGE_AMOUNT = 2;
 
   public CullingStrike() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE,
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(false), TYPE,
         AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
     this.isMultiDamage = true;

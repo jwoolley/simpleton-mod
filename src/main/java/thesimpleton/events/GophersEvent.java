@@ -51,7 +51,7 @@ public class GophersEvent extends CustomSimpletonEvent {
   private int rewardCounter = 1;
 
   public GophersEvent() {
-    super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getResourcePath(IMG_PATH_STEP_1));
+    super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getImageResourcePath(IMG_PATH_STEP_1));
     // TODO: Handle case where no upgradable cards, etc.
 
     this.goldBonus = GOLD_PER_TIER + AbstractDungeon.eventRng.random(GOLD_MAX_EXTRA + 1);
@@ -100,14 +100,14 @@ public class GophersEvent extends CustomSimpletonEvent {
           this.imageEventText.setDialogOption(OPTIONS[17]);
           if (bitten) {
             this.imageEventText.updateBodyText(OPTIONS[20]);
-            this.imageEventText.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_BITTEN));
+            this.imageEventText.loadImage(TheSimpletonMod.getImageResourcePath(IMG_PATH_BITTEN));
             CardCrawlGame.sound.play("CHOMP_SHORT_1");
             CardCrawlGame.sound.play("OUCH_1");
 
             AbstractDungeon.player.damage(
                 new DamageInfo(AbstractDungeon.player, getBiteDamage(rewardCounter - 1)));
           } else {
-            this.imageEventText.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_FINISHED));
+            this.imageEventText.loadImage(TheSimpletonMod.getImageResourcePath(IMG_PATH_FINISHED));
             this.imageEventText.updateBodyText(OPTIONS[21]);
           }
         } else if (buttonPressed != 5) {
@@ -120,10 +120,10 @@ public class GophersEvent extends CustomSimpletonEvent {
           updateDialogOptions(rewardCounter);
           rewardCounter++;
           if (this.rewardCounter == 2) {
-            this.imageEventText.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_STEP_2));
+            this.imageEventText.loadImage(TheSimpletonMod.getImageResourcePath(IMG_PATH_STEP_2));
             this.imageEventText.updateBodyText(OPTIONS[18]);
           } else {
-            this.imageEventText.loadImage(TheSimpletonMod.getResourcePath(IMG_PATH_STEP_3));
+            this.imageEventText.loadImage(TheSimpletonMod.getImageResourcePath(IMG_PATH_STEP_3));
             this.imageEventText.updateBodyText(OPTIONS[19]);
           }
         }

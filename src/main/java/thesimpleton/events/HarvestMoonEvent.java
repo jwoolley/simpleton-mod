@@ -30,7 +30,7 @@ public class HarvestMoonEvent extends CustomSimpletonEvent implements CustomSimp
   private EventState state;
 
   public HarvestMoonEvent() {
-    super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getResourcePath(IMG_PATH));
+    super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getImageResourcePath(IMG_PATH));
 
     maxHpLoss = (int)(AbstractDungeon.player.maxHealth * (MAX_HP_LOSS_PERCENT / 100.f));
 

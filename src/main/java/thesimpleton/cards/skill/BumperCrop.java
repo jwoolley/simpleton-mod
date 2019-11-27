@@ -8,15 +8,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.actions.HarvestCropAction;
-import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.interfaces.AbstractDynamicCropOrbHighlighterCard;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.AbstractCropOrb;
-import thesimpleton.orbs.SquashCropOrb;
-import thesimpleton.crops.Crop;
 
 public class BumperCrop extends AbstractDynamicCropOrbHighlighterCard {
   public static final String ID = "TheSimpletonMod:BumperCrop";
@@ -37,7 +33,7 @@ public class BumperCrop extends AbstractDynamicCropOrbHighlighterCard {
   private static final int HARVEST_AMOUNT = 1;
 
   public BumperCrop() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false),
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(false),
         TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
     this.baseMagicNumber = this.magicNumber = HARVEST_AMOUNT;

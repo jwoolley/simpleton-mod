@@ -28,7 +28,7 @@ public class Husk extends CustomCard {
   private static final int UPGRADE_BLOCK_AMOUNT = 3;
 
   public Husk() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
     this.exhaust = true;
     this.isEthereal = true;

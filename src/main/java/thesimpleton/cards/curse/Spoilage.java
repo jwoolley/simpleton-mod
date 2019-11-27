@@ -31,7 +31,7 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
 
   public Spoilage() {
     super(ID, NAME,
-        TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE, CardColor.CURSE, RARITY,
+        TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(false), TYPE, CardColor.CURSE, RARITY,
         TARGET);
 
     this.baseMagicNumber = this.magicNumber = CARD_THRESHOLD;

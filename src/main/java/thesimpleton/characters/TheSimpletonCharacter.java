@@ -1,6 +1,7 @@
 package thesimpleton.characters;
 
 import basemod.abstracts.CustomPlayer;
+import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
@@ -42,16 +43,17 @@ import thesimpleton.utilities.*;
 import java.util.*;
 import java.util.stream.Collectors;;
 
-import static thesimpleton.TheSimpletonMod.getResourcePath;
+import static thesimpleton.TheSimpletonMod.getAnimationResourcePath;
+import static thesimpleton.TheSimpletonMod.getImageResourcePath;
 
 public class TheSimpletonCharacter extends CustomPlayer {
     public static final Color CARD_RENDER_COLOR = new Color(0.1F, 0.4F, 0.9F, 1.0F);
 
     public static final int ENERGY_PER_TURN = 3;
-    public static final String SHOULDER_2 = getResourcePath("char/shoulder2.png"); // campfire pose
-    public static final String SHOULDER_1 = getResourcePath("char/shoulder.png"); // another campfire pose
-    public static final String CORPSE = getResourcePath("char/corpse.png");
-    public static final String CHAR_IMAGE = getResourcePath("char/thesimpleton.png");
+    public static final String SHOULDER_2 = getImageResourcePath("char/shoulder2.png"); // campfire pose
+    public static final String SHOULDER_1 = getImageResourcePath("char/shoulder.png"); // another campfire pose
+    public static final String CORPSE = getImageResourcePath("char/corpse.png");
+    public static final String CHAR_IMAGE = getImageResourcePath("char/thesimpleton.png");
 
     private static final CharacterStrings charStrings;
     public static final String NAME;
@@ -59,24 +61,29 @@ public class TheSimpletonCharacter extends CustomPlayer {
     private static CropUtil cropUtil;
 
     public static final String[] orbTextures = {
-            getResourcePath("char/orb/layer1.png"),
-            getResourcePath("char/orb/layer2.png"),
-            getResourcePath("char/orb/layer3.png"),
-            getResourcePath("char/orb/layer4.png"),
-            getResourcePath("char/orb/layer5.png"),
-            getResourcePath("char/orb/layer6.png"),
-            getResourcePath("char/orb/layer1d.png"),
-            getResourcePath("char/orb/layer2d.png"),
-            getResourcePath("char/orb/layer3d.png"),
-            getResourcePath("char/orb/layer4d.png"),
-            getResourcePath("char/orb/layer5d.png"),
+            getImageResourcePath("char/orb/layer1.png"),
+            getImageResourcePath("char/orb/layer2.png"),
+            getImageResourcePath("char/orb/layer3.png"),
+            getImageResourcePath("char/orb/layer4.png"),
+            getImageResourcePath("char/orb/layer5.png"),
+            getImageResourcePath("char/orb/layer6.png"),
+            getImageResourcePath("char/orb/layer1d.png"),
+            getImageResourcePath("char/orb/layer2d.png"),
+            getImageResourcePath("char/orb/layer3d.png"),
+            getImageResourcePath("char/orb/layer4d.png"),
+            getImageResourcePath("char/orb/layer5d.png"),
     };
+    private static final float[] layerSpeeds = new float[]{20.0F, 30.0F, -40.0F, 20.0F, 0.0F};
 
+    private static final String ANIMATION_PATH = "character/hayseed2.scml";
     public TheSimpletonCharacter(String name) {
-        super(name, TheSimpletonCharEnum.THE_SIMPLETON, orbTextures, getResourcePath("char/orb/vfx.png"), null, (String) null);
+//        super(name, TheSimpletonCharEnum.THE_SIMPLETON, orbTextures, getImageResourcePath("char/orb/vfx.png"), null, (String) null);
 
-        this.initializeClass(CHAR_IMAGE, SHOULDER_2, SHOULDER_1, CORPSE, getLoadout(),
-                0.0F, -6.0F, 250.0F, 380.0F,
+        super(name, TheSimpletonCharEnum.THE_SIMPLETON, orbTextures, getImageResourcePath("char/orb/vfx.png"),
+            layerSpeeds, new SpriterAnimation(getAnimationResourcePath(ANIMATION_PATH)));
+
+        this.initializeClass(null, SHOULDER_2, SHOULDER_1, CORPSE, getLoadout(),
+                0.0F, -8.0F, 250.0F, 280.0F,
                 new EnergyManager(ENERGY_PER_TURN));
 
         initializeOrbSlotLocations();
@@ -234,9 +241,9 @@ public class TheSimpletonCharacter extends CustomPlayer {
     @Override
     public List<CutscenePanel> getCutscenePanels() {
         List<CutscenePanel> panels = new ArrayList();
-        panels.add(new CutscenePanel(getResourcePath("scenes/thesimpleton1.png"), "ATTACK_DEFECT_BEAM"));
-        panels.add(new CutscenePanel(getResourcePath("scenes/thesimpleton2.png")));
-        panels.add(new CutscenePanel(getResourcePath("scenes/thesimpleton3.png")));
+        panels.add(new CutscenePanel(getImageResourcePath("scenes/thesimpleton1.png"), "ATTACK_DEFECT_BEAM"));
+        panels.add(new CutscenePanel(getImageResourcePath("scenes/thesimpleton2.png")));
+        panels.add(new CutscenePanel(getImageResourcePath("scenes/thesimpleton3.png")));
         return panels;
     }
 

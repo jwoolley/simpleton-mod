@@ -29,7 +29,7 @@ public class Defend_TheSimpleton extends CustomCard {
     private static final int BLOCK_AMT_UPGRADE = 3;
 
     public Defend_TheSimpleton() {
-        super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+        super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
         this.baseBlock = this.block = BLOCK_AMT;
         this.tags.add(BaseModCardTags.BASIC_DEFEND);
     }

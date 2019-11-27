@@ -31,7 +31,7 @@ public class Aerate extends AbstractDynamicCropOrbHighlighterCard {
   private static final int CROP_INCREASE_AMOUNT = 2;
 
   public Aerate() {
-    super(ID, NAME, TheSimpletonMod.getResourcePath(IMG_PATH), COST, getDescription(false), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(false), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
     this.baseMagicNumber = this.magicNumber = CROP_INCREASE_AMOUNT;
   }

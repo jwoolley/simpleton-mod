@@ -102,6 +102,10 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
     public static int TOOLTIP_WIDTH = 29;
     public static int TOOLTIP_HEIGHT = 29;
+
+    public static int TOOLTIP_X_OFFSET = 22;
+    public static int TOOLTIP_Y_OFFSET = 0;
+
     public static Color TOOLTIP_INACTIVE_COLOR = new Color(0.9F, 0.9F, 0.9F, 0.9F);
     public static Color TOOLTIP_ACTIVE_COLOR = Color.WHITE.cpy();
 
@@ -145,15 +149,15 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
       if(this.hb.hovered) {
         sb.setColor(TOOLTIP_ACTIVE_COLOR);
-        System.out.println("Rendering tooltip: " + tooltip);
         TipHelper.queuePowerTips(
-            (this.hb.x + TOOLTIP_WIDTH) * SettingsHelper.getScaleX(),
-            (this.hb.y + TOOLTIP_HEIGHT) * SettingsHelper.getScaleY(), tooltip);
+            this.hb.x + (TOOLTIP_WIDTH + TOOLTIP_X_OFFSET) * SettingsHelper.getScaleX(),
+            this.hb.y + (TOOLTIP_HEIGHT + TOOLTIP_Y_OFFSET) * SettingsHelper.getScaleY(), tooltip);
       } else {
         sb.setColor(TOOLTIP_INACTIVE_COLOR);
       }
 
-      sb.draw(this.image, this.hb.x, this.hb.y);
+      sb.draw(this.image, this.hb.x, this.hb.y, TOOLTIP_WIDTH * SettingsHelper.getScaleX(),
+          TOOLTIP_HEIGHT * SettingsHelper.getScaleY());
 
       sb.setColor(originalColor);
     }
@@ -233,7 +237,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
       logger.warn("No seasonal crops found");
     }
 
-    tooltip = new SeasonTooltip(TheSimpletonMod.getSeason(), TOOLTIP_X *  SettingsHelper.getScaleX(),
+    tooltip = new SeasonTooltip(TheSimpletonMod.getSeason(), TOOLTIP_X * SettingsHelper.getScaleX(),
         TOOLTIP_Y * SettingsHelper.getScaleY());
 
     for (final AbstractCropPowerCard card : this.inSeasonCropCards) {

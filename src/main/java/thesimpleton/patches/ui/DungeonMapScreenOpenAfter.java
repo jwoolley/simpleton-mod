@@ -2,6 +2,8 @@ package thesimpleton.patches.ui;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import thesimpleton.TheSimpletonMod;
 
@@ -57,7 +59,8 @@ public class DungeonMapScreenOpenAfter {
           + " seasonScreen.wasDismissed: "
           + TheSimpletonMod.seasonScreen.wasDismissed());
 
-      if (!TheSimpletonMod.seasonScreen.isOpen() && !TheSimpletonMod.seasonScreen.wasDismissed()) {
+      if (!TheSimpletonMod.seasonScreen.isOpen() && !TheSimpletonMod.seasonScreen.wasDismissed() &&
+          AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMPLETE) {
         log("DungeonMapScreenOpenAfter opening season screen");
         TheSimpletonMod.seasonScreen.open();
       } else {

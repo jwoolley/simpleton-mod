@@ -7,9 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.Hitbox;
-import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
@@ -25,6 +23,8 @@ import thesimpleton.ui.SettingsHelper;
 import thesimpleton.ui.buttons.ReadyButton;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -65,9 +65,13 @@ public class SeasonScreen implements ReadyButtonPanel  {
   private static final float CROPS_IN_SEASON_TEXT_Y = 744.0F;
   private static final float CROP_CARDS_Y = 485.0F;
 
+  private static final float TOOLTIP_X = 1253.0F;
+  private static final float TOOLTIP_Y = 732.0F;
+
   private static final TintEffect textEffect = new TintEffect();
 
   private final List<AbstractCropPowerCard> inSeasonCropCards = new ArrayList<>();
+  private SeasonTooltip tooltip;
 
   private static final Logger logger = TheSimpletonMod.logger;
 
@@ -92,6 +96,75 @@ public class SeasonScreen implements ReadyButtonPanel  {
       default:
         return getUiPath("season-screen-background-autumn");
     }
+  }
+
+  private static class SeasonTooltip {
+
+    public static int TOOLTIP_WIDTH = 29;
+    public static int TOOLTIP_HEIGHT = 29;
+    public static Color TOOLTIP_INACTIVE_COLOR = new Color(0.9F, 0.9F, 0.9F, 0.9F);
+    public static Color TOOLTIP_ACTIVE_COLOR = Color.WHITE.cpy();
+
+    private static String getTooltipImagePath(Season season) {
+      switch(season) {
+        case WINTER:
+          return getUiPath("season-tooltip-winter");
+        case SPRING:
+          return getUiPath("season-tooltip-spring");
+        case SUMMER:
+          return getUiPath("season-tooltip-summer");
+        case AUTUMN:
+        default:
+          return getUiPath("season-tooltip-autumn");
+      }
+    }
+
+    public SeasonTooltip(Season season, float x, float y) {
+      this.image = TheSimpletonMod.loadTexture(
+          TheSimpletonMod.getImageResourcePath(getTooltipImagePath(season)));
+
+      this.hb = new Hitbox(TOOLTIP_WIDTH * SettingsHelper.getScaleX(),
+          TOOLTIP_HEIGHT * SettingsHelper.getScaleY());
+
+      position(x, y);
+    }
+
+    final static ArrayList<PowerTip> tooltip;
+    static {
+      UIStrings tooltipText = CardCrawlGame.languagePack.getUIString("TheSimpletonMod:SeasonScreenTooltip");
+      tooltip = new ArrayList<>(Collections.singletonList(
+          new PowerTip(tooltipText.TEXT[0], tooltipText.TEXT[1])));
+    }
+
+    void update() {
+      this.hb.update();
+    }
+
+    void render(SpriteBatch sb) {
+      final Color originalColor = sb.getColor();
+
+      if(this.hb.hovered) {
+        sb.setColor(TOOLTIP_ACTIVE_COLOR);
+        System.out.println("Rendering tooltip: " + tooltip);
+        TipHelper.queuePowerTips(
+            (this.hb.x + TOOLTIP_WIDTH) * SettingsHelper.getScaleX(),
+            (this.hb.y + TOOLTIP_HEIGHT) * SettingsHelper.getScaleY(), tooltip);
+      } else {
+        sb.setColor(TOOLTIP_INACTIVE_COLOR);
+      }
+
+      sb.draw(this.image, this.hb.x, this.hb.y);
+
+      sb.setColor(originalColor);
+    }
+
+    private void position(float x, float y) {
+      this.hb.x = x;
+      this.hb.y = y;
+    }
+
+    private final Texture image;
+    private final Hitbox hb;
   }
 
   public SeasonScreen() {
@@ -160,6 +233,9 @@ public class SeasonScreen implements ReadyButtonPanel  {
       logger.warn("No seasonal crops found");
     }
 
+    tooltip = new SeasonTooltip(TheSimpletonMod.getSeason(), TOOLTIP_X *  SettingsHelper.getScaleX(),
+        TOOLTIP_Y * SettingsHelper.getScaleY());
+
     for (final AbstractCropPowerCard card : this.inSeasonCropCards) {
       UnlockTracker.markCardAsSeen(card.cardID);
     }
@@ -208,6 +284,8 @@ public class SeasonScreen implements ReadyButtonPanel  {
     }
 
     getReadyButton().update();
+
+    tooltip.update();
   }
 
   private Texture getBackgroundImage() {
@@ -292,6 +370,8 @@ public class SeasonScreen implements ReadyButtonPanel  {
         TipHelper.renderTipForCard(c, sb, c.keywords);
       }
     }
+
+    tooltip.render(sb);
   }
 
   private void generateCardHitboxes(List<AbstractCard> cards) {

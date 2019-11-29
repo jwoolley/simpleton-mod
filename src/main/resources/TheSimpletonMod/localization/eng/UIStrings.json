@@ -164,5 +164,11 @@
     "TEXT": [
       "Unknown"
     ]
+  },
+  "TheSimpletonMod:SeasonScreenTooltip": {
+    "TEXT": [
+      "In-Season Crops",
+      "These #yIn-season #yCrops are available this run through power cards available as combat rewards and from the shop. Other crops are still available through specific cards and other means."
+    ]
   }
 }

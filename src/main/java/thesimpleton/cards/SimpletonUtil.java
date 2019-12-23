@@ -197,4 +197,8 @@ public class SimpletonUtil {
     public static String tagString(String stringToTag, String tag) {
         return tag + stringToTag.replaceAll("(\\s)", "$1" + tag);
     }
+
+    public static boolean isCardInHand(AbstractCard card) {
+        return isPlayerInCombat() && AbstractDungeon.player.hand.group.contains(card);
+    }
 }

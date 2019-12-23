@@ -10,9 +10,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.AbstractCardWithPreviewCard;
 import thesimpleton.enums.AbstractCardEnum;
 
-public class ResearchGrant extends CustomCard {
+public class ResearchGrant extends AbstractCardWithPreviewCard {
   public static final String ID = "TheSimpletonMod:ResearchGrant";
   public static final String NAME;
   public static final String DESCRIPTION;
@@ -29,6 +30,8 @@ public class ResearchGrant extends CustomCard {
   private static final int BLOCK_UPGRADE = 4;
   private static final int NUM_CARD_COPIES = 2;
   private static final int NUM_CARD_COPIES_UPGRADE = 1;
+
+  private static final AbstractCard PREVIEW_CARD;
 
   public ResearchGrant() {
     super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
@@ -57,9 +60,15 @@ public class ResearchGrant extends CustomCard {
     }
   }
 
+  @Override
+  public AbstractCard getPreviewCard() {
+    return PREVIEW_CARD;
+  }
+
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
+    PREVIEW_CARD = new SoilSample();
   }
 }

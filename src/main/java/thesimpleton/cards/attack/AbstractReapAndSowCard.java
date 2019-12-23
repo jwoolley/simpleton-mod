@@ -1,22 +1,24 @@
 package thesimpleton.cards.attack;
 
-import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.actions.ReapAndSowThresholdAction;
+import thesimpleton.cards.AbstractCardWithPreviewCard;
+import thesimpleton.cards.skill.Cultivate;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.AbstractCropOrb;
 
-public abstract class AbstractReapAndSowCard extends CustomCard {
+public abstract class AbstractReapAndSowCard extends AbstractCardWithPreviewCard {
   public static final String ID = "TheSimpletonMod:AbstractReapAndSowCard";
   public static final String DESCRIPTION;
   public static final String[] EXTENDED_DESCRIPTION;
@@ -31,6 +33,8 @@ public abstract class AbstractReapAndSowCard extends CustomCard {
   protected static final int ATTACK_UPGRADE_BONUS = 2;
   protected static final int PLANT_AMOUNT = 1;
   protected static final int UPGRADE_PLANT_AMOUNT = 1;
+
+  private static final AbstractCard PREVIEW_CARD;
 
   private final int upgradeDamage;
   private final int upgradePlantAmount;
@@ -87,11 +91,17 @@ public abstract class AbstractReapAndSowCard extends CustomCard {
     return this.rawDescription;
   }
 
+  @Override
+  public AbstractCard getPreviewCard() {
+    return PREVIEW_CARD;
+  }
+
   public abstract AbstractCard makeCopy();
 
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     DESCRIPTION = cardStrings.DESCRIPTION;
     EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
+    PREVIEW_CARD = new Cultivate();
   }
 }

@@ -10,10 +10,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.AbstractCardWithPreviewCard;
 import thesimpleton.cards.status.Depletion;
 import thesimpleton.enums.AbstractCardEnum;
 
-public class DigIn extends CustomCard {
+public class DigIn extends AbstractCardWithPreviewCard {
   public static final String ID = "TheSimpletonMod:DigIn";
   public static final String NAME;
   public static final String DESCRIPTION;
@@ -28,6 +29,8 @@ public class DigIn extends CustomCard {
   private static final int COST = 0;
   private static final int BLOCK = 10;
   private static final int UPGRADE_BLOCK_AMOUNT = 4;
+
+  private static final AbstractCard PREVIEW_CARD;
 
   public DigIn() {
     super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
@@ -53,9 +56,15 @@ public class DigIn extends CustomCard {
     }
   }
 
+  @Override
+  public AbstractCard getPreviewCard() {
+    return PREVIEW_CARD;
+  }
+
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
+    PREVIEW_CARD = new Depletion();
   }
 }

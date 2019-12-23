@@ -37,6 +37,7 @@ public class ResistantStrainPower extends AbstractTheSimpletonPower {
     this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
   }
 
+  @Override
   public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
     if ((power.type == AbstractPower.PowerType.DEBUFF) && (!power.ID.equals("Shackled")) && (source == this.owner) && (target != this.owner) &&
         (!target.hasPower("Artifact"))) {

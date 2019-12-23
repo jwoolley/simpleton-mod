@@ -142,7 +142,7 @@ public class SeasonIndicator {
           this.xOffset, this.yOffset,
           indicatorImg.getWidth() * SettingsHelper.getScaleX(),  indicatorImg.getHeight() * SettingsHelper.getScaleY(),
           0, 0,
-          indicatorImg.getWidth(), indicatorImg.getHeight(),
+          indicatorImg.getWidth(),  indicatorImg.getHeight(),
           false, false);
 
       FontHelper.renderFontLeft(

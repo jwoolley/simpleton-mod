@@ -54,8 +54,8 @@ public class Frostbite extends CustomCard implements SeasonalCurse {
 
   private void increaseRandomCardCostForTurn(List<AbstractCard> increaseableCards) {
     AbstractCard card = increaseableCards.get(AbstractDungeon.cardRng.random(increaseableCards.size() - 1));
-    card.costForTurn += this.COST_INCREASE_AMOUNT;
-    card.isCostModifiedForTurn = true;
+
+    card.setCostForTurn(card.costForTurn + COST_INCREASE_AMOUNT);
 
     // TODO: reimplement as an action & wait a tick between power flash and card flash
     CardCrawlGame.sound.play("ICE_CLINK_1");

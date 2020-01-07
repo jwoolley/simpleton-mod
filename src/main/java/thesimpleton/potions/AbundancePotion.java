@@ -30,11 +30,8 @@ public class AbundancePotion extends CustomPotion {
 
   public AbundancePotion() {
     super(NAME, POTION_ID, PotionRarity.UNCOMMON, POTION_SHAPE, POTION_COLOR);
-    this.potency = getPotency();
-    this.description = (DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + this.potency + DESCRIPTIONS[2]);
     this.isThrown = false;
     this.targetRequired = false;
-    this.tips.add(new PowerTip(this.name, this.description));
 
     PotionStrings potionKeywordStrings =
         CardCrawlGame.languagePack.getPotionString("TheSimpletonMod:AbundancePotionKeyword");
@@ -57,6 +54,16 @@ public class AbundancePotion extends CustomPotion {
     return new AbundancePotion();
   }
 
+  @Override
+  public void initializeData() {
+    this.potency = getPotency();
+    this.description = (DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + this.potency + DESCRIPTIONS[2]);
+    this.tips.clear();
+    this.tips.add(new PowerTip(this.name, this.description));
+  }
+
+
+  @Override
   public int getPotency(int ascensionLevel) {
     return POTENCY;
   }

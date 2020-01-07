@@ -49,7 +49,7 @@ public class CropRotationAction extends AbstractGameAction {
 
         final AbstractCropPowerCard randomCropPowerCard = TheSimpletonCharacter.getCropUtil().getRandomCropCardInSeason();
         if (this.reduceCost) {
-          randomCropPowerCard.modifyCostForTurn(-1);
+          randomCropPowerCard.setCostForTurn(randomCropPowerCard.costForTurn - 1);
         }
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(randomCropPowerCard, numCardsToGain));
       }

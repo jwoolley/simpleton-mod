@@ -34,11 +34,8 @@ public class KindlingPotion extends CustomPotion {
 
   public KindlingPotion() {
     super(NAME, POTION_ID, PotionRarity.UNCOMMON, POTION_SHAPE, POTION_COLOR);
-    this.potency = getPotency();
-    this.description = (DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1]);
     this.isThrown = false;
     this.targetRequired = false;
-    this.tips.add(new PowerTip(this.name, this.description));
 
     PotionStrings potionKeywordStrings =
         CardCrawlGame.languagePack.getPotionString("TheSimpletonMod:KindlingPotionKeyword");
@@ -64,7 +61,26 @@ public class KindlingPotion extends CustomPotion {
     return new KindlingPotion();
   }
 
+  @Override
+  public void initializeData() {
+    this.potency = getPotency();
+    this.description = (DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1]);
+    this.tips.clear();
+    this.tips.add(new PowerTip(this.name, this.description));
+  }
+
+  @Override
   public int getPotency(int ascensionLevel) {
     return POTENCY;
+  }
+
+  @Override
+  public int getPotency()
+  {
+    int potency = getPotency(AbstractDungeon.ascensionLevel);
+    if ((AbstractDungeon.player != null) && (AbstractDungeon.player.hasRelic("SacredBark"))) {
+      potency *= 2;
+    }
+    return potency;
   }
 }

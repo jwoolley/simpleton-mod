@@ -690,7 +690,73 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new Strawberries());
         cards.add(new Turnips());
 
+        // unlockAllCardsForTesting();
+
         return cards;
+    }
+
+    private static void unlockAllCardsForTesting() {
+        UnlockTracker.unlockCard(Strike_TheSimpleton.ID);
+        UnlockTracker.unlockCard(Defend_TheSimpleton.ID);
+        UnlockTracker.unlockCard(Haymaker.ID);
+        UnlockTracker.unlockCard(ReapAndSow.ID);
+        UnlockTracker.unlockCard(Barnstorm.ID);
+        UnlockTracker.unlockCard(BuzzBomb.ID);
+        UnlockTracker.unlockCard(CloseScrape.ID);
+        UnlockTracker.unlockCard(CullingStrike.ID);
+        UnlockTracker.unlockCard(DoubleBarrel.ID);
+        UnlockTracker.unlockCard(Fertilaser.ID);
+        UnlockTracker.unlockCard(FlashPasteurize.ID);
+        UnlockTracker.unlockCard(HitTheSack.ID);
+        UnlockTracker.unlockCard(KeenEdge.ID);
+        UnlockTracker.unlockCard(PestManagement.ID);
+        UnlockTracker.unlockCard(Rake.ID);
+        UnlockTracker.unlockCard(RootDown.ID);
+        UnlockTracker.unlockCard(SaltTheEarth.ID);
+        UnlockTracker.unlockCard(SlashAndBurn.ID);
+        UnlockTracker.unlockCard(SaladShooter.ID);
+        UnlockTracker.unlockCard(Sunseed.ID);
+        UnlockTracker.unlockCard(Sunchoke.ID);
+        UnlockTracker.unlockCard(Thresh.ID);
+        UnlockTracker.unlockCard(ReekAndSow.ID);
+        UnlockTracker.unlockCard(ReapAndSquash.ID);
+        UnlockTracker.unlockCard(Aerate.ID);
+        UnlockTracker.unlockCard(BumperCrop.ID);
+        UnlockTracker.unlockCard(ControlledBurn.ID);
+        UnlockTracker.unlockCard(CropDiversity.ID);
+        UnlockTracker.unlockCard(CropRotation.ID);
+        UnlockTracker.unlockCard(DesperatePlunge.ID);
+        UnlockTracker.unlockCard(DoubleDigging.ID);
+        UnlockTracker.unlockCard(ErosionControl.ID);
+        UnlockTracker.unlockCard(DigIn.ID);
+        UnlockTracker.unlockCard(FanTheFlames.ID);
+        UnlockTracker.unlockCard(Ferment.ID);
+        UnlockTracker.unlockCard(GoToMarket.ID);
+        UnlockTracker.unlockCard(Innovate.ID);
+        UnlockTracker.unlockCard(Mulch.ID);
+        UnlockTracker.unlockCard(OnionBloom.ID);
+        UnlockTracker.unlockCard(SeedCoat.ID);
+        UnlockTracker.unlockCard(Polyculture.ID);
+        UnlockTracker.unlockCard(Pruning.ID);
+        UnlockTracker.unlockCard(ResearchGrant.ID);
+        UnlockTracker.unlockCard(Rototilling.ID);
+        UnlockTracker.unlockCard(SoilSample.ID);
+        UnlockTracker.unlockCard(SpiceUp.ID);
+        UnlockTracker.unlockCard(StockTheCellar.ID);
+        UnlockTracker.unlockCard(Surplus.ID);
+        UnlockTracker.unlockCard(Swelter.ID);
+        UnlockTracker.unlockCard(Germinate.ID);
+        UnlockTracker.unlockCard(TakeHeart.ID);
+        UnlockTracker.unlockCard(ToughenUp.ID);
+        UnlockTracker.unlockCard(VineRipen.ID);
+        UnlockTracker.unlockCard(BirdFeeder.ID);
+        UnlockTracker.unlockCard(Biorefinement.ID);
+        UnlockTracker.unlockCard(CrackOfDawn.ID);
+        UnlockTracker.unlockCard(Fecundity.ID);
+        UnlockTracker.unlockCard(LandGrant.ID);
+        UnlockTracker.unlockCard(Photosynthesis.ID);
+        UnlockTracker.unlockCard(ResistantStrain.ID);
+        UnlockTracker.unlockCard(VolatileFumes.ID);
     }
 
     public static List<AbstractCard> getSeasonalCurseCardList() {

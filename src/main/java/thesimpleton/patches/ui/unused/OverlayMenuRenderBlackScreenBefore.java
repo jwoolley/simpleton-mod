@@ -3,7 +3,6 @@ package thesimpleton.patches.ui.unused;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.core.OverlayMenu;
-import thesimpleton.TheSimpletonMod;
 
 @SpirePatch(
     clz = OverlayMenu.class,
@@ -14,7 +13,7 @@ import thesimpleton.TheSimpletonMod;
 )
 
 public class OverlayMenuRenderBlackScreenBefore {
-  public static void Prefix (OverlayMenu __instance, SpriteBatch __spriteBatch) {
+//  public static void Prefix (OverlayMenu __instance, SpriteBatch __spriteBatch) {
 //     if (TheSimpletonMod.isPlayingAsSimpleton()) {
 
 //    if (TheSimpletonMod.seasonScreen.isOpen()) {
@@ -22,5 +21,5 @@ public class OverlayMenuRenderBlackScreenBefore {
 //      __instance.hideBlackScreen();
 //    }
 // }
-  }
+//  }
 }

@@ -130,6 +130,7 @@
       ". #rGain #r",
       " #rBurning next combat.",
       "[Locked] Requires a Potion.",
+      "[Locked] Requires a non-Curse card.",
       "[Leave]"
     ]
   },

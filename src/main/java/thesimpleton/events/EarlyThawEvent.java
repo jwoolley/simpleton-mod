@@ -50,8 +50,11 @@ public class EarlyThawEvent extends CustomSimpletonEvent
     REWARD_CARD.upgrade();
     upgradableCard = SimpletonEventHelper.getRandomUpgradeableCard();
 
-    final AbstractCard upgradedExampleCard = upgradableCard.makeStatEquivalentCopy();
-    upgradedExampleCard.upgrade();
+    AbstractCard upgradedExampleCard = null;
+    if (upgradableCard != null) {
+      upgradedExampleCard = upgradableCard.makeStatEquivalentCopy();
+      upgradedExampleCard.upgrade();
+    }
 
     // TODO: Handle case where no upgradable cards
 
@@ -68,8 +71,12 @@ public class EarlyThawEvent extends CustomSimpletonEvent
       relicReward = null;
     }
 
-    this.imageEventText.setDialogOption(OPTIONS[0] + upgradableCard + OPTIONS[2] + HEAL_AMOUNT + OPTIONS[3],
-        upgradedExampleCard);
+    if (upgradedExampleCard != null) {
+      this.imageEventText.setDialogOption(OPTIONS[0] + upgradableCard + OPTIONS[2] + HEAL_AMOUNT + OPTIONS[3],
+          upgradedExampleCard);
+    } else {
+      this.imageEventText.setDialogOption(OPTIONS[7], true);
+    }
 
     this.imageEventText.setDialogOption(OPTIONS[1] + CURSE_CHANCE_PERCENTAGE + OPTIONS[4] + CURSE_CARD + OPTIONS[5]
         + (relicReward == null ? REWARD_CARD : relicReward) + OPTIONS[6], CURSE_CARD, relicReward);
@@ -114,13 +121,13 @@ public class EarlyThawEvent extends CustomSimpletonEvent
             break;
         }
         this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[7]);
+        this.imageEventText.setDialogOption(OPTIONS[8]);
         this.state = EventState.LEAVING;
         AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
         break;
       case LEAVING:
         this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[7]);
+        this.imageEventText.setDialogOption(OPTIONS[8]);
         openMap();
         break;
     }

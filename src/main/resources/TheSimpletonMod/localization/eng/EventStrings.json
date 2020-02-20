@@ -28,6 +28,7 @@
       "%: #rBecome #rCursed #r– #r",
       ". #gReceive ",
       ".",
+      "[Locked] Requires an upgradeable card.",
       "[Leave]"
     ]
   },
@@ -122,8 +123,8 @@
       "A relentless #rheat permeates the dungeon. Your limbs throb beneath your gear. You've lost the ability to sweat. NL NL You may not be able to endure this for much longer."
     ],
     "OPTIONS": [
-      "[Slake Your Thirst] #rLose #r",
-      "[Drop Some Gear] #rLose #r",
+      "[Slake Your Thirst] #rLose ",
+      "[Drop Some Gear] #rLose ",
       "[Press Forward] #gGain ",
       ". #gHeal #g",
       " #gHP.",

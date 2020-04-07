@@ -1,10 +1,11 @@
-package thesimpleton.cards;
+package thesimpleton.cards.unused;
 
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.utilities.SimpletonModSettings;
 
 abstract public class AbstractCardWithPreviewCard extends CustomCard {

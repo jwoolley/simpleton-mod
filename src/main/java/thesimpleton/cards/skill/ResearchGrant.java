@@ -9,14 +9,15 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import org.lwjgl.opengl.EXTAbgr;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.AbstractCardWithPreviewCard;
 import thesimpleton.enums.AbstractCardEnum;
 
-public class ResearchGrant extends AbstractCardWithPreviewCard {
+public class ResearchGrant extends CustomCard {
   public static final String ID = "TheSimpletonMod:ResearchGrant";
   public static final String NAME;
   public static final String DESCRIPTION;
+  public static final String[] EXTENDED_DESCRIPTION;
   public static final String IMG_PATH = "cards/researchgrant.png";
 
   private static final CardStrings cardStrings;
@@ -34,10 +35,12 @@ public class ResearchGrant extends AbstractCardWithPreviewCard {
   private static final AbstractCard PREVIEW_CARD;
 
   public ResearchGrant() {
-    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
+    super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(NUM_CARD_COPIES), TYPE,
+        AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
     this.baseMagicNumber = this.magicNumber = NUM_CARD_COPIES;
     this.exhaust = true;
+    this.cardsToPreview = PREVIEW_CARD;
   }
 
   @Override
@@ -57,18 +60,22 @@ public class ResearchGrant extends AbstractCardWithPreviewCard {
       this.upgradeName();
       this.upgradeBlock(BLOCK_UPGRADE);
       this.upgradeMagicNumber(NUM_CARD_COPIES_UPGRADE);
+      this.rawDescription = getDescription(this.magicNumber);
+      this.initializeDescription();
     }
   }
 
-  @Override
-  public AbstractCard getPreviewCard() {
-    return PREVIEW_CARD;
+  private static String getDescription(int numSoilSamples) {
+    return DESCRIPTION
+        + (numSoilSamples == 1 ? EXTENDED_DESCRIPTION[0] : EXTENDED_DESCRIPTION[1])
+        + EXTENDED_DESCRIPTION[2];
   }
 
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
+    EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
     PREVIEW_CARD = new SoilSample();
   }
 }

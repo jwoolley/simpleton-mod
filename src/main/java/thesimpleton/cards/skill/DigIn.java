@@ -10,11 +10,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.AbstractCardWithPreviewCard;
 import thesimpleton.cards.status.Depletion;
 import thesimpleton.enums.AbstractCardEnum;
 
-public class DigIn extends AbstractCardWithPreviewCard {
+public class DigIn extends CustomCard {
   public static final String ID = "TheSimpletonMod:DigIn";
   public static final String NAME;
   public static final String DESCRIPTION;
@@ -35,6 +34,7 @@ public class DigIn extends AbstractCardWithPreviewCard {
   public DigIn() {
     super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
+    this.cardsToPreview = PREVIEW_CARD;
   }
 
   @Override
@@ -54,11 +54,6 @@ public class DigIn extends AbstractCardWithPreviewCard {
       this.upgradeName();
       this.upgradeBlock(UPGRADE_BLOCK_AMOUNT);
     }
-  }
-
-  @Override
-  public AbstractCard getPreviewCard() {
-    return PREVIEW_CARD;
   }
 
   static {

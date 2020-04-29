@@ -39,7 +39,7 @@ public class Rototilling extends CustomCard {
     AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, this.magicNumber));
 
     AbstractDungeon.actionManager.addToBottom(
-        new ExhaustAction(p, p, EXHAUST_AMOUNT,false));
+        new ExhaustAction(EXHAUST_AMOUNT,false));
   }
 
   @Override

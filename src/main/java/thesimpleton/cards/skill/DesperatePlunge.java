@@ -45,7 +45,7 @@ public class DesperatePlunge extends CustomCard {
   @Override
   public void triggerOnOtherCardPlayed(AbstractCard c) {
     if (c.type == CardType.POWER && this.costForTurn > 0) {
-      this.modifyCostForTurn(-COST_DISCOUNT_PER_POWER_PLAYED);
+      this.setCostForTurn(this.costForTurn - COST_DISCOUNT_PER_POWER_PLAYED);
     }
   }
 

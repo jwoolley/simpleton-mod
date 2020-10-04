@@ -121,7 +121,8 @@ public class SimpletonEventHelper {
 
 
   public static AbstractCard getRandomUpgradeableCard() {
-    return getRandomUpgradableCards(1).get(0);
+    final List<AbstractCard> cards = getRandomUpgradableCards(1);
+    return !cards.isEmpty() ? cards.get(0) : null;
   }
 
   public static List <AbstractCard> getRandomUpgradableCards(int numCards) {

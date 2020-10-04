@@ -84,7 +84,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         EditStringsSubscriber, EditKeywordsSubscriber, PostInitializeSubscriber, PostCreateStartingDeckSubscriber,
         PostCreateStartingRelicsSubscriber, PostDungeonInitializeSubscriber, StartActSubscriber, StartGameSubscriber,
         OnStartBattleSubscriber, PostBattleSubscriber, PreRoomRenderSubscriber, PostDeathSubscriber, SetUnlocksSubscriber  {
-    private static final Color CUSTOM_COLOR = CardHelper.getColor(57.0F, 131.0F, 245.0F);
+    private static final Color CUSTOM_COLOR = CardHelper.getColor(57, 131, 245);
 
     private static final String ATTACK_CARD = "512/attack_thesimpleton.png";
     private static final String SKILL_CARD = "512/skill_thesimpleton.png";
@@ -500,6 +500,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_AttackSplat1.ogg"));
         reflectedMap.put("BIRD_TWEET_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_BirdTweet1.ogg"));
+        reflectedMap.put("BLADE_SCRAPE_1",
+            new Sfx("TheSimpletonMod/sounds/TheSimpleton_BladeScrape1.ogg"));
         reflectedMap.put("BLOODY_BLADE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_BloodyBlade1.ogg"));
         reflectedMap.put("CHOMP_SHORT_1",
@@ -690,7 +692,73 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new Strawberries());
         cards.add(new Turnips());
 
+        // unlockAllCardsForTesting();
+
         return cards;
+    }
+
+    private static void unlockAllCardsForTesting() {
+        UnlockTracker.unlockCard(Strike_TheSimpleton.ID);
+        UnlockTracker.unlockCard(Defend_TheSimpleton.ID);
+        UnlockTracker.unlockCard(Haymaker.ID);
+        UnlockTracker.unlockCard(ReapAndSow.ID);
+        UnlockTracker.unlockCard(Barnstorm.ID);
+        UnlockTracker.unlockCard(BuzzBomb.ID);
+        UnlockTracker.unlockCard(CloseScrape.ID);
+        UnlockTracker.unlockCard(CullingStrike.ID);
+        UnlockTracker.unlockCard(DoubleBarrel.ID);
+        UnlockTracker.unlockCard(Fertilaser.ID);
+        UnlockTracker.unlockCard(FlashPasteurize.ID);
+        UnlockTracker.unlockCard(HitTheSack.ID);
+        UnlockTracker.unlockCard(KeenEdge.ID);
+        UnlockTracker.unlockCard(PestManagement.ID);
+        UnlockTracker.unlockCard(Rake.ID);
+        UnlockTracker.unlockCard(RootDown.ID);
+        UnlockTracker.unlockCard(SaltTheEarth.ID);
+        UnlockTracker.unlockCard(SlashAndBurn.ID);
+        UnlockTracker.unlockCard(SaladShooter.ID);
+        UnlockTracker.unlockCard(Sunseed.ID);
+        UnlockTracker.unlockCard(Sunchoke.ID);
+        UnlockTracker.unlockCard(Thresh.ID);
+        UnlockTracker.unlockCard(ReekAndSow.ID);
+        UnlockTracker.unlockCard(ReapAndSquash.ID);
+        UnlockTracker.unlockCard(Aerate.ID);
+        UnlockTracker.unlockCard(BumperCrop.ID);
+        UnlockTracker.unlockCard(ControlledBurn.ID);
+        UnlockTracker.unlockCard(CropDiversity.ID);
+        UnlockTracker.unlockCard(CropRotation.ID);
+        UnlockTracker.unlockCard(DesperatePlunge.ID);
+        UnlockTracker.unlockCard(DoubleDigging.ID);
+        UnlockTracker.unlockCard(ErosionControl.ID);
+        UnlockTracker.unlockCard(DigIn.ID);
+        UnlockTracker.unlockCard(FanTheFlames.ID);
+        UnlockTracker.unlockCard(Ferment.ID);
+        UnlockTracker.unlockCard(GoToMarket.ID);
+        UnlockTracker.unlockCard(Innovate.ID);
+        UnlockTracker.unlockCard(Mulch.ID);
+        UnlockTracker.unlockCard(OnionBloom.ID);
+        UnlockTracker.unlockCard(SeedCoat.ID);
+        UnlockTracker.unlockCard(Polyculture.ID);
+        UnlockTracker.unlockCard(Pruning.ID);
+        UnlockTracker.unlockCard(ResearchGrant.ID);
+        UnlockTracker.unlockCard(Rototilling.ID);
+        UnlockTracker.unlockCard(SoilSample.ID);
+        UnlockTracker.unlockCard(SpiceUp.ID);
+        UnlockTracker.unlockCard(StockTheCellar.ID);
+        UnlockTracker.unlockCard(Surplus.ID);
+        UnlockTracker.unlockCard(Swelter.ID);
+        UnlockTracker.unlockCard(Germinate.ID);
+        UnlockTracker.unlockCard(TakeHeart.ID);
+        UnlockTracker.unlockCard(ToughenUp.ID);
+        UnlockTracker.unlockCard(VineRipen.ID);
+        UnlockTracker.unlockCard(BirdFeeder.ID);
+        UnlockTracker.unlockCard(Biorefinement.ID);
+        UnlockTracker.unlockCard(CrackOfDawn.ID);
+        UnlockTracker.unlockCard(Fecundity.ID);
+        UnlockTracker.unlockCard(LandGrant.ID);
+        UnlockTracker.unlockCard(Photosynthesis.ID);
+        UnlockTracker.unlockCard(ResistantStrain.ID);
+        UnlockTracker.unlockCard(VolatileFumes.ID);
     }
 
     public static List<AbstractCard> getSeasonalCurseCardList() {
@@ -1102,7 +1170,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         logger.debug("receivePostCreateStartingDeck UnlockTracker.getUnlockLevel(): " + UnlockTracker.getUnlockLevel(TheSimpletonCharEnum.THE_SIMPLETON));
         logger.debug("receivePostCreateStartingDeck UnlockTracker.getCurrentProgress(): " + UnlockTracker.getCurrentProgress(TheSimpletonCharEnum.THE_SIMPLETON));
         logger.debug("receivePostCreateStartingDeck UnlockTracker.getCurrentScoreCost(): " + UnlockTracker.getCurrentScoreCost(TheSimpletonCharEnum.THE_SIMPLETON));
-        logger.debug("receivePostCreateStartingDeck UnlockTracker.getCurrentScoreTotal(): " + UnlockTracker.getCurrentScoreTotal(TheSimpletonCharEnum.THE_SIMPLETON));
         logger.debug("receivePostCreateStartingDeck UnlockTracker.getCompletionPercentage(): " + UnlockTracker.getCompletionPercentage());
 
         if (isPlayingAsSimpleton()) {

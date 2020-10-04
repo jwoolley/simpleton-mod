@@ -72,8 +72,8 @@ public class BiorefinementPower extends AbstractTheSimpletonPower {
   private void discountRandomCardCostForTurn(List<AbstractCard> decreasableCards) {
     TheSimpletonMod.logger.debug("TheSimpletonMod:BiorefinementPower: discountRandomCardCostForTurn called");
     AbstractCard card = decreasableCards.get(AbstractDungeon.cardRng.random(decreasableCards.size() - 1));
-    card.costForTurn -= this.DISCOUNT_AMOUNT;
-    card.cost -= this.DISCOUNT_AMOUNT;
+    card.modifyCostForCombat(-DISCOUNT_AMOUNT);
+    card.isCostModified = true;
     card.isCostModifiedForTurn = true;
 
     // TODO: reimplement as an action & wait a tick between power flash and card flash

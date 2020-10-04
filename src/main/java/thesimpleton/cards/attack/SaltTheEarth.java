@@ -11,11 +11,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.AbstractCardWithPreviewCard;
 import thesimpleton.cards.status.Depletion;
 import thesimpleton.enums.AbstractCardEnum;
 
-public class SaltTheEarth extends AbstractCardWithPreviewCard {
+public class SaltTheEarth extends CustomCard {
   public static final String ID = "TheSimpletonMod:SaltTheEarth";
   public static final String NAME;
   public static final String DESCRIPTION;
@@ -39,6 +38,7 @@ public class SaltTheEarth extends AbstractCardWithPreviewCard {
     this.baseDamage = this.damage = DAMAGE;
     this.baseMagicNumber = this.magicNumber = STATUS_COPIES;
     this.isMultiDamage = true;
+    this.cardsToPreview = PREVIEW_CARD;
   }
 
   @Override
@@ -62,12 +62,6 @@ public class SaltTheEarth extends AbstractCardWithPreviewCard {
       upgradeDamage(DAMAGE_UPGRADE);
       initializeDescription();
     }
-  }
-
-
-  @Override
-  public AbstractCard getPreviewCard() {
-    return PREVIEW_CARD;
   }
 
   static {

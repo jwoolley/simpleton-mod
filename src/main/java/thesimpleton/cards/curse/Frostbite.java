@@ -35,11 +35,13 @@ public class Frostbite extends CustomCard implements SeasonalCurse {
 
   @Override
   public void triggerOnOtherCardPlayed(AbstractCard card) {
-    List<AbstractCard> increaseableCards = AbstractDungeon.player.hand.group.stream()
-        .filter(c -> c.cost >= 0 && !card.equals(c)).collect(Collectors.toList());
+    if (AbstractDungeon.player.hand.contains(this)) {
+      List<AbstractCard> increaseableCards = AbstractDungeon.player.hand.group.stream()
+          .filter(c -> c.cost >= 0 && !card.equals(c)).collect(Collectors.toList());
 
-    if (increaseableCards.size() > 0) {
-      increaseRandomCardCostForTurn(increaseableCards);
+      if (increaseableCards.size() > 0) {
+        increaseRandomCardCostForTurn(increaseableCards);
+      }
     }
   }
 
@@ -54,8 +56,8 @@ public class Frostbite extends CustomCard implements SeasonalCurse {
 
   private void increaseRandomCardCostForTurn(List<AbstractCard> increaseableCards) {
     AbstractCard card = increaseableCards.get(AbstractDungeon.cardRng.random(increaseableCards.size() - 1));
-    card.costForTurn += this.COST_INCREASE_AMOUNT;
-    card.isCostModifiedForTurn = true;
+
+    card.setCostForTurn(card.costForTurn + COST_INCREASE_AMOUNT);
 
     // TODO: reimplement as an action & wait a tick between power flash and card flash
     CardCrawlGame.sound.play("ICE_CLINK_1");

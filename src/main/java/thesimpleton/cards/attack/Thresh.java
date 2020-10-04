@@ -83,13 +83,8 @@ public class Thresh extends CustomCard implements HarvestTriggeredCard {
     DESCRIPTION = cardStrings.DESCRIPTION;
   }
 
-  static private void updateCostForTurn(Thresh threshCard) {
-    threshCard.modifyCostForTurn(-COST_DECREASE_PER_HARVEST);
-    threshCard.isCostModifiedForTurn = true;
-  }
-
   @Override
   public void harvestedTrigger() {
-    this.modifyCostForTurn(-COST_DECREASE_PER_HARVEST);
+    this.setCostForTurn(this.costForTurn - COST_DECREASE_PER_HARVEST);
   }
 }

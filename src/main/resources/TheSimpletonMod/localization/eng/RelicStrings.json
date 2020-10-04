@@ -87,7 +87,7 @@
 
   "TheSimpletonMod:Moonshine": {
     "NAME": "Jug of Moonshine",
-    "FLAVOR": "A carefully-guarded family recipe, the distillation process has claimed its share of casualties.",
+    "FLAVOR": "Based on a carefully-guarded family recipe, the distillation process has claimed its share of casualties.",
     "DESCRIPTIONS": [
       "On turn #b",
       ", gain #b",

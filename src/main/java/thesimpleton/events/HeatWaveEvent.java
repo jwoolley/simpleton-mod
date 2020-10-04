@@ -34,7 +34,9 @@ public class HeatWaveEvent extends CustomSimpletonEvent implements CustomSimplet
   public HeatWaveEvent() {
     super(NAME, DESCRIPTIONS[0], TheSimpletonMod.getImageResourcePath(IMG_PATH));
 
-    surrenderCard = SimpletonEventHelper.getRandomUpgradeableCard();
+    final AbstractCard upgradeableCard = SimpletonEventHelper.getRandomUpgradeableCard();
+
+    surrenderCard = upgradeableCard != null ? upgradeableCard : SimpletonEventHelper.getRandomNonCurseCardFromDeck();
     REWARD_CARD.upgrade();
 
     if (AbstractDungeon.player.hasAnyPotions()) {
@@ -50,7 +52,13 @@ public class HeatWaveEvent extends CustomSimpletonEvent implements CustomSimplet
     } else {
       this.imageEventText.setDialogOption(OPTIONS[7], true);
     }
-    this.imageEventText.setDialogOption(OPTIONS[1] + surrenderCard.name + OPTIONS[5] + BURNING_AMOUNT_1 + OPTIONS[6]);
+
+    if (surrenderCard != null) {
+      this.imageEventText.setDialogOption(OPTIONS[1] + surrenderCard.name + OPTIONS[5] + BURNING_AMOUNT_1 + OPTIONS[6]);
+    } else {
+      this.imageEventText.setDialogOption(OPTIONS[8], true);
+    }
+
     this.imageEventText.setDialogOption(OPTIONS[2] + REWARD_CARD.name + OPTIONS[5] + BURNING_AMOUNT_2 + OPTIONS[6],
         REWARD_CARD);
 
@@ -81,13 +89,13 @@ public class HeatWaveEvent extends CustomSimpletonEvent implements CustomSimplet
             break;
         }
         this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[8]);
+        this.imageEventText.setDialogOption(OPTIONS[9]);
         this.state = SimpletonEventHelper.EventState.LEAVING;
         AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
         break;
       case LEAVING:
         this.imageEventText.clearAllDialogs();
-        this.imageEventText.setDialogOption(OPTIONS[8]);
+        this.imageEventText.setDialogOption(OPTIONS[9]);
         openMap();
         break;
     }

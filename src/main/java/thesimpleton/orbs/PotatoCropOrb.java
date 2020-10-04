@@ -15,7 +15,7 @@ public class PotatoCropOrb extends AbstractCropOrb {
     public static final String ORB_ID = "TheSimpletonMod:PotatoCropOrb";
     public static final String IMG_PATH = "plantpotato";
     public static final String HALO_IMG_PATH = "orbpotato_halo";
-  public static final String TARGET_HALO_IMG_PATH = "orbpotato_target_halo";
+    public static final String TARGET_HALO_IMG_PATH = "orbpotato_target_halo";
     public static final List<String> KEYWORD_LIST = Arrays.asList("TheSimpletonMod:SpudKeyword");
 
   private static final OrbStrings orbStrings;

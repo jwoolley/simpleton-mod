@@ -15,13 +15,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.cards.AbstractCardWithPreviewCard;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.TheSimpletonCardTags;
 import thesimpleton.cards.power.crop.Turnips;
-import thesimpleton.cards.skill.SoilSample;
 
-public class GiantTurnip extends AbstractCardWithPreviewCard {
+public class GiantTurnip extends CustomCard {
   public static final String ID = "TheSimpletonMod:GiantTurnip";
   public static final String NAME;
   public static final String DESCRIPTION;
@@ -35,21 +33,17 @@ public class GiantTurnip extends AbstractCardWithPreviewCard {
   private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
 
   private static final int COST = 0;
-  private static final int DAMAGE = 3;
   private static final int UPGRADE_DAMAGE_AMOUNT = 1;
 
   private static final AbstractCard PREVIEW_CARD;
 
-  public GiantTurnip() {
-    this(DAMAGE);
-  }
-  
   public GiantTurnip(int baseNumber) {
     super(ID, baseNumber + "-Lb. " + NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = baseNumber;
     this.baseDamage = this.damage = baseNumber * baseNumber;
     this.exhaust = true;
     this.tags.add(TheSimpletonCardTags.CROP);
+    this.cardsToPreview = PREVIEW_CARD;
   }
 
   @Override
@@ -80,11 +74,6 @@ public class GiantTurnip extends AbstractCardWithPreviewCard {
       this.upgradeName();
       this.upgradeDamage(UPGRADE_DAMAGE_AMOUNT * this.magicNumber);
     }
-  }
-
-  @Override
-  public AbstractCard getPreviewCard() {
-    return PREVIEW_CARD;
   }
 
   static {

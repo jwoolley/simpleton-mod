@@ -2,6 +2,7 @@ package thesimpleton.cards.attack;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -36,6 +37,7 @@ public class CullingStrike extends AbstractDynamicTextCard {
         AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseDamage = this.damage = DAMAGE;
     this.isMultiDamage = true;
+    this.tags.add(CardTags.STRIKE);
   }
 
   @Override
@@ -46,14 +48,11 @@ public class CullingStrike extends AbstractDynamicTextCard {
       numTrigger++;
     }
 
-//    AbstractDungeon.actionManager.addToBottom(new SFXAction("DAGGER_THROW_2"));
-//    AbstractGameEffect effect = new WhirlwindEffect();
-//    AbstractDungeon.actionManager.addToBottom(new VFXAction(p, effect, 0.50F));
-
     for (int i = 0; i < numTrigger; i++) {
+      AbstractDungeon.actionManager.addToBottom(new SFXAction("BLADE_SCRAPE_1"));
       AbstractDungeon.actionManager.addToBottom(
           new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
-              AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+              AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
     }
   }
 

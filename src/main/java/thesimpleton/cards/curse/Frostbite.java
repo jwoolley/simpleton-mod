@@ -35,11 +35,13 @@ public class Frostbite extends CustomCard implements SeasonalCurse {
 
   @Override
   public void triggerOnOtherCardPlayed(AbstractCard card) {
-    List<AbstractCard> increaseableCards = AbstractDungeon.player.hand.group.stream()
-        .filter(c -> c.cost >= 0 && !card.equals(c)).collect(Collectors.toList());
+    if (AbstractDungeon.player.hand.contains(this)) {
+      List<AbstractCard> increaseableCards = AbstractDungeon.player.hand.group.stream()
+          .filter(c -> c.cost >= 0 && !card.equals(c)).collect(Collectors.toList());
 
-    if (increaseableCards.size() > 0) {
-      increaseRandomCardCostForTurn(increaseableCards);
+      if (increaseableCards.size() > 0) {
+        increaseRandomCardCostForTurn(increaseableCards);
+      }
     }
   }
 

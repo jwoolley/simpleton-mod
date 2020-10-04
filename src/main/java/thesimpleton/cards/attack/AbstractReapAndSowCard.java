@@ -1,24 +1,23 @@
 package thesimpleton.cards.attack;
 
+import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.actions.ReapAndSowThresholdAction;
-import thesimpleton.cards.AbstractCardWithPreviewCard;
 import thesimpleton.cards.skill.Cultivate;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.AbstractCropOrb;
 
-public abstract class AbstractReapAndSowCard extends AbstractCardWithPreviewCard {
+public abstract class AbstractReapAndSowCard extends CustomCard {
   public static final String ID = "TheSimpletonMod:AbstractReapAndSowCard";
   public static final String DESCRIPTION;
   public static final String[] EXTENDED_DESCRIPTION;
@@ -55,6 +54,7 @@ public abstract class AbstractReapAndSowCard extends AbstractCardWithPreviewCard
     this.cropOrbToPlant = cropOrbToPlant;
     this.attackEffect = attackEffect;
     this.isMultiDamage = true;
+    this.cardsToPreview = PREVIEW_CARD;
   }
 
   protected void applyAttackEffect() {  }
@@ -89,11 +89,6 @@ public abstract class AbstractReapAndSowCard extends AbstractCardWithPreviewCard
 
   public String getUpdatedDescription() {
     return this.rawDescription;
-  }
-
-  @Override
-  public AbstractCard getPreviewCard() {
-    return PREVIEW_CARD;
   }
 
   public abstract AbstractCard makeCopy();

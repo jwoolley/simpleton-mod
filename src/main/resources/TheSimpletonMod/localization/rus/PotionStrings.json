@@ -1,0 +1,46 @@
+{
+  "TheSimpletonMod:AbundancePotion": {
+    "NAME": "Зелье Цветения",
+    "DESCRIPTIONS": [
+      "Даёт #b",
+      " #yИзобилия. NL В конце хода, потеряйте #b",
+      " #yИзобилия."
+    ]
+  },
+
+  "TheSimpletonMod:AbundancePotionKeyword": {
+    "NAME": "Изобилие",
+    "DESCRIPTIONS": [
+      "Даёт больше #yКультур с карт."
+    ]
+  },
+
+  "TheSimpletonMod:KindlingPotion": {
+    "NAME": "Зелье Розжига",
+    "DESCRIPTIONS": [
+      "Накладывает #b",
+      " #yГорения ВСЕМ врагам."
+    ]
+  },
+  "TheSimpletonMod:KindlingPotionKeyword": {
+    "NAME": "Горение",
+    "DESCRIPTIONS": [
+      "Горящие существа получают урон в конце своего хода, а затем теряют Горение."
+    ]
+  },
+  "TheSimpletonMod:MoonshinePotion": {
+    "NAME": "Глоток Самогона",
+    "DESCRIPTIONS": [
+      "Сбрасывает все карты и берёт #b",
+      " карты. Даёт #b",
+      " #yСиля и Опьяняет до конца хода.",
+      "@#&$%*?!!@"
+    ]
+  },
+  "TheSimpletonMod:MoonshinePotionKeyword": {
+    "NAME": "Опьянение",
+    "DESCRIPTIONS": [
+      "Когда вы берёте карту, изменяет её стоимость на случайную до конца хода."
+    ]
+  }
+}

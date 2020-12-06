@@ -1,0 +1,204 @@
+{
+  "TheSimpletonMod:AbundanceKeyword": {
+    "PROPER_NAME": "Изобилие",
+    "NAMES": [
+      "изобилие", "изобилия"
+    ],
+    "DESCRIPTION":  "Увеличивает #yКультуры #yСажаемые картами."
+  },
+
+  "TheSimpletonMod:ArtichokeKeyword": {
+    "PROPER_NAME": "Артишок",
+    "NAMES": [
+      "артишок", "артишока"
+    ],
+    "DESCRIPTION": "#yКультура. Даёт Шипы при сборе."
+  },
+
+  "TheSimpletonMod:AsparagusKeyword": {
+    "PROPER_NAME": "Спаржа",
+    "NAMES": [
+      "cпаржа", "спаржи", "спаржу"
+    ],
+    "DESCRIPTION": "#yКультура. Даёт Ловкость при сборе."
+  },
+
+  "TheSimpletonMod:BurningKeyword": {
+    "PROPER_NAME": "Горение",
+    "NAMES": [
+      "горения", "горение"
+    ],
+    "DESCRIPTION": "Горящие существа получют урон в конце их хода и теряют Горение."
+  },
+
+  "TheSimpletonMod:ChilisKeyword": {
+    "PROPER_NAME": "Чили",
+    "NAMES": [
+      "чили"
+    ],
+    "DESCRIPTION": "#yКультура. Наносит урон и накладывает #yГорение ВСЕМ врагам при сборе."
+  },
+
+  "TheSimpletonMod:CoffeeKeyword": {
+    "PROPER_NAME": "Кофе",
+    "NAMES": [
+      "кофе"
+    ],
+    "DESCRIPTION": "#yКультура. Даёт Энергию при сборе."
+  },
+
+
+  "TheSimpletonMod:CornKeyword": {
+    "PROPER_NAME": "Кукуруза",
+    "NAMES": [
+      "кукуруза"
+    ],
+    "DESCRIPTION": "#yКультура. Берёт карты при сборе."
+  },
+
+  "TheSimpletonMod:CropKeyword": {
+    "PROPER_NAME": "Культура",
+    "NAMES": [
+      "культура", "культур", "культуры"
+    ],
+    "DESCRIPTION": "#yКультуры дают эффекты при сборе."
+  },
+
+  "TheSimpletonMod:DepletionKeyword": {
+    "PROPER_NAME": "Истощение",
+    "NAMES": [
+      "истощение", "истощения"
+    ],
+    "DESCRIPTION": "Играбельные статусы, которые уменьшают количество карт которые вы берёте и забирает Энергию на следующий ход."
+  },
+
+  "TheSimpletonMod:GnawberryKeyword": {
+    "PROPER_NAME": "Кусьника",
+    "NAMES": [
+      "кусьника", "кусьники", "кусьнику"
+    ],
+    "DESCRIPTION": "Кусьника - атака которая, наносит moderate урон и восполняет ОЗ."
+  },
+
+  "TheSimpletonMod:HarvestKeyword": {
+    "PROPER_NAME": "Собирает",
+    "NAMES": [
+      "собирает", "сбором"
+    ],
+    "DESCRIPTION": "Собирает разные #yКультуры чтобы активировать их эффекты."
+  },
+
+  "TheSimpletonMod:HuskKeyword": {
+    "PROPER_NAME": "Шелуха",
+    "NAMES": [
+      "шелуха", "шелухи", "шелуху"
+    ],
+    "DESCRIPTION": "Шелуха - навык с #b0 стоимостью, который сжигается и даёт немного Защиты."
+  },
+
+  "TheSimpletonMod:MaturityKeyword": {
+    "PROPER_NAME": "Созревание",
+    "NAMES": [
+      "созревание", "созревает", "созрела", "созревшие"
+    ],
+    "DESCRIPTION": "#yКультура созревает, когда количество стаков >= её уровню созревания. Один стак каждой созревшей культуры #gСобирается в начале хода."
+  },
+
+  "TheSimpletonMod:MushroomKeyword": {
+    "PROPER_NAME": "Грибочки",
+    "NAMES": [
+      "грибочек", "грибочки"
+    ],
+    "DESCRIPTION": "#yКультура. Даёт случайные бесцветные карты при сборе."
+  },
+
+  "TheSimpletonMod:OnionKeyword": {
+    "PROPER_NAME": "Лук",
+    "NAMES": [
+      "лук", "лука"
+    ],
+    "DESCRIPTION": "#yКультура. Накладывает Слабость на случайного врага при сборе."
+  },
+
+  "TheSimpletonMod:Numbed": {
+    "PROPER_NAME": "Оцепенение",
+    "NAMES": [
+      "оцепенение", "оцепенения"
+    ],
+    "DESCRIPTION": "Временно увеличивакт стоимость случайной карты в руке, когда вы разыгрываете картв."
+  },
+
+  "TheSimpletonMod:PlantKeyword": {
+    "PROPER_NAME": "Сажает",
+    "NAMES": [
+      "Сажает", "planted", "plants", "re-plant", "re-plants", "re-planted"
+    ],
+    "DESCRIPTION": "Даёт стаки #yКультур."
+  },
+
+
+  "TheSimpletonMod:PotatoKeyword": {
+    "PROPER_NAME": "Картошечка",
+    "NAMES": [
+      "картошечка", "картошечки"
+    ],
+    "DESCRIPTION": "#yКультура. Создает карты атаки маленький картофель, которые стоят 0 при сборе урожая."
+  },
+
+
+  "TheSimpletonMod:PlotKeyword": {
+    "PROPER_NAME": "Надел",
+    "NAMES": [
+      "надел", "надела"
+    ],
+    "DESCRIPTION": "#yСлот для посадки сельскохозяйственных культур. Ваши Надел определяют, сколько разных культур вы можете выращивать одновременно."
+  },
+
+  "TheSimpletonMod:SpinachKeyword": {
+    "PROPER_NAME": "Шпинат",
+    "NAMES": [
+      "шпинат", "шпината"
+    ],
+    "DESCRIPTION": "#yКультура. Даёт Силу при сборе."
+  },
+
+  "TheSimpletonMod:SpudKeyword": {
+    "PROPER_NAME": "Картофелина",
+    "NAMES": [
+      "картофелина", "картофелины", "картофелину"
+    ],
+    "DESCRIPTION": "Картофелина - атака с #b0 стоимостью, которая сжигается и наносит немного урона."
+  },
+
+  "TheSimpletonMod:SquashKeyword": {
+    "PROPER_NAME": "Кабачок",
+    "NAMES": [
+      "кабачок", "кабачка", "кабачков"
+    ],
+    "DESCRIPTION": "#yКультура. Даёт #yЗащиту при сборе."
+  },
+
+  "TheSimpletonMod:StrawberryKeyword": {
+    "PROPER_NAME": "Клубника",
+    "NAMES": [
+      "клубника", "клубники", "клубнику"
+    ],
+    "DESCRIPTION": "#yКультура. Собирается в Кусьнику - Атака которая лечит немного ОЗ."
+  },
+
+  "TheSimpletonMod:SunflowerKeyword": {
+    "PROPER_NAME": "Подсолнухи",
+    "NAMES": [
+      "подсолнух", "подсолнухов"
+    ],
+    "DESCRIPTION": "#yКультура. Даёт Энергию при сборе."
+  },
+
+  "TheSimpletonMod:TurnipKeyword": {
+    "PROPER_NAME": "Репка",
+    "NAMES": [
+      "репка", "репки", "репку"
+    ],
+    "DESCRIPTION": "#yКультура. Собирается в Атаку, котрая наносит урон ВСЕМ врагам за каждый Собранный стак и добавляет #yРепку в стопку сброса."
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "TheSimpletonMod:AbstractCropPower": {
+    "NAME": "АбстрактнаяКультура",
+    "DESCRIPTIONS": [
+      "#yКультура. Созреет на #r",
+      " стаках."
+    ]
+  },
+
+  "TheSimpletonMod:AbundancePower": {
+    "NAME": "Изобилие",
+    "DESCRIPTIONS": [
+      "Увеличивает количество #yСажаемых картами #yКультур на #b",
+      "."
+    ]
+  },
+
+  "TheSimpletonMod:BirdFeederPower": {
+    "NAME": "Кормушка для птиц",
+    "DESCRIPTIONS": [
+      "Каждые #b",
+      " разыгранных Талантов, восполняет #b",
+      " ОЗ."
+    ]
+  },
+
+  "TheSimpletonMod:BiorefinementPower": {
+    "NAME": "Биообработка",
+    "DESCRIPTIONS": [
+      "Первая разыгранная карта с Сбором, уменьшает стоимость случайной карты в руке на #b1 до конца боя, каждый ход. 0110011",
+      "Первые #b",
+      " разыгранные карты с Сбором, уменьшают стоимость случайной карты в руке на #b1 до конца боя, каждый ход",
+      "."
+    ]
+  },
+
+  "TheSimpletonMod:BurningPower": {
+    "NAME": "Горение",
+    "DESCRIPTIONS": [
+      "В конце хода, получает #b",
+      " урона, затем теряя #yГорение."
+    ]
+  },
+
+  "TheSimpletonMod:CrackOfDawnPower": {
+    "NAME": "Рассвет",
+    "DESCRIPTIONS": [
+      "Через #b",
+      " ход",
+      " хода",
+      ", наносит #b",
+      " урона ВСЕМ врагам, Сажает #b",
+      " #yКукурузы, и даёт",
+      " [E]",
+      " ."
+    ]
+  },
+
+  "TheSimpletonMod:DeenergizedPower": {
+    "NAME": "Потеря энергии",
+    "DESCRIPTIONS": [
+      "Вы теряете #b",
+      " #yЭнергии в начале хода."
+    ]
+  },
+
+  "TheSimpletonMod:DoubleDiggingPower": {
+    "NAME": "Двойное копание",
+    "DESCRIPTIONS": [
+      "Следующая карта стоимостью #b1 или меньше разыгрывается дважды.",
+      "Следующие #b",
+      " карты стоимостью #b1 или меньше разыгрывается дважды."
+    ]
+  },
+
+  "TheSimpletonMod:DrawDownPower": {
+    "NAME": "Снижение добора",
+    "DESCRIPTIONS": [
+      "Вы берёте меньше на #b",
+      " карту в следующий ход.",
+      " карты в следующий ход."
+    ]
+  },
+
+  "TheSimpletonMod:IntoxicatedPower": {
+    "NAME": "Опьянение",
+    "DESCRIPTIONS": [
+      "Карты которые вы берёте получают случайную стоимость до конца хода"
+    ]
+  },
+
+  "TheSimpletonMod:LoseAbundancePower": {
+    "NAME": "Снижение изобилия",
+    "DESCRIPTIONS": [
+      "Вы теряете #b",
+      " #yИзобилия в конце хода."
+    ]
+  },
+
+  "TheSimpletonMod:LoseSlowPower": {
+    "NAME": "Потеря Медлительности",
+    "DESCRIPTIONS": [
+      "В начале вашего хода, теряет #yМедлительность."
+    ]
+  },
+
+  "TheSimpletonMod:NextTurnWeakPower": {
+    "NAME": "Слабость на следующий ход",
+    "DESCRIPTIONS": [
+      "Даёт #b",
+      " #yСлабость на следующий ход."
+    ]
+  },
+
+  "TheSimpletonMod:NumbPower": {
+    "NAME": "Оцепенение",
+    "DESCRIPTIONS": [
+      "Увеличивает стоимость случайной карты в руке на #b",
+      " до конца хода, когда вы разыгрваете карту."
+    ]
+  },
+
+  "TheSimpletonMod:PhotosynthesisPower": {
+    "NAME": "Фотосинтез",
+    "DESCRIPTIONS": [
+      "В конце хода, тратит всю неиспользованную #yЭнергию и #yСажает множество сезонных #yКультур."
+    ]
+  },
+
+  "TheSimpletonMod:ResistantStrainPower": {
+    "NAME": "Защитная нагрузка",
+    "DESCRIPTIONS": [
+      "Когда вы накладываете отрицательный эффект на врага, даёт #b",
+      " #yЗащиты."
+    ]
+  },
+
+
+  "TheSimpletonMod:SoberUpPower": {
+    "NAME": "Протрезветь",
+    "DESCRIPTIONS": [
+      "В конце хода, потеряйте #yОпьянение."
+    ]
+  },
+
+  "TheSimpletonMod:SpudOfTheMartyrPower": {
+    "NAME": "Сила мученика",
+    "DESCRIPTIONS": [
+      "В начале хода, даёт #b",
+      " временной #yСилы."
+    ]
+  },
+
+  "TheSimpletonMod:ToughSkinPower": {
+    "NAME": "Тонкая кожа",
+    "DESCRIPTIONS": [
+      "Когда вы #gСобираете #yКультуру, даёт #b",
+      " #yЗащиты."
+    ]
+  },
+
+  "TheSimpletonMod:VolatileFumesPower": {
+    "NAME": "Летучие пары",
+    "DESCRIPTIONS": [
+      "Когда вы атакуете врага со #yСлабостью, накладывает ",
+      " #yГорения."
+    ]
+  }
+}

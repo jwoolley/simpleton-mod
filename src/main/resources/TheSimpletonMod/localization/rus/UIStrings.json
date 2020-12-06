@@ -1,0 +1,174 @@
+{
+  "TheSimpletonMod:ExhaustCurseThenActivateAction": {
+    "TEXT": [
+      "Сжигает. Выберите проклятье для активации Эффекта Ритуала. (",
+      ")"
+    ]
+  },
+  "TheSimpletonMod:PrepareRitualAction": {
+    "TEXT": [
+      "Сжигает. (Будут заменены Отбросами.)"
+    ]
+  },
+  "TheSimpletonMod:ThemeDescription": {
+    "TEXT": [
+      "[Построенная тематическая колода] Наслаждайтесь этим модом больше, играя в различные прототипы!",
+      "(Примечание - будет применена только самая верхняя проверенная тема.)"
+    ]
+  },
+  "TheSimpletonMod:EndlessStrikeTheme": {
+    "TEXT": [
+      "[Бесконечные Удары] Используйте \"Удары\" бесконечно. (начальная реликвия: Четырёх-Листный Клевер)"
+    ]
+  },
+  "TheSimpletonMod:HeavyMachineGunTheme": {
+    "TEXT": [
+      "[Тяжёлый Пулемёт] Стреляйте мана пулями бесконечно. (начальная реликвия: Магическая Свечка)"
+    ]
+  },
+  "TheSimpletonMod:HellfireTheme": {
+    "TEXT": [
+      "[Адское Пламя!] Дышите Адским Пламенем при перетасовке колоды. (начальная реликвия: Улучшенная Тёмная Магия)"
+    ]
+  },
+  "TheSimpletonMod:LetsStretchingTheme": {
+    "TEXT": [
+      "[Давай разомнёмся] Продолжайте набирать Ловкость. (начальная реликвия: Розовые Гранулы)"
+    ]
+  },
+  "TheSimpletonMod:ManglingTheme": {
+    "TEXT": [
+      "[Искажение!] Используйте Mangle бесконечно. (начальная реликвия: Клейкость)"
+    ]
+  },
+  "TheSimpletonMod:MoonCrystalPowerTheme": {
+    "TEXT": [
+      "[Сила Лунного Кристалла] Почувствуй силу Хрустального Шара. (начальная реликвия: Хрустальный Шар)"
+    ]
+  },
+  "TheSimpletonMod:PainfulBoomerangTheme": {
+    "TEXT": [
+      "[Болезненный Бумеранг] Даёт врагам Сильнейшую Боль. (начальная реликвия: Кровавый Гарпун)"
+    ]
+  },
+  "TheSimpletonMod:SoulReaperTheme": {
+    "TEXT": [
+      "[Жнец Душ] Продолжайте поддерживать ОЗ на максимуме. (начальная реликвия: Сосуд Душ)"
+    ]
+  },
+  "TheSimpletonMod:StrengthMachineTheme": {
+    "TEXT": [
+      "[Машина Силы] Продолжайте набирать силу. (начальная реликвия: Демоническая Метка)"
+    ]
+  },
+  "TheSimpletonMod:VoidLordTheme": {
+    "TEXT": [
+      "[Лорд Пустоты] Почувствуйте силу Формы Пустоты. (начальная реликвия: Зловещяя Метка)"
+    ]
+  },
+  "TheSimpletonMod:BaseTheme": {
+    "TEXT": [
+      "[Это базовая тема]"
+    ]
+  },
+  "TheSimpletonMod:SeasonTheme": {
+    "TEXT": [
+      "Это сезоны!"
+    ]
+  },
+
+  "TheSimpletonMod:EnableContentForAllCharactersButton": {
+    "TEXT": [
+      "Открывает события, зелья и реликвии всем персонажам (Нужен перезапуск)"
+    ]
+  },
+
+  "TheSimpletonMod:EnableCursesForAllCharactersButton": {
+    "TEXT": [
+      "Открывает проклятья всем персонажам (Нужен перезапуск)"
+    ]
+  },
+
+  "TheSimpletonMod:EnableEventsForAllCharactersButton": {
+    "TEXT": [
+      "Открывает события всем персонажам (Нужен перезапуск)"
+    ]
+  },
+
+  "TheSimpletonMod:EnablePotionsForAllCharactersButton": {
+    "TEXT": [
+      "Открывает зелья всем персонажам (Нужен перезапуск)"
+    ]
+  },
+
+  "TheSimpletonMod:EnableRelicsForAllCharactersButton": {
+    "TEXT": [
+      "Открывает реликвии всем персонажам (Нужен перезапуск)"
+    ]
+  },
+
+  "TheSimpletonMod:ChooseAndAddHandCardsToDeckAction": {
+    "TEXT": [
+      "будет замешено в стопку добора."
+    ]
+  },
+  "TheSimpletonMod:MulchAction": {
+    "TEXT": [
+      "Сжигает"
+    ]
+  },
+  "TheSimpletonMod:WoodChipperAction": {
+    "TEXT": [
+      "Сжигает. (Берёт столько же)."
+    ]
+  },
+  "TheSimpletonMod:SeasonScreen": {
+    "TEXT": [
+      "Сейчас",
+      "Сейчас растёт",
+      "Продолжить"
+    ]
+  },
+  "TheSimpletonMod:SeasonalIndicator": {
+    "TEXT": [
+      "It's ",
+      " в Шпиле.",
+      ", ",
+      ", и ",
+      " и ",
+      " #gВ #gСезоне.",
+      " NL NL Сезонные #yКультуры доступны как таланты, награды и в магазине."
+    ]
+  },
+  "TheSimpletonMod:WinterSeason": {
+    "TEXT": [
+      "Зима"
+    ]
+  },
+  "TheSimpletonMod:SpringSeason": {
+    "TEXT": [
+      "Весна"
+    ]
+  },
+  "TheSimpletonMod:SummerSeason": {
+    "TEXT": [
+      "Лето"
+    ]
+  },
+  "TheSimpletonMod:AutumnSeason": {
+      "TEXT": [
+        "Осень"
+      ]
+  },
+  "TheSimpletonMod:UnknownSeason": {
+    "TEXT": [
+      "Неизвестно"
+    ]
+  },
+  "TheSimpletonMod:SeasonScreenTooltip": {
+    "TEXT": [
+      "Сезонные Культуры",
+      "Эти #yКультуры доступны в этом забеге через таланты выданные в наградах за бой и иж магазина. Другие культуры по-прежнему доступны через специальные карты и другие средства."
+    ]
+  }
+}

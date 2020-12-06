@@ -1,0 +1,103 @@
+{
+  "TheSimpletonMod:AbstractCropOrb": {
+    "NAME": "Абстрактная Культура",
+    "DESCRIPTION": [
+      "#yКультура. Созреет при #r",
+      " стаках."
+    ]
+  },
+
+  "TheSimpletonMod:ArtichokeCropOrb": {
+    "NAME": "Артишок",
+    "DESCRIPTION": [
+      "#gСбор: Даёт #b",
+      " #yШипов жа каждый стак."
+    ]
+  },
+
+
+  "TheSimpletonMod:AsparagusCropOrb": {
+    "NAME": "Спаржа",
+    "DESCRIPTION": [
+      "#gСбор: Даёт #b",
+      " #yЛовкости за каждый стак."
+    ]
+  },
+
+  "TheSimpletonMod:ChiliCropOrb": {
+    "NAME": "Чили",
+    "DESCRIPTION": [
+      "#gСбор: Наносит #b",
+      " урона и накладывает #b",
+      " #yГорения ВСЕМ врагам за каждый стак."
+    ]
+  },
+
+  "TheSimpletonMod:CoffeeCropOrb": {
+    "NAME": "Подсолнухи",
+    "DESCRIPTION": [
+      "#gСбор: Даёт энергию за каждый стак."
+    ]
+  },
+
+  "TheSimpletonMod:CornCropOrb": {
+    "NAME": "Кукуруза",
+    "DESCRIPTION": [
+      "#gСбор: Берёт карту за каждый стак."
+    ]
+  },
+
+  "TheSimpletonMod:MushroomCropOrb": {
+    "NAME": "Грибочки",
+    "DESCRIPTION": [
+      "#gСбор: Добавляет случайную бесцветную карту в руку за каждый стак."
+    ]
+  },
+
+  "TheSimpletonMod:OnionCropOrb": {
+    "NAME": "Лук",
+    "DESCRIPTION": [
+      "#gСбор: Накладывает #b",
+      " #yСлабости случайному врагу за каждый стак."
+    ]
+  },
+
+  "TheSimpletonMod:PotatoCropOrb": {
+    "NAME": "Картошечка",
+    "DESCRIPTION": [
+      "#gСбор: Добавляет #ySpud в руку за каждый стак."
+    ]
+  },
+
+  "TheSimpletonMod:SpinachCropOrb": {
+    "NAME": "Шпинат",
+    "DESCRIPTION": [
+      "#gСбор: Даёт #b",
+      " #yСилы за каждый стак."
+    ]
+  },
+
+  "TheSimpletonMod:SquashCropOrb": {
+    "NAME": "Кабачок",
+    "DESCRIPTION": [
+      "#gСбор: Даёт #b",
+      " #yЗащиты за каждый стак."
+    ]
+  },
+  "TheSimpletonMod:StrawberryCropOrb": {
+    "NAME": "Клубника",
+    "DESCRIPTION": [
+      "#gСбор: Поглащяет ВСЕ стаки и добавляет #yКусьнику в руку за каждый стак."
+    ]
+  },
+
+
+  "TheSimpletonMod:TurnipCropOrb": {
+    "NAME": "Репка",
+    "DESCRIPTION": [
+      "#gСбор: Преобразует ВСЕ стаки в Атаку, котрая наносит урон ВСЕМ врагам за каждый Собранный стак и добавляет #yРепку в стопку сброса."
+    ]
+  }
+}
+
+

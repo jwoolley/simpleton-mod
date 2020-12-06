@@ -1,0 +1,103 @@
+{
+  "TheSimpletonMod:AbstractCropOrb": {
+    "NAME": "抽象作物",
+    "DESCRIPTION": [
+      "#y农作物 。成熟于 #r",
+      " 层。"
+    ]
+  },
+
+  "TheSimpletonMod:ArtichokeCropOrb": {
+    "NAME": "洋蓟",
+    "DESCRIPTION": [
+      "每 #g收获 1层，获得 #b",
+      " #y荆棘 。"
+    ]
+  },
+
+
+  "TheSimpletonMod:AsparagusCropOrb": {
+    "NAME": "芦笋",
+    "DESCRIPTION": [
+      "每 #g收获 1层，获得 #b",
+      " #y敏捷 。"
+    ]
+  },
+
+  "TheSimpletonMod:ChiliCropOrb": {
+    "NAME": "辣椒",
+    "DESCRIPTION": [
+      "每 #g收获 1层，对所有敌人造成 #b",
+      " 伤害并施加 #b",
+      " #y燃烧 。"
+    ]
+  },
+
+  "TheSimpletonMod:CoffeeCropOrb": {
+    "NAME": "向日葵",
+    "DESCRIPTION": [
+      "每 #g收获 1层，获得获得1能量。"
+    ]
+  },
+
+  "TheSimpletonMod:CornCropOrb": {
+    "NAME": "玉米",
+    "DESCRIPTION": [
+      "每 #g收获 1层，抽1张牌。"
+    ]
+  },
+
+  "TheSimpletonMod:MushroomCropOrb": {
+    "NAME": "蘑菇",
+    "DESCRIPTION": [
+      "每 #g收获 1层，添加1张随机无色牌到手牌。"
+    ]
+  },
+
+  "TheSimpletonMod:OnionCropOrb": {
+    "NAME": "洋葱",
+    "DESCRIPTION": [
+      "每 #g收获 1层，向一名随机敌人施加 #b",
+      " #y虚弱 。"
+    ]
+  },
+
+  "TheSimpletonMod:PotatoCropOrb": {
+    "NAME": "土豆",
+    "DESCRIPTION": [
+      "每 #g收获 1层，添加一张 #y薯弹 攻击牌到手牌。"
+    ]
+  },
+
+  "TheSimpletonMod:SpinachCropOrb": {
+    "NAME": "菠菜",
+    "DESCRIPTION": [
+      "每 #g收获 1层，获得 #b",
+      " #y力量 。"
+    ]
+  },
+
+  "TheSimpletonMod:SquashCropOrb": {
+    "NAME": "南瓜",
+    "DESCRIPTION": [
+      "每 #g收获 1层，获得 #b",
+      " #y格挡 。"
+    ]
+  },
+  "TheSimpletonMod:StrawberryCropOrb": {
+    "NAME": "草莓",
+    "DESCRIPTION": [
+      "收获将会尽数消耗层数。每 #g收获 1层，添加1张 #y小啃莓 到手牌。"
+    ]
+  },
+
+
+  "TheSimpletonMod:TurnipCropOrb": {
+    "NAME": "芜菁",
+    "DESCRIPTION": [
+      "#g收获： 将所有层数转换成一张全体攻击牌，层数越高，伤害越高。"
+    ]
+  }
+}
+
+

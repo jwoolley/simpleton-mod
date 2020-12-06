@@ -1,0 +1,174 @@
+{
+  "TheSimpletonMod:ExhaustCurseThenActivateAction": {
+    "TEXT": [
+      "消耗。选择一个诅咒激活仪式的效果。 (",
+      ")"
+    ]
+  },
+  "TheSimpletonMod:PrepareRitualAction": {
+    "TEXT": [
+      "消耗。(会被 残渣 替换。)"
+    ]
+  },
+  "TheSimpletonMod:ThemeDescription": {
+    "TEXT": [
+      "[构建主题牌组]不同的主题供你选择!",
+      "(注意：只有最上方的选中项会生效。)"
+    ]
+  },
+  "TheSimpletonMod:EndlessStrikeTheme": {
+    "TEXT": [
+      "[无尽打击] 无限使用 \"打击\" 卡。 (初始遗物: 四叶草)"
+    ]
+  },
+  "TheSimpletonMod:HeavyMachineGunTheme": {
+    "TEXT": [
+      "[重型机枪] 倾泻神力祝佑的子弹。(初始遗物: 魔法蜡烛)"
+    ]
+  },
+  "TheSimpletonMod:HellfireTheme": {
+    "TEXT": [
+      "[地狱火!] 循环牌组，呼出地狱火！ (初始遗物: 高级黑魔法)"
+    ]
+  },
+  "TheSimpletonMod:LetsStretchingTheme": {
+    "TEXT": [
+      "[拉伸运动] 不断获得永久的敏捷。 (初始遗物: 粉色靶丸)"
+    ]
+  },
+  "TheSimpletonMod:ManglingTheme": {
+    "TEXT": [
+      "[压碎!] 疯狂乱砍 (初始遗物: 大头钉)"
+    ]
+  },
+  "TheSimpletonMod:MoonCrystalPowerTheme": {
+    "TEXT": [
+      "[月晶之力] 感受水晶球的魔力。(初始遗物: 水晶球)"
+    ]
+  },
+  "TheSimpletonMod:PainfulBoomerangTheme": {
+    "TEXT": [
+      "[痛苦回旋] 给敌人无尽痛苦。 (初始遗物: 染血鱼叉)"
+    ]
+  },
+  "TheSimpletonMod:SoulReaperTheme": {
+    "TEXT": [
+      "[灵魂收割者] 维持你的生命在最大值。 (初始遗物: 灵魂容器)"
+    ]
+  },
+  "TheSimpletonMod:StrengthMachineTheme": {
+    "TEXT": [
+      "[力量机器] 不断获得1点力量。 (初始遗物: 恶魔印记)"
+    ]
+  },
+  "TheSimpletonMod:VoidLordTheme": {
+    "TEXT": [
+      "[虚空领主] 感受虚空形态的力量。 (初始遗物: 噩兆印记)"
+    ]
+  },
+  "TheSimpletonMod:BaseTheme": {
+    "TEXT": [
+      "[这是基础主题]"
+    ]
+  },
+  "TheSimpletonMod:SeasonTheme": {
+    "TEXT": [
+      "'Tis 季节!"
+    ]
+  },
+
+  "TheSimpletonMod:EnableContentForAllCharactersButton": {
+    "TEXT": [
+      "其他职业也能使用本mod一些药水、事件、诅咒、遗物。 (需要重启)"
+    ]
+  },
+
+  "TheSimpletonMod:EnableCursesForAllCharactersButton": {
+    "TEXT": [
+      "其他职业也能遇到本mod一些诅咒。 (需要重启)"
+    ]
+  },
+
+  "TheSimpletonMod:EnableEventsForAllCharactersButton": {
+    "TEXT": [
+      "其他职业也能使用本mod一些事件。 (需要重启)"
+    ]
+  },
+
+  "TheSimpletonMod:EnablePotionsForAllCharactersButton": {
+    "TEXT": [
+      "其他职业也能使用本mod一些药水。 (需要重启)"
+    ]
+  },
+
+  "TheSimpletonMod:EnableRelicsForAllCharactersButton": {
+    "TEXT": [
+      "其他职业也能使用本mod一些遗物。(需要重启)"
+    ]
+  },
+
+  "TheSimpletonMod:ChooseAndAddHandCardsToDeckAction": {
+    "TEXT": [
+      "被洗入抽牌堆。"
+    ]
+  },
+  "TheSimpletonMod:MulchAction": {
+    "TEXT": [
+      "消耗"
+    ]
+  },
+  "TheSimpletonMod:WoodChipperAction": {
+    "TEXT": [
+      "消耗。 (然后抽取等量牌)."
+    ]
+  },
+  "TheSimpletonMod:SeasonScreen": {
+    "TEXT": [
+      "现在的季节是",
+      "这些作物是应季的",
+      "继续"
+    ]
+  },
+  "TheSimpletonMod:SeasonalIndicator": {
+    "TEXT": [
+      "现在是 ",
+      " 于尖塔中",
+      "， ",
+      "， 和 ",
+      " 和 ",
+      " 是 #g应季的 ",
+      " NL NL 应季 #y农作物 能作为能力牌出现在奖励和商店中。"
+    ]
+  },
+  "TheSimpletonMod:WinterSeason": {
+    "TEXT": [
+      "冬季"
+    ]
+  },
+  "TheSimpletonMod:SpringSeason": {
+    "TEXT": [
+      "春季"
+    ]
+  },
+  "TheSimpletonMod:SummerSeason": {
+    "TEXT": [
+      "夏季"
+    ]
+  },
+  "TheSimpletonMod:AutumnSeason": {
+      "TEXT": [
+        "秋季"
+      ]
+  },
+  "TheSimpletonMod:UnknownSeason": {
+    "TEXT": [
+      "未知"
+    ]
+  },
+  "TheSimpletonMod:SeasonScreenTooltip": {
+    "TEXT": [
+      "应季作物",
+      "这些 #y农作物 在当前季度是最适合的，可以从战斗奖励和商店里遇到它们。其他作物依然可用，只是获取的手段会变少。"
+    ]
+  }
+}

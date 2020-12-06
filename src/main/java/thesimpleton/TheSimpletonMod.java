@@ -1406,6 +1406,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     private static String getLanguageString() {
         // Note to translators - add your language here (by alphabetical order).
         switch (Settings.language) {
+            case ZHS:
+                return "zhs";
             default:
                 return "eng";
         }

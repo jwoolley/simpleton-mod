@@ -1,0 +1,46 @@
+{
+  "TheSimpletonMod:AbundancePotion": {
+    "NAME": "茂盛肥料",
+    "DESCRIPTIONS": [
+      "获得 #b",
+      " #y丰裕 。 NL 在回合末，失去 #b",
+      " #y丰裕 。"
+    ]
+  },
+
+  "TheSimpletonMod:AbundancePotionKeyword": {
+    "NAME": "丰裕",
+    "DESCRIPTIONS": [
+      "通过卡牌获得 #yCrop 层数时，获得量会增加。"
+    ]
+  },
+
+  "TheSimpletonMod:KindlingPotion": {
+    "NAME": "引火剂",
+    "DESCRIPTIONS": [
+      "施加 #b",
+      " #y燃烧 于所有敌人。"
+    ]
+  },
+  "TheSimpletonMod:KindlingPotionKeyword": {
+    "NAME": "燃烧",
+    "DESCRIPTIONS": [
+      "受害者会在其回合末遭受伤害，然后灭火。"
+    ]
+  },
+  "TheSimpletonMod:MoonshinePotion": {
+    "NAME": "私酿烈酒",
+    "DESCRIPTIONS": [
+      "丢弃手牌，抽取 #b",
+      " 张牌。 获得 #b",
+      " #y力量 ，并在此回合变为痴醉状态。",
+      "@#&$%*?!!@"
+    ]
+  },
+  "TheSimpletonMod:MoonshinePotionKeyword": {
+    "NAME": "痴醉",
+    "DESCRIPTIONS": [
+      "抽取的卡牌的耗费值会在此回合随机变化。"
+    ]
+  }
+}

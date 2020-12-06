@@ -1,0 +1,169 @@
+{
+  "TheSimpletonMod:AbstractCropPower": {
+    "NAME": "抽象作物",
+    "DESCRIPTIONS": [
+      "#y农作物 。成熟于 #r",
+      " 层。"
+    ]
+  },
+
+  "TheSimpletonMod:AbundancePower": {
+    "NAME": "丰裕",
+    "DESCRIPTIONS": [
+      "通过卡牌的种植效果所得的 #y农作物 层数增加 #b",
+      "。"
+    ]
+  },
+
+  "TheSimpletonMod:BirdFeederPower": {
+    "NAME": "喂鸟器",
+    "DESCRIPTIONS": [
+      "此战中下 #b",
+      " 次 你打出 #y能力 牌，治疗 #b",
+      " HP。"
+    ]
+  },
+
+  "TheSimpletonMod:BiorefinementPower": {
+    "NAME": "生物提纯",
+    "DESCRIPTIONS": [
+      "每回合首次 ",
+      "每回合前 #b",
+      " 次 ",
+      "你打出含收获效果的牌，减少一张随机手牌在此战中的耗费 #b1 点。"
+    ]
+  },
+
+  "TheSimpletonMod:BurningPower": {
+    "NAME": "燃烧",
+    "DESCRIPTIONS": [
+      "回合末，受到 #b",
+      " 伤害，然后失去 #y燃烧 。"
+    ]
+  },
+
+  "TheSimpletonMod:CrackOfDawnPower": {
+    "NAME": "黎明的谷裂",
+    "DESCRIPTIONS": [
+      "在 #b",
+      " 回合",
+      " 回合",
+      "，对所有敌人造成 #b",
+      " 伤害， 种植 #b",
+      " #y玉米，并获得",
+      " [E]",
+      " 。"
+    ]
+  },
+
+  "TheSimpletonMod:DeenergizedPower": {
+    "NAME": "失励",
+    "DESCRIPTIONS": [
+      "在回合开始，失去 #b",
+      " #y能量 。"
+    ]
+  },
+
+  "TheSimpletonMod:DoubleDiggingPower": {
+    "NAME": "双重挖掘",
+    "DESCRIPTIONS": [
+      "此回合打出的下一张耗费少于2的牌会被重复打出。",
+      "此回合打出的下 #b",
+      " 张耗费少于2的牌会被重复打出。"
+    ]
+  },
+
+  "TheSimpletonMod:DrawDownPower": {
+    "NAME": "减少抽牌",
+    "DESCRIPTIONS": [
+      "下回合少抽 #b",
+      " 张牌。",
+      " 张牌。"
+    ]
+  },
+
+  "TheSimpletonMod:IntoxicatedPower": {
+    "NAME": "痴醉",
+    "DESCRIPTIONS": [
+      "抽到的牌的耗费值在此回合中会被随机化。"
+    ]
+  },
+
+  "TheSimpletonMod:LoseAbundancePower": {
+    "NAME": "土力下降",
+    "DESCRIPTIONS": [
+      "在回合末，失去 #b",
+      " #y丰裕。"
+    ]
+  },
+
+  "TheSimpletonMod:LoseSlowPower": {
+    "NAME": "不再缓慢",
+    "DESCRIPTIONS": [
+      "在回合开始，失去 #y缓慢 。"
+    ]
+  },
+
+  "TheSimpletonMod:NextTurnWeakPower": {
+    "NAME": "虚弱征兆",
+    "DESCRIPTIONS": [
+      "下回合获得 #b",
+      " #y虚弱 。"
+    ]
+  },
+
+  "TheSimpletonMod:NumbPower": {
+    "NAME": "麻木",
+    "DESCRIPTIONS": [
+      "每当于此回合打出卡牌，增加一张随机手牌在此轮中的耗费值 #b",
+      " 点。"
+    ]
+  },
+
+  "TheSimpletonMod:PhotosynthesisPower": {
+    "NAME": "光合作用",
+    "DESCRIPTIONS": [
+      "在回合末，用所有未使用的 #y能量 来 #y种植 等量的随机当季 #y农作物 。"
+    ]
+  },
+
+  "TheSimpletonMod:ResistantStrainPower": {
+    "NAME": "耐药菌株",
+    "DESCRIPTIONS": [
+      "每当对敌人施加负面状态，你获得 #b",
+      " #y格挡 。"
+    ]
+  },
+
+
+  "TheSimpletonMod:SoberUpPower": {
+    "NAME": "醒酒",
+    "DESCRIPTIONS": [
+      "回合末，失去 #y痴醉 。"
+    ]
+  },
+
+  "TheSimpletonMod:SpudOfTheMartyrPower": {
+    "NAME": "烈士之力",
+    "DESCRIPTIONS": [
+      "回合开始时，获得 #b",
+      " 暂时 #y力量 。"
+    ]
+  },
+
+  "TheSimpletonMod:ToughSkinPower": {
+    "NAME": "硬皮",
+    "DESCRIPTIONS": [
+      "每当 #g收获 #y农作物 ，获得 #b",
+      " #y格挡。"
+    ]
+  },
+
+  "TheSimpletonMod:VolatileFumesPower": {
+    "NAME": "挥发臭气",
+    "DESCRIPTIONS": [
+      "每当你攻击 #y虚弱 的敌人，对之施加 ",
+      " #y燃烧 。"
+    ]
+  }
+}

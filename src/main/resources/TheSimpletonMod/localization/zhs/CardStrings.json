@@ -1,0 +1,547 @@
+{
+  "TheSimpletonMod:Strike_TheSimpleton": {
+    "NAME": "打击",
+    "DESCRIPTION": "造成 !D! 伤害。"
+  },
+
+  "TheSimpletonMod:Defend_TheSimpleton": {
+    "NAME": "防御",
+    "DESCRIPTION": "获得 !B! 格挡。"
+  },
+
+  "TheSimpletonMod:Aerate": {
+    "NAME": "通气",
+    "DESCRIPTION": "获得 !B! 格挡 。 NL 种植 !M! 你最新的农作物",
+    "EXTENDED_DESCRIPTION" : [
+      "。",
+      " NL (无合条件作物)",
+      " NL (当前 ",
+      ")"
+    ]
+  },
+
+  "TheSimpletonMod:BabyTurnip": {
+    "NAME": "幼芜菁",
+    "DESCRIPTION": "造成 !D! 伤害。 抽取1张牌。 NL 消耗 。"
+  },
+
+  "TheSimpletonMod:Barnstorm": {
+    "NAME": "粮仓风暴",
+    "DESCRIPTION": "每有一层农作物，随机对一名敌人造成 !D! 伤害。 NL 至少被击中 !M! 次的敌人会被 眩晕 。"
+  },
+
+  "TheSimpletonMod:Biorefinement": {
+    "NAME": "生物提纯",
+    "DESCRIPTION": "每回合当你首次打出一张 带 收获 效果的牌，在整场战斗中，减少一张随机手牌在此战中的耗费1点。",
+    "DESCRIPTION": "每回合当你首次打出一张 带 收获 效果的牌，在整场战斗中，减少一张随机手牌在此战中的耗费1点。"
+
+  },
+
+  "TheSimpletonMod:BirdFeeder": {
+    "NAME": "喂鸟器",
+    "DESCRIPTION": "此战中，下 !M! 次你打出能力牌时，治疗 ",
+    "EXTENDED_DESCRIPTION" : [" 生命。"]
+  },
+
+  "TheSimpletonMod:BumperCrop": {
+    "NAME": "大丰收",
+    "DESCRIPTION": "获得 !B! 格挡 。 NL 收获 !M! 你最新的农作物",
+    "EXTENDED_DESCRIPTION" : [
+      "。",
+      " NL (无合条件的作物)",
+      " NL (当前 ",
+      ")"
+    ]
+  },
+
+  "TheSimpletonMod:BuzzBomb": {
+    "NAME": "空投播苗",
+    "DESCRIPTION": "对随机敌人造成 !D! 伤害 !M! 次。 NL 种植 ",
+    "EXTENDED_DESCRIPTION" : [" 每当一个敌人死于此方式。"]
+  },
+
+  "TheSimpletonMod:CloseScrape": {
+    "NAME": "挖坑松土",
+    "DESCRIPTION": "造成 !D! 伤害。 NL 种植 !M! 最旧的农作物",
+    "EXTENDED_DESCRIPTION" : [
+      "。",
+      " NL (无合条件的作物)",
+      " NL (当前 ",
+      ")"
+    ]
+  },
+
+  "TheSimpletonMod:ControlledBurn": {
+    "NAME": "可控燃烧",
+    "DESCRIPTION": "施加 !M! 燃烧 。 NL 消耗 。如敌人已有燃烧，则不消耗。"
+  },
+
+  "TheSimpletonMod:CrackOfDawn": {
+    "NAME": "黎明的爆谷",
+    "DESCRIPTION": " !M! 回合后：对所有敌人造成 !D! 伤害， 种植 ",
+    "EXTENDED_DESCRIPTION" : [
+      " 玉米 ，并获得",
+      " [E]",
+      " 。"
+    ]
+  },
+
+
+  "TheSimpletonMod:CropDiversity": {
+    "NAME": "作物多样性",
+    "DESCRIPTION": "从随机 !M! 作物能力牌中选择1张添加进手牌，该牌于此回合耗费变为0。 NL 消耗 "
+  },
+
+  "TheSimpletonMod:CropRotation": {
+    "NAME": "庄稼轮作",
+    "DESCRIPTION": "全数 收获 一个随机农作物。 NL 获得1张随机的应季作物能力牌。",
+    "UPGRADE_DESCRIPTION": "全数 收获 一个随机农作物。 NL 获得1张随机的应季作物能力牌。"
+  },
+
+  "TheSimpletonMod:CullingStrike": {
+    "NAME": "剔除杂劣",
+    "DESCRIPTION": "造成 !D! 伤害。 NL 如已在本回合 收获 过，再次造成 !D! 伤害",
+    "EXTENDED_DESCRIPTION" : [
+      "。",
+      " NL (",
+      "不会再次伤害",
+      "会再次伤害",
+      ")"
+    ]
+  },
+
+  "TheSimpletonMod:Cultivate": {
+    "NAME": "耕作",
+    "DESCRIPTION": "获得 !B! 格挡 。 NL 收获 ",
+    "EXTENDED_DESCRIPTION" : [" 每种农作物，然后对每种作物 种植 !M! 层。 NL 消耗 。"]
+  },
+
+  "TheSimpletonMod:Depletion": {
+    "NAME": "折损",
+    "DESCRIPTION": "下轮少获得 !M! 能量 并 少抽 !M! 张牌。 NL 消耗 。 NL 如回合末仍在手中，则复制一张到弃牌堆。"
+  },
+
+  "TheSimpletonMod:ErosionControl": {
+    "NAME": "冲蚀防治",
+    "DESCRIPTION": "收获 所有农作物。 NL 获得 !M! 无实体 。 NL 消耗 。"
+  },
+
+  "TheSimpletonMod:DesperatePlunge": {
+    "NAME": "信仰之跃(伪)",
+    "DESCRIPTION": "此轮中，每打出1张能力牌，此牌减1点耗费。 NL 获得 !B! 格挡 。 NL 下轮，失去 [E] 。"
+  },
+
+  "TheSimpletonMod:DigIn": {
+    "NAME": "挖掘",
+    "DESCRIPTION": "获得 !B! 格挡 。 NL 添加一张 *折损 到弃牌堆。"
+  },
+
+  "TheSimpletonMod:DoubleBarrel": {
+    "NAME": "双桶",
+    "DESCRIPTION": "造成 !D! 伤害。 NL 如敌人已被 虚弱 ，获得 [E] 并再次造成 !D! 伤害。"
+  },
+
+  "TheSimpletonMod:DoubleDigging": {
+    "NAME": "双重挖掘",
+    "DESCRIPTION": "此轮内，打出的下",
+    "EXTENDED_DESCRIPTION" : [
+      " 张耗费少于2的牌，将会被打出2次。",
+      " !M! 张耗费少于2的牌，将会被打出2次。"
+    ]
+  },
+
+  "TheSimpletonMod:FanTheFlames": {
+    "NAME": "煽风鼓焰",
+    "DESCRIPTION": "施加 !M! 燃烧 ，然后使敌人的燃烧层数翻倍。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "对所有敌人施加 !M! 燃烧 ，然后使所有敌人的燃烧层数翻倍。 NL 消耗 。"
+  },
+
+  "TheSimpletonMod:Fecundity": {
+    "NAME": "肥沃",
+    "DESCRIPTION": "获得 !M! 丰裕 。"
+  },
+
+  "TheSimpletonMod:Ferment": {
+    "NAME": "发酵",
+    "DESCRIPTION": "将2张手牌洗进抽牌堆。 NL 获得 [E] [E] 。",
+    "UPGRADE_DESCRIPTION": "将2张手牌洗进抽牌堆，抽取1张牌。 NL 获得 [E] [E] 。"
+  },
+
+  "TheSimpletonMod:Fertilaser": {
+    "NAME": "化肥",
+    "DESCRIPTION": "造成 !D! 伤害。 NL 每种农作物 种植 !M! 层。"
+  },
+
+  "TheSimpletonMod:FlamingSpud": {
+    "NAME": "火焰薯弹",
+    "DESCRIPTION": "虚无 。 NL 造成 !D! 伤害。 NL 施加 !M! 燃烧 。 NL 消耗 。"
+  },
+
+  "TheSimpletonMod:FlashPasteurize": {
+    "NAME": "巴氏灭菌",
+    "DESCRIPTION": "对所有角色造成 !D! 伤害。 NL 移除你的所有减益。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "对所有角色造成 !D! 伤害。 NL 移除你的所有减益。 NL 获得 !B! 格挡 。 NL 消耗 。"
+  },
+
+  "TheSimpletonMod:GiantTurnip": {
+    "NAME": "芜菁",
+    "DESCRIPTION": "对所有敌人造成 !D! 伤害。 NL 添加 一张芜菁牌到弃牌堆。 NL 消耗 。"
+  },
+
+  "TheSimpletonMod:GoToMarket": {
+    "NAME": "赶集",
+    "DESCRIPTION": "每有一种不同的农作物，抽取1张牌。"
+  },
+
+  "TheSimpletonMod:Gnats": {
+    "NAME": "蚊虫",
+    "DESCRIPTION": "无法打出。 NL 此轮里无法打出0耗费的卡牌。",
+    "EXTENDED_DESCRIPTION" : ["此轮里无法打出0耗费的卡牌。"]
+  },
+
+
+  "TheSimpletonMod:Gnawberry": {
+    "NAME": "小啃莓",
+    "DESCRIPTION": "造成 !D! 伤害。 NL 治疗 !M! 生命。 NL 消耗 。"
+  },
+
+  "TheSimpletonMod:Haymaker": {
+    "NAME": "人肉压草机",
+    "DESCRIPTION": "造成 !D! 伤害。 NL 治疗 !M! 生命。 NL 施加 ",
+    "EXTENDED_DESCRIPTION" : [" 易伤 于所有敌人。 NL 消耗 。"]
+  },
+
+  "TheSimpletonMod:HitTheSack": {
+    "NAME": "打爆种囊",
+    "DESCRIPTION": "造成 !D! 伤害 X 次。 NL 种植 X 土豆 。",
+    "UPGRADE_DESCRIPTION" : "造成 !D! 伤害 X+1 次。 NL 种植 X+1 土豆 。"
+  },
+
+  "TheSimpletonMod:Husk": {
+    "NAME": "外壳",
+    "DESCRIPTION": "虚无 。 NL 获得 !B! 格挡 。 NL 消耗 。"
+  },
+
+  "TheSimpletonMod:Innovate": {
+    "NAME": "改革",
+    "DESCRIPTION": "添加一张带 收获 效果的牌进手牌，该牌的耗费变为 !M!",
+    "EXTENDED_DESCRIPTION": [
+      " 于此轮。",
+      " 于此战。"
+    ]
+  },
+
+  "TheSimpletonMod:KeenEdge": {
+    "NAME": "锋锐钳刃",
+    "DESCRIPTION": "虚无 。 NL 造成 !D! 伤害。 NL 此牌的伤害增加 !M! ，耗费增加 ",
+    "UPGRADE_DESCRIPTION" :  "造成 !D! 伤害。 NL 此牌的伤害增加 !M! ，耗费增加 ",
+    "EXTENDED_DESCRIPTION": [ " 于此战。" ]
+  },
+
+  "TheSimpletonMod:LandGrant": {
+    "NAME": "土地赠与",
+    "DESCRIPTION": "获得 !M! 土地 。",
+    "UPGRADE_DESCRIPTION" :  "获得 !M! 土地 。"
+  },
+
+  "TheSimpletonMod:Mulch": {
+    "NAME": "护根",
+    "DESCRIPTION": "消耗1张牌，根据获得该牌类型获得不同效果。 NL 攻击牌：获得 !B! 格挡 。 NL 技能牌：对所有敌人施加 ",
+    "EXTENDED_DESCRIPTION": [
+      " 燃烧 。 NL 其他牌：抽取 ",
+      " 张牌。"]
+  },
+
+  "TheSimpletonMod:Nettles": {
+    "NAME": "荨麻",
+    "DESCRIPTION": "无法打出。 NL 在你的回合末，一名随机敌人获得 !M! 荆棘 。"
+  },
+
+  "TheSimpletonMod:Frostbite": {
+    "NAME": "霜冻",
+    "DESCRIPTION": "无法打出。 NL 每当打出一张牌，一张随机手牌在此回合的耗费增加 1 。"
+  },
+
+  "TheSimpletonMod:OnionBloom": {
+    "NAME": "洋葱茂盛",
+    "DESCRIPTION": "固有 。 NL 种植 !M! 洋葱 。 NL  抽取1张牌，弃置1张牌。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "固有 。 NL 种植 !M! 洋葱 。 NL  抽取1张牌，弃置1张牌。"
+  },
+
+  "TheSimpletonMod:PestManagement": {
+    "NAME": "虫害治理",
+    "DESCRIPTION": "造成 !D! 伤害。 NL 下一轮，获得 !B! 格挡 。"
+  },
+
+  "TheSimpletonMod:Photosynthesis": {
+    "NAME": "光合作用",
+    "DESCRIPTION": "于回合末，消耗所有剩余能量，用以 种植 随机的应季农作物。"
+  },
+
+  "TheSimpletonMod:Polyculture": {
+    "NAME": "混种同育",
+    "DESCRIPTION": "把 !M! 随机 作物能力牌洗进抽牌堆。 NL 消耗 。"
+  },
+
+  "TheSimpletonMod:Pruning": {
+    "NAME": "修剪",
+    "DESCRIPTION": "全数 收获 最旧的农作物，并种植 !M! ",
+    "EXTENDED_DESCRIPTION" : [
+      "。",
+      "层",
+      "层",
+      " NL (无合条件的作物)",
+      " NL (当前 ",
+      ")"
+    ]
+  },
+
+  "TheSimpletonMod:Rake": {
+    "NAME": "吃俺一耙",
+    "DESCRIPTION": "造成 !D! 伤害。 NL 施加 !M! 虚弱。"
+  },
+
+  "TheSimpletonMod:AbstractReapAndSowCard": {
+    "DESCRIPTION": "对所有敌人造成 !D! 伤害。 NL 种植 !M! ",
+    "EXTENDED_DESCRIPTION" : ["，若有成熟作物，添加一张 *耕作 到弃牌堆。"]
+  },
+
+  "TheSimpletonMod:ReapAndSow": {
+    "NAME": "主产土豆",
+    "DESCRIPTION": "对所有敌人造成 !D! 伤害。 NL 种植 !M! 土豆 ，若有成熟作物，添加一张 *耕作 到弃牌堆。"
+ },
+
+  "TheSimpletonMod:ReapAndSquash": {
+    "NAME": "主产倭瓜",
+    "DESCRIPTION": "对所有敌人造成 !D! 伤害。 获得 !B! 格挡 。 NL 种植 !M! 南瓜 ，若有成熟作物，添加一张 *耕作 到弃牌堆。"
+  },
+
+  "TheSimpletonMod:ReekAndSow": {
+    "NAME": "主产洋葱",
+    "DESCRIPTION": "造成 !D! 伤害并施加 ",
+    "EXTENDED_DESCRIPTION": [" 燃烧 于所有敌人。 NL 种植 !M! 洋葱 ，若有成熟作物，添加一张 *耕作 到弃牌堆。"]
+  },
+
+  "TheSimpletonMod:ResearchGrant": {
+    "NAME": "研究补助",
+    "DESCRIPTION": "获得 !B! 格挡 。 NL 添加",
+    "EXTENDED_DESCRIPTION": [
+      "1张 *泥土样本",
+      " !M! 张 *泥土样本",
+      " 到弃牌堆。 NL 消耗 。"
+    ]
+  },
+
+  "TheSimpletonMod:ResistantStrain": {
+    "NAME": "耐药菌株",
+    "DESCRIPTION": "每当你向一名敌人施加减益，获得 !M! 格挡 。"
+  },
+
+  "TheSimpletonMod:RootDown": {
+    "NAME": "根深蒂固",
+    "DESCRIPTION": "造成 !D! 伤害。 NL 种植 !M! 芜菁 。",
+    "UPGRADE_DESCRIPTION": "固有 。 NL 造成 !D! 伤害。 NL 种植 !M! 芜菁 。"
+  },
+
+  "TheSimpletonMod:RootOut": {
+    "NAME": "连根拔起",
+    "DESCRIPTION": "所有敌人 获得 !M! 易伤 。 NL 收获 所有 芜菁 。 NL 消耗 。"
+  },
+
+  "TheSimpletonMod:Rototilling": {
+    "NAME": "旋耕",
+    "DESCRIPTION": "抽取 !M! 张牌。 NL 消耗一张手牌。"
+  },
+
+  "TheSimpletonMod:SaladShooter": {
+    "NAME": "沙拉射手",
+    "DESCRIPTION": "对随机敌人造成 !D! 伤害。 NL 此回合每 收获 过一次，就重复一次",
+    "EXTENDED_DESCRIPTION": [
+      "。",
+      " (",
+      " 次共计)",
+      " 次共计)"
+    ]
+  },
+
+  "TheSimpletonMod:SaltTheEarth": {
+    "NAME": "撒盐于土",
+    "DESCRIPTION": "对所有敌人造成 !D! 伤害。 NL 添加 !M! *折损 到手牌。"
+  },
+
+
+  "TheSimpletonMod:SeedCoat": {
+    "NAME": "种皮",
+    "DESCRIPTION": "获得 !B! 格挡 。 NL 此战中首次打出后，提供的格挡减少 !M! ，并变为 消耗 牌。",
+    "EXTENDED_DESCRIPTION": [
+      "获得 !B! 格挡 。 NL 消耗 。"
+    ]
+  },
+
+  "TheSimpletonMod:SlashAndBurn": {
+    "NAME": "割草为薪",
+    "DESCRIPTION": "造成 !D! 伤害。 NL 施加 !M! 燃烧 。"
+  },
+
+  "TheSimpletonMod:SoilSample": {
+    "NAME": "泥土样本",
+    "DESCRIPTION": "将至多 !M! 张弃牌堆里的牌洗入抽牌堆，抽取1张牌，该牌于此回合耗费变0。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "将至多 !M! 张弃牌堆里的牌洗入抽牌堆，抽取1张牌，该牌于此回合耗费变0。"
+  },
+
+  "TheSimpletonMod:SpiceUp": {
+    "NAME": "加辣！",
+    "DESCRIPTION": "施加 !M! 燃烧 。 NL 抽取 ",
+    "EXTENDED_DESCRIPTION" : [
+      " 牌。",
+      " 张牌。"
+    ]
+  },
+
+  "TheSimpletonMod:Spoilage": {
+    "NAME": "腐坏",
+    "DESCRIPTION": "无法打出。 NL 如你在此轮中打出了不少于 !M! 张牌，在回合末将此卡置入抽牌堆顶层。",
+    "EXTENDED_DESCRIPTION" : [ " NL (会激活)。"]
+  },
+
+  "TheSimpletonMod:SpudMissile": {
+    "NAME": "薯弹",
+    "DESCRIPTION": " 虚无 。 NL 造成 !D! 伤害。 NL 消耗 。"
+  },
+
+  "TheSimpletonMod:StockTheCellar": {
+    "NAME": "囤入地窖",
+    "DESCRIPTION": " 虚无 。 NL 获得 !B! 格挡 。 NL 每当此卡被洗入抽牌堆，此战中增加其 格挡 !M! 。"
+  },
+
+
+  "TheSimpletonMod:Sunseed": {
+    "NAME": "太阳种子",
+    "DESCRIPTION": "抽到此牌时，如果弃牌堆为空，则复制此牌。 NL 造成 !D! 伤害并获得 [E] 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": " 固有 。抽到此牌时，如果弃牌堆为空，则复制此牌。 NL 造成 !D! 伤害并获得 [E] 。 NL 消耗 。"
+  },
+
+
+
+  "TheSimpletonMod:Surplus": {
+    "NAME": "盈余",
+    "DESCRIPTION": "添加 !M! 随机的普通作物能力牌到手牌。 NL 消耗 。"
+  },
+
+  "TheSimpletonMod:Swelter": {
+    "NAME": "中暑",
+    "DESCRIPTION": "施加 1 虚弱 和 !M! 燃烧 。 NL 获得 !B! 格挡 。",
+    "UPGRADE_DESCRIPTION": "施加 2 虚弱 和 !M! 燃烧 。 NL 获得 !B! 格挡 。"
+  },
+
+  "TheSimpletonMod:Sunchoke": {
+    "NAME": "烈日灼息",
+    "DESCRIPTION": "所有敌人造成 !D! 伤害。 NL 每名 虚弱 的敌人还会受到 !M! 燃烧 。"
+  },
+
+  "TheSimpletonMod:TakeHeart": {
+    "NAME": "振作",
+    "DESCRIPTION": "获得 !B! 格挡 。 NL 治疗 !M! 生命。 NL 种植 ",
+    "EXTENDED_DESCRIPTION" : [
+      " 洋蓟 。 NL 如你的生命不高于50%，则重复效果。 NL 消耗 。"
+    ]
+  },
+
+  "TheSimpletonMod:Thresh": {
+    "NAME": "打谷",
+    "DESCRIPTION": "造成 !D! 伤害。 NL 每当于此回合进行 收获 ，此卡少花费1点能量。"
+  },
+
+  "TheSimpletonMod:Germinate": {
+    "NAME": "发芽",
+    "DESCRIPTION": "如最新的农作物已 成熟 ，获得 !B! 格挡 。 否则， 种植 !M! 层该农作物。",
+    "EXTENDED_DESCRIPTION" : [
+      "。",
+      " NL (没有符合条件的作物)",
+      " NL (",
+      ", 成熟)",
+      ", 未成熟)"
+    ]
+  },
+
+  "TheSimpletonMod:ToughSkin": {
+    "NAME": "硬皮",
+    "DESCRIPTION": "每当 收获 农作物，获得 !M! 格挡 。"
+  },
+
+  "TheSimpletonMod:ToughenUp": {
+    "NAME": "强韧起来",
+    "DESCRIPTION": "获得 !B! 格挡 。 NL 如果拥有南瓜，则种植 !M! 南瓜 。"
+  },
+
+  "TheSimpletonMod:VineRipen": {
+    "NAME": "藤蔓熟实",
+    "DESCRIPTION": "种植 !M! 南瓜 。 NL 如南瓜已成熟，你的格挡不会在下回合开始时被移除。"
+  },
+
+  "TheSimpletonMod:VolatileFumes": {
+    "NAME": "挥发臭气",
+    "DESCRIPTION": "每当攻击 虚弱 的敌人，施加 !M! 燃烧 。"
+  },
+
+  "TheSimpletonMod:Artichokes": {
+    "NAME": "洋蓟",
+    "DESCRIPTION": "种植 !M! 洋蓟 。"
+  },
+
+  "TheSimpletonMod:Asparagus": {
+    "NAME": "芦笋",
+    "DESCRIPTION": "种植 !M! 芦笋 。"
+  },
+
+  "TheSimpletonMod:Chilis": {
+    "NAME": "辣椒",
+    "DESCRIPTION": "种植 !M! 辣椒 。"
+  },
+
+  "TheSimpletonMod:Coffee": {
+    "NAME": "向日葵",
+    "DESCRIPTION": "种植 !M! ",
+    "EXTENDED_DESCRIPTION": ["向日葵 。", "向日葵 。"]
+  },
+
+  "TheSimpletonMod:Corn": {
+    "NAME": "玉米",
+    "DESCRIPTION": "种植 !M! 玉米 。"
+  },
+
+  "TheSimpletonMod:Mushrooms": {
+    "NAME": "蘑菇",
+    "DESCRIPTION": "种植 !M! 蘑菇 。"
+  },
+
+  "TheSimpletonMod:Onions": {
+    "NAME": "洋葱",
+    "DESCRIPTION": "种植 !M! 洋葱 。"
+  },
+
+  "TheSimpletonMod:Potatoes": {
+    "NAME": "土豆",
+    "DESCRIPTION": "种植 !M! 土豆 。"
+  },
+
+  "TheSimpletonMod:Spinach": {
+    "NAME": "菠菜",
+    "DESCRIPTION": "种植 !M! 菠菜 。"
+  },
+
+  "TheSimpletonMod:Squash": {
+    "NAME": "南瓜",
+    "DESCRIPTION": "种植 !M! 南瓜 。"
+  },
+
+  "TheSimpletonMod:Strawberries": {
+    "NAME": "草莓",
+    "DESCRIPTION": "种植 !M! 草莓 。"
+  },
+
+  "TheSimpletonMod:Turnips": {
+    "NAME": "芜菁",
+    "DESCRIPTION": "种植 !M! 芜菁 。"
+  }
+}

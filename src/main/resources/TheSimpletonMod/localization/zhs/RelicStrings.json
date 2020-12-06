@@ -1,0 +1,180 @@
+{
+  "TheSimpletonMod:CashCrop": {
+    "NAME": "经济作物",
+    "FLAVOR": "无温，但不坚硬。",
+    "DESCRIPTIONS": [
+      "每场战斗首次收获 #y农作物 时，获得 #b",
+      " 金币。"
+    ]
+  },
+
+  "TheSimpletonMod:GrassPellets": {
+    "NAME": "草粒",
+    "FLAVOR": "铺好你的草坪。",
+    "DESCRIPTIONS": [
+      "每当你在同一回合里 #y收获 了至少1层 #y农作物 #b",
+      "  次，移除你的所有负面状态。"
+    ]
+  },
+
+  "TheSimpletonMod:GardenGlove": {
+    "NAME": "园艺手套",
+    "FLAVOR": "有时候，你需要染点土。",
+    "DESCRIPTIONS": [
+      "在你的回合末，如果手牌里仅有1张 #y能力牌 ，保留它。"
+    ]
+  },
+
+  "TheSimpletonMod:GasCan": {
+    "NAME": "气罐",
+    "FLAVOR": "什么能够填满容器？",
+    "DESCRIPTIONS": [
+      "每当你向一敌人施加 #y燃烧，也向其他敌人施加一半的燃烧。"
+    ]
+  },
+
+  "TheSimpletonMod:GourdCharm": {
+    "NAME": "葫芦魔咒",
+    "FLAVOR": "葫芦葫芦葫芦。。",
+    "DESCRIPTIONS": [
+      "每回合开始，如果没有农作物， #y种植 #b2 #y南瓜 。"
+    ]
+  },
+
+  "TheSimpletonMod:TheHarvester": {
+    "NAME": "可靠的镰刀",
+    "FLAVOR": "精准，迅捷。",
+    "DESCRIPTIONS": [
+      "每当你 #y种植 农作物 ，如果层数已超过 #r成熟 值， #g收获 所有溢出的层数。"
+    ]
+  },
+
+  "TheSimpletonMod:HeatStroke": {
+    "NAME": "中暑",
+    "FLAVOR": "首先是发烧，然后发冷。",
+    "DESCRIPTIONS": [
+      "下场战斗开始时获得 #b",
+      " #y燃烧 。"
+    ]
+  },
+
+  "TheSimpletonMod:Honeycomb": {
+    "NAME": "产蜜蜂巢",
+    "FLAVOR": "小心被蛰到。。",
+    "DESCRIPTIONS": [
+      "每当 #y种植 #y农作物 ，对随机敌人造成 #b",
+      " 伤害。"
+    ]
+  },
+
+  "TheSimpletonMod:HornOfPlenty": {
+    "NAME": "丰足号角",
+    "FLAVOR": "比足够更多。",
+    "DESCRIPTIONS": [
+      "每次战斗开始，添加一张随机应季 #y农作物 能力卡进手牌。首回合内获得 #b",
+      " #y丰裕 。"
+    ]
+  },
+
+  "TheSimpletonMod:HotPotato": {
+    "NAME": "烫手土豆",
+    "FLAVOR": "新鲜出炉。",
+    "DESCRIPTIONS": [
+      "收获土豆会产出能造成火焰伤害的 #y火焰薯弹 。"
+    ]
+  },
+
+
+  "TheSimpletonMod:Moonshine": {
+    "NAME": "私酿之壶",
+    "FLAVOR": "世代流传的配方。",
+    "DESCRIPTIONS": [
+      "在第 #b",
+      " 回合，获得 #b",
+      " 临时力量 和 [E] 。",
+      " 临时力量 ，获得 [E] 并多抽取",
+      " 1张牌",
+      " #b",
+      " 额外牌。",
+      " NL 抽到的所有牌耗费值在该回合内随机变化。",
+      "@#&$%*?!!@"
+    ]
+  },
+
+  "TheSimpletonMod:OnionBelt": {
+    "NAME": "洋葱腰带",
+    "FLAVOR": "据说可以驱魔。",
+    "DESCRIPTIONS": [
+      "每回合开始，如果没有农作物， #y种植 #b2 #y洋葱 。"
+    ]
+  },
+
+  "TheSimpletonMod:PicklingJar": {
+    "NAME": "腌菜罐",
+    "FLAVOR": "醋、盐还有黑魔法。",
+    "DESCRIPTIONS": [
+      "捡起时，选择一张牌。每 #b",
+      " 次你洗抽牌堆，复制一张该牌加进手牌，且该回合中耗费为0。",
+      "选择一张牌： ",
+      "每 #b",
+      " 次 你洗抽牌堆，复制一张 ",
+      " 加进手牌，且该回合中耗费为0。"
+    ]
+  },
+
+  "TheSimpletonMod:PlanterBox": {
+    "NAME": "栽培箱",
+    "FLAVOR": "优渥的泥土使收成更稳健。",
+    "DESCRIPTIONS": [
+      "每过 #b",
+      " 回合，获得 #b",
+      " 额外 #y土地 。",
+      " 额外 #y土地 。"
+    ]
+  },
+
+  "TheSimpletonMod:NightSoil": {
+    "NAME": "粪肥",
+    "FLAVOR": "从你体内来的。。",
+    "DESCRIPTIONS": [
+      "每当洗牌，对每个未 #r成熟 的农作物 #y种植 #b",
+      " 层。",
+      " 层。"
+    ]
+  },
+
+  "TheSimpletonMod:SpudOfTheInnocent": {
+    "NAME": "无辜薯仔",
+    "FLAVOR": "薄皮薯仔的救赎。",
+    "DESCRIPTIONS": [
+      "每回合开始，如果没有农作物， #y种植 #b",
+      " #y土豆 。"
+    ]
+  },
+
+  "TheSimpletonMod:SpudOfTheMartyr": {
+    "NAME": "烈士薯仔",
+    "FLAVOR": "为了填饱他人肚子而牺牲自己。",
+    "DESCRIPTIONS": [
+      "每当你在战斗中失去生命，在接下来的回合获得 #b",
+      " 临时 #y力量 。"
+    ]
+  },
+
+  "TheSimpletonMod:Trowel": {
+    "NAME": "泥铲",
+    "FLAVOR": "常见的园艺和农作工具。",
+    "DESCRIPTIONS": [
+      "你受到的攻击伤害减少相对于 #y土豆 层数的数值。"
+    ]
+  },
+
+  "TheSimpletonMod:WoodChipper": {
+    "NAME": "杂草拔除器",
+    "FLAVOR": "仅用于拔草！不能拔毛！",
+    "DESCRIPTIONS": [
+      "每场战斗开始，选择至多 #b",
+      " 张手牌来消耗，然后抽取等量牌。"
+    ]
+  }
+}

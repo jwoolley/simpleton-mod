@@ -1,0 +1,204 @@
+{
+  "TheSimpletonMod:AbundanceKeyword": {
+    "PROPER_NAME": "丰裕",
+    "NAMES": [
+      "丰裕"
+    ],
+    "DESCRIPTION":  "增加卡牌种植 #y农作物 的层数。"
+  },
+
+  "TheSimpletonMod:ArtichokeKeyword": {
+    "PROPER_NAME": "洋蓟",
+    "NAMES": [
+      "洋蓟", "洋蓟"
+    ],
+    "DESCRIPTION": "#y农作物 。收获时获得 荆棘 。"
+  },
+
+  "TheSimpletonMod:AsparagusKeyword": {
+    "PROPER_NAME": "芦笋",
+    "NAMES": [
+      "芦笋"
+    ],
+    "DESCRIPTION": "#y农作物 。收获时获得 敏捷 。"
+  },
+
+  "TheSimpletonMod:BurningKeyword": {
+    "PROPER_NAME": "燃烧",
+    "NAMES": [
+      "燃烧"
+    ],
+    "DESCRIPTION": "燃烧状态下的角色会在其回合末遭受伤害，然后状态结束。"
+  },
+
+  "TheSimpletonMod:ChilisKeyword": {
+    "PROPER_NAME": "辣椒",
+    "NAMES": [
+      "辣椒", "辣椒。"
+    ],
+    "DESCRIPTION": "#y农作物 。收获时对所有敌人施加伤害和 #y燃烧 。"
+  },
+
+  "TheSimpletonMod:CoffeeKeyword": {
+    "PROPER_NAME": "咖啡豆",
+    "NAMES": [
+      "咖啡豆"
+    ],
+    "DESCRIPTION": "#y农作物 。收获时获得能量。"
+  },
+
+
+  "TheSimpletonMod:CornKeyword": {
+    "PROPER_NAME": "玉米",
+    "NAMES": [
+      "玉米"
+    ],
+    "DESCRIPTION": "#y农作物 。收获时抽牌。"
+  },
+
+  "TheSimpletonMod:CropKeyword": {
+    "PROPER_NAME": "农作物",
+    "NAMES": [
+      "农作物"
+    ],
+    "DESCRIPTION": "#y农作物 被收获时可提供增益。"
+  },
+
+  "TheSimpletonMod:DepletionKeyword": {
+    "PROPER_NAME": "折损",
+    "NAMES": [
+      "折损", "折损。"
+    ],
+    "DESCRIPTION": "折损是一种可被打出的状态牌，会减少下回合的能量和抽牌数。"
+  },
+
+  "TheSimpletonMod:GnawberryKeyword": {
+    "PROPER_NAME": "小啃莓",
+    "NAMES": [
+      "小啃莓", "小啃莓"
+    ],
+    "DESCRIPTION": "小啃莓是一种攻击牌，造成中等伤害并治疗生命。"
+  },
+
+  "TheSimpletonMod:HarvestKeyword": {
+    "PROPER_NAME": "收获",
+    "NAMES": [
+      "收获", "收获。"
+    ],
+    "DESCRIPTION": "减少 #y农作物 层数，获得不同的效果。收获触发方式：卡牌和遗物效果、作物成熟的下回合开始、作物种类超过槽位等。"
+  },
+
+  "TheSimpletonMod:HuskKeyword": {
+    "PROPER_NAME": "外壳",
+    "NAMES": [
+      "外壳", "外壳"
+    ],
+    "DESCRIPTION": "一种 #b0耗费 技能牌，提供少量格挡。消耗。"
+  },
+
+  "TheSimpletonMod:MaturityKeyword": {
+    "PROPER_NAME": "成熟",
+    "NAMES": [
+      "成熟", "成熟，", "成熟。"
+    ],
+    "DESCRIPTION": "当一种 #y农作物 的层数堆叠到了各自的特定数值后，就会成熟。每回合开始时，每一种成熟的作物都会被 #g收获 。"
+  },
+
+  "TheSimpletonMod:MushroomKeyword": {
+    "PROPER_NAME": "蘑菇",
+    "NAMES": [
+      "蘑菇", "蘑菇。"
+    ],
+    "DESCRIPTION": "#y农作物 。收获时获得随机的无色牌。"
+  },
+
+  "TheSimpletonMod:OnionKeyword": {
+    "PROPER_NAME": "洋葱",
+    "NAMES": [
+      "洋葱", "洋葱。"
+    ],
+    "DESCRIPTION": "#y农作物 。收获时向随机敌人施加 #r虚弱 。"
+  },
+
+  "TheSimpletonMod:Numbed": {
+    "PROPER_NAME": "麻木",
+    "NAMES": [
+      "麻木", "麻木。"
+    ],
+    "DESCRIPTION": "当打出一张牌后，暂时地增加一张随机手牌的能量耗费。"
+  },
+
+  "TheSimpletonMod:PlantKeyword": {
+    "PROPER_NAME": "种植",
+    "NAMES": [
+      "种植", "种植，", "种植。", "重新种植", "重新种植，", "重新种植。"
+    ],
+    "DESCRIPTION": "获得一些 #y农作物 层数。"
+  },
+
+
+  "TheSimpletonMod:PotatoKeyword": {
+    "PROPER_NAME": "土豆",
+    "NAMES": [
+      "土豆", "土豆。"
+    ],
+    "DESCRIPTION": "#y农作物 。收获时产出一种0耗费的攻击牌。"
+  },
+
+
+  "TheSimpletonMod:PlotKeyword": {
+    "PROPER_NAME": "土地",
+    "NAMES": [
+      "土地", "土地"
+    ],
+    "DESCRIPTION": "种植农作物的 #y槽位 ，决定了你能同时种植多少种不同的作物。"
+  },
+
+  "TheSimpletonMod:SpinachKeyword": {
+    "PROPER_NAME": "菠菜",
+    "NAMES": [
+      "菠菜"
+    ],
+    "DESCRIPTION": "#y农作物 。收获时获得力量。"
+  },
+
+  "TheSimpletonMod:SpudKeyword": {
+    "PROPER_NAME": "薯弹",
+    "NAMES": [
+      "薯弹", "薯弹"
+    ],
+    "DESCRIPTION": "薯弹是一种0耗费的消耗性攻击牌，造成少量伤害。"
+  },
+
+  "TheSimpletonMod:SquashKeyword": {
+    "PROPER_NAME": "南瓜",
+    "NAMES": [
+      "南瓜"
+    ],
+    "DESCRIPTION": "#y农作物 。收获时获得格挡。"
+  },
+
+  "TheSimpletonMod:StrawberryKeyword": {
+    "PROPER_NAME": "草莓",
+    "NAMES": [
+      "草莓", "草莓。"
+    ],
+    "DESCRIPTION": "#y农作物 。收获时产出小啃莓攻击牌，能伤害敌人同时治疗自己少量生命。"
+  },
+
+  "TheSimpletonMod:SunflowerKeyword": {
+    "PROPER_NAME": "向日葵",
+    "NAMES": [
+      "向日葵", "向日葵。"
+    ],
+    "DESCRIPTION": "#y农作物 。收获时获得能量。"
+  },
+
+  "TheSimpletonMod:TurnipKeyword": {
+    "PROPER_NAME": "芜菁",
+    "NAMES": [
+      "芜菁", "芜菁。"
+    ],
+    "DESCRIPTION": "#y农作物 。收获时产出一种能伤害所有敌人的攻击牌。"
+  }
+}

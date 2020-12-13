@@ -359,7 +359,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
     textEffect.changeColor(new Color(0.9F, 0.9F, 0.9F, 1.0F));
 
-    FontHelper.renderFontCentered(sb, FontHelper.bannerFont, uiText[1], (Settings.WIDTH / 2.0F) + CROP_TEXT_OFFSET_X,
+    FontHelper.renderFontCentered(sb, FontHelper.menuBannerFont, uiText[1], (Settings.WIDTH / 2.0F) + CROP_TEXT_OFFSET_X,
         CROPS_IN_SEASON_TEXT_Y * SettingsHelper.getScaleY(), textEffect.color, SettingsHelper.getScaleY());
 
     for (AbstractCard card : inSeasonCropCards) {

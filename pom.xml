@@ -3,50 +3,65 @@
 
     <groupId>thesimpleton</groupId>
     <artifactId>thesimpleton</artifactId>
-    <version>v0.0.5</version>
+    <version>v0.1.1</version>
     <packaging>jar</packaging>
 
     <name>TheHayseed</name>
     <description>Now *I'm* attempting to make a mod!</description>
     <properties>
-        <sts-libs-beta-directory>${sts-libs-directory}/beta</sts-libs-beta-directory>
+        <!-- Project Parameters -->
+
+        <!-- these should be defined in ~/.m2/settings.xml -->
+        <sts-modding-libs-directory>${sts-modding-directory}/libraries/jars</sts-modding-libs-directory>
+        <sts-modding-artifacts-directory>${sts-modding-directory}/builds</sts-modding-artifacts-directory>
+
         <steam-sts-mods-directory>${steam-sts-directory}/mods</steam-sts-mods-directory>
         <steam-sts-publish-directory>${steam-sts-directory}/thehayseed/</steam-sts-publish-directory>
         <steam-sts-publish-content-directory>${steam-sts-publish-directory}/content</steam-sts-publish-content-directory>
+        <simpleton-build-name>TheHayseed</simpleton-build-name>
+        <simpleton-build-artifact-name>${simpleton-build-name}.jar</simpleton-build-artifact-name>
+
+        <!-- Dependency Versions -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <SlayTheSpire.version>12-18-2022</SlayTheSpire.version>
+        <BaseMod.version>5.54.1</BaseMod.version>
+        <ModTheSpire.version>3.30.0</ModTheSpire.version>
+        <StSLib.version>2.10.1</StSLib.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>com.megacrit.cardcrawl</groupId>
             <artifactId>slaythespire</artifactId>
-            <version>015</version>
+            <version>${SlayTheSpire.version}</version>
             <scope>system</scope>
-            <systemPath>${sts-libs-beta-directory}/desktop-1.0.jar</systemPath>
+            <systemPath>${steam-sts-directory}/desktop-1.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>basemod</groupId>
             <artifactId>basemod</artifactId>
-            <version>5.16.0-beta.4</version>
+            <version>${BaseMod.version}</version>
             <scope>system</scope>
-            <systemPath>${sts-libs-beta-directory}/BaseMod.jar</systemPath>
+            <systemPath>${sts-modding-libs-directory}/BaseMod.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl</groupId>
             <artifactId>ModTheSpire</artifactId>
-            <version>3.11.0</version>
+            <version>${ModTheSpire.version}</version>
+           <scope>system</scope>
+           <systemPath>${sts-modding-libs-directory}/ModTheSpire.jar</systemPath>
+       </dependency>
+       <dependency>
+           <groupId>com.evacipated.cardcrawl.mod</groupId>
+           <artifactId>StSLib</artifactId>
+           <version>${StSLib.version}</version>
             <scope>system</scope>
-            <systemPath>${sts-libs-beta-directory}/ModTheSpire.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.evacipated.cardcrawl.mod</groupId>
-            <artifactId>StSLib</artifactId>
-            <version>1.17.1</version>
-            <scope>system</scope>
-            <systemPath>${sts-libs-beta-directory}/StSLib.jar</systemPath>
+            <systemPath>${sts-modding-libs-directory}/StSLib.jar</systemPath>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>TheHayseed</finalName>
+        <finalName>${simpleton-build-name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -66,9 +81,9 @@
                         <phase>package</phase>
                         <configuration>
                             <target>
-                                <copy file="target/TheHayseed.jar" tofile="${sts-libs-directory}/TheHayseed.jar"/>
-                                <copy file="target/TheHayseed.jar" tofile="${steam-sts-mods-directory}/TheHayseed.jar"/>
-                                <copy file="target/TheHayseed.jar" tofile="${steam-sts-publish-content-directory}/TheHayseed.jar"/>
+                                <copy file="target/${simpleton-build-artifact-name}" tofile="${steam-sts-mods-directory}/${simpleton-build-artifact-name}"/>
+                                <copy file="target/${simpleton-build-artifact-name}" tofile="${sts-modding-artifacts-directory}/${simpleton-build-artifact-name}"/>
+                                <copy file="target/${simpleton-build-artifact-name}" tofile="${steam-sts-publish-content-directory}/${simpleton-build-artifact-name}"/>
                                 <copy file="steamworkshop/config.json" tofile="${steam-sts-publish-directory}/config.json"/>
                             </target>
                         </configuration>

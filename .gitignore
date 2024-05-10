@@ -1,5 +1,6 @@
 .DS_Store
+.idea/
+builds/
 target/
 sendToDevs/
-.idea/
 local/

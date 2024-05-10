@@ -36,6 +36,10 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
   private final static Color CROP_STACK_COUNT_FONT_COLOR = Color.WHITE.cpy();
   private final static Color MATURE_CROP_STACK_COUNT_FONT_COLOR = Color.YELLOW; // new Color(250.0F, 255.0F, 190.0F, 1.0F); //Color.YELLOW;
+
+  float CROP_ORB_WIDTH = 128.0F;
+  float CROP_ORB_HEIGHT = 128.0F;
+
   private static final float TOOLTIP_X_OFFSET = 80.0F;
   private static final float TOOLTIP_Y_OFFSET = -48.0F;
 
@@ -214,6 +218,9 @@ public abstract class AbstractCropOrb extends CustomOrb {
     Color filterColor = MATURE_CROP_HALO_COLOR;
     Color textColor = MATURE_CROP_STACK_COUNT_FONT_COLOR;
 
+    float origin_X = CROP_ORB_WIDTH / 2.0F;
+    float origin_Y = CROP_ORB_HEIGHT / 2.0F;
+
     if (this.isMature(true)) {
       // TODO: when stacks > maturity level, replace with flash image + add sound effect for those few frames
       //      final Color overplantFilterColor = Color.LIME;
@@ -225,7 +232,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
       // TODO: Highlight targeted crop on dynamic card hover (e.g. Aerate) with different-colored halo
 
-      sb.draw(this.getHaloImage(), this.cX - 48.0F + this.bobEffect.y / 4.0F, this.cY - 48.0F + this.bobEffect.y / 4.0F, 48.0F, 48.0F, 96.0F, 96.0F, this.scale, this.scale, 0.0F, 0, 0, 96, 96, false, false);
+      sb.draw(this.getHaloImage(), this.cX - origin_X, this.cY - origin_Y + this.bobEffect.y / 2.0F, origin_X, origin_Y, CROP_ORB_WIDTH, CROP_ORB_HEIGHT, this.scale, this.scale, 0.0F, 0, 0, (int) CROP_ORB_WIDTH, (int) CROP_ORB_HEIGHT, false, false);
       this.c = textColor;
       renderText(sb);
       this.c = filterColor;
@@ -237,7 +244,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
     if (CropOrbHelper.hasHighlightedOrb()) {
       if (CropOrbHelper.getHighlightedOrb().name == this.name) {
 //        this.c = highlightFilterColor;
-        sb.draw(this.getTargetHaloImage(), this.cX - 48.0F + this.bobEffect.y / 4.0F, this.cY - 48.0F + this.bobEffect.y / 4.0F, 48.0F, 48.0F, 96.0F, 96.0F, this.scale, this.scale, 0.0F, 0, 0, 96, 96, false, false);
+        sb.draw(this.getTargetHaloImage(), this.cX - origin_X, this.cY - origin_Y + this.bobEffect.y / 2.0F, origin_X, origin_Y, CROP_ORB_WIDTH, CROP_ORB_HEIGHT, this.scale, this.scale, 0.0F, 0, 0,  (int) CROP_ORB_WIDTH, (int) CROP_ORB_HEIGHT, false, false);
       }
     } else {
       this.c = filterColor;

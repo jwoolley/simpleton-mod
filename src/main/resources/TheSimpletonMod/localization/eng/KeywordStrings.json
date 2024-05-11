@@ -151,7 +151,7 @@
     "NAMES": [
       "plot", "plots"
     ],
-    "DESCRIPTION": "#ySlot for planting Crops. Your Plots determine how many different Crops you can have at one time."
+    "DESCRIPTION": "A slot for planting Crops. NL NL Your Plots determine how many different Crops you can have planted at one time."
   },
 
   "TheSimpletonMod:SpinachKeyword": {

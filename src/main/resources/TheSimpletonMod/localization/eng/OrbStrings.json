@@ -47,6 +47,13 @@
     ]
   },
 
+  "TheSimpletonMod:EmptyCropOrb": {
+    "NAME": "Plot",
+    "DESCRIPTION": [
+      "Crops can be planted into these slots."
+    ]
+  },
+
   "TheSimpletonMod:MushroomCropOrb": {
     "NAME": "Mushrooms",
     "DESCRIPTION": [

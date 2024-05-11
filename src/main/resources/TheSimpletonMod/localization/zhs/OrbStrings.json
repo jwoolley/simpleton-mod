@@ -15,7 +15,6 @@
     ]
   },
 
-
   "TheSimpletonMod:AsparagusCropOrb": {
     "NAME": "芦笋",
     "DESCRIPTION": [
@@ -44,6 +43,13 @@
     "NAME": "玉米",
     "DESCRIPTION": [
       "每 #g收获 1层，抽1张牌。"
+    ]
+  },
+
+  "TheSimpletonMod:EmptyCropOrb": {
+    "NAME": "花园床",
+    "DESCRIPTION": [
+      "这些槽中可以种植农作物。"
     ]
   },
 

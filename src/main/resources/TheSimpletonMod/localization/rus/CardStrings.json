@@ -22,12 +22,12 @@
 
   "TheSimpletonMod:BabyTurnip": {
     "NAME": "Маленькая Репка",
-    "DESCRIPTION": "Наносит !D! урона. Берёт карту. NL Сжигается."
+    "DESCRIPTION": "Наносит !D! урона. Вы берёте карту. NL Сжигается."
   },
 
   "TheSimpletonMod:Barnstorm": {
     "NAME": "Перевозка",
-    "DESCRIPTION": "Наносит !D! урона случайному врагу за каждый стак Культуры. NL Оглушает каждого врага, получившего урон !M! или больше раз."
+    "DESCRIPTION": "Наносит !D! урона случайному врагу за каждый заряд Культуры. NL Оглушает каждого врага, получившего урон !M! или больше раз."
   },
 
   "TheSimpletonMod:Biorefinement": {
@@ -40,7 +40,7 @@
   "TheSimpletonMod:BirdFeeder": {
     "NAME": "Кормушка для птиц",
     "DESCRIPTION": "Восполняет ",
-    "EXTENDED_DESCRIPTION" : [" ОЗ, Каждые !M! разыгранных Талантов в бою."]
+    "EXTENDED_DESCRIPTION" : [" ОЗ, Первые !M! разыгранных Талантов в бою."]
   },
 
   "TheSimpletonMod:BumperCrop": {
@@ -49,14 +49,14 @@
     "EXTENDED_DESCRIPTION" : [
       ".",
       " NL (Нет Культуры)",
-      " NL (Сажает ",
+      " NL (Собирает ",
       ")"
     ]
   },
 
   "TheSimpletonMod:BuzzBomb": {
     "NAME": "Жужжащая бомба",
-    "DESCRIPTION": " Наносит !D! урона случайным врагам !M! раза. NL Сажает ",
+    "DESCRIPTION": "Наносит !D! урона случайным врагам !M! раза. NL Сажает ",
     "EXTENDED_DESCRIPTION" : [" за каждого убитого."]
   },
 
@@ -94,8 +94,8 @@
 
   "TheSimpletonMod:CropRotation": {
     "NAME": "Чередование культур",
-    "DESCRIPTION": "Собирает всю случайную Культуру. NL Даёт случайный Сезонный Культурный Талант.",
-    "UPGRADE_DESCRIPTION": "Собирает всю случайную Культуру. NL Даёт случайный Сезонный Культурный Талант."
+    "DESCRIPTION": "Собирает ВСЮ случайную Культуру. NL Даёт случайный Сезонный Культурный Талант.",
+    "UPGRADE_DESCRIPTION": "Собирает ВСЮ случайную Культуру. NL Даёт случайный Сезонный Культурный Талант."
   },
 
   "TheSimpletonMod:CullingStrike": {
@@ -137,7 +137,7 @@
   },
 
   "TheSimpletonMod:DoubleBarrel": {
-    "NAME": "Двустволка",
+    "NAME": "Две бочки",
     "DESCRIPTION": "Наносит !D! урона. NL Даёт [E] и наносит ещё !D! урона если на враге Слабость."
   },
 
@@ -168,8 +168,8 @@
   },
 
   "TheSimpletonMod:Fertilaser": {
-    "NAME": "Удобрение",
-    "DESCRIPTION": "Наносит !D! урона. NL Сажает !M! за каждую Культуру."
+    "NAME": "Удоблайзер",
+    "DESCRIPTION": "Наносит !D! урона. NL Сажает !M! каждой Культуры."
   },
 
   "TheSimpletonMod:FlamingSpud": {
@@ -190,7 +190,7 @@
 
   "TheSimpletonMod:GoToMarket": {
     "NAME": "Поход в магазин",
-    "DESCRIPTION": "Вы берёте карту за каждый тип Культур."
+    "DESCRIPTION": "Вы берёте карту за каждый тип высаженных Культур."
   },
 
   "TheSimpletonMod:Gnats": {
@@ -208,7 +208,7 @@
   "TheSimpletonMod:Haymaker": {
     "NAME": "Косарь",
     "DESCRIPTION": "Наносит !D! урона. NL Восполняет !M! ОЗ. NL Накладывает ",
-    "EXTENDED_DESCRIPTION" : [" Уязвимости ВСЕМ врагам. NL Сжигается."]
+    "EXTENDED_DESCRIPTION" : [" Уязвимость ВСЕМ врагам. NL Сжигается."]
   },
 
   "TheSimpletonMod:HitTheSack": {
@@ -248,7 +248,7 @@
     "NAME": "Перегной",
     "DESCRIPTION": "Сжигает карту, затем даёт эффект в зависимости от её типа: NL NL Атака: Даёт !B! Защиты. NL Навык: Накладывает ",
     "EXTENDED_DESCRIPTION": [
-      " Горения ВСЕМ. NL Другое: Берёт ",
+      " Горения ВСЕМ. NL Другое: Вы берёте ",
       " карты."]
   },
 
@@ -264,8 +264,8 @@
 
   "TheSimpletonMod:OnionBloom": {
     "NAME": "Цветение лука",
-    "DESCRIPTION": "Начальная. NL Сажает !M! Лука. NL Берёт карту. NL Сбрасывает карту. NL Сжигается.",
-    "UPGRADE_DESCRIPTION": "Начальная. NL Сажает !M! Лука. NL Берёт карту. NL Сбрасывает карту."
+    "DESCRIPTION": "Начальная. NL Сажает !M! Лука. NL Вы берёте карту. NL Сбрасывает карту. NL Сжигается.",
+    "UPGRADE_DESCRIPTION": "Начальная. NL Сажает !M! Лука. NL Вы берёте карту. NL Сбрасывает карту."
   },
 
   "TheSimpletonMod:PestManagement": {
@@ -280,16 +280,16 @@
 
   "TheSimpletonMod:Polyculture": {
     "NAME": "Поликультура",
-    "DESCRIPTION": "Замешивает !M! случайных Культурных Талантов. NL Сжигается."
+    "DESCRIPTION": "Добавляет !M! случайных Культурных Таланта в колоду. NL Сжигается."
   },
 
   "TheSimpletonMod:Pruning": {
     "NAME": "Подрезание",
-    "DESCRIPTION": "Собирает ВСЕ старейшие Культуры, Сажает !M!",
+    "DESCRIPTION": "Собирает ВСЮ старейшую Культуру, Сажает !M!",
     "EXTENDED_DESCRIPTION" : [
       ".",
-      " стак",
-      " стаков",
+      " заряд",
+      " заряда",
       " NL (Нет Культур)",
       " NL (Сажает ",
       ")"
@@ -312,8 +312,8 @@
  },
 
   "TheSimpletonMod:ReapAndSquash": {
-    "NAME": "Собирает и Кабачок",
-    "DESCRIPTION": "Наносит !D! урона ВСЕМ врагам. Даёт !B! Защиты. NL Сажает !M! Кабачка, затем добавляет *Возделывать в стопку сброса если есть Созревшая Культура."
+    "NAME": "Собирать и Тыква",
+    "DESCRIPTION": "Наносит !D! урона ВСЕМ врагам. Даёт !B! Защиты. NL Сажает !M! Тыквы, затем добавляет *Возделывать в стопку сброса если есть Созревшая Культура."
   },
 
   "TheSimpletonMod:ReekAndSow": {
@@ -327,7 +327,7 @@
     "DESCRIPTION": "Даёт !B! Защиты. NL Добавляет",
     "EXTENDED_DESCRIPTION": [
       " *Образец *Земли",
-      " !M! *Образцы *Земли",
+      " !M! *Образца *Земли",
       " в стопку сброса. NL Сжигается."
     ]
   },
@@ -350,7 +350,7 @@
 
   "TheSimpletonMod:Rototilling": {
     "NAME": "Ожоги",
-    "DESCRIPTION": "Берёт !M! карты. NL Сжигает карту в руке."
+    "DESCRIPTION": "Вы берёте !M! карты. NL Сжигает карту в руке."
   },
 
   "TheSimpletonMod:SaladShooter": {
@@ -379,19 +379,19 @@
   },
 
   "TheSimpletonMod:SlashAndBurn": {
-    "NAME": "Реж и гори",
+    "NAME": "Режь и гори",
     "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Горения."
   },
 
   "TheSimpletonMod:SoilSample": {
     "NAME": "Образец земли",
-    "DESCRIPTION": "Замешивает до !M! карт из стопки сброса в стопку добора, затем берёт карту. Она стоит 0 в этом ходу. NL Сжигается.",
-    "UPGRADE_DESCRIPTION": "Замешивает до !M! карт из стопки сброса в стопку добора, затем берёт карту. Она стоит 0 в этом ходу."
+    "DESCRIPTION": "Кладёт до !M! карт из стопки сброса в стопку добора, затем вы берёте карту. Она стоит 0 в этом ходу. NL Сжигается.",
+    "UPGRADE_DESCRIPTION": "Кладёт до !M! карт из стопки сброса в стопку добора, затем вы берёте карту. Она стоит 0 в этом ходу."
   },
 
   "TheSimpletonMod:SpiceUp": {
     "NAME": "Приправить",
-    "DESCRIPTION": "Накладывает !M! Горения. NL Берёт ",
+    "DESCRIPTION": "Накладывает !M! Горения. NL Вы берёте ",
     "EXTENDED_DESCRIPTION" : [
       " карту.",
       " карты."
@@ -400,7 +400,7 @@
 
   "TheSimpletonMod:Spoilage": {
     "NAME": "Порча",
-    "DESCRIPTION": "Неиграбельная. NL В конце хода, перемещяется на верх стопки добора если разыгранно !M! или больше карт в ход.",
+    "DESCRIPTION": "Неиграбельная. NL В конце хода, кладётся на верх стопки добора если разыгранно !M! или больше карт в ход.",
     "EXTENDED_DESCRIPTION" : [ " NL (Сработает в этот ход)."]
   },
 
@@ -417,7 +417,7 @@
 
   "TheSimpletonMod:Sunseed": {
     "NAME": "Подслнечник",
-    "DESCRIPTION": "Копируется если стопка сброса пуста когда берётся. NL Наносит !D! урона и даёт [E]. NL Сжигается.",
+    "DESCRIPTION": "Копируется, когда берётся, если стопка сброса пуста. NL Наносит !D! урона и даёт [E]. NL Сжигается.",
     "UPGRADE_DESCRIPTION": "Начальная. Копируется если стопка сброса пуста когда берётся. NL Наносит !D! урона и даёт [E]. NL Сжигается."
   },
 
@@ -471,12 +471,12 @@
 
   "TheSimpletonMod:ToughenUp": {
     "NAME": "Ужесточить",
-    "DESCRIPTION": "Даёт !B! Защиты. NL Сажает !M! Кабачка, если нет Кабачков."
+    "DESCRIPTION": "Даёт !B! Защиты. NL Сажает !M! Тыквы, если есть Тыква."
   },
 
   "TheSimpletonMod:VineRipen": {
     "NAME": "Созревание лозы",
-    "DESCRIPTION": "Сажает !M! Кабачка. NL Если Кабачок Созрел, Защита не исчезнет в следующем ходу."
+    "DESCRIPTION": "Сажает !M! Тыквы. NL Если Тыква Созрела, Защита не исчезнет в следующем ходу."
   },
 
   "TheSimpletonMod:VolatileFumes": {
@@ -507,22 +507,22 @@
 
   "TheSimpletonMod:Corn": {
     "NAME": "Кукуруза",
-    "DESCRIPTION": "Сажает !M! Кукурузу."
+    "DESCRIPTION": "Сажает !M! Кукурузы."
   },
 
   "TheSimpletonMod:Mushrooms": {
     "NAME": "Грибочки",
-    "DESCRIPTION": "Сажает !M! Грибочков."
+    "DESCRIPTION": "Сажает !M! Грибочка."
   },
 
   "TheSimpletonMod:Onions": {
     "NAME": "Лук",
-    "DESCRIPTION": "Сажает !M! Лук."
+    "DESCRIPTION": "Сажает !M! Лука."
   },
 
   "TheSimpletonMod:Potatoes": {
     "NAME": "Картошечка",
-    "DESCRIPTION": "Сажает !M! Картошечку."
+    "DESCRIPTION": "Сажает !M! Картошечки."
   },
 
   "TheSimpletonMod:Spinach": {
@@ -531,8 +531,8 @@
   },
 
   "TheSimpletonMod:Squash": {
-    "NAME": "Кабачок",
-    "DESCRIPTION": "Сажает !M! Кабачка."
+    "NAME": "Тыква",
+    "DESCRIPTION": "Сажает !M! Тыквы."
   },
 
   "TheSimpletonMod:Strawberries": {

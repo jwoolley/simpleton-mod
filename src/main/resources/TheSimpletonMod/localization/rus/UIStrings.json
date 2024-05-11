@@ -109,7 +109,7 @@
 
   "TheSimpletonMod:ChooseAndAddHandCardsToDeckAction": {
     "TEXT": [
-      "будет замешено в стопку добора."
+      "будет добавлено в стопку добора."
     ]
   },
   "TheSimpletonMod:MulchAction": {
@@ -131,7 +131,7 @@
   },
   "TheSimpletonMod:SeasonalIndicator": {
     "TEXT": [
-      "It's ",
+      "Это ",
       " в Шпиле.",
       ", ",
       ", и ",

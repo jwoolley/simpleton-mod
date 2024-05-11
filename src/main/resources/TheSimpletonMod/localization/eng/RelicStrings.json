@@ -3,7 +3,7 @@
     "NAME": "Cash Crop",
     "FLAVOR": "Cold, but not hard.",
     "DESCRIPTIONS": [
-      "Whenever you Harvest a #yCrop for the fist time each combat, gain #b",
+      "Each time you #YHarvest a #yCrop that you haven't harvested yet this combat, gain #b",
       " Gold."
     ]
   },
@@ -35,15 +35,15 @@
 
   "TheSimpletonMod:GourdCharm": {
     "NAME": "Gourd Charm",
-    "FLAVOR": "Crafted specially for adventurers who prefer Hard Mode.",
+    "FLAVOR": "Prized by adventurers who prefer Hard Mode.",
     "DESCRIPTIONS": [
       "At the start of your turn, if you have no crops, #yPlant #b2 #ySquash."
     ]
   },
 
   "TheSimpletonMod:TheHarvester": {
-    "NAME": "Trusty Sickle",
-    "FLAVOR": "Its purpose is clear-cut.",
+    "NAME": "Trusty Trowel",
+    "FLAVOR": "Every decent gardener needs a good blade.",
     "DESCRIPTIONS": [
       "Whenever you #yPlant a #yCrop, if you then have more stacks than its #rMaturity level, #gHarvest all excess stacks."
     ]
@@ -69,7 +69,7 @@
 
   "TheSimpletonMod:HornOfPlenty": {
     "NAME": "Horn Of Plenty",
-    "FLAVOR": "More than adequate.",
+    "FLAVOR": "It's more than enough.",
     "DESCRIPTIONS": [
       "At the start of each combat, add a random in-season #yCrop Power card to your hand. Then gain #b",
       " #yAbundance which lasts until end of turn."
@@ -87,7 +87,7 @@
 
   "TheSimpletonMod:Moonshine": {
     "NAME": "Jug of Moonshine",
-    "FLAVOR": "Based on a carefully-guarded family recipe, the distillation process has claimed its share of casualties.",
+    "FLAVOR": "A little taste will soothe the nerves when your spirits are low. But it's rough on the gut.",
     "DESCRIPTIONS": [
       "On turn #b",
       ", gain #b",
@@ -103,7 +103,7 @@
 
   "TheSimpletonMod:OnionBelt": {
     "NAME": "Onion Belt",
-    "FLAVOR": "Once wielded by the Elders, now largely out of style.",
+    "FLAVOR": "Once wielded proudly by the Elders, these are now largely out of style.",
     "DESCRIPTIONS": [
       "At the start of your turn, if you have no crops, #yPlant #b2 #yOnions."
     ]
@@ -135,7 +135,7 @@
 
   "TheSimpletonMod:NightSoil": {
     "NAME": "Night Soil",
-    "FLAVOR": "It grows on you.",
+    "FLAVOR": "Raw material for those who dabble in the arts of life and death.",
     "DESCRIPTIONS": [
       "Whenever you shuffle your deck, for each of your #yCrops that isn't #rMature, #yPlant #b",
       " more.",

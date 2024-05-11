@@ -35,15 +35,15 @@
 
   "TheSimpletonMod:GourdCharm": {
     "NAME": "葫芦魔咒",
-    "FLAVOR": "葫芦葫芦葫芦。。",
+    "FLAVOR": "葫芦葫芦葫芦。",
     "DESCRIPTIONS": [
       "每回合开始，如果没有农作物， #y种植 #b2 #y南瓜 。"
     ]
   },
 
   "TheSimpletonMod:TheHarvester": {
-    "NAME": "可靠的镰刀",
-    "FLAVOR": "精准，迅捷。",
+    "NAME": "可靠抹子",
+    "FLAVOR": "清除少量污垢。",
     "DESCRIPTIONS": [
       "每当你 #y种植 农作物 ，如果层数已超过 #r成熟 值， #g收获 所有溢出的层数。"
     ]

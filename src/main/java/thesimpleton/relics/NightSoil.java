@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class NightSoil extends CustomRelic {
   public static final String ID = "TheSimpletonMod:NightSoil";
   public static final String IMG_PATH = "relics/nightsoil.png";
-  public static final String IMG_PATH_LARGE = "relics/nightsoillarge.png";
+  public static final String IMG_PATH_LARGE = "relics/nightsoil_large.png";
   public static final String OUTLINE_IMG_PATH = "relics/nightsoil_outline.png";
 
   private static final RelicTier TIER = RelicTier.STARTER;

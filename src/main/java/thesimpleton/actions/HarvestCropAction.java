@@ -2,18 +2,21 @@ package thesimpleton.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.Settings;
-import org.apache.logging.log4j.Logger;
+
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.orbs.AbstractCropOrb;
+import thesimpleton.utilities.ModLogger;
 
 
 public class HarvestCropAction extends AbstractGameAction {
+  private static final ModLogger logger = TheSimpletonMod.traceLogger;
+
   private static final ActionType ACTION_TYPE = ActionType.SPECIAL;
   private static final float ACTION_DURATION = Settings.ACTION_DUR_XFAST;
   private final boolean isFromCard;
   private final boolean harvestAll;
   private final int amount;
-  private AbstractCropOrb cropOrb;
+  private final AbstractCropOrb cropOrb;
 
   // TODO: increment existing cropOrb instead if it
   public HarvestCropAction(AbstractCropOrb cropOrb, boolean isFromCard) {
@@ -26,7 +29,7 @@ public class HarvestCropAction extends AbstractGameAction {
 
 
   public HarvestCropAction(AbstractCropOrb cropOrb, int stacks, boolean isFromCard, boolean harvestAll) {
-    TheSimpletonMod.logger.debug("============> HarvestCropAction::constructor =====");
+    logger.trace("============> HarvestCropAction::constructor =====");
 
     final int rawAmount = stacks >= 0 ? stacks : cropOrb.passiveAmount;
 
@@ -37,29 +40,27 @@ public class HarvestCropAction extends AbstractGameAction {
     this.amount = CropSpawnAction.calculateCropStacks(rawAmount, this.isFromCard, false);
     this.cropOrb = cropOrb;
 
-    Logger logger = TheSimpletonMod.logger;
-    logger.debug("HarvestCropAction() constructor: " + cropOrb.getClass().getSimpleName() + "; rawAmount: " + rawAmount + " calculated amount: " + this.amount + "; harvestAll: " + harvestAll);
+    logger.trace("HarvestCropAction() constructor: " + cropOrb.getClass().getSimpleName() + "; rawAmount: " + rawAmount + " calculated amount: " + this.amount + "; harvestAll: " + harvestAll);
   }
 
   public void update() {
-//    TheSimpletonMod.logger.debug("============> HarvestCropAction::update =====");
+//    logger.trace("============> HarvestCropAction::update =====");
 
     if (this.duration == ACTION_DURATION) {
-//      TheSimpletonMod.logger.debug("============> HarvestCropAction::update duration == ACTION_DURATION =====");
+//      logger.trace("============> HarvestCropAction::update duration == ACTION_DURATION =====");
 
-      Logger logger = TheSimpletonMod.logger;
 
       final int stacks = cropOrb.passiveAmount < this.amount ? cropOrb.passiveAmount : this.amount;
-//      logger.debug("HarvestCropAction.update :: player has " + cropOrb.getAmount() + " stacks of " + cropOrb.name);
-//      logger.debug("HarvestCropAction.update :: numStacksToHarvest: " + this.amount);
-//      logger.debug("HarvestCropAction.update :: harvesting " + stacks + " stacks of " + cropOrb.name);
+//      logger.trace("HarvestCropAction.update :: player has " + cropOrb.getAmount() + " stacks of " + cropOrb.name);
+//      logger.trace("HarvestCropAction.update :: numStacksToHarvest: " + this.amount);
+//      logger.trace("HarvestCropAction.update :: harvesting " + stacks + " stacks of " + cropOrb.name);
 
-//      TheSimpletonMod.logger.debug("============> HarvestCropAction::update calling AbstractCrop.harvest() =====");
+//      logger.trace("============> HarvestCropAction::update calling AbstractCrop.harvest() =====");
 
       cropOrb.getCrop().harvest(this.harvestAll, stacks);
       this.isDone = true;
     }
-//    TheSimpletonMod.logger.debug("============> HarvestCropAction::update tickDuration =====");
+//    logger.trace("============> HarvestCropAction::update tickDuration =====");
 
     tickDuration();
   }

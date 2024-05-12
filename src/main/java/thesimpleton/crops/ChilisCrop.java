@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.ApplyBurningAction;
 import thesimpleton.actions.BurnAllEnemiesAction;
 
@@ -19,7 +20,7 @@ public class ChilisCrop extends  AbstractCrop {
   }
 
   protected int harvestAction(int harvestAmount) {
-    logger.debug("ChilisCrop::harvestAction");
+    TheSimpletonMod.traceLogger.trace("ChilisCrop::harvestAction");
     final int damageAmount = harvestAmount * this.damagePerStack;
 
     if (harvestAmount > 0) {

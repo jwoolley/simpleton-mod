@@ -10,8 +10,10 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.utilities.ModLogger;
 
 public class GainCardAction extends AbstractGameAction {
+  private static ModLogger logger = TheSimpletonMod.traceLogger;
   private static final ActionType ACTION_TYPE = ActionType.CARD_MANIPULATION;
   private static final float ACTION_DURATION = Settings.ACTION_DUR_XFAST;
 
@@ -37,7 +39,7 @@ public class GainCardAction extends AbstractGameAction {
   }
 
   public GainCardAction(AbstractCard cardToGain, float cardX, float cardY, float waitDuration) {
-    TheSimpletonMod.logger.info("GainCardAction::constuctor called");
+    logger.trace("GainCardAction::constuctor called");
 
     setValues(AbstractDungeon.player, AbstractDungeon.player);
 
@@ -50,9 +52,9 @@ public class GainCardAction extends AbstractGameAction {
   }
 
   public void update() {
-    TheSimpletonMod.logger.info("GainCardAction::update duration: " + this.duration);
+    logger.trace("GainCardAction::update duration: " + this.duration);
     if (this.duration <= 0) {
-      TheSimpletonMod.logger.info("GainCardAction::update taking action. duration: " + this.duration);
+      logger.trace("GainCardAction::update taking action. duration: " + this.duration);
       AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(cardToGain, cardX, cardY));
       this.tickDuration();
       this.isDone = true;

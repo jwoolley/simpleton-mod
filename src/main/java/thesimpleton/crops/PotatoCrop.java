@@ -16,7 +16,7 @@ public class PotatoCrop extends AbstractCrop {
   }
 
   protected int harvestAction(int harvestAmount) {
-    logger.debug("PotatoCrop::harvestAction harvestAmount:" + harvestAmount);
+    CROP_LOGGER.trace("PotatoCrop::harvestAction harvestAmount:" + harvestAmount);
     if (harvestAmount > 0) {
       if (AbstractDungeon.player.hasRelic(HotPotato.ID)) {
         AbstractDungeon.player.getRelic(HotPotato.ID).flash();

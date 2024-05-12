@@ -1,23 +1,15 @@
 package thesimpleton.powers;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
-import thesimpleton.actions.ApplyBurningAction;
 import thesimpleton.actions.CrackOfDawnAction;
-import thesimpleton.actions.CropSpawnAction;
-import thesimpleton.crops.Crop;
 import thesimpleton.orbs.CornCropOrb;
 
 public class CrackOfDawnPower extends AbstractTheSimpletonPower  {
@@ -66,7 +58,7 @@ public class CrackOfDawnPower extends AbstractTheSimpletonPower  {
     public void atStartOfTurn() {
     if (this.amount <= 1) {
       AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
-      logger.debug("CrackOfDawnPower::atStartOfTurnPostDraw resolving power effect");
+      POWER_LOGGER.trace("CrackOfDawnPower::atStartOfTurnPostDraw resolving power effect");
       resolvePowerEffect();
     } else {
       AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this.owner, this.owner, this.ID, 1));
@@ -74,9 +66,7 @@ public class CrackOfDawnPower extends AbstractTheSimpletonPower  {
   }
 
   private void resolvePowerEffect() {
-    Logger logger = TheSimpletonMod.logger;
-
-    logger.debug("CrackOfDawnPower::resolvePowerEffect called");
+    POWER_LOGGER.trace("CrackOfDawnPower::resolvePowerEffect called");
 
     AbstractDungeon.actionManager.addToBottom(
         new CrackOfDawnAction(this.owner, new CornCropOrb(this.plantAmount), this.damageAmount, this.plantAmount,

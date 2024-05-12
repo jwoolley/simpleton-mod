@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.Crop;
 import thesimpleton.seasons.Season;
+import thesimpleton.utilities.ModLogger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +14,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class RandomPartialUnlockCropSetTemplate {
+    private static final ModLogger logger = TheSimpletonMod.traceLogger;
+
     private static final Random RANDOM = new Random();
 
     public static RandomPartialUnlockCropSetTemplate PARTIAL_UNLOCK_CROP_SET_1;
@@ -32,8 +35,7 @@ public class RandomPartialUnlockCropSetTemplate {
     public RandomPartialUnlockCropSetTemplate(Season season, List<Crop> crops,
                                               List<RandomPartialUnlockCropSetTemplate> otherTemplates) {
 
-        Logger logger = TheSimpletonMod.logger;
-        logger.debug(this.getClass().getSimpleName()
+        logger.trace(this.getClass().getSimpleName()
                 + "::RandomPartialUnlockCropSetTemplate constructor called. season: " + season + "; number of otherTemplates" + otherTemplates.size());
         this.season = season;
 
@@ -64,13 +66,13 @@ public class RandomPartialUnlockCropSetTemplate {
         this.eligibleTemplates.add(this);
 
         for (RandomPartialUnlockCropSetTemplate template : otherTemplates) {
-            logger.debug(this.getClass().getSimpleName()
+            logger.trace(this.getClass().getSimpleName()
                     + "::RandomPartialUnlockCropSetTemplate integrating otherTemplate with season: " + template.season);
 
-            logger.debug(this.getClass().getSimpleName()
+            logger.trace(this.getClass().getSimpleName()
                     + "::RandomPartialUnlockCropSetTemplate integrating otherTemplate: adding: " + template.commonCrops.size() + " common crops");
 
-            logger.debug(this.getClass().getSimpleName()
+            logger.trace(this.getClass().getSimpleName()
                     + "::RandomPartialUnlockCropSetTemplate integrating otherTemplate: adding: " + template.uncommonCrops.size() + " uncommon crops");
 
             this.commonCrops.addAll(template.commonCrops);
@@ -78,41 +80,40 @@ public class RandomPartialUnlockCropSetTemplate {
             this.eligibleTemplates.add(template);
         }
 
-        logger.debug(this.getClass().getSimpleName()
+        logger.trace(this.getClass().getSimpleName()
                 + "::RandomPartialUnlockCropSetTemplate integrating otherTemplate. total eligible templates: "
                 + this.eligibleTemplates.size());
     }
     // TODO: initialize SeasonInfo using this
     public RandomPartialUnlockCropSetDefinition getRandomCropSetDefinition() {
-        Logger logger = TheSimpletonMod.logger;
-//        logger.debug(this.getClass().getSimpleName() + "::getRandomCropSetDefinition called");
+//        logger.trace(this.getClass().getSimpleName() + "::getRandomCropSetDefinition called");
 //
-//        logger.debug(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selecting template from "
+//        logger.trace(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selecting template from "
 //                + this.eligibleTemplates.size() + " eligibleTemplates");
 //
 //
 //
-//        logger.debug(this.getClass().getSimpleName() + "::getRandomCropSetDefinition eligible templates by season: "
+//        logger.trace(this.getClass().getSimpleName() + "::getRandomCropSetDefinition eligible templates by season: "
 //            + this.eligibleTemplates.stream().map(c -> c.season.name).collect(Collectors.joining(", ")));
 //
 //
-//        logger.debug(this.getClass().getSimpleName()
+//        logger.trace(this.getClass().getSimpleName()
 //                        + "::getRandomCropSetDefinition RANDOM.nextInt(this.eligibleTemplates.size()): "
 //                        + RANDOM.nextInt(this.eligibleTemplates.size()));
 //
-//        logger.debug(this.getClass().getSimpleName()
+//        logger.trace(this.getClass().getSimpleName()
 //                + "::getRandomCropSetDefinition RANDOM.nextInt(this.eligibleTemplates.size()): "
 //                + RANDOM.nextInt(this.eligibleTemplates.size()));
 //
-//        logger.debug(this.getClass().getSimpleName()
+//        logger.trace(this.getClass().getSimpleName()
 //                + "::getRandomCropSetDefinition RANDOM.nextInt(this.eligibleTemplates.size()): "
 //                + RANDOM.nextInt(this.eligibleTemplates.size()));
 //
-//        logger.debug(this.getClass().getSimpleName()
+//        logger.trace(this.getClass().getSimpleName()
 //                + "::getRandomCropSetDefinition RANDOM.nextInt(this.eligibleTemplates.size()): "
 //                + RANDOM.nextInt(this.eligibleTemplates.size()));
 //
-//        logger.debug(this.getClass().getSimpleName()
+//        logger.trace(this.getClass().getSimpleName()
 //                + "::getRandomCropSetDefinition RANDOM.nextInt(this.eligibleTemplates.size()): "
 //                + RANDOM.nextInt(this.eligibleTemplates.size()));
 
@@ -120,23 +121,23 @@ public class RandomPartialUnlockCropSetTemplate {
 
         RandomPartialUnlockCropSetTemplate selectedTemplate = this.eligibleTemplates.get(seasonIndex);
 
-//        logger.debug(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selected template with season:"
+//        logger.trace(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selected template with season:"
 //            + selectedTemplate.season + " using index: " + seasonIndex);
 //
-//        logger.debug(this.getClass().getSimpleName() + "::getRandomCropSetDefinition commonCrops: " +
+//        logger.trace(this.getClass().getSimpleName() + "::getRandomCropSetDefinition commonCrops: " +
 //                this.commonCrops.stream().map(c -> c.name()).collect(Collectors.joining(", ")));
 //
-//        logger.debug(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selecting common from "
+//        logger.trace(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selecting common from "
 //                + this.commonCrops.size() + " common crops");
 //
-//        logger.debug(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selecting uncommon from "
+//        logger.trace(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selecting uncommon from "
 //                + this.uncommonCrops.size() + " uncommon crops");
 //
-//        logger.debug(this.getClass().getSimpleName() + "::getRandomCropSetDefinition uncommonCrops: " +
+//        logger.trace(this.getClass().getSimpleName() + "::getRandomCropSetDefinition uncommonCrops: " +
 //                this.uncommonCrops.stream().map(c -> c.name()).collect(Collectors.joining(", ")));
 //
 //
-//        logger.debug(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selecting rare from "
+//        logger.trace(this.getClass().getSimpleName() + "::getRandomCropSetDefinition selecting rare from "
 //                + selectedTemplate.rareCrops.size() + " rare crops");
 
         List<Crop> cropSet = new ArrayList<>();

@@ -25,9 +25,7 @@ public class ApplyCropAction extends ApplyPowerAction {
   public static int calculateCropStacks(int amount, boolean isFromCard) {
     AbstractPlayer player =   AbstractDungeon.player;
 
-    Logger logger = TheSimpletonMod.logger;
-
-    logger.debug("ApplyCropAction:calculateCropStacks");
+    TheSimpletonMod.traceLogger.trace("ApplyCropAction:calculateCropStacks");
 
     int adjustedAmount = amount;
     if (player.hasPower(AbundancePower.POWER_ID) && isFromCard) {

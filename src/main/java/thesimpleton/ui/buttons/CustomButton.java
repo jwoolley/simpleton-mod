@@ -6,13 +6,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.ui.buttons.Button;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.utilities.ModLogger;
 
 abstract public class CustomButton extends Button {
+  private static ModLogger logger = TheSimpletonMod.traceLogger;
+
   private boolean isHidden = true;
   private boolean isDisabled = true;
 
   private static final String BUTTONS_UI_PATH = "customui/buttons/";
-  private Logger logger = TheSimpletonMod.logger;
   private float scale;
   private Texture imgForScale;
 
@@ -45,18 +47,18 @@ abstract public class CustomButton extends Button {
   public void update() {
     super.update();
     if (this.pressed) {
-      logger.debug("CustomButton::update: calling handleClick: button was pressed");
+      logger.trace("CustomButton::update: calling handleClick: button was pressed");
       handleClick();
     }
   }
 
   void handleClick() {
     if (!this.isDisabled) {
-      logger.debug("CustomButton::handleClick: Handling click: button is enabled");
+      logger.trace("CustomButton::handleClick: Handling click: button is enabled");
       this.onClick();
       this.pressed = false;
     } else {
-      logger.debug("CustomButton::handleClick: Not handling click: button is disabled");
+      logger.trace("CustomButton::handleClick: Not handling click: button is disabled");
     }
   }
 

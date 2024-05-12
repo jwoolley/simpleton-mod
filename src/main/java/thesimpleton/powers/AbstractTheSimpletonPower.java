@@ -3,12 +3,12 @@ package thesimpleton.powers;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.utilities.ModLogger;
 
 public class AbstractTheSimpletonPower extends AbstractPower {
     private static final String BASE_DIR = TheSimpletonMod.getImageResourcePath("powers/");
-    protected static final Logger logger = TheSimpletonMod.logger;
+    protected static final ModLogger POWER_LOGGER = TheSimpletonMod.traceLogger;
 
     public AbstractTheSimpletonPower(String imgName) {
         this.region128 =

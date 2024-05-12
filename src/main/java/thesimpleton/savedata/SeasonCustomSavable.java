@@ -2,18 +2,19 @@ package thesimpleton.savedata;
 
 import basemod.BaseMod;
 import basemod.abstracts.CustomSavable;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.seasons.Season;
+import thesimpleton.utilities.ModLogger;
+
+import static thesimpleton.TheSimpletonMod.traceLogger;
 
 public class SeasonCustomSavable implements CustomSavable<String> {
-  final Logger logger = TheSimpletonMod.logger;
+  final static ModLogger logger = traceLogger;
   private Season season;
   public SeasonCustomSavable() {
-    logger.debug( this.getClass().getSimpleName() + " instantiated");
+    logger.trace( this.getClass().getSimpleName() + " instantiated");
   }
 
   @Override
@@ -22,7 +23,7 @@ public class SeasonCustomSavable implements CustomSavable<String> {
       reset();
       registerSaveId();
       Season season = TheSimpletonMod.getSeason();
-      logger.debug(getLogPrefix("onSave") + " called. season: " + season);
+      logger.trace(getLogPrefix("onSave") + " called. season: " + season);
       return season != null ? season.uiName : Season.UNKNOWN.uiName;
     }
     return Season.UNKNOWN.uiName;
@@ -38,7 +39,7 @@ public class SeasonCustomSavable implements CustomSavable<String> {
   public void onLoad(String id) {
     if (AbstractDungeon.player.chosenClass == TheSimpletonCharEnum.THE_SIMPLETON) {
 
-      logger.debug(this.getClass().getSimpleName() + "::onLoad called");
+      logger.trace(this.getClass().getSimpleName() + "::onLoad called");
 
       switch (id) {
         case Season.WINTER_UI_NAME:
@@ -58,7 +59,7 @@ public class SeasonCustomSavable implements CustomSavable<String> {
           break;
       }
 
-      logger.debug(this.getClass().getSimpleName() + "::onLoad retrieved season from save: " + (this.season == null ? Season.UNKNOWN : this.season.name)
+      logger.trace(this.getClass().getSimpleName() + "::onLoad retrieved season from save: " + (this.season == null ? Season.UNKNOWN : this.season.name)
           + "(saved value: " + id + ")");
     }
   }
@@ -72,8 +73,8 @@ public class SeasonCustomSavable implements CustomSavable<String> {
   }
 
   private void registerSaveId() {
-    logger.debug( this.getClass().getSimpleName() + "::registerSaveId");
-    logger.debug( this.getClass().getSimpleName() + "::registerSaveId registering customSaveKey: " + getCustomSaveKey());
+    logger.trace( this.getClass().getSimpleName() + "::registerSaveId");
+    logger.trace( this.getClass().getSimpleName() + "::registerSaveId registering customSaveKey: " + getCustomSaveKey());
     BaseMod.addSaveField(this.getCustomSaveKey(), this);
   }
 

@@ -17,7 +17,7 @@ import thesimpleton.TheSimpletonMod;
 public class IntangiblePowerPatch {
 //  public static void Prefix (IntangiblePower __instance, boolean isPlayer) {
 //        if (TheSimpletonMod.isPlayingAsSimpleton()) {
-//    TheSimpletonMod.logger.debug("IntangiblePowerPatch::IntangiblePower::atEndOfTurn before patch called. ");
+//    TheSimpletonMod.traceLogger.trace("IntangiblePowerPatch::IntangiblePower::atEndOfTurn before patch called. ");
 //      }
 //  }
 }

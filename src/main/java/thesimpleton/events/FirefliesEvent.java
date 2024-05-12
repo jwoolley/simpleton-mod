@@ -81,7 +81,7 @@ public class FirefliesEvent extends CustomSimpletonEvent
           case 1:
             final boolean receiveCurse = AbstractDungeon.miscRng.randomBoolean(CURSE_CHANCE_PERCENTAGE / 100.0F);
             if (receiveCurse) {
-              TheSimpletonMod.logger.debug("TheSimpletonMod::FirefliesEvent receiving curse");
+              TheSimpletonMod.traceLogger.trace("TheSimpletonMod::FirefliesEvent receiving curse");
               if (curseIsInjury) {
                 CardCrawlGame.sound.play("VO_GREMLINDOPEY_2C");
               }

@@ -13,7 +13,7 @@ import thesimpleton.TheSimpletonMod;
 public class NemesisPatch {
 //  public static void Postfix (Nemesis __instance) {
 //     if (TheSimpletonMod.isPlayingAsSimpleton()) {
-//    TheSimpletonMod.logger.debug("NemesisPatch::Nemesis::takeTurn after patch called");
+//    TheSimpletonMod.traceLogger.trace("NemesisPatch::Nemesis::takeTurn after patch called");
 // }
 //  }
 }

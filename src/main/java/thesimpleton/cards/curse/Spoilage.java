@@ -10,8 +10,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.utilities.ModLogger;
 
 public class Spoilage extends CustomCard implements SeasonalCurse {
+  private static ModLogger logger = TheSimpletonMod.traceLogger;
   public static final String ID = TheSimpletonMod.makeID("Spoilage");
   private static final CardStrings cardStrings;
   public static final String NAME;
@@ -50,7 +52,7 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
 
   @Override
   public void triggerOnGainEnergy(int e, boolean b) {
-    TheSimpletonMod.logger.debug("Spoilage::triggerOnGainEnergy called");
+    logger.trace("Spoilage::triggerOnGainEnergy called");
     updateDescription(false);
   }
 
@@ -61,7 +63,7 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
   }
 
   public void triggerOnEndOfPlayerTurn() {
-    TheSimpletonMod.logger.debug("Spoilage::triggerOnEndOfTurnForPlayingCard called");
+    logger.trace("Spoilage::triggerOnEndOfTurnForPlayingCard called");
 
     if (this.willTrigger) {
       AbstractDungeon.player.hand.moveToDeck(this, false);

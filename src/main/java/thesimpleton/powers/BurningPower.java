@@ -42,7 +42,7 @@ public class BurningPower extends AbstractTheSimpletonPower {
 
   @Override
   public void atEndOfTurn(boolean isPlayer) {
-    TheSimpletonMod.logger.debug(this.getClass().getSimpleName() + "::atEndOfTurn : called");
+    POWER_LOGGER.trace(this.getClass().getSimpleName() + "::atEndOfTurn : called");
   }
 
   @Override

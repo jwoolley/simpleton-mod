@@ -27,9 +27,9 @@ public class DungeonMapScreenOpenAfter {
 //    }
 //
 //    if (counter == 0) {
-//      TheSimpletonMod.logger.debug(msg);
+//      TheSimpletonMod.traceLogger.trace(msg);
 //    }
-      TheSimpletonMod.logger.debug(msg);
+      TheSimpletonMod.traceLogger.trace(msg);
   }
 
 //  public static SpireReturn Prefix (DungeonMapScreen __instance, boolean doScrollingAnimation) {

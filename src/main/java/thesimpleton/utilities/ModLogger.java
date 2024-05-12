@@ -4,17 +4,10 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
-
-import java.rmi.UnexpectedException;
 import java.security.InvalidParameterException;
 import java.util.HashMap;
 
 public class ModLogger {
-    private ModLogger(String logPrefix, Level maxLogLevel) {
-        _internalLogger = LogManager.getLogger(logPrefix);
-        _maxLogLevel = maxLogLevel;
-    }
-
     public static ModLogger create(String logPrefix, Level maxLogLevel) {
         if (!_loggerMap.containsKey(logPrefix)) {
             if (maxLogLevel.compareTo(MIN_LOG_LEVEL) >= 0 && maxLogLevel.compareTo(MAX_LOG_LEVEL) <= 0) {
@@ -28,6 +21,27 @@ public class ModLogger {
         }
         return _loggerMap.get(logPrefix);
     }
+
+    public void enable() {
+        _isEnabled = true;
+    }
+
+    public void disable() {
+        _isEnabled = false;
+    }
+
+    public boolean isEnabled() {
+        return _isEnabled;
+    }
+
+    public Level getLogLevel() {
+        return _maxLogLevel;
+    }
+
+    public void setLogLevel(Level level) {
+        _maxLogLevel = level;
+    }
+
 
     public static ModLogger create(String logPrefix) {
         return create(logPrefix, MAX_LOG_LEVEL);
@@ -48,9 +62,11 @@ public class ModLogger {
     public void error(String message) {
         _log(Level.ERROR, message);
     }
+
     public void warn(String message) {
         _log(Level.WARN, message);
     }
+
     public void info(String message) {
         _log(Level.INFO, message);
     }
@@ -63,16 +79,14 @@ public class ModLogger {
         _log(Level.TRACE, message);
     }
 
-    public Level getLogLevel() {
-        return _maxLogLevel;
-    }
-
-    public void setLogLevel(Level level) {
-        _maxLogLevel = level;
+    private ModLogger(String logPrefix, Level maxLogLevel) {
+        _internalLogger = LogManager.getLogger(logPrefix);
+        _maxLogLevel = maxLogLevel;
+        _isEnabled = true;
     }
 
     private void _log(Level logLevel, String message) {
-        if (_maxLogLevel.compareTo(logLevel) >= 0)  {
+        if (_isEnabled && _maxLogLevel.compareTo(logLevel) >= 0)  {
             if (logLevel.compareTo(MAX_MANAGER_SUPPORTED_LOG_LEVEL) <= 0) {
                 _logInternal(logLevel, logLevel, message);
             } else {
@@ -148,6 +162,8 @@ public class ModLogger {
 
     private Logger _internalLogger;
     private Level _maxLogLevel;
+
+    private boolean _isEnabled;
 
     private static Level MIN_LOG_LEVEL = Level.ERROR;
     private static Level MAX_LOG_LEVEL = Level.TRACE;

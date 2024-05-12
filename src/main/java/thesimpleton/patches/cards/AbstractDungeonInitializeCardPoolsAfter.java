@@ -11,9 +11,9 @@ import thesimpleton.TheSimpletonMod;
   public class AbstractDungeonInitializeCardPoolsAfter {
     public static void Postfix (AbstractDungeon __instance) {
       if (TheSimpletonMod.isPlayingAsSimpleton()) {
-        TheSimpletonMod.logger.debug("AbstractDungeonInitializeCardPoolsAfter called");
+        TheSimpletonMod.traceLogger.debug("AbstractDungeonInitializeCardPoolsAfter called");
         if (TheSimpletonMod.isSeasonInitialized()) {
-          TheSimpletonMod.logger.debug("AbstractDungeonInitializeCardPoolsAfter removing cards from pool");
+          TheSimpletonMod.traceLogger.debug("AbstractDungeonInitializeCardPoolsAfter removing cards from pool");
           TheSimpletonMod.removeUnseasonalCardsFromPool();
         }
       } else if (!TheSimpletonMod.ConfigData.enableCursesForAllCharacters) {

@@ -49,8 +49,6 @@ public class Honeycomb extends CustomRelic {
   }
 
   public void onPlantCrop(Crop crop) {
-    Logger logger = TheSimpletonMod.logger;
-
     AbstractDungeon.actionManager.addToTop(new SFXAction("ATTACK_BEE_BUZZ_1"));
     if (!cropsHarvestedThisCombat.contains(crop)) {
       this.flash();

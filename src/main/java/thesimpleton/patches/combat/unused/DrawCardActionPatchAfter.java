@@ -24,14 +24,14 @@ public class DrawCardActionPatchAfter {
 
 //  @SpirePostfixPatch
 //  public static void Postfix (DrawCardAction __instance, AbstractCreature source, int amount, boolean endTurnDraw) {
-//      final Logger logger = TheSimpletonMod.logger;
-//      logger.debug("DrawCardActionPatchAfter Postfix trigger called");
+//      final ModLogger logger = TheSimpletonMod.traceLogger;
+//      logger.trace("DrawCardActionPatchAfter Postfix trigger called");
 //
 //      if (AbstractDungeon.player.hasPower(NumbPower.POWER_ID)) {
 //        final NumbPower numbPower =  (NumbPower)AbstractDungeon.player.getPower(NumbPower.POWER_ID);
 //
-//        logger.debug("DrawCardActionPatchAfter player has " + numbPower.amount + " numb stacks");
-//        logger.debug("DrawCardActionPatchAfter decreasing draw amount from"
+//        logger.trace("DrawCardActionPatchAfter player has " + numbPower.amount + " numb stacks");
+//        logger.trace("DrawCardActionPatchAfter decreasing draw amount from"
 //            + amount + " to " + numbPower.getUpdatedDrawAmount(amount));
 //
 //        __instance.amount = numbPower.getUpdatedDrawAmount(amount);

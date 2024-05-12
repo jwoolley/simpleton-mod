@@ -17,7 +17,7 @@ public class ArtichokeCrop extends AbstractCrop {
 
   public ArtichokeCrop() {
     super(CROP_ENUM);
-    logger.debug("MAKIN' Artichokes (instantiating ArtichokeCrop).");
+    CROP_LOGGER.trace("MAKIN' Artichokes (instantiating ArtichokeCrop).");
   }
 
 

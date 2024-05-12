@@ -17,7 +17,7 @@ public class OverlayMenuRenderBlackScreenBefore {
 //     if (TheSimpletonMod.isPlayingAsSimpleton()) {
 
 //    if (TheSimpletonMod.seasonScreen.isOpen()) {
-//      TheSimpletonMod.logger.debug("OverlayMenuRenderBlackScreenBefore:: Hiding black screen");
+//      TheSimpletonMod.traceLogger.trace("OverlayMenuRenderBlackScreenBefore:: Hiding black screen");
 //      __instance.hideBlackScreen();
 //    }
 // }

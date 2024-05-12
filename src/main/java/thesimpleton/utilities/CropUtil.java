@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class CropUtil {
-  private static Logger logger = TheSimpletonMod.logger;
+  private static ModLogger logger = TheSimpletonMod.debugLogger;
 
   public CropUtil() {
 

@@ -30,7 +30,7 @@ public class AddManyCardsToDeckEffect extends AbstractGameEffect {
   public AddManyCardsToDeckEffect(AbstractCard card1, AbstractCard card2, AbstractCard card3, AbstractCard card4,
                                   AbstractCard card5, AbstractCard card6, AbstractCard card7, AbstractCard card8, float waitBetweenDuration) {
 
-    TheSimpletonMod.logger.info("AddManyCardsToDeckEffect::constructor called");
+    TheSimpletonMod.traceLogger.trace("AddManyCardsToDeckEffect::constructor called");
 
     this.cardsToGain = new ArrayList<>(Arrays.asList(card1, card2, card3, card4, card5, card6, card7, card8));
     this.duration = ACTION_DURATION + waitBetweenDuration;
@@ -38,7 +38,7 @@ public class AddManyCardsToDeckEffect extends AbstractGameEffect {
   }
 
   public void update() {
-    TheSimpletonMod.logger.info("AddManyCardsToDeckEffect::update duration: " + this.duration);
+    TheSimpletonMod.traceLogger.trace("AddManyCardsToDeckEffect::update duration: " + this.duration);
 
     this.duration -= Gdx.graphics.getDeltaTime();
     if (!tickedOnce && duration <= waitBetweenDuration) {

@@ -11,8 +11,10 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.orbs.OnionCropOrb;
+import thesimpleton.utilities.ModLogger;
 
 public class OnionBelt extends CustomRelic {
+  private static ModLogger logger = TheSimpletonMod.traceLogger;
   public static final String ID = "TheSimpletonMod:OnionBelt";
   public static final String IMG_PATH = "relics/onionbelt.png";
   public static final String IMG_PATH_LARGE = "relics/onionbelt_large.png";
@@ -30,8 +32,7 @@ public class OnionBelt extends CustomRelic {
         new Texture(TheSimpletonMod.getImageResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
     this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getImageResourcePath(IMG_PATH_LARGE));
 
-    Logger logger = TheSimpletonMod.logger;
-    logger.debug("Instantiating OnionBelt");
+   logger.trace("Instantiating OnionBelt");
   }
 
   @Override
@@ -59,8 +60,7 @@ public class OnionBelt extends CustomRelic {
 
 
   public static void addOnionStack(int amount) {
-    Logger logger = TheSimpletonMod.logger;
-    logger.debug("OnionBelt: Adding onion stack");
+    logger.trace("OnionBelt: Adding onion stack");
     final AbstractPlayer p = AbstractDungeon.player;
 
     AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new OnionCropOrb() , amount, false));

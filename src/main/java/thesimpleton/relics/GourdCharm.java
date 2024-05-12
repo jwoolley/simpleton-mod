@@ -29,8 +29,7 @@ public class GourdCharm extends CustomRelic {
         new Texture(TheSimpletonMod.getImageResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
     this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getImageResourcePath(IMG_PATH_LARGE));
 
-    Logger logger = TheSimpletonMod.logger;
-    logger.debug("Instantiating GourdCharm");
+    TheSimpletonMod.traceLogger.trace("Instantiating GourdCharm");
   }
 
   @Override
@@ -58,8 +57,7 @@ public class GourdCharm extends CustomRelic {
 
   //TODO: move this to potato power class
   public static void addSquashStack(int amount) {
-    Logger logger = TheSimpletonMod.logger;
-    logger.debug("GourdCharm: Adding squash stack");
+    TheSimpletonMod.traceLogger.trace("GourdCharm: Adding squash stack");
     final AbstractPlayer p = AbstractDungeon.player;
 
     AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(new SquashCropOrb(), amount,false));

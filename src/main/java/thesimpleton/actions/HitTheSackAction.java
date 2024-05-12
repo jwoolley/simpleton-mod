@@ -12,9 +12,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.orbs.PotatoCropOrb;
+import thesimpleton.utilities.ModLogger;
 
-public class HitTheSackAction  extends AbstractGameAction
-{
+public class HitTheSackAction  extends AbstractGameAction {
+  private static ModLogger logger = TheSimpletonMod.traceLogger;
   private static final int SPUDS_PER_TICK = 1;
   private DamageInfo info;
   private boolean freeToPlayOnce;
@@ -53,34 +54,32 @@ public class HitTheSackAction  extends AbstractGameAction
     this.numDamageReps = numDamageReps;
     this.numPotatoReps = numPotatoReps;
 
-    TheSimpletonMod.logger.debug("HitTheSackAction: energyOnUse: " + energyOnUse + "; upgraded: " + upgraded);
+    logger.trace("HitTheSackAction: energyOnUse: " + energyOnUse + "; upgraded: " + upgraded);
   }
 
   @Override
   public void update() {
     if (isFirstRep) {
-      TheSimpletonMod.logger.debug("HitTheSackAction:: update firstRep numDamageReps");
+      logger.trace("HitTheSackAction:: update firstRep numDamageReps");
 
       this.numDamageReps = EnergyPanel.totalCount;
 
-      TheSimpletonMod.logger.debug("HitTheSackAction:: update firstRep numDamageReps (1): " + this.numDamageReps);
-
+      logger.trace("HitTheSackAction:: update firstRep numDamageReps (1): " + this.numDamageReps);
 
       if (this.energyOnUse != -1) {
         this.numDamageReps = this.energyOnUse;
-        TheSimpletonMod.logger.debug("HitTheSackAction:: update firstRep numDamageReps (2): " + this.numDamageReps);
+        logger.trace("HitTheSackAction:: update firstRep numDamageReps (2): " + this.numDamageReps);
       }
       if (this.upgraded) {
         this.numDamageReps++;
-        TheSimpletonMod.logger.debug("HitTheSackAction:: update firstRep numDamageReps (3): " + this.numDamageReps);
+        logger.trace("HitTheSackAction:: update firstRep numDamageReps (3): " + this.numDamageReps);
       }
       if (this.p.hasRelic("Chemical X")) {
         this.numDamageReps += 2;
         this.p.getRelic("Chemical X").flash();
-
       }
 
-      TheSimpletonMod.logger.debug("HitTheSackAction:: update firstRep numDamageReps (4): " + this.numDamageReps);
+      logger.trace("HitTheSackAction:: update firstRep numDamageReps (4): " + this.numDamageReps);
 
       this.numPotatoReps = numDamageReps;
     }

@@ -7,10 +7,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonCardHelper;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
+import thesimpleton.utilities.ModLogger;
 
 import javax.smartcardio.Card;
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ import java.util.stream.Collectors;
 
 public class CardPoolCustomSavable implements CustomSavable<List<String>> {
   final private List<AbstractCard> cardpool = new ArrayList<>();
-  final Logger logger = TheSimpletonMod.logger;
+  final ModLogger logger = TheSimpletonMod.debugLogger;
 
   public CardPoolCustomSavable() {
     logger.debug( this.getClass().getSimpleName() + " instantiated");
@@ -36,7 +38,7 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
 
     registerSaveId();
 
-    logger.info(getLogPrefix("onSave") + " called");
+    logger.trace(getLogPrefix("onSave") + " called");
 
     List<AbstractCard> currentCardPool = SimpletonCardHelper.getCurrentCardPool();
 
@@ -71,27 +73,27 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
     if (TheSimpletonMod.isPlayingAsSimpleton() && ids != null && !ids.isEmpty()) {
 
       int cardIndex = 0;
-      logger.info(getLogPrefix("onLoad") + " Loading cards for card pool from save:");
+      logger.trace(getLogPrefix("onLoad") + " Loading cards for card pool from save:");
       for (String id : ids) {
         // if card exists in the CardLibrary (BaseMod.addsCard() has been called, I think)
         if (CardLibrary.isACard(id)) {
           AbstractCard card = CardLibrary.getCard(id);
           this.cardpool.add(card);
-          logger.info(cardIndex++ + ") " + card.name + " [cardId: " + card.cardID + "]");
+          logger.trace(cardIndex++ + ") " + card.name + " [cardId: " + card.cardID + "]");
         } else {
-          logger.info(cardIndex++ + ") NOT IN CARD LIBRARY [cardId: " + id + "]");
+          logger.trace(cardIndex++ + ") NOT IN CARD LIBRARY [cardId: " + id + "]");
         }
       }
 
       if (!TheSimpletonMod.getSaveCardPool().isEmpty()) {
-        logger.info( getLogPrefix("onLoad") + " Card pool loaded from save with " + ids.size() + " cards. Initializing");
+        logger.trace( getLogPrefix("onLoad") + " Card pool loaded from save with " + ids.size() + " cards. Initializing");
         if (CardCrawlGame.dungeon != null) {
           CardCrawlGame.dungeon.initializeCardPools();
         } else {
-          logger.info(getLogPrefix("onLoad") + " dungeon is not yet initialized. Trusting it will happen eventually.");
+          logger.trace(getLogPrefix("onLoad") + " dungeon is not yet initialized. Trusting it will happen eventually.");
         }
       } else {
-        logger.info(getLogPrefix("onLoad") + " no save data found");
+        logger.trace(getLogPrefix("onLoad") + " no save data found");
       }
     }
   }

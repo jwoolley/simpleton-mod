@@ -25,9 +25,6 @@ public class MoveCardToHandAction extends AbstractGameAction {
   }
 
   public void update() {
-    Logger logger = TheSimpletonMod.logger;
-
-
     if (this.duration != ACTION_DURATION) {
 
       if (group == AbstractDungeon.player.hand){

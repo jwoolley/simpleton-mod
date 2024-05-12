@@ -4,12 +4,15 @@ import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.AbstractCrop;
+import thesimpleton.utilities.ModLogger;
 
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public abstract class AbstractCropPowerCard extends CustomCard {
+
+  protected static final ModLogger logger = TheSimpletonMod.traceLogger;
 
   public AbstractCropPowerCard(java.lang.String id, java.lang.String name, java.lang.String img, int cost,
                                java.lang.String rawDescription, com.megacrit.cardcrawl.cards.AbstractCard.CardType type,
@@ -32,7 +35,7 @@ public abstract class AbstractCropPowerCard extends CustomCard {
           .map(crop -> crop.getPowerCard())
           .collect(Collectors.toList());
     } catch (UnsupportedOperationException e){
-      TheSimpletonMod.logger.warn("Unexpectedly received crop power with no powerCard");
+      logger.warn("Unexpectedly received crop power with no powerCard");
       return null;
     }
   }

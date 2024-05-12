@@ -16,7 +16,7 @@ public class SpinachCrop extends AbstractCrop {
 
   public SpinachCrop() {
     super(CROP_ENUM);
-    logger.debug("MAKIN' Spinach (instantiating Spinach).");
+    CROP_LOGGER.trace("MAKIN' Spinach (instantiating Spinach).");
   }
 
   @Override

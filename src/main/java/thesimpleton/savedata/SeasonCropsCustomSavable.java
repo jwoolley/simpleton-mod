@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.Crop;
 import thesimpleton.enums.TheSimpletonCharEnum;
+import thesimpleton.utilities.ModLogger;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,10 +15,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SeasonCropsCustomSavable implements CustomSavable<List<String>> {
-  final Logger logger = TheSimpletonMod.logger;
+  static final ModLogger logger = TheSimpletonMod.traceLogger;
   private List<Crop> crops = new ArrayList<>();
   public SeasonCropsCustomSavable() {
-    logger.debug( this.getClass().getSimpleName() + " instantiated");
+    logger.trace( this.getClass().getSimpleName() + " instantiated");
   }
 
   @Override
@@ -28,7 +29,7 @@ public class SeasonCropsCustomSavable implements CustomSavable<List<String>> {
 
       List<Crop> crops = TheSimpletonMod.getSeasonInfo().getCropsInSeason();
 
-      logger.debug(this.getClass().getSimpleName() + "::onSave called. Saving Crops:" + crops.stream()
+      logger.trace(this.getClass().getSimpleName() + "::onSave called. Saving Crops:" + crops.stream()
         .map(c -> c.getName()).collect(Collectors.joining(", ")));
 
       return new ArrayList<String>(crops.stream().map(c -> c.getName()).collect(Collectors.toList()));
@@ -46,10 +47,10 @@ public class SeasonCropsCustomSavable implements CustomSavable<List<String>> {
   public void onLoad(List<String> cropNames) {
     this.reset();
     if (AbstractDungeon.player.chosenClass == TheSimpletonCharEnum.THE_SIMPLETON) {
-      logger.debug(this.getClass().getSimpleName() + "::onLoad called");
+      logger.trace(this.getClass().getSimpleName() + "::onLoad called");
 
       if (cropNames != null) {
-        logger.debug(this.getClass().getSimpleName() + "::onLoad | Loading Crops save data for: "
+        logger.trace(this.getClass().getSimpleName() + "::onLoad | Loading Crops save data for: "
             + cropNames.stream().collect(Collectors.joining(", ")));
 
         List<Crop> loadedCrops = cropNames.stream()
@@ -57,19 +58,19 @@ public class SeasonCropsCustomSavable implements CustomSavable<List<String>> {
         this.reset();
         this.crops.addAll(loadedCrops);
 
-        logger.debug(this.getClass().getSimpleName() + "::onLoad | Found Crops: "
+        logger.trace(this.getClass().getSimpleName() + "::onLoad | Found Crops: "
             + loadedCrops.stream().map(c -> c.getName()).collect(Collectors.joining(", ")));
 
         //      List<AbstractCropPowerCard> cropCards = loadedCrops.stream()
         //          .map(c -> c.getCropInfo().powerCard).filter(c -> c != null).collect(Collectors.toList());
 
         //
-        //      logger.debug(this.getClass().getSimpleName() + "::onLoad | Found Crop power cards:"
+        //      logger.trace(this.getClass().getSimpleName() + "::onLoad | Found Crop power cards:"
         //          + cropCards.stream().map(c -> c.name).collect(Collectors.joining(", ")));
         //
         //      TheSimpletonMod.setSeasonalCropCards(cropCards);
       } else {
-        logger.debug(this.getClass().getSimpleName() + "::onLoad | no Crops found in save data");
+        logger.trace(this.getClass().getSimpleName() + "::onLoad | no Crops found in save data");
       }
     }
   }
@@ -83,8 +84,8 @@ public class SeasonCropsCustomSavable implements CustomSavable<List<String>> {
   }
 
   private void registerSaveId() {
-    logger.debug( this.getClass().getSimpleName() + "::registerSaveId");
-    logger.debug( this.getClass().getSimpleName() + "::registerSaveId registering customSaveKey: " + getCustomSaveKey());
+    logger.trace( this.getClass().getSimpleName() + "::registerSaveId");
+    logger.trace( this.getClass().getSimpleName() + "::registerSaveId registering customSaveKey: " + getCustomSaveKey());
     BaseMod.addSaveField(this.getCustomSaveKey(), this);
   }
 

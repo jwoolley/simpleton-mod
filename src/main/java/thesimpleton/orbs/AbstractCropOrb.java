@@ -22,11 +22,13 @@ import thesimpleton.effects.orb.HarvestCropSoundEffect;
 import thesimpleton.effects.orb.StackCropSoundEffect;
 import thesimpleton.orbs.utilities.CropOrbHelper;
 import thesimpleton.ui.SettingsHelper;
+import thesimpleton.utilities.ModLogger;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class AbstractCropOrb extends CustomOrb {
+  protected static final ModLogger ORB_LOGGER = TheSimpletonMod.debugLogger;
   private static final String ORB_DESCRIPTION_ID = "TheSimpletonMod:AbstractCropOrb";
   private final static String[] GENERIC_DESCRIPTION;
   private final static OrbStrings orbStrings;

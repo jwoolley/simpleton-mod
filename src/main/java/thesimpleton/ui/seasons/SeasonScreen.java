@@ -21,6 +21,7 @@ import thesimpleton.seasons.Season;
 import thesimpleton.ui.ReadyButtonPanel;
 import thesimpleton.ui.SettingsHelper;
 import thesimpleton.ui.buttons.ReadyButton;
+import thesimpleton.utilities.ModLogger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,7 +74,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
   private final List<AbstractCropPowerCard> inSeasonCropCards = new ArrayList<>();
   private SeasonTooltip tooltip;
 
-  private static final Logger logger = TheSimpletonMod.logger;
+  private static ModLogger logger = TheSimpletonMod.traceLogger;
 
   // TODO: narrow hitbox down to ready button
   private final Hitbox hb;
@@ -173,7 +174,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   public SeasonScreen() {
 
-    logger.debug("SeasonScreen::constructor Settings.scale: "
+    logger.trace("SeasonScreen::constructor Settings.scale: "
         + Settings.scale + ", Settings.HEIGHT: " + Settings.HEIGHT + ", SCALE_X: " + SettingsHelper.getScaleX() +", SettingsHelper.getScaleY(): " + SettingsHelper.getScaleY());
 
     hb = new Hitbox(width * SettingsHelper.getScaleX(), height * SettingsHelper.getScaleY());
@@ -201,7 +202,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
   }
 
   public void open() {
-    logger.debug("SeasonScreen::open called");
+    logger.trace("SeasonScreen::open called");
     AbstractDungeon.isScreenUp = true;
 
     if (AbstractDungeon.overlayMenu != null) {
@@ -216,7 +217,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
               cancelButton.buttonText : "Return";
 
       if (!SHOULD_SHOW_CANCEL_BUTTON && !cancelButton.isHidden) {
-        logger.debug("SeasonScreen::open hiding cancel button");
+        logger.trace("SeasonScreen::open hiding cancel button");
 
         cancelButton.hide();
         showCancelButtonOnClose = true;
@@ -247,10 +248,10 @@ public class SeasonScreen implements ReadyButtonPanel  {
   }
 
   public void close() {
-    logger.debug("SeasonScreen::close called");
+    logger.trace("SeasonScreen::close called");
 
     if (showCancelButtonOnClose) {
-      logger.debug("SeasonScreen::close showing cancel button (showCancelButtonOnClose == true)");
+      logger.trace("SeasonScreen::close showing cancel button (showCancelButtonOnClose == true)");
 
       AbstractDungeon.overlayMenu.cancelButton.show(cancelButtonText);
     }
@@ -260,8 +261,8 @@ public class SeasonScreen implements ReadyButtonPanel  {
   }
 
   public void dismiss() {
-    logger.debug("SeasonScreen::dismiss called");
-    logger.debug("SeasonScreen::dismiss setting wasDismissed to true");
+    logger.trace("SeasonScreen::dismiss called");
+    logger.trace("SeasonScreen::dismiss setting wasDismissed to true");
 
     this.wasDismissed = true;
     show = false;
@@ -323,7 +324,7 @@ public class SeasonScreen implements ReadyButtonPanel  {
       return;
     }
 //
-//    logger.debug("SeasonScreen::render "
+//    logger.trace("SeasonScreen::render "
 //        + " Settings.WIDTH: "  + Settings.WIDTH
 //        + " Settings.HEIGHT: "  + Settings.HEIGHT
 //        + " Settings.isSixteenByTen: " + Settings.isSixteenByTen
@@ -412,10 +413,10 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   @Override
   public void onReadyClicked() {
-    logger.debug("SeasonScreen::onReadyClicked called");
+    logger.trace("SeasonScreen::onReadyClicked called");
     getReadyButton().disable();
     getReadyButton().hide();
-    logger.debug("SeasonScreen::onReadyClicked setting wasDismissed to true");
+    logger.trace("SeasonScreen::onReadyClicked setting wasDismissed to true");
     wasDismissed = true;
     this.close();
   }

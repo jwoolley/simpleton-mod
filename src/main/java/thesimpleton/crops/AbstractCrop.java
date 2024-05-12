@@ -17,12 +17,14 @@ import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.powers.unused.ToughSkinPower;
 import thesimpleton.relics.CashCrop;
 import thesimpleton.relics.unused.GrassPellets;
+import thesimpleton.utilities.ModLogger;
 
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 abstract public class AbstractCrop {
+  protected static ModLogger CROP_LOGGER = TheSimpletonMod.traceLogger;
   public static Map<AbstractCard.CardRarity, Integer> CROP_RARITY_DISTRIBUTION;
   public final Crop enumValue;
   public final  AbstractCard.CardRarity cropRarity;
@@ -30,7 +32,6 @@ abstract public class AbstractCrop {
 
   private static int numTimesHarvestedThisTurn = 0;
 
-  protected static final Logger logger = TheSimpletonMod.logger;
   private static final List<AbstractCrop> referenceCrops = new ArrayList<>();;
   private static int STACKS_PER_TRIGGER = 1;
 
@@ -51,8 +52,8 @@ abstract public class AbstractCrop {
   AbstractCrop(Crop enumValue, String cropOrbId, AbstractCropPowerCard powerCard, AbstractCard.CardRarity rarity, int autoHarvestThreshold,
                boolean isHarvestAll) {
 
-    logger.debug("instantiating AbstractCrop. enumValue: " + enumValue);
-    logger.debug("instantiating AbstractCrop. cropRarity: " + rarity);
+    CROP_LOGGER.trace("instantiating AbstractCrop. enumValue: " + enumValue);
+    CROP_LOGGER.trace("instantiating AbstractCrop. cropRarity: " + rarity);
 
 
     this.enumValue = enumValue;
@@ -73,10 +74,10 @@ abstract public class AbstractCrop {
 
 
   void onHarvest(int amount) {
-    TheSimpletonMod.logger.debug("============> AbstractCrop::onHarvest =====");
+    CROP_LOGGER.trace("============> AbstractCrop::onHarvest =====");
 
     numTimesHarvestedThisTurn++;
-    logger.debug("AbstractCrop::" + this.getCropOrb().ID + ": onHarvestCalled.  amount: " + amount + ". Set hasHarvestedThisTurn");
+    CROP_LOGGER.trace("AbstractCrop::" + this.getCropOrb().ID + ": onHarvestCalled.  amount: " + amount + ". Set hasHarvestedThisTurn");
 
     if (getPlayer().hasPower(ToughSkinPower.POWER_ID)) {
       ((ToughSkinPower) getPlayer().getPower(ToughSkinPower.POWER_ID)).applyPower(getPlayer());
@@ -107,10 +108,10 @@ abstract public class AbstractCrop {
   }
 
   public void stackOrb(int amount, boolean isFromCard) {
-//    final int stacks =  ApplyCropAction.calculateCropStacks(amount, isFromCard);
+    //    final int stacks =  ApplyCropAction.calculateCropStacks(amount, isFromCard);
 
-    logger.debug("AbstractCrop::stackOrb amount:" + amount + " for " + getClass().getSimpleName());
-    logger.debug("AbstractCrop::stackOrb stacks:" + amount);
+        CROP_LOGGER.trace("AbstractCrop::stackOrb amount:" + amount + " for " + getClass().getSimpleName());
+        CROP_LOGGER.trace("AbstractCrop::stackOrb stacks:" + amount);
 
         AbstractDungeon.actionManager.addToBottom(new CropSpawnAction((AbstractCropOrb)getCropOrb().makeCopy(), amount, true));
   }
@@ -118,13 +119,13 @@ abstract public class AbstractCrop {
   public static void stackOrb(AbstractCropOrb cropOrb, int amount, boolean isFromCard) {
     // optimize by making one call instead of calling AbstractCropOrb.hasCropOrb
     //    AbstractCropOrb actualCropOrb = AbstractCropOrb.getCropOrb(cropOrb);
-    //    logger.debug("AbstractCrop::stackOrb player " + (actualCropOrb != null ? "has " + actualCropOrb.passiveAmount + " stacks of " : "does not have ") + cropOrb.name + " already.");
+    //    logger.trace("AbstractCrop::stackOrb player " + (actualCropOrb != null ? "has " + actualCropOrb.passiveAmount + " stacks of " : "does not have ") + cropOrb.name + " already.");
 
     AbstractDungeon.actionManager.addToBottom(new CropSpawnAction((AbstractCropOrb) cropOrb.makeCopy(), amount, isFromCard));
   }
 
 //  public boolean isMature() {
-//    logger.debug("AbstractCrop::isMature: " + this.getClass().getTypeName());
+//    logger.trace("AbstractCrop::isMature: " + this.getClass().getTypeName());
 //       AbstractCropOrb orb = AbstractCropOrb.getCropOrb(getCropOrbId());
 //      return orb != null && orb.isMature(true);
 ////    return AbstractCropOrb.hasCropOrb(getCropOrb()) && AbstractCropOrb.getCropOrb(getCropOrb()).isMature();
@@ -156,9 +157,9 @@ abstract public class AbstractCrop {
 
 
   public void harvest(boolean harvestAll, int maxHarvestAmount, AbstractCropOrb orb) {
-//    TheSimpletonMod.logger.debug("============> AbstractCrop::harvest =====");
+//    TheSimpletonMod.logger.trace("============> AbstractCrop::harvest =====");
 
-//   logger.debug("AbstractCrop::harvest::" + this.getCropOrb().ID + " harvest() called. " + harvestAll + " maxHarvestAmount: " + maxHarvestAmount);
+//   logger.trace("AbstractCrop::harvest::" + this.getCropOrb().ID + " harvest() called. " + harvestAll + " maxHarvestAmount: " + maxHarvestAmount);
 
 //   return cropOrb != null ? cropOrb.passiveAmount : 0;
 
@@ -172,7 +173,7 @@ abstract public class AbstractCrop {
 
     if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
       if (harvestAmount > 0) {
-//        TheSimpletonMod.logger.debug("============> AbstractCrop::harvest queueing CropReduceAction =====");
+//        TheSimpletonMod.logger.trace("============> AbstractCrop::harvest queueing CropReduceAction =====");
 
         harvestAction(harvestAmount);
         AbstractDungeon.actionManager.addToTop(new CropReduceAction(orb, harvestAmount));
@@ -181,7 +182,7 @@ abstract public class AbstractCrop {
   }
 
   public void flash() {
-    logger.debug("AbstractCrop.flash REMOVE THIS CALL");
+    CROP_LOGGER.trace("AbstractCrop.flash REMOVE THIS CALL");
   }
 
   abstract protected int harvestAction(int harvestAmount);
@@ -199,11 +200,11 @@ abstract public class AbstractCrop {
   public void atStartOfTurn() {
     final int amount = this.getAmount();
 
-    logger.debug("AbstractCrop: Checking for auto-harvest triggers");
+    CROP_LOGGER.trace("AbstractCrop: Checking for auto-harvest triggers");
     if (amount >= getMaturityThreshold()) {
       this.flash();
       harvest(isHarvestAll, STACKS_PER_TRIGGER);
-    } else { logger.debug("Not triggered"); }
+    } else { CROP_LOGGER.trace("Not triggered"); }
   }
 
   public int getAmount() {
@@ -234,13 +235,13 @@ abstract public class AbstractCrop {
   }
 
   public static AbstractCropOrb getOldestCropOrb() {
-    logger.debug("Oldest crop orb per CropUtil: " +
+    CROP_LOGGER.trace("Oldest crop orb per CropUtil: " +
         (TheSimpletonCharacter.getCropUtil().playerHasAnyCrops() ? AbstractCropOrb.getOldestCropOrb().name : "None"));
     return AbstractCropOrb.getOldestCropOrb();
   }
 
   public static AbstractCropOrb getNewestCropOrb() {
-    logger.debug("Newest crop orb per CropUtil: "
+    CROP_LOGGER.trace("Newest crop orb per CropUtil: "
         + (TheSimpletonCharacter.getCropUtil().playerHasAnyCrops() ? AbstractCropOrb.getNewestCropOrb().name : "None"));
     return AbstractCropOrb.getNewestCropOrb();
   }
@@ -257,8 +258,8 @@ abstract public class AbstractCrop {
       Collections.shuffle(activeCropOrbs);
     }
 
-//    logger.debug("AbstractCrop.getActiveCropOrbs: player has " + activeCropOrbs.size() + " active crop orbs");
-//    logger.debug("AbstractCrop.getActiveCropOrbs: player has " + SimpletonUtil.getActiveOrbs().size() + " active total orbs");
+//    logger.trace("AbstractCrop.getActiveCropOrbs: player has " + activeCropOrbs.size() + " active crop orbs");
+//    logger.trace("AbstractCrop.getActiveCropOrbs: player has " + SimpletonUtil.getActiveOrbs().size() + " active total orbs");
 
     return activeCropOrbs;
   }
@@ -298,10 +299,10 @@ abstract public class AbstractCrop {
       throw new IndexOutOfBoundsException("Requested " + numCrops + " crop powers but only " + numTotalCrops
           + " crop powers are available");
     } else if (numCrops == numTotalCrops) {
-      logger.debug("Requested crop power cards size equals total crop power cards. Returning all powers.");
+      CROP_LOGGER.trace("Requested crop power cards size equals total crop power cards. Returning all powers.");
       resultCrops = new ArrayList(filteredCrops);
     } else {
-      logger.debug("Choosing crop power cards by probability distribution");
+      CROP_LOGGER.trace("Choosing crop power cards by probability distribution");
 
       ArrayList<AbstractCrop> distributedCrops = new ArrayList<>();
       filteredCrops.forEach(crop -> {
@@ -312,19 +313,19 @@ abstract public class AbstractCrop {
         distributedCrops.addAll(copies);
       });
 
-//      logger.debug(AbstractCropPowerCard.class.getSimpleName()
+//      logger.trace(AbstractCropPowerCard.class.getSimpleName()
 //          + ".getRandomCropPowers :: distributedPowers: "
 //          + distributedCrops.stream().map(dp -> dp.enumValue + "").collect(Collectors.joining(", ")));
 
       Collections.shuffle(distributedCrops);
 
-      logger.debug("Choosing " + numCrops + " powers from distributedPowers");
+      CROP_LOGGER.trace("Choosing " + numCrops + " powers from distributedPowers");
 
       resultCrops = new ArrayList<>();
       for (int i = 0; i < numCrops; i++) {
         final AbstractCrop crop = distributedCrops.get(0);
         resultCrops.add(crop);
-        logger.debug("Selected " + crop.enumValue);
+        CROP_LOGGER.trace("Selected " + crop.enumValue);
 
         distributedCrops.removeIf(dc -> dc == crop);
       }

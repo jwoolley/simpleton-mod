@@ -11,11 +11,13 @@ import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.powers.BurningPower;
 import thesimpleton.relics.GasCan;
+import thesimpleton.utilities.ModLogger;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ApplyBurningAction extends AbstractGameAction {
+  private static ModLogger logger = TheSimpletonMod.traceLogger;
   private static float ACTION_DURATION = Settings.ACTION_DUR_XFAST;
 
   private final boolean isSecondaryApplication;
@@ -42,14 +44,13 @@ public class ApplyBurningAction extends AbstractGameAction {
   @Override
   public void update() {
 
-    Logger logger = TheSimpletonMod.logger;
 
-    logger.debug("ApplyBurningAction.update :: ACTION_DURATION: " + ACTION_DURATION);
-    logger.debug("ApplyBurningAction.update :: duration: " + this.duration);
+    logger.trace("ApplyBurningAction.update :: ACTION_DURATION: " + ACTION_DURATION);
+    logger.trace("ApplyBurningAction.update :: duration: " + this.duration);
 
     if (this.duration == this.startDuration) {
 
-      logger.debug("ApplyBurningAction.update :: Applying  " +  this.amount + " Burning" );
+      logger.trace("ApplyBurningAction.update :: Applying  " +  this.amount + " Burning" );
       AbstractDungeon.actionManager.addToBottom(
           new ApplyPowerAction(
               this.target, this.source, new BurningPower(this.target, this.source, this.amount), this.amount,

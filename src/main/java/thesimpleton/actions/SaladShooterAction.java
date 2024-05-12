@@ -12,8 +12,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.effects.utils.VFXActionTemplate;
+import thesimpleton.utilities.ModLogger;
 
 public class SaladShooterAction extends AbstractGameAction {
+  private static ModLogger logger =TheSimpletonMod.traceLogger;
   private static float ACTION_DURATION = Settings.ACTION_DUR_XFAST;
   private final AbstractPlayer player;
   private final int baseDamage;
@@ -23,11 +25,9 @@ public class SaladShooterAction extends AbstractGameAction {
   private final VFXActionTemplate vfxTemplate;
   private final SFXAction sfxAction;
 
-  private Logger logger;
-
   public SaladShooterAction(AbstractPlayer player, AbstractCreature target, int baseDamage, int numRepetitions,
                             VFXActionTemplate vfxTemplate, SFXAction sfxAction) {
-    this.logger = TheSimpletonMod.logger;
+    this.logger = TheSimpletonMod.traceLogger;
     this.actionType = ActionType.DAMAGE;
     this.damageType = DamageInfo.DamageType.NORMAL;
     this.duration = ACTION_DURATION;

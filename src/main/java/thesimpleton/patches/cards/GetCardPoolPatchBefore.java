@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.TheCity;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
+import thesimpleton.utilities.ModLogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,19 +23,19 @@ import java.util.stream.Collectors;
 )
 
 public class GetCardPoolPatchBefore {
+  private static ModLogger logger = TheSimpletonMod.traceLogger;
   @SpirePrefixPatch
   public static SpireReturn<ArrayList<AbstractCard>> Prefix(CustomPlayer __instance, ArrayList<AbstractCard> tmpPool) {
     if (!TheSimpletonMod.isPlayingAsSimpleton()) {
       return SpireReturn.Continue();
     }
 
-      final Logger logger = TheSimpletonMod.logger;
     List<AbstractCard> saveCardPool = TheSimpletonMod.getSaveCardPool();
     if (!saveCardPool.isEmpty()) {
-      logger.info("GetCardPoolPatchBefore :: Card pool for " + AbstractDungeon.player.chosenClass + " is about to be replaced.");
-      logger.info("GetCardPoolPatchBefore :: Original tmpPool: " + tmpPool.toString());
-      logger.info("GetCardPoolPatchBefore :: Cards to replace with: " + saveCardPool.toString());
-      TheSimpletonMod.logger.debug("GetCardPoolPatchBefore::getSaveCardPool using save data");
+      logger.trace("GetCardPoolPatchBefore :: Card pool for " + AbstractDungeon.player.chosenClass + " is about to be replaced.");
+      logger.trace("GetCardPoolPatchBefore :: Original tmpPool: " + tmpPool.toString());
+      logger.trace("GetCardPoolPatchBefore :: Cards to replace with: " + saveCardPool.toString());
+      logger.trace("GetCardPoolPatchBefore::getSaveCardPool using save data");
 
       tmpPool.clear();
       tmpPool.addAll(saveCardPool);
@@ -53,23 +54,23 @@ public class GetCardPoolPatchBefore {
         // (this inconsistent weirdness is from the fact that we can't guarantee the order of custom save loads)
 
         TheSimpletonMod.initializeSeasonInfoIfNeeded();
-        logger.info("GetCardPoolPatchBefore :: Didn't add any seasonal crop cards to pool; season not initialized. Calling static method TheSimpletonMod.setSeasonalCropCards");
+        logger.trace("GetCardPoolPatchBefore :: Didn't add any seasonal crop cards to pool; season not initialized. Calling static method TheSimpletonMod.setSeasonalCropCards");
         TheSimpletonMod.setSeasonalCropCards(tmpPool
             .stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> (AbstractCropPowerCard)c).collect(Collectors.toList()));
       }
       tmpPool.addAll(TheSimpletonMod.getSeasonalCropCards());
       tmpPool.addAll(TheSimpletonMod.getSeasonalCurseCards());
 
-      logger.info("GetCardPoolPatchBefore :: Saved card pool contains: " + tmpPool.size() + " cards.");
-      logger.info("GetCardPoolPatchBefore :: cards: " + tmpPool.toString());
+      logger.trace("GetCardPoolPatchBefore :: Saved card pool contains: " + tmpPool.size() + " cards.");
+      logger.trace("GetCardPoolPatchBefore :: cards: " + tmpPool.toString());
 
       // TODO: this does not belong here
-      logger.debug("GetCardPoolPatchBefore :: disabling season screen");
+      logger.trace("GetCardPoolPatchBefore :: disabling season screen");
       TheSimpletonMod.seasonScreen.dismiss();
 
       return SpireReturn.Return(tmpPool);
     } else {
-      logger.info("GetCardPoolPatchBefore :: saveCardPool is empty");
+      logger.trace("GetCardPoolPatchBefore :: saveCardPool is empty");
     }
 
     return SpireReturn.Continue();

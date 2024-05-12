@@ -13,11 +13,13 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.seasons.Season;
 import thesimpleton.ui.SettingsHelper;
+import thesimpleton.utilities.ModLogger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SeasonIndicator {
+  protected static final ModLogger logger = TheSimpletonMod.traceLogger;
   private static final String[] TEXT;
 
   private static final float WIDTH = 190;
@@ -112,14 +114,14 @@ public class SeasonIndicator {
 
   private void handleClick() {
     if (IS_CLICKABLE && InputHelper.justClickedLeft) {
-      TheSimpletonMod.logger.debug("SeasonIndicator::update handling click");
+      logger.trace("SeasonIndicator::update handling click");
 
       if (TheSimpletonMod.seasonScreen.isOpen()) {
-        TheSimpletonMod.logger.debug("SeasonIndicator::update season screen is open. closing screen");
+        logger.trace("SeasonIndicator::update season screen is open. closing screen");
 
         TheSimpletonMod.seasonScreen.close();
       } else {
-        TheSimpletonMod.logger.debug("SeasonIndicator::update season screen is closed. opening screen");
+        logger.trace("SeasonIndicator::update season screen is closed. opening screen");
         TheSimpletonMod.seasonScreen.resetDismissed();
         TheSimpletonMod.seasonScreen.open();
       }

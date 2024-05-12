@@ -13,7 +13,7 @@ public class AsparagusCrop extends AbstractCrop {
 
   public AsparagusCrop() {
     super(CROP_ENUM);
-    logger.debug("MAKIN' Asparagus (instantiating Asparagus).");
+    CROP_LOGGER.trace("MAKIN' Asparagus (instantiating Asparagus).");
   }
 
   protected int harvestAction(int harvestAmount) {

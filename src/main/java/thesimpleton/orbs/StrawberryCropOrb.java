@@ -41,7 +41,7 @@ public class StrawberryCropOrb extends AbstractCropOrb {
 
   @Override
   public void playChannelSFX() {
-    TheSimpletonMod.logger.debug(" ============================================= ADD playChannelSFX for " + this.name + " =============================================");
+    ORB_LOGGER.trace(" ============================================= ADD playChannelSFX for " + this.name + " =============================================");
   }
 
   private static String getDescription() {

@@ -45,8 +45,6 @@ public class CashCrop extends CustomRelic {
   }
 
   public void onHarvest(Crop crop) {
-    Logger logger = TheSimpletonMod.logger;
-
     if (!cropsHarvestedThisCombat.contains(crop)) {
       cropsHarvestedThisCombat.add(crop);
       this.flash();

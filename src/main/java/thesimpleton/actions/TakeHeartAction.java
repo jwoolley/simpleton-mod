@@ -31,10 +31,7 @@ public class TakeHeartAction extends AbstractGameAction {
   private final int plantAmount;
   private int numRepetitions;
 
-  private Logger logger;
-
   public TakeHeartAction(AbstractCreature target, int blockAmount, int healAmount, int plantAmount, int numRepetitions) {
-    this.logger = TheSimpletonMod.logger;
     this.actionType = ActionType.HEAL;
     this.duration = ACTION_DURATION;
 

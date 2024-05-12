@@ -28,8 +28,6 @@ public class DoubleBarrelAction extends AbstractGameAction {
 
   @Override
   public void update() {
-    Logger logger = TheSimpletonMod.logger;
-
     if (target.hasPower(WeakPower.POWER_ID)) {
       AbstractDungeon.actionManager.addToTop(new WaitAction(0.1F));
 

@@ -79,9 +79,7 @@ public class SimpletonUtil {
 
     // TODO: ensure that this counts Defect orbs etc. (i.e. orb.ID != null)
     public static List<AbstractOrb> getActiveOrbs() {
-        Logger logger = TheSimpletonMod.logger;
-
-        logger.debug("SimpletonUtil::getActiveOrbs player has orbs: " + AbstractDungeon.player.orbs.stream().map(orb -> orb.ID).collect(Collectors.joining(", ")));
+        TheSimpletonMod.traceLogger.trace("SimpletonUtil::getActiveOrbs player has orbs: " + AbstractDungeon.player.orbs.stream().map(orb -> orb.ID).collect(Collectors.joining(", ")));
         return AbstractDungeon.player.orbs.stream().filter(orb -> orb.ID != null && orb.ID != EmptyOrbSlot.ORB_ID).collect(Collectors.toList());
     }
 

@@ -27,8 +27,6 @@ public class SpudOfTheMartyr extends CustomRelic {
 
     public static final int STR_PER_TRIGGER = 1;
 
-    private static final Logger logger = TheSimpletonMod.logger;
-
     public SpudOfTheMartyr() {
         super(ID, new Texture(TheSimpletonMod.getImageResourcePath(IMG_PATH)),
                 new Texture(TheSimpletonMod.getImageResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);

@@ -3,9 +3,10 @@ package thesimpleton.ui.buttons;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.ui.ReadyButtonPanel;
+import thesimpleton.utilities.ModLogger;
 
 public class ReadyButton extends CustomButton {
-  private Logger logger = TheSimpletonMod.logger;
+  private static ModLogger logger = TheSimpletonMod.traceLogger;
 
   public final static String BUTTON_ID = "TheSimpletonMod:ReadyButton";
   public final static String BUTTON_IMG = "ready-button-1";
@@ -15,12 +16,12 @@ public class ReadyButton extends CustomButton {
   public ReadyButton(float x, float y, float scale, String label, ReadyButtonPanel panel) {
     super(x, y, scale, BUTTON_IMG, label);
     this.panel = panel;
-    logger.debug("ReadyButton instantiated");
+    logger.trace("ReadyButton instantiated");
   }
 
   @Override
   public void onClick() {
-    logger.debug("ReadyButton.onClick Called");
+    logger.trace("ReadyButton.onClick Called");
     panel.onReadyClicked();
   }
 }

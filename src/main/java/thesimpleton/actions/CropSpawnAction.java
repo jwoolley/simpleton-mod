@@ -5,16 +5,18 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.crops.AbstractCrop;
 import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.powers.AbundancePower;
 import thesimpleton.relics.Honeycomb;
+import thesimpleton.utilities.ModLogger;
 
 
 public class CropSpawnAction extends AbstractGameAction {
+    private static ModLogger logger = TheSimpletonMod.traceLogger;
+
     private static final ActionType ACTION_TYPE = ActionType.SPECIAL;
     private static final float ACTION_DURATION = Settings.ACTION_DUR_XFAST;
     private final boolean isFromCard;
@@ -25,7 +27,7 @@ public class CropSpawnAction extends AbstractGameAction {
     private boolean secondTick = false;
 
     public CropSpawnAction(AbstractCropOrb cropOrb, int stacks, boolean isFromCard) {
-//        TheSimpletonMod.logger.debug("============> CropSpawnAction::constructor =====");
+//        logger.trace("============> CropSpawnAction::constructor =====");
 
         final int rawAmount = stacks >= 0 ? stacks : cropOrb.passiveAmount;
 
@@ -36,14 +38,11 @@ public class CropSpawnAction extends AbstractGameAction {
         this.rawAmount = rawAmount;
         this.cropOrb = cropOrb;
 
-        Logger logger = TheSimpletonMod.logger;
-        logger.debug("CropSpawnAction::constructor: " + cropOrb.getClass().getSimpleName() + "; rawAmount: " + rawAmount + " calculated amount: " + this.amount + " cropOrb.amount " + cropOrb.getAmount() + " cropOrb.passiveAmount " + cropOrb.passiveAmount);
+        logger.trace("CropSpawnAction::constructor: " + cropOrb.getClass().getSimpleName() + "; rawAmount: " + rawAmount + " calculated amount: " + this.amount + " cropOrb.amount " + cropOrb.getAmount() + " cropOrb.passiveAmount " + cropOrb.passiveAmount);
     }
 
     public void update() {
-//        TheSimpletonMod.logger.debug("CropSpawnAction::update duration: " + this.duration);
-
-        Logger logger = TheSimpletonMod.logger;
+//        logger.trace("CropSpawnAction::update duration: " + this.duration);
 
         if (!secondTick && AbstractDungeon.player.maxOrbs <= 0 && !SimpletonUtil.playerHasStartingOrbs()) {
             AbstractDungeon.player.increaseMaxOrbSlots(1, true);
@@ -72,34 +71,34 @@ public class CropSpawnAction extends AbstractGameAction {
             }
             tickDuration();
         } else {
-//                logger.debug("CropSpawnAction::update : Player can have orbs: " + AbstractDungeon.player.maxOrbs);
+//                logger.trace("CropSpawnAction::update : Player can have orbs: " + AbstractDungeon.player.maxOrbs);
             AbstractCropOrb orb = AbstractCropOrb.getCropOrb(this.cropOrb);
             if (orb != null) {
-//                    logger.debug("CropSpawnAction::update : Player has cropOrb " + this.cropOrb.name);
+//                    logger.trace("CropSpawnAction::update : Player has cropOrb " + this.cropOrb.name);
                 orb.passiveAmount += this.amount;
                 orb.stackCropEffect();
                 orb.update();
                 // (trigger cropOrb crap}
             } else {
-//                    logger.debug("CropSpawnAction::update : Player doesn't have cropOrb "
+//                    logger.trace("CropSpawnAction::update : Player doesn't have cropOrb "
 //                        + this.cropOrb.getClass().getSimpleName() + ". Adding " + this.amount);
 
                 if (SimpletonUtil.getActiveOrbs().size() >= AbstractDungeon.player.maxOrbs) {
-//                        logger.debug("CropSpawnAction::update player has no free orb slots. Queueing CropOrbCycleAction with " + this.cropOrb.name + " for " + this.cropOrb.passiveAmount + " stacks");
+//                        logger.trace("CropSpawnAction::update player has no free orb slots. Queueing CropOrbCycleAction with " + this.cropOrb.name + " for " + this.cropOrb.passiveAmount + " stacks");
                     AbstractDungeon.actionManager.addToBottom(new CropOrbCycleAction(this.cropOrb, this.rawAmount, this.isFromCard));
                 }  else {
-//                        logger.debug("CropSpawnAction::update player has " +  (AbstractDungeon.player.maxOrbs - SimpletonUtil.getActiveOrbs().size()) + " free orb slots");
-//                        logger.debug("CropSpawnAction::update # of " + this.cropOrb.name + " before: " + this.cropOrb.passiveAmount);
+//                        logger.trace("CropSpawnAction::update player has " +  (AbstractDungeon.player.maxOrbs - SimpletonUtil.getActiveOrbs().size()) + " free orb slots");
+//                        logger.trace("CropSpawnAction::update # of " + this.cropOrb.name + " before: " + this.cropOrb.passiveAmount);
 
                     this.cropOrb.gainCropEffectBefore();
                     this.cropOrb.passiveAmount = this.amount;
 
-                    logger.debug("CropSpawnAction::update # of " + this.cropOrb.name + " passiveAmount after (1): " + this.cropOrb.passiveAmount + "; this.amount: " + this.amount);
+                    logger.trace("CropSpawnAction::update # of " + this.cropOrb.name + " passiveAmount after (1): " + this.cropOrb.passiveAmount + "; this.amount: " + this.amount);
 
                     AbstractCropOrb newOrb = this.cropOrb.makeCopy(this.amount);
                     AbstractDungeon.player.channelOrb(newOrb);
                     newOrb.update();
-//                        logger.debug("CropSpawnAction::update # of " + newOrb.name + " passiveAmount after (2): " + newOrb.passiveAmount + " getAmount amount after: " + AbstractCropOrb.getCropOrb(newOrb).getAmount());
+//                        logger.trace("CropSpawnAction::update # of " + newOrb.name + " passiveAmount after (2): " + newOrb.passiveAmount + " getAmount amount after: " + AbstractCropOrb.getCropOrb(newOrb).getAmount());
                     AbstractCropOrb.getCropOrb(newOrb).gainCropEffectAfter();
                 }
             }
@@ -115,10 +114,7 @@ public class CropSpawnAction extends AbstractGameAction {
     public static int calculateCropStacks(int amount, boolean isFromCard, boolean isPlantingCrop) {
         AbstractPlayer player = AbstractDungeon.player;
 
-        Logger logger = TheSimpletonMod.logger;
-
-        logger.debug("ApplyCropAction::calculateCropStacks | amount: " + amount + " isFromCard: " + isFromCard + " isPlantingCrop: " + isPlantingCrop);
-
+        logger.trace("ApplyCropAction::calculateCropStacks | amount: " + amount + " isFromCard: " + isFromCard + " isPlantingCrop: " + isPlantingCrop);
 
         int adjustedAmount = amount;
         if (isPlantingCrop && player.hasPower(AbundancePower.POWER_ID) && isFromCard) {
@@ -128,11 +124,11 @@ public class CropSpawnAction extends AbstractGameAction {
                 adjustedAmount += power.amount;
             }
 
-            logger.debug("ApplyCropAction::calculateCropStacks | adjusting amount by abundance value: " + power.amount);
+            logger.trace("ApplyCropAction::calculateCropStacks | adjusting amount by abundance value: " + power.amount);
 
         }
 
-        logger.debug("ApplyCropAction::calculateCropStacks | adjustedAmount: " + adjustedAmount);
+        logger.trace("ApplyCropAction::calculateCropStacks | adjustedAmount: " + adjustedAmount);
 
         return adjustedAmount;
     }

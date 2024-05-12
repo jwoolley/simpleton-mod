@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.AdrenalineEffect;
 import com.megacrit.cardcrawl.vfx.combat.RoomTintEffect;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.AbstractCrop;
@@ -26,6 +27,7 @@ import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.orbs.ArtichokeCropOrb;
 import thesimpleton.orbs.CoffeeCropOrb;
 import thesimpleton.orbs.CornCropOrb;
+import thesimpleton.utilities.ModLogger;
 
 public class CrackOfDawnAction extends AbstractGameAction {
   private static final Color PALE_YELLOW = new Color(1.0F, 1.0F, .75F, 1.0F);
@@ -37,10 +39,7 @@ public class CrackOfDawnAction extends AbstractGameAction {
   private final int plantAmount;
   private int actionCounter;
 
-  private Logger logger;
-
   public CrackOfDawnAction(AbstractCreature owner, AbstractCropOrb cropOrb, int damageAmount, int plantAmount, int energyAmount) {
-    this.logger = TheSimpletonMod.logger;
     this.actionType = ActionType.DAMAGE;
     this.duration = ACTION_DURATION;
 

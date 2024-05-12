@@ -18,11 +18,14 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonUtil;
+import thesimpleton.utilities.ModLogger;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 public class PicklingJar extends CustomRelic implements CustomBottleRelic, CustomSavable<String> {
+  private static ModLogger logger = TheSimpletonMod.traceLogger;
+
   public static final String ID = "TheSimpletonMod:PicklingJar";
   public static final String IMG_PATH = "relics/picklingjar.png";
   public static final String IMG_PATH_LARGE = "relics/picklingjar_large.png";
@@ -80,18 +83,16 @@ public class PicklingJar extends CustomRelic implements CustomBottleRelic, Custo
   }
 
   public void onShuffle() {
-    Logger logger = TheSimpletonMod.logger;
-
     this.counter += 1;
     if (this.counter == 3) {
       this.counter = 0;
       flash();
       AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
 
-      logger.debug("PicklingJar.onShuffle: Copying card: " + card);
+      logger.trace("PicklingJar.onShuffle: Copying card: " + card);
 
       AbstractCard cardCopy = card.makeCopy();
-      logger.debug("PicklingJar.onShuffle: Card copy: " + card);
+      logger.trace("PicklingJar.onShuffle: Card copy: " + card);
 
       if (this.isCardUpgraded) {
         cardCopy.upgrade();
@@ -99,7 +100,7 @@ public class PicklingJar extends CustomRelic implements CustomBottleRelic, Custo
       if (cardCopy.cost > 0) {
         cardCopy.setCostForTurn(COST_FOR_TURN);
       }
-      logger.debug("PicklingJar.onShuffle: Card copy 2: " + card);
+      logger.trace("PicklingJar.onShuffle: Card copy 2: " + card);
 
       AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(cardCopy));
     }
@@ -113,18 +114,17 @@ public class PicklingJar extends CustomRelic implements CustomBottleRelic, Custo
         cardId.startsWith(SERIALIZABLE_UPGRADED_PREFIX) ?
             cardId.split(SERIALIZABLE_UPGRADED_PREFIX)[1] : cardId;
 
-    Logger logger = TheSimpletonMod.logger;
-    logger.debug("PicklingJar.onLoad: cardId: " + cardId);
-    logger.debug("PicklingJar.onLoad: unpackedCardId: " + unpackedCardId);
+    logger.trace("PicklingJar.onLoad: cardId: " + cardId);
+    logger.trace("PicklingJar.onLoad: unpackedCardId: " + unpackedCardId);
 
 
     for(AbstractCard card : cards) {
       if (card.cardID.equals(unpackedCardId)) {
-        logger.debug("PicklingJar.onLoad: matched card: " + card.cardID);
+        logger.trace("PicklingJar.onLoad: matched card: " + card.cardID);
 
         this.card = card;
         if (cardId.length() > unpackedCardId.length()) {
-          logger.debug("PicklingJar.onLoad: upgraded card");
+          logger.trace("PicklingJar.onLoad: upgraded card");
           card.upgrade();
           this.isCardUpgraded = true;
         }

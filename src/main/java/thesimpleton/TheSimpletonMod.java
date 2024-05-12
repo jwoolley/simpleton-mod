@@ -41,6 +41,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
+import org.clapper.util.logging.LogLevel;
 import thesimpleton.cards.SimpletonCardHelper;
 import thesimpleton.cards.HarvestTriggeredCard;
 import thesimpleton.cards.ShuffleTriggeredCard;
@@ -72,6 +73,7 @@ import thesimpleton.seasons.SeasonInfo;
 import thesimpleton.seasons.cropsetdefinitions.UnlockableSeasonCropSetDefinition;
 import thesimpleton.ui.seasons.SeasonIndicator;
 import thesimpleton.ui.seasons.SeasonScreen;
+import thesimpleton.utilities.ModLogger;
 
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
@@ -303,11 +305,13 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         logger.info("Logger class: " + logger.getClass().getCanonicalName());
 
         if (logger instanceof org.apache.logging.log4j.core.Logger && Loader.DEBUG) {
-            logger.info("Setting log level to: " + Level.DEBUG);
+//            logger.info("Setting log level to: " + Level.DEBUG);
+//
+//            ((org.apache.logging.log4j.core.Logger)logger).setLevel(Level.DEBUG);
+//            Configurator.setRootLevel(Level.DEBUG);
+//            logger.debug("Show me the debug logs!");
 
-            ((org.apache.logging.log4j.core.Logger)logger).setLevel(Level.DEBUG);
-            Configurator.setRootLevel(Level.DEBUG);
-            logger.debug("Show me the debug logs!");
+
         } else {
             logger.info("Unable to set log level. Loader.DEBUG: " + Loader.DEBUG);
         }

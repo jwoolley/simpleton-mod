@@ -29,6 +29,7 @@ import thesimpleton.cards.attack.Strike_TheSimpleton;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.cards.skill.Defend_TheSimpleton;
 import thesimpleton.cards.skill.Rototilling;
+import thesimpleton.devtools.debugging.DebugLoggers;
 import thesimpleton.effects.HayseedVictoryCookingFireEffect;
 import thesimpleton.effects.HayseedVictoryVegetablesEffect;
 import thesimpleton.enums.AbstractCardEnum;
@@ -358,6 +359,8 @@ public class TheSimpletonCharacter extends CustomPlayer {
 
 //        TheSimpletonMod.logger.debug("??????????? SimpletonMod.getCardPool adding seasonal curse cards to card pool:"
 //            + seasonalCurseCards.stream().map(c -> c.name).collect(Collectors.joining(", ")));
+
+        DebugLoggers.LEAKY_CURSES_LOGGER.log(TheSimpletonCharacter.class, "adding " + seasonalCurseCards.size() + "curse cards to final card pool");
 
         if (seasonalCurseCards.size() > 0) {
             finalCardPool.addAll(seasonalCurseCards.stream()

@@ -1,20 +1,15 @@
 package thesimpleton.savedata;
 import basemod.BaseMod;
 import basemod.abstracts.CustomSavable;
-import basemod.interfaces.PostInitializeSubscriber;
-import basemod.interfaces.StartGameSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.SimpletonCardHelper;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
+import thesimpleton.devtools.debugging.DebugLoggers;
 import thesimpleton.utilities.ModLogger;
 
-import javax.smartcardio.Card;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -71,6 +66,7 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
   @Override
   public void onLoad(List<String> ids) {
     if (TheSimpletonMod.isPlayingAsSimpleton() && ids != null && !ids.isEmpty()) {
+      DebugLoggers.LEAKY_CURSES_LOGGER.log(CardPoolCustomSavable.class, "onLoad() has been called");
 
       int cardIndex = 0;
       logger.trace(getLogPrefix("onLoad") + " Loading cards for card pool from save:");
@@ -80,8 +76,11 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
           AbstractCard card = CardLibrary.getCard(id);
           this.cardpool.add(card);
           logger.trace(cardIndex++ + ") " + card.name + " [cardId: " + card.cardID + "]");
+          DebugLoggers.LEAKY_CURSES_LOGGER.log(CardPoolCustomSavable.class, cardIndex + ")" + " added card to pool: " + card.name  + "(" + card.cardID + ")");
+
         } else {
           logger.trace(cardIndex++ + ") NOT IN CARD LIBRARY [cardId: " + id + "]");
+          DebugLoggers.LEAKY_CURSES_LOGGER.log(CardPoolCustomSavable.class, cardIndex++ + ") NOT IN CARD LIBRARY [cardId: " + id + "]");
         }
       }
 

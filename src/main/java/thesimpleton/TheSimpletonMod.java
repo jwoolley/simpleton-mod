@@ -49,10 +49,12 @@ import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.crops.AbstractCrop;
 import thesimpleton.crops.Crop;
+import thesimpleton.devtools.debugging.DebugLoggers;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.events.*;
 import thesimpleton.orbs.utilities.CropOrbHelper;
+import thesimpleton.patches.cards.GetCardPoolPatchBefore;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.potions.KindlingPotion;
 import thesimpleton.potions.MoonshinePotion;
@@ -656,8 +658,17 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new ResistantStrain());
         cards.add(new VolatileFumes());
 
-        // Curse(6)
-        cards.addAll(getCustomCurseCardList());
+
+        if (TheSimpletonMod.isPlayingAsSimpleton() || TheSimpletonMod.ConfigData.enableCursesForAllCharacters) {
+            // TODO: INVESTIGATE: what happens if custom curses are in the deck (or stored in save file) and this is skipped
+            //          (because enableCursesForAllCharacters has been flipped to false)?
+            DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "Adding custom curses to card list");
+            // Curse(6)
+            cards.addAll(getCustomCurseCardList());
+        } else {
+
+            DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "Withholding custom curses from card list");
+        }
 
         return cards;
     }
@@ -982,9 +993,12 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     }
 
     public static void removeCustomCurseCardsFromPool() {
-        debugLogger.log("removeUnusedSeasonalCurseCardsFromPool called. Removing all Curses: "
+
+        debugLogger.log("removeCustomCurseCardsFromPool() called. Removing all Curses: "
             + (getCustomCurseCardList().stream().map(c -> c.name).collect(Collectors.joining(", "))));
 
+        DebugLoggers.LEAKY_CURSES_LOGGER.log(TheSimpletonMod.class,"removeCustomCurseCardsFromPool() called. Removing all Curses: "
+                + (getCustomCurseCardList().stream().map(c -> c.name).collect(Collectors.joining(", "))));
         TheSimpletonMod.removeCardsFromPool(getCustomCurseCardList());
     }
 

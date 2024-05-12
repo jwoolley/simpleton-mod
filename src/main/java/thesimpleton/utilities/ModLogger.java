@@ -8,6 +8,14 @@ import java.security.InvalidParameterException;
 import java.util.HashMap;
 
 public class ModLogger {
+    public static ModLogger create(String logPrefix) {
+        return create(logPrefix, MAX_LOG_LEVEL);
+    }
+
+    public static ModLogger create(Class clazz, Level maxLogLevel) {
+        return create(clazz.getName());
+    }
+
     public static ModLogger create(String logPrefix, Level maxLogLevel) {
         if (!_loggerMap.containsKey(logPrefix)) {
             if (maxLogLevel.compareTo(MIN_LOG_LEVEL) >= 0 && maxLogLevel.compareTo(MAX_LOG_LEVEL) <= 0) {
@@ -38,15 +46,6 @@ public class ModLogger {
 
     public void setLogLevel(Level level) {
         _maxLogLevel = level;
-    }
-
-
-    public static ModLogger create(String logPrefix) {
-        return create(logPrefix, MAX_LOG_LEVEL);
-    }
-
-    public static ModLogger create(Class clazz, Level maxLogLevel) {
-        return create(clazz.getName());
     }
 
     public static ModLogger create(Class clazz) {

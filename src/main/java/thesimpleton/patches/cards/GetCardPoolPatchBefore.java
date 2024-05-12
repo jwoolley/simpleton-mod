@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.TheCity;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
+import thesimpleton.devtools.debugging.DebugLoggers;
 import thesimpleton.utilities.ModLogger;
 
 import java.util.ArrayList;
@@ -26,7 +27,9 @@ public class GetCardPoolPatchBefore {
   private static ModLogger logger = TheSimpletonMod.traceLogger;
   @SpirePrefixPatch
   public static SpireReturn<ArrayList<AbstractCard>> Prefix(CustomPlayer __instance, ArrayList<AbstractCard> tmpPool) {
+    DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "SpireReturn() called");
     if (!TheSimpletonMod.isPlayingAsSimpleton()) {
+      DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "Not playing as Simpleton, returning");
       return SpireReturn.Continue();
     }
 
@@ -36,6 +39,8 @@ public class GetCardPoolPatchBefore {
       logger.trace("GetCardPoolPatchBefore :: Original tmpPool: " + tmpPool.toString());
       logger.trace("GetCardPoolPatchBefore :: Cards to replace with: " + saveCardPool.toString());
       logger.trace("GetCardPoolPatchBefore::getSaveCardPool using save data");
+
+      DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "replacing card pool");
 
       tmpPool.clear();
       tmpPool.addAll(saveCardPool);
@@ -55,9 +60,14 @@ public class GetCardPoolPatchBefore {
 
         TheSimpletonMod.initializeSeasonInfoIfNeeded();
         logger.trace("GetCardPoolPatchBefore :: Didn't add any seasonal crop cards to pool; season not initialized. Calling static method TheSimpletonMod.setSeasonalCropCards");
+        DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "GetCardPoolPatchBefore :: Didn't add any seasonal crop cards to pool; season not initialized. Calling static method TheSimpletonMod.setSeasonalCropCards()");
+
         TheSimpletonMod.setSeasonalCropCards(tmpPool
             .stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> (AbstractCropPowerCard)c).collect(Collectors.toList()));
       }
+
+      DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "Adding seasonal crop and curse card");
+
       tmpPool.addAll(TheSimpletonMod.getSeasonalCropCards());
       tmpPool.addAll(TheSimpletonMod.getSeasonalCurseCards());
 

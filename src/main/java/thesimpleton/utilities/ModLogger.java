@@ -26,9 +26,7 @@ public class ModLogger {
         _isEnabled = true;
     }
 
-    public void disable() {
-        _isEnabled = false;
-    }
+    public void disable() { _isEnabled = false; }
 
     public boolean isEnabled() {
         return _isEnabled;
@@ -56,7 +54,7 @@ public class ModLogger {
     }
 
     public void log(String message) {
-        _internalLogger.info(message);
+        _log(_maxLogLevel, message);
     }
 
     public void error(String message) {

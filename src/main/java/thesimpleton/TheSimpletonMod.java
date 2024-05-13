@@ -660,8 +660,14 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
 
         if (TheSimpletonMod.isPlayingAsSimpleton() || TheSimpletonMod.ConfigData.enableCursesForAllCharacters) {
-            // TODO: INVESTIGATE: what happens if custom curses are in the deck (or stored in save file) and this is skipped
-            //          (because enableCursesForAllCharacters has been flipped to false)?
+            // NOTE: INVESTIGATION: CONFIRMED
+            //          If custom curses are in the deck (or stored in save file) and this is skipped,
+            //          (because enableCursesForAllCharacters was disabled after adding them to the deck)
+            //          then those curses will be removed from the deck when the game is loaded from save
+            //          (without apparent issue).
+            //
+            //          Reloading the save again w/ enableCursesForAllCharacters enabled  will restore the curses to
+            //          the deck (i.e. the flag can be toggled back and forth with the above results).
             DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "Adding custom curses to card list");
             // Curse(6)
             cards.addAll(getCustomCurseCardList());

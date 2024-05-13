@@ -47,6 +47,13 @@
     ]
   },
 
+  "TheSimpletonMod:EmptyCropOrb": {
+    "NAME": "Грядка",
+    "DESCRIPTION": [
+      "В эти слоты можно сажать сельскохозяйственные культуры."
+    ]
+  },
+
   "TheSimpletonMod:MushroomCropOrb": {
     "NAME": "Грибочки",
     "DESCRIPTION": [

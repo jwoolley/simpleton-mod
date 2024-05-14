@@ -11,7 +11,8 @@
       ". #gReceive #ga #gCommon #gRelic.",
       " #rHP. #gUpgrade #g",
       " #grandom #gcards.",
-      "[Leave]"
+      "[Leave]",
+      "(TODO: replace ALL parameterized numbers in this file with corresponding translatable text"
     ]
   },
 
@@ -22,13 +23,16 @@
     ],
     "OPTIONS": [
       "[Enjoy the Breeze] #gUpgrade ",
-      "[Start Planting] #r",
+      "[Start Planting] ",
       ". #gHeal #g",
       " #gHP.",
+      "#r",
       "%: #rBecome #rCursed #r– #r",
-      ". #gReceive ",
+      ". ",
+      "#gReceive ",
       ".",
       "[Locked] Requires an upgradeable card.",
+      "[Locked] No relic rewards available.",
       "[Leave]"
     ]
   },
@@ -67,7 +71,9 @@
       ".",
       ". #r",
       "%: #rBecome #rCursed #r– #r",
-      "[Leave]"
+      "[Leave]",
+      " #gand #g",
+      " #gGold. #r"
     ]
   },
 

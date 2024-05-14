@@ -16,10 +16,7 @@ import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.power.crop.AbstractCropPowerCard;
 import thesimpleton.ui.SettingsHelper;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -67,10 +64,8 @@ public class SimpletonEventHelper {
   }
 
   public static void gainCard(AbstractCard card) {
-    gainCard(card, (Settings.WIDTH) / 2.0F * SettingsHelper.getScaleX(),
-        Settings.HEIGHT / 2.0F * SettingsHelper.getScaleY());
+    gainCard(card, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F);
   }
-
 
   public static void gainCard(AbstractCard card, float cardX, float cardY) {
     AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(card.makeStatEquivalentCopy(), cardX, cardY));

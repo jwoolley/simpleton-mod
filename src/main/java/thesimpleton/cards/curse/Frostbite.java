@@ -35,14 +35,24 @@ public class Frostbite extends CustomCard implements SeasonalCurse {
 
   @Override
   public void triggerOnOtherCardPlayed(AbstractCard card) {
-    if (AbstractDungeon.player.hand.contains(this)) {
-      List<AbstractCard> increaseableCards = AbstractDungeon.player.hand.group.stream()
-          .filter(c -> c.cost >= 0 && !card.equals(c)).collect(Collectors.toList());
 
-      if (increaseableCards.size() > 0) {
-        increaseRandomCardCostForTurn(increaseableCards);
+  }
+
+  @Override
+  public void triggerOnEndOfPlayerTurn() {
+    if (AbstractDungeon.player.hand.contains(this)) {
+      List<AbstractCard> increasableCards = getIncreasableCards();
+
+      if (increasableCards.size() > 0) {
+        increaseCostOfRandomCardForThisCombat(increasableCards, COST_INCREASE_AMOUNT);
       }
     }
+  }
+
+  private List<AbstractCard> getIncreasableCards() {
+    return AbstractDungeon.player.hand.group.stream()
+      .filter(c -> (c.type != null && !c.type.equals(CardType.CURSE)) || AbstractDungeon.player.hasRelic("Blue Candle"))
+      .filter(c ->  c.cost >= 0 && !this.equals(c)).collect(Collectors.toList());
   }
 
   // I guess this is how you do it
@@ -54,12 +64,13 @@ public class Frostbite extends CustomCard implements SeasonalCurse {
     }
   }
 
-  private void increaseRandomCardCostForTurn(List<AbstractCard> increaseableCards) {
-    AbstractCard card = increaseableCards.get(AbstractDungeon.cardRng.random(increaseableCards.size() - 1));
+  private void increaseCostOfRandomCardForThisCombat(List<AbstractCard> increasableCards, int costIncrease) {
+    AbstractCard card = increasableCards.get(AbstractDungeon.cardRng.random(increasableCards.size() - 1));
 
-    card.setCostForTurn(card.costForTurn + COST_INCREASE_AMOUNT);
+    card.modifyCostForCombat(card.cost + costIncrease);
 
     // TODO: reimplement as an action & wait a tick between power flash and card flash
+    CardCrawlGame.sound.play("ICE_CLINK_1");
     CardCrawlGame.sound.play("ICE_CLINK_1");
     this.flash(Color.SKY.cpy());
     card.superFlash(Color.SKY.cpy());

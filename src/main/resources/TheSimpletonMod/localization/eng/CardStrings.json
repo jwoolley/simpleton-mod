@@ -254,12 +254,12 @@
 
   "TheSimpletonMod:Nettles": {
     "NAME": "Nettles",
-    "DESCRIPTION": "Unplayable. NL At the end of your turn, apply !M! Thorns to a random enemy."
+    "DESCRIPTION": "Unplayable. NL When drawn, apply !M! temporary Thorns to all enemies."
   },
 
   "TheSimpletonMod:Frostbite": {
     "NAME": "Frostbite",
-    "DESCRIPTION": "Unplayable. NL Whenever you play a card, increase the cost of a random card in your hand by 1 this turn."
+    "DESCRIPTION": "Unplayable. NL At the end of your turn, increase the cost of a random card in your hand by 1."
   },
 
   "TheSimpletonMod:OnionBloom": {

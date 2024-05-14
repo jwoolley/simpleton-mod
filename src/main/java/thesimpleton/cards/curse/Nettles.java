@@ -14,6 +14,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ThornsPower;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.ApplyBurningAction;
+import thesimpleton.powers.TweezingPower;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,26 +42,33 @@ public class Nettles extends CustomCard implements SeasonalCurse {
     }
 
     @Override
-    public void triggerOnEndOfPlayerTurn() {
+    public void triggerWhenDrawn() {
         final List<AbstractCreature> monsters = AbstractDungeon.getMonsters().monsters.stream()
                 .filter(mo -> !mo.isDeadOrEscaped())
                 .collect(Collectors.toList());
 
+//        this.flash(Color.SCARLET.cpy());
+        this.flash();
         if (monsters.size() > 0) {
-            this.superFlash(Color.SCARLET.cpy());
-
-            final AbstractCreature monster = monsters.get(AbstractDungeon.miscRng.random(0, monsters.size() - 1));
-            AbstractDungeon.actionManager.addToBottom(
-                new ApplyPowerAction(monster, monster, new ThornsPower(monster, magicNumber), magicNumber));
+            AbstractDungeon.getMonsters().monsters.stream()
+                    .forEach(monster -> {
+                        if (!monster.isDeadOrEscaped()) {
+                            AbstractDungeon.actionManager.addToBottom(
+                                    new ApplyPowerAction(monster, monster, new ThornsPower(monster, magicNumber), magicNumber));
+                            AbstractDungeon.actionManager.addToBottom(
+                                    new ApplyPowerAction(monster, monster, new TweezingPower(monster, magicNumber), magicNumber));
+                        }
+                    });
         }
 
         // No idea if every curse needs this
         if ((AbstractDungeon.player.hasPower("Evolve"))
-            && (!AbstractDungeon.player.hasPower("No Draw"))) {
+                && (!AbstractDungeon.player.hasPower("No Draw"))) {
             AbstractDungeon.player.getPower("Evolve").flash();
             AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player,
                     AbstractDungeon.player.getPower("Evolve").amount));
         }
+
     }
 
     // I guess this is how you do it

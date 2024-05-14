@@ -37,7 +37,7 @@
   "TheSimpletonMod:BurningPower": {
     "NAME": "Burning",
     "DESCRIPTIONS": [
-      "At the end of its turn, it takes #b",
+      "At the end of its turn, takes #b",
       " damage, then loses #yBurning."
     ]
   },
@@ -158,6 +158,14 @@
       " #yBlock."
     ]
   },
+
+  "TheSimpletonMod:TweezingPower": {
+  "NAME": "Depilation",
+  "DESCRIPTIONS": [
+    "At the start of its turn, loses #b",
+    " #yThorns."
+  ]
+},
 
   "TheSimpletonMod:VolatileFumesPower": {
     "NAME": "Volatile Fumes",

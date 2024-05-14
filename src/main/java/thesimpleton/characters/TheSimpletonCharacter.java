@@ -329,6 +329,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
         }
     }
 
+    // NOTE: this is return the Simpletons entire card pool (it's used to add
     @Override
     public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool) {
         ArrayList<AbstractCard> cardPool = super.getCardPool(tmpPool);
@@ -357,10 +358,7 @@ public class TheSimpletonCharacter extends CustomPlayer {
         }
         List<AbstractCard> seasonalCurseCards = TheSimpletonMod.getSeasonalCurseCards();
 
-//        TheSimpletonMod.logger.debug("??????????? SimpletonMod.getCardPool adding seasonal curse cards to card pool:"
-//            + seasonalCurseCards.stream().map(c -> c.name).collect(Collectors.joining(", ")));
-
-        DebugLoggers.LEAKY_CURSES_LOGGER.log(TheSimpletonCharacter.class, "adding " + seasonalCurseCards.size() + "curse cards to final card pool");
+        DebugLoggers.LEAKY_CURSES_LOGGER.log(TheSimpletonCharacter.class, "adding " + seasonalCurseCards.size() + " curse cards to final card pool");
 
         if (seasonalCurseCards.size() > 0) {
             finalCardPool.addAll(seasonalCurseCards.stream()

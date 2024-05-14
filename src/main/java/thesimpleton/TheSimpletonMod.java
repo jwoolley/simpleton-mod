@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.helpers.CardHelper;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.*;
@@ -54,7 +55,6 @@ import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
 import thesimpleton.events.*;
 import thesimpleton.orbs.utilities.CropOrbHelper;
-import thesimpleton.patches.cards.GetCardPoolPatchBefore;
 import thesimpleton.potions.AbundancePotion;
 import thesimpleton.potions.KindlingPotion;
 import thesimpleton.potions.MoonshinePotion;
@@ -178,6 +178,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         AbstractCrop.resetHasHarvestedThisTurn();
     }
 
+    // NOTE: this doesn't appear to work during dungeon initialization (because AbstractDungeon.player hasn't been set yet)
     public static boolean isPlayingAsSimpleton() {
         return  AbstractDungeon.player != null && AbstractDungeon.player.chosenClass == TheSimpletonCharEnum.THE_SIMPLETON;
     }
@@ -293,7 +294,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             return this.getCurrentTheme().map(cur -> cur.equals(theme)).orElse(false);
         }
     }
-
     public static final ModLogger infoLogger = ModLogger.create(TheSimpletonMod.class, Level.INFO);
     public static final ModLogger debugLogger = ModLogger.create(TheSimpletonMod.class, "DebugLogger", Level.DEBUG);
     public static final ModLogger traceLogger = ModLogger.create(TheSimpletonMod.class, "TraceLogger", Level.TRACE);
@@ -658,24 +658,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         cards.add(new ResistantStrain());
         cards.add(new VolatileFumes());
 
-
-        if (TheSimpletonMod.isPlayingAsSimpleton() || TheSimpletonMod.ConfigData.enableCursesForAllCharacters) {
-            // NOTE: INVESTIGATION: CONFIRMED
-            //          If custom curses are in the deck (or stored in save file) and this is skipped,
-            //          (because enableCursesForAllCharacters was disabled after adding them to the deck)
-            //          then those curses will be removed from the deck when the game is loaded from save
-            //          (without apparent issue).
-            //
-            //          Reloading the save again w/ enableCursesForAllCharacters enabled  will restore the curses to
-            //          the deck (i.e. the flag can be toggled back and forth with the above results).
-            DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "Adding custom curses to card list");
-            // Curse(6)
-            cards.addAll(getCustomCurseCardList());
-        } else {
-
-            DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "Withholding custom curses from card list");
-        }
-
+        cards.addAll(getCustomCurseCardList());
         return cards;
     }
 
@@ -998,14 +981,33 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 //        removeUnusedSeasonalCurseCardsFromPool();
     }
 
-    public static void removeCustomCurseCardsFromPool() {
-
-        debugLogger.log("removeCustomCurseCardsFromPool() called. Removing all Curses: "
-            + (getCustomCurseCardList().stream().map(c -> c.name).collect(Collectors.joining(", "))));
-
+    public static void removeCustomCurseCardsFromCardPoolAndCardLibrary() {
         DebugLoggers.LEAKY_CURSES_LOGGER.log(TheSimpletonMod.class,"removeCustomCurseCardsFromPool() called. Removing all Curses: "
                 + (getCustomCurseCardList().stream().map(c -> c.name).collect(Collectors.joining(", "))));
-        TheSimpletonMod.removeCardsFromPool(getCustomCurseCardList());
+
+        DebugLoggers.LEAKY_CURSES_LOGGER.log(TheSimpletonMod.class,"curse card pool before removing curses: " +
+                AbstractDungeon.curseCardPool.group.stream().map(c -> c.name).collect(Collectors.joining(", ")));
+
+
+        DebugLoggers.LEAKY_CURSES_LOGGER.log(TheSimpletonMod.class,"src card pool before removing curses: " +
+                AbstractDungeon.srcCurseCardPool.group.stream().map(c -> c.name).collect(Collectors.joining(", ")));
+
+        removeCurseCardsFromPool(getCustomCurseCardList());
+
+        DebugLoggers.LEAKY_CURSES_LOGGER.log(TheSimpletonMod.class,"curse card pool after removing curses: " +
+                AbstractDungeon.curseCardPool.group.stream().map(c -> c.name).collect(Collectors.joining(", ")));
+
+        DebugLoggers.LEAKY_CURSES_LOGGER.log(TheSimpletonMod.class,"src card pool after removing curses: " +
+                AbstractDungeon.srcCurseCardPool.group.stream().map(c -> c.name).collect(Collectors.joining(", ")));
+
+        removeCursesFromCardLibrary(getCustomCurseCardList());
+
+        DebugLoggers.LEAKY_CURSES_LOGGER.log(TheSimpletonMod.class,"CardLibrary curse map before removing curses: " +
+               getCursesFromCardLibrary().values().stream().map(c -> c.name).collect(Collectors.joining(", ")));
+
+        removeCursesFromCardLibrary(getCustomCurseCardList());
+        DebugLoggers.LEAKY_CURSES_LOGGER.log(TheSimpletonMod.class,"\"CardLibrary curse map after removing curses: " +
+                getCursesFromCardLibrary().values().stream().map(c -> c.name).collect(Collectors.joining(", ")));
     }
 
     public static void removeUnusedCropPowerCardsFromPool() {
@@ -1044,32 +1046,45 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         return seasonInfo;
     }
 
-    private static void removeCardsFromPool(List<AbstractCard> cardsToRemove) {
-        debugLogger.log("removeCardsFromPool called ===========================>>>>>>> # of cards: " + cardsToRemove.size());
+    private static void removeCurseCardsFromPool(List<AbstractCard> cardsToRemove) {
+        debugLogger.log("removeCurseCardsFromPool() called. # of cards: " + cardsToRemove.size());
 
         for (AbstractCard card : cardsToRemove) {
-            switch (card.rarity) {
-                case COMMON:
-                    debugLogger.log("Removing common card from pool:" + card.name);
-                    AbstractDungeon.commonCardPool.group.removeIf(c -> c.cardID == card.cardID);
-                    break;
-                case UNCOMMON:
-                    AbstractDungeon.uncommonCardPool.group.removeIf(c -> c.cardID == card.cardID);
-                    debugLogger.log("Removing uncommon card from pool:" + card.name);
-                    break;
-                case RARE:
-                    AbstractDungeon.rareCardPool.group.removeIf(c -> c.cardID == card.cardID);
-                    debugLogger.log("Removing rare card from pool:" + card.name);
-                    break;
-                case CURSE:
-                    debugLogger.log("Removing curse card from pool:" + card.name);
-                    AbstractDungeon.curseCardPool.group.removeIf(c -> c.cardID == card.cardID);
-                    break;
-                default:
-                    infoLogger.warn("Can't remove card " + card.name + " from card pool: " + card.rarity + " is not a supported rarity");
-                    break;
+            if (card.type == AbstractCard.CardType.CURSE) {
+                debugLogger.log("Removing curse card from pool:" + card.name);
+                AbstractDungeon.curseCardPool.group.removeIf(c -> c.cardID == card.cardID);
+                AbstractDungeon.srcCurseCardPool.group.removeIf(c -> c.cardID == card.cardID);
+            } else {
+                debugLogger.warn("Unable to remove curse from card pools: not a curse. Card: " + card.cardID + "; type: " + card.type);
             }
         }
+    }
+
+    private static void removeCursesFromCardLibrary(List<AbstractCard> cardsToRemove) {
+        debugLogger.log("removeCursesFromCardLibrary() called. # of cards: " + cardsToRemove.size());
+        try {
+            Object cursesObj = ReflectionHacks.getPrivateStatic(CardLibrary.class, "curses");
+
+            HashMap<String, AbstractCard> curses = getCursesFromCardLibrary();
+            for (AbstractCard card : cardsToRemove) {
+                curses.remove(card.cardID);
+            }
+        } catch (Exception e) {
+            debugLogger.warn("Error removing curse from CardLibrary: " + e);
+        }
+    }
+
+    private static HashMap<String, AbstractCard>  getCursesFromCardLibrary() {
+        try {
+            Object cursesObj = ReflectionHacks.getPrivateStatic(CardLibrary.class, "curses");
+            @SuppressWarnings("unchecked")
+            HashMap<String, AbstractCard> curses = (HashMap<String, AbstractCard>) cursesObj;
+            return curses;
+        } catch (Exception e) {
+            infoLogger.warn("Error getting curses HashMap from CardLibrary: " + e);
+        }
+
+        return new HashMap<>();
     }
 
     private static void removeCropPowerCardsFromPool(List<AbstractCropPowerCard> cardsToRemove) {

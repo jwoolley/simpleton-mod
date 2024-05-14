@@ -25,7 +25,7 @@ public class ModLogger {
         if (!_loggerMap.containsKey(logPrefix)) {
             if (maxLogLevel.compareTo(MIN_LOG_LEVEL) >= 0 && maxLogLevel.compareTo(MAX_LOG_LEVEL) <= 0) {
                 _staticLogger.info("Creating " + ModLogger.class.getSimpleName() + " with prefix " + logPrefix
-                    + " and max log level" + maxLogLevel);
+                    + " and max log level " + maxLogLevel);
                 ModLogger logger = new ModLogger(logPrefix, maxLogLevel);
                 _loggerMap.put(logPrefix, logger);
             } else {
@@ -42,8 +42,6 @@ public class ModLogger {
     }
 
     public static ModLogger create(Class clazz, String  additionalLogPrefix, Level maxLogLevel) {
-        _staticLogger.info("Called new " + ModLogger.class.getSimpleName() + ".create() with class + " + clazz.getSimpleName()
-            + ", additionalLogPrefix " + additionalLogPrefix + " and maxLogLevel " + maxLogLevel);
         return create(clazz.getSimpleName() + "." + additionalLogPrefix, maxLogLevel);
     }
 

@@ -87,6 +87,8 @@ public class CardPoolCustomSavable implements CustomSavable<List<String>> {
       if (!TheSimpletonMod.getSaveCardPool().isEmpty()) {
         logger.trace( getLogPrefix("onLoad") + " Card pool loaded from save with " + ids.size() + " cards. Initializing");
         if (CardCrawlGame.dungeon != null) {
+          logger.trace( getLogPrefix("onLoad") + " Force calling initializeCardPools() for loaded save");
+
           CardCrawlGame.dungeon.initializeCardPools();
         } else {
           logger.trace(getLogPrefix("onLoad") + " dungeon is not yet initialized. Trusting it will happen eventually.");

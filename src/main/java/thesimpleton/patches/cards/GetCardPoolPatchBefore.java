@@ -29,7 +29,18 @@ public class GetCardPoolPatchBefore {
   public static SpireReturn<ArrayList<AbstractCard>> Prefix(CustomPlayer __instance, ArrayList<AbstractCard> tmpPool) {
     DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "SpireReturn() called");
     if (!TheSimpletonMod.isPlayingAsSimpleton()) {
-      DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "Not playing as Simpleton, returning");
+      DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "Not playing as Simpleton");
+
+      if (!TheSimpletonMod.ConfigData.enableCursesForAllCharacters) {
+
+        DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "Removing custom curse cards");
+        DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, " cardpool before: " + tmpPool.toString());
+        tmpPool.removeAll(TheSimpletonMod.getCustomCurseCardList());
+        DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, " cardpool after: " + tmpPool.toString());
+
+      }
+
+      tmpPool.removeAll(TheSimpletonMod.getSeasonalCurseCards());
       return SpireReturn.Continue();
     }
 
@@ -42,6 +53,7 @@ public class GetCardPoolPatchBefore {
 
       DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "replacing card pool");
 
+      tmpPool.addAll(TheSimpletonMod.getSeasonalCurseCards());
       tmpPool.clear();
       tmpPool.addAll(saveCardPool);
 
@@ -50,6 +62,7 @@ public class GetCardPoolPatchBefore {
 //      TheSimpletonMod.setSeasonalCropCards();
 
       if (TheSimpletonMod.isSeasonInitialized()) {
+        logger.trace("isSeasonInitialized() == true");
         // NEW GAME CASE
       } else {
         // LOAD-FROM-SAVE CASE
@@ -66,7 +79,7 @@ public class GetCardPoolPatchBefore {
             .stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> (AbstractCropPowerCard)c).collect(Collectors.toList()));
       }
 
-      DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "Adding seasonal crop and curse card");
+      DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "Adding seasonal crop and curse cards");
 
       tmpPool.addAll(TheSimpletonMod.getSeasonalCropCards());
       tmpPool.addAll(TheSimpletonMod.getSeasonalCurseCards());

@@ -157,6 +157,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         debugLogger.info("TheSimpletonMod::receiveOnBattleStart | eventList: "
             + String.join(", ", AbstractDungeon.eventList));
 
+        debugLogger.log("TheSimpletonMod::receiveOnBattleStart : resetting numCropsHarvestedThisCombat");
+        AbstractCrop.resetNumCropsHarvestedThisCombat();
         debugLogger.log("TheSimpletonMod::receiveOnBattleStart : resetting hasHarvestedThisTurn");
         AbstractCrop.resetHasHarvestedThisTurn();
 
@@ -165,7 +167,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             .map(c -> c.name).collect(Collectors.joining(", ")));
 
         CropOrbHelper.clearHighlightedOrb();
-
 
     }
 

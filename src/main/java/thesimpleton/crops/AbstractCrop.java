@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropReduceAction;
 import thesimpleton.actions.CropSpawnAction;
@@ -31,6 +30,7 @@ abstract public class AbstractCrop {
   private final String cropOrbId;
 
   private static int numTimesHarvestedThisTurn = 0;
+  private static int numStacksHarvestedThisCombat = 0;
 
   private static final List<AbstractCrop> referenceCrops = new ArrayList<>();;
   private static int STACKS_PER_TRIGGER = 1;
@@ -77,6 +77,7 @@ abstract public class AbstractCrop {
     CROP_LOGGER.trace("============> AbstractCrop::onHarvest =====");
 
     numTimesHarvestedThisTurn++;
+    numStacksHarvestedThisCombat += amount;
     CROP_LOGGER.trace("AbstractCrop::" + this.getCropOrb().ID + ": onHarvestCalled.  amount: " + amount + ". Set hasHarvestedThisTurn");
 
     if (getPlayer().hasPower(ToughSkinPower.POWER_ID)) {
@@ -194,8 +195,13 @@ abstract public class AbstractCrop {
   public static int getNumTimesHarvestedThisTurn() {
     return numTimesHarvestedThisTurn;
   }
+  public static int getNumStacksHarvestedThisCombat() {
+    return numStacksHarvestedThisCombat;
+  }
+
 
   public static void resetHasHarvestedThisTurn() { numTimesHarvestedThisTurn = 0; }
+  public static void resetNumCropsHarvestedThisCombat() { numTimesHarvestedThisTurn = 0; }
 
   public void atStartOfTurn() {
     final int amount = this.getAmount();

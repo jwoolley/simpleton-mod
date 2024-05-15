@@ -27,14 +27,19 @@
 
   "TheSimpletonMod:Barnstorm": {
     "NAME": "Barnstorm",
-    "DESCRIPTION": "Deal !D! damage to a random enemy for each Crop stack you have. NL Stun each enemy damaged !M! or more times this way."
+    "DESCRIPTION": "Plant X of each crop. NL Deal !D! damage to a random enemy for each Crop stack you've harvested this combat",
+    "DESCRIPTION": "Plant X+2 of each crop. NL Deal !D! damage to a random enemy for each Crop stack you've harvested this combat",
+    "EXTENDED_DESCRIPTION": [
+      ".",
+      " (",
+      " stacks harvested)."
+    ]
   },
 
   "TheSimpletonMod:Biorefinement": {
     "NAME": "Biorefinement",
     "DESCRIPTION": "When you play a card with Harvest for the first time each turn, reduce the cost of a random card in your hand by 1 this combat.",
     "DESCRIPTION": "The first time each turn that you play a card with Harvest, reduce the cost of a random card in your hand by 1 this combat."
-
   },
 
   "TheSimpletonMod:BirdFeeder": {

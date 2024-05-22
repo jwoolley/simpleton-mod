@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+
 public class IceCube extends CustomCard {
     public static final String ID = "TheSimpletonMod:IceCube";
     private static final CardStrings cardStrings;
@@ -21,7 +22,7 @@ public class IceCube extends CustomCard {
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final int COST = -2;
 
-    private static int NUM_TURNS_TO_ETHEREAL = 2;
+    private static int NUM_TURNS_TO_ETHEREAL = 3;
 
     public IceCube() {
         super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY,
@@ -39,7 +40,7 @@ public class IceCube extends CustomCard {
     public void atTurnStart() {
         this.flash(Color.SKY.cpy());
         if (this.baseMagicNumber > 0) {
-            this.magicNumber = this.baseMagicNumber =  this.baseMagicNumber - 1;
+            this.magicNumber = this.baseMagicNumber = this.baseMagicNumber - 1;
             if (this.baseMagicNumber == 0) {
                 CardCrawlGame.sound.play("ICE_CLINK_1");
                 this.superFlash(Color.SKY.cpy());
@@ -71,11 +72,6 @@ public class IceCube extends CustomCard {
     }
 
     public void upgrade() {
-    }
-
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        return true;
     }
 
     static {

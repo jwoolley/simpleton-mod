@@ -159,6 +159,14 @@
     ]
   },
 
+  "TheSimpletonMod:TweezingPower": {
+    "NAME": "镊子",
+    "DESCRIPTIONS": [
+      "在其回合结束时，失去 #b",
+      " 点 #y荆棘 。"
+    ]
+  },
+
   "TheSimpletonMod:VolatileFumesPower": {
     "NAME": "挥发臭气",
     "DESCRIPTIONS": [

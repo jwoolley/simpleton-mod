@@ -222,6 +222,14 @@
     "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Exhaust."
   },
 
+  "TheSimpletonMod:IceCube": {
+    "NAME": "Ice Cube",
+    "DESCRIPTION": "Retain. NL In !M! turns, this loses Retain and becomes Ethereal.",
+    "EXTENDED_DESCRIPTION": [
+      "Ethereal."
+    ]
+  },
+
   "TheSimpletonMod:Innovate": {
     "NAME": "Innovate",
     "DESCRIPTION": "Add a random card with Harvest to your hand. It costs !M!",
@@ -254,12 +262,12 @@
 
   "TheSimpletonMod:Nettles": {
     "NAME": "Nettles",
-    "DESCRIPTION": "Unplayable. NL When drawn, apply !M! temporary Thorns to all enemies."
+    "DESCRIPTION": "Unplayable. NL Whenever this card is drawn, apply !M! temporary Thorns to all enemies."
   },
 
   "TheSimpletonMod:Frostbite": {
     "NAME": "Frostbite",
-    "DESCRIPTION": "Unplayable. NL At the end of your turn, increase the cost of a random card in your hand by 1."
+    "DESCRIPTION": "Unplayable. NL When drawn, add an *Ice *Cube to your hand."
   },
 
   "TheSimpletonMod:OnionBloom": {
@@ -400,7 +408,7 @@
 
   "TheSimpletonMod:Spoilage": {
     "NAME": "Spoilage",
-    "DESCRIPTION": "Unplayable. NL At end of turn, put this card on top of your draw pile if you played !M! or more cards this turn.",
+    "DESCRIPTION": "Unplayable. NL At end of turn, if you have !M! or more other cards in hand, put this card on top of your draw pile.",
     "EXTENDED_DESCRIPTION" : [ " NL (Will trigger this turn)."]
   },
 

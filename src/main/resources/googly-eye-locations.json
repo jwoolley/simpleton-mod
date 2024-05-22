@@ -1,19 +1,419 @@
 {
-  "cards": {
-  },
+    "cards": {
+        "TheSimpletonMod:BirdFeeder": [
+            {
+                "x": 233,
+                "y": 293.5,
+                "size": 18.607794
+            },
+            {
+                "x": 75.5,
+                "y": 257.5,
+                "size": 9.604687
+            },
+            {
+                "x": 137,
+                "y": 210.5,
+                "size": 10.29563
+            }
+        ],
+        "TheSimpletonMod:BumperCrop": [
+            {
+                "x": 302,
+                "y": 95.5,
+                "size": 41.677334
+            },
+            {
+                "x": 196,
+                "y": 78,
+                "size": 42.059483
+            }
+        ],
+        "TheSimpletonMod:BuzzBomb": [],
+        "TheSimpletonMod:ControlledBurn": [
+            {
+                "x": 229.5,
+                "y": 171,
+                "size": 10.198039
+            }
+        ],
+        "TheSimpletonMod:CrackOfDawn": [
+            {
+                "x": 320,
+                "y": 327,
+                "size": 6.708204
+            },
+            {
+                "x": 303.5,
+                "y": 321,
+                "size": 7.28011
+            }
+        ],
+        "TheSimpletonMod:CropRotation": [
+            {
+                "x": 115.5,
+                "y": 261.5,
+                "size": 14.57738
+            },
+            {
+                "x": 145.5,
+                "y": 275.5,
+                "size": 13.892444
+            },
+            {
+                "x": 270.5,
+                "y": 308,
+                "size": 9.013878
+            },
+            {
+                "x": 368,
+                "y": 236,
+                "size": 12.103719
+            },
+            {
+                "x": 395,
+                "y": 223,
+                "size": 12.980755
+            },
+            {
+                "x": 245.5,
+                "y": 309,
+                "size": 9.8234415
+            }
+        ],
+        "TheSimpletonMod:DesperatePlunge": [
+            {
+                "x": 247,
+                "y": 292.5,
+                "size": 9.924717
+            },
+            {
+                "x": 223.5,
+                "y": 282.5,
+                "size": 10.111875
+            }
+        ],
+        "TheSimpletonMod:Fertilaser": [
+            {
+                "x": 188.5,
+                "y": 237.5,
+                "size": 19.235384
+            },
+            {
+                "x": 228.5,
+                "y": 216.5,
+                "size": 19.039433
+            }
+        ],
+        "TheSimpletonMod:Haymaker": [
+            {
+                "x": 407.5,
+                "y": 328,
+                "size": 13.038404
+            },
+            {
+                "x": 339.5,
+                "y": 78,
+                "size": 12.5
+            },
+            {
+                "x": 367,
+                "y": 75,
+                "size": 11.597413
+            },
+            {
+                "x": 373,
+                "y": 319.5,
+                "size": 14.534442
+            }
+        ],
+        "TheSimpletonMod:KeenEdge": [
+            {
+                "x": 288,
+                "y": 219.5,
+                "size": 14.705441
+            }
+        ],
+        "TheSimpletonMod:Mulch": [
+            {
+                "x": 420.5,
+                "y": 134,
+                "size": 10.5948105
+            },
+            {
+                "x": 464.5,
+                "y": 152.5,
+                "size": 10.404326
+            },
+            {
+                "x": 43,
+                "y": 131.5,
+                "size": 13.901439
+            },
+            {
+                "x": 127,
+                "y": 115.5,
+                "size": 19.039433
+            }
+        ],
+        "TheSimpletonMod:OnionBloom": [
+            {
+                "x": 333,
+                "y": 150.5,
+                "size": 24.207438
+            },
+            {
+                "x": 268,
+                "y": 120.5,
+                "size": 32.01562
+            }
+        ],
+        "TheSimpletonMod:Photosynthesis": [
+            {
+                "x": 217.5,
+                "y": 277.5,
+                "size": 25
+            },
+            {
+                "x": 275.5,
+                "y": 279,
+                "size": 25
+            }
+        ],
+        "TheSimpletonMod:Potatoes": [
+            {
+                "x": 301.5,
+                "y": 255.5,
+                "size": 23.81701
+            },
+            {
+                "x": 253,
+                "y": 242,
+                "size": 25.268557
+            }
+        ],
+        "TheSimpletonMod:Pruning": [
+            {
+                "x": 211.5,
+                "y": 221,
+                "size": 18.11767
+            }
+        ],
+        "TheSimpletonMod:Rake": [
+            {
+                "x": 444.5,
+                "y": 306,
+                "size": 7.648529
+            }
+        ],
+        "TheSimpletonMod:Rototilling": [
+            {
+                "x": 284,
+                "y": 135,
+                "size": 36.173195
+            },
+            {
+                "x": 439,
+                "y": 119,
+                "size": 25
+            }
+        ],
+        "TheSimpletonMod:SaladShooter": [
+            {
+                "x": 171,
+                "y": 283,
+                "size": 25
+            },
+            {
+                "x": 219.5,
+                "y": 298,
+                "size": 25
+            }
+        ],
+        "TheSimpletonMod:SeedCoat": [
+            {
+                "x": 261,
+                "y": 244.5,
+                "size": 12.103719
+            },
+            {
+                "x": 295,
+                "y": 243.5,
+                "size": 10.965857
+            }
+        ],
+        "TheSimpletonMod:SlashAndBurn": [
+            {
+                "x": 250,
+                "y": 254.5,
+                "size": 6.9641943
+            },
+            {
+                "x": 266,
+                "y": 255.5,
+                "size": 7.566373
+            }
+        ],
+        "TheSimpletonMod:SoilSample": [
+            {
+                "x": 218.5,
+                "y": 286.5,
+                "size": 25
+            },
+            {
+                "x": 281,
+                "y": 289,
+                "size": 25
+            }
+        ],
+        "TheSimpletonMod:SpiceUp": [
+            {
+                "x": 263,
+                "y": 274,
+                "size": 19.44865
+            },
+            {
+                "x": 231,
+                "y": 272.5,
+                "size": 17.088007
+            }
+        ],
+        "TheSimpletonMod:Squash": [
+            {
+                "x": 271.5,
+                "y": 208,
+                "size": 16.807735
+            },
+            {
+                "x": 230,
+                "y": 199,
+                "size": 20.81466
+            }
+        ],
+        "TheSimpletonMod:Sunchoke": [
+            {
+                "x": 329,
+                "y": 301.5,
+                "size": 25.5196
+            },
+            {
+                "x": 243.5,
+                "y": 323,
+                "size": 20.615528
+            }
+        ],
+        "TheSimpletonMod:Swelter": [
+            {
+                "x": 332,
+                "y": 256.5,
+                "size": 12.083046
+            },
+            {
+                "x": 368,
+                "y": 253,
+                "size": 10.5948105
+            }
+        ],
+        "TheSimpletonMod:TakeHeart": [
+            {
+                "x": 229.5,
+                "y": 188.5,
+                "size": 17.670597
+            },
+            {
+                "x": 274.5,
+                "y": 185,
+                "size": 17.55705
+            }
+        ],
+        "TheSimpletonMod:Thresh": [
+            {
+                "x": 125,
+                "y": 210.5,
+                "size": 25
+            },
+            {
+                "x": 219.5,
+                "y": 236.5,
+                "size": 25
+            }
+        ],
+        "TheSimpletonMod:ToughenUp": [
+            {
+                "x": 297.5,
+                "y": 199,
+                "size": 15.297058
+            },
+            {
+                "x": 328.5,
+                "y": 195.5,
+                "size": 15.337862
+            }
+        ],
+        "TheSimpletonMod:Turnips": [
+            {
+                "x": 199,
+                "y": 184.5,
+                "size": 19.912308
+            },
+            {
+                "x": 248,
+                "y": 179.5,
+                "size": 20.359274
+            }
+        ]
+    },
+  "betaCards": {},
   "relics": {},
-  "events": {},
+  "events": {
+      "TheSimpletonMod/img/events/harvestmoon1.png": [
+          {
+              "x": 401.5,
+              "y": 425,
+              "size": 60.574333
+          },
+          {
+              "x": 246.5,
+              "y": 419,
+              "size": 67.551834
+          }
+      ],
+      "TheSimpletonMod/img/events/heatwave1.png": [
+          {
+              "x": 192,
+              "y": 310,
+              "size": 41.83599
+          }
+      ],
+      "TheSimpletonMod/img/events/reaptide1.png": [
+          {
+              "x": 523.5,
+              "y": 283,
+              "size": 7.632169
+          },
+          {
+              "x": 144,
+              "y": 112.5,
+              "size": 9.861542
+          },
+          {
+              "x": 126.5,
+              "y": 100.5,
+              "size": 9.962429
+          }
+      ]
+  },
   "charSelect": {
     "THE_SIMPLETON": [
       {
-        "x": 1366.8,
-        "y": 756.80005,
-        "size": 114.554405
+        "x": 1583.5,
+        "y": 784.5,
+        "size": 26.043234
       },
       {
-        "x": 1658.4,
-        "y": 740.00006,
-        "size": 118.3385
+        "x": 1429.0,
+        "y": 799.5,
+        "size": 21.023796
       }
     ]
   },

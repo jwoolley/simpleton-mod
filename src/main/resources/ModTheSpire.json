@@ -3,9 +3,9 @@
   "name": "The Hayseed",
   "author_list": ["jwoolley"],
   "description": "A simple farmer with a head like a pinewood block.",
-  "version": "0.9.9",
-  "sts_version": "01-20-2020",
-  "mts_version": "3.11.0",
+  "version": "1.0.0",
+  "sts_version": "12-18-2022",
+  "mts_version": "3.30.0",
   "dependencies": ["basemod", "stslib"],
-  "credits": "Thanks to: \n\nSpleen — for amazing card and relic art. \n\nsolderist.park — whose Cursed mod source code I used to get started (use Default Mod!) \n\nCaptainSnafu — for an excellent Chinese translation! \n\nRucodeby — for the Russion translation!  \n\nHarryWardp, Basilisk, Greuben, CannonballFun, and Toddells — for invaluable playtesting and feedback."
+  "credits": "Thanks to: \n\nGrisknuckle — Creator of the superb Hayseed character art. \n\nSpleen — For amazing card and relic art. \n\nsolderist.park — Whose Cursed mod source code I used to get started (use Default Mod!) \n\nCaptainSnafu — For the comprehensive Chinese translation! \n\nRucodeby — For the excellent Russian translation! \n\nHarryWardp, Basilisk, Greuben, CannonballFun, and Toddells — for invaluable playtesting and feedback."
 }

@@ -237,7 +237,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
     float origin_X = CROP_ORB_WIDTH / 2.0F;
     float origin_Y = CROP_ORB_HEIGHT / 2.0F;
 
-    float ARROW_OFFSET_X = -CROP_ORB_WIDTH / 4.0F;
+    float ARROW_OFFSET_X = -CROP_ORB_WIDTH / 3.75F;
     float ARROW_OFFSET_Y = 24.0F;
 
     if (this.isMature(true)) {

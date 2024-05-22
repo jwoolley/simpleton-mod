@@ -7,6 +7,9 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import thesimpleton.TheSimpletonMod;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 @SpirePatch(
     clz = DungeonMapScreen.class,
     method = "open",
@@ -51,21 +54,27 @@ public class DungeonMapScreenOpenAfter {
 //  }
 
   public static void Postfix (DungeonMapScreen __instance, boolean doScrollingAnimation) {
-    if (TheSimpletonMod.isPlayingAsSimpleton()) {
-      log("DungeonMapScreenOpenAfter invoked post trigger.");
+    try {
+      if (TheSimpletonMod.isPlayingAsSimpleton()) {
+        log("DungeonMapScreenOpenAfter invoked post trigger.");
 
-      log("DungeonMapScreenOpenAfter seasonScreen.isOpen: "
-          + TheSimpletonMod.seasonScreen.isOpen()
-          + " seasonScreen.wasDismissed: "
-          + TheSimpletonMod.seasonScreen.wasDismissed());
+        log("DungeonMapScreenOpenAfter seasonScreen.isOpen: "
+                + TheSimpletonMod.seasonScreen.isOpen()
+                + " seasonScreen.wasDismissed: "
+                + TheSimpletonMod.seasonScreen.wasDismissed());
 
-      if (!TheSimpletonMod.seasonScreen.isOpen() && !TheSimpletonMod.seasonScreen.wasDismissed() &&
-          AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMPLETE) {
-        log("DungeonMapScreenOpenAfter opening season screen");
-        TheSimpletonMod.seasonScreen.open();
-      } else {
-        log("DungeonMapScreenOpenAfter season screen was already dismissed; not opening");
+        if (!TheSimpletonMod.seasonScreen.isOpen() && !TheSimpletonMod.seasonScreen.wasDismissed() &&
+                AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMPLETE) {
+          log("DungeonMapScreenOpenAfter opening season screen");
+          TheSimpletonMod.seasonScreen.open();
+        } else {
+          log("DungeonMapScreenOpenAfter season screen was already dismissed; not opening");
+        }
       }
+    }
+    catch (Exception e) {
+      TheSimpletonMod.debugLogger.error("Error showing season screen: " + e.getMessage());
+      TheSimpletonMod.debugLogger.error(String.join(",", Arrays.stream(e.getStackTrace()).map(entry -> entry.toString()).collect(Collectors.toList())));
     }
   }
 }

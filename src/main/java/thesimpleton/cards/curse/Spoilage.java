@@ -72,16 +72,23 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
 
   public void update() {
     super.update();
-    int latestNumOtherCardsInHand = getNumOtherCardsInHandNow();
-    if (latestNumOtherCardsInHand != numOtherCardsInHand) {
-      numOtherCardsInHand = latestNumOtherCardsInHand;
-      updateDescription(latestNumOtherCardsInHand >= CARD_THRESHOLD);
+    if (AbstractDungeon.player != null && AbstractDungeon.player.hand != null) {
+      int latestNumOtherCardsInHand = getNumOtherCardsInHandNow();
+      if (latestNumOtherCardsInHand != numOtherCardsInHand) {
+        numOtherCardsInHand = latestNumOtherCardsInHand;
+        updateDescription(  AbstractDungeon.player.hand.contains(this) && latestNumOtherCardsInHand >= CARD_THRESHOLD);
+      }
     }
   }
 
   public int getNumOtherCardsInHandNow() {
-    return AbstractDungeon.player.hand.group.stream().filter(c -> c != this).collect(Collectors.toList()).size();
+    if (AbstractDungeon.player != null && AbstractDungeon.player.hand != null) {
+      return AbstractDungeon.player.hand.group.stream().filter(c -> c != this).collect(Collectors.toList()).size();
+    } else {
+      return 0;
+    }
   }
+
   public int getNumOtherCardsInHandAtEndOfTurn() {
     // retained cards are placed in limbo during the DiscardAtEndOfTurnAction
     //  (and restored via adding RestoreRetainedCardsAction to top of action queue)

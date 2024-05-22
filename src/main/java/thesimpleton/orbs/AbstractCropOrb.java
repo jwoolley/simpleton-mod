@@ -237,8 +237,8 @@ public abstract class AbstractCropOrb extends CustomOrb {
     float origin_X = CROP_ORB_WIDTH / 2.0F;
     float origin_Y = CROP_ORB_HEIGHT / 2.0F;
 
-    float ARROW_OFFSET_X = -CROP_ORB_WIDTH / 3.75F;
-    float ARROW_OFFSET_Y = 24.0F;
+    float ARROW_OFFSET_X = -CROP_ORB_WIDTH / 5.0F;
+    float ARROW_OFFSET_Y = 32.0F;
 
     if (this.isMature(true)) {
       // TODO: when stacks > maturity level, replace with flash image + add sound effect for those few frames
@@ -265,7 +265,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
 //        this.c = highlightFilterColor;
 
         float arrowXPos = this.cX - (ARROW_INDICATOR_WIDTH / 2.0F - ARROW_OFFSET_X) * this.scale;
-        float arrowYPos = this.cY + (ARROW_INDICATOR_HEIGHT + ARROW_OFFSET_Y) * this.scale;
+        float arrowYPos = this.cY + (ARROW_INDICATOR_HEIGHT + ARROW_OFFSET_Y) * this.scale + this.bobEffect.y / 2.0F;
 
         sb.draw(this.getTargetHaloImage(), this.cX - origin_X, this.cY - origin_Y + this.bobEffect.y / 2.0F, origin_X, origin_Y, CROP_ORB_WIDTH, CROP_ORB_HEIGHT, this.scale, this.scale, 0.0F, 0, 0,  (int) CROP_ORB_WIDTH, (int) CROP_ORB_HEIGHT, false, false);
         sb.draw(this.getIndicatorArrow(),

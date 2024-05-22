@@ -14,6 +14,7 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.attack.GiantTurnip;
 import thesimpleton.cards.status.Depletion;
 import thesimpleton.cards.status.IceCube;
+import thesimpleton.devtools.debugging.DebugLogger;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,14 +40,20 @@ public class Frostbite extends CustomCard implements SeasonalCurse {
   }
 
 
+//  @Override
+//  public void triggerOnOtherCardPlayed(AbstractCard card) {
+//    if (card.type != CardType.STATUS) {
+//      CardCrawlGame.sound.play("ICE_CLINK_1");
+//      CardCrawlGame.sound.play("ICE_CLINK_1");
+//      this.superFlash(Color.SKY.cpy());
+//      AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new IceCube(), 1));
+//    }
+//  }
   @Override
-  public void triggerOnOtherCardPlayed(AbstractCard card) {
-    if (card.type != CardType.STATUS) {
-      CardCrawlGame.sound.play("ICE_CLINK_1");
+  public void triggerWhenDrawn() {
       CardCrawlGame.sound.play("ICE_CLINK_1");
       this.superFlash(Color.SKY.cpy());
       AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new IceCube(), 1));
-    }
   }
 
   // I guess this is how you do it

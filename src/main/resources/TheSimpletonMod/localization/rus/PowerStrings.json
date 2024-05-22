@@ -159,6 +159,14 @@
     ]
   },
 
+  "TheSimpletonMod:TweezingPower": {
+    "NAME": "Пинцеты",
+    "DESCRIPTIONS": [
+      "Теряет #b",
+      " #yШипы в конце своего хода."
+    ]
+  },
+
   "TheSimpletonMod:VolatileFumesPower": {
     "NAME": "Летучие пары",
     "DESCRIPTIONS": [

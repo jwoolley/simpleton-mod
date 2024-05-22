@@ -168,7 +168,7 @@
   },
 
   "TheSimpletonMod:Fertilaser": {
-    "NAME": "化肥",
+    "NAME": "施肥激光",
     "DESCRIPTION": "造成 !D! 伤害。 NL 每种农作物 种植 !M! 层。"
   },
 
@@ -223,7 +223,7 @@
   },
 
   "TheSimpletonMod:Innovate": {
-    "NAME": "改革",
+    "NAME": "创新",
     "DESCRIPTION": "添加一张带 收获 效果的牌进手牌，该牌的耗费变为 !M!",
     "EXTENDED_DESCRIPTION": [
       " 于此轮。",
@@ -254,12 +254,12 @@
 
   "TheSimpletonMod:Nettles": {
     "NAME": "荨麻",
-    "DESCRIPTION": "无法打出。 NL 在你的回合末，一名随机敌人获得 !M! 荆棘 。"
+    "DESCRIPTION": "无法打出。 NL 每当你抽到这张牌， 给予所有敌人 !M! 层 点临时 荆棘。"
   },
 
   "TheSimpletonMod:Frostbite": {
-    "NAME": "霜冻",
-    "DESCRIPTION": "无法打出。 NL 每当打出一张牌，一张随机手牌在此回合的耗费增加 1 。"
+    "NAME": "冻疮",
+    "DESCRIPTION": "无法打出。 NL 每当你抽到这张牌，一张随机手牌在此回合的耗费增加 1 。"
   },
 
   "TheSimpletonMod:OnionBloom": {

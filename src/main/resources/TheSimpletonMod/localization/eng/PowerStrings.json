@@ -160,12 +160,12 @@
   },
 
   "TheSimpletonMod:TweezingPower": {
-  "NAME": "Depilation",
-  "DESCRIPTIONS": [
-    "At the start of its turn, loses #b",
-    " #yThorns."
-  ]
-},
+    "NAME": "Tweezers",
+    "DESCRIPTIONS": [
+      "At the start of its turn, loses #b",
+      " #yThorns."
+    ]
+  },
 
   "TheSimpletonMod:VolatileFumesPower": {
     "NAME": "Volatile Fumes",

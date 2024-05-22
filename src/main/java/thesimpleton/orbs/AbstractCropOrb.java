@@ -43,8 +43,8 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
   float CROP_ORB_WIDTH = 128.0F;
   float CROP_ORB_HEIGHT = 128.0F;
-  float ARROW_INDICATOR_WIDTH = 128.0F;
-  float ARROW_INDICATOR_HEIGHT = 128.0F;
+  float ARROW_INDICATOR_WIDTH = 48.0F;
+  float ARROW_INDICATOR_HEIGHT = 48.0F;
 
   private static final float TOOLTIP_X_OFFSET = 80.0F;
   private static final float TOOLTIP_Y_OFFSET = -48.0F;
@@ -74,6 +74,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
     this.targetHaloImageFilename = targetHaloImgFilename;
     this.indicatorArrowImageFilename = INDICATOR_ARROW_IMG_FILENAME;
     this.stackAmountOnShuffle = STACK_AMOUNT_ON_SHUFFLE;
+    shouldPrintArrowDebug = true;
   }
 
   private Texture getHaloImage() {
@@ -237,9 +238,11 @@ public abstract class AbstractCropOrb extends CustomOrb {
     float origin_X = CROP_ORB_WIDTH / 2.0F;
     float origin_Y = CROP_ORB_HEIGHT / 2.0F;
 
-    float arrow_origin_X = CROP_ORB_WIDTH / 2.0F * this.scale;
-    float arrow_origin_Y = CROP_ORB_HEIGHT / 2.0F * this.scale;
-    float ARROW_OFFSET_Y = 84.0F;
+    float arrow_origin_X = CROP_ORB_WIDTH * this.scale;
+    float arrow_origin_Y = CROP_ORB_HEIGHT * this.scale;
+
+    float ARROW_OFFSET_X = -12.0F;
+    float ARROW_OFFSET_Y = 12.0F;
 
     if (this.isMature(true)) {
       // TODO: when stacks > maturity level, replace with flash image + add sound effect for those few frames
@@ -264,13 +267,18 @@ public abstract class AbstractCropOrb extends CustomOrb {
     if (CropOrbHelper.hasHighlightedOrb()) {
       if (CropOrbHelper.getHighlightedOrb().name == this.name) {
 //        this.c = highlightFilterColor;
+
+        float arrowXPos = this.cX - (ARROW_INDICATOR_WIDTH / 2.0F - ARROW_OFFSET_X) * this.scale;
+//        float yPos = this.cY + (CROP_ORB_HEIGHT + ARROW_INDICATOR_HEIGHT/2.0F + ARROW_OFFSET_Y) / 2.0F * this.scale + this.bobEffect.y / 2.0F;
+//        float yPos = this.cY + arrow_origin_Y + this.bobEffect.y / 2.0F + CROP_ORB_HEIGHT;
+        float arrowYPos = this.cY + (ARROW_INDICATOR_HEIGHT + ARROW_OFFSET_Y) * this.scale;
+
         sb.draw(this.getTargetHaloImage(), this.cX - origin_X, this.cY - origin_Y + this.bobEffect.y / 2.0F, origin_X, origin_Y, CROP_ORB_WIDTH, CROP_ORB_HEIGHT, this.scale, this.scale, 0.0F, 0, 0,  (int) CROP_ORB_WIDTH, (int) CROP_ORB_HEIGHT, false, false);
         sb.draw(this.getIndicatorArrow(),
-                this.cX - ARROW_INDICATOR_WIDTH / 2.0F,
-                this.cY + this.bobEffect.y / 2.0F + (CROP_ORB_HEIGHT / 2.0F + ARROW_OFFSET_Y) * this.scale,
-
-//                this.cY + arrow_origin_Y + this.bobEffect.y / 2.0F + CROP_ORB_HEIGHT,
-                arrow_origin_X, arrow_origin_Y,
+                arrowXPos,
+                arrowYPos,
+                0,
+                0,
                 ARROW_INDICATOR_WIDTH, ARROW_INDICATOR_HEIGHT,
                 this.scale, this.scale,
                 0.0F, 0, 0,
@@ -284,13 +292,13 @@ public abstract class AbstractCropOrb extends CustomOrb {
                   + "\n\ttX: " + tX
                   + "\n\tcX: " + cX
                   + "\n\toriginX: " + arrow_origin_X
-                  + "\n\txPos: " + (cX - arrow_origin_X - CROP_ORB_WIDTH / 2.0F)
+                  + "\n\txPos: " + arrowXPos
                   + "\n\tPlayer.drawY: " + AbstractDungeon.player.drawY
                   + "\n\ttY: " + tY
                   + "\n\tcY: " + cY
                   + "\n\toriginY: " + arrow_origin_Y
                   + "\n\tbobEffect.y: " + this.bobEffect.y
-                  + "\n\tyPos: " + (this.cY + arrow_origin_Y + this.bobEffect.y / 2.0F + CROP_ORB_HEIGHT)
+                  + "\n\tyPos: " + arrowYPos
                   + "\n\tSettings.WIDTH: " + Settings.WIDTH + ", Settings.HEIGHT: " + Settings.HEIGHT
                   + "\n\tscale: " + this.scale
                   + "\n\tSettings.scale: " + Settings.scale

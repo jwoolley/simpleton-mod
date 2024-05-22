@@ -222,6 +222,11 @@
     "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Exhaust."
   },
 
+  "TheSimpletonMod:IceCube": {
+    "NAME": "Ice Cube",
+    "DESCRIPTION": "Retain. NL Exhaust. NL Whenever this card is Retained, lower its cost by 1."
+  },
+
   "TheSimpletonMod:Innovate": {
     "NAME": "Innovate",
     "DESCRIPTION": "Add a random card with Harvest to your hand. It costs !M!",
@@ -259,7 +264,7 @@
 
   "TheSimpletonMod:Frostbite": {
     "NAME": "Frostbite",
-    "DESCRIPTION": "Unplayable. NL Whenever this card is drawn, increase the cost of a random card in your hand by 1 this turn."
+    "DESCRIPTION": "Unplayable. NL While in hand, whenever you play a non-Status card, add an *Ice *Cube to your hand."
   },
 
   "TheSimpletonMod:OnionBloom": {

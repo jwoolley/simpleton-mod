@@ -222,6 +222,11 @@
     "DESCRIPTION": "虚无 。 NL 获得 !B! 格挡 。 NL 消耗 。"
   },
 
+  "TheSimpletonMod:IceCube": {
+    "NAME": "冰块",
+    "DESCRIPTION": "保留 。NL 每当这张牌被 保留 时，将其在本场战斗的耗能减少1。消耗 。"
+  },
+
   "TheSimpletonMod:Innovate": {
     "NAME": "创新",
     "DESCRIPTION": "添加一张带 收获 效果的牌进手牌，该牌的耗费变为 !M!",
@@ -259,7 +264,7 @@
 
   "TheSimpletonMod:Frostbite": {
     "NAME": "冻疮",
-    "DESCRIPTION": "无法打出。 NL 每当你抽到这张牌，一张随机手牌在此回合的耗费增加 1 。"
+    "DESCRIPTION": "无法打字。 NL 在手牌中时，每当 打出非状态牌 一 张牌时，增加一张 *冰块 到你的手牌。"
   },
 
   "TheSimpletonMod:OnionBloom": {

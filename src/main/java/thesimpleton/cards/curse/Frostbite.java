@@ -2,6 +2,7 @@ package thesimpleton.cards.curse;
 
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,6 +11,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.attack.GiantTurnip;
+import thesimpleton.cards.status.Depletion;
+import thesimpleton.cards.status.IceCube;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,34 +29,24 @@ public class Frostbite extends CustomCard implements SeasonalCurse {
   private static final CardRarity RARITY = CardRarity.CURSE;
   private static final CardTarget TARGET = CardTarget.NONE;
 
-  private static final int COST_INCREASE_AMOUNT = 1;
-
   private static final int COST = -2;
+
+  private static final AbstractCard PREVIEW_CARD;
 
   public Frostbite() {
     super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.CURSE, RARITY, TARGET);
+    this.cardsToPreview = PREVIEW_CARD;
   }
+
 
   @Override
   public void triggerOnOtherCardPlayed(AbstractCard card) {
-
-  }
-
-  @Override
-  public void triggerOnEndOfPlayerTurn() {
-    if (AbstractDungeon.player.hand.contains(this)) {
-      List<AbstractCard> increasableCards = getIncreasableCards();
-
-      if (increasableCards.size() > 0) {
-        increaseCostOfRandomCardForThisCombat(increasableCards, COST_INCREASE_AMOUNT);
-      }
+    if (card.type != CardType.STATUS) {
+      CardCrawlGame.sound.play("ICE_CLINK_1");
+      CardCrawlGame.sound.play("ICE_CLINK_1");
+      this.superFlash(Color.SKY.cpy());
+      AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new IceCube(), 1));
     }
-  }
-
-  private List<AbstractCard> getIncreasableCards() {
-    return AbstractDungeon.player.hand.group.stream()
-      .filter(c -> (c.type != null && !c.type.equals(CardType.CURSE)) || AbstractDungeon.player.hasRelic("Blue Candle"))
-      .filter(c ->  c.cost >= 0 && !this.equals(c)).collect(Collectors.toList());
   }
 
   // I guess this is how you do it
@@ -64,18 +58,6 @@ public class Frostbite extends CustomCard implements SeasonalCurse {
     }
   }
 
-  private void increaseCostOfRandomCardForThisCombat(List<AbstractCard> increasableCards, int costIncrease) {
-    AbstractCard card = increasableCards.get(AbstractDungeon.cardRng.random(increasableCards.size() - 1));
-
-    card.modifyCostForCombat(card.cost + costIncrease);
-
-    // TODO: reimplement as an action & wait a tick between power flash and card flash
-    CardCrawlGame.sound.play("ICE_CLINK_1");
-    CardCrawlGame.sound.play("ICE_CLINK_1");
-    this.flash(Color.SKY.cpy());
-    card.superFlash(Color.SKY.cpy());
-  }
-
   public AbstractCard makeCopy() { return new Frostbite(); }
 
   public void upgrade() {}
@@ -84,5 +66,6 @@ public class Frostbite extends CustomCard implements SeasonalCurse {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
+    PREVIEW_CARD = new IceCube();
   }
 }

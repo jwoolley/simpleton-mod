@@ -3,7 +3,7 @@
     "NAME": "Cash Crop",
     "FLAVOR": "Cold, but not hard.",
     "DESCRIPTIONS": [
-      "Each time you #YHarvest a #yCrop that you haven't harvested yet this combat, gain #b",
+      "Each time you #yHarvest a #yCrop that you haven't harvested yet this combat, gain #b",
       " Gold."
     ]
   },
@@ -60,7 +60,7 @@
 
   "TheSimpletonMod:Honeycomb": {
     "NAME": "Honeycomb",
-    "FLAVOR": "It may sting a little.",
+    "FLAVOR": "It's going to sting a little.",
     "DESCRIPTIONS": [
       "Whenever you #yPlant a #yCrop, deal #b",
       " damage to a random enemy."
@@ -69,7 +69,7 @@
 
   "TheSimpletonMod:HornOfPlenty": {
     "NAME": "Horn Of Plenty",
-    "FLAVOR": "It's more than enough.",
+    "FLAVOR": "More than enough.",
     "DESCRIPTIONS": [
       "At the start of each combat, add a random in-season #yCrop Power card to your hand. Then gain #b",
       " #yAbundance which lasts until end of turn."

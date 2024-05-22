@@ -9,8 +9,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.cards.PutSpecifiedCardOnDeckAction;
 import thesimpleton.utilities.ModLogger;
 
+import java.util.Iterator;
 import java.util.stream.Collectors;
 
 public class Spoilage extends CustomCard implements SeasonalCurse {
@@ -42,10 +44,10 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
 
   public void triggerOnEndOfPlayerTurn() {
     logger.trace("Spoilage::triggerOnEndOPlayerTurn called");
-    if (getNumOtherCardsInHand() >= CARD_THRESHOLD) {
-      CardCrawlGame.sound.playAV("MONSTER_SLIME_ATTACK", 0.75F, 1.2F);
+    if (getNumOtherCardsInHandAtEndOfTurn() >= CARD_THRESHOLD) {
+      CardCrawlGame.sound.playAV("MONSTER_SLIME_ATTACK", 0.75F, 1.15F);
       this.superFlash(Color.CHARTREUSE.cpy());
-      AbstractDungeon.player.hand.moveToDeck(this, false);
+      AbstractDungeon.actionManager.addToTop(new PutSpecifiedCardOnDeckAction(this));
     }
   }
 
@@ -53,6 +55,7 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
   public void upgrade() {
 
   }
+
 
   public void use(AbstractPlayer p, AbstractMonster m) {  }
 
@@ -69,15 +72,29 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
 
   public void update() {
     super.update();
-    int latestNumOtherCardsInHand = getNumOtherCardsInHand();
+    int latestNumOtherCardsInHand = getNumOtherCardsInHandNow();
     if (latestNumOtherCardsInHand != numOtherCardsInHand) {
       numOtherCardsInHand = latestNumOtherCardsInHand;
       updateDescription(latestNumOtherCardsInHand >= CARD_THRESHOLD);
     }
   }
 
-  public int getNumOtherCardsInHand() {
+  public int getNumOtherCardsInHandNow() {
     return AbstractDungeon.player.hand.group.stream().filter(c -> c != this).collect(Collectors.toList()).size();
+  }
+  public int getNumOtherCardsInHandAtEndOfTurn() {
+    // retained cards are placed in limbo during the DiscardAtEndOfTurnAction
+    //  (and restored via adding RestoreRetainedCardsAction to top of action queue)
+    //  which is when we're counting cards for the end of turn trigger
+    int numRetainedCardsInLimbo = 0;
+    for (Iterator<AbstractCard> c = AbstractDungeon.player.limbo.group.iterator(); c.hasNext();) {
+      AbstractCard e = c.next();
+      if (e.retain || e.selfRetain) {
+        numRetainedCardsInLimbo++;
+      }
+    }
+
+    return getNumOtherCardsInHandNow() + numRetainedCardsInLimbo;
   }
 
   static {

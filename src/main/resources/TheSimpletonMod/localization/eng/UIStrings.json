@@ -136,7 +136,7 @@
       ", ",
       ", and ",
       " and ",
-      " are #gIn #gSeason.",
+      " are #gIn #gSeason for this run.",
       " NL NL In-Season #yCrops are available as power cards through rewards and in the shop."
     ]
   },
@@ -168,7 +168,7 @@
   "TheSimpletonMod:SeasonScreenTooltip": {
     "TEXT": [
       "In-Season Crops",
-      "These #yCrops are available this run through power cards given as combat rewards and from the shop. Other crops are still accessible through specific cards and other means."
+      "Power cards for these #yCrops are available during this run as combat rewards and from the shop. Out-of-season crops may still be obtained from cards and other means."
     ]
   }
 }

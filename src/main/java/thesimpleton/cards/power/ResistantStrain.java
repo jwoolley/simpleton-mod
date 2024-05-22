@@ -25,8 +25,8 @@ public class ResistantStrain extends CustomCard {
   private static final CardTarget TARGET = CardTarget.SELF;
 
   private static final int COST = 1;
-  private static final int BLOCK_AMOUNT = 4;
-  private static final int BLOCK_UPGRADE_AMOUNT = 1;
+  private static final int BLOCK_AMOUNT = 3;
+  private static final int BLOCK_UPGRADE_AMOUNT = 2;
 
   public ResistantStrain() {
     super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);

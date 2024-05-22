@@ -3,7 +3,7 @@
   "name": "The Hayseed",
   "author_list": ["jwoolley"],
   "description": "A simple farmer with a head like a pinewood block.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "sts_version": "12-18-2022",
   "mts_version": "3.30.0",
   "dependencies": ["basemod", "stslib"],

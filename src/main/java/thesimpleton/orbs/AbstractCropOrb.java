@@ -74,7 +74,6 @@ public abstract class AbstractCropOrb extends CustomOrb {
     this.targetHaloImageFilename = targetHaloImgFilename;
     this.indicatorArrowImageFilename = INDICATOR_ARROW_IMG_FILENAME;
     this.stackAmountOnShuffle = STACK_AMOUNT_ON_SHUFFLE;
-    shouldPrintArrowDebug = true;
   }
 
   private Texture getHaloImage() {
@@ -238,11 +237,8 @@ public abstract class AbstractCropOrb extends CustomOrb {
     float origin_X = CROP_ORB_WIDTH / 2.0F;
     float origin_Y = CROP_ORB_HEIGHT / 2.0F;
 
-    float arrow_origin_X = CROP_ORB_WIDTH * this.scale;
-    float arrow_origin_Y = CROP_ORB_HEIGHT * this.scale;
-
-    float ARROW_OFFSET_X = -12.0F;
-    float ARROW_OFFSET_Y = 12.0F;
+    float ARROW_OFFSET_X = -CROP_ORB_WIDTH / 4.0F;
+    float ARROW_OFFSET_Y = 24.0F;
 
     if (this.isMature(true)) {
       // TODO: when stacks > maturity level, replace with flash image + add sound effect for those few frames
@@ -269,8 +265,6 @@ public abstract class AbstractCropOrb extends CustomOrb {
 //        this.c = highlightFilterColor;
 
         float arrowXPos = this.cX - (ARROW_INDICATOR_WIDTH / 2.0F - ARROW_OFFSET_X) * this.scale;
-//        float yPos = this.cY + (CROP_ORB_HEIGHT + ARROW_INDICATOR_HEIGHT/2.0F + ARROW_OFFSET_Y) / 2.0F * this.scale + this.bobEffect.y / 2.0F;
-//        float yPos = this.cY + arrow_origin_Y + this.bobEffect.y / 2.0F + CROP_ORB_HEIGHT;
         float arrowYPos = this.cY + (ARROW_INDICATOR_HEIGHT + ARROW_OFFSET_Y) * this.scale;
 
         sb.draw(this.getTargetHaloImage(), this.cX - origin_X, this.cY - origin_Y + this.bobEffect.y / 2.0F, origin_X, origin_Y, CROP_ORB_WIDTH, CROP_ORB_HEIGHT, this.scale, this.scale, 0.0F, 0, 0,  (int) CROP_ORB_WIDTH, (int) CROP_ORB_HEIGHT, false, false);
@@ -284,35 +278,11 @@ public abstract class AbstractCropOrb extends CustomOrb {
                 0.0F, 0, 0,
                 (int) ARROW_INDICATOR_WIDTH, (int) ARROW_INDICATOR_HEIGHT,
                 false, false);
-
-        if (shouldPrintArrowDebug) {
-
-          ORB_LOGGER.debug("Drawing indicator arrow. "
-                  + "\n\tPlayer.drawX: " + AbstractDungeon.player.drawX
-                  + "\n\ttX: " + tX
-                  + "\n\tcX: " + cX
-                  + "\n\toriginX: " + arrow_origin_X
-                  + "\n\txPos: " + arrowXPos
-                  + "\n\tPlayer.drawY: " + AbstractDungeon.player.drawY
-                  + "\n\ttY: " + tY
-                  + "\n\tcY: " + cY
-                  + "\n\toriginY: " + arrow_origin_Y
-                  + "\n\tbobEffect.y: " + this.bobEffect.y
-                  + "\n\tyPos: " + arrowYPos
-                  + "\n\tSettings.WIDTH: " + Settings.WIDTH + ", Settings.HEIGHT: " + Settings.HEIGHT
-                  + "\n\tscale: " + this.scale
-                  + "\n\tSettings.scale: " + Settings.scale
-                  + "\n\tSettings.isFourByThree: " + Settings.isFourByThree
-                  + "\n\tSettings.isSixteenByTen: " + Settings.isSixteenByTen
-                  + "\n\tSettings.isLetterbox: " + Settings.isLetterbox
-          );
-          shouldPrintArrowDebug = false;
-        }
       }
     } else {
       this.c = filterColor;
     }
-  }    static boolean shouldPrintArrowDebug = true;
+  }
 
 
   @Override

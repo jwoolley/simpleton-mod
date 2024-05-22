@@ -2,7 +2,6 @@ package thesimpleton.cards.curse;
 
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.common.SetDontTriggerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,6 +10,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.utilities.ModLogger;
+
+import java.util.stream.Collectors;
 
 public class Spoilage extends CustomCard implements SeasonalCurse {
   private static ModLogger logger = TheSimpletonMod.traceLogger;
@@ -29,7 +30,7 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
 
   private static final int COST = -2;
 
-  boolean willTrigger = false;
+  private int numOtherCardsInHand = 0;
 
   public Spoilage() {
     super(ID, NAME,
@@ -39,57 +40,45 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
     this.baseMagicNumber = this.magicNumber = CARD_THRESHOLD;
   }
 
-  public void triggerOnOtherCardPlayed(AbstractCard c) {
-    if (AbstractDungeon.player.cardsPlayedThisTurn >= this.magicNumber) {
-      if (!this.willTrigger) {
-        this.willTrigger = true;
-        this.flash(Color.CHARTREUSE.cpy());
-        CardCrawlGame.sound.play("POWER_POISON");
-        updateDescription(true);
-      }
-    }
-  }
-
-  @Override
-  public void triggerOnGainEnergy(int e, boolean b) {
-    logger.trace("Spoilage::triggerOnGainEnergy called");
-    updateDescription(false);
-  }
-
-
-  @Override
-  public void triggerOnEndOfTurnForPlayingCard() {
-
-  }
-
   public void triggerOnEndOfPlayerTurn() {
-    logger.trace("Spoilage::triggerOnEndOfTurnForPlayingCard called");
-
-    if (this.willTrigger) {
+    logger.trace("Spoilage::triggerOnEndOPlayerTurn called");
+    if (getNumOtherCardsInHand() >= CARD_THRESHOLD) {
+      CardCrawlGame.sound.playAV("MONSTER_SLIME_ATTACK", 0.75F, 1.2F);
+      this.superFlash(Color.CHARTREUSE.cpy());
       AbstractDungeon.player.hand.moveToDeck(this, false);
-      this.willTrigger = false;
-      updateDescription(false);
     }
+  }
+
+  @Override
+  public void upgrade() {
+
   }
 
   public void use(AbstractPlayer p, AbstractMonster m) {  }
 
-  protected void updateDescription(boolean willBeRetained) {
-    this.rawDescription = getDescription(willBeRetained);
+  protected void updateDescription(boolean willTrigger) {
+    this.rawDescription = getDescription(willTrigger);
     this.initializeDescription();
-  }
-
-  public void triggerWhenDrawn() {
-    AbstractDungeon.actionManager.addToBottom(new SetDontTriggerAction(this, false));
   }
 
   public AbstractCard makeCopy() { return new Spoilage(); }
 
-  public static String getDescription(boolean willBeRetained) {
-    return DESCRIPTION + (willBeRetained ? EXTENDED_DESCRIPTION[0] : "");
+  public static String getDescription(boolean willTrigger) {
+    return DESCRIPTION + (willTrigger ? EXTENDED_DESCRIPTION[0] : "");
   }
 
-  public void upgrade() {}
+  public void update() {
+    super.update();
+    int latestNumOtherCardsInHand = getNumOtherCardsInHand();
+    if (latestNumOtherCardsInHand != numOtherCardsInHand) {
+      numOtherCardsInHand = latestNumOtherCardsInHand;
+      updateDescription(latestNumOtherCardsInHand >= CARD_THRESHOLD);
+    }
+  }
+
+  public int getNumOtherCardsInHand() {
+    return AbstractDungeon.player.hand.group.stream().filter(c -> c != this).collect(Collectors.toList()).size();
+  }
 
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);

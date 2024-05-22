@@ -408,7 +408,7 @@
 
   "TheSimpletonMod:Spoilage": {
     "NAME": "Spoilage",
-    "DESCRIPTION": "Unplayable. NL At end of turn, put this card on top of your draw pile if you played !M! or more cards this turn.",
+    "DESCRIPTION": "Unplayable. NL At end of turn, if you have !M! or more other cards in hand, put this card on top of your draw pile.",
     "EXTENDED_DESCRIPTION" : [ " NL (Will trigger this turn)."]
   },
 

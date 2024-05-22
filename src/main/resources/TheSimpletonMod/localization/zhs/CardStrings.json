@@ -224,7 +224,10 @@
 
   "TheSimpletonMod:IceCube": {
     "NAME": "冰块",
-    "DESCRIPTION": "保留 。NL 每当这张牌被 保留 时，将其在本场战斗的耗能减少1。消耗 。"
+    "DESCRIPTION": "保留 。NL 在 !M! 回合结束后，这会失去 保留 并获得 虚无。",
+    "EXTENDED_DESCRIPTION": [
+      " 虚无 。"
+    ]
   },
 
   "TheSimpletonMod:Innovate": {
@@ -264,7 +267,7 @@
 
   "TheSimpletonMod:Frostbite": {
     "NAME": "冻疮",
-    "DESCRIPTION": "无法打字。 NL 在手牌中时，每当 打出非状态牌 一 张牌时，增加一张 *冰块 到你的手牌。"
+    "DESCRIPTION": "无法打字。 NL 当你抽到这张牌时，将一张 *冰块 加入你的手牌。"
   },
 
   "TheSimpletonMod:OnionBloom": {
@@ -405,7 +408,7 @@
 
   "TheSimpletonMod:Spoilage": {
     "NAME": "腐坏",
-    "DESCRIPTION": "无法打出。 NL 如你在此轮中打出了不少于 !M! 张牌，在回合末将此卡置入抽牌堆顶层。",
+    "DESCRIPTION": "无法打出。 NL 你的回合结束时，如果你手上有三张或更多其他牌, 则将这张牌置于抽牌堆顶部。",
     "EXTENDED_DESCRIPTION" : [ " NL (会激活)。"]
   },
 

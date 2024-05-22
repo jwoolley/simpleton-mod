@@ -88,7 +88,7 @@ public class Pruning extends AbstractDynamicCropOrbHighlighterCard implements Ha
     if (extendedDescription) {
       if (AbstractCropOrb.playerHasAnyCropOrbs()) {
         AbstractCropOrb cropOrb =  AbstractCropOrb.getOldestCropOrb();
-        TheSimpletonMod.traceLogger.trace("Pruning::getDescription: using dynamic description. Crop: " + cropOrb.name);
+        // TheSimpletonMod.traceLogger.trace("Pruning::getDescription: using dynamic description. Crop: " + cropOrb.name);
         description += EXTENDED_DESCRIPTION[4] +  cropOrb.name + EXTENDED_DESCRIPTION[5];
       } else {
         description += EXTENDED_DESCRIPTION[3];

@@ -3,6 +3,7 @@ package thesimpleton.ui.buttons;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.ui.buttons.Button;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
@@ -36,6 +37,9 @@ abstract public class CustomButton extends Button {
     super(x, y, getImg(TheSimpletonMod.getImageResourcePath(getUiPath(buttonId))));
     this.scale = scale;
     this.imgForScale = tempImg;
+
+    // override the hb created in superconstructor since it doesn't account for scale
+    this.hb = new Hitbox(x, y, ((float)this.imgForScale.getWidth()) * scale, ((float)this.imgForScale.getHeight()) * scale);
     tempImg = null;
   }
 

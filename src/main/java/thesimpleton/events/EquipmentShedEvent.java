@@ -51,7 +51,7 @@ public class EquipmentShedEvent extends CustomSimpletonEvent
   private final int damage;
   private EventState state;
 
-  private final int BASE_CURSE_CHANCE_PERCENTAGE = 33;
+  private final int BASE_CURSE_CHANCE_PERCENTAGE = 50;
 
   public EquipmentShedEvent() {
     super(NAME, DESCRIPTIONS[0],  TheSimpletonMod.getImageResourcePath(IMG_PATH));

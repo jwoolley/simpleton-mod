@@ -75,8 +75,27 @@ public class GetCardPoolPatchBefore {
         logger.trace("GetCardPoolPatchBefore :: Didn't add any seasonal crop cards to pool; season not initialized. Calling static method TheSimpletonMod.setSeasonalCropCards");
         DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "GetCardPoolPatchBefore :: Didn't add any seasonal crop cards to pool; season not initialized. Calling static method TheSimpletonMod.setSeasonalCropCards()");
 
-        TheSimpletonMod.setSeasonalCropCards(tmpPool
+
+        List<AbstractCropPowerCard> seasonalCropCardsToAdd = new ArrayList<>();
+        seasonalCropCardsToAdd.addAll(TheSimpletonMod.getSeasonInfo().getCropsInSeason().stream().map(crop -> crop.getCropInfo().powerCard).collect(Collectors.toList()));
+        // this shouldn't be needed, but I'm just adding it anyway because testing is hard
+        seasonalCropCardsToAdd.addAll(tmpPool
             .stream().filter(c -> c instanceof AbstractCropPowerCard).map(c -> (AbstractCropPowerCard)c).collect(Collectors.toList()));
+
+        List<AbstractCropPowerCard> uniqueSeasonalCropCardsToAdd = new ArrayList<>();
+        seasonalCropCardsToAdd.forEach(cropCard -> {
+          if (!uniqueSeasonalCropCardsToAdd.stream().anyMatch(card -> card.cardID == cropCard.cardID)) {
+            uniqueSeasonalCropCardsToAdd.add(cropCard);
+          } else {
+            logger.trace("Skipping duplicate seasonal crop card: " + cropCard.cardID);
+          }
+        });
+        logger.trace("Setting finalized seasonal crop cards from save: "
+          + uniqueSeasonalCropCardsToAdd.stream().filter(c -> c instanceof  AbstractCropPowerCard).map(c -> c.name)
+                .collect(Collectors.joining(", ")));
+
+
+        TheSimpletonMod.setSeasonalCropCards(uniqueSeasonalCropCardsToAdd);
       }
 
       DebugLoggers.LEAKY_CURSES_LOGGER.log(GetCardPoolPatchBefore.class, "Adding seasonal crop and curse cards");

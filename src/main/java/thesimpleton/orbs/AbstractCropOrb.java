@@ -263,13 +263,20 @@ public abstract class AbstractCropOrb extends CustomOrb {
     float ARROW_OFFSET_X = -CROP_ORB_WIDTH / 5.0F;
     float ARROW_OFFSET_Y = 32.0F;
 
-    float INDICATOR_DOT_WIDTH = 12.0F;
-    float INDICATOR_DOT_HEIGHT = 12.0F;
 
-    float INDICATOR_DOT_FIXED_OFFSET_X = -CROP_ORB_WIDTH / 6.0F * Settings.scale;
-    float INDICATOR_DOT_FIXED_OFFSET_Y =  CROP_ORB_HEIGHT / 9.0F * Settings.scale;
+    if (CropOrbHelper.hasHoveredOrb() && (this.getAmount() > 0 || this.passiveAmount > 0)) {
+      float INDICATOR_DOT_WIDTH = 12.0F;
+      float INDICATOR_DOT_HEIGHT = 12.0F;
 
-    if (this.getAmount() > 0 || this.passiveAmount > 0) {
+      float INDICATOR_DOT_FIXED_OFFSET_X = -CROP_ORB_WIDTH / 6.0F * Settings.scale;
+      float INDICATOR_DOT_FIXED_OFFSET_Y =  CROP_ORB_HEIGHT / 10.0F * Settings.scale;
+
+      boolean hasHoveredOrb = AbstractDungeon.player != null
+                && AbstractDungeon.player.orbs.size() > 0
+                && AbstractDungeon.player.orbs.stream().anyMatch(orb -> orb.hb.hovered);
+
+      ORB_LOGGER.log("Orb: " + this.name + ", amount: " + this.getAmount() + ", passiveAmount: " + this.passiveAmount + "]");
+
       Texture indicatorDotEmpty = this.getIndicatorDotEmpty();
       Texture indicatorDotFull = this.getIndicatorDotFull();
       float yOffset = indicatorDotFull.getHeight() + INDICATOR_DOT_FIXED_OFFSET_Y;
@@ -281,8 +288,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
         Texture indicatorDotImage = i < this.getAmount() ? indicatorDotFull : indicatorDotEmpty;
 
-        ORB_LOGGER.log("drawing " + ( i < this.getAmount() ? "full" : "empty") + " indicator dot at " + xOffset + ", " + yOffset + " (scale: " + Settings.scale + ")");
-
+        // ORB_LOGGER.log("drawing " + ( i < this.getAmount() ? "full" : "empty") + " indicator dot at " + xOffset + ", " + yOffset + " (scale: " + Settings.scale + ")");
         sb.draw(indicatorDotImage,
                 this.cX - origin_X + xOffset,
                 this.cY - origin_Y + yOffset + this.bobEffect.y / 2.0F,

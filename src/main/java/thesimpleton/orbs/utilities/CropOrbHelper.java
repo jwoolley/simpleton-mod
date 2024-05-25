@@ -1,5 +1,7 @@
 package thesimpleton.orbs.utilities;
 
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import thesimpleton.orbs.AbstractCropOrb;
 
 public class CropOrbHelper {
@@ -19,5 +21,11 @@ public class CropOrbHelper {
 
   public static void clearHighlightedOrb() {
     highlightedOrb = null;
+  }
+
+  public static boolean hasHoveredOrb() {
+    return AbstractDungeon.player != null
+            && AbstractDungeon.player.orbs.size() > 0
+            && AbstractDungeon.player.orbs.stream().anyMatch(orb -> orb.hb.hovered);
   }
 }

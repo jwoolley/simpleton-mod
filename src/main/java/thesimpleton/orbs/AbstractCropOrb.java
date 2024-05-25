@@ -263,23 +263,25 @@ public abstract class AbstractCropOrb extends CustomOrb {
     float ARROW_OFFSET_X = -CROP_ORB_WIDTH / 5.0F;
     float ARROW_OFFSET_Y = 32.0F;
 
-    float INDICATOR_DOT_WIDTH = 20.0F;
-    float INDICATOR_DOT_HEIGHT = 20.0F;
+    float INDICATOR_DOT_WIDTH = 12.0F;
+    float INDICATOR_DOT_HEIGHT = 12.0F;
 
-    ORB_LOGGER.log("render() called for " + this.name
-            + ". amount: " + this.getAmount() + ", passiveAmount: " + passiveAmount
-            + ", maturityThreshold: " + this.getCrop().getMaturityThreshold());
+    float INDICATOR_DOT_FIXED_OFFSET_X = -CROP_ORB_WIDTH / 6.0F * Settings.scale;
+    float INDICATOR_DOT_FIXED_OFFSET_Y =  CROP_ORB_HEIGHT / 9.0F * Settings.scale;
+
     if (this.getAmount() > 0 || this.passiveAmount > 0) {
       Texture indicatorDotEmpty = this.getIndicatorDotEmpty();
       Texture indicatorDotFull = this.getIndicatorDotFull();
-      float yOffset = indicatorDotFull.getHeight();
+      float yOffset = indicatorDotFull.getHeight() + INDICATOR_DOT_FIXED_OFFSET_Y;
+      int maturityThreshold = this.getCrop().getMaturityThreshold();
+      float midpointIndex = ((float)(maturityThreshold - 1.0F)/ 2.0F);
 
       for (int i = 0; i < this.getCrop().getMaturityThreshold(); i++) {
-        float xOffset = indicatorDotFull.getWidth() * i;
+        float xOffset = CROP_ORB_WIDTH / 2 + indicatorDotFull.getWidth() * (i - midpointIndex - 0.5F) + INDICATOR_DOT_FIXED_OFFSET_X;
 
         Texture indicatorDotImage = i < this.getAmount() ? indicatorDotFull : indicatorDotEmpty;
 
-        ORB_LOGGER.log("drawing " + ( i < this.getAmount() ? "full" : "empty") + " indicator dot at " + xOffset + ", " + yOffset);
+        ORB_LOGGER.log("drawing " + ( i < this.getAmount() ? "full" : "empty") + " indicator dot at " + xOffset + ", " + yOffset + " (scale: " + Settings.scale + ")");
 
         sb.draw(indicatorDotImage,
                 this.cX - origin_X + xOffset,

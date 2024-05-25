@@ -42,7 +42,8 @@ public abstract class AbstractCropOrb extends CustomOrb {
   public static final String INDICATOR_ARROW_IMG_FILENAME = "arrow-indicator";
   public static final String INDICATOR_DOT_EMPTY_IMG_FILENAME = "indicator-dot-empty";
   public static final String INDICATOR_DOT_FULL_IMG_FILENAME = "indicator-dot-full";
-  
+  public static final String INDICATOR_DOT_GLOWING_IMG_FILENAME = "indicator-dot-glowing";
+
   float CROP_ORB_WIDTH = 128.0F;
   float CROP_ORB_HEIGHT = 128.0F;
   float ARROW_INDICATOR_WIDTH = 48.0F;
@@ -50,6 +51,8 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
   float INDICATOR_DOT_WIDTH = 10.0F;
   float INDICATOR_DOT_HEIGHT = 10.0F;
+  float INDICATOR_GLOWING_DOT_WIDTH = 10.0F;
+  float INDICATOR_GLOWING_DOT_HEIGHT = 10.0F;
 
   float INDICATOR_DOT_FIXED_OFFSET_X = -CROP_ORB_WIDTH / 6.0F * Settings.scale;
   float INDICATOR_DOT_FIXED_OFFSET_Y =  CROP_ORB_HEIGHT / 8.5F * Settings.scale;
@@ -68,10 +71,12 @@ public abstract class AbstractCropOrb extends CustomOrb {
   private String indicatorArrowImageFilename;
   private String indicatorDotEmptyImageFilename;
   private String indicatorDotFullImageFilename;
+  private String indicatorDotGlowingImageFilename;
 
   private Texture indicatorArrowImage;
   private Texture indicatorDotEmptyImage;
   private Texture indicatorDotFullImage;
+  private Texture indicatorDotGlowingImage;
 
 
   private final int stackAmountOnShuffle;
@@ -87,6 +92,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
     this.indicatorArrowImageFilename = INDICATOR_ARROW_IMG_FILENAME;
     this.indicatorDotEmptyImageFilename = INDICATOR_DOT_EMPTY_IMG_FILENAME;
     this.indicatorDotFullImageFilename = INDICATOR_DOT_FULL_IMG_FILENAME;
+    this.indicatorDotGlowingImageFilename = INDICATOR_DOT_GLOWING_IMG_FILENAME;
     this.stackAmountOnShuffle = STACK_AMOUNT_ON_SHUFFLE;
   }
 
@@ -122,6 +128,13 @@ public abstract class AbstractCropOrb extends CustomOrb {
       indicatorDotFullImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(getUiPath(indicatorDotFullImageFilename)));
     }
     return indicatorDotFullImage;
+  }
+
+  private Texture getIndicatorDotGlowing() {
+    if (this.indicatorDotGlowingImage == null) {
+      indicatorDotGlowingImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(getUiPath(indicatorDotGlowingImageFilename)));
+    }
+    return indicatorDotGlowingImage;
   }
 
 
@@ -268,35 +281,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
     float ARROW_OFFSET_X = -CROP_ORB_WIDTH / 5.0F;
     float ARROW_OFFSET_Y = 32.0F;
 
-
-    if (CropOrbHelper.hasHoveredOrb() && (this.getAmount() > 0 || this.passiveAmount > 0)) {
-
-      Texture indicatorDotEmpty = this.getIndicatorDotEmpty();
-      Texture indicatorDotFull = this.getIndicatorDotFull();
-      float yOffset = indicatorDotFull.getHeight() + INDICATOR_DOT_FIXED_OFFSET_Y;
-      int maturityThreshold = this.getCrop().getMaturityThreshold();
-      float midpointIndex = (maturityThreshold - 1.0F)/ 2.0F;
-
-      for (int i = 0; i < this.getCrop().getMaturityThreshold(); i++) {
-        float xOffset = CROP_ORB_WIDTH / 2 + indicatorDotFull.getWidth() * (i - midpointIndex - 0.5F) + INDICATOR_DOT_FIXED_OFFSET_X;
-
-        Texture indicatorDotImage = i < this.getAmount() ? indicatorDotFull : indicatorDotEmpty;
-
-        sb.draw(indicatorDotImage,
-                this.cX - origin_X + xOffset,
-                this.cY - origin_Y + yOffset + this.bobEffect.y / 2.0F,
-                origin_X, origin_Y,
-                indicatorDotImage.getWidth(),
-                indicatorDotImage.getHeight(),
-                this.scale,
-                this.scale,
-                0.0F, 0, 0,
-                (int) INDICATOR_DOT_WIDTH, (int) INDICATOR_DOT_HEIGHT,
-                false, false);
-
-      }
-    }
-
+    // Show halo outline around mature crops
     if (this.isMature(true)) {
       // TODO: when stacks > maturity level, replace with flash image + add sound effect for those few frames
       //      final Color overplantFilterColor = Color.LIME;
@@ -316,6 +301,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
       this.c = CROP_STACK_COUNT_FONT_COLOR;
     }
 
+    // Show arrow indicator for card-specific crop interactions (when the card is selected)
     Color highlightFilterColor = Color.GOLD.cpy();
     if (CropOrbHelper.hasHighlightedOrb()) {
       if (CropOrbHelper.getHighlightedOrb().name == this.name) {
@@ -338,6 +324,48 @@ public abstract class AbstractCropOrb extends CustomOrb {
       }
     } else {
       this.c = filterColor;
+    }
+
+    // Show crop amount indicator pips if any player is hovering over any orb
+    if (CropOrbHelper.hasHoveredOrb() && (this.getAmount() > 0 || this.passiveAmount > 0)) {
+      Texture indicatorDotEmpty = this.getIndicatorDotEmpty();
+      Texture indicatorDotFull = this.getIndicatorDotFull();
+      Texture indicatorDotGlowing = this.getIndicatorDotGlowing();
+      int maturityThreshold = this.getCrop().getMaturityThreshold();
+      float midpointIndex = (maturityThreshold - 1.0F)/ 2.0F;
+
+      for (int i = 0; i < maturityThreshold; i++) {
+        float xOffset = CROP_ORB_WIDTH / 2 + indicatorDotFull.getWidth() * (i - midpointIndex - 0.5F) + INDICATOR_DOT_FIXED_OFFSET_X;
+        float yOffset = indicatorDotFull.getHeight() + INDICATOR_DOT_FIXED_OFFSET_Y;
+
+        boolean isMatureDot = i == maturityThreshold - 1 && i == getAmount() - 1;
+
+        Texture indicatorDotImage = isMatureDot
+                          ? indicatorDotGlowing
+                      : (i < this.getAmount() ? indicatorDotFull : indicatorDotEmpty);
+
+        if (isMatureDot) {
+          xOffset -= (indicatorDotGlowing.getWidth() - indicatorDotFull.getWidth()) / 2.0F;
+          yOffset -= (indicatorDotGlowing.getHeight() - indicatorDotFull.getHeight()) / 2.0F;
+          float dX = (indicatorDotGlowing.getWidth() - indicatorDotFull.getWidth()) / 2.0F;
+          float dY = (indicatorDotGlowing.getWidth() - indicatorDotFull.getWidth()) / 2.0F;
+          ORB_LOGGER.log("xOffset: " + xOffset + ", yOffset: " + -yOffset + " dX: " + dX + ", dY: " + dY);
+        }
+
+        ORB_LOGGER.log("drawing " + ( i < this.getAmount() ? "full" : "empty") + " (" + this.name + ") indicator dot at " + xOffset + ", " + yOffset + " (scale: " + Settings.scale + ")");
+
+        sb.draw(indicatorDotImage,
+                this.cX - origin_X + xOffset,
+                this.cY - origin_Y + yOffset + this.bobEffect.y / 2.0F,
+                origin_X, origin_Y,
+                indicatorDotImage.getWidth(),
+                indicatorDotImage.getHeight(),
+                this.scale,
+                this.scale,
+                0.0F, 0, 0,
+                indicatorDotImage.getWidth(), indicatorDotImage.getHeight(),
+                false, false);
+      }
     }
   }
 

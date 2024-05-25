@@ -40,6 +40,9 @@ public abstract class AbstractCropOrb extends CustomOrb {
   private final static Color MATURE_CROP_STACK_COUNT_FONT_COLOR = Color.YELLOW; // new Color(250.0F, 255.0F, 190.0F, 1.0F); //Color.YELLOW;
 
   public static final String INDICATOR_ARROW_IMG_FILENAME = "arrow-indicator";
+  public static final String INDICATOR_DOT_EMPTY_IMG_FILENAME = "indicator-dot-empty";
+  public static final String INDICATOR_DOT_FULL_IMG_FILENAME = "indicator-dot-full";
+
 
   float CROP_ORB_WIDTH = 128.0F;
   float CROP_ORB_HEIGHT = 128.0F;
@@ -58,8 +61,12 @@ public abstract class AbstractCropOrb extends CustomOrb {
   private String haloImageFilename;
   private String targetHaloImageFilename;
   private String indicatorArrowImageFilename;
+  private String indicatorDotEmptyImageFilename;
+  private String indicatorDotFullImageFilename;
 
   private Texture indicatorArrowImage;
+  private Texture indicatorDotEmptyImage;
+  private Texture indicatorDotFullImage;
 
 
   private final int stackAmountOnShuffle;
@@ -73,6 +80,8 @@ public abstract class AbstractCropOrb extends CustomOrb {
     this.haloImageFilename = haloImgFilename;
     this.targetHaloImageFilename = targetHaloImgFilename;
     this.indicatorArrowImageFilename = INDICATOR_ARROW_IMG_FILENAME;
+    this.indicatorDotEmptyImageFilename = INDICATOR_DOT_EMPTY_IMG_FILENAME;
+    this.indicatorDotFullImageFilename = INDICATOR_DOT_FULL_IMG_FILENAME;
     this.stackAmountOnShuffle = STACK_AMOUNT_ON_SHUFFLE;
   }
 
@@ -94,6 +103,20 @@ public abstract class AbstractCropOrb extends CustomOrb {
       indicatorArrowImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(getUiPath(indicatorArrowImageFilename)));
     }
     return indicatorArrowImage;
+  }
+
+  private Texture getIndicatorDotEmpty() {
+    if (this.indicatorDotEmptyImage == null) {
+      indicatorDotEmptyImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(getUiPath(indicatorDotEmptyImageFilename)));
+    }
+    return indicatorDotEmptyImage;
+  }
+
+  private Texture getIndicatorDotFull() {
+    if (this.indicatorDotFullImage == null) {
+      indicatorDotFullImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(getUiPath(indicatorDotFullImageFilename)));
+    }
+    return indicatorDotFullImage;
   }
 
 
@@ -239,6 +262,39 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
     float ARROW_OFFSET_X = -CROP_ORB_WIDTH / 5.0F;
     float ARROW_OFFSET_Y = 32.0F;
+
+    float INDICATOR_DOT_WIDTH = 20.0F;
+    float INDICATOR_DOT_HEIGHT = 20.0F;
+
+    ORB_LOGGER.log("render() called for " + this.name
+            + ". amount: " + this.getAmount() + ", passiveAmount: " + passiveAmount
+            + ", maturityThreshold: " + this.getCrop().getMaturityThreshold());
+    if (this.getAmount() > 0 || this.passiveAmount > 0) {
+      Texture indicatorDotEmpty = this.getIndicatorDotEmpty();
+      Texture indicatorDotFull = this.getIndicatorDotFull();
+      float yOffset = indicatorDotFull.getHeight();
+
+      for (int i = 0; i < this.getCrop().getMaturityThreshold(); i++) {
+        float xOffset = indicatorDotFull.getWidth() * i;
+
+        Texture indicatorDotImage = i < this.getAmount() ? indicatorDotFull : indicatorDotEmpty;
+
+        ORB_LOGGER.log("drawing " + ( i < this.getAmount() ? "full" : "empty") + " indicator dot at " + xOffset + ", " + yOffset);
+
+        sb.draw(indicatorDotImage,
+                this.cX - origin_X + xOffset,
+                this.cY - origin_Y + yOffset + this.bobEffect.y / 2.0F,
+                origin_X, origin_Y,
+                indicatorDotImage.getWidth(),   // INDICATOR_DOT_WIDTH, // indicatorDotImage.getWidth(),    // see if getWidth() works here
+                indicatorDotImage.getHeight(),   //INDICATOR_DOT_HEIGHT, // indicatorDotImage.getHeight(),  // see if getHeight() works here
+                this.scale,
+                this.scale,
+                0.0F, 0, 0,
+                (int) INDICATOR_DOT_WIDTH, (int) INDICATOR_DOT_HEIGHT,
+                false, false);
+
+      }
+    }
 
     if (this.isMature(true)) {
       // TODO: when stacks > maturity level, replace with flash image + add sound effect for those few frames

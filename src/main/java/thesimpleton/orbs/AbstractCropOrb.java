@@ -42,12 +42,17 @@ public abstract class AbstractCropOrb extends CustomOrb {
   public static final String INDICATOR_ARROW_IMG_FILENAME = "arrow-indicator";
   public static final String INDICATOR_DOT_EMPTY_IMG_FILENAME = "indicator-dot-empty";
   public static final String INDICATOR_DOT_FULL_IMG_FILENAME = "indicator-dot-full";
-
-
+  
   float CROP_ORB_WIDTH = 128.0F;
   float CROP_ORB_HEIGHT = 128.0F;
   float ARROW_INDICATOR_WIDTH = 48.0F;
   float ARROW_INDICATOR_HEIGHT = 48.0F;
+
+  float INDICATOR_DOT_WIDTH = 10.0F;
+  float INDICATOR_DOT_HEIGHT = 10.0F;
+
+  float INDICATOR_DOT_FIXED_OFFSET_X = -CROP_ORB_WIDTH / 6.0F * Settings.scale;
+  float INDICATOR_DOT_FIXED_OFFSET_Y =  CROP_ORB_HEIGHT / 8.5F * Settings.scale;
 
   private static final float TOOLTIP_X_OFFSET = 80.0F;
   private static final float TOOLTIP_Y_OFFSET = -48.0F;
@@ -265,36 +270,24 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
 
     if (CropOrbHelper.hasHoveredOrb() && (this.getAmount() > 0 || this.passiveAmount > 0)) {
-      float INDICATOR_DOT_WIDTH = 12.0F;
-      float INDICATOR_DOT_HEIGHT = 12.0F;
-
-      float INDICATOR_DOT_FIXED_OFFSET_X = -CROP_ORB_WIDTH / 6.0F * Settings.scale;
-      float INDICATOR_DOT_FIXED_OFFSET_Y =  CROP_ORB_HEIGHT / 10.0F * Settings.scale;
-
-      boolean hasHoveredOrb = AbstractDungeon.player != null
-                && AbstractDungeon.player.orbs.size() > 0
-                && AbstractDungeon.player.orbs.stream().anyMatch(orb -> orb.hb.hovered);
-
-      ORB_LOGGER.log("Orb: " + this.name + ", amount: " + this.getAmount() + ", passiveAmount: " + this.passiveAmount + "]");
 
       Texture indicatorDotEmpty = this.getIndicatorDotEmpty();
       Texture indicatorDotFull = this.getIndicatorDotFull();
       float yOffset = indicatorDotFull.getHeight() + INDICATOR_DOT_FIXED_OFFSET_Y;
       int maturityThreshold = this.getCrop().getMaturityThreshold();
-      float midpointIndex = ((float)(maturityThreshold - 1.0F)/ 2.0F);
+      float midpointIndex = (maturityThreshold - 1.0F)/ 2.0F;
 
       for (int i = 0; i < this.getCrop().getMaturityThreshold(); i++) {
         float xOffset = CROP_ORB_WIDTH / 2 + indicatorDotFull.getWidth() * (i - midpointIndex - 0.5F) + INDICATOR_DOT_FIXED_OFFSET_X;
 
         Texture indicatorDotImage = i < this.getAmount() ? indicatorDotFull : indicatorDotEmpty;
 
-        // ORB_LOGGER.log("drawing " + ( i < this.getAmount() ? "full" : "empty") + " indicator dot at " + xOffset + ", " + yOffset + " (scale: " + Settings.scale + ")");
         sb.draw(indicatorDotImage,
                 this.cX - origin_X + xOffset,
                 this.cY - origin_Y + yOffset + this.bobEffect.y / 2.0F,
                 origin_X, origin_Y,
-                indicatorDotImage.getWidth(),   // INDICATOR_DOT_WIDTH, // indicatorDotImage.getWidth(),    // see if getWidth() works here
-                indicatorDotImage.getHeight(),   //INDICATOR_DOT_HEIGHT, // indicatorDotImage.getHeight(),  // see if getHeight() works here
+                indicatorDotImage.getWidth(),
+                indicatorDotImage.getHeight(),
                 this.scale,
                 this.scale,
                 0.0F, 0, 0,

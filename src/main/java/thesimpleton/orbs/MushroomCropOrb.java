@@ -17,13 +17,16 @@ public class MushroomCropOrb extends AbstractCropOrb {
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
 
+  private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 40.0F;
+  private static final float ORB_IMAGE_BOTTOM_EDGE = 72.0F;
+
   public MushroomCropOrb() {
     this(0);
   }
 
   public MushroomCropOrb(int amount) {
     super(CROP_ENUM, ORB_ID, NAME, amount, Crop.MUSHROOMS.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
-        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH);
+        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH, ORB_IMAGE_HORIZONTAL_MIDPOINT, ORB_IMAGE_BOTTOM_EDGE);
   }
 
   @Override

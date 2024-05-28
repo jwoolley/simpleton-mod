@@ -3,8 +3,6 @@ package thesimpleton.orbs;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import thesimpleton.TheSimpletonMod;
-import thesimpleton.crops.PotatoCrop;
 import thesimpleton.crops.Crop;
 
 import java.util.Arrays;
@@ -18,9 +16,12 @@ public class PotatoCropOrb extends AbstractCropOrb {
     public static final String TARGET_HALO_IMG_PATH = "orbpotato_target_halo";
     public static final List<String> KEYWORD_LIST = Arrays.asList("TheSimpletonMod:SpudKeyword");
 
-  private static final OrbStrings orbStrings;
+    private static final OrbStrings orbStrings;
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
+
+    private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 40.0F;
+    private static final float ORB_IMAGE_BOTTOM_EDGE = 86.0F;
 
     public PotatoCropOrb() {
         this(0);
@@ -28,7 +29,7 @@ public class PotatoCropOrb extends AbstractCropOrb {
 
     public PotatoCropOrb(int amount) {
         super(CROP_ENUM, ORB_ID, NAME, amount, Crop.POTATOES.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
-            IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH);
+            IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH, ORB_IMAGE_HORIZONTAL_MIDPOINT, ORB_IMAGE_BOTTOM_EDGE);
     }
 
     @Override

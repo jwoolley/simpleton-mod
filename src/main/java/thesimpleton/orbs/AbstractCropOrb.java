@@ -40,11 +40,19 @@ public abstract class AbstractCropOrb extends CustomOrb {
   private final static Color MATURE_CROP_STACK_COUNT_FONT_COLOR = Color.YELLOW; // new Color(250.0F, 255.0F, 190.0F, 1.0F); //Color.YELLOW;
 
   public static final String INDICATOR_ARROW_IMG_FILENAME = "arrow-indicator";
+  public static final String INDICATOR_DOT_EMPTY_IMG_FILENAME = "indicator-dot-empty";
+  public static final String INDICATOR_DOT_FULL_IMG_FILENAME = "indicator-dot-full";
 
-  float CROP_ORB_WIDTH = 128.0F;
-  float CROP_ORB_HEIGHT = 128.0F;
-  float ARROW_INDICATOR_WIDTH = 48.0F;
-  float ARROW_INDICATOR_HEIGHT = 48.0F;
+  private static final float CROP_ORB_WIDTH = 128.0F;
+  private static final float CROP_ORB_HEIGHT = 128.0F;
+  private static final float ARROW_INDICATOR_WIDTH = 48.0F;
+  private static final float ARROW_INDICATOR_HEIGHT = 48.0F;
+
+  static final float INDICATOR_DOT_WIDTH = 10.0F;
+  static final float INDICATOR_DOT_HEIGHT = 10.0F;
+
+  float INDICATOR_DOT_FIXED_OFFSET_X = -CROP_ORB_WIDTH / 6.0F * Settings.scale;
+  float INDICATOR_DOT_FIXED_OFFSET_Y =  CROP_ORB_HEIGHT / 8.5F * Settings.scale;
 
   private static final float TOOLTIP_X_OFFSET = 80.0F;
   private static final float TOOLTIP_Y_OFFSET = -48.0F;
@@ -58,22 +66,38 @@ public abstract class AbstractCropOrb extends CustomOrb {
   private String haloImageFilename;
   private String targetHaloImageFilename;
   private String indicatorArrowImageFilename;
+  private String indicatorDotEmptyImageFilename;
+  private String indicatorDotFullImageFilename;
 
   private Texture indicatorArrowImage;
+  private Texture indicatorDotEmptyImage;
+  private Texture indicatorDotFullImage;
 
 
   private final int stackAmountOnShuffle;
 
+  private final float orbImgHorizontalMidpoint_X;
+  private final float orbImgBottomEdge_Y;
+
   // TODO: separate CropOrbType (which has e.g. harvest info and description data) from CropOrb (which has stack count)
 
   public AbstractCropOrb(Crop crop, String ID, String NAME, int amount, int maturityThreshold, String description, String imgPath, String haloImgFilename, String targetHaloImgFilename) {
+    this(crop, ID, NAME, amount, maturityThreshold, description, imgPath, haloImgFilename, targetHaloImgFilename, CROP_ORB_WIDTH/2.0F, CROP_ORB_HEIGHT/2.0F);
+  }
+
+  public AbstractCropOrb(Crop crop, String ID, String NAME, int amount, int maturityThreshold, String description, String imgPath,
+                         String haloImgFilename, String targetHaloImgFilename, float orbImgHorizontalMidpoint, float orbImageBottomEdge) {
     super(ID, NAME, amount, maturityThreshold, description, "", TheSimpletonMod.getImageResourcePath(getUiPath(imgPath)));
     this.crop = crop;
     this.basePassiveAmount = this.passiveAmount = amount;
     this.haloImageFilename = haloImgFilename;
     this.targetHaloImageFilename = targetHaloImgFilename;
     this.indicatorArrowImageFilename = INDICATOR_ARROW_IMG_FILENAME;
+    this.indicatorDotEmptyImageFilename = INDICATOR_DOT_EMPTY_IMG_FILENAME;
+    this.indicatorDotFullImageFilename = INDICATOR_DOT_FULL_IMG_FILENAME;
     this.stackAmountOnShuffle = STACK_AMOUNT_ON_SHUFFLE;
+    this.orbImgHorizontalMidpoint_X = orbImgHorizontalMidpoint;
+    this.orbImgBottomEdge_Y = orbImageBottomEdge;
   }
 
   private Texture getHaloImage() {
@@ -94,6 +118,20 @@ public abstract class AbstractCropOrb extends CustomOrb {
       indicatorArrowImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(getUiPath(indicatorArrowImageFilename)));
     }
     return indicatorArrowImage;
+  }
+
+  private Texture getIndicatorDotEmpty() {
+    if (this.indicatorDotEmptyImage == null) {
+      indicatorDotEmptyImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(getUiPath(indicatorDotEmptyImageFilename)));
+    }
+    return indicatorDotEmptyImage;
+  }
+
+  private Texture getIndicatorDotFull() {
+    if (this.indicatorDotFullImage == null) {
+      indicatorDotFullImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(getUiPath(indicatorDotFullImageFilename)));
+    }
+    return indicatorDotFullImage;
   }
 
 
@@ -239,6 +277,35 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
     float ARROW_OFFSET_X = -CROP_ORB_WIDTH / 5.0F;
     float ARROW_OFFSET_Y = 32.0F;
+
+
+    if (CropOrbHelper.hasHoveredOrb() && (this.getAmount() > 0 || this.passiveAmount > 0)) {
+
+      Texture indicatorDotEmpty = this.getIndicatorDotEmpty();
+      Texture indicatorDotFull = this.getIndicatorDotFull();
+      int maturityThreshold = this.getCrop().getMaturityThreshold();
+      float midpointIndex = (maturityThreshold - 1.0F)/ 2.0F;
+
+      for (int i = 0; i < this.getCrop().getMaturityThreshold(); i++) {
+        float xOffset = (orbImgHorizontalMidpoint_X + indicatorDotFull.getWidth() * (i - midpointIndex - 0.5F)) * Settings.xScale;
+          float yOffset = (this.img.getHeight() - orbImgBottomEdge_Y - indicatorDotFull.getHeight() * 1.5F) * Settings.yScale;
+
+        Texture indicatorDotImage = i < this.getAmount() ? indicatorDotFull : indicatorDotEmpty;
+
+        sb.draw(indicatorDotImage,
+                this.cX - this.img.getWidth() / 2.0F + xOffset,
+                this.cY - this.img.getHeight() / 2.0F + yOffset + this.bobEffect.y / 2.0F,
+                origin_X, origin_Y,
+                indicatorDotImage.getWidth(),
+                indicatorDotImage.getHeight(),
+                this.scale,
+                this.scale,
+                0.0F, 0, 0,
+                (int) INDICATOR_DOT_WIDTH, (int) INDICATOR_DOT_HEIGHT,
+                false, false);
+
+      }
+    }
 
     if (this.isMature(true)) {
       // TODO: when stacks > maturity level, replace with flash image + add sound effect for those few frames

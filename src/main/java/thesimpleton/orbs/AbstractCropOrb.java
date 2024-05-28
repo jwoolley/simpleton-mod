@@ -76,7 +76,8 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
   private final int stackAmountOnShuffle;
 
-  private final float orbImgHorizontalMidpoint;
+  private final float orbImgHorizontalMidpoint_X;
+  private final float orbImgBottomEdge_Y;
 
   // TODO: separate CropOrbType (which has e.g. harvest info and description data) from CropOrb (which has stack count)
 
@@ -95,7 +96,8 @@ public abstract class AbstractCropOrb extends CustomOrb {
     this.indicatorDotEmptyImageFilename = INDICATOR_DOT_EMPTY_IMG_FILENAME;
     this.indicatorDotFullImageFilename = INDICATOR_DOT_FULL_IMG_FILENAME;
     this.stackAmountOnShuffle = STACK_AMOUNT_ON_SHUFFLE;
-    this.orbImgHorizontalMidpoint = orbImgHorizontalMidpoint;
+    this.orbImgHorizontalMidpoint_X = orbImgHorizontalMidpoint;
+    this.orbImgBottomEdge_Y = orbImageBottomEdge;
   }
 
   private Texture getHaloImage() {
@@ -281,18 +283,21 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
       Texture indicatorDotEmpty = this.getIndicatorDotEmpty();
       Texture indicatorDotFull = this.getIndicatorDotFull();
-      float yOffset = indicatorDotFull.getHeight() * Settings.yScale + INDICATOR_DOT_FIXED_OFFSET_Y;
       int maturityThreshold = this.getCrop().getMaturityThreshold();
       float midpointIndex = (maturityThreshold - 1.0F)/ 2.0F;
 
       for (int i = 0; i < this.getCrop().getMaturityThreshold(); i++) {
-        float xOffset = orbImgHorizontalMidpoint * Settings.xScale + indicatorDotFull.getWidth() * (i - midpointIndex - 0.5F) * Settings.xScale;
+//        float xOffset = (orbImgHorizontalMidpoint_X + indicatorDotFull.getWidth() * (i - midpointIndex - 0.5F) * Settings.xScale);
+//        float yOffset = indicatorDotFull.getHeight() * Settings.yScale + INDICATOR_DOT_FIXED_OFFSET_Y;
+
+        float xOffset = (orbImgHorizontalMidpoint_X + indicatorDotFull.getWidth() * (i - midpointIndex - 0.5F)) * Settings.xScale;
+          float yOffset = (this.img.getHeight() - orbImgBottomEdge_Y - indicatorDotFull.getHeight() * 2.0F) * Settings.yScale;
 
         Texture indicatorDotImage = i < this.getAmount() ? indicatorDotFull : indicatorDotEmpty;
 
         sb.draw(indicatorDotImage,
                 this.cX - this.img.getWidth() / 2.0F + xOffset,
-                this.cY - origin_Y + yOffset + this.bobEffect.y / 2.0F,
+                this.cY - this.img.getHeight() / 2.0F + yOffset + this.bobEffect.y / 2.0F,
                 origin_X, origin_Y,
                 indicatorDotImage.getWidth(),
                 indicatorDotImage.getHeight(),

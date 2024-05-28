@@ -4,8 +4,11 @@ import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
+import com.megacrit.cardcrawl.cards.curses.Injury;
+import com.megacrit.cardcrawl.cards.status.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -14,6 +17,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.powers.DeenergizedPower;
 import thesimpleton.powers.DrawDownPower;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Depletion extends CustomCard {
   public static final String ID = "TheSimpletonMod:Depletion";
@@ -29,13 +37,23 @@ public class Depletion extends CustomCard {
 
   private static final int COST = 0;
 
-  private static final int DEBUFF_AMOUNT = 1;
+  private static final int NUM_STATUS_CARDS = 2;
 
   public Depletion() {
     super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY,
         TARGET);
-    this.baseMagicNumber = this.magicNumber = DEBUFF_AMOUNT;
+    this.baseMagicNumber = this.magicNumber = NUM_STATUS_CARDS;
     this.exhaust = true;
+  }
+
+  private static ArrayList<AbstractCard> getStatusCardList() {
+    return new ArrayList<AbstractCard>() {{
+      add(new Burn());
+      add(new Dazed());
+      add(new Slimed());
+      add(new VoidCard());
+      add(new Wound());
+    }};
   }
 
   public void use(AbstractPlayer p, AbstractMonster m) {
@@ -44,16 +62,36 @@ public class Depletion extends CustomCard {
       if (p.hasRelic("Medical Kit")) {
         useMedicalKit(p);
       } else {
-        AbstractDungeon.actionManager.addToBottom(
-            new ApplyPowerAction(p, p, new DeenergizedPower(p, DEBUFF_AMOUNT), DEBUFF_AMOUNT));
-        AbstractDungeon.actionManager.addToBottom(
-            new ApplyPowerAction(p, p, new DrawDownPower(p, DEBUFF_AMOUNT), DEBUFF_AMOUNT));
+        List<AbstractCard> statusCards =  getRandomStatusCards(this.magicNumber);
+        statusCards.forEach(card -> AbstractDungeon.actionManager.addToBottom(
+                new MakeTempCardInDrawPileAction(card, 1, false, false)));
       }
     } else {
       this.dontTriggerOnUseCard = false;
-      AbstractDungeon.actionManager.addToTop(new MakeTempCardInDiscardAction(this.makeStatEquivalentCopy(), 1));
+
+//      List<AbstractCard> statusCards =  getRandomStatusCards(this.magicNumber);
+//      statusCards.forEach(card -> AbstractDungeon.actionManager.addToBottom(
+//              new MakeTempCardInDiscardAction(card, 1)));
+
+      AbstractDungeon.actionManager.addToBottom(
+              new MakeTempCardInDiscardAction(this.makeStatEquivalentCopy(), 1));
+
       this.exhaust = false;
     }
+  }
+
+  public static List<AbstractCard> getRandomStatusCards(int numCards) {
+    List<AbstractCard> generatedStatusCards = new ArrayList<>();
+
+    if (numCards > 0) {
+      List<AbstractCard> possibleStatusCards = getStatusCardList();
+      for (int i = 0; i < numCards; i++) {
+        Collections.shuffle(possibleStatusCards, AbstractDungeon.cardRng.random);
+        generatedStatusCards.add(possibleStatusCards.get(0));
+      }
+    }
+
+    return generatedStatusCards;
   }
 
   public void triggerWhenDrawn()

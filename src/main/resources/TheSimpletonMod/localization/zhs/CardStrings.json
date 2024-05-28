@@ -118,7 +118,7 @@
 
   "TheSimpletonMod:Depletion": {
     "NAME": "折损",
-    "DESCRIPTION": "下轮少获得 !M! 能量 并 少抽 !M! 张牌。 NL 消耗 。 NL 如回合末仍在手中，则复制一张到弃牌堆。"
+    "DESCRIPTION": "增加 !M! 张随机状态牌 到抽牌堆的顶部。 NL 消耗 。 NL 如回合末仍在手中，则复制一张到弃牌堆。"
   },
 
   "TheSimpletonMod:ErosionControl": {

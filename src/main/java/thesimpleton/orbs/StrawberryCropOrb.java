@@ -22,7 +22,7 @@ public class StrawberryCropOrb extends AbstractCropOrb {
   public static final String[] DESCRIPTIONS;
 
   private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 38.0F;
-  private static final float ORB_IMAGE_BOTTOM_EDGE = 69.0F;
+  private static final float ORB_IMAGE_BOTTOM_EDGE = 68.0F;
 
   public StrawberryCropOrb() {
     this(0);

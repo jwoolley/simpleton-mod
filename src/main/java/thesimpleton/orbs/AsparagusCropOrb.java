@@ -25,7 +25,7 @@ public class AsparagusCropOrb extends AbstractCropOrb {
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
 
-  private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 42.0F;
+  private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 38.0F;
   private static final float ORB_IMAGE_BOTTOM_EDGE = 85.0F;
 
   public AsparagusCropOrb() {

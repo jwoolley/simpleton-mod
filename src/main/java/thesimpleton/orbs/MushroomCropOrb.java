@@ -17,7 +17,7 @@ public class MushroomCropOrb extends AbstractCropOrb {
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
 
-  private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 34.0F;
+  private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 40.0F;
   private static final float ORB_IMAGE_BOTTOM_EDGE = 71.0F;
 
   public MushroomCropOrb() {

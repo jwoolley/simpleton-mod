@@ -287,11 +287,8 @@ public abstract class AbstractCropOrb extends CustomOrb {
       float midpointIndex = (maturityThreshold - 1.0F)/ 2.0F;
 
       for (int i = 0; i < this.getCrop().getMaturityThreshold(); i++) {
-//        float xOffset = (orbImgHorizontalMidpoint_X + indicatorDotFull.getWidth() * (i - midpointIndex - 0.5F) * Settings.xScale);
-//        float yOffset = indicatorDotFull.getHeight() * Settings.yScale + INDICATOR_DOT_FIXED_OFFSET_Y;
-
         float xOffset = (orbImgHorizontalMidpoint_X + indicatorDotFull.getWidth() * (i - midpointIndex - 0.5F)) * Settings.xScale;
-          float yOffset = (this.img.getHeight() - orbImgBottomEdge_Y - indicatorDotFull.getHeight() * 2.0F) * Settings.yScale;
+          float yOffset = (this.img.getHeight() - orbImgBottomEdge_Y - indicatorDotFull.getHeight() * 1.5F) * Settings.yScale;
 
         Texture indicatorDotImage = i < this.getAmount() ? indicatorDotFull : indicatorDotEmpty;
 

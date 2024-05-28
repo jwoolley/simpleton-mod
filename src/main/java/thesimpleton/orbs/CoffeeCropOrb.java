@@ -26,7 +26,7 @@ public class CoffeeCropOrb extends AbstractCropOrb {
   public static final String[] DESCRIPTIONS;
 
   private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 43.0F;
-  private static final float ORB_IMAGE_BOTTOM_EDGE = 67.0F;
+  private static final float ORB_IMAGE_BOTTOM_EDGE = 68.0F;
 
   public CoffeeCropOrb() {
     this(0);

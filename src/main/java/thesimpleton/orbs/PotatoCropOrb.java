@@ -21,7 +21,7 @@ public class PotatoCropOrb extends AbstractCropOrb {
     public static final String[] DESCRIPTIONS;
 
     private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 40.0F;
-    private static final float ORB_IMAGE_BOTTOM_EDGE = 84.0F;
+    private static final float ORB_IMAGE_BOTTOM_EDGE = 85.0F;
 
     public PotatoCropOrb() {
         this(0);

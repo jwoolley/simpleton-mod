@@ -19,7 +19,7 @@ public class CornCropOrb extends AbstractCropOrb {
   public static final String[] DESCRIPTIONS;
 
   private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 48.0F;
-  private static final float ORB_IMAGE_BOTTOM_EDGE = 92.0F;
+  private static final float ORB_IMAGE_BOTTOM_EDGE = 91.0F;
 
   public CornCropOrb() {
     this(0);

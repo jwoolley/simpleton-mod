@@ -33,8 +33,8 @@ public class ChiliCropOrb extends AbstractCropOrb {
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
 
-  private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 36.0F;
-  private static final float ORB_IMAGE_BOTTOM_EDGE = 66.0F;
+  private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 37.0F;
+  private static final float ORB_IMAGE_BOTTOM_EDGE = 67.0F;
 
   public ChiliCropOrb() {
     this(0);

@@ -23,8 +23,8 @@ public class OnionCropOrb extends AbstractCropOrb {
   private static final OrbStrings orbStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
-  private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 36.0F;
-  private static final float ORB_IMAGE_BOTTOM_EDGE = 71.0F;
+  private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 37.0F;
+  private static final float ORB_IMAGE_BOTTOM_EDGE = 72.0F;
 
   public OnionCropOrb() {
     this(0);

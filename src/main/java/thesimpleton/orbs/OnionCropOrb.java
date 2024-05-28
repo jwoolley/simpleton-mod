@@ -23,6 +23,7 @@ public class OnionCropOrb extends AbstractCropOrb {
   private static final OrbStrings orbStrings;
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
+  private static final float ORB_IMAGE_MIDPOINT = 36.0F;
 
   public OnionCropOrb() {
     this(0);
@@ -30,7 +31,7 @@ public class OnionCropOrb extends AbstractCropOrb {
 
   public OnionCropOrb(int amount) {
     super(CROP_ENUM, ORB_ID, NAME, amount, Crop.ONIONS.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
-        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH);
+        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH, ORB_IMAGE_MIDPOINT);
   }
   
   @Override

@@ -42,14 +42,14 @@ public abstract class AbstractCropOrb extends CustomOrb {
   public static final String INDICATOR_ARROW_IMG_FILENAME = "arrow-indicator";
   public static final String INDICATOR_DOT_EMPTY_IMG_FILENAME = "indicator-dot-empty";
   public static final String INDICATOR_DOT_FULL_IMG_FILENAME = "indicator-dot-full";
-  
-  float CROP_ORB_WIDTH = 128.0F;
-  float CROP_ORB_HEIGHT = 128.0F;
-  float ARROW_INDICATOR_WIDTH = 48.0F;
-  float ARROW_INDICATOR_HEIGHT = 48.0F;
 
-  float INDICATOR_DOT_WIDTH = 10.0F;
-  float INDICATOR_DOT_HEIGHT = 10.0F;
+  private static final float CROP_ORB_WIDTH = 128.0F;
+  private static final float CROP_ORB_HEIGHT = 128.0F;
+  private static final float ARROW_INDICATOR_WIDTH = 48.0F;
+  private static final float ARROW_INDICATOR_HEIGHT = 48.0F;
+
+  static final float INDICATOR_DOT_WIDTH = 10.0F;
+  static final float INDICATOR_DOT_HEIGHT = 10.0F;
 
   float INDICATOR_DOT_FIXED_OFFSET_X = -CROP_ORB_WIDTH / 6.0F * Settings.scale;
   float INDICATOR_DOT_FIXED_OFFSET_Y =  CROP_ORB_HEIGHT / 8.5F * Settings.scale;
@@ -76,9 +76,15 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
   private final int stackAmountOnShuffle;
 
+  private final float orbImageMidpoint;
+
   // TODO: separate CropOrbType (which has e.g. harvest info and description data) from CropOrb (which has stack count)
 
   public AbstractCropOrb(Crop crop, String ID, String NAME, int amount, int maturityThreshold, String description, String imgPath, String haloImgFilename, String targetHaloImgFilename) {
+    this(crop, ID, NAME, amount, maturityThreshold, description, imgPath, haloImgFilename, targetHaloImgFilename, CROP_ORB_WIDTH/2.0F);
+  }
+
+  public AbstractCropOrb(Crop crop, String ID, String NAME, int amount, int maturityThreshold, String description, String imgPath, String haloImgFilename, String targetHaloImgFilename, float orbImageMidpoint) {
     super(ID, NAME, amount, maturityThreshold, description, "", TheSimpletonMod.getImageResourcePath(getUiPath(imgPath)));
     this.crop = crop;
     this.basePassiveAmount = this.passiveAmount = amount;
@@ -88,6 +94,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
     this.indicatorDotEmptyImageFilename = INDICATOR_DOT_EMPTY_IMG_FILENAME;
     this.indicatorDotFullImageFilename = INDICATOR_DOT_FULL_IMG_FILENAME;
     this.stackAmountOnShuffle = STACK_AMOUNT_ON_SHUFFLE;
+    this.orbImageMidpoint = orbImageMidpoint;
   }
 
   private Texture getHaloImage() {
@@ -273,17 +280,17 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
       Texture indicatorDotEmpty = this.getIndicatorDotEmpty();
       Texture indicatorDotFull = this.getIndicatorDotFull();
-      float yOffset = indicatorDotFull.getHeight() + INDICATOR_DOT_FIXED_OFFSET_Y;
+      float yOffset = indicatorDotFull.getHeight() * Settings.yScale + INDICATOR_DOT_FIXED_OFFSET_Y;
       int maturityThreshold = this.getCrop().getMaturityThreshold();
       float midpointIndex = (maturityThreshold - 1.0F)/ 2.0F;
 
       for (int i = 0; i < this.getCrop().getMaturityThreshold(); i++) {
-        float xOffset = CROP_ORB_WIDTH / 2 + indicatorDotFull.getWidth() * (i - midpointIndex - 0.5F) + INDICATOR_DOT_FIXED_OFFSET_X;
+        float xOffset = orbImageMidpoint * Settings.xScale + indicatorDotFull.getWidth() * (i - midpointIndex - 0.5F) * Settings.xScale;
 
         Texture indicatorDotImage = i < this.getAmount() ? indicatorDotFull : indicatorDotEmpty;
 
         sb.draw(indicatorDotImage,
-                this.cX - origin_X + xOffset,
+                this.cX - this.img.getWidth() / 2.0F + xOffset,
                 this.cY - origin_Y + yOffset + this.bobEffect.y / 2.0F,
                 origin_X, origin_Y,
                 indicatorDotImage.getWidth(),

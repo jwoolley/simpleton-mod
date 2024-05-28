@@ -18,9 +18,11 @@ public class PotatoCropOrb extends AbstractCropOrb {
     public static final String TARGET_HALO_IMG_PATH = "orbpotato_target_halo";
     public static final List<String> KEYWORD_LIST = Arrays.asList("TheSimpletonMod:SpudKeyword");
 
-  private static final OrbStrings orbStrings;
+    private static final OrbStrings orbStrings;
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
+
+    private static final float ORB_IMAGE_MIDPOINT = 40.0F;
 
     public PotatoCropOrb() {
         this(0);
@@ -28,7 +30,7 @@ public class PotatoCropOrb extends AbstractCropOrb {
 
     public PotatoCropOrb(int amount) {
         super(CROP_ENUM, ORB_ID, NAME, amount, Crop.POTATOES.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
-            IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH);
+            IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH, ORB_IMAGE_MIDPOINT);
     }
 
     @Override

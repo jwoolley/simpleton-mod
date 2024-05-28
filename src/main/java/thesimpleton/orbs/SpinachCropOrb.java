@@ -25,7 +25,7 @@ public class SpinachCropOrb extends AbstractCropOrb {
   public static final String[] DESCRIPTIONS;
 
   private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 45.0F;
-  private static final float ORB_IMAGE_BOTTOM_EDGE = 74.0F;
+  private static final float ORB_IMAGE_BOTTOM_EDGE = 75.0F;
 
   public SpinachCropOrb() {
     this(0);

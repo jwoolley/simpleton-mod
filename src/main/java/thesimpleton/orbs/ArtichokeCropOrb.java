@@ -26,7 +26,7 @@ public class ArtichokeCropOrb extends AbstractCropOrb {
   public static final String[] DESCRIPTIONS;
 
   private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 41.0F;
-  private static final float ORB_IMAGE_BOTTOM_EDGE = 75.0F;
+  private static final float ORB_IMAGE_BOTTOM_EDGE = 76.0F;
 
   public ArtichokeCropOrb() {
     this(0);

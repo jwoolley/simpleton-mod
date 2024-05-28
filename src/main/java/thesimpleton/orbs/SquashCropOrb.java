@@ -25,7 +25,7 @@ public class SquashCropOrb extends AbstractCropOrb {
   public static final String[] DESCRIPTIONS;
 
   private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 35.0F;
-  private static final float ORB_IMAGE_BOTTOM_EDGE = 85.0F;
+  private static final float ORB_IMAGE_BOTTOM_EDGE = 86.0F;
 
   public SquashCropOrb() {
     this(0);

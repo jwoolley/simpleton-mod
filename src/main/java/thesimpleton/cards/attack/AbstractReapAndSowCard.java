@@ -29,7 +29,7 @@ public abstract class AbstractReapAndSowCard extends CustomCard {
 
   protected static final int COST = 1;
   protected static final int DAMAGE = 4;
-  protected static final int ATTACK_UPGRADE_BONUS = 2;
+  protected static final int ATTACK_UPGRADE_BONUS = 3;
   protected static final int PLANT_AMOUNT = 1;
   protected static final int UPGRADE_PLANT_AMOUNT = 1;
 

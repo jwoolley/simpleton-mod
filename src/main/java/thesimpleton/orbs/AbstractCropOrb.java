@@ -76,15 +76,16 @@ public abstract class AbstractCropOrb extends CustomOrb {
 
   private final int stackAmountOnShuffle;
 
-  private final float orbImageMidpoint;
+  private final float orbImgHorizontalMidpoint;
 
   // TODO: separate CropOrbType (which has e.g. harvest info and description data) from CropOrb (which has stack count)
 
   public AbstractCropOrb(Crop crop, String ID, String NAME, int amount, int maturityThreshold, String description, String imgPath, String haloImgFilename, String targetHaloImgFilename) {
-    this(crop, ID, NAME, amount, maturityThreshold, description, imgPath, haloImgFilename, targetHaloImgFilename, CROP_ORB_WIDTH/2.0F);
+    this(crop, ID, NAME, amount, maturityThreshold, description, imgPath, haloImgFilename, targetHaloImgFilename, CROP_ORB_WIDTH/2.0F, CROP_ORB_HEIGHT/2.0F);
   }
 
-  public AbstractCropOrb(Crop crop, String ID, String NAME, int amount, int maturityThreshold, String description, String imgPath, String haloImgFilename, String targetHaloImgFilename, float orbImageMidpoint) {
+  public AbstractCropOrb(Crop crop, String ID, String NAME, int amount, int maturityThreshold, String description, String imgPath,
+                         String haloImgFilename, String targetHaloImgFilename, float orbImgHorizontalMidpoint, float orbImageBottomEdge) {
     super(ID, NAME, amount, maturityThreshold, description, "", TheSimpletonMod.getImageResourcePath(getUiPath(imgPath)));
     this.crop = crop;
     this.basePassiveAmount = this.passiveAmount = amount;
@@ -94,7 +95,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
     this.indicatorDotEmptyImageFilename = INDICATOR_DOT_EMPTY_IMG_FILENAME;
     this.indicatorDotFullImageFilename = INDICATOR_DOT_FULL_IMG_FILENAME;
     this.stackAmountOnShuffle = STACK_AMOUNT_ON_SHUFFLE;
-    this.orbImageMidpoint = orbImageMidpoint;
+    this.orbImgHorizontalMidpoint = orbImgHorizontalMidpoint;
   }
 
   private Texture getHaloImage() {
@@ -285,7 +286,7 @@ public abstract class AbstractCropOrb extends CustomOrb {
       float midpointIndex = (maturityThreshold - 1.0F)/ 2.0F;
 
       for (int i = 0; i < this.getCrop().getMaturityThreshold(); i++) {
-        float xOffset = orbImageMidpoint * Settings.xScale + indicatorDotFull.getWidth() * (i - midpointIndex - 0.5F) * Settings.xScale;
+        float xOffset = orbImgHorizontalMidpoint * Settings.xScale + indicatorDotFull.getWidth() * (i - midpointIndex - 0.5F) * Settings.xScale;
 
         Texture indicatorDotImage = i < this.getAmount() ? indicatorDotFull : indicatorDotEmpty;
 

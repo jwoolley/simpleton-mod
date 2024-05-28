@@ -33,13 +33,16 @@ public class ChiliCropOrb extends AbstractCropOrb {
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
 
+  private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 42.0F;
+  private static final float ORB_IMAGE_BOTTOM_EDGE = 66.0F;
+
   public ChiliCropOrb() {
     this(0);
   }
 
   public ChiliCropOrb(int amount) {
     super(CROP_ENUM, ORB_ID, NAME, amount, Crop.CHILIS.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
-        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH);
+        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH, ORB_IMAGE_HORIZONTAL_MIDPOINT, ORB_IMAGE_BOTTOM_EDGE);
   }
 
   @Override

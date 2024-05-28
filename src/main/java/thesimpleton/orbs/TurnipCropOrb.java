@@ -22,9 +22,12 @@ public class TurnipCropOrb extends AbstractCropOrb {
     this(0);
   }
 
+  private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 36.0F;
+  private static final float ORB_IMAGE_BOTTOM_EDGE = 88.0F;
+
   public TurnipCropOrb(int amount) {
     super(CROP_ENUM, ORB_ID, NAME, amount, Crop.TURNIPS.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
-        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH);
+        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH, ORB_IMAGE_HORIZONTAL_MIDPOINT, ORB_IMAGE_BOTTOM_EDGE);
   }
 
   @Override

@@ -25,13 +25,16 @@ public class CoffeeCropOrb extends AbstractCropOrb {
   public static final String NAME;
   public static final String[] DESCRIPTIONS;
 
+  private static final float ORB_IMAGE_HORIZONTAL_MIDPOINT = 43.0F;
+  private static final float ORB_IMAGE_BOTTOM_EDGE = 69.0F;
+
   public CoffeeCropOrb() {
     this(0);
   }
 
   public CoffeeCropOrb(int amount) {
     super(CROP_ENUM, ORB_ID, NAME, amount, Crop.COFFEE.getCropInfo().maturityThreshold, DESCRIPTIONS[0],
-        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH);
+        IMG_PATH, HALO_IMG_PATH, TARGET_HALO_IMG_PATH, ORB_IMAGE_HORIZONTAL_MIDPOINT, ORB_IMAGE_BOTTOM_EDGE);
   }
 
   @Override

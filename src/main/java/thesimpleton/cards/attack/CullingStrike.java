@@ -30,7 +30,7 @@ public class CullingStrike extends AbstractDynamicTextCard {
 
   private static final int COST = 1;
   private static final int DAMAGE = 7;
-  private static final int UPGRADE_DAMAGE_AMOUNT = 2;
+  private static final int UPGRADE_DAMAGE_AMOUNT = 3;
 
   public CullingStrike() {
     super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(false), TYPE,

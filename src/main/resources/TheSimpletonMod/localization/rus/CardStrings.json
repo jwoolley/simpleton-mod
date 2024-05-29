@@ -378,10 +378,13 @@
 
   "TheSimpletonMod:SeedCoat": {
     "NAME": "Оболочка семени",
-    "DESCRIPTION": "Даёт !B! Защиты. NL Уменьшает свою Защиту на !M! и получает Сжигание.",
-    "EXTENDED_DESCRIPTION": [
-      "Даёт !B! Защиты. NL Сжигается."
-    ]
+    "DESCRIPTION": "Даёт !B! Защиты. NL Добавляет 3 *Ореховая *скорлупа в стопку сброса. NL Сжигается.",
+    "UPGRADE_DESCRIPTION": "Даёт !B! Защиты. NL Добавляет 3 *Ореховая *скорлупа+ в стопку сброса. NL Сжигается."
+  },
+
+  "TheSimpletonMod:ShellFragment": {
+    "NAME": "Ореховая скорлупа",
+    "DESCRIPTION": "Эфирная. Даёт !B! Защиты. NL Сжигается."
   },
 
   "TheSimpletonMod:SlashAndBurn": {

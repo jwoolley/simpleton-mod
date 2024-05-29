@@ -379,10 +379,13 @@
 
   "TheSimpletonMod:SeedCoat": {
     "NAME": "Seed Coat",
-    "DESCRIPTION": "Gain !B! Block. NL The first time this card is played this combat, decrease its Block by !M! and it gains Exhaust.",
-    "EXTENDED_DESCRIPTION": [
-      "Gain !B! Block. NL Exhaust."
-    ]
+    "DESCRIPTION": "Gain !B! Block. NL Add 2 NL *Shell *Fragments NL to your discard pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL 2 NL *Shell *Fragments+ NL to your discard pile. NL Exhaust."
+  },
+
+  "TheSimpletonMod:ShellFragment": {
+    "NAME": "Shell Fragment",
+    "DESCRIPTION": "Ethereal. NL Gain !B! block. NL Exhaust."
   },
 
   "TheSimpletonMod:SlashAndBurn": {

@@ -34,7 +34,7 @@ public class SaladShooter extends AbstractDynamicTextCard {
 
   private static final int COST = 1;
   private static final int DAMAGE = 6;
-  private static final int UPGRADE_DAMAGE_AMOUNT = 1;
+  private static final int UPGRADE_DAMAGE_AMOUNT = 2;
 
   public SaladShooter() {
     super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(false), TYPE,

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 public interface IHasSecondMagicNumberCard {
     public AbstractCard getThisCard();
 
-    public void upgradeSecondMagicNumber(int upgradeBonus);
+    public void upgradeSecondMagicNumber();
 
     public boolean isSecondMagicNumberModified();
     public boolean isSecondMagicNumberUpgraded();

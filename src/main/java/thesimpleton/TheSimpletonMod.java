@@ -3,6 +3,7 @@ package thesimpleton;
 import basemod.*;
 import basemod.abstracts.CustomUnlockBundle;
 import basemod.helpers.RelicType;
+import basemod.helpers.dynamicvariables.MagicNumberVariable;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -50,6 +51,7 @@ import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.crops.AbstractCrop;
 import thesimpleton.crops.Crop;
+import thesimpleton.customvariables.SecondMagicNumber;
 import thesimpleton.devtools.debugging.DebugLoggers;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
@@ -517,6 +519,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_HootingBird1.ogg"));
         reflectedMap.put("ICE_CLINK_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_IceClink1.ogg"));
+        reflectedMap.put("LOG_SPLIT_1",
+                new Sfx("TheSimpletonMod/sounds/TheSimpleton_LogSplit.ogg"));
         reflectedMap.put("LOW_RUMBLE_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_LowRumble1.ogg"));
         reflectedMap.put("MAGIC_CHIMES_1",
@@ -768,6 +772,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         //  initializeSeason(); // TODO: NOT SURE IF THIS NEEDS TO BE IN THIS HOOK OR CAN BE ELSEWHERE
 
         debugLogger.log("TheSimpletonMod::receiveEditCards called ===========================>>>>>>>");
+
+        BaseMod.addDynamicVariable(new SecondMagicNumber());
 
         for(AbstractCard card : getBaseCardList()) {
             BaseMod.addCard(card);

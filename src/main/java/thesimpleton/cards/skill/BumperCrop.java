@@ -29,7 +29,7 @@ public class BumperCrop extends AbstractDynamicCropOrbHighlighterCard {
 
   private static final int COST = 1;
   private static final int BLOCK = 7;
-  private static final int BLOCK_UPGRADE_AMOUNT = 3;
+  private static final int BLOCK_UPGRADE_AMOUNT = 5;
   private static final int HARVEST_AMOUNT = 1;
 
   public BumperCrop() {

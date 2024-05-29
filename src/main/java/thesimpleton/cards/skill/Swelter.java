@@ -28,10 +28,10 @@ public class Swelter extends CustomCard {
   private static final CardTarget TARGET = CardTarget.ENEMY;
 
   private static final int COST = 0;
-  private static final int BLOCK = 4;
-  private static final int BLOCK_UPGRADE = 2;
-  private static final int BURNING = 4;
-  private static final int BURNING_UPGRADE = 2;
+  private static final int BLOCK = 3;
+  private static final int BLOCK_UPGRADE = 3;
+  private static final int BURNING = 3;
+  private static final int BURNING_UPGRADE = 3;
 
   private static final int WEAK = 1;
   private static final int WEAK_UPGRADE = 1;

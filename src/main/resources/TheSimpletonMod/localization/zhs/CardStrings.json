@@ -380,11 +380,15 @@
 
   "TheSimpletonMod:SeedCoat": {
     "NAME": "种皮",
-    "DESCRIPTION": "获得 !B! 格挡 。 NL 此战中首次打出后，提供的格挡减少 !M! ，并变为 消耗 牌。",
-    "EXTENDED_DESCRIPTION": [
-      "获得 !B! 格挡 。 NL 消耗 。"
-    ]
+    "DESCRIPTION": "获得 !B! 格挡 。 添加 3 张 *坚果壳  到弃牌堆。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "获得 !B! 格挡 。 添加 3 张 *坚果壳+  到弃牌堆。 NL 消耗 。"
   },
+
+  "TheSimpletonMod:ShellFragment": {
+    "NAME": "坚果壳",
+    "DESCRIPTION": "虚无 。 NL 获得 !B! 格挡 。 NL 消耗 。"
+  },
+
 
   "TheSimpletonMod:SlashAndBurn": {
     "NAME": "割草为薪",

@@ -29,7 +29,7 @@ public class CloseScrape extends AbstractDynamicCropOrbHighlighterCard {
 
     private static final int COST = 1;
     private static final int DAMAGE = 9;
-    private static final int UPGRADE_DAMAGE_AMOUNT = 3;
+    private static final int UPGRADE_DAMAGE_AMOUNT = 4;
     private static final int NUM_CROP_STACKS_TO_PLANT = 1;
 
     public CloseScrape() {

@@ -1,5 +1,6 @@
 package thesimpleton.cards;
 
+import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -31,6 +32,7 @@ public class SimpletonUtil {
     public static final AbstractCard SPUD_MISSILE = new SpudMissile();
     public static final AbstractCard FLAMING_SPUD = new FlamingSpud();
     public static final AbstractCard GNAWBERRY = new Gnawberry();
+
 
 //    public static TheSimpletonCharacter getPlayer() {
 //        return (TheSimpletonCharacter) AbstractDungeon.player;

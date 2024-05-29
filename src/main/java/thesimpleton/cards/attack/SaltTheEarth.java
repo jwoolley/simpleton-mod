@@ -69,6 +69,5 @@ public class SaltTheEarth extends CustomCard {
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
     PREVIEW_CARD = new Depletion();
-
   }
 }

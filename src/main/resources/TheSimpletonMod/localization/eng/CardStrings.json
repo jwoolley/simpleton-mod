@@ -207,8 +207,7 @@
 
   "TheSimpletonMod:Haymaker": {
     "NAME": "Haymaker",
-    "DESCRIPTION": "Deal !D! damage. NL Heal !M! HP. NL Apply ",
-    "EXTENDED_DESCRIPTION" : [" Vulnerable to ALL enemies. NL Exhaust."]
+    "DESCRIPTION": "Deal !D! damage. NL Heal !M! HP. NL Apply !TheSimpleton:magic-num-2! Vulnerable to ALL enemies. NL Exhaust."
   },
 
   "TheSimpletonMod:HitTheSack": {
@@ -256,7 +255,7 @@
     "NAME": "Mulch",
     "DESCRIPTION": "Exhaust a card, then gain an effect based on its type: NL NL Attack: Gain !B! Block. NL Skill: Apply ",
     "EXTENDED_DESCRIPTION": [
-      " Burning to ALL. NL All Others: Draw ",
+      " Burning to ALL enemies. NL Other: Draw ",
       " cards."]
   },
 
@@ -380,10 +379,13 @@
 
   "TheSimpletonMod:SeedCoat": {
     "NAME": "Seed Coat",
-    "DESCRIPTION": "Gain !B! Block. NL The first time this card is played this combat, decrease its Block by !M! and it gains Exhaust.",
-    "EXTENDED_DESCRIPTION": [
-      "Gain !B! Block. NL Exhaust."
-    ]
+    "DESCRIPTION": "Gain !B! Block. NL Add 3 NL *Shell *Fragments to your discard pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL 3 NL *Shell *Fragments+ to your discard pile. NL Exhaust."
+  },
+
+  "TheSimpletonMod:ShellFragment": {
+    "NAME": "Shell Fragment",
+    "DESCRIPTION": "Ethereal. NL Gain !B! block. NL Exhaust."
   },
 
   "TheSimpletonMod:SlashAndBurn": {

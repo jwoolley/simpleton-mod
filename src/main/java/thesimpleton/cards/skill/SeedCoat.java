@@ -2,7 +2,9 @@ package thesimpleton.cards.skill;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,13 +12,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.status.Depletion;
 import thesimpleton.enums.AbstractCardEnum;
 
 public class SeedCoat extends CustomCard {
   public static final String ID = "TheSimpletonMod:SeedCoat";
   public static final String NAME;
   public static final String DESCRIPTION;
-  public static final String[] EXTENDED_DESCRIPTION;
+  public static final String UPGRADE_DESCRIPTION;
   public static final String IMG_PATH = "cards/seedcoat.png";
 
   private static final CardStrings cardStrings;
@@ -26,33 +29,28 @@ public class SeedCoat extends CustomCard {
   private static final CardTarget TARGET = CardTarget.SELF;
 
   private static final int COST = 1;
-  private static final int BLOCK = 12;
-  private static final int BLOCK_REDUCTION = 8;
-  private static final int UPGRADE_BLOCK_REDUCTION_DISCOUNT = 4;
-
-  private boolean hasBeenPlayed = false;
+  private static final int BLOCK = 9;
+  private static final int UPGRADE_BLOCK_AMOUNT =  3;
+  private static final AbstractCard PREVIEW_CARD;
+  private static final AbstractCard UPGRADED_PREVIEW_CARD;
 
   public SeedCoat() {
     super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseBlock = this.block = BLOCK;
-    this.baseMagicNumber = this.magicNumber = BLOCK_REDUCTION;
+    this.exhaust = true;
+    this.cardsToPreview = PREVIEW_CARD;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
 
-    if (!this.hasBeenPlayed) {
-      this.hasBeenPlayed = true;
-      if (this.magicNumber >= this.block) {
-        AbstractDungeon.actionManager.addToBottom(new ModifyBlockAction(this.uuid, -this.block));
-      } else {
-        AbstractDungeon.actionManager.addToBottom(new ModifyBlockAction(this.uuid, -this.magicNumber));
-      }
-      updateDescription();
-    } else {
-      this.exhaust = true;
+    AbstractCard cardForDiscardPile = new ShellFragment();
+    if (this.upgraded) {
+      cardForDiscardPile.upgrade();
     }
+
+    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(cardForDiscardPile, 3));
   }
 
   @Override
@@ -64,13 +62,14 @@ public class SeedCoat extends CustomCard {
   public void upgrade() {
     if (!this.upgraded) {
       this.upgradeName();
-      this.upgradeMagicNumber(-UPGRADE_BLOCK_REDUCTION_DISCOUNT);
+      this.upgradeBlock(UPGRADE_BLOCK_AMOUNT);
+      this.cardsToPreview = UPGRADED_PREVIEW_CARD;
       updateDescription();
     }
   }
 
   protected void updateDescription() {
-    this.rawDescription = !hasBeenPlayed ? DESCRIPTION : EXTENDED_DESCRIPTION[0];
+    this.rawDescription = UPGRADE_DESCRIPTION;
     this.initializeDescription();
   }
 
@@ -78,6 +77,9 @@ public class SeedCoat extends CustomCard {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
-    EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
+    UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+    PREVIEW_CARD = new ShellFragment();
+    UPGRADED_PREVIEW_CARD = new ShellFragment();
+    UPGRADED_PREVIEW_CARD.upgrade();
   }
 }

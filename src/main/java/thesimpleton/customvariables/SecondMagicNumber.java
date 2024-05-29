@@ -3,19 +3,18 @@ package thesimpleton.customvariables;
 
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import thesimpleton.cards.interfaces.IHasSecondMagicNumberCard;
 
 public class SecondMagicNumber extends DynamicVariable {
-    private static final String CARD_MAGIC_NUMBER_2_KEY = "magic-num-2";
+    private static final String CARD_MAGIC_NUMBER_2_KEY = "TheSimpleton:magic-num-2";
+    private static final int DEFAULT_VALUE = -1;
 
-    private int baseValue;
-    private int value;
-
-    private boolean wasUpgraded = false;
+    public SecondMagicNumber() {
+        this(DEFAULT_VALUE);
+    }
 
     public SecondMagicNumber(int baseValue) {
         super();
-        this.baseValue = baseValue;
-        this.value = baseValue;
     }
 
     @Override
@@ -24,15 +23,22 @@ public class SecondMagicNumber extends DynamicVariable {
         // What you put in your localization file between ! to show your value. Eg, !myKey!.
     }
 
-    public void upgradeSecondMagicNumber(int upgradeBonus) {
-        this.value += upgradeBonus;
-        wasUpgraded = true;
+    @Override
+    public boolean isModified(AbstractCard card) {
+        if (card instanceof IHasSecondMagicNumberCard) {
+            return ((IHasSecondMagicNumberCard)card).isSecondMagicNumberModified();
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public boolean isModified(AbstractCard card) {
-        return value != baseValue;
-        // Set to true if the value is modified from the base value.
+    public boolean upgraded(AbstractCard card) {
+        if (card instanceof IHasSecondMagicNumberCard) {
+            return ((IHasSecondMagicNumberCard) card).isSecondMagicNumberUpgraded();
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -43,18 +49,19 @@ public class SecondMagicNumber extends DynamicVariable {
 
     @Override
     public int value(AbstractCard card) {
-        return value;
-        // What the dynamic variable will be set to on your card. Usually uses some kind of int you store on your card.
+        if (card instanceof IHasSecondMagicNumberCard) {
+            return ((IHasSecondMagicNumberCard)card).getSecondMagicNumberCurrentValue();
+        } else {
+            return DEFAULT_VALUE;
+        }
     }
 
     @Override
     public int baseValue(AbstractCard card) {
-        return baseValue;
-        // Should generally just be the above.
-    }
-
-    @Override
-    public boolean upgraded(AbstractCard card) {
-        return wasUpgraded && value > baseValue;
+        if (card instanceof IHasSecondMagicNumberCard) {
+            return ((IHasSecondMagicNumberCard)card).getSecondMagicNumberBaseValue();
+        } else {
+            return DEFAULT_VALUE;
+        }
     }
 }

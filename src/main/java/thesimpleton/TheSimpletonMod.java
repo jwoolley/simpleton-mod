@@ -3,6 +3,7 @@ package thesimpleton;
 import basemod.*;
 import basemod.abstracts.CustomUnlockBundle;
 import basemod.helpers.RelicType;
+import basemod.helpers.dynamicvariables.MagicNumberVariable;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -50,6 +51,7 @@ import thesimpleton.cards.skill.*;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.crops.AbstractCrop;
 import thesimpleton.crops.Crop;
+import thesimpleton.customvariables.SecondMagicNumber;
 import thesimpleton.devtools.debugging.DebugLoggers;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.enums.TheSimpletonCharEnum;
@@ -768,6 +770,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         //  initializeSeason(); // TODO: NOT SURE IF THIS NEEDS TO BE IN THIS HOOK OR CAN BE ELSEWHERE
 
         debugLogger.log("TheSimpletonMod::receiveEditCards called ===========================>>>>>>>");
+
+        BaseMod.addDynamicVariable(new SecondMagicNumber());
 
         for(AbstractCard card : getBaseCardList()) {
             BaseMod.addCard(card);

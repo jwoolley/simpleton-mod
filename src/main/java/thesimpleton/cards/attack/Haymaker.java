@@ -10,10 +10,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.HaymakerSplashAction;
+import thesimpleton.cards.interfaces.IHasSecondMagicNumberCard;
 import thesimpleton.customvariables.SecondMagicNumber;
 import thesimpleton.enums.AbstractCardEnum;
 
-public class Haymaker extends CustomCard {
+public class Haymaker extends CustomCard implements IHasSecondMagicNumberCard {
     public static final String ID = "TheSimpletonMod:Haymaker";
     public static final String NAME;
     public static final String DESCRIPTION;
@@ -34,14 +35,15 @@ public class Haymaker extends CustomCard {
     private static final int HEAL_AMOUNT = 4;
     private static final int UPGRADE_HEAL_AMOUNT = 1;
 
+    private int baseSecondMagicNumber;
 
-    private SecondMagicNumber secondMagicNumber;
+    private int secondMagicNumber;
 
     public Haymaker() {
         super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
         this.baseMagicNumber = this.magicNumber = HEAL_AMOUNT;
-        this.secondMagicNumber = new SecondMagicNumber(VULNERABLE_AMOUNT);
+        this.baseSecondMagicNumber = secondMagicNumber = VULNERABLE_AMOUNT;
         this.exhaust = true;
         this.tags.add(AbstractCard.CardTags.HEALING);
 
@@ -51,7 +53,7 @@ public class Haymaker extends CustomCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(
             new HaymakerSplashAction(p, m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                this.magicNumber, this.secondMagicNumber.value(this)));
+                this.magicNumber, this.secondMagicNumber));
     }
 
     @Override
@@ -65,7 +67,7 @@ public class Haymaker extends CustomCard {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_DAMAGE_AMOUNT);
             this.upgradeMagicNumber(UPGRADE_HEAL_AMOUNT);
-            this.secondMagicNumber.upgradeSecondMagicNumber(UPGRADE_VULNERABLE_AMOUNT);
+            this.upgradeSecondMagicNumber(UPGRADE_VULNERABLE_AMOUNT);
             this.rawDescription = getDescription();
             initializeDescription();
         }
@@ -80,5 +82,35 @@ public class Haymaker extends CustomCard {
         NAME = cardStrings.NAME;
         DESCRIPTION = cardStrings.DESCRIPTION;
         EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
+    }
+
+    @Override
+    public AbstractCard getThisCard() {
+        return null;
+    }
+
+    @Override
+    public void upgradeSecondMagicNumber(int upgradeBonus) {
+        this.secondMagicNumber += UPGRADE_VULNERABLE_AMOUNT;
+    }
+
+    @Override
+    public boolean isSecondMagicNumberModified() {
+        return secondMagicNumber != baseSecondMagicNumber;
+    }
+
+    @Override
+    public boolean isSecondMagicNumberUpgraded() {
+        return upgraded && isSecondMagicNumberModified();
+    }
+
+    @Override
+    public int getSecondMagicNumberBaseValue() {
+        return baseSecondMagicNumber;
+    }
+
+    @Override
+    public int getSecondMagicNumberCurrentValue() {
+        return secondMagicNumber;
     }
 }

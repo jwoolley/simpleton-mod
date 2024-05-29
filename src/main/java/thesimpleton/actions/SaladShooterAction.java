@@ -56,7 +56,7 @@ public class SaladShooterAction extends AbstractGameAction {
 
     this.duration -= Gdx.graphics.getDeltaTime();
 
-    if (this.duration < 0.0F)
+    if (this.duration <= 0.0F)
     {
       if (this.target.currentHealth > 0)
       {

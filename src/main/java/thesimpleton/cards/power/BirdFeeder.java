@@ -26,10 +26,10 @@ public class BirdFeeder extends CustomCard {
   private static final CardTarget TARGET = CardTarget.SELF;
 
   private static final int COST = 1;
-  private static final int NUM_STACKS = 3;
-  private static final int NUM_STACKS_UPGRADE = 2;
+  private static final int NUM_STACKS = 2;
+  private static final int NUM_STACKS_UPGRADE = 1;
 
-  private static final int HP_PER_STACK = 4;
+  private static final int HP_PER_STACK = 5;
 
   private final int hpPerStack;
 

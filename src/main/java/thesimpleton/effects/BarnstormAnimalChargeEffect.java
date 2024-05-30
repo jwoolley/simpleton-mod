@@ -12,9 +12,13 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.combat.RoomTintEffect;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.actions.BarnstormAction;
 import thesimpleton.effects.utils.SimpletonVfxHelper;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     private static float INITIAL_WAIT_DURATION = Settings.ACTION_DUR_FAST;
@@ -23,8 +27,6 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     private static float ANIMAL_CHARGE_DURATION_FAST =  0.33F;
 
     private final float totalDuration;
-
-    private final boolean isSheepOrWhatever; // TODO: change to enum
 
     private float _initialX;
     private float _initialY;
@@ -41,18 +43,28 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 
     private static final String BARN_OVERLAY_IMG_PATH =  SimpletonVfxHelper.getImgFilePath("barnstorm-effect", "barn-overlay");
 
+    private static final String CHICKEN_IMG_PATH =  SimpletonVfxHelper.getImgFilePath("barnstorm-effect", "barnanimal-chicken");
+
+    private static final String COW_IMG_PATH =  SimpletonVfxHelper.getImgFilePath("barnstorm-effect", "barnanimal-bull");
+
     private static final String PIG_IMG_PATH =  SimpletonVfxHelper.getImgFilePath("barnstorm-effect", "barnanimal-pig");
 
     private static final String SHEEP_IMG_PATH =  SimpletonVfxHelper.getImgFilePath("barnstorm-effect", "barnanimal-sheep");
+
+    private static final String CHICKEN_SFX_PATH ="ANIMAL_CHICKEN_CLUCK_1";
+
+    private static final String COW_SFX_PATH =  "ANIMAL_COW_MOO_1";
+
+    private static final String PIG_SFX_PATH =  "ANIMAL_PIG_OINK_1";
+
+    private static final String SHEEP_SFX_PATH ="ANIMAL_SHEEP_BAA_1";
 
     private final  Texture barnUnderlayImage;
 
     private final Texture barnOverlayImage;
 
-    private final Texture pigImage;
-    private final Texture sheepImage;
-
-    private Texture animalImage;
+    private final Texture animalImage;
+    private final String animalSfxKey;
 
 
     private final int barnWidth;
@@ -63,20 +75,20 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 
     private final float animalOffsetY;
 
+
+    private BarnstormAction.BarnstormAnimal animal;
+
     public static float getFullDuration() {
         return Settings.FAST_MODE
                 ? INITIAL_WAIT_DURATION_FAST + ANIMAL_CHARGE_DURATION_FAST
                 : INITIAL_WAIT_DURATION + ANIMAL_CHARGE_DURATION;
     }
 
-    public BarnstormAnimalChargeEffect(float initialX, float initialY, AbstractCreature target, float animalOffsetY,
-                                       boolean isSheepOrWhatever) {
+    public BarnstormAnimalChargeEffect(float initialX, float initialY, AbstractCreature target, BarnstormAction.BarnstormAnimal animal, float animalOffsetY) {
         this.duration = this.totalDuration = getInitialWaitDuration() + getAnimalChargeDuration();
 
         this.color = Color.WHITE.cpy();
         this.scale = 1.0F;
-
-        this.isSheepOrWhatever = isSheepOrWhatever;
 
         barnUnderlayImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(BARN_UNDERLAY_IMG_PATH));
         barnOverlayImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(BARN_OVERLAY_IMG_PATH));
@@ -84,14 +96,27 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
         barnWidth = barnOverlayImage.getWidth();
         barnHeight = barnOverlayImage.getHeight();
 
-        pigImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(PIG_IMG_PATH));
-        sheepImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(SHEEP_IMG_PATH));
-
-        if (isSheepOrWhatever) {
-            animalImage = sheepImage;
-        } else {
-            animalImage = pigImage;
+        this.animal = animal;
+        switch (animal) {
+            case CHICKEN:
+                animalImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(CHICKEN_IMG_PATH));
+                animalSfxKey = CHICKEN_SFX_PATH;
+                break;
+            case COW:
+                animalImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(COW_IMG_PATH));
+                animalSfxKey = COW_SFX_PATH;
+                break;
+            case PIG:
+                animalImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(PIG_IMG_PATH));
+                animalSfxKey = PIG_SFX_PATH;
+                break;
+            case SHEEP:
+            default:
+                animalImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(SHEEP_IMG_PATH));
+                animalSfxKey = SHEEP_SFX_PATH;
+                break;
         }
+
         animalWidth = animalImage.getWidth();
         animalHeight = animalImage.getHeight();
         this.animalOffsetY = animalOffsetY;
@@ -127,8 +152,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
         if (this.duration < getAnimalChargeDuration()) {
             if (!isAnimalCharging) {
 //                TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] start isAnimalCharging");
-                String SFX_KEY = isSheepOrWhatever ? "ANIMAL_SHEEP_BAA_1" : "ANIMAL_PIG_OINK_1";
-                AbstractDungeon.actionManager.addToTop(new SFXAction(SFX_KEY));
+                AbstractDungeon.actionManager.addToTop(new SFXAction(animalSfxKey));
 
                 isAnimalCharging = true;
             }

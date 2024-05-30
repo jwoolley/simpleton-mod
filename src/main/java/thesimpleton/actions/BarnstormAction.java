@@ -2,7 +2,6 @@ package thesimpleton.actions;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -24,10 +23,7 @@ import thesimpleton.effects.utils.SimpletonVfxHelper;
 import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.utilities.ModLogger;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class BarnstormAction extends AbstractGameAction {
@@ -50,11 +46,22 @@ public class BarnstormAction extends AbstractGameAction {
   private final Map<AbstractMonster, Integer> damagedEnemies;
   private final DamageInfo info;
 
-  private static final AttackEffect ATTACK_EFFECT = AttackEffect.BLUNT_LIGHT;
+  private static final AttackEffect ATTACK_EFFECT_HEAVY = AttackEffect.BLUNT_HEAVY;
+  private static final AttackEffect ATTACK_EFFECT_LIGHT = AttackEffect.BLUNT_LIGHT;
+
+  private static final AttackEffect ATTACK_EFFECT_SCRATCH = AttackEffect.SLASH_DIAGONAL;
 
   private static final String BARN_UNDERLAY_IMG_PATH =  SimpletonVfxHelper.getImgFilePath("barnstorm-effect", "barn-underlay");
 
   private static final String BARN_OVERLAY_IMG_PATH =  SimpletonVfxHelper.getImgFilePath("barnstorm-effect", "barn-overlay");
+
+  public enum BarnstormAnimal {
+    CHICKEN,
+    COW,
+    PIG,
+    SHEEP
+  }
+
 
   public BarnstormAction(AbstractPlayer player, AbstractMonster target, int baseDamage, int stunThreshold) {
     this(player, target, baseDamage, stunThreshold, getCropCounts(player), new HashMap<>());
@@ -73,7 +80,6 @@ public class BarnstormAction extends AbstractGameAction {
   public BarnstormAction(AbstractPlayer player, AbstractCreature target, int baseDamage, int stunThreshold,
                          List<CropCount> cropStacks, Map<AbstractMonster, Integer> damagedEnemies) {
     this.actionType = ActionType.DAMAGE;
-    this.attackEffect = ATTACK_EFFECT;
     this.damageType = DamageInfo.DamageType.NORMAL;
     this.duration = ACTION_DURATION;
 
@@ -90,7 +96,20 @@ public class BarnstormAction extends AbstractGameAction {
     this.isFirstTick = true;
 
     if (target != null && !cropStacks.isEmpty() && this.target.currentHealth > 0) {
-      makeAnimalChargeEffect();
+
+      List<BarnstormAnimal> animals = Arrays.asList(BarnstormAnimal.values());
+      Collections.shuffle(animals);
+      BarnstormAnimal animal = animals.get(0);
+
+      if (animal == BarnstormAnimal.COW && animal == BarnstormAnimal.PIG) {
+        this.attackEffect = ATTACK_EFFECT_HEAVY;
+      } else if (animal == BarnstormAnimal.CHICKEN) {
+        this.attackEffect = ATTACK_EFFECT_SCRATCH;
+      } else {
+        this.attackEffect = ATTACK_EFFECT_LIGHT;
+      }
+
+      makeAnimalChargeEffect(animal);
       makeLightningEffect();
     }
   }
@@ -180,14 +199,14 @@ public class BarnstormAction extends AbstractGameAction {
 
   }
 
-  private void makeAnimalChargeEffect() {
+  private void makeAnimalChargeEffect(BarnstormAnimal animal) {
     AbstractDungeon.actionManager.addToBottom(
             new VFXAction(player, new BarnstormAnimalChargeEffect(
                     player.drawX + BARN_X_OFFSET * Settings.xScale,
                     player.drawY + BARN_Y_OFFSET * Settings.yScale,
                     target,
-                    ANIMAL_Y_OFFSET * Settings.yScale,
-                    AbstractDungeon.miscRng.randomBoolean()), 0.0F));
+                    animal,
+                    ANIMAL_Y_OFFSET * Settings.yScale), 0.0F));
 
   }
 

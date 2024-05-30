@@ -17,9 +17,10 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.effects.utils.SimpletonVfxHelper;
 
 public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
-    private static float INITIAL_WAIT_DURATION = 0.005F;
-    private static float ANIMAL_CHARGE_DURATION = Settings.ACTION_DUR_MED;
-
+    private static float INITIAL_WAIT_DURATION = Settings.ACTION_DUR_FAST;
+    private static float ANIMAL_CHARGE_DURATION =  Settings.ACTION_DUR_MED;
+    private static float INITIAL_WAIT_DURATION_FAST = Settings.ACTION_DUR_XFAST;
+    private static float ANIMAL_CHARGE_DURATION_FAST =  0.33F;
 
     private final float totalDuration;
 
@@ -35,7 +36,6 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 
     private float _x;
     private float _y;
-    private boolean usePowerfulImpact = false;
 
     private static final String BARN_UNDERLAY_IMG_PATH =  SimpletonVfxHelper.getImgFilePath("barnstorm-effect", "barn-underlay");
 
@@ -61,23 +61,28 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     private final int animalWidth;
     private final int animalHeight;
 
+    private final float animalOffsetY;
+
     public static float getFullDuration() {
-        return INITIAL_WAIT_DURATION + ANIMAL_CHARGE_DURATION;
+        return Settings.FAST_MODE
+                ? INITIAL_WAIT_DURATION_FAST + ANIMAL_CHARGE_DURATION_FAST
+                : INITIAL_WAIT_DURATION + ANIMAL_CHARGE_DURATION;
     }
 
-    public BarnstormAnimalChargeEffect(float initialX, float initialY, AbstractCreature target, boolean isSheepOrWhatever, boolean usePowerfulImpact) {
-        this.duration = this.totalDuration = INITIAL_WAIT_DURATION + ANIMAL_CHARGE_DURATION;
+    public BarnstormAnimalChargeEffect(float initialX, float initialY, AbstractCreature target, float animalOffsetY,
+                                       boolean isSheepOrWhatever) {
+        this.duration = this.totalDuration = getInitialWaitDuration() + getAnimalChargeDuration();
+
         this.color = Color.WHITE.cpy();
         this.scale = 1.0F;
 
         this._x = this._initialX = initialX;
         this._y = this._initialY = initialY;
-        this._targetX = target.drawX;
-        this._targetY = target.drawY;
+        this._targetX = target.drawX + target.hb_w / 2.0F;
+        this._targetY = initialY; // target.drawY;
         this.target = target;
 
         this.isSheepOrWhatever = isSheepOrWhatever;
-        this.usePowerfulImpact = usePowerfulImpact;
 
         barnUnderlayImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(BARN_UNDERLAY_IMG_PATH));
         barnOverlayImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(BARN_OVERLAY_IMG_PATH));
@@ -95,6 +100,15 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
         }
         animalWidth = animalImage.getWidth();
         animalHeight = animalImage.getHeight();
+        this.animalOffsetY = animalOffsetY;
+    }
+
+    private float getInitialWaitDuration() {
+        return Settings.FAST_MODE ? INITIAL_WAIT_DURATION_FAST  : INITIAL_WAIT_DURATION;
+    }
+
+    private float getAnimalChargeDuration() {
+        return Settings.FAST_MODE ? ANIMAL_CHARGE_DURATION_FAST  : ANIMAL_CHARGE_DURATION;
     }
 
     private boolean isAnimalCharging = false;
@@ -110,7 +124,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
         }
 
         // TODO: play SFX
-        if (this.duration < ANIMAL_CHARGE_DURATION) {
+        if (this.duration < getAnimalChargeDuration()) {
             if (!isAnimalCharging) {
                 TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] start isAnimalCharging");
                 String SFX_KEY = isSheepOrWhatever ? "ANIMAL_SHEEP_BAA_1" : "ANIMAL_PIG_OINK_1";
@@ -119,7 +133,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
                 isAnimalCharging = true;
             }
 
-            float t = ((this.totalDuration - INITIAL_WAIT_DURATION) - this.duration) / this.totalDuration;
+            float t = ((this.totalDuration - getInitialWaitDuration()) - this.duration) / this.totalDuration;
 //            float tInterpolated = Interpolation.swingIn.apply(t);
             float tInterpolated = Interpolation.swing.apply(t);
 
@@ -137,7 +151,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
         if (this.duration < 0.0F) {
             isAnimalCharging = false;
             AbstractDungeon.actionManager.addToBottom(
-                    new VFXAction(new BuzzBombImpactEffect(target.hb.x, target.hb.cY, usePowerfulImpact)));
+                    new VFXAction(new BuzzBombImpactEffect(target.hb.x, target.hb.cY)));
             this.isDone = true;
         }
     }
@@ -161,8 +175,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 //                    + " image w/h: (" + this.animalImage.getWidth() + ", " + this.animalImage.getHeight()+ ")");
 
 
-            // This method has a lot of orb slots
-            sb.draw(animalImage, this._x, this._y,
+            sb.draw(animalImage, this._x, this._y + animalOffsetY - animalHeight,
                     animalWidth/2f, animalHeight/2f,
                     animalWidth, animalHeight,
                     this.scale * Settings.scale, this.scale * Settings.scale,

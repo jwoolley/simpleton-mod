@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import com.megacrit.cardcrawl.vfx.combat.RoomTintEffect;
 import thesimpleton.TheSimpletonMod;
@@ -26,12 +27,18 @@ import thesimpleton.utilities.ModLogger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class BarnstormAction extends AbstractGameAction {
   private static ModLogger logger = TheSimpletonMod.traceLogger;
 
   private static float ACTION_DURATION = Settings.ACTION_DUR_FASTER;
+
+  private static final float BARN_X_OFFSET = 0.0F;
+
+  private static final float BARN_Y_OFFSET = 90.0F;
+  private static final float ANIMAL_Y_OFFSET = 20.0F;
 
   private final AbstractPlayer player;
   private final int baseDamage;
@@ -41,6 +48,8 @@ public class BarnstormAction extends AbstractGameAction {
   private final List<CropCount> cropStacks;
   private final Map<AbstractMonster, Integer> damagedEnemies;
   private final DamageInfo info;
+
+  private static final AttackEffect ATTACK_EFFECT = AttackEffect.BLUNT_LIGHT;
 
   private static final String BARN_UNDERLAY_IMG_PATH =  SimpletonVfxHelper.getImgFilePath("barnstorm-effect", "barn-underlay");
 
@@ -63,7 +72,7 @@ public class BarnstormAction extends AbstractGameAction {
   public BarnstormAction(AbstractPlayer player, AbstractCreature target, int baseDamage, int stunThreshold,
                          List<CropCount> cropStacks, Map<AbstractMonster, Integer> damagedEnemies) {
     this.actionType = ActionType.DAMAGE;
-    this.attackEffect = AttackEffect.SLASH_VERTICAL;
+    this.attackEffect = ATTACK_EFFECT;
     this.damageType = DamageInfo.DamageType.NORMAL;
     this.duration = ACTION_DURATION;
 
@@ -108,6 +117,8 @@ public class BarnstormAction extends AbstractGameAction {
         // logger.trace("BarnstormAction::update damage tick. this.duration: " + this.duration);
 
         if (this.target.currentHealth > 0) {
+          AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect));
+
           this.info.applyPowers(this.info.owner, this.target);
           monsterTarget.damage(new DamageInfo(this.player, this.info.base));
         }
@@ -131,8 +142,7 @@ public class BarnstormAction extends AbstractGameAction {
               damagedEnemies.get(monsterTarget) + 1 : 1;
             damagedEnemies.put(monsterTarget, numTimesDamaged);
           AbstractDungeon.actionManager.addToBottom(
-                  new VFXAction(new BuzzBombImpactEffect(monsterTarget.hb.x, monsterTarget.hb.cY, true)));
-
+                  new VFXAction(new BuzzBombImpactEffect(monsterTarget.hb.x, monsterTarget.hb.cY, false)));
 
 //          AbstractDungeon.actionManager.addToBottom(
 //                  new VFXAction(new BuzzBombImpactEffect(monsterTarget.hb.x, monsterTarget.hb.cY,
@@ -159,15 +169,24 @@ public class BarnstormAction extends AbstractGameAction {
     // TODO: "flash" the crop orb
     AbstractDungeon.actionManager.addToBottom(new SFXAction("THUNDERCLAP", 0.025f));
 
+    int numPlaces = 5;
+
+    float xPos = player.drawX + ((float)AbstractDungeon.miscRng.random(numPlaces - 1)) * player.hb_w / ((float)numPlaces);
+    float yPos = player.drawY + 0.5F * player.hb_y + BARN_Y_OFFSET * Settings.scale;
+
     AbstractDungeon.actionManager.addToBottom(
-        new VFXAction(player, new LightningEffect(target.hb.cX, target.hb.y), 0.0F));
+        new VFXAction(player, new LightningEffect(xPos, yPos), 0.0F));
 
   }
 
   private void makeAnimalChargeEffect() {
     AbstractDungeon.actionManager.addToBottom(
-            new VFXAction(player, new BarnstormAnimalChargeEffect(player.drawX, player.drawY,
-                    target, AbstractDungeon.miscRng.randomBoolean(), false), 0.0F));
+            new VFXAction(player, new BarnstormAnimalChargeEffect(
+                    player.drawX + BARN_X_OFFSET * Settings.xScale,
+                    player.drawY + BARN_Y_OFFSET * Settings.yScale,
+                    target,
+                    ANIMAL_Y_OFFSET * Settings.yScale,
+                    AbstractDungeon.miscRng.randomBoolean()), 0.0F));
 
   }
 

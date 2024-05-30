@@ -45,12 +45,12 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 
     private static final String SHEEP_IMG_PATH =  SimpletonVfxHelper.getImgFilePath("barnstorm-effect", "barnanimal-sheep");
 
-    private static Texture barnUnderlayImage;
+    private final  Texture barnUnderlayImage;
 
-    private Texture barnOverlayImage;
+    private final Texture barnOverlayImage;
 
-    private static Texture pigImage;
-    private static Texture sheepImage;
+    private final Texture pigImage;
+    private final Texture sheepImage;
 
     private Texture animalImage;
 
@@ -79,22 +79,14 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
         this.isSheepOrWhatever = isSheepOrWhatever;
         this.usePowerfulImpact = usePowerfulImpact;
 
-        if (barnUnderlayImage == null) {
-            barnUnderlayImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(BARN_UNDERLAY_IMG_PATH));
-        }
-        if (barnOverlayImage == null) {
-            barnOverlayImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(BARN_OVERLAY_IMG_PATH));
-        }
+        barnUnderlayImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(BARN_UNDERLAY_IMG_PATH));
+        barnOverlayImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(BARN_OVERLAY_IMG_PATH));
 
         barnWidth = barnOverlayImage.getWidth();
         barnHeight = barnOverlayImage.getHeight();
 
-        if (pigImage == null) {
-            pigImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(PIG_IMG_PATH));
-        }
-        if (sheepImage == null) {
-            sheepImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(SHEEP_IMG_PATH));
-        }
+        pigImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(PIG_IMG_PATH));
+        sheepImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(SHEEP_IMG_PATH));
 
         if (isSheepOrWhatever) {
             animalImage = sheepImage;
@@ -116,9 +108,6 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
                     + "; (targetX, targetY): " + _targetX + ", " + _targetY + ")"
             );
         }
-
-//        TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] update() called. t: " + t);
-
 
         // TODO: play SFX
         if (this.duration < ANIMAL_CHARGE_DURATION) {
@@ -155,8 +144,8 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 
     @Override
     public void render(SpriteBatch sb) {
-
-        sb.draw(barnUnderlayImage, this._initialX, this._initialY,
+        sb.setColor(this.color);
+        sb.draw(barnUnderlayImage, this._initialX - barnWidth/2f, this._initialY,
                 barnWidth/2f, barnHeight/2f,
                 barnWidth, barnHeight,
                 this.scale * Settings.scale, this.scale * Settings.scale,
@@ -171,7 +160,6 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 //                    + " x,y: (" + this._x + ", " + this._y + ")"
 //                    + " image w/h: (" + this.animalImage.getWidth() + ", " + this.animalImage.getHeight()+ ")");
 
-            sb.setColor(this.color);
 
             // This method has a lot of orb slots
             sb.draw(animalImage, this._x, this._y,
@@ -183,7 +171,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
                     animalWidth, animalHeight,
                     false, false);
 
-            sb.draw(barnOverlayImage, this._initialX, this._initialY,
+            sb.draw(barnOverlayImage,this._initialX - barnWidth/2f, this._initialY,
                     barnWidth/2f, barnHeight/2f,
                     barnWidth, barnHeight,
                     this.scale * Settings.scale, this.scale * Settings.scale,

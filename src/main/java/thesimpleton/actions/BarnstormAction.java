@@ -2,6 +2,7 @@ package thesimpleton.actions;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -17,6 +18,8 @@ import com.megacrit.cardcrawl.vfx.combat.RoomTintEffect;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.AbstractCrop;
 import thesimpleton.effects.BarnstormAnimalChargeEffect;
+import thesimpleton.effects.BuzzBombImpactEffect;
+import thesimpleton.effects.utils.SimpletonVfxHelper;
 import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.utilities.ModLogger;
 
@@ -38,6 +41,10 @@ public class BarnstormAction extends AbstractGameAction {
   private final List<CropCount> cropStacks;
   private final Map<AbstractMonster, Integer> damagedEnemies;
   private final DamageInfo info;
+
+  private static final String BARN_UNDERLAY_IMG_PATH =  SimpletonVfxHelper.getImgFilePath("barnstorm-effect", "barn-underlay");
+
+  private static final String BARN_OVERLAY_IMG_PATH =  SimpletonVfxHelper.getImgFilePath("barnstorm-effect", "barn-overlay");
 
   public BarnstormAction(AbstractPlayer player, AbstractMonster target, int baseDamage, int stunThreshold) {
     this(player, target, baseDamage, stunThreshold, getCropCounts(player), new HashMap<>());
@@ -123,6 +130,13 @@ public class BarnstormAction extends AbstractGameAction {
           final int numTimesDamaged = damagedEnemies.containsKey(monsterTarget) ?
               damagedEnemies.get(monsterTarget) + 1 : 1;
             damagedEnemies.put(monsterTarget, numTimesDamaged);
+          AbstractDungeon.actionManager.addToBottom(
+                  new VFXAction(new BuzzBombImpactEffect(monsterTarget.hb.x, monsterTarget.hb.cY, true)));
+
+
+//          AbstractDungeon.actionManager.addToBottom(
+//                  new VFXAction(new BuzzBombImpactEffect(monsterTarget.hb.x, monsterTarget.hb.cY,
+//                          damagedEnemies.get(monsterTarget) == this.stunThreshold && !monsterTarget.isDeadOrEscaped())));
         }
         queueNewBarnstormTick();
         this.isDone = true;
@@ -146,14 +160,14 @@ public class BarnstormAction extends AbstractGameAction {
     AbstractDungeon.actionManager.addToBottom(new SFXAction("THUNDERCLAP", 0.025f));
 
     AbstractDungeon.actionManager.addToBottom(
-        new VFXAction(player, new LightningEffect(target.hb.cX, target.hb.y), 0.1F));
+        new VFXAction(player, new LightningEffect(target.hb.cX, target.hb.y), 0.0F));
 
   }
 
   private void makeAnimalChargeEffect() {
     AbstractDungeon.actionManager.addToBottom(
             new VFXAction(player, new BarnstormAnimalChargeEffect(player.drawX, player.drawY,
-                    target, AbstractDungeon.miscRng.randomBoolean(), false), 0.1F));
+                    target, AbstractDungeon.miscRng.randomBoolean(), false), 0.0F));
 
   }
 

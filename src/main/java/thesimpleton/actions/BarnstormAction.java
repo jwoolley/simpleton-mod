@@ -38,6 +38,7 @@ public class BarnstormAction extends AbstractGameAction {
   private static final float BARN_X_OFFSET = 0.0F;
 
   private static final float BARN_Y_OFFSET = 90.0F;
+  private static final float LIGHTNING_Y_OFFSET = 110.0F;
   private static final float ANIMAL_Y_OFFSET = 20.0F;
 
   private final AbstractPlayer player;
@@ -169,10 +170,10 @@ public class BarnstormAction extends AbstractGameAction {
     // TODO: "flash" the crop orb
     AbstractDungeon.actionManager.addToBottom(new SFXAction("THUNDERCLAP", 0.025f));
 
-    int numPlaces = 5;
+    int numPlaces = 2;
 
-    float xPos = player.drawX + ((float)AbstractDungeon.miscRng.random(numPlaces - 1)) * player.hb_w / ((float)numPlaces);
-    float yPos = player.drawY + 0.5F * player.hb_y + BARN_Y_OFFSET * Settings.scale;
+    float xPos = player.drawX - player.hb_w / 2.0F + ((float)AbstractDungeon.miscRng.random(numPlaces)) * player.hb_w / (numPlaces + 1.0F);
+    float yPos = player.drawY + 0.5F * player.hb_y + LIGHTNING_Y_OFFSET * Settings.scale;
 
     AbstractDungeon.actionManager.addToBottom(
         new VFXAction(player, new LightningEffect(xPos, yPos), 0.0F));

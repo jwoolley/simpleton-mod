@@ -37,13 +37,29 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     private float _y;
     private boolean usePowerfulImpact = false;
 
+    private static final String BARN_UNDERLAY_IMG_PATH =  SimpletonVfxHelper.getImgFilePath("barnstorm-effect", "barn-underlay");
+
+    private static final String BARN_OVERLAY_IMG_PATH =  SimpletonVfxHelper.getImgFilePath("barnstorm-effect", "barn-overlay");
+
     private static final String PIG_IMG_PATH =  SimpletonVfxHelper.getImgFilePath("barnstorm-effect", "barnanimal-pig");
 
     private static final String SHEEP_IMG_PATH =  SimpletonVfxHelper.getImgFilePath("barnstorm-effect", "barnanimal-sheep");
+
+    private static Texture barnUnderlayImage;
+
+    private Texture barnOverlayImage;
+
     private static Texture pigImage;
     private static Texture sheepImage;
 
     private Texture animalImage;
+
+
+    private final int barnWidth;
+    private final int barnHeight;
+
+    private final int animalWidth;
+    private final int animalHeight;
 
     public static float getFullDuration() {
         return INITIAL_WAIT_DURATION + ANIMAL_CHARGE_DURATION;
@@ -63,6 +79,16 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
         this.isSheepOrWhatever = isSheepOrWhatever;
         this.usePowerfulImpact = usePowerfulImpact;
 
+        if (barnUnderlayImage == null) {
+            barnUnderlayImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(BARN_UNDERLAY_IMG_PATH));
+        }
+        if (barnOverlayImage == null) {
+            barnOverlayImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(BARN_OVERLAY_IMG_PATH));
+        }
+
+        barnWidth = barnOverlayImage.getWidth();
+        barnHeight = barnOverlayImage.getHeight();
+
         if (pigImage == null) {
             pigImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(PIG_IMG_PATH));
         }
@@ -75,6 +101,8 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
         } else {
             animalImage = pigImage;
         }
+        animalWidth = animalImage.getWidth();
+        animalHeight = animalImage.getHeight();
     }
 
     private boolean isAnimalCharging = false;
@@ -127,6 +155,16 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 
     @Override
     public void render(SpriteBatch sb) {
+
+        sb.draw(barnUnderlayImage, this._initialX, this._initialY,
+                barnWidth/2f, barnHeight/2f,
+                barnWidth, barnHeight,
+                this.scale * Settings.scale, this.scale * Settings.scale,
+                this.rotation,
+                0, 0,
+                barnWidth, barnHeight,
+                false, false);
+
         if (isAnimalCharging) {
 //            TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] render() called."
 //                    + " t: " + (this.totalDuration - this.duration) / this.totalDuration
@@ -135,16 +173,23 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 
             sb.setColor(this.color);
 
-            final int w = animalImage.getWidth();
-            final int h = animalImage.getHeight();
             // This method has a lot of orb slots
             sb.draw(animalImage, this._x, this._y,
-                    w/2f, h/2f,
-                    w, h,
+                    animalWidth/2f, animalHeight/2f,
+                    animalWidth, animalHeight,
                     this.scale * Settings.scale, this.scale * Settings.scale,
                     this.rotation,
                     0, 0,
-                    w, h,
+                    animalWidth, animalHeight,
+                    false, false);
+
+            sb.draw(barnOverlayImage, this._initialX, this._initialY,
+                    barnWidth/2f, barnHeight/2f,
+                    barnWidth, barnHeight,
+                    this.scale * Settings.scale, this.scale * Settings.scale,
+                    this.rotation,
+                    0, 0,
+                    barnWidth, barnHeight,
                     false, false);
         }
     }

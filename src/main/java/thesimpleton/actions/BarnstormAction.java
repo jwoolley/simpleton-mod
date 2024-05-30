@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import com.megacrit.cardcrawl.vfx.combat.RoomTintEffect;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.AbstractCrop;
+import thesimpleton.effects.BarnstormAnimalChargeEffect;
 import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.utilities.ModLogger;
 
@@ -72,6 +73,7 @@ public class BarnstormAction extends AbstractGameAction {
     this.isFirstTick = true;
 
     if (target != null && !cropStacks.isEmpty() && this.target.currentHealth > 0) {
+      makeAnimalChargeEffect();
       makeLightningEffect();
     }
   }
@@ -145,6 +147,13 @@ public class BarnstormAction extends AbstractGameAction {
 
     AbstractDungeon.actionManager.addToBottom(
         new VFXAction(player, new LightningEffect(target.hb.cX, target.hb.y), 0.1F));
+
+  }
+
+  private void makeAnimalChargeEffect() {
+    AbstractDungeon.actionManager.addToBottom(
+            new VFXAction(player, new BarnstormAnimalChargeEffect(player.drawX, player.drawY,
+                    target, AbstractDungeon.miscRng.randomBoolean(), false), 0.1F));
 
   }
 

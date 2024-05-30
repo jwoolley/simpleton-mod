@@ -108,11 +108,11 @@ abstract public class CustomButton extends Button {
     }
 //    sb.draw(this.imgForScale, this.x, this.y);
     sb.draw(this.imgForScale,
-        this.x, this.y,
-        this.scale * this.width, this.scale * this.height,
-        0, 0,
-        width, height,
-        false, false);
+            this.x, this.y,
+            this.scale * this.width, this.scale * this.height,
+            0, 0,
+            width, height,
+            false, false);
     sb.setColor(Color.WHITE.cpy());
     this.hb.render(sb);
   }

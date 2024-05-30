@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
@@ -102,8 +103,11 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
             }
 
             float t = ((this.totalDuration - INITIAL_WAIT_DURATION) - this.duration) / this.totalDuration;
-            this._x = MathUtils.lerp(_initialX,  _targetX, t);
-            this._y = MathUtils.lerp(_initialY,  _targetY, t);
+//            float tInterpolated = Interpolation.swingIn.apply(t);
+            float tInterpolated = Interpolation.swing.apply(t);
+
+            this._x = MathUtils.lerp(_initialX,  _targetX, tInterpolated);
+            this._y = MathUtils.lerp(_initialY,  _targetY, tInterpolated);
 
 //            TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] update() called."
 //                    + " t: " + (this.totalDuration - this.duration) / this.totalDuration

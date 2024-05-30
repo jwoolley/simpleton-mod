@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -15,8 +16,8 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.effects.utils.SimpletonVfxHelper;
 
 public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
-    private static float INITIAL_WAIT_DURATION = Settings.ACTION_DUR_XFAST;
-    private static float ANIMAL_CHARGE_DURATION = Settings.ACTION_DUR_FAST;
+    private static float INITIAL_WAIT_DURATION = 0.005F;
+    private static float ANIMAL_CHARGE_DURATION = Settings.ACTION_DUR_MED;
 
 
     private final float totalDuration;
@@ -78,9 +79,8 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     private boolean isAnimalCharging = false;
     @Override
     public void update() {
-        float t = ((this.totalDuration - INITIAL_WAIT_DURATION) - this.duration) / this.totalDuration;
 
-        if (t == 0) {
+        if (this.duration == this.totalDuration) {
             TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] update() called, first tick:"
                     + " (x, y): (" + this._x + ", " + this._y + ")"
                     + "; (startX, startY): " + _initialX + ", " + _initialY + ")"
@@ -95,21 +95,21 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
         if (this.duration < ANIMAL_CHARGE_DURATION) {
             if (!isAnimalCharging) {
                 TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] start isAnimalCharging");
+                String SFX_KEY = isSheepOrWhatever ? "ANIMAL_SHEEP_BAA_1" : "ANIMAL_PIG_OINK_1";
+                AbstractDungeon.actionManager.addToTop(new SFXAction(SFX_KEY));
+
                 isAnimalCharging = true;
             }
 
+            float t = ((this.totalDuration - INITIAL_WAIT_DURATION) - this.duration) / this.totalDuration;
             this._x = MathUtils.lerp(_initialX,  _targetX, t);
             this._y = MathUtils.lerp(_initialY,  _targetY, t);
 
-            float _xD =  _initialX + (_targetX - _initialX) * t;
-            float _yD =  _initialY + (_targetY - _initialY) * t;
-
-            TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] update() called."
-                    + " t: " + (this.totalDuration - this.duration) / this.totalDuration
-                    + " x,y: (" + this._x + ", " + this._y + ")"
-                    + " image w/h: (" + this.animalImage.getWidth() + ", " + this.animalImage.getHeight()+ ")"
-                    + " _xD, _yD: (" + _xD + ", " + _yD + ")"
-            );
+//            TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] update() called."
+//                    + " t: " + (this.totalDuration - this.duration) / this.totalDuration
+//                    + " x,y: (" + this._x + ", " + this._y + ")"
+//                    + " image w/h: (" + this.animalImage.getWidth() + ", " + this.animalImage.getHeight()+ ")"
+//            );
         }
 
         this.duration -= Gdx.graphics.getDeltaTime();
@@ -124,13 +124,12 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     @Override
     public void render(SpriteBatch sb) {
         if (isAnimalCharging) {
-            TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] render() called."
-                    + " t: " + (this.totalDuration - this.duration) / this.totalDuration
-                    + " x,y: (" + this._x + ", " + this._y + ")"
-                    + " image w/h: (" + this.animalImage.getWidth() + ", " + this.animalImage.getHeight()+ ")");
+//            TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] render() called."
+//                    + " t: " + (this.totalDuration - this.duration) / this.totalDuration
+//                    + " x,y: (" + this._x + ", " + this._y + ")"
+//                    + " image w/h: (" + this.animalImage.getWidth() + ", " + this.animalImage.getHeight()+ ")");
 
             sb.setColor(this.color);
-//            sb.draw(this.animalImage , this._x , this._y, this.animalImage.getWidth(), this.animalImage.getHeight());
 
             final int w = animalImage.getWidth();
             final int h = animalImage.getHeight();

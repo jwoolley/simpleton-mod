@@ -113,12 +113,12 @@ public class BarnstormAction extends AbstractGameAction {
       AbstractDungeon.effectList.add(makeLightningEffect());
 
       // create the flash effect but don't queue it yet
-      this.duration = this.startDuration =  chargeEffect.startingDuration;
+      this.duration = this.startDuration = chargeEffect.startingDuration;
 
       if (isInitialBarnstormAction) {
         float numTotalCropStacks = cropStacks.stream().map(c -> c.amount).reduce(0, Integer::sum);
-        float estimatedTotalDuration = this.startDuration * numTotalCropStacks;
-        AbstractDungeon.effectList.add(new BarnstormDrawBarnEffect(0F, 0F, estimatedTotalDuration + 0.2F)); // 0.2F is a little grace period
+        float estimatedTotalDuration = (this.startDuration + 0.1F) * numTotalCropStacks; // 0.1F is a little grace period
+        AbstractDungeon.effectList.add(new BarnstormDrawBarnEffect(0F, 0F, estimatedTotalDuration));
 
 //        logger.debug("[BarnstormAction] (initial action, constructor). estimatedTotalDuration: " + estimatedTotalDuration);
 //        debug_static_TotalActionDuration = 0.0F;

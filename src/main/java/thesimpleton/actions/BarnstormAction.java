@@ -62,6 +62,9 @@ public class BarnstormAction extends AbstractGameAction {
     SHEEP
   }
 
+  private static float getTotalChargeDuration(int numCropStacks) {
+    return numCropStacks * BarnstormAnimalChargeEffect.getFullDuration();
+  }
 
   public BarnstormAction(AbstractPlayer player, AbstractMonster target, int baseDamage, int stunThreshold) {
     this(player, target, baseDamage, stunThreshold, getCropCounts(player), new HashMap<>());
@@ -81,7 +84,6 @@ public class BarnstormAction extends AbstractGameAction {
                          List<CropCount> cropStacks, Map<AbstractMonster, Integer> damagedEnemies) {
     this.actionType = ActionType.DAMAGE;
     this.damageType = DamageInfo.DamageType.NORMAL;
-    this.duration = ACTION_DURATION;
 
     this.player = player;
     this.baseDamage = baseDamage;
@@ -125,8 +127,10 @@ public class BarnstormAction extends AbstractGameAction {
       return;
     }
 
-    AbstractDungeon.effectsQueue.add(
-        new RoomTintEffect(Color.BLACK.cpy(), 0.9F, 0.8F, true));
+    if (this.duration == this.startDuration) {
+      AbstractDungeon.effectsQueue.add(
+              new RoomTintEffect(Color.BLACK.cpy(), 0.9F, 0.8F, true));
+    }
 
     this.duration -= Gdx.graphics.getDeltaTime();
 
@@ -135,6 +139,7 @@ public class BarnstormAction extends AbstractGameAction {
     if (this.duration < Settings.ACTION_DUR_XFAST) {
       if (this.isFirstTick) {
         // logger.trace("BarnstormAction::update damage tick. this.duration: " + this.duration);
+        queueShowOnlyBarnEffect();
 
         if (this.target.currentHealth > 0) {
           FlashAtkImgEffect attackEffect = new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect);
@@ -208,6 +213,17 @@ public class BarnstormAction extends AbstractGameAction {
                     animal,
                     ANIMAL_Y_OFFSET), 0.0F));
 
+  }
+
+  // determine how long the entire show should take, then display the barn (in the background) for the full duration
+  private void queueShowOnlyBarnEffect() {
+    int numTotalCropStacks = cropStacks.stream().map(crop -> crop.amount).reduce(0, Integer::sum);
+    AbstractDungeon.actionManager.addToBottom(
+            new VFXAction(player, new BarnstormAnimalChargeEffect(
+                    player.drawX + BARN_X_OFFSET * Settings.xScale,
+                    player.drawY + BARN_Y_OFFSET * Settings.yScale,
+                    getTotalChargeDuration(numTotalCropStacks)),
+                    0.0F));
   }
 
   private void applyPostDamageStuns() {

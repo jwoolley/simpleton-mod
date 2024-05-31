@@ -15,8 +15,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.powers.DeenergizedPower;
 import thesimpleton.powers.DrawDownPower;
+import thesimpleton.utilities.SimpletonColorUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -119,6 +121,10 @@ public class Depletion extends CustomCard {
   @Override
   public boolean canUse(AbstractPlayer p, AbstractMonster m) {
     return true;
+  }
+
+  public void triggerOnGlowCheck() {
+    this.glowColor = SimpletonColorUtil.RED_BORDER_GLOW_COLOR.cpy();
   }
 
   static {

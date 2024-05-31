@@ -24,6 +24,10 @@ public class BuzzBombImpactEffect extends WeightyImpactEffect {
   private boolean shakeAndFlash = false;
   private static TextureAtlas.AtlasRegion img;
 
+  public BuzzBombImpactEffect(float x, float y) {
+    this(x, y, false);
+  }
+
   public BuzzBombImpactEffect(float x, float y, boolean isFinalImpact) {
     super(x, y, Color.TAN.cpy());
     this._x= x;

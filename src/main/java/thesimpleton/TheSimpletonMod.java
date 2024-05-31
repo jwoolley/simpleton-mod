@@ -474,7 +474,14 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
 
     private void registerSfx() {
         HashMap<String, Sfx> reflectedMap = getSoundsMap();
-
+        reflectedMap.put("ANIMAL_CHICKEN_CLUCK_1",
+                new Sfx("TheSimpletonMod/sounds/TheSimpleton_AnimalChickenCluck.ogg"));
+        reflectedMap.put("ANIMAL_COW_MOO_1",
+                new Sfx("TheSimpletonMod/sounds/TheSimpleton_AnimalCowMoo.ogg"));
+        reflectedMap.put("ANIMAL_PIG_OINK_1",
+                new Sfx("TheSimpletonMod/sounds/TheSimpleton_AnimalPigOink.ogg"));
+        reflectedMap.put("ANIMAL_SHEEP_BAA_1",
+                new Sfx("TheSimpletonMod/sounds/TheSimpleton_AnimalSheepBaa.ogg"));
         reflectedMap.put("ATTACK_BEE_BUZZ_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_BeeBuzz1.ogg"));
         reflectedMap.put("ATTACK_BUZZ_1",

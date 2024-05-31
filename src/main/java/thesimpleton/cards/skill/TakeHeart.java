@@ -43,7 +43,7 @@ public class TakeHeart extends CustomCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    final int numRepetitions = (((float) p.currentHealth / p.maxHealth) * 100 > HEALTH_THRESHOLD_PERCENTAGE) ? 1 : 2;
+    final int numRepetitions = willTrigger(p) ? 2 : 1;
 
 //    AbstractDungeon.actionManager.addToBottom(new VFXAction(new AdrenalineEffect()));
 
@@ -62,6 +62,18 @@ public class TakeHeart extends CustomCard {
       upgradeName();
       upgradeBaseCost(UPGRADED_COST);
     }
+  }
+  @Override
+  public void triggerOnGlowCheck() {
+    if (willTrigger(AbstractDungeon.player)) {
+      this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+    } else {
+      this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+    }
+  }
+
+  private boolean willTrigger(AbstractPlayer p) {
+    return p != null && (((float) p.currentHealth / p.maxHealth) * 100 <= HEALTH_THRESHOLD_PERCENTAGE);
   }
 
   private static String getDescription() {

@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
@@ -22,12 +21,10 @@ import java.util.List;
 import java.util.Set;
 
 public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
-    private static float INITIAL_WAIT_DURATION = Settings.ACTION_DUR_FAST;
-    private static float ANIMAL_CHARGE_DURATION =  Settings.ACTION_DUR_MED;
-    private static float INITIAL_WAIT_DURATION_FAST = Settings.ACTION_DUR_XFAST;
+    private static float INITIAL_WAIT_DURATION = 0.0F; // Settings.ACTION_DUR_XFAST;
+    private static float ANIMAL_CHARGE_DURATION = 0.33F; // Settings.ACTION_DUR_MED;
+    private static float INITIAL_WAIT_DURATION_FAST = 0.0F; // Settings.ACTION_DUR_XFAST;
     private static float ANIMAL_CHARGE_DURATION_FAST =  0.33F;
-
-    private final float totalDuration;
 
     private float _initialX;
     private float _initialY;
@@ -60,9 +57,9 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 
     private static final String SHEEP_SFX_PATH ="ANIMAL_SHEEP_BAA_1";
 
-    private final  Texture barnUnderlayImage;
+    private static Texture barnUnderlayImage;
 
-    private final Texture barnOverlayImage;
+    private static Texture barnOverlayImage;
 
     private final Texture animalImage;
     private final String animalSfxKey;
@@ -76,35 +73,44 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     private final float animalOffsetX = 0;
     private final float animalOffsetY;
 
+    private static Texture IMG_STATIC_ANIMAL_CHICKEN;
+    private static Texture IMG_STATIC_ANIMAL_COW;
+    private static Texture IMG_STATIC_ANIMAL_PIG;
+    private static Texture IMG_STATIC_ANIMAL_SHEEP;
 
     public BarnstormAnimalChargeEffect(float initialX, float initialY, AbstractCreature target, BarnstormAction.BarnstormAnimal animal, float animalOffsetY) {
-        this.duration = this.totalDuration = getInitialWaitDuration() + getAnimalChargeDuration();
+        this.duration = this.startingDuration = getInitialWaitDuration() + getAnimalChargeDuration();
 
         this.color = Color.WHITE.cpy();
         this.scale = 1.0F;
 
+        // statically initialize all the textures
         barnUnderlayImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(BARN_UNDERLAY_IMG_PATH));
         barnOverlayImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(BARN_OVERLAY_IMG_PATH));
+        IMG_STATIC_ANIMAL_CHICKEN = TheSimpletonMod.loadTexture((TheSimpletonMod.getImageResourcePath(CHICKEN_IMG_PATH)));
+        IMG_STATIC_ANIMAL_COW = TheSimpletonMod.loadTexture((TheSimpletonMod.getImageResourcePath(COW_IMG_PATH)));
+        IMG_STATIC_ANIMAL_PIG = TheSimpletonMod.loadTexture((TheSimpletonMod.getImageResourcePath(PIG_IMG_PATH)));
+        IMG_STATIC_ANIMAL_SHEEP = TheSimpletonMod.loadTexture((TheSimpletonMod.getImageResourcePath(SHEEP_IMG_PATH)));
 
         barnWidth = barnOverlayImage.getWidth();
         barnHeight = barnOverlayImage.getHeight();
 
         switch (animal) {
             case CHICKEN:
-                animalImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(CHICKEN_IMG_PATH));
+                animalImage = IMG_STATIC_ANIMAL_CHICKEN;
                 animalSfxKey = CHICKEN_SFX_PATH;
                 break;
             case COW:
-                animalImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(COW_IMG_PATH));
+                animalImage = IMG_STATIC_ANIMAL_COW;
                 animalSfxKey = COW_SFX_PATH;
                 break;
             case PIG:
-                animalImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(PIG_IMG_PATH));
+                animalImage = IMG_STATIC_ANIMAL_PIG;
                 animalSfxKey = PIG_SFX_PATH;
                 break;
             case SHEEP:
             default:
-                animalImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(SHEEP_IMG_PATH));
+                animalImage = IMG_STATIC_ANIMAL_SHEEP;
                 animalSfxKey = SHEEP_SFX_PATH;
                 break;
         }
@@ -148,7 +154,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
                 isAnimalCharging = true;
             }
 
-            float t = ((this.totalDuration - getInitialWaitDuration()) - this.duration) / this.totalDuration;
+            float t = ((this.startingDuration - getInitialWaitDuration()) - this.duration) / this.startingDuration;
             float tInterpolated = Interpolation.swing.apply(t);
 
             float animalInitialX = _initialX + animalOffsetX * Settings.scale;

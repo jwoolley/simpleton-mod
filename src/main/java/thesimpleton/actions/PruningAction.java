@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.utilities.ModLogger;

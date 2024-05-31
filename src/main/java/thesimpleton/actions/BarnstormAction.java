@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -19,6 +18,7 @@ import com.megacrit.cardcrawl.vfx.combat.RoomTintEffect;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.crops.AbstractCrop;
 import thesimpleton.effects.BarnstormAnimalChargeEffect;
+import thesimpleton.effects.BarnstormDrawBarnEffect;
 import thesimpleton.orbs.AbstractCropOrb;
 import thesimpleton.utilities.ModLogger;
 
@@ -31,11 +31,8 @@ public class BarnstormAction extends AbstractGameAction {
   private static final AttackEffect ATTACK_EFFECT_HEAVY = AttackEffect.BLUNT_HEAVY;
   private static final AttackEffect ATTACK_EFFECT_LIGHT = AttackEffect.BLUNT_LIGHT;
   private static final AttackEffect ATTACK_EFFECT_SCRATCH = AttackEffect.SLASH_DIAGONAL;
-
-
-  private static final float BARN_X_OFFSET = 10.0F;
-
-  private static final float BARN_Y_OFFSET = -20.0F;
+  private static final float LIGHTNING_X_MIN_OFFSET = 20.0F;
+  private static final float LIGHTNING_X_RANGE_WIDTH = 300.F ;
   private static final float LIGHTNING_Y_OFFSET = 200.0F;
   private static final float ANIMAL_Y_OFFSET = 10.0F;
 
@@ -49,6 +46,8 @@ public class BarnstormAction extends AbstractGameAction {
   private final DamageInfo info;
   private FlashAtkImgEffect flashAttackEffect;
   private final BarnstormAnimalChargeEffect chargeEffect;
+
+  boolean isInitialBarnstormAction;
 
   public enum BarnstormAnimal {
     CHICKEN,
@@ -74,6 +73,12 @@ public class BarnstormAction extends AbstractGameAction {
 
   public BarnstormAction(AbstractPlayer player, AbstractCreature target, int baseDamage, int stunThreshold,
                          List<CropCount> cropStacks, Map<AbstractMonster, Integer> damagedEnemies) {
+    this(player, target, baseDamage, stunThreshold, cropStacks, damagedEnemies, true);
+  }
+
+
+  public BarnstormAction(AbstractPlayer player, AbstractCreature target, int baseDamage, int stunThreshold,
+                         List<CropCount> cropStacks, Map<AbstractMonster, Integer> damagedEnemies, boolean isInitialBarnstormAction) {
     this.actionType = ActionType.DAMAGE;
     this.damageType = DamageInfo.DamageType.NORMAL;
 
@@ -102,17 +107,29 @@ public class BarnstormAction extends AbstractGameAction {
         this.attackEffect = ATTACK_EFFECT_LIGHT;
       }
 
-      chargeEffect = makeAnimalChargeEffect(animal);
+      chargeEffect = makeAnimalChargeEffect(animal, 0F, 0F);
       flashAttackEffect = new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect);
       AbstractDungeon.effectList.add(chargeEffect);
       AbstractDungeon.effectList.add(makeLightningEffect());
 
       // create the flash effect but don't queue it yet
       this.duration = this.startDuration =  chargeEffect.startingDuration;
+
+      if (isInitialBarnstormAction) {
+        float numTotalCropStacks = cropStacks.stream().map(c -> c.amount).reduce(0, Integer::sum);
+        float estimatedTotalDuration = this.startDuration * numTotalCropStacks;
+        AbstractDungeon.effectList.add(new BarnstormDrawBarnEffect(0F, 0F, estimatedTotalDuration + 0.2F)); // 0.2F is a little grace period
+
+//        logger.debug("[BarnstormAction] (initial action, constructor). estimatedTotalDuration: " + estimatedTotalDuration);
+//        debug_static_TotalActionDuration = 0.0F;
+      }
     } else {
       chargeEffect = null;
     }
   }
+
+  private static float debug_static_TotalActionDuration;
+  private float debug_currentActionRunningDuration;
 
   @Override
   public void update() {
@@ -126,33 +143,27 @@ public class BarnstormAction extends AbstractGameAction {
     }
 
     if (this.duration == this.startDuration) {
-//      logger.trace("BarnstormAction::update() [first tick] duration: " + duration + ", startDuration: " + startDuration
-//              + ", chargeEffect.startingDuration: " + chargeEffect.startingDuration
-//              + ", startDuration - chargeEffect.startingDuration: " + (startDuration - chargeEffect.startingDuration));
-
       AbstractDungeon.effectList.add(
           new RoomTintEffect(Color.BLACK.cpy(), 0.9F, chargeEffect.startingDuration, true));
     } else if (this.duration < this.startDuration
             && !didPerformOrSkipDamageTrigger) {
-//      logger.trace("BarnstormAction::update() [damage tick] duration: " + duration + ", startDuration: " + startDuration);
-
       if (this.target.currentHealth > 0) {
         AbstractDungeon.effectList.add(flashAttackEffect);
         this.info.applyPowers(this.info.owner, this.target);
         this.target.damage(new DamageInfo(this.player, this.info.base));
       }
       this.didPerformOrSkipDamageTrigger = true;
-    } else {
-//      logger.trace("BarnstormAction::update() [waiting...] duration: " + this.duration + ", startDuration: " + this.startDuration
-//              + ", chargeEffect.startingDuration: " + chargeEffect.startingDuration
-//              + "; startDuration - chargeEffect.startingDuration: " + (this.startDuration - chargeEffect.startingDuration)
-//              + ", didPerformOrSkipDamageTrigger: " + didPerformOrSkipDamageTrigger);
     }
 
     this.duration -= Gdx.graphics.getDeltaTime();
+    debug_static_TotalActionDuration += Gdx.graphics.getDeltaTime();
+    debug_currentActionRunningDuration += Gdx.graphics.getDeltaTime();
 
     if (this.duration < 0.0F) {
-//      logger.trace("BarnstormAction::update() [finished] " + duration + ", startDuration: " + startDuration);
+//      logger.debug("[BarnstormAction] [update, finished]."
+//              + " elapsed duration: " + debug_currentActionRunningDuration
+//              + " total elapsed duration: " + debug_static_TotalActionDuration
+//      );
 
       CropCount cropCount = cropStacks.get(0);
       this.info.base = baseDamage;
@@ -165,6 +176,7 @@ public class BarnstormAction extends AbstractGameAction {
 
       queueNewBarnstormTick();
       this.isDone = true;
+
     }
   }
 
@@ -173,7 +185,7 @@ public class BarnstormAction extends AbstractGameAction {
       AbstractDungeon.actionManager.addToBottom(new BarnstormAction(
           this.player,
           AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng),
-          this.baseDamage, this.stunThreshold,  this.cropStacks, this.damagedEnemies));
+          this.baseDamage, this.stunThreshold,  this.cropStacks, this.damagedEnemies, false));
     } else {
       applyPostDamageStuns();
     }
@@ -183,30 +195,28 @@ public class BarnstormAction extends AbstractGameAction {
     // TODO: "flash" the crop orb
     AbstractDungeon.actionManager.addToBottom(new SFXAction("THUNDERCLAP", 0.025f));
 
-    int numPlaces = 2;
+    int numPossibleStrikeLocations = 2;
+    int strikeLocationIndex = AbstractDungeon.miscRng.random(numPossibleStrikeLocations);
 
-    float xPos = player.drawX - player.hb_w / 2.0F + ((float)AbstractDungeon.miscRng.random(numPlaces)) * player.hb_w / (numPlaces + 1.0F);
-    float yPos = player.drawY + 0.5F * player.hb_y + LIGHTNING_Y_OFFSET * Settings.scale;
+    float xPos = (LIGHTNING_X_MIN_OFFSET + ((float)strikeLocationIndex) * LIGHTNING_X_RANGE_WIDTH / (numPossibleStrikeLocations + 1.0F))
+            * Settings.yScale;
+    float yPos = LIGHTNING_Y_OFFSET * Settings.scale;
 
     return new LightningEffect(xPos, yPos);
   }
 
-  private BarnstormAnimalChargeEffect makeAnimalChargeEffect(BarnstormAnimal animal) {
+  private BarnstormAnimalChargeEffect makeAnimalChargeEffect(BarnstormAnimal animal, float xPos, float yPos) {
     BarnstormAnimalChargeEffect effect =  new BarnstormAnimalChargeEffect(
-            player.drawX + BARN_X_OFFSET * Settings.xScale,
-            player.drawY + BARN_Y_OFFSET * Settings.yScale,
+            xPos,
+            yPos,
             target,
             animal,
             ANIMAL_Y_OFFSET);
-
-    // AbstractDungeon.actionManager.addToBottom(new VFXAction(player, effect, 0.0F));
 
     return effect;
   }
 
   private void applyPostDamageStuns() {
-//    logger.trace("BarnstormAction::applyPostDamageStuns called. Final tally:");
-
     for (Map.Entry<AbstractMonster, Integer> e : this.damagedEnemies.entrySet()) {
       logger.trace("\t" + e.getKey() + ": " + e.getValue());
     }

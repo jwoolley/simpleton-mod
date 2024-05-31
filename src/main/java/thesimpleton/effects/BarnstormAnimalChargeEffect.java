@@ -73,19 +73,27 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     private static Texture IMG_STATIC_ANIMAL_PIG;
     private static Texture IMG_STATIC_ANIMAL_SHEEP;
 
-    public BarnstormAnimalChargeEffect(float initialX, float initialY, AbstractCreature target, BarnstormAction.BarnstormAnimal animal, float animalOffsetY) {
-        this.duration = this.startingDuration = getInitialWaitDuration() + getAnimalChargeDuration();
-
-        this.color = Color.WHITE.cpy();
-        this.scale = 1.0F;
-
-        // statically initialize all the textures
+    private static void loadStaticTextures() {
         barnUnderlayImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(BARN_UNDERLAY_IMG_PATH));
         barnOverlayImage = TheSimpletonMod.loadTexture(TheSimpletonMod.getImageResourcePath(BARN_OVERLAY_IMG_PATH));
         IMG_STATIC_ANIMAL_CHICKEN = TheSimpletonMod.loadTexture((TheSimpletonMod.getImageResourcePath(CHICKEN_IMG_PATH)));
         IMG_STATIC_ANIMAL_COW = TheSimpletonMod.loadTexture((TheSimpletonMod.getImageResourcePath(COW_IMG_PATH)));
         IMG_STATIC_ANIMAL_PIG = TheSimpletonMod.loadTexture((TheSimpletonMod.getImageResourcePath(PIG_IMG_PATH)));
         IMG_STATIC_ANIMAL_SHEEP = TheSimpletonMod.loadTexture((TheSimpletonMod.getImageResourcePath(SHEEP_IMG_PATH)));
+    }
+
+    public BarnstormAnimalChargeEffect(float initialX, float initialY, AbstractCreature target, BarnstormAction.BarnstormAnimal animal, float animalOffsetY) {
+        this.duration = this.startingDuration = getInitialWaitDuration() + getAnimalChargeDuration();
+
+        this.color = Color.WHITE.cpy();
+        this.scale = 1.0F;
+
+        // statically initialize all the textures if needed
+        if (barnUnderlayImage == null || barnOverlayImage == null
+        || IMG_STATIC_ANIMAL_CHICKEN == null || IMG_STATIC_ANIMAL_COW == null
+        || IMG_STATIC_ANIMAL_PIG == null || IMG_STATIC_ANIMAL_SHEEP == null) {
+            loadStaticTextures();
+        }
 
         barnWidth = barnOverlayImage.getWidth();
         barnHeight = barnOverlayImage.getHeight();
@@ -116,7 +124,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
         this._initialX = initialX;
         this._initialY = initialY;
         this._targetX = target.drawX - target.hb_w / 2.0F - animalWidth;
-        this._targetY = initialY;
+        this._targetY = target.drawY - target.hb_h / 2.0F - animalHeight /2.0F; //  initialY;
         this.target = target;
     }
 
@@ -124,18 +132,8 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     @Override
     public void update() {
 
-//        if (this.duration == this.totalDuration) {
-//            TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] update() called, first tick:"
-//                    + " (x, y): (" + this._x + ", " + this._y + ")"
-//                    + "; (startX, startY): " + _initialX + ", " + _initialY + ")"
-//                    + "; (targetX, targetY): " + _targetX + ", " + _targetY + ")"
-//            );
-//        }
-
-        // TODO: play SFX
         if (this.duration < this.startingDuration - getInitialWaitDuration()) {
             if (!isAnimalCharging) {
-//                TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] start isAnimalCharging");
                 AbstractDungeon.actionManager.addToTop(new SFXAction(animalSfxKey));
 
                 isAnimalCharging = true;
@@ -146,14 +144,8 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 
             float animalInitialX = _initialX + animalOffsetX * Settings.scale;
             float animalInitialY = _initialY + animalOffsetY * Settings.scale;
-            this._x = MathUtils.lerp(animalInitialX, _targetX, tInterpolated);
+            this._x = MathUtils.lerp(animalInitialX, _targetX, Interpolation.pow2Out.apply(tInterpolated));
             this._y = MathUtils.lerp(animalInitialY, _targetY, tInterpolated);
-
-//            TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] update() called."
-//                    + " t: " + (this.totalDuration - this.duration) / this.totalDuration
-//                    + " x,y: (" + this._x + ", " + this._y + ")"
-//                    + " image w/h: (" + this.animalImage.getWidth() + ", " + this.animalImage.getHeight()+ ")"
-//            );
         }
 
         this.duration -= Gdx.graphics.getDeltaTime();
@@ -166,25 +158,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     @Override
     public void render(SpriteBatch sb) {
         sb.setColor(this.color);
-
-        sb.draw(barnUnderlayImage,
-                this._initialX - barnWidth / 2.0F * Settings.xScale,
-                this._initialY,
-                0, 0, // barnWidth/2f, barnHeight/2f,
-                barnWidth, barnHeight,
-                Settings.xScale, Settings.yScale,
-                this.rotation,
-                0, 0,
-                barnWidth, barnHeight,
-                false, false);
-
         if (isAnimalCharging) {
-//            TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] render() called."
-//                    + " t: " + (this.totalDuration - this.duration) / this.totalDuration
-//                    + " x,y: (" + this._x + ", " + this._y + ")"
-//                    + " image w/h: (" + this.animalImage.getWidth() + ", " + this.animalImage.getHeight()+ ")");
-
-
             sb.draw(animalImage, this._x, this._y,
                     0, 0,
                     animalWidth, animalHeight,   // 0.0F, 0.0F)
@@ -195,7 +169,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
                     false, false);
 
             sb.draw(barnOverlayImage,
-                    this._initialX - barnWidth / 2.0F * Settings.xScale,
+                    this._initialX,
                     this._initialY,
                     0, 0, // barnWidth/2f, barnHeight/2f,
                     barnWidth, barnHeight,

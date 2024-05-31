@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.cards.curses.Injury;
@@ -71,9 +72,7 @@ public class Depletion extends CustomCard {
     } else {
       this.dontTriggerOnUseCard = false;
 
-//      List<AbstractCard> statusCards =  getRandomStatusCards(this.magicNumber);
-//      statusCards.forEach(card -> AbstractDungeon.actionManager.addToBottom(
-//              new MakeTempCardInDiscardAction(card, 1)));
+      AbstractDungeon.actionManager.addToBottom(new SFXAction("GURGLE_LOW_1", 0.2f));
 
       AbstractDungeon.actionManager.addToBottom(
               new MakeTempCardInDiscardAction(this.makeStatEquivalentCopy(), 1));
@@ -108,6 +107,7 @@ public class Depletion extends CustomCard {
 
   public void triggerOnEndOfTurnForPlayingCard() {
     this.dontTriggerOnUseCard = true;
+
     AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
   }
 

@@ -74,6 +74,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     private final int animalWidth;
     private final int animalHeight;
 
+    private final float animalOffsetX = 0;
     private final float animalOffsetY;
 
     private BarnstormAction.BarnstormAnimal animal;
@@ -124,9 +125,8 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
         animalWidth = animalImage.getWidth();
         animalHeight = animalImage.getHeight();
         this.animalOffsetY = animalOffsetY;
-
-        this._x = this._initialX = initialX;
-        this._y = this._initialY = initialY;
+        this._initialX = initialX; // initialX - barnWidth / 2.0F * Settings.xScale;
+        this._initialY = initialY; // initialY - barnHeight / 2.0F * Settings.yScale;
         this._targetX = target.drawX - target.hb_w / 2.0F - animalWidth;
         this._targetY = initialY;
         this.target = target;
@@ -164,8 +164,10 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
             float t = ((this.totalDuration - getInitialWaitDuration()) - this.duration) / this.totalDuration;
             float tInterpolated = Interpolation.swing.apply(t);
 
-            this._x = MathUtils.lerp(_initialX,  _targetX, tInterpolated);
-            this._y = MathUtils.lerp(_initialY,  _targetY, tInterpolated);
+            float animalInitialX = _initialX + animalOffsetX * Settings.scale;
+            float animalInitialY = _initialY + animalOffsetY * Settings.scale;
+            this._x = MathUtils.lerp(animalInitialX, _targetX, tInterpolated);
+            this._y = MathUtils.lerp(animalInitialY, _targetY, tInterpolated);
 
 //            TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] update() called."
 //                    + " t: " + (this.totalDuration - this.duration) / this.totalDuration
@@ -186,10 +188,15 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     @Override
     public void render(SpriteBatch sb) {
         sb.setColor(this.color);
-        sb.draw(barnUnderlayImage, this._initialX - barnWidth/2f, this._initialY,
-                barnWidth/2f, barnHeight/2f, // 0.0F, 0.0F
+
+        //  b.draw(this.img, this.drawX - (float)this.img.getWidth() * Settings.scale / 2.0F + this.animX, this.drawY, (float)this.img.getWidth() * Settings.scale, (float)this.img.getHeight() * Settings.scale, 0, 0, this.img.getWidth(), this.img.getHeight(), this.flipHorizontal, this.flipVertical);
+
+        sb.draw(barnUnderlayImage,
+                this._initialX - barnWidth / 2.0F * Settings.xScale,
+                this._initialY,
+                0, 0, // barnWidth/2f, barnHeight/2f,
                 barnWidth, barnHeight,
-                this.scale * Settings.scale, this.scale * Settings.scale,
+                Settings.xScale, Settings.yScale,
                 this.rotation,
                 0, 0,
                 barnWidth, barnHeight,
@@ -201,8 +208,9 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
                     + " x,y: (" + this._x + ", " + this._y + ")"
                     + " image w/h: (" + this.animalImage.getWidth() + ", " + this.animalImage.getHeight()+ ")");
 
-            sb.draw(animalImage, this._x, this._y - barnUnderlayImage.getHeight() + (animalImage.getHeight() + animalOffsetY) * Settings.scale,
-                    animalWidth/2f, animalHeight/2f,
+
+            sb.draw(animalImage, this._x, this._y,
+                    0, 0,
                     animalWidth, animalHeight,   // 0.0F, 0.0F)
                     this.scale * Settings.scale, this.scale * Settings.scale,
                     this.rotation,
@@ -219,14 +227,25 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 //                    animalWidth, animalHeight,
 //                    false, false);
 
-            sb.draw(barnOverlayImage,this._initialX - barnWidth/2f, this._initialY,
-                    barnWidth/2f, barnHeight/2f,
+            sb.draw(barnOverlayImage,
+                    this._initialX - barnWidth / 2.0F * Settings.xScale,
+                    this._initialY,
+                    0, 0, // barnWidth/2f, barnHeight/2f,
                     barnWidth, barnHeight,
-                    this.scale * Settings.scale, this.scale * Settings.scale,
+                    Settings.xScale, Settings.yScale,
                     this.rotation,
-                               0, 0,
+                    0, 0,
                     barnWidth, barnHeight,
                     false, false);
+
+//            sb.draw(barnOverlayImage,this._initialX - barnWidth/2f, this._initialY,
+//                    barnWidth/2f, barnHeight/2f,
+//                    barnWidth, barnHeight,
+//                    this.scale * Settings.scale, this.scale * Settings.scale,
+//                    this.rotation,
+//                   0, 0,
+//                    barnWidth, barnHeight,
+//                    false, false);
         }
     }
 

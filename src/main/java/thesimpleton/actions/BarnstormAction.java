@@ -33,7 +33,7 @@ public class BarnstormAction extends AbstractGameAction {
 
   private static final float BARN_X_OFFSET = 0.0F;
 
-  private static final float BARN_Y_OFFSET = 90.0F;
+  private static final float BARN_Y_OFFSET = -20.0F;
   private static final float LIGHTNING_Y_OFFSET = 110.0F;
   private static final float ANIMAL_Y_OFFSET = 10.0F;
 

@@ -31,10 +31,10 @@ public class BarnstormAction extends AbstractGameAction {
 
   private static float ACTION_DURATION = Settings.ACTION_DUR_FASTER;
 
-  private static final float BARN_X_OFFSET = 0.0F;
+  private static final float BARN_X_OFFSET = 10.0F;
 
   private static final float BARN_Y_OFFSET = -20.0F;
-  private static final float LIGHTNING_Y_OFFSET = 110.0F;
+  private static final float LIGHTNING_Y_OFFSET = 140.0F;
   private static final float ANIMAL_Y_OFFSET = 10.0F;
 
   private final AbstractPlayer player;
@@ -137,7 +137,9 @@ public class BarnstormAction extends AbstractGameAction {
         // logger.trace("BarnstormAction::update damage tick. this.duration: " + this.duration);
 
         if (this.target.currentHealth > 0) {
-          AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect));
+          FlashAtkImgEffect attackEffect = new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect);
+          attackEffect.duration = Settings.ACTION_DUR_MED;
+          AbstractDungeon.effectList.add(attackEffect);
 
           this.info.applyPowers(this.info.owner, this.target);
           monsterTarget.damage(new DamageInfo(this.player, this.info.base));

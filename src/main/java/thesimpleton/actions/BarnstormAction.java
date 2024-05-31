@@ -35,7 +35,7 @@ public class BarnstormAction extends AbstractGameAction {
 
   private static final float BARN_Y_OFFSET = 90.0F;
   private static final float LIGHTNING_Y_OFFSET = 110.0F;
-  private static final float ANIMAL_Y_OFFSET = 20.0F;
+  private static final float ANIMAL_Y_OFFSET = 10.0F;
 
   private final AbstractPlayer player;
   private final int baseDamage;
@@ -206,7 +206,7 @@ public class BarnstormAction extends AbstractGameAction {
                     player.drawY + BARN_Y_OFFSET * Settings.yScale,
                     target,
                     animal,
-                    ANIMAL_Y_OFFSET * Settings.yScale), 0.0F));
+                    ANIMAL_Y_OFFSET), 0.0F));
 
   }
 

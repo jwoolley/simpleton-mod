@@ -19,6 +19,7 @@ import thesimpleton.effects.utils.SimpletonVfxHelper;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     private static float INITIAL_WAIT_DURATION = Settings.ACTION_DUR_FAST;
@@ -75,7 +76,6 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 
     private final float animalOffsetY;
 
-
     private BarnstormAction.BarnstormAnimal animal;
 
     public static float getFullDuration() {
@@ -95,6 +95,10 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 
         barnWidth = barnOverlayImage.getWidth();
         barnHeight = barnOverlayImage.getHeight();
+
+//        barnWidth = barnOverlayImage.getWidth() * Settings.xScale;
+//        barnHeight = barnOverlayImage.getHeight() * Settings.yScale;
+
 
         this.animal = animal;
         switch (animal) {
@@ -183,7 +187,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     public void render(SpriteBatch sb) {
         sb.setColor(this.color);
         sb.draw(barnUnderlayImage, this._initialX - barnWidth/2f, this._initialY,
-                barnWidth/2f, barnHeight/2f,
+                barnWidth/2f, barnHeight/2f, // 0.0F, 0.0F
                 barnWidth, barnHeight,
                 this.scale * Settings.scale, this.scale * Settings.scale,
                 this.rotation,
@@ -192,27 +196,35 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
                 false, false);
 
         if (isAnimalCharging) {
-//            TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] render() called."
-//                    + " t: " + (this.totalDuration - this.duration) / this.totalDuration
-//                    + " x,y: (" + this._x + ", " + this._y + ")"
-//                    + " image w/h: (" + this.animalImage.getWidth() + ", " + this.animalImage.getHeight()+ ")");
+            TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] render() called."
+                    + " t: " + (this.totalDuration - this.duration) / this.totalDuration
+                    + " x,y: (" + this._x + ", " + this._y + ")"
+                    + " image w/h: (" + this.animalImage.getWidth() + ", " + this.animalImage.getHeight()+ ")");
 
-
-            sb.draw(animalImage, this._x, this._y + animalOffsetY - animalHeight,
+            sb.draw(animalImage, this._x, this._y - barnUnderlayImage.getHeight() + (animalImage.getHeight() + animalOffsetY) * Settings.scale,
                     animalWidth/2f, animalHeight/2f,
-                    animalWidth, animalHeight,
+                    animalWidth, animalHeight,   // 0.0F, 0.0F)
                     this.scale * Settings.scale, this.scale * Settings.scale,
                     this.rotation,
                     0, 0,
                     animalWidth, animalHeight,
                     false, false);
 
+//            sb.draw(animalImage, this._x, this._y + animalOffsetY - animalHeight,
+//                    animalWidth/2f, animalHeight/2f,
+//                    animalWidth, animalHeight,
+//                    this.scale * Settings.scale, this.scale * Settings.scale,
+//                    this.rotation,
+//                    0, 0,
+//                    animalWidth, animalHeight,
+//                    false, false);
+
             sb.draw(barnOverlayImage,this._initialX - barnWidth/2f, this._initialY,
                     barnWidth/2f, barnHeight/2f,
                     barnWidth, barnHeight,
                     this.scale * Settings.scale, this.scale * Settings.scale,
                     this.rotation,
-                    0, 0,
+                               0, 0,
                     barnWidth, barnHeight,
                     false, false);
         }

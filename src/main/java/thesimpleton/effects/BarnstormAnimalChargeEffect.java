@@ -15,11 +15,6 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.BarnstormAction;
 import thesimpleton.effects.utils.SimpletonVfxHelper;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-
 public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     private static float INITIAL_WAIT_DURATION = 0.0F; // Settings.ACTION_DUR_XFAST;
     private static float ANIMAL_CHARGE_DURATION = 0.33F; // Settings.ACTION_DUR_MED;
@@ -125,14 +120,6 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
         this.target = target;
     }
 
-    private float getInitialWaitDuration() {
-        return Settings.FAST_MODE ? INITIAL_WAIT_DURATION_FAST  : INITIAL_WAIT_DURATION;
-    }
-
-    private float getAnimalChargeDuration() {
-        return Settings.FAST_MODE ? ANIMAL_CHARGE_DURATION_FAST  : ANIMAL_CHARGE_DURATION;
-    }
-
     private boolean isAnimalCharging = false;
     @Override
     public void update() {
@@ -146,7 +133,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 //        }
 
         // TODO: play SFX
-        if (this.duration < getAnimalChargeDuration()) {
+        if (this.duration < this.startingDuration - getInitialWaitDuration()) {
             if (!isAnimalCharging) {
 //                TheSimpletonMod.traceLogger.log("[BarnstormAnimalChargeEffect] start isAnimalCharging");
                 AbstractDungeon.actionManager.addToTop(new SFXAction(animalSfxKey));
@@ -218,6 +205,14 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
                     barnWidth, barnHeight,
                     false, false);
         }
+    }
+
+    private float getInitialWaitDuration() {
+        return Settings.FAST_MODE ? INITIAL_WAIT_DURATION_FAST  : INITIAL_WAIT_DURATION;
+    }
+
+    private float getAnimalChargeDuration() {
+        return Settings.FAST_MODE ? ANIMAL_CHARGE_DURATION_FAST  : ANIMAL_CHARGE_DURATION;
     }
 
     @Override

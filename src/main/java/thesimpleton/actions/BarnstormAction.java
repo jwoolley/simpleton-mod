@@ -32,7 +32,6 @@ public class BarnstormAction extends AbstractGameAction {
   private static final AttackEffect ATTACK_EFFECT_LIGHT = AttackEffect.BLUNT_LIGHT;
   private static final AttackEffect ATTACK_EFFECT_SCRATCH = AttackEffect.SLASH_DIAGONAL;
 
-  float DAMAGE_DELAY_DURATION = 0.0F;
 
   private static final float BARN_X_OFFSET = 10.0F;
 
@@ -133,7 +132,7 @@ public class BarnstormAction extends AbstractGameAction {
 
       AbstractDungeon.effectList.add(
           new RoomTintEffect(Color.BLACK.cpy(), 0.9F, chargeEffect.startingDuration, true));
-    } else if (this.duration < this.startDuration - DAMAGE_DELAY_DURATION
+    } else if (this.duration < this.startDuration
             && !didPerformOrSkipDamageTrigger) {
 //      logger.trace("BarnstormAction::update() [damage tick] duration: " + duration + ", startDuration: " + startDuration);
 

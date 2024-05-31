@@ -130,17 +130,17 @@ public class BarnstormAction extends AbstractGameAction {
 
     this.duration -= Gdx.graphics.getDeltaTime();
 
-      AbstractMonster monsterTarget = (AbstractMonster) this.target;
+    AbstractMonster monsterTarget = (AbstractMonster) this.target;
 
     if (this.duration < Settings.ACTION_DUR_XFAST) {
       if (this.isFirstTick) {
         // logger.trace("BarnstormAction::update damage tick. this.duration: " + this.duration);
 
         if (this.target.currentHealth > 0) {
-          FlashAtkImgEffect attackEffect = new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect);
-          AbstractDungeon.effectList.add(attackEffect);
+//          FlashAtkImgEffect attackEffect = new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect);
+//          AbstractDungeon.effectList.add(attackEffect);
           this.info.applyPowers(this.info.owner, this.target);
-          monsterTarget.damage(new DamageInfo(this.player, this.info.base));
+          this.target.damage(new DamageInfo(this.player, this.info.base));
         }
         this.isFirstTick = false;
       } else if (this.duration < 0.0F) {
@@ -157,17 +157,13 @@ public class BarnstormAction extends AbstractGameAction {
 
         // logger.trace("BarnstormAction::update damaging target: " + target.id + "; lastDamageTaken: " + monsterTarget.lastDamageTaken);
 
-        if (monsterTarget.lastDamageTaken > 0) {
-          final int numTimesDamaged = damagedEnemies.containsKey(monsterTarget) ?
-              damagedEnemies.get(monsterTarget) + 1 : 1;
-            damagedEnemies.put(monsterTarget, numTimesDamaged);
-          AbstractDungeon.actionManager.addToBottom(
-                  new VFXAction(new BuzzBombImpactEffect(monsterTarget.hb.x, monsterTarget.hb.cY, false)));
-
+//        if (monsterTarget.lastDamageTaken > 0) {
+//          final int numTimesDamaged = damagedEnemies.containsKey(monsterTarget) ?
+//              damagedEnemies.get( this.target) + 1 : 1;
+//            damagedEnemies.put((AbstractMonster) this.target, numTimesDamaged);
 //          AbstractDungeon.actionManager.addToBottom(
-//                  new VFXAction(new BuzzBombImpactEffect(monsterTarget.hb.x, monsterTarget.hb.cY,
-//                          damagedEnemies.get(monsterTarget) == this.stunThreshold && !monsterTarget.isDeadOrEscaped())));
-        }
+//                  new VFXAction(new BuzzBombImpactEffect(monsterTarget.hb.x, monsterTarget.hb.cY, false)));
+//        }
         queueNewBarnstormTick();
         this.isDone = true;
       }
@@ -194,8 +190,8 @@ public class BarnstormAction extends AbstractGameAction {
     float xPos = player.drawX - player.hb_w / 2.0F + ((float)AbstractDungeon.miscRng.random(numPlaces)) * player.hb_w / (numPlaces + 1.0F);
     float yPos = player.drawY + 0.5F * player.hb_y + LIGHTNING_Y_OFFSET * Settings.scale;
 
-    AbstractDungeon.actionManager.addToBottom(
-        new VFXAction(player, new LightningEffect(xPos, yPos), 0.0F));
+//    AbstractDungeon.actionManager.addToBottom(
+//        new VFXAction(player, new LightningEffect(xPos, yPos), 0.0F));
 
   }
 

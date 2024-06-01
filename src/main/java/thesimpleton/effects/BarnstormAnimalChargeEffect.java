@@ -19,7 +19,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     private static float INITIAL_WAIT_DURATION = 0.0F; // Settings.ACTION_DUR_XFAST;
     private static float ANIMAL_CHARGE_DURATION = 0.33F; // Settings.ACTION_DUR_MED;
     private static float INITIAL_WAIT_DURATION_FAST = 0.0F; // Settings.ACTION_DUR_XFAST;
-    private static float ANIMAL_CHARGE_DURATION_FAST =  0.33F;
+    private static float ANIMAL_CHARGE_DURATION_FAST =  0.1F;
 
     private float _initialX;
     private float _initialY;
@@ -159,6 +159,18 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     public void render(SpriteBatch sb) {
         sb.setColor(this.color);
         if (isAnimalCharging) {
+
+            sb.draw(barnUnderlayImage,
+                    this._initialX,
+                    this._initialY,
+                    0, 0, // barnWidth/2f, barnHeight/2f,
+                    barnWidth, barnHeight,
+                    Settings.xScale, Settings.yScale,
+                    this.rotation,
+                    0, 0,
+                    barnWidth, barnHeight,
+                    false, false);
+
             sb.draw(animalImage, this._x, this._y,
                     0, 0,
                     animalWidth, animalHeight,   // 0.0F, 0.0F)

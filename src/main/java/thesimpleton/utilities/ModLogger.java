@@ -1,10 +1,10 @@
 package thesimpleton.utilities;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import thesimpleton.TheSimpletonMod;
+
 import java.security.InvalidParameterException;
 import java.util.HashMap;
 

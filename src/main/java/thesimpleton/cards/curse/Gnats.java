@@ -1,6 +1,7 @@
 package thesimpleton.cards.curse;
 
 import basemod.abstracts.CustomCard;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -34,6 +35,8 @@ public class Gnats extends CustomCard implements SeasonalCurse {
 
   public boolean canPlay(AbstractCard card) {
     if (card.costForTurn == 0) {
+      AbstractDungeon.actionManager.addToBottom(new SFXAction("BLUNT_FAST", 0.1f));
+
       card.cantUseMessage = EXTENDED_DESCRIPTION[0];
       return false;
     }

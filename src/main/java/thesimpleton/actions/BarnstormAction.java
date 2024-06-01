@@ -47,18 +47,13 @@ public class BarnstormAction extends AbstractGameAction {
   private FlashAtkImgEffect flashAttackEffect;
   private final BarnstormAnimalChargeEffect chargeEffect;
 
-  boolean isInitialBarnstormAction;
+  private static BarnstormDrawBarnEffect drawBarnEffect;
 
   public enum BarnstormAnimal {
     CHICKEN,
     COW,
     PIG,
     SHEEP
-  }
-
-
-  public BarnstormAction(AbstractPlayer player, AbstractMonster target, int baseDamage, int stunThreshold) {
-    this(player, target, baseDamage, stunThreshold, getCropCounts(player), new HashMap<>());
   }
 
   static class CropCount {
@@ -71,7 +66,11 @@ public class BarnstormAction extends AbstractGameAction {
     int amount;
   }
 
-  public BarnstormAction(AbstractPlayer player, AbstractCreature target, int baseDamage, int stunThreshold,
+  public BarnstormAction(AbstractPlayer player, AbstractMonster target, int baseDamage, int stunThreshold) {
+    this(player, target, baseDamage, stunThreshold, getCropCounts(player), new HashMap<>());
+  }
+
+  private BarnstormAction(AbstractPlayer player, AbstractCreature target, int baseDamage, int stunThreshold,
                          List<CropCount> cropStacks, Map<AbstractMonster, Integer> damagedEnemies) {
     this(player, target, baseDamage, stunThreshold, cropStacks, damagedEnemies, true);
   }
@@ -99,7 +98,7 @@ public class BarnstormAction extends AbstractGameAction {
       Collections.shuffle(animals);
       BarnstormAnimal animal = animals.get(0);
 
-      if (animal == BarnstormAnimal.COW && animal == BarnstormAnimal.PIG) {
+      if (animal == BarnstormAnimal.COW || animal == BarnstormAnimal.PIG) {
         this.attackEffect = ATTACK_EFFECT_HEAVY;
       } else if (animal == BarnstormAnimal.CHICKEN) {
         this.attackEffect = ATTACK_EFFECT_SCRATCH;
@@ -115,13 +114,16 @@ public class BarnstormAction extends AbstractGameAction {
       // create the flash effect but don't queue it yet
       this.duration = this.startDuration = chargeEffect.startingDuration;
 
-      if (isInitialBarnstormAction) {
-        float numTotalCropStacks = cropStacks.stream().map(c -> c.amount).reduce(0, Integer::sum);
-        float estimatedTotalDuration = (this.startDuration + 0.1F) * numTotalCropStacks; // 0.1F is a little grace period
-        AbstractDungeon.effectList.add(new BarnstormDrawBarnEffect(0F, 0F, estimatedTotalDuration));
+      if (drawBarnEffect == null || drawBarnEffect.isDone) {
+        int numCropStacks = cropStacks.stream().map(c -> c.amount).reduce(0, Integer::sum);
+        // estimated time remaining for all stacks, including this one (with generous 0.5F fudge factor)
+        //  this time ultimately doesn't matter much, since we set it to 0 when BarnstormAction is all done
+        float estimatedTimeRemaining = (this.startDuration + 0.5F) * numCropStacks;
 
-//        logger.debug("[BarnstormAction] (initial action, constructor). estimatedTotalDuration: " + estimatedTotalDuration);
-//        debug_static_TotalActionDuration = 0.0F;
+        // adding this "supplemental" draw barn effect to hide flickerning of the barn
+        //  that happens between BarnstormAnimalChargeEffect instances
+        drawBarnEffect = new BarnstormDrawBarnEffect(0F, 0F, estimatedTimeRemaining);
+        AbstractDungeon.effectList.add(drawBarnEffect);
       }
     } else {
       chargeEffect = null;
@@ -166,17 +168,19 @@ public class BarnstormAction extends AbstractGameAction {
 //      );
 
       CropCount cropCount = cropStacks.get(0);
-      this.info.base = baseDamage;
+      this.info.base = baseDamage; // ???
 
       if (cropCount.amount > 1) {
         cropCount.amount--;
       } else {
         cropStacks.remove(cropCount);
-      }
 
+        if(cropStacks.isEmpty()) {
+          drawBarnEffect.duration = 0.0F;
+        }
+      }
       queueNewBarnstormTick();
       this.isDone = true;
-
     }
   }
 

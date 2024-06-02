@@ -124,7 +124,7 @@ public class Depletion extends CustomCard {
   }
 
   public void triggerOnGlowCheck() {
-    this.glowColor = SimpletonColorUtil.RED_BORDER_GLOW_COLOR.cpy();
+    this.glowColor = SimpletonColorUtil.SEASONAL_CURSE_GLOW_COLOR.cpy();
   }
 
   static {

@@ -29,7 +29,7 @@ public class Spoilage extends CustomCard implements SeasonalCurse, IHasCustomGlo
   private static final CardType TYPE = CardType.CURSE;
   private static final CardRarity RARITY = CardRarity.CURSE;
   private static final CardTarget TARGET = CardTarget.NONE;
-  private static Color GLOW_COLOR = Color.CHARTREUSE.cpy();
+  private static Color GLOW_COLOR = SimpletonColorUtil.SEASONAL_CURSE_GLOW_COLOR.cpy();
 
   private static final int CARD_THRESHOLD = 3;
 

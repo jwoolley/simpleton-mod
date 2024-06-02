@@ -296,6 +296,8 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             return this.getCurrentTheme().map(cur -> cur.equals(theme)).orElse(false);
         }
     }
+
+    public static final ModLogger errorLogger = ModLogger.create(TheSimpletonMod.class, Level.ERROR);
     public static final ModLogger infoLogger = ModLogger.create(TheSimpletonMod.class, Level.INFO);
     public static final ModLogger debugLogger = ModLogger.create(TheSimpletonMod.class, "DebugLogger", Level.DEBUG);
     public static final ModLogger traceLogger = ModLogger.create(TheSimpletonMod.class, "TraceLogger", Level.TRACE);

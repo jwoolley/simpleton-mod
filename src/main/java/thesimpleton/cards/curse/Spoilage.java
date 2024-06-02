@@ -10,13 +10,14 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.cards.PutSpecifiedCardOnDeckAction;
+import thesimpleton.cards.interfaces.IHasCustomGlowCondition;
 import thesimpleton.utilities.ModLogger;
 import thesimpleton.utilities.SimpletonColorUtil;
 
 import java.util.Iterator;
 import java.util.stream.Collectors;
 
-public class Spoilage extends CustomCard implements SeasonalCurse {
+public class Spoilage extends CustomCard implements SeasonalCurse, IHasCustomGlowCondition {
   private static ModLogger logger = TheSimpletonMod.traceLogger;
   public static final String ID = TheSimpletonMod.makeID("Spoilage");
   private static final CardStrings cardStrings;
@@ -108,17 +109,11 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
 
   @Override
   public void triggerOnGlowCheck() {
-    int otherCardsInHandNow = getNumOtherCardsInHandNow();
-    if (AbstractDungeon.player.hand.contains(this) && otherCardsInHandNow >= CARD_THRESHOLD) {
+    if (AbstractDungeon.player.hand.contains(this) && shouldGlow()) {
       TheSimpletonMod.traceLogger.log("Spoilage.triggerOnGlowCheck() it's Glow Time");
       this.glowColor = GLOW_COLOR.cpy();
     } else {
-      TheSimpletonMod.traceLogger.log("Spoilage.triggerOnGlowCheck()"
-              + " hand.contains(this): " + AbstractDungeon.player.hand.contains(this)
-              + " numCardsInHand: " + AbstractDungeon.player.hand.group.size()
-              + " numOtherCardsInHandNow: " + otherCardsInHandNow
-       );
-      this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+      this.glowColor = SimpletonColorUtil.INVISIBLE_GLOW_COLOR.cpy();
     }
   }
 
@@ -127,5 +122,10 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
     EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
+  }
+
+  @Override
+  public boolean shouldGlow() {
+    return  getNumOtherCardsInHandNow() >= CARD_THRESHOLD;
   }
 }

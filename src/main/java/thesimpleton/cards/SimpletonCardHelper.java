@@ -2,7 +2,6 @@ package thesimpleton.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import org.omg.PortableInterceptor.ACTIVE;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.curse.SimpletonCurse;
 import thesimpleton.cards.skill.Cultivate;

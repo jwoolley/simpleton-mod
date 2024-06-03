@@ -67,7 +67,7 @@ public class BuzzBombAction extends AbstractGameAction {
           AbstractDungeon.actionManager.addToBottom(
               new SFXAction(numRepetitions > 0 ? "ATTACK_FIRE_IMPACT_1" : "ATTACK_FIRE_IMPACT_2"));
 
-          this.info.applyPowers(this.info.owner, this.target);
+//          this.info.applyPowers(this.info.owner, this.target);
           AbstractDungeon.actionManager.addToBottom(
               new BuzzBombDamageAndPlantAction(this.source, this.target, this.info, this.numStacksPerKill));
         }

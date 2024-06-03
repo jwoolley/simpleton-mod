@@ -10,12 +10,14 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.cards.PutSpecifiedCardOnDeckAction;
+import thesimpleton.cards.interfaces.IHasCustomGlowCondition;
 import thesimpleton.utilities.ModLogger;
+import thesimpleton.utilities.SimpletonColorUtil;
 
 import java.util.Iterator;
 import java.util.stream.Collectors;
 
-public class Spoilage extends CustomCard implements SeasonalCurse {
+public class Spoilage extends CustomCard implements SeasonalCurse, IHasCustomGlowCondition {
   private static ModLogger logger = TheSimpletonMod.traceLogger;
   public static final String ID = TheSimpletonMod.makeID("Spoilage");
   private static final CardStrings cardStrings;
@@ -27,6 +29,7 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
   private static final CardType TYPE = CardType.CURSE;
   private static final CardRarity RARITY = CardRarity.CURSE;
   private static final CardTarget TARGET = CardTarget.NONE;
+  private static Color GLOW_COLOR = SimpletonColorUtil.SEASONAL_CURSE_GLOW_COLOR.cpy();
 
   private static final int CARD_THRESHOLD = 3;
 
@@ -46,7 +49,7 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
     logger.trace("Spoilage::triggerOnEndOPlayerTurn called");
     if (getNumOtherCardsInHandAtEndOfTurn() >= CARD_THRESHOLD) {
       CardCrawlGame.sound.playAV("MONSTER_SLIME_ATTACK", 0.75F, 1.15F);
-      this.superFlash(Color.CHARTREUSE.cpy());
+      this.superFlash(GLOW_COLOR.cpy());
       AbstractDungeon.actionManager.addToTop(new PutSpecifiedCardOnDeckAction(this));
     }
   }
@@ -104,10 +107,25 @@ public class Spoilage extends CustomCard implements SeasonalCurse {
     return getNumOtherCardsInHandNow() + numRetainedCardsInLimbo;
   }
 
+  @Override
+  public void triggerOnGlowCheck() {
+    if (AbstractDungeon.player.hand.contains(this) && shouldGlow()) {
+      TheSimpletonMod.traceLogger.log("Spoilage.triggerOnGlowCheck() it's Glow Time");
+      this.glowColor = GLOW_COLOR.cpy();
+    } else {
+      this.glowColor = SimpletonColorUtil.INVISIBLE_GLOW_COLOR.cpy();
+    }
+  }
+
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
     EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
+  }
+
+  @Override
+  public boolean shouldGlow() {
+    return  getNumOtherCardsInHandNow() >= CARD_THRESHOLD;
   }
 }

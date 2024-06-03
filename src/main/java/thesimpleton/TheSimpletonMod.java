@@ -296,7 +296,9 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             return this.getCurrentTheme().map(cur -> cur.equals(theme)).orElse(false);
         }
     }
-    public static final ModLogger infoLogger = ModLogger.create(TheSimpletonMod.class, Level.INFO);
+
+    public static final ModLogger errorLogger = ModLogger.create(TheSimpletonMod.class,"ErrorLogger", Level.ERROR);
+    public static final ModLogger infoLogger = ModLogger.create(TheSimpletonMod.class, "InfoLogger", Level.INFO);
     public static final ModLogger debugLogger = ModLogger.create(TheSimpletonMod.class, "DebugLogger", Level.DEBUG);
     public static final ModLogger traceLogger = ModLogger.create(TheSimpletonMod.class, "TraceLogger", Level.TRACE);
 
@@ -522,10 +524,14 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_GradualBuzz1.ogg"));
         reflectedMap.put("GRUNT_VOICES_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_GruntVoices1.ogg"));
+        reflectedMap.put("GURGLE_LOW_1",
+                new Sfx("TheSimpletonMod/sounds/TheSimpleton_GurgleLow1.ogg"));
         reflectedMap.put("HOOTING_BIRD_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_HootingBird1.ogg"));
         reflectedMap.put("ICE_CLINK_1",
             new Sfx("TheSimpletonMod/sounds/TheSimpleton_IceClink1.ogg"));
+        reflectedMap.put("INSECT_BUZZ_1",
+                new Sfx("TheSimpletonMod/sounds/TheSimpleton_InsectBuzz1.ogg"));
         reflectedMap.put("LOG_SPLIT_1",
                 new Sfx("TheSimpletonMod/sounds/TheSimpleton_LogSplit.ogg"));
         reflectedMap.put("LOW_RUMBLE_1",

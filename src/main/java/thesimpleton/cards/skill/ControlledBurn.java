@@ -12,6 +12,8 @@ import thesimpleton.actions.ApplyBurningAction;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.BurningPower;
 
+import java.util.Iterator;
+
 public class ControlledBurn extends CustomCard {
   public static final String ID = "TheSimpletonMod:ControlledBurn";
   public static final String NAME;
@@ -52,6 +54,21 @@ public class ControlledBurn extends CustomCard {
     if (!this.upgraded) {
       upgradeName();
       upgradeMagicNumber(UPGRADE_NUM_STACKS);
+    }
+  }
+
+  @Override
+  public void triggerOnGlowCheck() {
+    this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+
+    Iterator itr = AbstractDungeon.getCurrRoom().monsters.monsters.iterator();
+
+   while(itr.hasNext()) {
+      AbstractMonster m = (AbstractMonster)itr.next();
+      if (!m.isDeadOrEscaped() && m.hasPower(BurningPower.POWER_ID)) {
+        this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+        break;
+      }
     }
   }
 

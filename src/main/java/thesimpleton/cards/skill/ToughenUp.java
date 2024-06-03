@@ -60,6 +60,14 @@ public class ToughenUp extends CustomCard {
     }
   }
 
+  public void triggerOnGlowCheck() {
+    if (AbstractCropOrb.hasCropOrb(Crop.SQUASH)) {
+      this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+    } else {
+      this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+    }
+  }
+
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;

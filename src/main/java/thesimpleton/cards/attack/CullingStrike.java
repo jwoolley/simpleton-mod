@@ -69,6 +69,15 @@ public class CullingStrike extends AbstractDynamicTextCard {
     }
   }
 
+  @Override
+  public void triggerOnGlowCheck() {
+    if (SimpletonUtil.hasHarvestedThisTurn()) {
+      this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+    } else {
+      this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+    }
+  }
+
   private static String getDescription(boolean extendedDescription) {
     String description = DESCRIPTION;
 

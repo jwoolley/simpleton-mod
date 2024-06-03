@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.GerminateAction;
+import thesimpleton.cards.SimpletonUtil;
 import thesimpleton.cards.interfaces.AbstractDynamicCropOrbHighlighterCard;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.AbstractCropOrb;
@@ -51,6 +52,18 @@ public class Germinate extends AbstractDynamicCropOrbHighlighterCard {
   public void updateDescription(boolean extendedDescription) {
     this.rawDescription = getDescription(extendedDescription);
     this.initializeDescription();
+  }
+
+  @Override
+  public void triggerOnGlowCheck() {
+    this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+
+    if (AbstractCropOrb.playerHasAnyCropOrbs()) {
+      final AbstractCropOrb newestCropOrb = AbstractCropOrb.getNewestCropOrb();
+      if (newestCropOrb.isMature(true)) {
+        this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+      }
+    }
   }
 
   private static String getDescription(boolean extendedDescription) {

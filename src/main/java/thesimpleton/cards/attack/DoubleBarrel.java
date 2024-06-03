@@ -11,9 +11,13 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.DoubleBarrelAction;
 import thesimpleton.enums.AbstractCardEnum;
+import thesimpleton.powers.BurningPower;
+
+import java.util.Iterator;
 
 public class DoubleBarrel extends CustomCard {
   public static final String ID = "TheSimpletonMod:DoubleBarrel";
@@ -61,6 +65,21 @@ public class DoubleBarrel extends CustomCard {
       upgradeName();
       upgradeDamage(DAMAGE_UPGRADE);
       initializeDescription();
+    }
+  }
+
+  @Override
+  public void triggerOnGlowCheck() {
+    this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+
+    Iterator itr = AbstractDungeon.getCurrRoom().monsters.monsters.iterator();
+
+    while(itr.hasNext()) {
+      AbstractMonster m = (AbstractMonster)itr.next();
+      if (!m.isDeadOrEscaped() && m.hasPower(WeakPower.POWER_ID)) {
+        this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+        break;
+      }
     }
   }
 

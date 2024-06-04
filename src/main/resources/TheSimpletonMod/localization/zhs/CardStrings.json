@@ -78,7 +78,7 @@
 
   "TheSimpletonMod:CrackOfDawn": {
     "NAME": "黎明的爆谷",
-    "DESCRIPTION": " !M! 回合后：对所有敌人造成 !D! 伤害， 种植 ",
+    "DESCRIPTION": " !M! 回合后：对所有敌人造成 !TheSimpleton:magic-num-2!  伤害， 种植 ",
     "EXTENDED_DESCRIPTION" : [
       " 玉米 ，并获得",
       " [E]",

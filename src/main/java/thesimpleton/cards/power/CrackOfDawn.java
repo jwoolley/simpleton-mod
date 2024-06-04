@@ -10,10 +10,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import org.apache.commons.lang3.StringUtils;
 import thesimpleton.TheSimpletonMod;
+import thesimpleton.cards.interfaces.IHasSecondMagicNumberCard;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.powers.CrackOfDawnPower;
 
-public class CrackOfDawn extends CustomCard {
+public class CrackOfDawn extends CustomCard implements IHasSecondMagicNumberCard {
   public static final String ID = "TheSimpletonMod:CrackOfDawn";
   public static final String NAME;
   public static final String DESCRIPTION;
@@ -30,16 +31,16 @@ public class CrackOfDawn extends CustomCard {
   private static final int UPGRADED_COST = 1;
   private static final int TURNS_TO_WAIT = 2;
 
+  private int delayedDamageAmount;
+
   public CrackOfDawn() {
     super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
-    this.baseDamage = this.damage = CrackOfDawnPower.DAMAGE_AMOUNT_PER_STACK;
     this.baseMagicNumber = this.magicNumber = TURNS_TO_WAIT;
+    this.delayedDamageAmount = CrackOfDawnPower.DAMAGE_AMOUNT_PER_STACK;
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    TheSimpletonMod.traceLogger.trace("TheSimpletonMod:CrackOfDawn: use() called");
-
     AbstractDungeon.actionManager.addToBottom(
         new ApplyPowerAction(p, p, new CrackOfDawnPower(AbstractDungeon.player, TURNS_TO_WAIT)));
   }
@@ -57,7 +58,6 @@ public class CrackOfDawn extends CustomCard {
     }
   }
 
-
   private static String getDescription() {
     return DESCRIPTION  + CrackOfDawnPower.CROP_AMOUNT_PER_STACK + EXTENDED_DESCRIPTION[0]
         + StringUtils.repeat(EXTENDED_DESCRIPTION[1], CrackOfDawnPower.ENERGY_AMOUNT_PER_STACK)
@@ -69,5 +69,20 @@ public class CrackOfDawn extends CustomCard {
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
     EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
+  }
+
+  @Override
+  public boolean isSecondMagicNumberUpgraded() {
+    return false;
+  }
+
+  @Override
+  public int getSecondMagicNumberBaseValue() {
+    return delayedDamageAmount;
+  }
+
+  @Override
+  public int getSecondMagicNumberCurrentValue() {
+    return delayedDamageAmount;
   }
 }

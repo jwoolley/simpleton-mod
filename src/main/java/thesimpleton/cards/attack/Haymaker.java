@@ -31,7 +31,6 @@ public class Haymaker extends CustomCard implements IHasSecondMagicNumberCard {
     private static final int DAMAGE = 9;
     private static final int UPGRADE_DAMAGE_AMOUNT = 1;
     private static final int VULNERABLE_AMOUNT = 1;
-    private static final int UPGRADE_VULNERABLE_AMOUNT = 1;
     private static final int HEAL_AMOUNT = 4;
     private static final int UPGRADE_HEAL_AMOUNT = 1;
 
@@ -66,7 +65,6 @@ public class Haymaker extends CustomCard implements IHasSecondMagicNumberCard {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_DAMAGE_AMOUNT);
             this.upgradeMagicNumber(UPGRADE_HEAL_AMOUNT);
-            this.upgradeSecondMagicNumber();
             this.rawDescription = getDescription();
             initializeDescription();
         }
@@ -81,18 +79,6 @@ public class Haymaker extends CustomCard implements IHasSecondMagicNumberCard {
         NAME = cardStrings.NAME;
         DESCRIPTION = cardStrings.DESCRIPTION;
         EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
-    }
-
-    @Override
-    public void upgradeSecondMagicNumber() {
-        upgradedSecondMagicNumber = true;
-    }
-
-    private boolean upgradedSecondMagicNumber;
-
-    @Override
-    public boolean isSecondMagicNumberModified() {
-        return isMagicNumberModified;
     }
 
     @Override

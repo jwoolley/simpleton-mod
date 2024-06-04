@@ -76,7 +76,7 @@
 
   "TheSimpletonMod:CrackOfDawn": {
     "NAME": "Рассвет",
-    "DESCRIPTION": "Через !M! хода, наносит !D! урона ВСЕМ врагам, Сажает ",
+    "DESCRIPTION": "Через !M! хода, наносит !TheSimpleton:magic-num-2!  урона ВСЕМ врагам, Сажает ",
     "EXTENDED_DESCRIPTION" : [
       " Кукурузы, и даёт",
       " [E]",

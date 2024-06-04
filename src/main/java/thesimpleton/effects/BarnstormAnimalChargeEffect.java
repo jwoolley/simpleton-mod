@@ -124,7 +124,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
         this._initialX = initialX;
         this._initialY = initialY;
         this._targetX = target.drawX - target.hb_w / 2.0F - animalWidth;
-        this._targetY = target.drawY - target.hb_h / 2.0F - animalHeight /2.0F; //  initialY;
+        this._targetY = target.drawY - animalHeight / 2.0F; //  initialY;
         this.target = target;
     }
 
@@ -144,7 +144,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 
             float animalInitialX = _initialX + animalOffsetX * Settings.scale;
             float animalInitialY = _initialY + animalOffsetY * Settings.scale;
-            this._x = MathUtils.lerp(animalInitialX, _targetX, Interpolation.pow2Out.apply(tInterpolated));
+            this._x = MathUtils.lerp(animalInitialX, _targetX, Interpolation.swingOut.apply(tInterpolated));
             this._y = MathUtils.lerp(animalInitialY, _targetY, tInterpolated);
         }
 

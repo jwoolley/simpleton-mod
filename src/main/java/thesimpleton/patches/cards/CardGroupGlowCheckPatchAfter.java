@@ -14,7 +14,7 @@ import thesimpleton.utilities.ModLogger;
         method = "glowCheck"
 )
 
-public class CardGroupGlowCheckPatchBefore {
+public class CardGroupGlowCheckPatchAfter {
     private static ModLogger logger = TheSimpletonMod.traceLogger;
     @SpirePostfixPatch
     public static void Postfix(CardGroup __instance) {

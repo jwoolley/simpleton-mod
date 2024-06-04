@@ -33,7 +33,6 @@ public class ThoughtBubbleEffectAfter {
                 logger.log("[ThoughtBubbleEffectAfter] Not performing custom can't play effect: no effect set");
             }
         } catch (Exception e) {
-            TheSimpletonMod.errorLogger.log("[ThoughtBubbleEffectAfter]\n" + e.getMessage());
         }
     }
 }

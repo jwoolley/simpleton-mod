@@ -9,4 +9,8 @@ public interface IHasSecondMagicNumberCard {
 
     public int getSecondMagicNumberCurrentValue();
 
+    public void upgradeSecondMagicNumber();
+
+    // this should be overridden to call super.upgradeMagicNumber() and upgradeSecondMagicNumber();
+    public void upgradeMagicNumber(int bonusAmount);
 }

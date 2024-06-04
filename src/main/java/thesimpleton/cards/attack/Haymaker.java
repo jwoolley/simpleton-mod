@@ -35,6 +35,10 @@ public class Haymaker extends CustomCard implements IHasSecondMagicNumberCard {
     private static final int HEAL_AMOUNT = 4;
     private static final int UPGRADE_HEAL_AMOUNT = 1;
 
+    private int baseVulnerableAmount;
+
+    private int vulnerableAmount;
+
     private int getVulnerableAmount() {
         return this.magicNumber + (VULNERABLE_AMOUNT - HEAL_AMOUNT);
     }
@@ -43,9 +47,9 @@ public class Haymaker extends CustomCard implements IHasSecondMagicNumberCard {
         super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(), TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
         this.baseMagicNumber = this.magicNumber = HEAL_AMOUNT;
+        this.baseVulnerableAmount = this.vulnerableAmount = VULNERABLE_AMOUNT;
         this.exhaust = true;
         this.tags.add(AbstractCard.CardTags.HEALING);
-
     }
 
     @Override
@@ -66,9 +70,25 @@ public class Haymaker extends CustomCard implements IHasSecondMagicNumberCard {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_DAMAGE_AMOUNT);
             this.upgradeMagicNumber(UPGRADE_HEAL_AMOUNT);
+            this.upgradeSecondMagicNumber();
             this.rawDescription = getDescription();
             initializeDescription();
         }
+    }
+
+    @Override
+    public void upgradeMagicNumber(int amount) {
+        super.upgradeMagicNumber(amount);
+        upgradeSecondMagicNumber();
+    }
+
+    @Override
+    public void upgradeSecondMagicNumber() {
+        this.vulnerableAmount += UPGRADE_VULNERABLE_AMOUNT;
+        isSecondMagicNumberUpgraded = true;
+        TheSimpletonMod.debugLogger.log("Upgraded Haymaker, vulnerableAmount: " + this.vulnerableAmount
+                + " isSecondMagicNumberUpgraded: " + isSecondMagicNumberUpgraded);
+
     }
 
     public static String getDescription() {
@@ -84,16 +104,21 @@ public class Haymaker extends CustomCard implements IHasSecondMagicNumberCard {
 
     @Override
     public boolean isSecondMagicNumberUpgraded() {
-        return upgraded && isMagicNumberModified;
+        return isSecondMagicNumberUpgraded;
+        //return upgraded && isMagicNumberModified;
     }
+
+    private boolean isSecondMagicNumberModified;
+    private boolean isSecondMagicNumberUpgraded;
 
     @Override
     public int getSecondMagicNumberBaseValue() {
-        return baseMagicNumber + VULNERABLE_AMOUNT - HEAL_AMOUNT;
+        return baseVulnerableAmount;
     }
 
     @Override
     public int getSecondMagicNumberCurrentValue() {
-        return magicNumber + VULNERABLE_AMOUNT - HEAL_AMOUNT;
+        return vulnerableAmount;
+//        return magicNumber + VULNERABLE_AMOUNT - HEAL_AMOUNT;
     }
 }

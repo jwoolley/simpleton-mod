@@ -205,8 +205,7 @@
 
   "TheSimpletonMod:Haymaker": {
     "NAME": "Косарь",
-    "DESCRIPTION": "Наносит !D! урона. NL Восполняет !M! ОЗ. NL Накладывает ",
-    "EXTENDED_DESCRIPTION" : [" Уязвимость ВСЕМ врагам. NL Сжигается."]
+    "DESCRIPTION": "Наносит !D! урона. NL Восполняет !M! ОЗ. NL Накладывает !TheSimpleton:magic-num-2! Уязвимость ВСЕМ врагам. NL Сжигается."
   },
 
   "TheSimpletonMod:HitTheSack": {
@@ -222,7 +221,7 @@
 
   "TheSimpletonMod:IceCube": {
     "NAME": "Кубик льда",
-    "DESCRIPTION": "\"Оставляется. NL После !М! поворачивается, теряет Оставляется и получает Эфирная.",
+    "DESCRIPTION": "Оставляется. NL После !М! поворачивается, теряет Оставляется и получает Эфирная.",
     "EXTENDED_DESCRIPTION": [
       "Эфирная."
     ]

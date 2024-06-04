@@ -207,8 +207,7 @@
 
   "TheSimpletonMod:Haymaker": {
     "NAME": "人肉压草机",
-    "DESCRIPTION": "造成 !D! 伤害。 NL 治疗 !M! 生命。 NL 施加 ",
-    "EXTENDED_DESCRIPTION" : [" 易伤 于所有敌人。 NL 消耗 。"]
+    "DESCRIPTION": "造成 !D! 伤害。 NL 治疗 !M! 生命。 NL 施加 !TheSimpleton:magic-num-2! 易伤 于所有敌人。 NL 消耗 。"
   },
 
   "TheSimpletonMod:HitTheSack": {

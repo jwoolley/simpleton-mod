@@ -11,14 +11,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.HaymakerSplashAction;
 import thesimpleton.cards.interfaces.IHasSecondMagicNumberCard;
-import thesimpleton.customvariables.SecondMagicNumber;
 import thesimpleton.enums.AbstractCardEnum;
 
 public class Haymaker extends CustomCard implements IHasSecondMagicNumberCard {
     public static final String ID = "TheSimpletonMod:Haymaker";
     public static final String NAME;
     public static final String DESCRIPTION;
-    public static final String[] EXTENDED_DESCRIPTION;
     public static final String IMG_PATH = "cards/haymaker.png";
 
     private static final CardStrings cardStrings;
@@ -78,7 +76,6 @@ public class Haymaker extends CustomCard implements IHasSecondMagicNumberCard {
         cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
         NAME = cardStrings.NAME;
         DESCRIPTION = cardStrings.DESCRIPTION;
-        EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
     }
 
     @Override

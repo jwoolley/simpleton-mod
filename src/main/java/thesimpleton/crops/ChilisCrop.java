@@ -26,7 +26,7 @@ public class ChilisCrop extends  AbstractCrop {
     if (harvestAmount > 0) {
       AbstractDungeon.actionManager.addToTop(
             new DamageAllEnemiesAction(getPlayer(),
-                DamageInfo.createDamageMatrix(damageAmount, true,true),
+                DamageInfo.createDamageMatrix(damageAmount, true,false),
                 DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE, true));
 
       AbstractDungeon.actionManager.addToTop(new BurnAllEnemiesAction(damageAmount));

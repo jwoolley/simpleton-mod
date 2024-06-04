@@ -59,16 +59,14 @@ public abstract class AbstractReapAndSowCard extends CustomCard {
 
   protected void applyAttackEffect() {  }
 
-  protected int getDamage() {
-    return this.damage;
-  }
-
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
+    TheSimpletonMod.debugLogger.log(this.name + ".use() called. damage: " + this.damage);
+
     applyAttackEffect();
 
     AbstractDungeon.actionManager.addToBottom(
-        new DamageAllEnemiesAction(p, DamageInfo.createDamageMatrix(this.damage), this.damageTypeForTurn, attackEffect));
+            new DamageAllEnemiesAction(p,  this.multiDamage, this.damageTypeForTurn, attackEffect));
 
     AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(this.cropOrbToPlant, this.magicNumber, true));
 

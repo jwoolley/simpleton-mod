@@ -83,13 +83,8 @@ public class Haymaker extends CustomCard implements IHasSecondMagicNumberCard {
     }
 
     @Override
-    public boolean isSecondMagicNumberModified() {
-        return isMagicNumberModified;
-    }
-
-    @Override
     public boolean isSecondMagicNumberUpgraded() {
-        return  upgraded && isMagicNumberModified;
+        return upgraded && isMagicNumberModified;
     }
 
     @Override

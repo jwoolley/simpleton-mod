@@ -26,7 +26,9 @@ public class SecondMagicNumber extends DynamicVariable {
     @Override
     public boolean isModified(AbstractCard card) {
         if (card instanceof IHasSecondMagicNumberCard) {
-            return ((IHasSecondMagicNumberCard)card).isSecondMagicNumberModified();
+            return   ((IHasSecondMagicNumberCard)card).getSecondMagicNumberBaseValue()
+                   != ((IHasSecondMagicNumberCard)card).getSecondMagicNumberBaseValue();
+            // return ((IHasSecondMagicNumberCard)card).isSecondMagicNumberModified();
         } else {
             return false;
         }

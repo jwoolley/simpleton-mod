@@ -11,6 +11,9 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.characters.TheSimpletonCharacter;
 import thesimpleton.utilities.ModLogger;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 @SpirePatch(
         clz = ApplyPowerAction.class,
         method = SpirePatch.CONSTRUCTOR,
@@ -29,11 +32,21 @@ public class ApplyPowerActionBeforeSkipFocusDebuff {
 
     public static void Postfix(ApplyPowerAction __instance, AbstractCreature target, AbstractCreature source, AbstractPower powerToApply, int stackAmount,
                               boolean isFast, AbstractGameAction.AttackEffect effect) {
-        if (TheSimpletonMod.isPlayingAsSimpleton()
-            && target.isPlayer && target instanceof TheSimpletonCharacter
-            && source instanceof SpireShield
-            && powerToApply != null && FocusPower.POWER_ID.equals(powerToApply.ID)) {
-            __instance.target = null;
+
+        try {
+
+            if (TheSimpletonMod.isPlayingAsSimpleton()
+                    && target != null
+                    && target.isPlayer && target instanceof TheSimpletonCharacter
+                    && source instanceof SpireShield
+                    && powerToApply != null && FocusPower.POWER_ID.equals(powerToApply.ID)) {
+                __instance.target = null;
+            }
+        } catch (Exception e) {
+            TheSimpletonMod.errorLogger.warn("Exception in ApplyPowerActionBeforeSkipFocusDebuff.Postfix: + "
+                    + e.getMessage());
+            TheSimpletonMod.errorLogger.warn(Arrays.stream(
+                    e.getStackTrace()).map(s -> s.toString()).collect(Collectors.joining("\n\t")));
         }
     }
 }

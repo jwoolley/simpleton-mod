@@ -17,6 +17,8 @@ import java.util.HashMap;
  */
 
 public class ModLogger {
+    static Level globalMaxLogLevel = Level.TRACE;
+
     public static ModLogger create(String logPrefix) {
         return create(logPrefix, MAX_LOG_LEVEL);
     }
@@ -35,6 +37,10 @@ public class ModLogger {
             throw new InvalidParameterException("Logger instance already exists with prefix " + logPrefix);
         }
         return _loggerMap.get(logPrefix);
+    }
+
+    public static void setGlobalMaxLogLevel(Level maxLogLevel) {
+        globalMaxLogLevel = maxLogLevel;
     }
 
     public static ModLogger create(Class clazz, String  additionalLogPrefix) {
@@ -106,8 +112,13 @@ public class ModLogger {
         _isEnabled = true;
     }
 
+    private Level getEffectiveMaxLogLevel() {
+      return _maxLogLevel.isMoreSpecificThan(globalMaxLogLevel)
+              ? _maxLogLevel : globalMaxLogLevel;
+    }
+
     private void _log(Level logLevel, String message) {
-        if (_internalLogger != null && _isEnabled && _maxLogLevel.compareTo(logLevel) >= 0)  {
+        if (_internalLogger != null && _isEnabled && getEffectiveMaxLogLevel().compareTo(logLevel) >= 0)  {
             if (logLevel.compareTo(MAX_MANAGER_SUPPORTED_LOG_LEVEL) <= 0) {
                 _logInternal(logLevel, logLevel, message);
             } else {

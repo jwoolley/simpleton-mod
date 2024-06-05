@@ -135,7 +135,6 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
         if (this.duration < this.startingDuration - getInitialWaitDuration()) {
             if (!isAnimalCharging) {
                 AbstractDungeon.actionManager.addToTop(new SFXAction(animalSfxKey));
-
                 isAnimalCharging = true;
             }
 
@@ -144,8 +143,8 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
 
             float animalInitialX = _initialX + animalOffsetX * Settings.scale;
             float animalInitialY = _initialY + animalOffsetY * Settings.scale;
-            this._x = MathUtils.lerp(animalInitialX, _targetX, Interpolation.swingOut.apply(tInterpolated));
-            this._y = MathUtils.lerp(animalInitialY, _targetY, tInterpolated);
+            this._x = MathUtils.lerp(animalInitialX, _targetX, Interpolation.linear.apply(tInterpolated));
+            this._y = MathUtils.lerp(animalInitialY, _targetY, Interpolation.exp5.apply(t));
         }
 
         this.duration -= Gdx.graphics.getDeltaTime();

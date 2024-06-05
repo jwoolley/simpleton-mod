@@ -97,13 +97,17 @@ public class ModLogger {
     }
 
     private ModLogger(String logPrefix, Level maxLogLevel) {
-        _internalLogger = LogManager.getLogger(logPrefix);
+        try {
+            _internalLogger = LogManager.getLogger(logPrefix);
+        } catch (Exception e) {
+            LogManager.getLogger().warn("Unable to instantiate logger: " + e.getMessage());
+        }
         _maxLogLevel = maxLogLevel;
         _isEnabled = true;
     }
 
     private void _log(Level logLevel, String message) {
-        if (_isEnabled && _maxLogLevel.compareTo(logLevel) >= 0)  {
+        if (_internalLogger != null && _isEnabled && _maxLogLevel.compareTo(logLevel) >= 0)  {
             if (logLevel.compareTo(MAX_MANAGER_SUPPORTED_LOG_LEVEL) <= 0) {
                 _logInternal(logLevel, logLevel, message);
             } else {

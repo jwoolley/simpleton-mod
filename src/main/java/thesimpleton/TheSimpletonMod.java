@@ -38,6 +38,7 @@ import com.megacrit.cardcrawl.relics.WristBlade;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.AbstractUnlock;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.logging.log4j.Level;
 import thesimpleton.cards.SimpletonCardHelper;
 import thesimpleton.cards.HarvestTriggeredCard;
@@ -303,7 +304,9 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
     public static final ModLogger traceLogger = ModLogger.create(TheSimpletonMod.class, "TraceLogger", Level.TRACE);
 
     public TheSimpletonMod() {
-        infoLogger.log("Instantiating TheSimpletonMod.");
+        infoLogger.log("Instantiating TheSimpletonMod");
+
+        ModLogger.setGlobalMaxLogLevel(Level.WARN);
 
         // SimpletonUtil.initialize();
 

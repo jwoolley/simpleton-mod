@@ -30,7 +30,7 @@ public class ApplyCropAction extends ApplyPowerAction {
     int adjustedAmount = amount;
     if (player.hasPower(AbundancePower.POWER_ID) && isFromCard) {
       AbstractPower power = player.getPower(AbundancePower.POWER_ID);
-      if (power.amount > 0) {
+      if (power.amount != 0) {
         power.flashWithoutSound();
         adjustedAmount += power.amount;
       }

@@ -78,7 +78,7 @@
 
   "TheSimpletonMod:CrackOfDawn": {
     "NAME": "Crack of Dawn",
-    "DESCRIPTION": "In !M! turns, deal !D! damage to ALL enemies, Plant ",
+    "DESCRIPTION": "In !M! turns, deal !TheSimpleton:magic-num-2! damage to ALL enemies, Plant ",
     "EXTENDED_DESCRIPTION" : [
       " Corn, and gain",
       " [E]",

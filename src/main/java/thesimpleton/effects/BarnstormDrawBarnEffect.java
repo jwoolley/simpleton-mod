@@ -61,7 +61,7 @@ public class BarnstormDrawBarnEffect extends AbstractGameEffect {
     @Override
     public void update() {
         this.duration -= Gdx.graphics.getDeltaTime();
-        if (this.duration < 0.0F) {
+        if (this.duration < 0.0F || AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
             this.isDone = true;
         }
     }

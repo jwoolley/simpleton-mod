@@ -25,10 +25,6 @@ public class ReapAndSow extends AbstractReapAndSowCard {
     super(ID, NAME, DESCRIPTION, IMG_PATH, AbstractReapAndSowCard.COST, RARITY, CROP_ORB, ATTACK_EFFECT,
         AbstractReapAndSowCard.DAMAGE, AbstractReapAndSowCard.ATTACK_UPGRADE_BONUS,
         AbstractReapAndSowCard.PLANT_AMOUNT, AbstractReapAndSowCard.UPGRADE_PLANT_AMOUNT);
-
-    this.baseDamage = this.damage = DAMAGE;
-    this.baseMagicNumber = this.magicNumber = PLANT_AMOUNT;
-    this.isMultiDamage = true;
   }
 
   @Override

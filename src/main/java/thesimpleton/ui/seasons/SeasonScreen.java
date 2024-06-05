@@ -175,8 +175,8 @@ public class SeasonScreen implements ReadyButtonPanel  {
 
   public SeasonScreen() {
 
-    logger.trace("SeasonScreen::constructor Settings.scale: "
-        + Settings.scale + ", Settings.HEIGHT: " + Settings.HEIGHT + ", SCALE_X: " + SettingsHelper.getScaleX() +", SettingsHelper.getScaleY(): " + SettingsHelper.getScaleY());
+//    logger.trace("SeasonScreen::constructor Settings.scale: "
+//        + Settings.scale + ", Settings.HEIGHT: " + Settings.HEIGHT + ", SCALE_X: " + SettingsHelper.getScaleX() +", SettingsHelper.getScaleY(): " + SettingsHelper.getScaleY());
 
     hb = new Hitbox(width * SettingsHelper.getScaleX(), height * SettingsHelper.getScaleY());
 

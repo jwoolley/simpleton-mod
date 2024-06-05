@@ -17,6 +17,9 @@ import java.util.HashMap;
  */
 
 public class ModLogger {
+    private static Level globalMaxLogLevel = Level.TRACE;
+    private static boolean shouldLogLoggerCreation = false;
+
     public static ModLogger create(String logPrefix) {
         return create(logPrefix, MAX_LOG_LEVEL);
     }
@@ -24,8 +27,10 @@ public class ModLogger {
     public static ModLogger create(String logPrefix, Level maxLogLevel) {
         if (!_loggerMap.containsKey(logPrefix)) {
             if (maxLogLevel.compareTo(MIN_LOG_LEVEL) >= 0 && maxLogLevel.compareTo(MAX_LOG_LEVEL) <= 0) {
-                _staticLogger.info("Creating " + ModLogger.class.getSimpleName() + " with prefix " + logPrefix
-                    + " and max log level " + maxLogLevel);
+                if (shouldLogLoggerCreation) {
+                    _staticLogger.info("Creating " + ModLogger.class.getSimpleName() + " with prefix " + logPrefix
+                            + " and max log level " + maxLogLevel);
+                }
                 ModLogger logger = new ModLogger(logPrefix, maxLogLevel);
                 _loggerMap.put(logPrefix, logger);
             } else {
@@ -35,6 +40,14 @@ public class ModLogger {
             throw new InvalidParameterException("Logger instance already exists with prefix " + logPrefix);
         }
         return _loggerMap.get(logPrefix);
+    }
+
+    public static void toggleLoggerCreationLogging(boolean shouldLog) {
+        shouldLogLoggerCreation = shouldLog;
+    }
+
+    public static void setGlobalMaxLogLevel(Level maxLogLevel) {
+        globalMaxLogLevel = maxLogLevel;
     }
 
     public static ModLogger create(Class clazz, String  additionalLogPrefix) {
@@ -97,13 +110,22 @@ public class ModLogger {
     }
 
     private ModLogger(String logPrefix, Level maxLogLevel) {
-        _internalLogger = LogManager.getLogger(logPrefix);
+        try {
+            _internalLogger = LogManager.getLogger(logPrefix);
+        } catch (Exception e) {
+            LogManager.getLogger().warn("Unable to instantiate logger: " + e.getMessage());
+        }
         _maxLogLevel = maxLogLevel;
         _isEnabled = true;
     }
 
+    private Level getEffectiveMaxLogLevel() {
+      return _maxLogLevel.isMoreSpecificThan(globalMaxLogLevel)
+              ? _maxLogLevel : globalMaxLogLevel;
+    }
+
     private void _log(Level logLevel, String message) {
-        if (_isEnabled && _maxLogLevel.compareTo(logLevel) >= 0)  {
+        if (_internalLogger != null && _isEnabled && getEffectiveMaxLogLevel().compareTo(logLevel) >= 0)  {
             if (logLevel.compareTo(MAX_MANAGER_SUPPORTED_LOG_LEVEL) <= 0) {
                 _logInternal(logLevel, logLevel, message);
             } else {

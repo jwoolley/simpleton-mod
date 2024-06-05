@@ -26,7 +26,8 @@ public class SecondMagicNumber extends DynamicVariable {
     @Override
     public boolean isModified(AbstractCard card) {
         if (card instanceof IHasSecondMagicNumberCard) {
-            return ((IHasSecondMagicNumberCard)card).isSecondMagicNumberModified();
+            return ((IHasSecondMagicNumberCard)card).getSecondMagicNumberCurrentValue()
+                   != ((IHasSecondMagicNumberCard)card).getSecondMagicNumberBaseValue();
         } else {
             return false;
         }
@@ -39,15 +40,6 @@ public class SecondMagicNumber extends DynamicVariable {
         } else {
             return false;
         }
-    }
-
-    @Override
-    public void setIsModified(AbstractCard card, boolean v) {
-        if (card instanceof IHasSecondMagicNumberCard) {
-             ((IHasSecondMagicNumberCard) card).upgradeSecondMagicNumber();
-        }
-        // Do something such that isModified will return the value v.
-        // This method is only necessary if you want smith upgrade previews to function correctly.
     }
 
     @Override

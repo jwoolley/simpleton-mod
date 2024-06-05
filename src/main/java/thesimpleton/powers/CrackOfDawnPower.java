@@ -40,8 +40,6 @@ public class CrackOfDawnPower extends AbstractTheSimpletonPower  {
     this.source = source;
     this.amount = amount;
     this.damageAmount = DAMAGE_AMOUNT_PER_STACK;
-
-    this.damageAmount = DAMAGE_AMOUNT_PER_STACK;
     this.plantAmount = CROP_AMOUNT_PER_STACK;
     this.energyAmount = ENERGY_AMOUNT_PER_STACK;
 

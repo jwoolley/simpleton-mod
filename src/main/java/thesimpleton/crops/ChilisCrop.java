@@ -24,13 +24,10 @@ public class ChilisCrop extends  AbstractCrop {
     final int damageAmount = harvestAmount * this.damagePerStack;
 
     if (harvestAmount > 0) {
-      // all monsters version
-      for (int i = 0; i < harvestAmount; i++) {
-        AbstractDungeon.actionManager.addToTop(
+      AbstractDungeon.actionManager.addToTop(
             new DamageAllEnemiesAction(getPlayer(),
-                DamageInfo.createDamageMatrix(damageAmount, true,true),
+                DamageInfo.createDamageMatrix(damageAmount, true,false),
                 DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE, true));
-      }
 
       AbstractDungeon.actionManager.addToTop(new BurnAllEnemiesAction(damageAmount));
     }

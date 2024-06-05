@@ -124,7 +124,7 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
         this._initialX = initialX;
         this._initialY = initialY;
         this._targetX = target.drawX - target.hb_w / 2.0F - animalWidth;
-        this._targetY = target.drawY - animalHeight / 2.0F; //  initialY;
+        this._targetY = target.drawY - (animalHeight / 2.0F) * Settings.yScale; //  initialY;
         this.target = target;
     }
 

@@ -63,7 +63,7 @@ public class BuzzBombAction extends AbstractGameAction {
       float PLANE_START_Y = Settings.HEIGHT / 2.0F;
       float PLANE_END_X = Settings.WIDTH * Settings.xScale;
       float PLANE_END_Y =  PLANE_START_Y;
-      float PLANE_ACTION_DURATION = 1.75F;
+      float PLANE_ACTION_DURATION = 1.0F;
 
       AbstractDungeon.effectList.add(new BuzzBombPlaneSilhouetteEffect(PLANE_START_X, PLANE_START_Y, PLANE_END_X, PLANE_END_Y, PLANE_ACTION_DURATION));
     }

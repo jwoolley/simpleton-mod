@@ -37,7 +37,6 @@ public class Gnats extends CustomCard implements SeasonalCurse, IHasCustomCantPl
     this.baseMagicNumber = this.magicNumber = THORNS_DAMAGE;
   }
 
-
   public boolean canPlay(AbstractCard card) {
     // necessary to get AbstractCardCanPlayAfter hook to be invoked ??
     boolean _ignoredDefaultResult  = super.canPlay(card);

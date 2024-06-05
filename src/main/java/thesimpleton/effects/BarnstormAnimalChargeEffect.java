@@ -65,8 +65,11 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
     private final int animalWidth;
     private final int animalHeight;
 
-    private final float animalOffsetX = 0;
+    private static final float ANIMAL_OFFSET_X = 0;
     private final float animalOffsetY;
+
+    private final float animalInitialX;
+    private final float animalInitialY;
 
     private static Texture IMG_STATIC_ANIMAL_CHICKEN;
     private static Texture IMG_STATIC_ANIMAL_COW;
@@ -121,6 +124,8 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
         animalWidth = animalImage.getWidth();
         animalHeight = animalImage.getHeight();
         this.animalOffsetY = animalOffsetY;
+        this.animalInitialX = _initialX + ANIMAL_OFFSET_X * Settings.scale;
+        this.animalInitialY = _initialY + animalOffsetY * Settings.scale;
         this._initialX = initialX;
         this._initialY = initialY;
         this._targetX = target.drawX - target.hb_w / 2.0F - animalWidth;
@@ -139,12 +144,8 @@ public class BarnstormAnimalChargeEffect extends AbstractGameEffect {
             }
 
             float t = ((this.startingDuration - getInitialWaitDuration()) - this.duration) / this.startingDuration;
-            float tInterpolated = Interpolation.swing.apply(t);
-
-            float animalInitialX = _initialX + animalOffsetX * Settings.scale;
-            float animalInitialY = _initialY + animalOffsetY * Settings.scale;
-            this._x = MathUtils.lerp(animalInitialX, _targetX, Interpolation.linear.apply(tInterpolated));
-            this._y = MathUtils.lerp(animalInitialY, _targetY, Interpolation.exp5.apply(t));
+            this._x = MathUtils.lerp(animalInitialX, _targetX, Interpolation.swing.apply(t));
+            this._y = MathUtils.lerp(animalInitialY, _targetY, Interpolation.pow3Out.apply(t));
         }
 
         this.duration -= Gdx.graphics.getDeltaTime();

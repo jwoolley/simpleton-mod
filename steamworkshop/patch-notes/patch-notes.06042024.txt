@@ -1,0 +1,42 @@
+- Bugfix: Hayseed curses and events and events should now only appear in non-Hayseed runs when config options are enabled 
+
+- Bugfix: Halo indicators for mature crops should now be aligned properly
+
+- Bugfix: Fixed issue where in-season crops sometimes disappeared from the pool when loading from save
+
+- Gameplay: Modified version of **Seed Coat**
+
+- Gameplay: Modified version of **Depletion** status card
+
+- Gameplay: New versions of **Spoilage**, **Frostbite**, and **Nettles** curses
+
+- Gameplay: Minor reward and penalty changes for some custom events
+
+- Balance: **Dig In** now blocks for 11 (increased from 10)
+
+- Balance: **Swelter** now blocks/burns for 3 (decreased from 4)
+
+- Balance: Minor stat buffs to upgraded versions of **Bumper Crop**, **Close Scrape**, **Culling Strike**, **Salad Shooter**,  **Reap and Sow**, and **Haymaker**
+
+- Balance: Minor nerf to **Resistant Strain** (now +3 block / +5 block when upgraded) 
+
+- UI: Improved card-specific crop indicator (for cards such as **Aerate**)
+
+- UI: New indicator dots show counts for Crop orbs (plots) when hovered over
+
+- UI: All relics should now be correctly sized and aligned in relic detail view
+
+- UI: Updated tooltips and UI text for crop orb slots, season indicator, and others
+
+- UI: Improved text size and alignment for the season splash screen
+at high resolutions
+
+- VFX: New attack animation effect for **Barnstorm**
+
+- Flavor: Updated relic icons and flavor for **Trusty Sickle**, **Moonshine Jug**, **Pickling Jar**, and others
+
+- Misc: Googly Eyes mod support
+
+- Misc: Many other very minor tweaks and fixes
+
+- Localization: Updated Russian translation by Rucodeby (long overdue!)

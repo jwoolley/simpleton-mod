@@ -1,0 +1,22 @@
+It's Harvest Time!
+
+The [b]Hayseed[/b] adds a new character to Slay the Spire with a bounty of farming-themed mechanics and flavor.
+
+This mod introduces 75+ new cards and 16 custom relics, plus unique potions, curses and events.
+
+[h1]Mechanics[/h1]
+[list][*] Plant [b]Crops[/b] and grow them to maturity—then harvest for a variety of effects. Shuffle your draw pile to grow your crops organically, or play cards designed to accelerate their growth.
+
+[*][b]Seasons[/b] bring a randomized mix of crop power cards to each run for loads of replayability. Seasonal events and curses offer additional variety and flavor.[/list]
+
+The Hayseed supports many strategies—diversify your crop selection, load enemies up with debuffs, harvest early and often for specialized payoffs, or focus on synergies between a few key crops.
+
+[h2]Thanks[/h2]
+[list]
+[*] Superb character art by Grisknuckle!
+[*] Amazing card and relic art, created by Spleen!
+[*] Simplified Chinese translation by CaptainSnafu!
+[*] Russian translation by Rucodeby!
+[/list]
+
+On GitHub: https://github.com/jwoolley/simpleton-mod.

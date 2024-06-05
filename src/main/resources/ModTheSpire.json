@@ -7,5 +7,5 @@
   "sts_version": "12-18-2022",
   "mts_version": "3.30.0",
   "dependencies": ["basemod", "stslib"],
-  "credits": "Thanks to: \n\nGrisknuckle — Creator of the superb Hayseed character art. \n\nSpleen — For amazing card and relic art. \n\nsolderist.park — Whose Cursed mod source code I used to get started (use Default Mod!) \n\nCaptainSnafu — For the comprehensive Chinese translation! \n\nRucodeby — For the excellent Russian translation! \n\nHarryWardp, Basilisk, Greuben, CannonballFun, and Toddells — for invaluable playtesting and feedback."
+  "credits": "Thanks to: \n\nGrisknuckle — Creator of the superb Hayseed character art. \n\nSpleen — For amazing card and relic art. \n\nsolderist.park — Whose Cursed mod source code I used to get started (use Default Mod!) \n\nCaptainSnafu — For the comprehensive Chinese translation! \n\nRucodeby — For the excellent Russian translation! \n\nHarryWardp, Basilisk, Greuben, CannonballFun, Toddells, and Juri! — for invaluable playtesting and feedback."
 }

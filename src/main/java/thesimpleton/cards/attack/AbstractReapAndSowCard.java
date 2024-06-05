@@ -66,7 +66,7 @@ public abstract class AbstractReapAndSowCard extends CustomCard {
     applyAttackEffect();
 
     AbstractDungeon.actionManager.addToBottom(
-            new DamageAllEnemiesAction(p,  this.multiDamage, this.damageTypeForTurn, attackEffect));
+            new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, attackEffect));
 
     AbstractDungeon.actionManager.addToBottom(new CropSpawnAction(this.cropOrbToPlant, this.magicNumber, true));
 

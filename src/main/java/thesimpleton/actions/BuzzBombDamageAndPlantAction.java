@@ -16,7 +16,7 @@ import thesimpleton.TheSimpletonMod;
 import thesimpleton.orbs.CoffeeCropOrb;
 
 public class BuzzBombDamageAndPlantAction extends AbstractGameAction {
-  private static final float ACTION_DURATION = Settings.ACTION_DUR_FAST;
+  private static final float ACTION_DURATION = Settings.ACTION_DUR_XFAST;
   private final DamageInfo damageInfo;
 
   public BuzzBombDamageAndPlantAction(AbstractCreature source, AbstractCreature target, DamageInfo damageInfo,

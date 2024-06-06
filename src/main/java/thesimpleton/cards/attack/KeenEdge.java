@@ -87,7 +87,7 @@ public class KeenEdge extends CustomCard {
 
     while(itr.hasNext()) {
       AbstractCard card = (AbstractCard)itr.next();
-      if (card.type == CardType.SKILL) {
+      if (card.type != CardType.ATTACK) {
         return true;
       }
     }

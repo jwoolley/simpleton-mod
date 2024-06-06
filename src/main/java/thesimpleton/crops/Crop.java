@@ -73,7 +73,7 @@ public enum Crop {
       case SQUASH:
         return new SquashCropOrb(amount);
       case STRAWBERRIES:
-        return new MushroomCropOrb(amount); // return new StrawberryCropOrb(amount);
+        return new StrawberryCropOrb(amount);
       case TURNIPS:
         return new TurnipCropOrb(amount);
       default:

@@ -38,7 +38,6 @@ public class HayseedVictoryVegetablesEffect extends AbstractGameEffect {
             "orbs/plantartichoke.png",
             "orbs/plantasparagus.png",
             "orbs/plantchili.png",
-            "orbs/plantcoffee.png",
             "orbs/plantcorn.png",
             "orbs/plantmushroom.png",
             "orbs/plantonion.png",

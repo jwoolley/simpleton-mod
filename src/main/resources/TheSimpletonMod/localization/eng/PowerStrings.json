@@ -112,6 +112,15 @@
     ]
   },
 
+  "TheSimpletonMod:NourishmentPower": {
+    "NAME": "Nourishment",
+    "DESCRIPTIONS": [
+      "At the end of combat, heal #b",
+      " HP (up to #b",
+      " HP per combat)."
+    ]
+  },
+
   "TheSimpletonMod:NumbPower": {
     "NAME": "Numb",
     "DESCRIPTIONS": [

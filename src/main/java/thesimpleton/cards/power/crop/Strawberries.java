@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.CropSpawnAction;
 import thesimpleton.cards.TheSimpletonCardTags;
+import thesimpleton.cards.attack.Gnawberry;
+import thesimpleton.cards.status.IceCube;
 import thesimpleton.enums.AbstractCardEnum;
 import thesimpleton.orbs.StrawberryCropOrb;
 
@@ -28,10 +30,13 @@ public class Strawberries extends AbstractCropPowerCard {
   private static final int CROP_STACKS = 2;
   private static final int UPGRADE_CROP_STACKS = 1;
 
+  private static final AbstractCard PREVIEW_CARD;
+
   public Strawberries() {
     super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.THE_SIMPLETON_BLUE, RARITY, TARGET);
     this.baseMagicNumber = this.magicNumber = CROP_STACKS;
     this.tags.add(TheSimpletonCardTags.CROP_POWER);
+    this.cardsToPreview = PREVIEW_CARD;
   }
 
   @Override
@@ -56,5 +61,6 @@ public class Strawberries extends AbstractCropPowerCard {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
+    PREVIEW_CARD = new Gnawberry();
   }
 }

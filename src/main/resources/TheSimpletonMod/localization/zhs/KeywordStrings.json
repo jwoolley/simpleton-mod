@@ -77,7 +77,7 @@
     "NAMES": [
       "小啃莓", "小啃莓"
     ],
-    "DESCRIPTION": "小啃莓是一种攻击牌，造成中等伤害并治疗生命。"
+    "DESCRIPTION": "小啃莓是一种攻击牌，造成中等伤害并治疗生命 在战斗结束时。"
   },
 
   "TheSimpletonMod:HarvestKeyword": {
@@ -118,6 +118,14 @@
       "洋葱", "洋葱。"
     ],
     "DESCRIPTION": "#y农作物 。收获时向随机敌人施加 #r虚弱 。"
+  },
+
+  "TheSimpletonMod:NourishmentKeyword": {
+    "PROPER_NAME": "营养",
+    "NAMES": [
+      "营养"
+    ],
+    "DESCRIPTION": "战斗结束时恢复生命值（每场战斗最多恢复 10 点生命值）。"
   },
 
   "TheSimpletonMod:Numbed": {
@@ -183,7 +191,7 @@
     "NAMES": [
       "草莓", "草莓。"
     ],
-    "DESCRIPTION": "#y农作物 。收获时产出小啃莓攻击牌，能伤害敌人同时治疗自己少量生命。"
+    "DESCRIPTION": "#y农作物 。收获时产出小啃莓攻击牌，能伤害敌人同时治疗自己少量生命 斗结束时 。"
   },
 
   "TheSimpletonMod:SunflowerKeyword": {

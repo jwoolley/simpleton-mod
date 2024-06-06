@@ -202,7 +202,7 @@
 
   "TheSimpletonMod:Gnawberry": {
     "NAME": "Gnawberry",
-    "DESCRIPTION": "Deal !D! Damage. NL Heal !M! HP. NL Exhaust."
+    "DESCRIPTION": "Deal !D! Damage. NL At the end of combat, Heal !M! HP (Max !TheSimpleton:magic-num-2!). NL Exhaust."
   },
 
   "TheSimpletonMod:Haymaker": {

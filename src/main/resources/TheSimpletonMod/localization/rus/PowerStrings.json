@@ -112,6 +112,15 @@
     ]
   },
 
+  "TheSimpletonMod:NourishmentPower": {
+    "NAME": "Питание",
+    "DESCRIPTIONS": [
+      "Восполняет #b",
+      " ОЗ в конце боя (максимум ",
+      ")."
+    ]
+  },
+
   "TheSimpletonMod:NumbPower": {
     "NAME": "Оцепенение",
     "DESCRIPTIONS": [

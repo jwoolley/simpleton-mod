@@ -112,6 +112,15 @@
     ]
   },
 
+  "TheSimpletonMod:NourishmentPower": {
+    "NAME": "Nourishment",
+    "DESCRIPTIONS": [
+      "在战斗结束时，回复 #b",
+      " 点生命。（每场战斗最多 ",
+      "点生命值）"
+    ]
+  },
+
   "TheSimpletonMod:NumbPower": {
     "NAME": "麻木",
     "DESCRIPTIONS": [

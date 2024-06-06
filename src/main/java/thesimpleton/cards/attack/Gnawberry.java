@@ -4,6 +4,7 @@ import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -17,8 +18,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.TheSimpletonCardTags;
+import thesimpleton.cards.interfaces.IHasSecondMagicNumberCard;
+import thesimpleton.powers.BiorefinementPower;
+import thesimpleton.powers.NourishmentPower;
 
-public class Gnawberry extends CustomCard {
+public class Gnawberry extends CustomCard implements IHasSecondMagicNumberCard {
   public static final String ID = "TheSimpletonMod:Gnawberry";
   public static final String NAME;
   public static final String DESCRIPTION;
@@ -57,7 +61,8 @@ public class Gnawberry extends CustomCard {
         new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
             AbstractGameAction.AttackEffect.NONE));
 
-    AbstractDungeon.actionManager.addToBottom(new HealAction(p, p, this.magicNumber));
+    AbstractDungeon.actionManager.addToBottom(
+            new ApplyPowerAction(p, p, new NourishmentPower(this.magicNumber), this.magicNumber));
   }
 
   @Override
@@ -78,5 +83,20 @@ public class Gnawberry extends CustomCard {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
+  }
+
+  @Override
+  public boolean isSecondMagicNumberUpgraded() {
+    return false;
+  }
+
+  @Override
+  public int getSecondMagicNumberBaseValue() {
+    return NourishmentPower.MAX_STACKS;
+  }
+
+  @Override
+  public int getSecondMagicNumberCurrentValue() {
+    return NourishmentPower.MAX_STACKS;
   }
 }

@@ -202,7 +202,7 @@
 
   "TheSimpletonMod:Gnawberry": {
     "NAME": "小啃莓",
-    "DESCRIPTION": "造成 !D! 伤害。 NL 治疗 !M! 生命。 NL 消耗 。"
+    "DESCRIPTION": "造成 !D! 伤害。 NL 治疗 !M! 生命 在战斗结束时（每场战斗最多恢复 !TheSimpleton:magic-num-2! 点生命值）。 NL 消耗 。"
   },
 
   "TheSimpletonMod:Haymaker": {

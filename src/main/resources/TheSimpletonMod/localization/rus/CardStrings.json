@@ -238,9 +238,8 @@
 
   "TheSimpletonMod:KeenEdge": {
     "NAME": "Острый край",
-    "DESCRIPTION": "Эфирная. NL Наносит !D! урона. NL Увеличивает свой урон на !M! и стоимость на ",
-    "UPGRADE_DESCRIPTION" :  "Наносит !D! урона. NL Увеличивает свой урон на !M! и стоимость на ",
-    "EXTENDED_DESCRIPTION": [ " этот бой." ]
+    "DESCRIPTION": "Эфирная. NL Наносит !D! урона. NL Увеличивает свой урон на !M! этот бой. Увеличивает стоимость на ",
+    "EXTENDED_DESCRIPTION": [ " этот бой, если в вашей руке Навыки."  ]
   },
 
   "TheSimpletonMod:LandGrant": {

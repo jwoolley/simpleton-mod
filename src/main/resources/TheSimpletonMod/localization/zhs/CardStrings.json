@@ -240,9 +240,8 @@
 
   "TheSimpletonMod:KeenEdge": {
     "NAME": "锋锐钳刃",
-    "DESCRIPTION": "虚无 。 NL 造成 !D! 伤害。 NL 此牌的伤害增加 !M! ，耗费增加 ",
-    "UPGRADE_DESCRIPTION" :  "造成 !D! 伤害。 NL 此牌的伤害增加 !M! ，耗费增加 ",
-    "EXTENDED_DESCRIPTION": [ " 于此战。" ]
+    "DESCRIPTION": "虚无 。 NL 造成 !D! 伤害。 NL 此牌的伤害增加 !M! 于此战. 耗费增加 ",
+    "EXTENDED_DESCRIPTION": [ " 于此战 如果你手中有技能卡。" ]
   },
 
   "TheSimpletonMod:LandGrant": {

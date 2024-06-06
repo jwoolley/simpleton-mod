@@ -240,9 +240,8 @@
 
   "TheSimpletonMod:KeenEdge": {
     "NAME": "Keen Edge",
-    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Increase this card's damage by !M! and its cost by ",
-    "UPGRADE_DESCRIPTION" :  "Deal !D! damage. NL Increase this card's damage by !M! and its cost by ",
-    "EXTENDED_DESCRIPTION": [ " this combat." ]
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Increase this card's damage by !M! this combat. NL Increase its cost by ",
+    "EXTENDED_DESCRIPTION": [" this combat if you have any Skills in hand." ]
   },
 
   "TheSimpletonMod:LandGrant": {

@@ -17,12 +17,15 @@ import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.actions.ModifyCostAction;
 import thesimpleton.enums.AbstractCardEnum;
+import thesimpleton.powers.BurningPower;
+import thesimpleton.utilities.SimpletonColorUtil;
+
+import java.util.Iterator;
 
 public class KeenEdge extends CustomCard {
   public static final String ID = "TheSimpletonMod:KeenEdge";
   public static final String NAME;
   public static final String DESCRIPTION;
-  public static final String UPGRADE_DESCRIPTION;
   public static final String[] EXTENDED_DESCRIPTION;
   public static final String IMG_PATH = "cards/keenedge.png";
 
@@ -36,6 +39,8 @@ public class KeenEdge extends CustomCard {
   private static final int DAMAGE = 9;
   private static final int COST_INCREASE = 1;
   private static final int DAMAGE_INCREASE = 9;
+
+  private static final int UPGRADE_DAMAGE = 3;
 
   public KeenEdge() {
     super(ID, NAME, TheSimpletonMod.getImageResourcePath(IMG_PATH), COST, getDescription(false), TYPE,
@@ -59,7 +64,34 @@ public class KeenEdge extends CustomCard {
 
   private void updateOnUse() {
     AbstractDungeon.actionManager.addToBottom(new ModifyDamageAction(this.uuid, this.magicNumber));
-    AbstractDungeon.actionManager.addToBottom(new ModifyCostAction(this, COST_INCREASE));
+
+    if (shouldIncreaseCost()) {
+      this.superFlash();
+      AbstractDungeon.actionManager.addToBottom(new ModifyCostAction(this, COST_INCREASE));
+    }
+  }
+
+  @Override
+  public void triggerOnGlowCheck() {
+    if (AbstractDungeon.player.hand.contains(this)) {
+      if (AbstractDungeon.player.hand.contains(this) && !shouldIncreaseCost()) {
+        this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+      } else {
+        this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+      }
+    }
+  }
+
+  private boolean shouldIncreaseCost() {
+    Iterator itr = AbstractDungeon.player.hand.group.iterator();
+
+    while(itr.hasNext()) {
+      AbstractCard card = (AbstractCard)itr.next();
+      if (card.type == CardType.SKILL) {
+        return true;
+      }
+    }
+    return false;
   }
 
   @Override
@@ -71,21 +103,21 @@ public class KeenEdge extends CustomCard {
   public void upgrade() {
     if (!this.upgraded) {
       this.upgradeName();
-      this.isEthereal = false;
+      this.upgradeDamage(UPGRADE_DAMAGE);
+      this.upgradeMagicNumber(UPGRADE_DAMAGE);
       this.rawDescription = getDescription(true);
       initializeDescription();
     }
   }
 
   private static String getDescription(boolean isUpgraded) {
-    return (isUpgraded ? UPGRADE_DESCRIPTION : DESCRIPTION) + COST_INCREASE  + EXTENDED_DESCRIPTION[0];
+    return DESCRIPTION + COST_INCREASE  + EXTENDED_DESCRIPTION[0];
   }
 
   static {
     cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     NAME = cardStrings.NAME;
     DESCRIPTION = cardStrings.DESCRIPTION;
-    UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
   }
 }

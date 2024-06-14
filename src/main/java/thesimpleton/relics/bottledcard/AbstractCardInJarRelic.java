@@ -40,7 +40,7 @@ public class AbstractCardInJarRelic extends CustomRelic {
     }
 
 
-    private AbstractCard getCardInJar() {
+    public AbstractCard getCardInJar() {
         return card;
     }
 }

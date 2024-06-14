@@ -62,8 +62,7 @@ import thesimpleton.potions.AbundancePotion;
 import thesimpleton.potions.KindlingPotion;
 import thesimpleton.potions.MoonshinePotion;
 import thesimpleton.relics.*;
-import thesimpleton.relics.bottledcard.CardInJarApotheosis;
-import thesimpleton.relics.bottledcard.CardInJarMayhem;
+import thesimpleton.relics.bottledcard.*;
 import thesimpleton.savedata.CardPoolCustomSavable;
 import thesimpleton.savedata.SeasonCropsCustomSavable;
 import thesimpleton.savedata.SeasonCustomSavable;
@@ -1178,7 +1177,19 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         debugLogger.log("TheSimpletonMod::receiveEditRelics called ===========================>>>>>>>");
 
         BaseMod.addRelicToCustomPool(new CardInJarApotheosis(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new CardInJarBandageUp(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new CardInJarChrysalis(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new CardInJarDiscovery(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new CardInJarEnlightenment(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new CardInJarFinesse(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new CardInJarFlashOfSteel(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new CardInJarJackOfAllTrades(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new CardInJarMadness(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new CardInJarMayhem(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new CardInJarMetamorphosis(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new CardInJarTheBomb(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new CardInJarTransmutation(), AbstractCardEnum.THE_SIMPLETON_BLUE);
+        BaseMod.addRelicToCustomPool(new CardInJarViolence(), AbstractCardEnum.THE_SIMPLETON_BLUE);
 
         // shared relics
         if (ConfigData.enableRelicsForAllCharacters) {

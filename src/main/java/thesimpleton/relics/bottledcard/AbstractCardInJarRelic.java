@@ -10,29 +10,32 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import thesimpleton.TheSimpletonMod;
 
 public class AbstractCardInJarRelic extends CustomRelic {
-    public static final String ID = "TheSimpletonMod:CardInJarApotheosis";
-    public static final String IMG_PATH = "relics/cardinjar_apotheosis.png";
-    public static final String IMG_PATH_LARGE = "relics/cardinjar_apotheosis_large.png";
     public static final String OUTLINE_IMG_PATH = "relics/cardinjar_outline.png";
-
     private static final AbstractRelic.RelicTier TIER = AbstractRelic.RelicTier.SPECIAL;
     private static final AbstractRelic.LandingSound SOUND = AbstractRelic.LandingSound.CLINK;
 
     private AbstractCard card;
 
     public AbstractCardInJarRelic(String id, String imgPath, String imgPathLarge, AbstractCard card) {
-        super(ID, new Texture(TheSimpletonMod.getImageResourcePath(imgPath)),
+        super(id, new Texture(TheSimpletonMod.getImageResourcePath(imgPath)),
                 new Texture(TheSimpletonMod.getImageResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
         this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getImageResourcePath(imgPathLarge));
         this.card = card;
     }
 
+    @Override
     public void atPreBattle() {
         this.flash();
         AbstractCard c = getCardInJar().makeCopy();
         UnlockTracker.markCardAsSeen(c.cardID);
         this.addToBot(new MakeTempCardInHandAction(c));
     }
+
+    @Override
+    public String getUpdatedDescription() {
+        return this.DESCRIPTIONS[0];
+    }
+
 
     private AbstractCard getCardInJar() {
         return card;

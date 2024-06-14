@@ -7,6 +7,14 @@
     ]
   },
 
+  "TheSimpletonMod:CardInJarMayhem": {
+    "NAME": "Preserved Mayhem",
+    "FLAVOR": "A vicious specimen.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add a #yMayhem to your hand."
+    ]
+  },
+
   "TheSimpletonMod:CashCrop": {
     "NAME": "Cash Crop",
     "FLAVOR": "Cold, but not hard.",

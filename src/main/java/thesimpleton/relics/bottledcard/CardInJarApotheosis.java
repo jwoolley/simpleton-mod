@@ -7,10 +7,9 @@ public class CardInJarApotheosis extends AbstractCardInJarRelic {
     public static final String ID = "TheSimpletonMod:CardInJarApotheosis";
     public static final String IMG_PATH = "relics/cardinjar_apotheosis.png";
     public static final String IMG_PATH_LARGE = "relics/cardinjar_apotheosis_large.png";
-    public static final String OUTLINE_IMG_PATH = "relics/cardinjar_outline.png";
 
     public CardInJarApotheosis() {
-        super(ID, IMG_PATH, OUTLINE_IMG_PATH, new Apotheosis());
+        super(ID, IMG_PATH, IMG_PATH_LARGE, new Apotheosis());
     }
 
     @Override

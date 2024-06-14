@@ -62,6 +62,7 @@ import thesimpleton.potions.AbundancePotion;
 import thesimpleton.potions.KindlingPotion;
 import thesimpleton.potions.MoonshinePotion;
 import thesimpleton.relics.*;
+import thesimpleton.relics.bottledcard.CardInJarApotheosis;
 import thesimpleton.savedata.CardPoolCustomSavable;
 import thesimpleton.savedata.SeasonCropsCustomSavable;
 import thesimpleton.savedata.SeasonCustomSavable;
@@ -1176,6 +1177,7 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         debugLogger.log("TheSimpletonMod::receiveEditRelics called ===========================>>>>>>>");
 
         // shared relics
+        BaseMod.addRelicToCustomPool(new CardInJarApotheosis(), AbstractCardEnum.THE_SIMPLETON_BLUE);
 
         if (ConfigData.enableRelicsForAllCharacters) {
             BaseMod.addRelic(new GardenGlove(), RelicType.SHARED);
@@ -1195,7 +1197,6 @@ public class TheSimpletonMod implements EditCardsSubscriber, EditCharactersSubsc
         BaseMod.addRelicToCustomPool(new NightSoil(), AbstractCardEnum.THE_SIMPLETON_BLUE);
 
         // hayseed-only relics
-
         BaseMod.addRelicToCustomPool(new CashCrop(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new GasCan(), AbstractCardEnum.THE_SIMPLETON_BLUE);
         BaseMod.addRelicToCustomPool(new GourdCharm(), AbstractCardEnum.THE_SIMPLETON_BLUE);

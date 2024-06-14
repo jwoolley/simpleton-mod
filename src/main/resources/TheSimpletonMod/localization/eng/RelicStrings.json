@@ -1,4 +1,12 @@
 {
+  "TheSimpletonMod:CardInJarApotheosis": {
+    "NAME": "Preserved Apotheosis",
+    "FLAVOR": "An ideal specimen.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add an #yApotheosis to your hand."
+    ]
+  },
+
   "TheSimpletonMod:CashCrop": {
     "NAME": "Cash Crop",
     "FLAVOR": "Cold, but not hard.",

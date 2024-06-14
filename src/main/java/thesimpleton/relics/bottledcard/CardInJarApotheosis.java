@@ -21,12 +21,17 @@ public class CardInJarApotheosis extends CustomRelic {
 
     private AbstractCard card;
 
-    public CardInJarApotheosis() {
-        super(ID, new Texture(TheSimpletonMod.getImageResourcePath(IMG_PATH)),
+    public CardInJarApotheosis(String id, String imgPath, String imgPathLarge, AbstractCard card) {
+        super(ID, new Texture(TheSimpletonMod.getImageResourcePath(imgPath)),
                 new Texture(TheSimpletonMod.getImageResourcePath(OUTLINE_IMG_PATH)), TIER, SOUND);
-        this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getImageResourcePath(IMG_PATH_LARGE));
-        this.card = new Apotheosis();
+        this.largeImg = ImageMaster.loadImage(TheSimpletonMod.getImageResourcePath(imgPathLarge));
+        this.card = card;
     }
+
+    public CardInJarApotheosis() {
+        this(ID, IMG_PATH, OUTLINE_IMG_PATH, new Apotheosis());
+    }
+
     public void atPreBattle() {
         this.flash();
         AbstractCard c = getCardInJar().makeCopy();

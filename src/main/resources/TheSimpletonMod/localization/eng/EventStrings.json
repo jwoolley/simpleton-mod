@@ -70,10 +70,8 @@
       "[Chase] #gReceive ",
       ".",
       ". #r",
-      "%: #rBecome #rCursed #r– #r",
-      "[Leave]",
-      " #gand #g",
-      " #gGold. #r"
+      ". #rBecome #rCursed #r– #r",
+      "[Leave]"
     ]
   },
 

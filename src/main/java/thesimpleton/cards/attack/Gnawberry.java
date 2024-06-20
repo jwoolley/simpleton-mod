@@ -35,8 +35,8 @@ public class Gnawberry extends CustomCard implements IHasSecondMagicNumberCard {
   private static final CardTarget TARGET = CardTarget.ENEMY;
 
   private static final int COST = 1;
-  private static final int DAMAGE = 11;
-  private static final int UPGRADE_DAMAGE_AMOUNT = 4;
+  private static final int DAMAGE = 12;
+  private static final int UPGRADE_DAMAGE_AMOUNT = 6;
   private static final int HEAL_AMOUNT = 2;
   private static final int UPGRADE_HEAL_AMOUNT = 1;
 

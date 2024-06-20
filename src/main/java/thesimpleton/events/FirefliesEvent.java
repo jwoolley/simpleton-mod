@@ -1,23 +1,18 @@
 package thesimpleton.events;
 
-import basemod.BaseMod;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
-import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.curse.Gnats;
-import thesimpleton.enums.AbstractCardEnum;
+import thesimpleton.patches.ui.GenericEventDialogSecondPreviewCard;
 import thesimpleton.relics.bottledcard.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -32,7 +27,7 @@ public class FirefliesEvent extends CustomSimpletonEvent {
   private static final String[] OPTIONS;
   private static final AbstractCard CURSE_GNATS = new Gnats();
 
-  private final AbstractRelic relicReward;
+  private final AbstractCardInJarRelic relicReward;
   private final AbstractPotion potionReward;
   private final AbstractCard curseCard;
 
@@ -59,6 +54,8 @@ public class FirefliesEvent extends CustomSimpletonEvent {
     if (canPlayerGainBottleRelic) {
       this.imageEventText.setDialogOption(OPTIONS[1] + relicReward.name + OPTIONS[4] + curseCard.name + OPTIONS[2],
               curseCard, relicReward);
+
+      GenericEventDialogSecondPreviewCard.setSecondPreviewCardOnLastOption( this.imageEventText, relicReward.getCardInJar());
     }
 
     this.state = SimpletonEventHelper.EventState.WAITING;

@@ -1,4 +1,116 @@
 {
+  "TheSimpletonMod:CardInJarApotheosis": {
+    "NAME": "Preserved Apotheosis",
+    "FLAVOR": "An ideal specimen.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add an #yApotheosis to your hand."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarBandageUp": {
+    "NAME": "Jar of Bandage Up",
+    "FLAVOR": "A healthy specimen.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add a #yBandage #yUp to your hand."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarChrysalis": {
+    "NAME": "Petrified Chrysalis",
+    "FLAVOR": "A field sample of an unexpectedly long nap.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add a #yChrysalis to your hand."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarDiscovery": {
+    "NAME": "Sample Discovery",
+    "FLAVOR": "A revelatory specimen.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add a #yDiscovery to your hand."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarEnlightenment": {
+    "NAME": "Condensed Enlightenment",
+    "FLAVOR": "An transcendent specimen.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add an #yEnlightenment to your hand."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarFinesse": {
+    "NAME": "Jar of Finesse",
+    "FLAVOR": "A delicate specimen.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add a #yFinesse to your hand."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarFlashOfSteel": {
+    "NAME": "Jar of Flash of Steel",
+    "FLAVOR": "An illuminating specimen.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add a #yFlash #yOf #ySteel to your hand."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarJackOfAllTrades": {
+    "NAME": "Catalogued Jack",
+    "FLAVOR": "Perfectly suited to its environment.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add a #yJack #yof #yAll #yTrades to your hand."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarMadness": {
+    "NAME": "Archival Madness",
+    "FLAVOR": "This sample is not entirely stable.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add a #yMadness to your hand."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarMayhem": {
+    "NAME": "Captured Mayhem",
+    "FLAVOR": "A vicious specimen.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add a #yMayhem to your hand."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarMetamorphosis": {
+    "NAME": "Model Metamorphosis",
+    "FLAVOR": "A transformative find.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add a #yMetamorphosis to your hand."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarTheBomb": {
+    "NAME": "Explosive Specimen",
+    "FLAVOR": "A volatile sample.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add a #yThe #yBomb to your hand."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarTransmutation": {
+    "NAME": "Crystallized Transmutation",
+    "FLAVOR": "It matters in more ways than you'd expect.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add a #yTransmutation to your hand."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarViolence": {
+    "NAME": "Concentrated Violence",
+    "FLAVOR": "Nasty, brutish, and very compact.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add a #yViolence to your hand."
+    ]
+  },
+
   "TheSimpletonMod:CashCrop": {
     "NAME": "Cash Crop",
     "FLAVOR": "Cold, but not hard.",

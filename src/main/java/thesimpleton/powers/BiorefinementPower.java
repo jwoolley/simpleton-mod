@@ -1,15 +1,14 @@
 package thesimpleton.powers;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import thesimpleton.TheSimpletonMod;
 import thesimpleton.cards.TheSimpletonCardTags;
-
+import thesimpleton.effects.BiorefinementGlowEffect;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,6 +58,7 @@ public class BiorefinementPower extends AbstractTheSimpletonPower {
 
         if (decreasableCards.size() > 0) {
           discountRandomCardCostForTurn(decreasableCards);
+          AbstractDungeon.actionManager.addToTop(new VFXAction(new BiorefinementGlowEffect()));
         }
       }
       timesTriggeredThisTurn++;

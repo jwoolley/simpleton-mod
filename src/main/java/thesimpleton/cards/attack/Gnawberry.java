@@ -58,11 +58,11 @@ public class Gnawberry extends CustomCard implements IHasSecondMagicNumberCard {
     }
 
     AbstractDungeon.actionManager.addToBottom(
-        new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
-            AbstractGameAction.AttackEffect.NONE));
+            new ApplyPowerAction(p, p, new NourishmentPower(this.magicNumber), this.magicNumber));
 
     AbstractDungeon.actionManager.addToBottom(
-            new ApplyPowerAction(p, p, new NourishmentPower(this.magicNumber), this.magicNumber));
+        new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn),
+            AbstractGameAction.AttackEffect.NONE));
   }
 
   @Override

@@ -99,7 +99,15 @@ public class CropSpawnAction extends AbstractGameAction {
                     AbstractDungeon.player.channelOrb(newOrb);
                     newOrb.update();
 //                        logger.trace("CropSpawnAction::update # of " + newOrb.name + " passiveAmount after (2): " + newOrb.passiveAmount + " getAmount amount after: " + AbstractCropOrb.getCropOrb(newOrb).getAmount());
-                    AbstractCropOrb.getCropOrb(newOrb).gainCropEffectAfter();
+
+                    AbstractCropOrb plantedOrb = AbstractCropOrb.getCropOrb(newOrb);
+                    if (plantedOrb != null) {
+                        plantedOrb.gainCropEffectAfter();
+                    } else {
+                        // unsure how this could be null, adding check per bug report:
+                        //  https://steamcommunity.com/workshop/filedetails/discussion/1717515299/4522262482630053631/#c603031621173588498
+                        logger.warn("CropSpawnAction::update Crop orp was unexpectedly null after channeling it: " + this.cropOrb.name);
+                    }
                 }
             }
             this.secondTick = true;

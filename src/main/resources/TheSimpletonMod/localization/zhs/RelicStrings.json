@@ -1,4 +1,115 @@
 {
+  "TheSimpletonMod:CardInJarApotheosis": {
+    "NAME": "神化在罐子里",
+    "FLAVOR": "保持内容新鲜。",
+    "DESCRIPTIONS": [
+      "在每场战斗开始时，将一张 #y神化 放入你的手牌。"
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarBandageUp": {
+    "NAME": "包扎在罐子里",
+    "FLAVOR": "保持内容新鲜。",
+    "DESCRIPTIONS": [
+      "在每场战斗开始时，将一张 #y包扎 放入你的手牌。"
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarChrysalis": {
+    "NAME": "结茧在罐子里",
+    "FLAVOR": "保持内容新鲜。",
+    "DESCRIPTIONS": [
+      "在每场战斗开始时，将一张 #y结茧 放入你的手牌。"
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarDiscovery": {
+    "NAME": "发现在罐子里",
+    "FLAVOR": "保持内容新鲜。",
+    "DESCRIPTIONS": [
+      "在每场战斗开始时，将一张 #y发现 放入你的手牌。"
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarEnlightenment": {
+    "NAME": "开悟在罐子里",
+    "FLAVOR": "保持内容新鲜。",
+    "DESCRIPTIONS": [
+      "在每场战斗开始时，将一张 #y开悟 放入你的手牌。"
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarFinesse": {
+    "NAME": "妙计在罐子里",
+    "FLAVOR": "保持内容新鲜。",
+    "DESCRIPTIONS": [
+      "在每场战斗开始时，将一张 #y妙计 放入你的手牌。"
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarFlashOfSteel": {
+    "NAME": "亮剑在罐子里",
+    "FLAVOR": "保持内容新鲜。",
+    "DESCRIPTIONS": [
+      "在每场战斗开始时，将一张 #y亮剑 放入你的手牌。"
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarJackOfAllTrades": {
+    "NAME": "花样百出在罐子里",
+    "FLAVOR": "保持内容新鲜。",
+    "DESCRIPTIONS": [
+      "在每场战斗开始时，将一张 #y花样百出 放入你的手牌。"
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarMadness": {
+    "NAME": "疯狂在罐子里",
+    "FLAVOR": "保持内容新鲜。",
+    "DESCRIPTIONS": [
+      "在每场战斗开始时，将一张 #y疯狂 放入你的手牌。"
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarMayhem": {
+    "NAME": "乱战在罐子里",
+    "FLAVOR": "保持内容新鲜。",
+    "DESCRIPTIONS": [
+      "在每场战斗开始时，将一张 #y乱战 放入你的手牌。"
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarMetamorphosis": {
+    "NAME": "羽化在罐子里",
+    "FLAVOR": "保持内容新鲜。",
+    "DESCRIPTIONS": [
+      "在每场战斗开始时，将一张 #y羽化 放入你的手牌。"
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarTheBomb": {
+    "NAME": "炸弹在罐子里",
+    "FLAVOR": "保持内容新鲜。",
+    "DESCRIPTIONS": [
+      "在每场战斗开始时，将一张 #y炸弹 放入你的手牌。"
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarTransmutation": {
+    "NAME": "转化在罐子里",
+    "FLAVOR": "保持内容新鲜。",
+    "DESCRIPTIONS": [
+      "在每场战斗开始时，将一张 #y转化 放入你的手牌。"
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarViolence": {
+    "NAME": "暴力在罐子里",
+    "FLAVOR": "保持内容新鲜。",
+    "DESCRIPTIONS": [
+      "在每场战斗开始时，将一张 #y暴力 放入你的手牌。"
+    ]
+  },
   "TheSimpletonMod:CashCrop": {
     "NAME": "经济作物",
     "FLAVOR": "无温，但不坚硬。",

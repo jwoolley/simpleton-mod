@@ -1,5 +1,115 @@
 {
-  "TheSimpletonMod:CashCrop": {
+  "TheSimpletonMod:CardInJarApotheosis": {
+    "NAME": "Апофеоз в бутылке",
+    "FLAVOR": "Сохраняет свежесть содержимого.",
+    "DESCRIPTIONS": [
+      "Добавляет в руку карту #yАпофеоз в начале каждого боя."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarBandageUp": {
+    "NAME": "Перевязка в бутылке",
+    "FLAVOR": "Сохраняет свежесть содержимого.",
+    "DESCRIPTIONS": [
+      "Добавляет в руку карту #yПеревязка в начале каждого боя."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarChrysalis": {
+    "NAME": "Линька в бутылке",
+    "FLAVOR": "Сохраняет свежесть содержимого.",
+    "DESCRIPTIONS": [
+      "Добавляет в руку карту #yЛинька в начале каждого боя."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarDiscovery": {
+    "NAME": "Находка в бутылке",
+    "FLAVOR": "Сохраняет свежесть содержимого.",
+    "DESCRIPTIONS": [
+      "Добавляет в руку карту #yНаходка в начале каждого боя."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarEnlightenment": {
+    "NAME": "Просветление в бутылке",
+    "FLAVOR": "Сохраняет свежесть содержимого.",
+    "DESCRIPTIONS": [
+      "Добавляет в руку карту #yПросветление в начале каждого боя."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarFinesse": {
+    "NAME": "Ловкость рук в бутылке",
+    "FLAVOR": "Сохраняет свежесть содержимого.",
+    "DESCRIPTIONS": [
+      "Добавляет в руку карту #yЛовкость #yрук в начале каждого боя."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarFlashOfSteel": {
+    "NAME": "Отблеск стали в бутылке",
+    "FLAVOR": "Сохраняет свежесть содержимого.",
+    "DESCRIPTIONS": [
+      "Добавляет в руку карту #yОтблеск #yстали в начале каждого боя."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarJackOfAllTrades": {
+    "NAME": "Мастер на все руки в бутылке",
+    "FLAVOR": "Сохраняет свежесть содержимого.",
+    "DESCRIPTIONS": [
+      "Добавляет в руку карту #yМастер #yна #yвсе #yруки в начале каждого боя."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarMadness": {
+    "NAME": "Безумие в бутылке",
+    "FLAVOR": "Сохраняет свежесть содержимого.",
+    "DESCRIPTIONS": [
+      "Добавляет в руку карту #yБезумие в начале каждого боя."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarMayhem": {
+    "NAME": "Беспредел в бутылке",
+    "FLAVOR": "Сохраняет свежесть содержимого.",
+    "DESCRIPTIONS": [
+      "Добавляет в руку карту #yБеспредел в начале каждого боя."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarMetamorphosis": {
+    "NAME": "Метаморфоз в бутылке",
+    "FLAVOR": "Сохраняет свежесть содержимого.",
+    "DESCRIPTIONS": [
+      "Добавляет в руку карту #yМетаморфоз в начале каждого боя."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarTheBomb": {
+    "NAME": "Бомба в бутылке",
+    "FLAVOR": "Сохраняет свежесть содержимого.",
+    "DESCRIPTIONS": [
+      "Добавляет в руку карту #yБомба в начале каждого боя."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarTransmutation": {
+    "NAME": "Трансмутация в бутылке",
+    "FLAVOR": "Сохраняет свежесть содержимого.",
+    "DESCRIPTIONS": [
+      "Добавляет в руку карту #yТрансмутация в начале каждого боя."
+    ]
+  },
+
+  "TheSimpletonMod:CardInJarViolence": {
+    "NAME": "Воинственность в бутылке",
+    "FLAVOR": "Сохраняет свежесть содержимого.",
+    "DESCRIPTIONS": [
+      "Добавляет в руку карту #yВоинственность в начале каждого боя."
+    ]
+  }, "TheSimpletonMod:CashCrop": {
     "NAME": "Денежная Культура",
     "FLAVOR": "Холодная, но не жёсткая.",
     "DESCRIPTIONS": [
